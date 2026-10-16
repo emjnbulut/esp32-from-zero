@@ -1,0 +1,12 @@
+.venv/
+.models/
+__pycache__/
+tools/voice_samples/
+# large media: raw footage and rendered output stay local
+footage/
+build/
+media/
+*.mp4
+*.mov
+*.wav
+*.mp3
