@@ -1,0 +1,204 @@
+/* ESP32 From Zero - shared stage styles. Stage is always 1920x1080. */
+:root {
+  --bg: #0b1220;
+  --panel: #121b2e;
+  --line: #22304d;
+  --text: #eef3fb;
+  --muted: #8fa1c0;
+  --teal: #19c3b4;
+  --amber: #ffb547;
+  --red: #ff5d6c;
+  --green: #4ade80;
+  --ui: "Segoe UI Variable Text", "Segoe UI", sans-serif;
+  --display: "Segoe UI Variable Display", "Segoe UI", sans-serif;
+  --mono: "Cascadia Mono", Consolas, monospace;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: #000; }
+body { font-family: var(--ui); color: var(--text); -webkit-font-smoothing: antialiased; }
+#stage { position: absolute; inset: 0; overflow: hidden; background: var(--bg); }
+.layer { position: absolute; inset: 0; }
+.abs { position: absolute; }
+.hidden { opacity: 0; }
+
+/* ---------- explainer scenes ---------- */
+.scene { position: absolute; inset: 0; opacity: 0; overflow: hidden;
+  background:
+    radial-gradient(1200px 700px at 75% 20%, rgba(25,195,180,.10), transparent 60%),
+    radial-gradient(900px 600px at 10% 90%, rgba(255,181,71,.07), transparent 60%),
+    var(--bg); }
+.scene .grid { position: absolute; inset: 0; opacity: .35;
+  background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 64px 64px; mask-image: radial-gradient(circle at 50% 50%, #000 30%, transparent 85%); }
+.h1 { font-family: var(--display); font-weight: 700; font-size: 84px; letter-spacing: -1.5px; }
+.h2 { font-family: var(--display); font-weight: 700; font-size: 56px; letter-spacing: -1px; }
+.h3 { font-family: var(--display); font-weight: 600; font-size: 34px; }
+.kicker { font-weight: 700; font-size: 22px; letter-spacing: 4px; text-transform: uppercase; color: var(--teal); }
+.muted { color: var(--muted); }
+.card { position: absolute; background: var(--panel); border: 1px solid var(--line); border-radius: 22px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.35); }
+.pill { display: inline-flex; align-items: center; gap: 10px; padding: 8px 18px; border-radius: 999px;
+  background: rgba(25,195,180,.14); color: var(--teal); font-weight: 700; font-size: 22px; }
+.codecard { font-family: var(--mono); font-size: 34px; line-height: 1.5; padding: 36px 44px; white-space: pre; }
+.label { position: absolute; font-weight: 600; font-size: 26px; white-space: nowrap; }
+
+/* callout used on top of UIs (lives inside the camera so it zooms with the UI) */
+.callout { position: absolute; padding: 7px 14px; border-radius: 10px; background: var(--amber); color: #1b1200;
+  font: 700 17px var(--ui); white-space: nowrap; box-shadow: 0 6px 20px rgba(0,0,0,.45); opacity: 0; }
+.ring { position: absolute; border: 3px solid var(--amber); border-radius: 10px; opacity: 0;
+  box-shadow: 0 0 0 4px rgba(255,181,71,.25), 0 0 24px rgba(255,181,71,.5); }
+
+/* ---------- step chip & clip frames (screen space) ---------- */
+#chip { position: absolute; left: 50%; transform: translateX(-50%); top: 14px; padding: 10px 20px 10px 14px; border-radius: 14px;
+  background: rgba(11,18,32,.88); border: 1px solid rgba(25,195,180,.5); display: flex; align-items: center; gap: 14px;
+  font: 600 22px var(--ui); opacity: 0; z-index: 50; box-shadow: 0 10px 30px rgba(0,0,0,.4); }
+#chip b { background: var(--teal); color: #04201d; border-radius: 9px; padding: 3px 10px; font-size: 18px; letter-spacing: 1px; }
+.clipframe { position: absolute; border-radius: 22px; overflow: hidden; background: #05080f; opacity: 0; z-index: 60;
+  border: 3px solid rgba(255,255,255,.9); box-shadow: 0 24px 80px rgba(0,0,0,.6); }
+.clipframe .ph { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 14px; border: 3px dashed rgba(255,181,71,.6); border-radius: 18px; margin: 10px; color: var(--amber); text-align: center; padding: 30px; }
+.clipframe .ph .big { font: 700 42px var(--display); }
+.clipframe .ph .small { font: 500 22px var(--ui); color: var(--muted); max-width: 80%; }
+.cliptag { position: absolute; z-index: 61; padding: 8px 16px; border-radius: 10px; background: var(--red); color: #fff;
+  font: 700 18px var(--ui); letter-spacing: 1px; opacity: 0; }
+
+/* ---------- Windows 11 desktop ---------- */
+#desk { position: absolute; inset: 0; opacity: 0; overflow: hidden; }
+#camera { position: absolute; left: 0; top: 0; width: 1920px; height: 1080px; transform-origin: 0 0; }
+.wallpaper { position: absolute; inset: 0;
+  background:
+    radial-gradient(700px 520px at 50% 58%, rgba(120,170,255,.55), transparent 70%),
+    radial-gradient(900px 700px at 60% 70%, rgba(40,90,220,.6), transparent 70%),
+    radial-gradient(1400px 900px at 40% 40%, #12306e, #08142f 70%); }
+.taskbar { position: absolute; left: 0; right: 0; bottom: 0; height: 48px; background: rgba(28,30,36,.92);
+  border-top: 1px solid rgba(255,255,255,.08); display: flex; justify-content: center; align-items: center; gap: 6px; z-index: 40; }
+.tb-ic { width: 40px; height: 40px; border-radius: 6px; display: flex; align-items: center; justify-content: center; position: relative; }
+.tb-ic.active::after { content: ""; position: absolute; bottom: 1px; width: 16px; height: 3px; border-radius: 2px; background: #6fb6ff; }
+.tb-tray { position: absolute; right: 14px; top: 0; height: 48px; display: flex; align-items: center; gap: 16px;
+  font: 400 12px var(--ui); color: #fff; text-align: right; line-height: 16px; }
+.win { position: absolute; background: #202020; border-radius: 8px; overflow: hidden; color: #fff;
+  box-shadow: 0 18px 60px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.08); opacity: 0; }
+.win.max { border-radius: 0; }
+.titlebar { height: 32px; display: flex; align-items: center; padding-left: 12px; gap: 10px; font: 400 12px var(--ui); position: relative; }
+.caps { position: absolute; right: 0; top: 0; height: 32px; display: flex; }
+.caps span { width: 46px; height: 32px; display: flex; align-items: center; justify-content: center; font: 400 14px var(--ui); color: #ddd; }
+
+/* browser */
+.br-top { background: #1f1f1f; height: 86px; }
+.br-tabs { height: 40px; display: flex; align-items: flex-end; padding-left: 8px; }
+.br-tab { width: 260px; height: 34px; background: #333; border-radius: 9px 9px 0 0; display: flex; align-items: center;
+  gap: 8px; padding: 0 12px; font: 400 12px var(--ui); color: #eee; }
+.br-bar { height: 46px; display: flex; align-items: center; gap: 12px; padding: 0 12px; background: #333; }
+.br-nav { color: #bbb; font-size: 16px; width: 22px; text-align: center; }
+.br-url { flex: 1; height: 34px; border-radius: 17px; background: #1f1f1f; display: flex; align-items: center; padding: 0 16px;
+  gap: 10px; font: 400 15px var(--ui); color: #fff; }
+.br-page { position: absolute; left: 0; top: 86px; right: 0; bottom: 0; overflow: hidden; background: #fff; }
+.br-page img { position: absolute; left: 0; top: 0; display: block; }
+.dl-pop { position: absolute; right: 10px; top: 80px; width: 360px; background: #2b2b2b; border-radius: 10px; padding: 14px 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.5); font: 400 13px var(--ui); color: #eee; opacity: 0; z-index: 5; }
+.dl-bar { height: 4px; border-radius: 2px; background: #555; margin-top: 10px; overflow: hidden; }
+.dl-bar i { display: block; height: 100%; width: 0; background: #8ab4f8; }
+
+/* classic dialogs (NSIS installer, driver setup, message boxes) */
+.cl { position: absolute; background: #f0f0f0; color: #000; font: 400 15px "Segoe UI", sans-serif; opacity: 0;
+  box-shadow: 0 18px 60px rgba(0,0,0,.55), 0 0 0 1px #6b6b6b; border-radius: 8px; overflow: hidden; }
+.cl .titlebar { background: #fff; color: #000; height: 38px; font-size: 14px; }
+.cl .caps span { color: #333; }
+.cl .hdr { background: #fff; height: 84px; border-bottom: 1px solid #d5d5d5; padding: 14px 20px; position: relative; }
+.cl .hdr b { display: block; font-weight: 700; font-size: 15px; }
+.cl .hdr .sub { margin: 4px 0 0 16px; font-size: 15px; }
+.cl .hdr .logo { position: absolute; right: 18px; top: 14px; width: 56px; height: 56px; }
+.cl .body { padding: 16px 24px; font-size: 15px; line-height: 1.45; }
+.cl .foot { position: absolute; left: 0; right: 0; bottom: 0; height: 58px; border-top: 1px solid #d5d5d5; padding: 0 16px;
+  display: flex; align-items: center; justify-content: flex-end; gap: 10px; }
+.cl .foot .nsis { position: absolute; left: 14px; top: -11px; background: #f0f0f0; padding: 0 6px; color: #7a7a7a; font-size: 13px; }
+.btn { min-width: 100px; height: 32px; padding: 0 14px; border: 1px solid #adadad; background: #e1e1e1; border-radius: 4px;
+  display: inline-flex; align-items: center; justify-content: center; font-size: 15px; color: #000; }
+.btn.def { border: 2px solid #0067c0; }
+.btn.dis { color: #9a9a9a; }
+.tbox { background: #fff; border: 1px solid #7a7a7a; padding: 8px 10px; font-size: 14px; }
+.radio, .check { display: flex; align-items: center; gap: 10px; margin: 10px 0; }
+.radio i { width: 16px; height: 16px; border: 1px solid #333; border-radius: 50%; background: #fff; display: inline-flex;
+  align-items: center; justify-content: center; }
+.radio i.on::after { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #0067c0; }
+.check i { width: 16px; height: 16px; border: 1px solid #333; background: #fff; display: inline-flex; align-items: center;
+  justify-content: center; font-size: 13px; font-style: normal; }
+.check i.on { background: #0067c0; border-color: #0067c0; color: #fff; }
+.prog { height: 20px; border: 1px solid #bcbcbc; background: #e6e6e6; overflow: hidden; }
+.prog i { display: block; height: 100%; width: 0; background: #06b025; }
+
+/* Win11 dark dialog (Windows Security, context menu) */
+.w11 { position: absolute; background: #2b2b2b; color: #fff; border-radius: 8px; opacity: 0; overflow: hidden;
+  box-shadow: 0 18px 60px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.1); font: 400 14px var(--ui); }
+.w11 .btn { background: #3a3a3a; color: #fff; border: 1px solid #4a4a4a; }
+.w11 .btn.acc { background: #4cc2ff; color: #000; border: none; }
+.menu { position: absolute; background: #2c2c2c; border-radius: 8px; padding: 4px; opacity: 0; color: #fff; z-index: 30;
+  box-shadow: 0 12px 40px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.1); font: 400 14px var(--ui); }
+.menu div { padding: 0 14px; height: 30px; display: flex; align-items: center; border-radius: 4px; white-space: nowrap; }
+.menu hr { border: none; border-top: 1px solid #444; margin: 4px 2px; }
+.menu .hl { background: #3d3d3d; }
+
+/* Device Manager */
+.dm { background: #fff; color: #000; }
+.dm .titlebar { background: #fff; color: #000; }
+.dm .caps span { color: #333; }
+.dm-menu { height: 26px; display: flex; gap: 2px; padding-left: 4px; font: 400 13px var(--ui); align-items: center; }
+.dm-menu span { padding: 0 8px; }
+.dm-tool { height: 30px; border-bottom: 1px solid #ddd; display: flex; gap: 10px; align-items: center; padding-left: 10px; color: #777; font-size: 14px; }
+.dm-tree { padding: 6px 0 0 8px; font: 400 14px var(--ui); }
+.dm-row { height: 24px; display: flex; align-items: center; gap: 6px; white-space: nowrap; }
+.dm-row .chev { width: 14px; color: #555; font-size: 10px; text-align: center; }
+.dm-row .ic { width: 18px; height: 16px; border-radius: 3px; display: inline-block; }
+.dm-row.sel { background: #cce8ff; }
+
+/* ---------- Arduino IDE 2 (dark) ---------- */
+.ide { background: #111617; font: 400 13px var(--ui); color: #dadada; }
+.ide .titlebar { background: #101214; color: #ddd; height: 30px; }
+.ide-menu { height: 24px; background: #111; display: flex; align-items: center; gap: 2px; padding-left: 6px; font-size: 13px; color: #ddd; }
+.ide-menu span { padding: 2px 8px; border-radius: 3px; }
+.ide-menu span.hl { background: #2a3133; }
+.ide-tool { height: 50px; background: #0d1112; display: flex; align-items: center; gap: 10px; padding-left: 18px; position: relative; }
+.ide-btn { width: 30px; height: 30px; border-radius: 50%; background: #0ca1a6; display: flex; align-items: center; justify-content: center; }
+.ide-btn.dis { background: #1e4b4d; }
+.ide-board { margin-left: 8px; width: 232px; height: 30px; border: 1px solid #3a4447; background: #181d20; border-radius: 2px;
+  display: flex; align-items: center; padding: 0 10px; gap: 8px; font-size: 13px; color: #e8e8e8; }
+.ide-board .caret { margin-left: auto; font-size: 10px; color: #bbb; }
+.ide-right { position: absolute; right: 16px; top: 0; height: 50px; display: flex; align-items: center; gap: 18px; }
+.ide-side { position: absolute; left: 0; top: 104px; width: 56px; bottom: 22px; background: #0d1112; display: flex;
+  flex-direction: column; align-items: center; padding-top: 10px; gap: 22px; }
+.ide-side .si { width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; opacity: .7; position: relative; }
+.ide-side .si.on { opacity: 1; }
+.ide-side .si.on::before { content: ""; position: absolute; left: -14px; top: -4px; width: 2px; height: 36px; background: #0ca1a6; }
+.ide-panel { position: absolute; left: 56px; top: 104px; width: 0; bottom: 22px; background: #151a1c; overflow: hidden;
+  border-right: 1px solid #222a2d; }
+.ide-main { position: absolute; left: 56px; right: 0; top: 104px; bottom: 22px; }
+.ide-tabs { height: 32px; background: #0d1112; display: flex; align-items: flex-end; }
+.ide-tab { height: 32px; padding: 0 16px; display: flex; align-items: center; gap: 8px; background: #111617; color: #e8e8e8;
+  font-size: 13px; border-top: 1px solid #0ca1a6; }
+.ide-editor { position: absolute; left: 0; right: 0; top: 32px; bottom: 214px; background: #111617; overflow: hidden; }
+.ide-code { position: absolute; left: 0; top: 8px; right: 0; font: 400 15px/22px var(--mono); white-space: pre; }
+.ide-code .ln { display: inline-block; width: 64px; text-align: right; padding-right: 26px; color: #5d6563; }
+.ide-code .ln.cur { color: #c8cdcc; }
+.caret { display: inline-block; width: 2px; height: 19px; background: #e8e8e8; vertical-align: -4px; margin-left: -1px; }
+.tk-kw { color: #0ca1a6; } .tk-fn { color: #e67e22; } .tk-str { color: #7fcbcd; } .tk-num { color: #c8a96e; }
+.tk-com { color: #6f7b7a; } .tk-pre { color: #c586c0; } .tk-id { color: #dadada; }
+.ide-bottom { position: absolute; left: 0; right: 0; bottom: 0; height: 214px; background: #000; border-top: 1px solid #222; }
+.ide-btabs { height: 30px; background: #070707; display: flex; align-items: center; gap: 0; padding-left: 8px; font-size: 13px; color: #aaa; }
+.ide-btabs span { padding: 0 12px; height: 30px; display: flex; align-items: center; }
+.ide-btabs span.on { color: #fff; border-bottom: 1px solid #0ca1a6; }
+.ide-out { position: absolute; left: 0; right: 0; top: 30px; bottom: 0; padding: 6px 20px; font: 400 14px/20px var(--mono);
+  color: #e8e8e8; white-space: pre; overflow: hidden; }
+.ide-status { position: absolute; left: 0; right: 0; bottom: 0; height: 22px; background: #0d1112; display: flex;
+  align-items: center; justify-content: flex-end; gap: 18px; padding: 0 14px; font-size: 12px; color: #c8c8c8; }
+.ide-modal { position: absolute; background: #1b2022; border-radius: 6px; color: #e8e8e8; opacity: 0;
+  box-shadow: 0 20px 70px rgba(0,0,0,.7), 0 0 0 1px #2e373a; font: 400 13px var(--ui); }
+.ide-modal .mh { height: 44px; display: flex; align-items: center; padding: 0 20px; font-size: 15px; font-weight: 600; }
+.ide-in { height: 30px; background: #111617; border: 1px solid #3a4447; border-radius: 2px; display: flex; align-items: center;
+  padding: 0 10px; font-size: 13px; color: #e8e8e8; overflow: hidden; white-space: nowrap; }
+.ide-pbtn { height: 30px; padding: 0 18px; border-radius: 15px; display: inline-flex; align-items: center; font-weight: 700;
+  font-size: 12px; letter-spacing: .5px; }
+.ide-pbtn.p { background: #0ca1a6; color: #fff; }
+.ide-pbtn.s { border: 1px solid #0ca1a6; color: #0ca1a6; }
+.ide-toast { position: absolute; right: 14px; bottom: 32px; width: 420px; background: #1b2022; border-radius: 4px; padding: 12px 16px;
+  font-size: 13px; opacity: 0; box-shadow: 0 6px 20px rgba(0,0,0,.6); }
+.ide-toast .bar { height: 3px; background: #2a3336; margin-top: 10px; } .ide-toast .bar i { display: block; height: 100%; width: 0; background: #0ca1a6; }

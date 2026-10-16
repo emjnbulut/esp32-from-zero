@@ -1,0 +1,380 @@
+{
+ "episode": 1,
+ "title": "Setting Up Your Computer",
+ "voice": "en-US-EricNeural",
+ "rate": "+5%",
+ "clips": {
+  "C1": "Plug the micro USB cable into the board; the red power LED turns on. Landscape, close-up, 5-8 s.",
+  "C2": "Finger presses and holds the BOOT button for ~2 s, then releases. Close-up, 5 s.",
+  "C3": "Finger presses the EN button once. Close-up, 5 s."
+ },
+ "segments": [
+  {
+   "id": "s01",
+   "scene": "intro",
+   "text": "Hi, and welcome to ESP32 From Zero, where we learn the ESP32 microcontroller step by step, starting from absolutely nothing.",
+   "tr": "Merhaba, ESP32 From Zero'ya hoş geldiniz. Burada ESP32 mikrodenetleyicisini adım adım, tamamen sıfırdan öğreniyoruz."
+  },
+  {
+   "id": "s02",
+   "scene": "intro",
+   "text": "If you know a little bit of C, like variables, if statements, and loops, you're ready. You don't need any electronics experience.",
+   "tr": "Biraz C biliyorsanız, yani değişkenler, if ifadeleri ve döngüler, hazırsınız demektir. Elektronik deneyimine gerek yok."
+  },
+  {
+   "id": "s03",
+   "scene": "intro",
+   "text": "This is episode one. Today, we'll set up our computer, connect the board, and run our very first program on it.",
+   "tr": "Bu birinci bölüm. Bugün bilgisayarımızı hazırlayacak, kartı bağlayacak ve üzerinde ilk programımızı çalıştıracağız."
+  },
+  {
+   "id": "s04",
+   "scene": "what",
+   "text": "So, what is an ESP32? It's a tiny computer on a single chip, with WiFi, Bluetooth, and lots of pins that can talk to LEDs, buttons, and sensors.",
+   "tr": "Peki ESP32 nedir? WiFi'ı, Bluetooth'u ve LED'ler, butonlar, sensörlerle konuşabilen birçok pini olan, tek bir çip üzerindeki minik bir bilgisayar."
+  },
+  {
+   "id": "s05",
+   "scene": "what",
+   "text": "We write our program in C, on the computer. The compiler turns it into machine code. We send it through the USB cable, and the ESP32 runs it on its own.",
+   "tr": "Programımızı bilgisayarda C ile yazarız. Derleyici onu makine koduna çevirir. USB kablosuyla göndeririz ve ESP32 onu kendi başına çalıştırır."
+  },
+  {
+   "id": "s06",
+   "scene": "plan",
+   "text": "We need four things. The Arduino IDE, where we write code. The ESP32 board package, so the IDE can build code for this chip. A USB driver, so Windows can talk to the board. And our first program. Let's start.",
+   "tr": "Dört şeye ihtiyacımız var. Kod yazacağımız Arduino IDE. IDE'nin bu çip için kod derleyebilmesi için ESP32 kart paketi. Windows'un kartla konuşabilmesi için USB sürücüsü. Ve ilk programımız. Hadi başlayalım."
+  },
+  {
+   "id": "s07",
+   "scene": "download",
+   "text": "Open your web browser, and go to arduino dot cc, slash software.",
+   "sub": "Open your web browser, and go to arduino.cc/software.",
+   "tr": "Web tarayıcınızı açın ve arduino.cc/software adresine gidin."
+  },
+  {
+   "id": "s08",
+   "scene": "download",
+   "text": "Here's Arduino IDE 2. At the time of recording, the newest version is 2.3.10. Make sure Windows is selected, and click Download.",
+   "tr": "İşte Arduino IDE 2. Kayıt sırasında en yeni sürüm 2.3.10. Windows'un seçili olduğundan emin olun ve Download'a tıklayın."
+  },
+  {
+   "id": "s09",
+   "scene": "download",
+   "text": "If the site asks for a donation, or a newsletter, that's optional. You can just download.",
+   "tr": "Site bağış ya da bülten isterse, bu isteğe bağlı. Doğrudan indirebilirsiniz.",
+   "pad": 1.5
+  },
+  {
+   "id": "s10",
+   "scene": "install",
+   "text": "When the download finishes, open the installer, and click I Agree.",
+   "sub": "When the download finishes, open the installer, and click \"I Agree\".",
+   "tr": "İndirme bitince kurulum dosyasını açın ve \"I Agree\" butonuna tıklayın."
+  },
+  {
+   "id": "s11",
+   "scene": "install",
+   "text": "Install it for everyone, or only for you. Either is fine. Keep the default folder, and click Install.",
+   "tr": "Herkes için ya da sadece sizin için kurun, ikisi de olur. Varsayılan klasörü bırakın ve Install'a tıklayın.",
+   "pad": 2.0
+  },
+  {
+   "id": "s12",
+   "scene": "install",
+   "text": "When it's done, leave Run Arduino IDE checked, and click Finish.",
+   "sub": "When it's done, leave \"Run Arduino IDE\" checked, and click Finish.",
+   "tr": "Bitince \"Run Arduino IDE\" işaretli kalsın ve Finish'e tıklayın."
+  },
+  {
+   "id": "s13",
+   "scene": "install",
+   "text": "If Windows asks to allow network access, or to install a USB driver from Arduino, say yes. Those are safe.",
+   "tr": "Windows ağ erişimi izni ya da Arduino'nun bir USB sürücüsünü kurmak isterse evet deyin. Bunlar güvenlidir.",
+   "pad": 0.5
+  },
+  {
+   "id": "s14",
+   "scene": "tour",
+   "text": "And here it is: the Arduino IDE. Let's take a quick tour, because we'll spend the whole series in here.",
+   "tr": "İşte karşınızda Arduino IDE. Hızlı bir tur atalım, çünkü serinin tamamını burada geçireceğiz."
+  },
+  {
+   "id": "s15",
+   "scene": "tour",
+   "text": "The check mark is Verify. It compiles your code, and finds mistakes. The arrow is Upload. It compiles, and then sends the program to the board.",
+   "tr": "Onay işareti Verify. Kodunuzu derler ve hataları bulur. Ok ise Upload. Derler ve ardından programı karta gönderir."
+  },
+  {
+   "id": "s16",
+   "scene": "tour",
+   "text": "This dropdown selects our board. On the left are the sketchbook, the Boards Manager, and the Library Manager. And this magnifying glass, at the top right, opens the Serial Monitor. We'll use it today.",
+   "tr": "Bu açılır menü kartımızı seçer. Solda sketchbook, Boards Manager ve Library Manager var. Sağ üstteki büyüteç ise Serial Monitor'u açar. Bugün onu kullanacağız."
+  },
+  {
+   "id": "s17",
+   "scene": "tour",
+   "text": "In the middle is the editor. Arduino calls a program a sketch. And a new sketch already has two functions: setup, and loop.",
+   "tr": "Ortada editör var. Arduino programlara \"sketch\" der. Yeni bir sketch'te zaten iki fonksiyon bulunur: setup ve loop."
+  },
+  {
+   "id": "s18",
+   "scene": "main",
+   "text": "As a C programmer, you might ask: where is main? Arduino writes it for you. Behind the scenes, it looks roughly like this.",
+   "tr": "Bir C programcısı olarak şunu sorabilirsiniz: main nerede? Arduino onu sizin için yazar. Perde arkasında kabaca şöyle görünür."
+  },
+  {
+   "id": "s19",
+   "scene": "main",
+   "text": "main calls setup once, when the board powers on. Then it calls loop, again and again, forever. So, setup prepares things, and loop does the repeating work.",
+   "tr": "main, kart açıldığında setup'ı bir kez çağırır. Sonra loop'u tekrar tekrar, sonsuza kadar çağırır. Yani setup hazırlık yapar, loop ise tekrarlanan işi."
+  },
+  {
+   "id": "s20",
+   "scene": "pkg",
+   "text": "Next, let's teach the IDE about the ESP32. Open File, then Preferences.",
+   "tr": "Şimdi IDE'ye ESP32'yi tanıtalım. File menüsünü, ardından Preferences'ı açın."
+  },
+  {
+   "id": "s21",
+   "scene": "pkg",
+   "text": "Find Additional boards manager URLs, and paste this address. It's the official link from Espressif, the company that makes the ESP32. It's in the description below. Click OK.",
+   "sub": "Find \"Additional boards manager URLs\", and paste this address. It's the official link from Espressif, the company that makes the ESP32. It's in the description below. Click OK.",
+   "tr": "\"Additional boards manager URLs\" alanını bulun ve bu adresi yapıştırın. ESP32'yi üreten Espressif firmasının resmi linki. Açıklamada var. OK'a tıklayın."
+  },
+  {
+   "id": "s22",
+   "scene": "pkg",
+   "text": "Now click the Boards Manager icon on the left, and search for E S P 32.",
+   "sub": "Now click the Boards Manager icon on the left, and search for \"esp32\".",
+   "tr": "Şimdi soldaki Boards Manager simgesine tıklayın ve \"esp32\" diye arayın."
+  },
+  {
+   "id": "s23",
+   "scene": "pkg",
+   "text": "Find esp32 by Espressif Systems. Careful: the similar one by Arduino is only for the Arduino Nano ESP32. Click Install on the Espressif one.",
+   "sub": "Find \"esp32 by Espressif Systems\". Careful: the similar one by Arduino is only for the Arduino Nano ESP32. Click Install on the Espressif one.",
+   "tr": "\"esp32 by Espressif Systems\" paketini bulun. Dikkat: Arduino'nun benzer paketi sadece Arduino Nano ESP32 içindir. Espressif'inkinde Install'a tıklayın."
+  },
+  {
+   "id": "s24",
+   "scene": "pkg",
+   "text": "It's a big download, so it can take a few minutes.",
+   "tr": "Büyük bir indirme, birkaç dakika sürebilir.",
+   "pad": 2.5
+  },
+  {
+   "id": "s25",
+   "scene": "board",
+   "text": "Now, the hardware. There are many different ESP32 boards, so yours may look a bit different from mine. That's fine. They all work the same way.",
+   "tr": "Şimdi donanım. Birçok farklı ESP32 kartı var, sizinki benimkinden biraz farklı görünebilir. Sorun değil, hepsi aynı şekilde çalışır."
+  },
+  {
+   "id": "s26",
+   "scene": "board",
+   "text": "The metal can is the ESP32 module. The pins run along the sides. Some boards have thirty, some have thirty-eight. And there are two small buttons: EN restarts the board, and BOOT, which we'll use soon.",
+   "tr": "Metal kutu ESP32 modülü. Pinler kenarlar boyunca uzanır. Bazı kartlarda 30, bazılarında 38 pin vardır. Bir de iki küçük buton var: EN kartı yeniden başlatır, BOOT'u ise birazdan kullanacağız."
+  },
+  {
+   "id": "s27",
+   "scene": "board",
+   "text": "Near the USB connector is a small chip: a USB to serial converter. It's the bridge between your computer and the ESP32. It's usually a C P 2 1 0 2, or a C H 3 4 0. Try to read the text on it. We'll need it in a minute.",
+   "sub": "Near the USB connector is a small chip: a USB to serial converter. It's the bridge between your computer and the ESP32. It's usually a CP2102, or a CH340. Try to read the text on it. We'll need it in a minute.",
+   "tr": "USB girişinin yanında küçük bir çip var: USB-seri dönüştürücü. Bilgisayarınızla ESP32 arasındaki köprü. Genellikle CP2102 ya da CH340'tır. Üzerindeki yazıyı okumaya çalışın, birazdan lazım olacak."
+  },
+  {
+   "id": "s28",
+   "scene": "board",
+   "text": "Also, some USB cables can only charge, with no data wires inside. If your board isn't detected, suspect the cable first.",
+   "tr": "Ayrıca bazı USB kabloları sadece şarj eder, içlerinde veri teli yoktur. Kartınız algılanmazsa önce kablodan şüphelenin."
+  },
+  {
+   "id": "s29",
+   "scene": "board",
+   "clip": "C1",
+   "text": "Now, plug the board into your computer. A small red light turns on. It has power.",
+   "tr": "Şimdi kartı bilgisayarınıza takın. Küçük kırmızı bir ışık yanar. Kart güç alıyor.",
+   "pad": 1.5
+  },
+  {
+   "id": "s30",
+   "scene": "driver",
+   "text": "Let's check whether Windows can see the board. Right-click the Start button, and open Device Manager.",
+   "tr": "Windows'un kartı görüp görmediğini kontrol edelim. Başlat butonuna sağ tıklayın ve Aygıt Yöneticisi'ni açın."
+  },
+  {
+   "id": "s31",
+   "scene": "driver",
+   "text": "Open Ports, COM and LPT. If you see Silicon Labs C P 2 1 0 x, or USB serial C H 3 4 0, with a COM number, great! The driver is already there. Note that COM number, and skip ahead.",
+   "sub": "Open \"Ports (COM & LPT)\". If you see \"Silicon Labs CP210x\" or \"USB-SERIAL CH340\" with a COM number, great! The driver is already there. Note that COM number, and skip ahead.",
+   "tr": "\"Bağlantı Noktaları (COM ve LPT)\" bölümünü açın. COM numarasıyla birlikte \"Silicon Labs CP210x\" ya da \"USB-SERIAL CH340\" görüyorsanız harika! Sürücü zaten kurulu. O COM numarasını not alın ve ileri atlayın."
+  },
+  {
+   "id": "s32",
+   "scene": "driver",
+   "text": "But if you see an unknown device with a yellow warning sign, or no Ports section at all, we need to install a driver.",
+   "tr": "Ama sarı uyarı işaretli bilinmeyen bir aygıt görüyorsanız ya da Ports bölümü hiç yoksa, sürücü kurmamız gerekiyor."
+  },
+  {
+   "id": "s33",
+   "scene": "driver",
+   "text": "For a C P 2 1 0 2, get the C P 2 1 0 x driver from Silicon Labs. For a C H 3 4 0, get C H 3 4 1 S E R from W C H. Both links are in the description.",
+   "sub": "For a CP2102, get the \"CP210x VCP\" driver from Silicon Labs. For a CH340, get \"CH341SER\" from WCH. Both links are in the description.",
+   "tr": "CP2102 için Silicon Labs'tan \"CP210x VCP\" sürücüsünü, CH340 için WCH'den \"CH341SER\" dosyasını indirin. İki link de açıklamada."
+  },
+  {
+   "id": "s34",
+   "scene": "driver",
+   "text": "Run the installer. Then unplug the board, plug it back in, and check again. Your COM port should be there.",
+   "tr": "Kurulum dosyasını çalıştırın. Sonra kartı çıkarıp tekrar takın ve yeniden bakın. COM portunuz orada olmalı.",
+   "pad": 0.8
+  },
+  {
+   "id": "s35",
+   "scene": "select",
+   "text": "Back in the Arduino IDE, click the board dropdown, and choose Select other board and port.",
+   "sub": "Back in the Arduino IDE, click the board dropdown, and choose \"Select other board and port\".",
+   "tr": "Arduino IDE'de kart menüsüne tıklayın ve \"Select other board and port\" seçeneğini seçin."
+  },
+  {
+   "id": "s36",
+   "scene": "select",
+   "text": "Search for ESP32 Dev Module. It works for most ESP32 boards. On the right, choose your COM port, and click OK.",
+   "sub": "Search for \"ESP32 Dev Module\". It works for most ESP32 boards. On the right, choose your COM port, and click OK.",
+   "tr": "\"ESP32 Dev Module\" arayın. Çoğu ESP32 kartında çalışır. Sağda COM portunuzu seçin ve OK'a tıklayın."
+  },
+  {
+   "id": "s37",
+   "scene": "select",
+   "text": "The bottom right corner now says ESP32 Dev Module, on COM 3. Setup complete!",
+   "sub": "The bottom right corner now says \"ESP32 Dev Module on COM3\". Setup complete!",
+   "tr": "Sağ alt köşede artık \"ESP32 Dev Module on COM3\" yazıyor. Kurulum tamam!"
+  },
+  {
+   "id": "s38",
+   "scene": "code",
+   "text": "Now, the fun part: our first program. Delete what's in the editor, and type along with me.",
+   "tr": "Şimdi eğlenceli kısım: ilk programımız. Editördekileri silin ve benimle birlikte yazın.",
+   "pad": 1.5
+  },
+  {
+   "id": "s39",
+   "scene": "code",
+   "text": "First, a global variable, just like in C: an int called seconds, starting at zero.",
+   "tr": "Önce, tıpkı C'deki gibi global bir değişken: sıfırdan başlayan, seconds adında bir int."
+  },
+  {
+   "id": "s40",
+   "scene": "code",
+   "text": "In setup, we call Serial dot begin, with 115,200. Serial is the text channel over the USB cable, and this number is its speed, called the baud rate. Remember it.",
+   "sub": "In setup, we call Serial.begin with 115200. Serial is the text channel over the USB cable, and this number is its speed, called the baud rate. Remember it.",
+   "tr": "setup içinde Serial.begin'i 115200 ile çağırıyoruz. Serial, USB kablosu üzerinden giden metin kanalıdır; bu sayı da hızıdır, buna baud hızı denir. Aklınızda tutun."
+  },
+  {
+   "id": "s41",
+   "scene": "code",
+   "text": "Then we wait one thousand milliseconds, that's one second, so we don't miss the first message. And Serial dot println prints a line: Hello, ESP32!",
+   "sub": "Then we wait 1000 milliseconds, that's one second, so we don't miss the first message. And Serial.println prints a line: \"Hello, ESP32!\"",
+   "tr": "Sonra ilk mesajı kaçırmamak için 1000 milisaniye, yani bir saniye bekliyoruz. Serial.println de bir satır yazdırır: \"Hello, ESP32!\""
+  },
+  {
+   "id": "s42",
+   "scene": "code",
+   "text": "In loop, we add one to seconds, and print it with Serial dot printf, which works just like printf in C. Then we wait one second, and loop runs again.",
+   "sub": "In loop, we add one to seconds, and print it with Serial.printf, which works just like printf in C. Then we wait one second, and loop runs again.",
+   "tr": "loop içinde seconds'a bir ekleyip, tıpkı C'deki printf gibi çalışan Serial.printf ile yazdırıyoruz. Sonra bir saniye bekliyoruz ve loop yeniden çalışıyor."
+  },
+  {
+   "id": "s43",
+   "scene": "code",
+   "text": "Press Control S to save, and name the sketch, hello underscore E S P 32.",
+   "sub": "Press Ctrl+S to save, and name the sketch \"hello_esp32\".",
+   "tr": "Kaydetmek için Ctrl+S'ye basın ve sketch'e \"hello_esp32\" adını verin.",
+   "pad": 0.8
+  },
+  {
+   "id": "s44",
+   "scene": "upload",
+   "text": "Moment of truth. Click the Upload arrow.",
+   "tr": "Gerçeğin anı. Upload okuna tıklayın."
+  },
+  {
+   "id": "s45",
+   "scene": "upload",
+   "text": "First, it compiles. The first time is slow, so be patient. Then you'll see Connecting, followed by dots.",
+   "sub": "First, it compiles. The first time is slow, so be patient. Then you'll see \"Connecting\", followed by dots.",
+   "tr": "Önce derler. İlk sefer yavaştır, sabırlı olun. Sonra \"Connecting\" ve ardından noktalar göreceksiniz.",
+   "pad": 1.0
+  },
+  {
+   "id": "s46",
+   "scene": "upload",
+   "clip": "C2",
+   "text": "On some boards, the dots keep going until it fails. If that happens, hold the BOOT button while it says Connecting, and release it when the percentages start.",
+   "sub": "On some boards, the dots keep going until it fails. If that happens, hold the BOOT button while it says \"Connecting\", and release it when the percentages start.",
+   "tr": "Bazı kartlarda noktalar, yükleme başarısız olana kadar devam eder. Böyle olursa \"Connecting\" yazarken BOOT butonuna basılı tutun, yüzdeler başlayınca bırakın."
+  },
+  {
+   "id": "s47",
+   "scene": "upload",
+   "text": "Writing. One hundred percent. Hard resetting. Our program now lives inside the ESP32!",
+   "sub": "Writing... 100%. \"Hard resetting\". Our program now lives inside the ESP32!",
+   "tr": "Yazılıyor... %100. \"Hard resetting\". Programımız artık ESP32'nin içinde yaşıyor!",
+   "pad": 1.2
+  },
+  {
+   "id": "s48",
+   "scene": "monitor",
+   "text": "To see what it says, open the Serial Monitor, with the magnifying glass at the top right.",
+   "tr": "Ne söylediğini görmek için sağ üstteki büyüteçle Serial Monitor'u açın."
+  },
+  {
+   "id": "s49",
+   "scene": "monitor",
+   "text": "At the bottom, set the speed to 115,200 baud. The same number as in our code.",
+   "sub": "At the bottom, set the speed to 115200 baud. The same number as in our code.",
+   "tr": "Altta hızı 115200 baud yapın. Kodumuzdaki sayının aynısı."
+  },
+  {
+   "id": "s50",
+   "scene": "monitor",
+   "text": "And there it is! A new line, every second. The ESP32 is talking to us.",
+   "tr": "İşte oldu! Her saniye yeni bir satır. ESP32 bizimle konuşuyor.",
+   "pad": 1.5
+  },
+  {
+   "id": "s51",
+   "scene": "monitor",
+   "clip": "C3",
+   "text": "Now press the EN button. The board restarts, and we see Hello, ESP32, again.",
+   "sub": "Now press the EN button. The board restarts, and we see \"Hello, ESP32!\" again.",
+   "tr": "Şimdi EN butonuna basın. Kart yeniden başlar ve yine \"Hello, ESP32!\" görürüz.",
+   "pad": 1.0
+  },
+  {
+   "id": "s52",
+   "scene": "monitor",
+   "text": "If you ever see strange symbols instead of text, the baud rates don't match.",
+   "tr": "Metin yerine garip semboller görürseniz baud hızları uyuşmuyor demektir."
+  },
+  {
+   "id": "s53",
+   "scene": "trouble",
+   "text": "A quick recap of common problems. No COM port? Check the cable, then the driver. Stuck at Connecting? Hold BOOT. Strange characters? Check the baud rate.",
+   "sub": "A quick recap of common problems. No COM port? Check the cable, then the driver. Stuck at \"Connecting\"? Hold BOOT. Strange characters? Check the baud rate.",
+   "tr": "Yaygın sorunların kısa özeti. COM port yok mu? Önce kabloyu, sonra sürücüyü kontrol edin. \"Connecting\"te mi takıldı? BOOT'a basılı tutun. Garip karakterler mi? Baud hızını kontrol edin."
+  },
+  {
+   "id": "s54",
+   "scene": "outro",
+   "text": "That's it for episode one! You installed the IDE, added ESP32 support, found your COM port, and ran your first program. Great job.",
+   "tr": "Birinci bölüm bu kadar! IDE'yi kurdunuz, ESP32 desteğini eklediniz, COM portunuzu buldunuz ve ilk programınızı çalıştırdınız. Harika iş."
+  },
+  {
+   "id": "s55",
+   "scene": "outro",
+   "text": "Next time, we'll meet the pins, learn how a breadboard works, and build our first circuit. The code is on GitHub, linked below. See you there!",
+   "tr": "Gelecek bölümde pinlerle tanışacak, breadboard'un nasıl çalıştığını öğrenecek ve ilk devremizi kuracağız. Kodlar GitHub'da, link açıklamada. Orada görüşürüz!"
+  }
+ ]
+}

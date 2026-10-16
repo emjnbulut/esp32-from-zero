@@ -10,3 +10,8 @@ media/
 *.mov
 *.wav
 *.mp3
+node_modules/
+# third-party page captures and local reference screenshots (regenerate with video/tools/capture_web.mjs)
+video/*/assets/web/
+video/*/assets/ref/
+lessons/*/compile_log.txt
