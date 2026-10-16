@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ESP32 From Zero - Short overlay</title>
+<style>
+  :root { --teal: #19c3b4; --amber: #ffb547; --bg: #0b1220; --line: #22304d; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: transparent; }
+  body { font-family: "Segoe UI Variable Display", "Segoe UI", sans-serif; color: #fff; -webkit-font-smoothing: antialiased; }
+  .abs { position: absolute; }
+  #frame { position: absolute; border: 5px solid rgba(255, 255, 255, .92); border-radius: 36px;
+    box-shadow: 0 0 0 10px rgba(25, 195, 180, .18), 0 30px 80px rgba(0, 0, 0, .6); }
+  #prog { left: 0; top: 0; height: 10px; background: linear-gradient(90deg, var(--teal), var(--amber)); }
+  #chip { left: 0; width: 1080px; top: 150px; text-align: center; }
+  #chip span { display: inline-block; padding: 8px 22px; border-radius: 999px; background: rgba(25, 195, 180, .16);
+    border: 2px solid rgba(25, 195, 180, .6); color: var(--teal); font: 800 30px "Segoe UI"; letter-spacing: 4px; }
+  #head { left: 40px; width: 1000px; top: 218px; text-align: center; font-weight: 800; font-size: 76px; line-height: 1.05;
+    letter-spacing: -1px; text-shadow: 0 6px 24px rgba(0, 0, 0, .5); }
+  #cap { left: 40px; width: 900px; top: 1372px; text-align: center; font-weight: 800; font-size: 74px; line-height: 1.12; }
+  #cap .w { display: inline-block; margin: 0 9px; text-shadow: 0 0 4px #000, 0 0 4px #000, 0 4px 0 #000, 3px 3px 0 #000, -3px 3px 0 #000, 3px -3px 0 #000, -3px -3px 0 #000; }
+  #cap .on { color: var(--amber); }
+  #cta { left: 70px; top: 1560px; font: 800 44px "Segoe UI"; color: var(--amber); display: flex; align-items: center; gap: 18px; opacity: 0;
+    text-shadow: 0 3px 0 #000, 0 0 6px #000; }
+</style>
+</head>
+<body>
+<svg id="bg" class="abs" width="1080" height="1920" style="left:0;top:0">
+  <defs>
+    <radialGradient id="g1" cx="80%" cy="10%" r="70%"><stop offset="0" stop-color="#14524f"/><stop offset="1" stop-color="#0b1220" stop-opacity="0"/></radialGradient>
+    <radialGradient id="g2" cx="10%" cy="95%" r="60%"><stop offset="0" stop-color="#4a3510"/><stop offset="1" stop-color="#0b1220" stop-opacity="0"/></radialGradient>
+    <pattern id="grid" width="64" height="64" patternUnits="userSpaceOnUse"><path d="M64 0H0V64" fill="none" stroke="#22304d" stroke-width="1.2" opacity=".45"/></pattern>
+    <mask id="hole"><rect width="1080" height="1920" fill="#fff"/><rect id="holeRect" rx="36" fill="#000"/></mask>
+  </defs>
+  <g mask="url(#hole)">
+    <rect width="1080" height="1920" fill="#0b1220"/>
+    <rect width="1080" height="1920" fill="url(#grid)"/>
+    <rect width="1080" height="1920" fill="url(#g1)"/>
+    <rect width="1080" height="1920" fill="url(#g2)"/>
+  </g>
+</svg>
+<div id="frame"></div>
+<div id="prog" class="abs"></div>
+<div id="chip" class="abs"><span></span></div>
+<div id="head" class="abs"></div>
+<div id="cap" class="abs"></div>
+<div id="cta" class="abs"><svg width="54" height="70" viewBox="0 0 54 70"><path d="M27 4v54M8 40l19 20 19-20" fill="none" stroke="#ffb547" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/></svg><span></span></div>
+<script src="short.js"></script>
+</body>
+</html>

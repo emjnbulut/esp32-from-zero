@@ -1,0 +1,234 @@
+{
+ "episode": "ep01",
+ "source": "video/ep01/build/video.mp4",
+ "cta": {
+  "en": "Full tutorial",
+  "sub": "linked below this video"
+ },
+ "segments": [
+  {
+   "id": "h1",
+   "chip": "ESP32 FROM ZERO",
+   "headline": {
+    "en": "Your first ESP32 program"
+   },
+   "say": {
+    "en": "Want to run your first program on an ESP32? Here's the whole setup, in under a minute."
+   },
+   "show": {
+    "en": "Want to run your first program on an ESP32? Here's the whole setup, in under a minute."
+   },
+   "shots": [
+    {
+     "src": 1.5,
+     "crop": [
+      1000,
+      80,
+      920,
+      920
+     ]
+    }
+   ]
+  },
+  {
+   "id": "h2",
+   "chip": "STEP 1",
+   "headline": {
+    "en": "Install the Arduino IDE"
+   },
+   "say": {
+    "en": "Step one: download the free Arduino IDE, from arduino dot cc."
+   },
+   "show": {
+    "en": "Step one: download the free Arduino IDE, from arduino.cc."
+   },
+   "shots": [
+    {
+     "src": 86.5,
+     "speed": 1.2,
+     "crop": [
+      640,
+      180,
+      860,
+      860
+     ]
+    }
+   ]
+  },
+  {
+   "id": "h3",
+   "chip": "STEP 2",
+   "headline": {
+    "en": "Add ESP32 support"
+   },
+   "say": {
+    "en": "Step two: paste Espressif's board URL into Preferences, then install esp32 from the Boards Manager."
+   },
+   "show": {
+    "en": "Step two: paste Espressif's board URL into Preferences, then install esp32 from the Boards Manager."
+   },
+   "shots": [
+    {
+     "src": 216.3,
+     "crop": [
+      300,
+      0,
+      1080,
+      1080
+     ]
+    },
+    {
+     "src": 242.0,
+     "speed": 1.3,
+     "crop": [
+      40,
+      120,
+      860,
+      860
+     ]
+    }
+   ]
+  },
+  {
+   "id": "h4",
+   "chip": "STEP 3",
+   "headline": {
+    "en": "Connect + USB driver"
+   },
+   "say": {
+    "en": "Step three: plug in your board. If Windows can't see it, install the C P 2102, or C H 340 driver."
+   },
+   "show": {
+    "en": "Step three: plug in your board. If Windows can't see it, install the CP2102 or CH340 driver."
+   },
+   "shots": [
+    {
+     "src": 298.0,
+     "crop": [
+      230,
+      290,
+      1460,
+      600
+     ]
+    },
+    {
+     "src": 339.0,
+     "crop": [
+      380,
+      150,
+      900,
+      900
+     ]
+    }
+   ]
+  },
+  {
+   "id": "h5",
+   "chip": "STEP 4",
+   "headline": {
+    "en": "Pick board + port"
+   },
+   "say": {
+    "en": "Then select ESP32 Dev Module, and your COM port."
+   },
+   "show": {
+    "en": "Then select ESP32 Dev Module, and your COM port."
+   },
+   "shots": [
+    {
+     "src": 394.5,
+     "speed": 1.4,
+     "crop": [
+      330,
+      140,
+      1260,
+      920
+     ]
+    }
+   ]
+  },
+  {
+   "id": "h6",
+   "chip": "STEP 5",
+   "headline": {
+    "en": "Code + Upload"
+   },
+   "say": {
+    "en": "Step five: write a few lines of C, and hit Upload."
+   },
+   "show": {
+    "en": "Step five: write a few lines of C, and hit Upload."
+   },
+   "shots": [
+    {
+     "src": 441.0,
+     "speed": 3.0,
+     "crop": [
+      0,
+      160,
+      1150,
+      760
+     ]
+    },
+    {
+     "src": 499.0,
+     "speed": 1.6,
+     "crop": [
+      40,
+      560,
+      1240,
+      480
+     ]
+    }
+   ]
+  },
+  {
+   "id": "h7",
+   "chip": "RESULT",
+   "headline": {
+    "en": "It works!"
+   },
+   "say": {
+    "en": "And just like that, your ESP32 is talking to you!"
+   },
+   "show": {
+    "en": "And just like that, your ESP32 is talking to you!"
+   },
+   "shots": [
+    {
+     "src": 525.0,
+     "crop": [
+      0,
+      600,
+      900,
+      420
+     ]
+    }
+   ]
+  },
+  {
+   "id": "h8",
+   "chip": "EPISODE 1",
+   "headline": {
+    "en": "Watch the full tutorial"
+   },
+   "say": {
+    "en": "The full step-by-step tutorial is linked below. Subscribe for episode two!"
+   },
+   "show": {
+    "en": "The full step-by-step tutorial is linked below. Subscribe for episode two!"
+   },
+   "shots": [
+    {
+     "src": 569.0,
+     "crop": [
+      60,
+      300,
+      1800,
+      640
+     ]
+    }
+   ]
+  }
+ ]
+}
