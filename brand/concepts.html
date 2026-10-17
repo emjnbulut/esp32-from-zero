@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Pin by Pin Lab - logo ve banner</title>
+<style>
+  :root { --teal: #19c3b4; --amber: #ffb547; --bg: #0b1220; --line: #22304d; --ink: #e8eef7; }
+  body { margin: 0; padding: 32px; background: #070c16; color: var(--ink); font-family: "Segoe UI", sans-serif; }
+  h1 { font-weight: 700; margin: 0 0 6px; } h2 { margin: 40px 0 12px; color: var(--teal); }
+  p { color: #9fb0c8; margin: 0 0 18px; }
+  .logos { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+  .card { background: #0e1626; border: 1px solid var(--line); border-radius: 14px; padding: 18px; text-align: center; }
+  .card .big { width: 180px; height: 180px; border-radius: 50%; overflow: hidden; margin: 0 auto; }
+  .card .row { display: flex; justify-content: center; align-items: center; gap: 14px; margin-top: 14px; }
+  .card .s { border-radius: 50%; overflow: hidden; }
+  .card b { display: block; font-size: 22px; margin-top: 10px; color: var(--amber); }
+  .card span { font-size: 14px; color: #9fb0c8; }
+  .yt { display: flex; align-items: center; gap: 10px; background: #fff; color: #0f0f0f; border-radius: 8px; padding: 8px 10px; margin-top: 12px; text-align: left; font-size: 13px; }
+  .banner { width: 100%; max-width: 1280px; aspect-ratio: 16 / 9; position: relative; margin-bottom: 8px; }
+  .banner svg { width: 100%; height: 100%; display: block; border-radius: 10px; }
+  .safe { position: absolute; left: 19.8%; width: 60.4%; top: 35.3%; height: 29.4%; outline: 2px dashed rgba(255,255,255,.35); pointer-events: none; }
+  small { color: #7f8fa8; }
+</style>
+</head>
+<body>
+<h1>Pin by Pin Lab — logo ve banner</h1>
+<p>Her logo YouTube'daki gibi daire içinde, büyük ve küçük boyutta gösteriliyor (küçükler yorum/arama sonuçlarındaki boyut).</p>
+<div class="logos" id="logos"></div>
+
+<h2>Banner taslakları</h2>
+<p>Kesikli çizgi: her cihazda görünen güvenli alan (TV'de tamamı, telefonda sadece bu kutu görünür). Seçtiğiniz logo banner'a yerleşecek.</p>
+<div id="banners"></div>
+
+<script src="logos.js"></script>
+<script>
+const notes = {
+  A: ["Çip + P", "Bir entegre devre; gövdesinde P harfi. Net, küçükte de okunur."],
+  B: ["Pin ızgarası", "Pin delikleri; yanan pinler devre yolu gibi P çiziyor, son pin parlıyor: “pin pin” ilerleme."],
+  C: ["Header pin", "Tek bir erkek header pin ve ucunda kıvılcım. Sade, ikon gibi."],
+  D: ["pbp yazısı", "“pbp” harfleri, altında header pin sırası. Yazı ağırlıklı."],
+};
+const box = document.getElementById("logos");
+for (const [k, fn] of Object.entries(LOGOS)) {
+  const svg = fn();
+  box.insertAdjacentHTML("beforeend", `<div class="card">
+    <div class="big">${svg}</div>
+    <div class="row">${[88, 48, 24].map(s => `<div class="s" style="width:${s}px;height:${s}px">${svg}</div>`).join("")}</div>
+    <b>${k} — ${notes[k][0]}</b><span>${notes[k][1]}</span>
+    <div class="yt"><div class="s" style="width:36px;height:36px;flex:none">${svg}</div><div><strong>Pin by Pin Lab</strong><br>@pinbypinlab</div></div>
+  </div>`);
+}
+
+// banners: 2560x1440 canvas, safe area 1546x423 centred
+function banner(style, logo) {
+  const L = LOGOS[logo]();
+  const logoImg = `data:image/svg+xml;utf8,${encodeURIComponent(L)}`;
+  let holes = "";
+  for (let x = 40; x < 2560; x += 64) for (let y = 40; y < 1440; y += 64)
+    holes += `<circle cx="${x}" cy="${y}" r="5" fill="none" stroke="#1a2740" stroke-width="2"/>`;
+  const glow = `<radialGradient id="gl${style}" cx="${style === 1 ? .3 : .7}" cy=".5" r=".6"><stop offset="0" stop-color="#19c3b4" stop-opacity=".22"/><stop offset="1" stop-color="#19c3b4" stop-opacity="0"/></radialGradient>`;
+  const text = style === 1
+    ? `<image href="${logoImg}" x="527" y="550" width="340" height="340"/>
+       <text x="920" y="700" font-family="Bahnschrift, Segoe UI" font-weight="700" font-size="140" fill="#e8eef7">Pin by Pin <tspan fill="#ffb547">Lab</tspan></text>
+       <text x="924" y="790" font-family="Segoe UI" font-size="48" fill="#9fb0c8">Electronics &amp; embedded C — one pin at a time</text>
+       <rect x="924" y="824" width="720" height="64" rx="32" fill="none" stroke="#19c3b4" stroke-width="4"/>
+       <text x="1284" y="867" text-anchor="middle" font-family="Segoe UI" font-weight="700" font-size="32" fill="#19c3b4" letter-spacing="4">NEW SERIES · ESP32 FROM ZERO</text>`
+    : `<image href="${logoImg}" x="1110" y="470" width="340" height="340" opacity="0"/>
+       <text x="1280" y="680" text-anchor="middle" font-family="Bahnschrift, Segoe UI" font-weight="700" font-size="170" fill="#e8eef7">Pin by Pin <tspan fill="#ffb547">Lab</tspan></text>
+       <text x="1280" y="780" text-anchor="middle" font-family="Segoe UI" font-size="60" fill="#9fb0c8">Learn electronics &amp; embedded C, step by step</text>
+       <text x="1280" y="868" text-anchor="middle" font-family="Segoe UI" font-weight="700" font-size="40" fill="#19c3b4" letter-spacing="6">ESP32 · ARDUINO · C · NEW VIDEOS EVERY WEEK</text>
+       <polyline points="300,1100 700,1100 760,1040 1100,1040" fill="none" stroke="#19c3b4" stroke-width="6" opacity=".5"/>
+       <polyline points="2260,340 1860,340 1800,400 1460,400" fill="none" stroke="#ffb547" stroke-width="6" opacity=".5"/>
+       <circle cx="1100" cy="1040" r="14" fill="#19c3b4"/><circle cx="1460" cy="400" r="14" fill="#ffb547"/>`;
+  return `<div class="banner"><svg viewBox="0 0 2560 1440" xmlns="http://www.w3.org/2000/svg">
+    <defs>${glow}</defs><rect width="2560" height="1440" fill="#0b1220"/>${holes}
+    <rect width="2560" height="1440" fill="url(#gl${style})"/>${text}</svg><div class="safe"></div></div>`;
+}
+document.getElementById("banners").innerHTML =
+  `<h3>Banner 1 — logo solda, seri duyurusu</h3>${banner(1, "B")}
+   <h3>Banner 2 — ortada yazı, devre yolları</h3>${banner(2, "B")}
+   <small>Seçilen: logo A + banner 1 (brand/export/).</small>`;
+</script>
+</body>
+</html>
