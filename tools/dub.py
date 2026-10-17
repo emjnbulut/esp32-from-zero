@@ -106,7 +106,7 @@ def main(ep: Path, lang: str, report_only: bool):
         buf[i:i + len(a)] += a[: len(buf) - i]
     buf = music.mix(buf, SR, decode, level=0.08, fade_in=1.0)
     buf = buf / (np.max(np.abs(buf)) or 1) * 0.89
-    buf = bumpers.wrap(buf, SR, decode)  # same intro/outro as the final video
+    buf = bumpers.wrap(buf, SR, decode, ep)  # same intro/outro as the final video
     wav = ep / "build" / f"dub_{lang}.wav"
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "s16le", "-ar", str(SR), "-ac", "1", "-i", "-", str(wav)],
                    input=(buf * 32767).astype(np.int16).tobytes(), check=True)

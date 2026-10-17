@@ -210,7 +210,7 @@ def compose(ep: Path):
     footage = ROOT / "footage" / ep.name
     intro, outro = bumpers.render()
     full = b / "narration_full.wav"  # intro sting + narration + outro music
-    pcm = (bumpers.wrap(decode(b / "narration.wav"), SR, decode) * 32767).astype(np.int16)
+    pcm = (bumpers.wrap(decode(b / "narration.wav"), SR, decode, ep) * 32767).astype(np.int16)
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "s16le", "-ar", str(SR), "-ac", "1", "-i", "-", str(full)],
                    input=pcm.tobytes(), check=True)
     inputs = ["-i", str(b / "video.mp4"), "-i", str(full), "-i", str(intro), "-i", str(outro)]

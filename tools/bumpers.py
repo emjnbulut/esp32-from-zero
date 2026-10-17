@@ -79,9 +79,18 @@ def outro_audio(sr: int, decode) -> np.ndarray:
     return m.astype(np.float32)
 
 
-def wrap(buf: np.ndarray, sr: int, decode) -> np.ndarray:
-    """intro sting + episode audio + outro music, matching the bumper videos."""
-    return np.concatenate([intro_audio(sr), buf.astype(np.float32), outro_audio(sr, decode)])
+def body_seconds(ep: Path) -> float:
+    """Length of the episode picture (build/video.mp4); the audio body is cut/padded to it."""
+    return float(subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0",
+                                          str(ep / "build" / "video.mp4")]).strip())
+
+
+def wrap(buf: np.ndarray, sr: int, decode, ep: Path) -> np.ndarray:
+    """intro sting + episode audio (fitted to the picture length) + outro music, matching the bumper videos."""
+    n = int(round(body_seconds(ep) * sr))
+    body = np.zeros(n, np.float32)
+    body[: min(n, len(buf))] = buf[:n]
+    return np.concatenate([intro_audio(sr), body, outro_audio(sr, decode)])
 
 
 if __name__ == "__main__":
