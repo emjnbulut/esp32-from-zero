@@ -1,0 +1,282 @@
+{
+ "episode": 2,
+ "title": "Meet the Board and the Breadboard",
+ "voice": "en-US-EricNeural",
+ "rate": "+5%",
+ "clips": {
+  "C1": "Close-up of the board's pin labels (3V3, GND, D2...). Slowly pan along one header so the tiny printed names are readable. Landscape, 5-8 s.",
+  "C2": "Hands pressing the ESP32 board into the breadboard across the middle gap, pressing evenly on both sides. Landscape, 5-8 s.",
+  "C3": "The finished circuit (3V3 -> resistor -> LED -> GND). Plug in the USB cable and the LED turns on. Landscape, 5-8 s."
+ },
+ "segments": [
+  {
+   "id": "s01",
+   "scene": "intro",
+   "text": "Welcome back to ESP32 From Zero. Last time, we set up the computer, and ran our first program.",
+   "tr": "ESP32 From Zero'ya tekrar hoş geldiniz. Geçen sefer bilgisayarı hazırladık ve ilk programımızı çalıştırdık."
+  },
+  {
+   "id": "s02",
+   "scene": "intro",
+   "text": "Today, we leave the screen, and work with our hands. We'll meet the pins, learn how a breadboard works, and build our first circuit.",
+   "tr": "Bugün ekrandan ayrılıp ellerimizle çalışıyoruz. Pinleri tanıyacak, breadboard'un nasıl çalıştığını öğrenecek ve ilk devremizi kuracağız."
+  },
+  {
+   "id": "s03",
+   "scene": "kit",
+   "text": "Here's what you need. Your ESP32 board, a breadboard, one LED, one 220 ohm resistor, and two or three jumper wires. All of them are in a typical starter kit.",
+   "sub": "Here's what you need. Your ESP32 board, a breadboard, one LED, one 220 Ω resistor, and two or three jumper wires. All of them are in a typical starter kit.",
+   "tr": "İhtiyacınız olanlar: ESP32 kartınız, bir breadboard, bir LED, bir 220 ohm direnç ve iki üç jumper kablo. Hepsi tipik bir başlangıç setinde var."
+  },
+  {
+   "id": "s04",
+   "scene": "pins",
+   "text": "Let's start with the board. Along both long edges, there's a row of pins. They are the ESP32's connections to the outside world.",
+   "tr": "Kartla başlayalım. İki uzun kenar boyunca birer sıra pin var. Bunlar ESP32'nin dış dünyayla bağlantıları."
+  },
+  {
+   "id": "s05",
+   "scene": "pins",
+   "text": "Look closely at your board. Next to every pin, there's a tiny printed label. That label is the pin's name.",
+   "tr": "Kartınıza yakından bakın. Her pinin yanında minik bir yazı var. O yazı pinin adı.",
+   "clip": "C1",
+   "pad": 1.2
+  },
+  {
+   "id": "s06",
+   "scene": "pins",
+   "text": "Your board has thirty, or thirty-eight pins. The order is a little different, but the same names appear on both.",
+   "tr": "Kartınızda otuz ya da otuz sekiz pin var. Sıralama biraz farklı ama iki kartta da aynı isimler var."
+  },
+  {
+   "id": "s07",
+   "scene": "pins",
+   "text": "The pins fall into three groups: power pins, ground pins, and GPIO pins. GPIO means general purpose input and output.",
+   "tr": "Pinler üç gruba ayrılır: güç pinleri, toprak pinleri ve GPIO pinleri. GPIO, genel amaçlı giriş çıkış demek."
+  },
+  {
+   "id": "s08",
+   "scene": "power",
+   "text": "First, power. The pin labeled three V three gives out three point three volts. That's the voltage the ESP32 works with.",
+   "sub": "First, power. The pin labeled 3V3 gives out 3.3 volts. That's the voltage the ESP32 works with.",
+   "tr": "Önce güç. 3V3 yazan pin 3,3 volt verir. ESP32'nin çalıştığı gerilim budur."
+  },
+  {
+   "id": "s09",
+   "scene": "power",
+   "text": "The pin labeled VIN, or five V, is connected to the five volts that come from USB.",
+   "sub": "The pin labeled VIN, or 5V, is connected to the 5 volts that come from USB.",
+   "tr": "VIN ya da 5V yazan pin, USB'den gelen 5 volta bağlıdır."
+  },
+  {
+   "id": "s10",
+   "scene": "power",
+   "text": "And GND means ground. Zero volts. Every circuit needs a path back to ground. That's where the current returns.",
+   "tr": "GND ise toprak demek. Sıfır volt. Her devrenin toprağa dönen bir yolu olmalı. Akım oradan geri döner."
+  },
+  {
+   "id": "s11",
+   "scene": "power",
+   "text": "Two safety rules. Never connect a power pin straight to ground with a wire. That's a short circuit, and it can damage your board, or even your USB port.",
+   "tr": "İki güvenlik kuralı. Bir güç pinini asla doğrudan bir kabloyla toprağa bağlamayın. Bu kısa devredir ve kartınıza, hatta USB portunuza zarar verebilir."
+  },
+  {
+   "id": "s12",
+   "scene": "power",
+   "text": "And never feed five volts into a GPIO pin. They are made for three point three volts only.",
+   "sub": "And never feed 5 volts into a GPIO pin. They are made for 3.3 volts only.",
+   "tr": "Ve bir GPIO pinine asla 5 volt vermeyin. Onlar yalnızca 3,3 volt için yapılmıştır."
+  },
+  {
+   "id": "s13",
+   "scene": "gpio",
+   "text": "Now, the GPIO pins. In code, we use their numbers. On a thirty pin board, D two simply means GPIO two. Thirty-eight pin boards print just the number, two.",
+   "sub": "Now, the GPIO pins. In code, we use their numbers. On a 30-pin board, \"D2\" simply means GPIO 2. 38-pin boards print just the number: \"2\".",
+   "tr": "Şimdi GPIO pinleri. Kodda onların numaralarını kullanırız. 30 pinli bir kartta D2, basitçe GPIO 2 demek. 38 pinli kartlarda sadece numara yazar: 2."
+  },
+  {
+   "id": "s14",
+   "scene": "gpio",
+   "text": "Most of them can be an input, or an output. But a few are special. As a beginner, it's best to leave them alone.",
+   "tr": "Çoğu giriş ya da çıkış olabilir. Ama birkaçı özel. Yeni başlarken onlara dokunmamak en iyisi."
+  },
+  {
+   "id": "s15",
+   "scene": "gpio",
+   "text": "GPIO six to eleven connect to the flash memory, where your program is stored. Never use them. On thirty-eight pin boards, they're labeled C L K, C M D, and D zero to D three.",
+   "sub": "GPIO 6 to 11 connect to the flash memory, where your program is stored. Never use them. On 38-pin boards, they're labeled CLK, CMD, and D0 to D3.",
+   "tr": "GPIO 6 ile 11 arası, programınızın saklandığı flash belleğe bağlı. Onları asla kullanmayın. 38 pinli kartlarda CLK, CMD ve D0 ile D3 arası diye yazar."
+  },
+  {
+   "id": "s16",
+   "scene": "gpio",
+   "text": "GPIO thirty-four, thirty-five, thirty-six, and thirty-nine are input only. They can read a sensor, but they can't light an LED. Thirty-six and thirty-nine are labeled V P and V N.",
+   "sub": "GPIO 34, 35, 36 and 39 are input only. They can read a sensor, but they can't light an LED. 36 and 39 are labeled VP and VN.",
+   "tr": "GPIO 34, 35, 36 ve 39 yalnızca giriştir. Bir sensörü okuyabilirler ama LED yakamazlar. 36 ve 39, VP ve VN diye yazılır."
+  },
+  {
+   "id": "s17",
+   "scene": "gpio",
+   "text": "GPIO zero, two, five, twelve, and fifteen are strapping pins. The chip reads them at startup, to decide how to boot. Connect the wrong thing, and the board may not start.",
+   "sub": "GPIO 0, 2, 5, 12 and 15 are strapping pins. The chip reads them at startup, to decide how to boot. Connect the wrong thing, and the board may not start.",
+   "tr": "GPIO 0, 2, 5, 12 ve 15 strapping pinleridir. Çip, nasıl açılacağına karar vermek için onları başlangıçta okur. Yanlış bir şey bağlarsanız kart açılmayabilir."
+  },
+  {
+   "id": "s18",
+   "scene": "gpio",
+   "text": "And T X and R X carry the USB serial connection. Keep them free, so uploading and the Serial Monitor keep working.",
+   "sub": "And TX and RX carry the USB serial connection. Keep them free, so uploading and the Serial Monitor keep working.",
+   "tr": "TX ve RX de USB seri bağlantısını taşır. Yükleme ve Serial Monitor çalışmaya devam etsin diye onları boş bırakın."
+  },
+  {
+   "id": "s19",
+   "scene": "gpio",
+   "text": "That still leaves plenty of safe pins. These green ones are the pins we'll use in our projects.",
+   "tr": "Yine de bolca güvenli pin kalıyor. Bu yeşil olanlar, projelerimizde kullanacağımız pinler.",
+   "pad": 1.0
+  },
+  {
+   "id": "s20",
+   "scene": "bb",
+   "text": "Now, the breadboard. It lets us build circuits without soldering. We just push the wires and parts into the holes.",
+   "tr": "Şimdi breadboard. Lehim yapmadan devre kurmamızı sağlar. Kabloları ve parçaları deliklere takmamız yeterli."
+  },
+  {
+   "id": "s21",
+   "scene": "bb",
+   "text": "Under the holes, there are metal strips. In the middle area, each short column of five holes is connected together. A to E is one group, and F to J is another.",
+   "sub": "Under the holes, there are metal strips. In the middle area, each short column of five holes is connected together. a to e is one group, and f to j is another.",
+   "tr": "Deliklerin altında metal şeritler var. Orta bölgede, beş delikten oluşan her kısa sütun birbirine bağlı. A'dan E'ye bir grup, F'den J'ye başka bir grup."
+  },
+  {
+   "id": "s22",
+   "scene": "bb",
+   "text": "The gap down the middle separates the two halves. Holes on opposite sides of the gap are not connected.",
+   "tr": "Ortadaki boşluk iki yarıyı ayırır. Boşluğun iki yanındaki delikler birbirine bağlı değildir."
+  },
+  {
+   "id": "s23",
+   "scene": "bb",
+   "text": "Along the long edges are the power rails, marked with a red plus, and a blue minus. Each rail is connected along its whole length. We use them to share power and ground.",
+   "tr": "Uzun kenarlar boyunca güç rayları var; kırmızı artı ve mavi eksi ile işaretli. Her ray boydan boya bağlıdır. Onları gücü ve toprağı paylaştırmak için kullanırız."
+  },
+  {
+   "id": "s24",
+   "scene": "bb",
+   "text": "On some long breadboards, the rails are split in the middle. If the red line has a break, join the two halves with a short wire.",
+   "tr": "Bazı uzun breadboard'larda raylar ortadan bölünmüştür. Kırmızı çizgide bir kesinti varsa iki yarıyı kısa bir kabloyla birleştirin."
+  },
+  {
+   "id": "s25",
+   "scene": "bb",
+   "text": "And here's the most common beginner mistake: putting both legs of a part in the same column. Both legs are then connected together, and the part does nothing.",
+   "tr": "En sık yapılan acemi hatası da şu: bir parçanın iki bacağını aynı sütuna takmak. O zaman iki bacak birbirine bağlanır ve parça hiçbir işe yaramaz."
+  },
+  {
+   "id": "s26",
+   "scene": "mount",
+   "text": "Now, let's put the board on the breadboard. It sits across the middle gap, so that every pin gets its own column.",
+   "tr": "Şimdi kartı breadboard'a takalım. Kart ortadaki boşluğun üzerine oturur, böylece her pin kendi sütununu alır."
+  },
+  {
+   "id": "s27",
+   "scene": "mount",
+   "text": "Line up the pins with the holes, and press down gently and evenly, on both sides.",
+   "tr": "Pinleri deliklerle hizalayın ve iki taraftan da nazikçe ve eşit şekilde bastırın.",
+   "clip": "C2",
+   "pad": 1.5
+  },
+  {
+   "id": "s28",
+   "scene": "mount",
+   "text": "Most ESP32 boards are wide. A thirty pin board leaves one free hole next to each pin, on both sides. A thirty-eight pin board can leave no free holes on one side.",
+   "sub": "Most ESP32 boards are wide. A 30-pin board leaves one free hole next to each pin, on both sides. A 38-pin board can leave no free holes on one side.",
+   "tr": "ESP32 kartlarının çoğu geniştir. 30 pinli bir kart, iki tarafta da her pinin yanında bir boş delik bırakır. 38 pinli bir kart ise bir tarafta hiç boş delik bırakmayabilir."
+  },
+  {
+   "id": "s29",
+   "scene": "mount",
+   "text": "That's enough for today. Later, when we need more room, we can use two breadboards side by side.",
+   "tr": "Bugün için bu yeterli. İleride daha fazla yere ihtiyacımız olunca iki breadboard'u yan yana kullanabiliriz."
+  },
+  {
+   "id": "s30",
+   "scene": "circuit",
+   "text": "Time for our first circuit. We'll light an LED, using power from the three point three volt pin. No code needed.",
+   "sub": "Time for our first circuit. We'll light an LED, using power from the 3.3 volt pin. No code needed.",
+   "tr": "İlk devremizin zamanı. 3,3 volt pininden aldığımız güçle bir LED yakacağız. Kod gerekmiyor."
+  },
+  {
+   "id": "s31",
+   "scene": "circuit",
+   "text": "An LED has two legs. The long leg is the plus side, called the anode. The short leg is the minus side, the cathode. Current must flow from the long leg to the short one.",
+   "tr": "LED'in iki bacağı var. Uzun bacak artı taraf, yani anot. Kısa bacak eksi taraf, yani katot. Akım uzun bacaktan kısa bacağa doğru akmalı."
+  },
+  {
+   "id": "s32",
+   "scene": "circuit",
+   "text": "On its own, the LED would pull too much current, and burn out. So we add a resistor to limit it. 220 ohms is a good value. Its color bands are red, red, brown.",
+   "sub": "On its own, the LED would pull too much current, and burn out. So we add a resistor to limit it. 220 Ω is a good value. Its color bands are red, red, brown.",
+   "tr": "Tek başına LED çok fazla akım çeker ve yanar. Bu yüzden akımı sınırlamak için bir direnç ekleriz. 220 ohm iyi bir değer. Renk bantları kırmızı, kırmızı, kahverengi."
+  },
+  {
+   "id": "s33",
+   "scene": "circuit",
+   "text": "Here's the plan. Three V three goes to the resistor. The resistor goes to the LED's long leg. And the short leg goes to ground.",
+   "sub": "Here's the plan. 3V3 goes to the resistor. The resistor goes to the LED's long leg. And the short leg goes to ground.",
+   "tr": "Plan şu: 3V3 dirence gider. Direnç LED'in uzun bacağına gider. Kısa bacak da toprağa gider."
+  },
+  {
+   "id": "s34",
+   "scene": "build",
+   "text": "Always build with the USB cable unplugged. Step one: a jumper wire from the three V three pin to the red plus rail, and one from a GND pin to the blue minus rail.",
+   "sub": "Always build with the USB cable unplugged. Step one: a jumper wire from the 3V3 pin to the red plus rail, and one from a GND pin to the blue minus rail.",
+   "tr": "Devreyi her zaman USB kablosu takılı değilken kurun. Birinci adım: 3V3 pininden kırmızı artı raya bir jumper kablo, bir GND pininden de mavi eksi raya bir kablo."
+  },
+  {
+   "id": "s35",
+   "scene": "build",
+   "text": "Step two: the resistor goes from the plus rail into a free column.",
+   "tr": "İkinci adım: direnç artı raydan boş bir sütuna takılır."
+  },
+  {
+   "id": "s36",
+   "scene": "build",
+   "text": "Step three: the LED's long leg goes in that same column. The short leg goes in the next column.",
+   "tr": "Üçüncü adım: LED'in uzun bacağı aynı sütuna takılır. Kısa bacak bir sonraki sütuna."
+  },
+  {
+   "id": "s37",
+   "scene": "build",
+   "text": "Step four: a wire from the short leg's column, to the minus rail. That closes the loop.",
+   "tr": "Dördüncü adım: kısa bacağın sütunundan eksi raya bir kablo. Bu, döngüyü kapatır."
+  },
+  {
+   "id": "s38",
+   "scene": "build",
+   "text": "Now, plug in the USB cable. And the LED lights up! Current flows out of three V three, through the resistor and the LED, and back to ground.",
+   "sub": "Now, plug in the USB cable. And the LED lights up! Current flows out of 3V3, through the resistor and the LED, and back to ground.",
+   "tr": "Şimdi USB kablosunu takın. Ve LED yanıyor! Akım 3V3'ten çıkıp direnç ve LED'den geçerek toprağa geri dönüyor.",
+   "clip": "C3",
+   "pad": 1.5
+  },
+  {
+   "id": "s39",
+   "scene": "build",
+   "text": "LED stays dark? Check that the long leg is on the resistor side, that the two legs are in different columns, and that the rail isn't split.",
+   "tr": "LED yanmıyor mu? Uzun bacağın direnç tarafında olduğunu, iki bacağın farklı sütunlarda olduğunu ve rayın bölünmüş olmadığını kontrol edin."
+  },
+  {
+   "id": "s40",
+   "scene": "outro",
+   "text": "Today, we met the power pins, the safe GPIO pins, and the breadboard. And we built our first circuit.",
+   "tr": "Bugün güç pinlerini, güvenli GPIO pinlerini ve breadboard'u tanıdık. Ve ilk devremizi kurduk."
+  },
+  {
+   "id": "s41",
+   "scene": "outro",
+   "text": "But this LED is always on. Next time, we'll move one wire to a GPIO pin, and blink the LED from our code. The diagrams are on GitHub, linked below. See you there!",
+   "tr": "Ama bu LED hep yanıyor. Gelecek sefer bir kabloyu bir GPIO pinine taşıyacak ve LED'i kodumuzla yakıp söndüreceğiz. Şemalar GitHub'da, bağlantısı aşağıda. Orada görüşmek üzere!"
+  }
+ ]
+}
