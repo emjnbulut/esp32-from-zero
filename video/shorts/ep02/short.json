@@ -1,0 +1,235 @@
+{
+ "episode": "ep02",
+ "source": "video/ep02/build/video.mp4",
+ "cta": {
+  "en": "Full episode",
+  "sub": "linked below this video"
+ },
+ "segments": [
+  {
+   "id": "h1",
+   "chip": "ESP32 FROM ZERO",
+   "headline": {
+    "en": "Don't fry your ESP32!"
+   },
+   "say": {
+    "en": "Before you plug anything into an ESP32, know these pins. Some of them can break your board.",
+    "tr": "Bir E Se Pe otuz ikiye bir şey takmadan önce bu pinleri tanıyın. Bazıları kartınızı bozabilir."
+   },
+   "show": {
+    "en": "Before you plug anything into an ESP32, know these pins. Some of them can break your board."
+   },
+   "shots": [
+    {
+     "src": 66.0,
+     "crop": [
+      80,
+      150,
+      1000,
+      760
+     ],
+     "pan": 860
+    }
+   ]
+  },
+  {
+   "id": "h2",
+   "chip": "POWER",
+   "headline": {
+    "en": "3V3 · 5V · GND"
+   },
+   "say": {
+    "en": "Three V three gives three point three volts. V in carries five volts from USB. And GND is ground, zero volts.",
+    "tr": "Üç Ve üç pini, üç nokta üç volt verir. Ve İ En pini, U Se Be'den gelen beş voltu taşır. Ge En De ise toprak, yani sıfır volt."
+   },
+   "show": {
+    "en": "3V3 gives 3.3 volts. VIN carries 5 volts from USB. And GND is ground: zero volts."
+   },
+   "shots": [
+    {
+     "src": 90.0,
+     "crop": [
+      280,
+      180,
+      880,
+      720
+     ],
+     "pan": 760
+    }
+   ]
+  },
+  {
+   "id": "h3",
+   "chip": "2 RULES",
+   "headline": {
+    "en": "Never short power to GND"
+   },
+   "say": {
+    "en": "Rule one: never wire a power pin straight to ground. Rule two: never feed five volts into a GPIO pin.",
+    "tr": "Birinci kural: bir güç pinini asla doğrudan toprağa bağlamayın. İkinci kural: bir Ge Pe I O pinine asla beş volt vermeyin."
+   },
+   "show": {
+    "en": "Rule one: never wire a power pin straight to ground. Rule two: never feed 5 volts into a GPIO pin."
+   },
+   "shots": [
+    {
+     "src": 108.0,
+     "crop": [
+      150,
+      270,
+      800,
+      580
+     ]
+    }
+   ]
+  },
+  {
+   "id": "h4",
+   "chip": "AVOID",
+   "headline": {
+    "en": "Pins to leave alone"
+   },
+   "say": {
+    "en": "Leave GPIO six to eleven alone, they run the flash memory. And thirty-four to thirty-nine are input only.",
+    "tr": "Ge Pe I O altı ile on bir arasına dokunmayın, onlar flaş belleğe bağlı. Otuz dört ile otuz dokuz arası da yalnızca giriştir."
+   },
+   "show": {
+    "en": "Leave GPIO 6 to 11 alone: they run the flash memory. And 34 to 39 are input only."
+   },
+   "shots": [
+    {
+     "src": 153.0,
+     "crop": [
+      860,
+      200,
+      940,
+      720
+     ]
+    },
+    {
+     "src": 168.5,
+     "crop": [
+      100,
+      180,
+      760,
+      560
+     ],
+     "pan": 600
+    }
+   ]
+  },
+  {
+   "id": "h5",
+   "chip": "BREADBOARD",
+   "headline": {
+    "en": "How the holes connect"
+   },
+   "say": {
+    "en": "On a breadboard, each column of five holes is connected. But nothing crosses the middle gap.",
+    "tr": "Breadbordda, beş delikli her sütun birbirine bağlıdır. Ama ortadaki boşluğun karşısına hiçbir şey geçmez."
+   },
+   "show": {
+    "en": "On a breadboard, each column of 5 holes is connected. But nothing crosses the middle gap."
+   },
+   "shots": [
+    {
+     "src": 222.0,
+     "crop": [
+      280,
+      220,
+      800,
+      800
+     ],
+     "pan": 820
+    },
+    {
+     "src": 233.0,
+     "crop": [
+      440,
+      240,
+      800,
+      770
+     ]
+    }
+   ]
+  },
+  {
+   "id": "h6",
+   "chip": "FIRST CIRCUIT",
+   "headline": {
+    "en": "3V3 → 220 Ω → LED → GND"
+   },
+   "say": {
+    "en": "Our first circuit: three V three, a 220 ohm resistor, the LED's long leg, and back to ground.",
+    "tr": "İlk devremiz: üç Ve üç, iki yüz yirmi ohmluk bir direnç, ledin uzun bacağı ve tekrar toprak."
+   },
+   "show": {
+    "en": "Our first circuit: 3V3, a 220 Ω resistor, the LED's long leg, and back to ground."
+   },
+   "shots": [
+    {
+     "src": 376.0,
+     "speed": 1.5,
+     "crop": [
+      700,
+      260,
+      900,
+      760
+     ]
+    }
+   ]
+  },
+  {
+   "id": "h7",
+   "chip": "RESULT",
+   "headline": {
+    "en": "It lights up!"
+   },
+   "say": {
+    "en": "Plug in the USB cable, and it lights up!",
+    "tr": "U Se Be kablosunu takın, ve led yanıyor!"
+   },
+   "show": {
+    "en": "Plug in the USB cable, and it lights up!"
+   },
+   "shots": [
+    {
+     "src": 392.0,
+     "crop": [
+      640,
+      560,
+      960,
+      480
+     ]
+    }
+   ]
+  },
+  {
+   "id": "h8",
+   "chip": "EPISODE 2",
+   "headline": {
+    "en": "Watch the full episode"
+   },
+   "say": {
+    "en": "The full episode is linked below. Next time, we blink it from code. Until then, remember:",
+    "tr": "Bölümün tamamı aşağıda. Gelecek sefer ledi kodla yakıp söndüreceğiz. O zamana kadar unutmayın:"
+   },
+   "show": {
+    "en": "The full episode is linked below. Next time, we blink it from code. Until then, remember:"
+   },
+   "shots": [
+    {
+     "src": 415.0,
+     "crop": [
+      60,
+      300,
+      860,
+      500
+     ],
+     "pan": 1000
+    }
+   ]
+  }
+ ],
+ "loop": true
+}

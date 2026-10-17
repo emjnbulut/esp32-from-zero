@@ -60,12 +60,21 @@ def duck_env(voice: np.ndarray, sr: int) -> np.ndarray:
     return np.repeat(out, hop)[: len(voice)]
 
 
-def mix(voice: np.ndarray, sr: int, decode, level: float, fade_in=3.0, fade_out=3.0) -> np.ndarray:
-    """voice + music bed (if a track exists). `decode(path)` returns mono float32 at sr."""
+def mix(voice: np.ndarray, sr: int, decode, level: float, fade_in=3.0, fade_out=3.0, seamless=False) -> np.ndarray:
+    """voice + music bed (if a track exists). `decode(path)` returns mono float32 at sr.
+    seamless: for a looping video - no fades; the music that would follow the end is blended
+    into the start, so playing the file again continues the music without a jump."""
     t = track()
     if t is None:
         return voice
-    m = loop_to(decode(t), len(voice), sr) * level
+    n = len(voice)
+    if seamless:
+        x = int(1.0 * sr)
+        m = loop_to(decode(t), n + x, sr)
+        k = np.sin(np.linspace(0, np.pi / 2, x)) ** 2
+        m[:x] = m[:x] * k + m[n:n + x] * k[::-1]
+        return voice + m[:n] * level * duck_env(voice, sr)
+    m = loop_to(decode(t), n, sr) * level
     m *= duck_env(voice, sr)
     if fade_in:
         f = int(fade_in * sr); m[:f] *= np.linspace(0, 1, f)

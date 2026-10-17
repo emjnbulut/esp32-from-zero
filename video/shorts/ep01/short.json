@@ -24,16 +24,16 @@
     "pt": "Seu primeiro programa no ESP32"
    },
    "say": {
-    "en": "Want to run your first program on an ESP32? Here's the whole setup, in under a minute.",
-    "tr": "İlk programını bir E Se Pe otuz iki üzerinde çalıştırmak ister misin? İşte tüm kurulum, bir dakikadan kısa sürede.",
-    "hi": "क्या आप ESP32 पर अपना पहला program चलाना चाहते हैं? पूरा setup, एक मिनट से भी कम में।",
-    "pt": "Quer rodar seu primeiro programa num ESP32? Aqui está toda a configuração, em menos de um minuto."
+    "en": "This is how you run your first program on an ESP32, in under a minute.",
+    "tr": "İşte bir E Se Pe otuz ikide ilk programınızı, bir dakikadan kısa sürede böyle çalıştırırsınız.",
+    "hi": "ऐसे चलाते हैं ESP32 पर अपना पहला program, एक मिनट से भी कम में।",
+    "pt": "É assim que você roda seu primeiro programa num ESP32, em menos de um minuto."
    },
    "show": {
-    "en": "Want to run your first program on an ESP32? Here's the whole setup, in under a minute.",
-    "tr": "İlk programını bir ESP32 üzerinde çalıştırmak ister misin? İşte tüm kurulum, bir dakikadan kısa sürede.",
-    "hi": "क्या आप ESP32 पर अपना पहला program चलाना चाहते हैं? पूरा setup, एक मिनट से भी कम में।",
-    "pt": "Quer rodar seu primeiro programa num ESP32? Aqui está toda a configuração, em menos de um minuto."
+    "en": "This is how you run your first program on an ESP32, in under a minute.",
+    "tr": "İşte bir ESP32'de ilk programınızı, bir dakikadan kısa sürede böyle çalıştırırsınız.",
+    "hi": "ऐसे चलाते हैं ESP32 पर अपना पहला program, एक मिनट से भी कम में।",
+    "pt": "É assim que você roda seu primeiro programa num ESP32, em menos de um minuto."
    },
    "shots": [
     {
@@ -324,16 +324,16 @@
     "pt": "Assista ao tutorial completo"
    },
    "say": {
-    "en": "The full step-by-step tutorial is linked below. Subscribe for episode two!",
-    "tr": "Adım adım tam ders aşağıda. İkinci bölüm için abone olmayı unutma!",
-    "hi": "पूरा step-by-step tutorial नीचे link में है। Episode दो के लिए subscribe करें!",
-    "pt": "O tutorial completo, passo a passo, está no link abaixo. Inscreva-se para o episódio dois!"
+    "en": "The full step-by-step tutorial is linked below. Subscribe for episode two! Now you know:",
+    "tr": "Adım adım tam ders aşağıda. İkinci bölüm için abone olmayı unutmayın! Artık biliyorsunuz:",
+    "hi": "पूरा step-by-step tutorial नीचे link में है। Episode दो के लिए subscribe करें! अब आप जानते हैं:",
+    "pt": "O tutorial completo, passo a passo, está no link abaixo. Inscreva-se para o episódio dois! Agora você sabe:"
    },
    "show": {
-    "en": "The full step-by-step tutorial is linked below. Subscribe for episode two!",
-    "tr": "Adım adım tam ders aşağıda. İkinci bölüm için abone ol!",
-    "hi": "पूरा step-by-step tutorial नीचे link में है। Episode 2 के लिए subscribe करें!",
-    "pt": "O tutorial completo, passo a passo, está no link abaixo. Inscreva-se para o episódio 2!"
+    "en": "The full step-by-step tutorial is linked below. Subscribe for episode two! Now you know:",
+    "tr": "Adım adım tam ders aşağıda. İkinci bölüm için abone ol! Artık biliyorsun:",
+    "hi": "पूरा step-by-step tutorial नीचे link में है। Episode 2 के लिए subscribe करें! अब आप जानते हैं:",
+    "pt": "O tutorial completo, passo a passo, está no link abaixo. Inscreva-se para o episódio 2! Agora você sabe:"
    },
    "shots": [
     {
@@ -348,5 +348,6 @@
     }
    ]
   }
- ]
+ ],
+ "loop": true
 }

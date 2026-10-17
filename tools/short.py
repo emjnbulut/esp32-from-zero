@@ -7,6 +7,7 @@ short.json lists narration segments; each has text per language ("say" is spoken
 "show" is the on-screen caption), a headline, and shots. Only "say" is needed per
 language; on-screen text (show, headline, chip, cta) falls back to English.
 Shots are moments of the rendered episode video ("src" seconds, optional "speed", optional "pan" = end x) cropped to a region [x, y, w, h].
+"loop": true makes the Short seamless: no tail, music wraps around, and the last frame is the first shot.
 """
 import asyncio
 import json
@@ -84,7 +85,9 @@ def main(sdir: Path, lang: str):
                  for j, w in enumerate(shown)] if spoken else []
         sched[s["id"]] = {"start": round(t, 3), "end": round(t + dur, 3), "words": words}
         t += dur + GAP
-    duration = round(t - GAP + TAIL, 3)
+    # loop: no tail - the end runs straight back into the start (LEAD gives the pause between them)
+    loop = spec.get("loop", False)
+    duration = round(t - GAP + (0.05 if loop else TAIL), 3)
     ids = [s["id"] for s in spec["segments"]]
     data = {"schedule": {"duration": duration, "segments": sched}, "panel": PANEL, "lang": lang,
             "segs": [{"id": s["id"], "chip": loc(s["chip"], lang), "headline": loc(s["headline"], lang)} for s in spec["segments"]],
@@ -103,12 +106,17 @@ def main(sdir: Path, lang: str):
     # 3. panel: shots cut from the rendered episode, fitted into the panel
     src = ROOT / spec["source"]
     inputs, filters, labels = [], [], []
-    for i, s in enumerate(spec["segments"]):
+    segments = [dict(s) for s in spec["segments"]]
+    if loop:  # end on the first shot's opening frame, so the jump back to the start is invisible
+        first = segments[0]["shots"][0]
+        segments[-1]["shots"] = segments[-1]["shots"] + [{"src": first["src"], "crop": first["crop"], "dur": 0.9}]
+    for i, s in enumerate(segments):
         a = 0 if i == 0 else sched[s["id"]]["start"]
         b = sched[ids[i + 1]]["start"] if i + 1 < len(ids) else duration
-        n = len(s["shots"])
+        fixed = sum(sh["dur"] for sh in s["shots"] if "dur" in sh)
+        free = [sh for sh in s["shots"] if "dur" not in sh]
         for j, sh in enumerate(s["shots"]):
-            d = (b - a) / n
+            d = sh.get("dur", (b - a - fixed) / max(1, len(free)))
             sp = sh.get("speed", 1.0)
             k = len(labels)
             inputs += ["-ss", f"{sh['src']:.3f}", "-t", f"{d * sp + 0.5:.3f}", "-i", str(src)]
@@ -130,12 +138,15 @@ def main(sdir: Path, lang: str):
          "-c:v", "libx264", "-crf", "16", "-preset", "medium", "-pix_fmt", "yuv420p", str(out / "panel.mp4")])
 
     # 4. audio: narration + music bed
-    buf = np.zeros(int((duration + 1) * SR), dtype=np.float32)
+    buf = np.zeros(int((duration + (0 if loop else 1)) * SR), dtype=np.float32)
     for sid in ids:
         a = decode(out / f"{sid}.mp3")
         i = int(sched[sid]["start"] * SR)
-        buf[i:i + len(a)] += a
-    buf = music.mix(buf, SR, decode, level=0.12, fade_in=0, fade_out=1.5)
+        buf[i:i + len(a)] += a[: len(buf) - i]
+    if loop:
+        buf = music.mix(buf, SR, decode, level=0.12, seamless=True)
+    else:
+        buf = music.mix(buf, SR, decode, level=0.12, fade_in=0, fade_out=1.5)
     buf = buf / (np.max(np.abs(buf)) or 1) * 0.9
     run(["ffmpeg", "-v", "error", "-y", "-f", "s16le", "-ar", str(SR), "-ac", "1", "-i", "-", str(out / "audio.wav")],
         input=(buf * 32767).astype(np.int16).tobytes())
