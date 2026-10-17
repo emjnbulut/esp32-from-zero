@@ -32,6 +32,16 @@ const data = opt("data")
       script: JSON.parse(fs.readFileSync(path.join(ep, "script.json"), "utf8")),
     };
 
+// The first capture of a page can come out blank (black) when it lands in some busy scenes
+// (seen in ep04 around 485-510 s). Capturing an earlier moment first avoids it, so every page
+// takes one throwaway capture a minute before its first time, then steps to that time.
+async function warmSeek(page, t) {
+  await page.evaluate((x) => window.__seek(x), Math.max(0, t - 60));
+  await page.screenshot({ type: "jpeg", quality: 10 });
+  await page.evaluate((x) => window.__seek(x), t);
+  await page.evaluate(() => new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r))));
+}
+
 async function openPage(browser) {
   const page = await browser.newPage({ viewport: { width: W, height: H }, deviceScaleFactor: 1 });
   page.on("pageerror", (e) => console.error("[page]", e.message));
@@ -61,7 +71,7 @@ if (stills) {
   const dir = path.join(build, "stills");
   fs.mkdirSync(dir, { recursive: true });
   for (const t of stills.split(",").map(Number)) {
-    await page.evaluate((t) => window.__seek(t), t);
+    await warmSeek(page, t);
     await page.screenshot({ path: path.join(dir, `t${t.toFixed(1)}.png`), omitBackground: alpha });
     console.log("still", t);
   }
@@ -85,6 +95,7 @@ await Promise.all(Array.from({ length: workers }, async (_, w) => {
   const out = path.join(build, `part${w}${ext}`);
   parts[w] = out;
   const { p, done } = ffmpegWriter(out);
+  await warmSeek(page, a / fps);
   for (let f = a; f < b; f++) {
     await page.evaluate((t) => window.__seek(t), f / fps);
     await write(p.stdin, await shot(page));

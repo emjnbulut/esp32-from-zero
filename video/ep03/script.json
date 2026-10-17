@@ -4,7 +4,7 @@
  "voice": "en-US-EricNeural",
  "rate": "+5%",
  "clips": {
-  "C1": "USB unplugged. Pull the red wire's end out of the 3V3 column and push it into the D23 column (GPIO 23). Close-up from above, landscape, 5-8 s.",
+  "C1": "USB unplugged. Take the red wire out, then move the resistor's leg from the plus rail into hole j16 (the D23 column). Close-up from above, landscape, 6-10 s.",
   "C2": "The LED blinking once per second after the upload (board, breadboard and LED in frame). Landscape, 5-8 s.",
   "C3": "The LED blinking fast (delays set to 100 ms). Landscape, 4-6 s."
  },
@@ -18,8 +18,8 @@
   {
    "id": "s02",
    "scene": "intro",
-   "text": "But it was always on. Today, our code takes control. We'll move one wire, write a short program, and make the LED blink.",
-   "tr": "Ama hep yanıyordu. Bugün kontrolü kodumuz alıyor. Bir kabloyu taşıyacak, kısa bir program yazacak ve LED'i yakıp söndüreceğiz."
+   "text": "But it was always on. Today, our code takes control. We'll move one part, write a short program, and make the LED blink.",
+   "tr": "Ama hep yanıyordu. Bugün kontrolü kodumuz alıyor. Bir parçayı taşıyacak, kısa bir program yazacak ve LED'i yakıp söndüreceğiz."
   },
   {
    "id": "s03",
@@ -71,9 +71,9 @@
   {
    "id": "s10",
    "scene": "move",
-   "text": "The red wire runs from the three V three pin to the plus rail. Pull out the end at three V three, and plug it into the column of D twenty-three.",
-   "sub": "The red wire runs from the 3V3 pin to the plus rail. Pull out the end at 3V3, and plug it into the column of D23.",
-   "tr": "Kırmızı kablo 3V3 pininden artı raya gidiyor. 3V3'teki ucunu çıkarın ve D23'ün sütununa takın.",
+   "text": "Take the red wire out completely. We don't need three V three today. Then pull the resistor's leg out of the plus rail, and push it into hole j sixteen, the column of D twenty-three.",
+   "sub": "Take the red wire out completely. We don't need 3V3 today. Then pull the resistor's leg out of the plus rail, and push it into hole j16, the column of D23.",
+   "tr": "Kırmızı kabloyu tamamen çıkarın; bugün 3V3'e ihtiyacımız yok. Sonra direncin bacağını artı raydan çekin ve D23'ün sütunundaki j16 deliğine takın.",
    "clip": "C1",
    "pad": 1.5
   },
@@ -87,9 +87,9 @@
   {
    "id": "s12",
    "scene": "move",
-   "text": "Now the LED gets its power from GPIO twenty-three. Plug the USB cable back in. The LED stays dark, because nothing has told that pin to turn on yet.",
-   "sub": "Now the LED gets its power from GPIO 23. Plug the USB cable back in. The LED stays dark, because nothing has told that pin to turn on yet.",
-   "tr": "Artık LED gücünü GPIO 23'ten alıyor. USB kablosunu tekrar takın. LED sönük kalıyor, çünkü o pine henüz kimse yanmasını söylemedi."
+   "text": "Now the LED gets its power from GPIO twenty-three, through the resistor. Plug the USB cable back in. The LED stays dark, because nothing has told that pin to turn on yet.",
+   "sub": "Now the LED gets its power from GPIO 23, through the resistor. Plug the USB cable back in. The LED stays dark, because nothing has told that pin to turn on yet.",
+   "tr": "Artık LED gücünü direnç üzerinden GPIO 23'ten alıyor. USB kablosunu tekrar takın. LED sönük kalıyor, çünkü o pine henüz kimse yanmasını söylemedi."
   },
   {
    "id": "s13",
@@ -100,9 +100,9 @@
   {
    "id": "s14",
    "scene": "code",
-   "text": "First, we give the pin a name. A constant called LED pin, set to twenty-three. If we ever move the wire again, we change just this one line.",
-   "sub": "First, we give the pin a name. A constant called LED_PIN, set to 23. If we ever move the wire again, we change just this one line.",
-   "tr": "Önce pine bir isim veriyoruz. LED_PIN adında bir sabit, değeri 23. Kabloyu bir gün yine taşırsak sadece bu satırı değiştiririz."
+   "text": "First, we give the pin a name. A constant called LED pin, set to twenty-three. If we ever move the LED to another pin, we change just this one line.",
+   "sub": "First, we give the pin a name. A constant called LED_PIN, set to 23. If we ever move the LED to another pin, we change just this one line.",
+   "tr": "Önce pine bir isim veriyoruz. LED_PIN adında bir sabit, değeri 23. LED'i bir gün başka bir pine taşırsak sadece bu satırı değiştiririz."
   },
   {
    "id": "s15",
@@ -195,9 +195,9 @@
   {
    "id": "s28",
    "scene": "trouble",
-   "text": "LED not blinking? Check that the red wire is really in the D twenty-three column, that the code says twenty-three, and that the long leg faces the resistor. If it's always on, the wire is probably still on three V three.",
-   "sub": "LED not blinking? Check that the red wire is really in the D23 column, that the code says 23, and that the long leg faces the resistor. If it's always on, the wire is probably still on 3V3.",
-   "tr": "LED yanıp sönmüyor mu? Kırmızı kablonun gerçekten D23 sütununda olduğunu, kodda 23 yazdığını ve uzun bacağın dirence baktığını kontrol edin. Hep yanıyorsa kablo muhtemelen hâlâ 3V3'te."
+   "text": "LED not blinking? Check that the resistor's leg is really in the D twenty-three column, that the code says twenty-three, and that the long leg faces the resistor. If it's always on, the resistor is probably still in the plus rail.",
+   "sub": "LED not blinking? Check that the resistor's leg is really in the D23 column, that the code says 23, and that the long leg faces the resistor. If it's always on, the resistor is probably still in the plus rail.",
+   "tr": "LED yanıp sönmüyor mu? Direncin bacağının gerçekten D23 sütununda olduğunu, kodda 23 yazdığını ve uzun bacağın dirence baktığını kontrol edin. Hep yanıyorsa direnç muhtemelen hâlâ artı rayda."
   },
   {
    "id": "s29",

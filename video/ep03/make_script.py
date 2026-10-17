@@ -18,8 +18,8 @@ def s(id, scene, text, tr, sub=None, **kw):
 # ---- intro
 s("s01", "intro", "Welcome back to ESP32 From Zero. Last time, we built our first circuit, and the LED lit up.",
   "ESP32 From Zero'ya tekrar hoş geldiniz. Geçen sefer ilk devremizi kurduk ve LED yandı.")
-s("s02", "intro", "But it was always on. Today, our code takes control. We'll move one wire, write a short program, and make the LED blink.",
-  "Ama hep yanıyordu. Bugün kontrolü kodumuz alıyor. Bir kabloyu taşıyacak, kısa bir program yazacak ve LED'i yakıp söndüreceğiz.")
+s("s02", "intro", "But it was always on. Today, our code takes control. We'll move one part, write a short program, and make the LED blink.",
+  "Ama hep yanıyordu. Bugün kontrolü kodumuz alıyor. Bir parçayı taşıyacak, kısa bir program yazacak ve LED'i yakıp söndüreceğiz.")
 s("s03", "recap", "Here's the circuit from last time. Three V three goes to the resistor, the resistor goes to the LED's long leg, and the short leg goes to ground.",
   "Geçen seferki devre şu: 3V3 dirence gider, direnç LED'in uzun bacağına gider, kısa bacak da toprağa gider.",
   sub="Here's the circuit from last time. 3V3 goes to the resistor, the resistor goes to the LED's long leg, and the short leg goes to ground.")
@@ -38,24 +38,24 @@ s("s07", "ohm", "One point three volts, divided by 220 ohms, is about six millia
 s("s08", "ohm", "Without the resistor, nothing limits the current, and the LED or the pin can burn out. A bigger resistor makes the LED dimmer. Anything from 220 ohms to one kilo ohm works.",
   "Direnç olmadan akımı hiçbir şey sınırlamaz ve LED ya da pin yanabilir. Daha büyük bir direnç LED'i daha sönük yapar. 220 ohm ile 1 kiloohm arası her değer çalışır.",
   sub="Without the resistor, nothing limits the current, and the LED or the pin can burn out. A bigger resistor makes the LED dimmer. Anything from 220 Ω to 1 kΩ works.")
-# ---- move one wire
+# ---- move the resistor
 s("s09", "move", "Now, the change. First, unplug the USB cable. We never rewire a circuit while it's powered.",
   "Şimdi değişiklik. Önce USB kablosunu çıkarın. Bir devreyi elektrik varken asla yeniden bağlamayız.")
-s("s10", "move", "The red wire runs from the three V three pin to the plus rail. Pull out the end at three V three, and plug it into the column of D twenty-three.",
-  "Kırmızı kablo 3V3 pininden artı raya gidiyor. 3V3'teki ucunu çıkarın ve D23'ün sütununa takın.",
-  sub="The red wire runs from the 3V3 pin to the plus rail. Pull out the end at 3V3, and plug it into the column of D23.", clip="C1", pad=1.5)
+s("s10", "move", "Take the red wire out completely. We don't need three V three today. Then pull the resistor's leg out of the plus rail, and push it into hole j sixteen, the column of D twenty-three.",
+  "Kırmızı kabloyu tamamen çıkarın; bugün 3V3'e ihtiyacımız yok. Sonra direncin bacağını artı raydan çekin ve D23'ün sütunundaki j16 deliğine takın.",
+  sub="Take the red wire out completely. We don't need 3V3 today. Then pull the resistor's leg out of the plus rail, and push it into hole j16, the column of D23.", clip="C1", pad=1.5)
 s("s11", "move", "That's GPIO twenty-three, one of the safe pins from last time. On a thirty-eight pin board, it's simply labeled twenty-three.",
   "Bu GPIO 23, geçen seferki güvenli pinlerden biri. 38 pinli bir kartta sadece 23 diye yazar.",
   sub="That's GPIO 23, one of the safe pins from last time. On a 38-pin board, it's simply labeled \"23\".")
-s("s12", "move", "Now the LED gets its power from GPIO twenty-three. Plug the USB cable back in. The LED stays dark, because nothing has told that pin to turn on yet.",
-  "Artık LED gücünü GPIO 23'ten alıyor. USB kablosunu tekrar takın. LED sönük kalıyor, çünkü o pine henüz kimse yanmasını söylemedi.",
-  sub="Now the LED gets its power from GPIO 23. Plug the USB cable back in. The LED stays dark, because nothing has told that pin to turn on yet.")
+s("s12", "move", "Now the LED gets its power from GPIO twenty-three, through the resistor. Plug the USB cable back in. The LED stays dark, because nothing has told that pin to turn on yet.",
+  "Artık LED gücünü direnç üzerinden GPIO 23'ten alıyor. USB kablosunu tekrar takın. LED sönük kalıyor, çünkü o pine henüz kimse yanmasını söylemedi.",
+  sub="Now the LED gets its power from GPIO 23, through the resistor. Plug the USB cable back in. The LED stays dark, because nothing has told that pin to turn on yet.")
 # ---- the code
 s("s13", "code", "That's the job of our code. Open the Arduino IDE, and start a new sketch.",
   "Bu, kodumuzun işi. Arduino IDE'yi açın ve yeni bir sketch başlatın.")
-s("s14", "code", "First, we give the pin a name. A constant called LED pin, set to twenty-three. If we ever move the wire again, we change just this one line.",
-  "Önce pine bir isim veriyoruz. LED_PIN adında bir sabit, değeri 23. Kabloyu bir gün yine taşırsak sadece bu satırı değiştiririz.",
-  sub="First, we give the pin a name. A constant called LED_PIN, set to 23. If we ever move the wire again, we change just this one line.")
+s("s14", "code", "First, we give the pin a name. A constant called LED pin, set to twenty-three. If we ever move the LED to another pin, we change just this one line.",
+  "Önce pine bir isim veriyoruz. LED_PIN adında bir sabit, değeri 23. LED'i bir gün başka bir pine taşırsak sadece bu satırı değiştiririz.",
+  sub="First, we give the pin a name. A constant called LED_PIN, set to 23. If we ever move the LED to another pin, we change just this one line.")
 s("s15", "code", "In setup, pin mode tells the ESP32 how we'll use this pin. OUTPUT means our code drives it.",
   "setup içinde pinMode, ESP32'ye bu pini nasıl kullanacağımızı söyler. OUTPUT, pini kodumuzun sürdüğü anlamına gelir.",
   sub="In setup, pinMode tells the ESP32 how we'll use this pin. OUTPUT means our code drives it.")
@@ -90,9 +90,9 @@ s("s26", "play", "Now play with it. Change both delays to one hundred, and uploa
   sub="Now play with it. Change both delays to 100, and upload again. The LED blinks five times a second.", clip="C3", pad=1.5)
 s("s27", "play", "Try a short on time and a long off time, like a lighthouse. You can't break anything by changing the numbers.",
   "Kısa bir yanma ve uzun bir sönme süresi deneyin, bir deniz feneri gibi. Sayıları değiştirerek hiçbir şeyi bozamazsınız.")
-s("s28", "trouble", "LED not blinking? Check that the red wire is really in the D twenty-three column, that the code says twenty-three, and that the long leg faces the resistor. If it's always on, the wire is probably still on three V three.",
-  "LED yanıp sönmüyor mu? Kırmızı kablonun gerçekten D23 sütununda olduğunu, kodda 23 yazdığını ve uzun bacağın dirence baktığını kontrol edin. Hep yanıyorsa kablo muhtemelen hâlâ 3V3'te.",
-  sub="LED not blinking? Check that the red wire is really in the D23 column, that the code says 23, and that the long leg faces the resistor. If it's always on, the wire is probably still on 3V3.")
+s("s28", "trouble", "LED not blinking? Check that the resistor's leg is really in the D twenty-three column, that the code says twenty-three, and that the long leg faces the resistor. If it's always on, the resistor is probably still in the plus rail.",
+  "LED yanıp sönmüyor mu? Direncin bacağının gerçekten D23 sütununda olduğunu, kodda 23 yazdığını ve uzun bacağın dirence baktığını kontrol edin. Hep yanıyorsa direnç muhtemelen hâlâ artı rayda.",
+  sub="LED not blinking? Check that the resistor's leg is really in the D23 column, that the code says 23, and that the long leg faces the resistor. If it's always on, the resistor is probably still in the plus rail.")
 # ---- outro
 s("s29", "outro", "Today, we learned why the resistor is there, and we used pin mode, digital write, and delay to blink an LED.",
   "Bugün direncin neden orada olduğunu öğrendik ve bir LED'i yakıp söndürmek için pinMode, digitalWrite ve delay kullandık.",
@@ -103,7 +103,7 @@ s("s30", "outro", "Next time, we'll go the other way, and read a button. The cod
 script = {
     "episode": 3, "title": "Your First Circuit: Blink an LED", "voice": "en-US-EricNeural", "rate": "+5%",
     "clips": {
-        "C1": "USB unplugged. Pull the red wire's end out of the 3V3 column and push it into the D23 column (GPIO 23). Close-up from above, landscape, 5-8 s.",
+        "C1": "USB unplugged. Take the red wire out, then move the resistor's leg from the plus rail into hole j16 (the D23 column). Close-up from above, landscape, 6-10 s.",
         "C2": "The LED blinking once per second after the upload (board, breadboard and LED in frame). Landscape, 5-8 s.",
         "C3": "The LED blinking fast (delays set to 100 ms). Landscape, 4-6 s.",
     },

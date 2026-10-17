@@ -170,10 +170,9 @@ sceneOut(sBB, S1("s49") + 0.5);
     [T("s47"), "A second LED"], [W("s48", "top"), "Top half: the green LED"]]);
   const bb = makeBB(sBB, BBX, BBY);
   bbBoard(bb, 30, 2);
-  // the circuit from episode 3: GPIO 23 -> + rail -> 220 ohm -> LED -> GND
-  bbWire(bb, bb.L(16, "j"), bb.L(2, "bp"), "#ff5d6c", 0, 0.08);
+  // the circuit from episode 3: GPIO 23 (j16) -> 220 ohm -> LED -> GND
   bbWire(bb, bb.L(3, "j"), bb.L(3, "bm"), "#2b2f36", 0, -0.35);
-  bbResistor(bb, bb.L(20, "bp"), bb.L(20, "h"));
+  bbResistor(bb, bb.L(16, "j"), bb.L(20, "h"));
   const led = bbLED(bb, bb.L(20, "f"), bb.L(21, "f"), -1);
   bbWire(bb, bb.L(21, "j"), bb.L(21, "bm"), "#2b2f36", 0, -0.35);
   gsap.set(bb.strips, { opacity: 1 });
@@ -233,6 +232,11 @@ sceneOut(sBB, S1("s49") + 0.5);
   bbWire(bb, bb.L(3, "a"), bb.L(3, "tm"), "#2b2f36", t49("connects"), 0.35);
   const gnd = bb.S(3, "b");
   callout(sBB, "GND", gnd[0] - 30, gnd[1] - 100, t49("GND"), S1("s49") + 0.3);
+  for (const [t0, t1] of [[W("s08", "yellow"), S1("s09")], [W("s48", "green"), S1("s49")]]) {
+    const n38 = box(sBB, 380, 160, 0, 0, "badge", "38-pin board? Same pins, other columns: follow the labels (22, 23, 25, GND)");
+    css(n38, { width: "auto", height: "auto", background: "rgba(11,18,32,.92)", border: "1px solid var(--line)", color: "#e8eef7", fontSize: "22px" });
+    hidden(n38); pop(n38, t0 + 0.8); hide(n38, t1);
+  }
   clipFrame(sBB, "C1", 1140, 150, 720, 405, W("s07", "Press") - 0.2, S1("s07") + 1.0, "USB unplugged: press the button in across the gap, then add the yellow and black wires.");
   clipFrame(sBB, "C5", 1140, 560, 720, 405, t49("black") - 0.3, S1("s49") + 0.9, "Top half: green wire, resistor, green LED, two black wires.");
 }

@@ -6,7 +6,7 @@ Each episode: 5–10 minutes (from 04 on: two topics, 10–15 minutes), English 
 
 Kit: direnc.net "ESP-32S WiFi Başlangıç Seti" — ESP32 dev board, 830-point breadboard, 0.96" OLED,
 DHT11, HC-SR501 PIR, obstacle sensor module, LDR module, 10k potentiometer, active + passive buzzer,
-2-channel 5V relay, 6 push buttons, 5 yellow + 5 green LEDs, 2 RGB LEDs, 220Ω / 1kΩ / 10kΩ resistors,
+2-channel 5V relay, 6 push buttons, red, yellow and green LEDs (4 of each in the creator's kit), 2 RGB LEDs, 220Ω / 1kΩ / 10kΩ resistors,
 jumper wires (M-M, F-M, F-F), micro USB cable.
 
 ## Season 1 — Starter kit

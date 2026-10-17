@@ -61,7 +61,7 @@ SET(sIntro, 0, { opacity: 1 });
     gsap.set(e, { opacity: 0, y: 30 });
     TO(e, t, 0.8, { opacity: 1, y: 0, ease: "power3.out" });
   }
-  const items = [["Move one wire", "3V3 → GPIO 23"], ["A short program", "pinMode, digitalWrite"], ["Blink!", "on, wait, off, wait"]];
+  const items = [["Move one part", "resistor → GPIO 23"], ["A short program", "pinMode, digitalWrite"], ["Blink!", "on, wait, off, wait"]];
   ["move", "program", "blink"].forEach((w, i) => {
     const c = box(sIntro, 140 + i * 330, 600, 300, 140, "card", `<div style="padding:22px 24px"><div class="kicker" style="font-size:16px">Today · ${i + 1}</div>
       <div style="font:600 29px var(--display);margin-top:8px">${items[i][0]}</div><div class="muted" style="font-size:19px;margin-top:4px">${items[i][1]}</div></div>`);
@@ -81,13 +81,14 @@ sceneIn(sBB, S1("s08") + 0.4);
 sceneOut(sBB, S1("s12") + 0.5);
 {
   const hd = box(sBB, 0, 70, 1920, 80, "h2", ""); hd.style.textAlign = "center";
-  panelAt(hd, [[0, ""], [T("s03"), "The circuit from last time"], [T("s09"), "Move one wire"], [T("s12"), "Power from GPIO 23"]]);
+  panelAt(hd, [[0, ""], [T("s03"), "The circuit from last time"], [T("s09"), "Move the resistor"], [T("s12"), "Power from GPIO 23"]]);
   const bb = makeBB(sBB, BBX, BBY);
   bbBoard(bb, 30, 2);
   // the finished circuit from episode 2 (already in place when the scene appears)
   const red0 = bbWire(bb, bb.L(2, "j"), bb.L(2, "bp"), "#ff5d6c", 0, 0.35);
   bbWire(bb, bb.L(3, "j"), bb.L(3, "bm"), "#2b2f36", 0, -0.35);
-  bbResistor(bb, bb.L(20, "bp"), bb.L(20, "h"));
+  // the resistor is drawn by us (not bbResistor) because its rail leg moves to j16 in s10
+  const resG = svgEl(bb.parts, "g", {});
   const led = bbLED(bb, bb.L(20, "f"), bb.L(21, "f"), -1);
   bbWire(bb, bb.L(21, "j"), bb.L(21, "bm"), "#2b2f36", 0, -0.35);
   gsap.set(bb.strips, { opacity: 1 });
@@ -108,27 +109,28 @@ sceneOut(sBB, S1("s12") + 0.5);
   TO(loop, S1("s03"), 0.3, { opacity: 0 });
   const p3 = bb.S(2, "i"), p23 = bb.S(16, "i");
   callout(sBB, "3V3", p3[0] - 30, p3[1] - 72, W("s03", "three"), S1("s03"));
-  // s10: the red wire, its 3V3 end moves to the D23 column
+  // s10: the red wire comes out; the resistor's rail leg moves to j16 (the D23 column)
   const glowW = svgEl(bb.over, "path", { d: `M${bb.L(2, "j").join(" ")} L${bb.L(2, "bp").join(" ")}`, stroke: "#ffd34d", "stroke-width": 22, "stroke-linecap": "round", fill: "none", opacity: 0 });
-  TO(glowW, W("s10", "red"), 0.3, { opacity: 0.55 }); TO(glowW, W("s10", "Pull"), 0.3, { opacity: 0 });
-  callout(sBB, "3V3", p3[0] - 30, p3[1] - 72, W("s10", "three"), W("s10", "plug"));
-  hide(red0, W("s10", "Pull") + 0.15, 0.25);
-  const [jx, jy] = bb.L(2, "j"), [kx] = bb.L(16, "j");
-  const tip = svgEl(bb.over, "rect", { x: jx - 9, y: jy - 9, width: 18, height: 18, rx: 3, fill: "#ff5d6c", stroke: "#222", "stroke-width": 3, opacity: 0 });
-  SET(tip, W("s10", "Pull") + 0.15, { opacity: 1 });
-  TO(tip, W("s10", "Pull") + 0.2, W("s10", "plug") - W("s10", "Pull"), { attr: { x: kx - 9 }, ease: "power2.inOut" });
-  SET(tip, W("s10", "plug") + 0.5, { opacity: 0 });
-  // the other end stays in the + rail, so the wire follows the moving tip (same curve as the final wire)
-  const [px, py] = bb.L(2, "bp"), mv0 = W("s10", "Pull") + 0.15, mv1 = W("s10", "plug") + 0.6;
-  const live = svgEl(bb.parts, "path", { fill: "none", stroke: "#ff5d6c", "stroke-width": 10, "stroke-linecap": "round", opacity: 0 });
+  TO(glowW, W("s10", "red"), 0.3, { opacity: 0.55 }); TO(glowW, W("s10", "out") + 0.1, 0.3, { opacity: 0 });
+  callout(sBB, "3V3: not needed today", p3[0] - 30, p3[1] - 72, W("s10", "three"), W("s10", "Then"));
+  hide(red0, W("s10", "out") + 0.15, 0.3);
+  const [hx, hy] = bb.L(20, "h"), [rx0, ry0] = bb.L(20, "bp"), [rx1, ry1] = bb.L(16, "j");
+  const mv0 = W("s10", "pull") + 0.2, mv1 = W("s10", "push") + 0.7;
+  const resistorSVG = (ax, ay) => {
+    const ang = Math.atan2(hy - ay, hx - ax) * 180 / Math.PI, len = Math.hypot(hx - ax, hy - ay), b0 = (len - 70) / 2;
+    return `<g transform="translate(${ax} ${ay}) rotate(${ang})"><path d="M0 0 H${len}" stroke="#b8bec6" stroke-width="5" stroke-linecap="round"/>
+      <rect x="${b0}" y="-14" width="70" height="28" rx="12" fill="#dcc79f" stroke="#b49e72" stroke-width="1.5"/>` +
+      [[12, "#d0262f"], [24, "#d0262f"], [36, "#7a4a21"], [54, "#c9a54a"]].map(([o, c]) => `<rect x="${b0 + o}" y="-14" width="7" height="28" fill="${c}"/>`).join("") +
+      `</g><circle cx="${ax}" cy="${ay}" r="5" fill="#9aa1aa"/><circle cx="${hx}" cy="${hy}" r="5" fill="#9aa1aa"/>`;
+  };
   dyn((t) => {
-    const on = t >= mv0 && t < mv1;
-    live.setAttribute("opacity", on ? 1 : 0);
-    if (!on) return;
-    const ex = +tip.getAttribute("x") + 9, dx = px - ex, dy = py - jy;
-    live.setAttribute("d", `M${ex} ${jy} Q${(ex + px) / 2 - dy * 0.08} ${(jy + py) / 2 + dx * 0.08} ${px} ${py}`);
+    const k = Math.min(1, Math.max(0, (t - mv0) / (mv1 - mv0))), e = k < 0.5 ? 2 * k * k : 1 - Math.pow(-2 * k + 2, 2) / 2;
+    const lift = Math.sin(Math.PI * k) * 40; // the leg comes up out of the hole and goes down into the new one
+    const html = resistorSVG(rx0 + (rx1 - rx0) * e, ry0 + (ry1 - ry0) * e - lift);
+    if (resG.__v !== html) { resG.innerHTML = html; resG.__v = html; }
   });
-  bbWire(bb, bb.L(16, "j"), bb.L(2, "bp"), "#ff5d6c", W("s10", "plug"), 0.08);
+  const glowR = svgEl(bb.over, "circle", { cx: rx0, cy: ry0, r: 22, fill: "none", stroke: "#ffd34d", "stroke-width": 6, opacity: 0 });
+  TO(glowR, W("s10", "Then"), 0.3, { opacity: 0.9 }); TO(glowR, W("s10", "push"), 0.3, { opacity: 0 });
   const c16 = bb.colStrip[16][1];
   TO(c16, W("s10", "column"), 0.4, { opacity: 0.6 }); TO(c16, S1("s11"), 0.4, { opacity: 0 });
   callout(sBB, "D23 = GPIO 23", p23[0] - 80, p23[1] - 72, W("s10", "twentythree"), S1("s11") + 0.2);
@@ -138,9 +140,9 @@ sceneOut(sBB, S1("s12") + 0.5);
   const p38 = box(sBB, 1000, 160, 0, 0, "badge", "38-pin board: the label is “23”");
   css(p38, { width: "auto", height: "auto", background: "rgba(11,18,32,.92)", border: "1px solid var(--line)", color: "var(--ink, #e8eef7)" }); hidden(p38);
   pop(p38, W("s11", "thirtyeight")); hide(p38, S1("s11") + 0.2);
-  clipFrame(sBB, "C1", 1140, 150, 720, 405, W("s10", "Pull") - 0.2, S1("s10") + 1.2, "USB unplugged: move the red wire's end from 3V3 to the D23 column.");
+  clipFrame(sBB, "C1", 1140, 150, 720, 405, W("s10", "pull") - 0.2, S1("s10") + 1.2, "USB unplugged: red wire out, resistor leg from the + rail into j16 (D23 column).");
   // s12: powered from GPIO 23, but dark
-  const path2 = [bb.L(16, "i"), bb.L(16, "j"), bb.L(2, "bp"), bb.L(20, "bp"), bb.L(20, "h"), bb.L(20, "f"), [led.cx, led.cy]];
+  const path2 = [bb.L(16, "i"), bb.L(16, "j"), bb.L(20, "h"), bb.L(20, "f"), [led.cx, led.cy]];
   const feed = svgEl(bb.over, "path", { d: "M" + path2.map((p) => p.join(" ")).join(" L"), fill: "none", stroke: "#19c3b4", "stroke-width": 6, "stroke-linejoin": "round", opacity: 0.9 });
   drawOn(feed, W("s12", "power"), 1.2);
   TO(feed, W("s12", "Plug"), 0.3, { opacity: 0 });
@@ -427,7 +429,7 @@ sceneIn(sTrouble, S1("s27") + 0.4);
 sceneOut(sTrouble, S1("s28") + 0.5);
 {
   const chk = box(sTrouble, 360, 190, 1200, 700, "card", "");
-  const rows = [["Red wire in the D23 column", "red"], ["The code says 23", "code"], ["Long leg toward the resistor", "long"], ["Always on? Wire still on 3V3", "always"]];
+  const rows = [["Resistor leg in the D23 column", "resistor's"], ["The code says 23", "code"], ["Long leg toward the resistor", "long"], ["Always on? Resistor still in the + rail", "always"]];
   chk.innerHTML = `<div style="padding:44px 60px"><div class="kicker">LED not blinking?</div>` + rows.map(([a]) => `<div class="row" style="display:flex;gap:22px;align-items:center;margin-top:34px;opacity:0">
     <div style="width:56px;height:56px;border-radius:50%;background:var(--green);color:#052;font:800 32px var(--ui);display:flex;align-items:center;justify-content:center">✓</div>
     <div style="font:600 40px var(--display)">${a}</div></div>`).join("") + `</div>`;
