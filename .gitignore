@@ -18,3 +18,5 @@ lessons/*/compile_log.txt
 # background music tracks (YouTube Audio Library downloads) stay local
 video/assets/music/*
 !video/assets/music/README.md
+# OAuth client + token for tools/publish.py
+.secrets/

@@ -3,7 +3,7 @@
 Usage:
   python tools/build.py video/ep01 schedule     # timings for the animation (after tts.py)
   python tools/build.py video/ep01 audio        # narration (+ music) mix as one WAV
-  python tools/build.py video/ep01 subs         # en.srt and tr.srt
+  python tools/build.py video/ep01 subs         # one .srt per language (script, subs/, dub/)
   python tools/build.py video/ep01 compose      # mux render + audio + creator clips -> final.mp4
   python tools/build.py video/ep01 all          # schedule, audio, subs (render separately), compose
 
@@ -80,22 +80,41 @@ def audio(ep: Path):
 
 
 # ---------- subtitles ----------
+CJK = re.compile(r"[぀-ヿ㐀-鿿가-힯]")
+
+
+def wide(text: str) -> bool:
+    """Japanese/Chinese/Korean: characters are twice as wide and words aren't space-separated."""
+    return len(CJK.findall(text)) > len(text) * 0.3
+
+
 def split_cues(text: str, max_chars=84):
     """Split text into cues at sentence / clause boundaries, each <= max_chars."""
-    sentences = re.split(r"(?<=[.!?])\s+", text.strip())
+    cjk = wide(text)
+    if cjk:
+        max_chars //= 2
+    sentences = [x for x in re.split(r"(?<=[.!?])\s+|(?<=[。！？])\s*", text.strip()) if x]
+    if cjk:  # CJK sentences are short: keep neighbours together while they fit one cue
+        merged = []
+        for x in sentences:
+            if merged and len(merged[-1]) + len(x) <= max_chars:
+                merged[-1] += x
+            else:
+                merged.append(x)
+        sentences = merged
     cues = []
     for s in sentences:
         parts = -(-len(s) // max_chars)  # ceil
         while parts > 1:
             target = len(s) // parts
-            # nearest clause break to the target, else nearest space
-            cands = [i for i in range(len(s)) if s[i:i + 2] in (", ", ": ", "; ")]
+            # nearest clause break to the target, else nearest space (any character for CJK)
+            cands = [i for i in range(len(s)) if s[i:i + 2] in (", ", ": ", "; ") or s[i] in "、，；："]
             near = [i for i in cands if abs(i - target) < target * 0.45]
             if near:
                 cut = min(near, key=lambda i: abs(i - target))
             else:
-                spaces = [i for i in range(len(s)) if s[i] == " "]
-                cut = min(spaces, key=lambda i: abs(i - target))
+                spaces = [target] if cjk else [i for i in range(len(s)) if s[i] == " "]
+                cut = min(spaces, key=lambda i: abs(i - target)) if spaces else len(s) - 1
             cues.append(s[: cut + 1].strip())
             s = s[cut + 1:].strip()
             parts -= 1
@@ -105,9 +124,18 @@ def split_cues(text: str, max_chars=84):
 
 
 def wrap2(cue: str, width=42):
+    if wide(cue):
+        width //= 2
     if len(cue) <= width:
         return cue
     mid = len(cue) // 2
+    if wide(cue):  # CJK: break after the clause mark nearest the middle, else in the middle
+        marks = [i + 1 for i, ch in enumerate(cue) if ch in "、，。 " and 0 < i + 1 < len(cue)]
+        best = min(marks, key=lambda i: abs(i - mid)) if marks else mid
+        cut = best if abs(best - mid) < mid * 0.5 else mid
+        while 0 < cut < len(cue) and cue[cut - 1].isascii() and cue[cut - 1].isalnum() and cue[cut].isascii() and cue[cut].isalnum():
+            cut += 1  # never split inside a Latin word like "ESP32"
+        return cue[:cut].rstrip() + "\n" + cue[cut:].lstrip()
     left, right = cue.rfind(" ", 0, mid + 1), cue.find(" ", mid)
     cut = left if right == -1 or (left != -1 and mid - left <= right - mid) else right
     return cue[:cut] + "\n" + cue[cut + 1:]
@@ -140,14 +168,30 @@ def seg_cues(text, seg):
     return out
 
 
+def sub_texts(ep: Path, script) -> dict:
+    """{lang: {segment id: subtitle text}}. en and tr come from script.json; other languages
+    from <ep>/subs/<lang>.json, else from the dub translation <ep>/dub/<lang>.json.
+    (The tr dub is spelled phonetically for the voice, so it is never used as subtitles.)"""
+    texts = {"en": {s["id"]: s.get("sub", s["text"]) for s in script["segments"]},
+             "tr": {s["id"]: s["tr"] for s in script["segments"]}}
+    for folder in ("subs", "dub"):
+        for f in sorted((ep / folder).glob("*.json")) if (ep / folder).exists() else []:
+            if f.stem not in texts:
+                texts[f.stem] = json.loads(f.read_text(encoding="utf-8"))["segments"]
+    return texts
+
+
 def subs(ep: Path):
     script, _ = load(ep)
     sched = json.loads((ep / "build" / "schedule.json").read_text(encoding="utf-8"))
-    for lang in ("en", "tr"):
+    for lang, texts in sub_texts(ep, script).items():
+        missing = [s["id"] for s in script["segments"] if s["id"] not in texts]
+        if missing:
+            print(f"subs {lang}: skipped, missing {', '.join(missing)}")
+            continue
         cues = []
         for s in script["segments"]:
-            text = s.get("sub", s["text"]) if lang == "en" else s["tr"]
-            cues += seg_cues(text, sched["segments"][s["id"]])
+            cues += seg_cues(texts[s["id"]], sched["segments"][s["id"]])
         lines = []
         for n, (t0, t1, c) in enumerate(cues, 1):
             nxt = cues[n][0] if n < len(cues) else t1 + 10

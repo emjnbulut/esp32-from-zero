@@ -31,13 +31,19 @@ Learn the ESP32 from absolutely zero! In this first episode we install the Ardui
 
 #ESP32 #Arduino #Microcontroller #Electronics #CProgramming #IoT
 
-## Subtitles
-Upload `build/ep01_en.srt` (English) and `build/ep01_tr.srt` (Turkish) under Subtitles.
+## Subtitles + translated titles (automatic)
+After the video is up (any privacy), run from the repo root:
 
-## Dubbed audio tracks
+    python tools/publish.py video/ep01 <VIDEO_ID>
+
+It uploads every `build/ep01_<lang>.srt` (en, tr, hi, pt, es, id, ar, ru, de, fr, vi, ja)
+and the titles/descriptions in `localize.json`. One-time setup: see tools/publish.py.
+
+## Dubbed audio tracks (by hand)
 YouTube Studio → video → **Languages** → *Add language* → **Audio track**, upload:
 - Turkish: `build/dub_tr.m4a`
 - Hindi: `build/dub_hi.m4a`
 - Portuguese (Brazil): `build/dub_pt.m4a`
+- Spanish (Latin America): `build/dub_es.m4a`
 
 If audio tracks are not available on the channel, upload `build/ep01_<lang>_dub.mp4` as separate videos instead.
