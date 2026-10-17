@@ -103,7 +103,7 @@ def main(ep: Path, lang: str, report_only: bool):
         a = decode(out / f"{sid}.mp3", tempo=max(1.0, d / room))
         i = int(start * SR)
         buf[i:i + len(a)] += a[: len(buf) - i]
-    buf = music.mix(buf, SR, decode, level=0.10)
+    buf = music.mix(buf, SR, decode, level=0.08)
     buf = buf / (np.max(np.abs(buf)) or 1) * 0.89
     wav = ep / "build" / f"dub_{lang}.wav"
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "s16le", "-ar", str(SR), "-ac", "1", "-i", "-", str(wav)],

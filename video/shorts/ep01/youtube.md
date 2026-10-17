@@ -8,6 +8,8 @@ Your first ESP32 program in under a minute ⚡ #esp32 #arduino
 ## Description
 The whole ESP32 setup in 55 seconds: Arduino IDE, ESP32 board package, USB driver, and your first upload.
 Full step-by-step tutorial: (link the long video)
+🎵 Music: "Lobby Time" by Kevin MacLeod (incompetech.com), licensed under CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
+
 #ESP32 #Arduino #Electronics #Coding #Shorts
 
 ## Related video

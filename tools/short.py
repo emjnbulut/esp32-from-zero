@@ -135,7 +135,7 @@ def main(sdir: Path, lang: str):
         a = decode(out / f"{sid}.mp3")
         i = int(sched[sid]["start"] * SR)
         buf[i:i + len(a)] += a
-    buf = music.mix(buf, SR, decode, level=0.15, fade_in=0, fade_out=1.5)
+    buf = music.mix(buf, SR, decode, level=0.12, fade_in=0, fade_out=1.5)
     buf = buf / (np.max(np.abs(buf)) or 1) * 0.9
     run(["ffmpeg", "-v", "error", "-y", "-f", "s16le", "-ar", str(SR), "-ac", "1", "-i", "-", str(out / "audio.wav")],
         input=(buf * 32767).astype(np.int16).tobytes())

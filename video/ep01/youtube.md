@@ -29,6 +29,8 @@ Learn the ESP32 from absolutely zero! In this first episode we install the Ardui
 8:29 Serial Monitor
 9:08 Troubleshooting
 
+🎵 Music: "Lobby Time" by Kevin MacLeod (incompetech.com), licensed under CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
+
 #ESP32 #Arduino #Microcontroller #Electronics #CProgramming #IoT
 
 ## Subtitles + translated titles (automatic)
