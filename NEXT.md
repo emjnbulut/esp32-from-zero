@@ -36,3 +36,8 @@ Install Chatterbox and test it (`tools/CHATTERBOX.md`), then re-narrate + render
 - Upload by hand in Studio: the video, dub audio tracks (`build/dub_<lang>.m4a`), end screen on the last 20 s.
 - Music "Lobby Time" (Kevin MacLeod, CC BY 4.0) — credit line is in every description; the track file
   is gitignored, see `video/assets/music/README.md`.
+
+## Parked ideas (2026-10-17, not now)
+- Website: MkDocs Material on GitHub Pages built from `lessons/`, domain pinbypinlab.com when the first video goes live.
+- Instagram @pinbypinlab: Shorts as Reels (EN), plus one carousel per episode (scene stills + code, 1080x1350);
+  music credit line in every caption.
