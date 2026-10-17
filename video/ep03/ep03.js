@@ -147,7 +147,7 @@ sceneOut(sBB, S1("s12") + 0.5);
   drawOn(feed, W("s12", "power"), 1.2);
   TO(feed, W("s12", "Plug"), 0.3, { opacity: 0 });
   const pl = bb.S(20, "f");
-  callout(sBB, "dark: GPIO 23 isn't switched on yet", pl[0] - 180, pl[1] + 60, W("s12", "dark"), S1("s12") + 0.4);
+  callout(sBB, "dark: GPIO 23 isn't switched on yet", pl[0] + 50, pl[1] - 34, W("s12", "dark"), S1("s12") + 0.4);
 }
 
 /* ======================================================================
