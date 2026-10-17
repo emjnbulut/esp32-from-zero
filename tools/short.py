@@ -89,7 +89,7 @@ def main(sdir: Path, lang: str):
     loop = spec.get("loop", False)
     duration = round(t - GAP + (0.05 if loop else TAIL), 3)
     ids = [s["id"] for s in spec["segments"]]
-    data = {"schedule": {"duration": duration, "segments": sched}, "panel": PANEL, "lang": lang,
+    data = {"schedule": {"duration": duration, "segments": sched}, "panel": PANEL, "lang": lang, "loop": loop,
             "segs": [{"id": s["id"], "chip": loc(s["chip"], lang), "headline": loc(s["headline"], lang)} for s in spec["segments"]],
             "cta": {"title": loc(spec["cta"], lang), "sub": loc(spec["cta"].get("sub", ""), lang)}}
     data_txt = json.dumps(data, ensure_ascii=False, indent=1)

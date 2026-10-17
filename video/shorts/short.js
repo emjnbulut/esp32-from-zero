@@ -25,16 +25,19 @@ for (const s of segs) {
   });
 }
 groups.forEach((g, i) => { g.end = i + 1 < groups.length ? groups[i + 1].start : D.schedule.duration; });
+// loop: the first caption is already up at t=0, so the replay doesn't open on an empty frame
+if (D.loop && groups.length) groups[0].start = 0;
 const segOf = (t) => { let cur = segs[0]; for (const s of segs) if (t >= s.start - 0.15) cur = s; return cur; };
 
 let last = {};
 window.__seek = (t) => {
   // progress bar
-  $("#prog").style.width = (1080 * Math.min(1, t / D.schedule.duration)).toFixed(1) + "px";
+  // (hidden in loop mode: a bar jumping from full to empty gives the replay away)
+  $("#prog").style.width = D.loop ? "0px" : (1080 * Math.min(1, t / D.schedule.duration)).toFixed(1) + "px";
   // chip + headline with a quick slide-in whenever the segment changes
   const s = segOf(t);
   if (last.seg !== s.id) { $("#chip span").textContent = s.chip; $("#head").textContent = s.headline; last.seg = s.id; }
-  const k = ease((t - (s.start - 0.15)) / 0.3);
+  const k = D.loop && s === segs[0] ? 1 : ease((t - (s.start - 0.15)) / 0.3);
   $("#head").style.transform = `translateY(${(1 - k) * 40}px)`;
   $("#head").style.opacity = k;
   $("#chip").style.opacity = k;
