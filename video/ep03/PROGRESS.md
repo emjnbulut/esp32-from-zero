@@ -28,3 +28,10 @@ Resume rule: do the first unchecked step; commands are run from the repo root.
      12-language titles/descriptions, creator clip list C1-C3 from script.json) → `localize.json` + `youtube.md`
   5. Check stills/contact sheet of the final, commit + push.
 - No Shorts for ep03 (main session decides later).
+
+## 2026-10-17 later: voice change on hold
+- The user plans to switch narration from edge-tts to **Chatterbox** (local TTS, test pending; ~5-7 GB download needs the user's OK).
+  Scene timing follows the narration durations, so the full render (step 3) and the dubs (step 4) are **on hold** until the voice is decided —
+  rendering now would have to be redone. The cut-off render parts in `build/` (part0-3.mp4) are stale.
+- Done without the voice: `make_localize.py` → `localize.json` + `youtube.md` (12 languages). Chapter times are read from
+  `build/schedule.json` (+3.5 s intro), so after the new narration just rerun `python video/ep03/make_localize.py`.
