@@ -6,7 +6,7 @@ Output: video/shorts/ep01/build/<lang>/<episode>_short_<lang>.mp4
 short.json lists narration segments; each has text per language ("say" is spoken,
 "show" is the on-screen caption), a headline, and shots. Only "say" is needed per
 language; on-screen text (show, headline, chip, cta) falls back to English.
-Shots are moments of the rendered episode video ("src" seconds, optional "speed") cropped to a region [x, y, w, h].
+Shots are moments of the rendered episode video ("src" seconds, optional "speed", optional "pan" = end x) cropped to a region [x, y, w, h].
 """
 import asyncio
 import json
@@ -113,9 +113,16 @@ def main(sdir: Path, lang: str):
             k = len(labels)
             inputs += ["-ss", f"{sh['src']:.3f}", "-t", f"{d * sp + 0.5:.3f}", "-i", str(src)]
             x, y, w, h = sh["crop"]
-            filters.append(f"[{k}:v]setpts=(PTS-STARTPTS)/{sp},fps={FPS},crop={w}:{h}:{x}:{y},"
-                           f"scale={PANEL['w']}:{PANEL['h']}:force_original_aspect_ratio=decrease:flags=lanczos,"
-                           f"pad={PANEL['w']}:{PANEL['h']}:(ow-iw)/2:(oh-ih)/2:color=0x0b1220,"
+            # optional "pan": crop x slides from x to pan over the shot (for content wider than the panel)
+            if "pan" in sh:
+                x = f"'{x}+({sh['pan']}-{x})*min(1,max(0,(t-0.4)/{max(d - 0.8, 0.1):.3f}))'"
+            # wide shots: fill the rest of the square panel with a blurred, darkened copy instead of flat colour
+            W, H = PANEL["w"], PANEL["h"]
+            filters.append(f"[{k}:v]setpts=(PTS-STARTPTS)/{sp},fps={FPS},crop={w}:{h}:{x}:{y},split[f{k}][b{k}];"
+                           f"[b{k}]scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},"
+                           f"boxblur=28:2,eq=brightness=-0.1:saturation=0.8[bg{k}];"
+                           f"[f{k}]scale={W}:{H}:force_original_aspect_ratio=decrease:flags=lanczos[fg{k}];"
+                           f"[bg{k}][fg{k}]overlay=(W-w)/2:(H-h)/2,"
                            f"trim=duration={d:.3f},setpts=PTS-STARTPTS,setsar=1[s{k}]")
             labels.append(f"[s{k}]")
     filters.append("".join(labels) + f"concat=n={len(labels)}:v=1:a=0[panel]")
