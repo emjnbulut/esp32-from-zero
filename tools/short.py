@@ -7,6 +7,9 @@ short.json lists narration segments; each has text per language ("say" is spoken
 "show" is the on-screen caption), a headline, and shots. Only "say" is needed per
 language; on-screen text (show, headline, chip, cta) falls back to English.
 Shots are moments of the rendered episode video ("src" seconds, optional "speed", optional "pan" = end x) cropped to a region [x, y, w, h].
+Instead of "src", "at": ["s10", "Pull", -0.3] anchors a shot to a word of the episode narration (word text or index,
+optional offset in seconds; needs "schedule" = the episode's build/schedule.json), so shots stay right when the narration changes.
+"engine": "chatterbox" (optional "cbx" settings, see tools/cbx.py) narrates with Chatterbox instead of edge-tts.
 "loop": true makes the Short seamless: no tail, music wraps around, and the last frame is the first shot.
 """
 import asyncio
@@ -19,6 +22,7 @@ import edge_tts
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).parent))
+import cbx  # noqa: E402
 import music  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -62,6 +66,47 @@ async def narrate(text, voice, rate, mp3):
             await asyncio.sleep(5)
 
 
+def narrate_chatterbox(spec, lang, out):
+    """All lines in one Chatterbox run (cached by text + settings); word times from whisper."""
+    import align
+    cfg = cbx.settings(spec, lang)
+    cache_p = out / "cbx_cache.json"
+    cache = json.loads(cache_p.read_text(encoding="utf-8")) if cache_p.exists() else {}
+    todo = []
+    for s in spec["segments"]:
+        k = cbx.key(cfg, s["say"][lang])
+        if cache.get(s["id"], {}).get("key") != k or not (out / f"{s['id']}.mp3").exists():
+            todo.append(s)
+            cache[s["id"]] = {"key": k}
+    cbx.say(cfg, [(s["say"][lang], out / f"{s['id']}.mp3") for s in todo])
+    for s in todo:
+        cache[s["id"]]["words"] = [w["t"] for w in align.align(out / f"{s['id']}.mp3", s["say"][lang], lang)]
+    cache_p.write_text(json.dumps(cache, indent=1), encoding="utf-8")
+    return {sid: c["words"] for sid, c in cache.items()}
+
+
+def word_time(seg, word):
+    if isinstance(word, int):
+        return seg["words"][word]["t"]
+    norm = lambda w: "".join(c for c in w.lower() if c.isalnum())
+    for w in seg["words"]:
+        if norm(w["w"]) == norm(word):
+            return w["t"]
+    raise SystemExit(f"word {word!r} not in narration")
+
+
+def resolve_src(spec):
+    """Turn "at" anchors into "src" seconds of the episode video."""
+    if "schedule" not in spec:
+        return
+    segs = json.loads((ROOT / spec["schedule"]).read_text(encoding="utf-8"))["segments"]
+    for s in spec["segments"]:
+        for sh in s["shots"]:
+            if "at" in sh:
+                sid, word, off = (sh["at"] + [0])[:3]
+                sh["src"] = round(segs[sid]["start"] + (word_time(segs[sid], word) if word is not None else 0) + off, 3)
+
+
 def decode(p):
     raw = subprocess.check_output(["ffmpeg", "-v", "error", "-i", str(p), "-f", "f32le", "-ac", "1", "-ar", str(SR), "-"])
     return np.frombuffer(raw, dtype=np.float32)
@@ -71,13 +116,18 @@ def main(sdir: Path, lang: str):
     spec = json.loads((sdir / "short.json").read_text(encoding="utf-8"))
     out = sdir / "build" / lang
     out.mkdir(parents=True, exist_ok=True)
-    voice, rate = VOICES[lang]
+    resolve_src(spec)
+    chatterbox = spec.get("engine") == "chatterbox"
+    if chatterbox:
+        cbx_words = narrate_chatterbox(spec, lang, out)
+    else:
+        voice, rate = VOICES[lang]
 
     # 1. narration + timing
     t, sched = LEAD, {}
     for s in spec["segments"]:
         mp3 = out / f"{s['id']}.mp3"
-        spoken = asyncio.run(narrate(s["say"][lang], voice, rate, mp3))
+        spoken = cbx_words[s["id"]] if chatterbox else asyncio.run(narrate(s["say"][lang], voice, rate, mp3))
         dur = probe(mp3)
         shown = loc(s["show"], lang).split()
         # map on-screen words onto spoken word times (they can differ, e.g. "C P 2102" vs "CP2102")

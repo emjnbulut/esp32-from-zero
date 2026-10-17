@@ -1,0 +1,267 @@
+{
+ "episode": "ep03",
+ "source": "video/ep03/build/video.mp4",
+ "schedule": "video/ep03/build/schedule.json",
+ "cta": {
+  "en": "Full episode",
+  "sub": "linked below this video"
+ },
+ "segments": [
+  {
+   "id": "h1",
+   "chip": "ESP32 FROM ZERO",
+   "headline": {
+    "en": "Blink an LED with code"
+   },
+   "say": {
+    "en": "Let's make an ESP32 blink an LED, with one wire and a few lines of code.",
+    "tr": "Bir E Se Pe otuz ikiyle led yakıp söndürelim: bir kablo ve birkaç satır kodla."
+   },
+   "show": {
+    "en": "Let's make an ESP32 blink an LED, with one wire and a few lines of code."
+   },
+   "shots": [
+    {
+     "at": [
+      "s25",
+      "Three",
+      0.0
+     ],
+     "crop": [
+      80,
+      300,
+      1000,
+      560
+     ],
+     "pan": 840
+    }
+   ]
+  },
+  {
+   "id": "h2",
+   "chip": "WHY 220 Ω",
+   "headline": {
+    "en": "Ohm's law, simply"
+   },
+   "say": {
+    "en": "Why 220 ohms? The LED uses about two volts, leaving one point three for the resistor. That's about six milliamps: bright, and safe.",
+    "tr": "Neden iki yüz yirmi ohm? Led yaklaşık iki volt kullanır, dirence bir nokta üç volt kalır. Bu da yaklaşık altı miliamper eder: hem parlak hem güvenli."
+   },
+   "show": {
+    "en": "Why 220 Ω? The LED uses about 2 volts, leaving 1.3 V for the resistor. That's about 6 mA: bright, and safe."
+   },
+   "shots": [
+    {
+     "at": [
+      "s06",
+      "left",
+      0.0
+     ],
+     "crop": [
+      340,
+      60,
+      1240,
+      620
+     ]
+    },
+    {
+     "at": [
+      "s07",
+      "is",
+      0.0
+     ],
+     "crop": [
+      340,
+      100,
+      1240,
+      700
+     ]
+    }
+   ]
+  },
+  {
+   "id": "h3",
+   "chip": "WIRING",
+   "headline": {
+    "en": "3V3 → GPIO 23"
+   },
+   "say": {
+    "en": "Unplug the USB, then move the red wire from three V three to GPIO twenty-three. Now the pin powers the LED.",
+    "tr": "U Se Be'yi çıkarın, sonra kırmızı kabloyu üç Ve üçten Ge Pe I O yirmi üçe taşıyın. Artık ledi pin besliyor."
+   },
+   "show": {
+    "en": "Unplug the USB, then move the red wire from 3V3 to GPIO 23. Now the pin powers the LED."
+   },
+   "shots": [
+    {
+     "at": [
+      "s10",
+      "Pull",
+      -0.5
+     ],
+     "crop": [
+      290,
+      590,
+      1000,
+      420
+     ]
+    }
+   ]
+  },
+  {
+   "id": "h4",
+   "chip": "CODE",
+   "headline": {
+    "en": "pinMode + digitalWrite"
+   },
+   "say": {
+    "en": "In setup, pin mode makes it an output. Then digital write HIGH puts three point three volts on the pin, and LOW turns it off.",
+    "tr": "Setap içinde pin mod, pini çıkış yapar. Sonra dijital rayt hay, pine üç nokta üç volt verir; lov ise ledi söndürür."
+   },
+   "show": {
+    "en": "In setup, pinMode makes it an OUTPUT. Then digitalWrite HIGH puts 3.3 volts on the pin, and LOW turns it off."
+   },
+   "shots": [
+    {
+     "at": [
+      "s15",
+      "OUTPUT",
+      -0.5
+     ],
+     "crop": [
+      40,
+      240,
+      1100,
+      500
+     ]
+    },
+    {
+     "at": [
+      "s19",
+      "LOW",
+      1
+     ],
+     "crop": [
+      40,
+      560,
+      1240,
+      420
+     ]
+    }
+   ]
+  },
+  {
+   "id": "h5",
+   "chip": "TIMING",
+   "headline": {
+    "en": "delay(500) = ½ second"
+   },
+   "say": {
+    "en": "Delay five hundred waits half a second. And the loop repeats forever: on, wait, off, wait.",
+    "tr": "Delay beş yüz, yarım saniye bekler. Ve luup sonsuza kadar tekrar eder: yak, bekle, söndür, bekle."
+   },
+   "show": {
+    "en": "delay(500) waits half a second. And the loop repeats forever: on, wait, off, wait."
+   },
+   "shots": [
+    {
+     "at": [
+      "s18",
+      "That's",
+      0.0
+     ],
+     "crop": [
+      160,
+      440,
+      900,
+      480
+     ]
+    },
+    {
+     "at": [
+      "s20",
+      "starts",
+      0.0
+     ],
+     "crop": [
+      180,
+      620,
+      1060,
+      460
+     ]
+    }
+   ]
+  },
+  {
+   "id": "h6",
+   "chip": "RESULT",
+   "headline": {
+    "en": "It blinks!"
+   },
+   "say": {
+    "en": "Upload it, and the LED blinks. The board even reports every change.",
+    "tr": "Yükleyin ve led yanıp sönmeye başlasın. Kart her değişikliği de bildiriyor."
+   },
+   "show": {
+    "en": "Upload it, and the LED blinks. The board even reports every change."
+   },
+   "shots": [
+    {
+     "at": [
+      "s24",
+      "and",
+      0.0
+     ],
+     "crop": [
+      1440,
+      30,
+      480,
+      480
+     ]
+    },
+    {
+     "at": [
+      "s24",
+      "LED",
+      0.0
+     ],
+     "crop": [
+      0,
+      580,
+      760,
+      420
+     ]
+    }
+   ]
+  },
+  {
+   "id": "h7",
+   "chip": "EPISODE 3",
+   "headline": {
+    "en": "Watch the full episode"
+   },
+   "say": {
+    "en": "Set both delays to 100 for a fast blink. The full episode is linked below!",
+    "tr": "Hızlı yanıp sönmesi için iki bekleme süresini de yüz yapın. Bölümün tamamı aşağıda!"
+   },
+   "show": {
+    "en": "Set both delays to 100 for a fast blink. The full episode is linked below!"
+   },
+   "shots": [
+    {
+     "at": [
+      "s26",
+      "Change",
+      0.0
+     ],
+     "crop": [
+      100,
+      200,
+      980,
+      560
+     ]
+    }
+   ]
+  }
+ ]
+}
