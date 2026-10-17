@@ -21,6 +21,7 @@ import edge_tts
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).parent))
+import bumpers  # noqa: E402
 import music  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -103,8 +104,9 @@ def main(ep: Path, lang: str, report_only: bool):
         a = decode(out / f"{sid}.mp3", tempo=max(1.0, d / room))
         i = int(start * SR)
         buf[i:i + len(a)] += a[: len(buf) - i]
-    buf = music.mix(buf, SR, decode, level=0.08)
+    buf = music.mix(buf, SR, decode, level=0.08, fade_in=1.0)
     buf = buf / (np.max(np.abs(buf)) or 1) * 0.89
+    buf = bumpers.wrap(buf, SR, decode)  # same intro/outro as the final video
     wav = ep / "build" / f"dub_{lang}.wav"
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "s16le", "-ar", str(SR), "-ac", "1", "-i", "-", str(wav)],
                    input=(buf * 32767).astype(np.int16).tobytes(), check=True)

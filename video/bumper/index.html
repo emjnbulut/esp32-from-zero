@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  :root { --teal: #19c3b4; --amber: #ffb547; --bg: #0b1220; --panel: #111c30; --line: #22304d; --ink: #e8eef7; --dim: #9fb0c8; }
+  html, body { margin: 0; width: 1920px; height: 1080px; overflow: hidden; background: var(--bg); font-family: "Segoe UI", sans-serif; }
+  #grid { position: absolute; inset: 0; background-image: radial-gradient(circle, #1a2740 2.5px, transparent 3px); background-size: 48px 48px; }
+  #glow { position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 50%, rgba(25,195,180,.18), transparent 60%); }
+  svg { position: absolute; }
+  .word { position: absolute; font-family: Bahnschrift, "Segoe UI"; font-weight: 700; color: var(--ink); white-space: nowrap; }
+  .word b { color: var(--amber); font-weight: 700; }
+  .tag { position: absolute; color: var(--dim); font-size: 34px; white-space: nowrap; }
+  .slot { position: absolute; border: 3px dashed rgba(25,195,180,.35); border-radius: 14px; color: rgba(159,176,200,.6);
+          display: flex; align-items: center; justify-content: center; font-size: 30px; letter-spacing: 3px; }
+  #fade { position: absolute; inset: 0; background: #000; opacity: 0; }
+</style>
+</head>
+<body>
+<div id="grid"></div><div id="glow"></div>
+<div id="stage"></div>
+<div id="fade"></div>
+<script src="bumper.js"></script>
+</body>
+</html>

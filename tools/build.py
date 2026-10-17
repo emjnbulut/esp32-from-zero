@@ -18,6 +18,7 @@ from pathlib import Path
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).parent))
+import bumpers  # noqa: E402
 import music  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -69,7 +70,7 @@ def audio(ep: Path):
         a = decode(ep / "build" / "audio" / f"{sid}.mp3")
         i = int(s["start"] * SR)
         buf[i:i + len(a)] += a
-    buf = music.mix(buf, SR, decode, level=0.08)
+    buf = music.mix(buf, SR, decode, level=0.08, fade_in=1.0)
     peak = np.max(np.abs(buf)) or 1
     buf = buf / peak * 0.89
     pcm = (buf * 32767).astype(np.int16)
@@ -196,7 +197,7 @@ def subs(ep: Path):
         for n, (t0, t1, c) in enumerate(cues, 1):
             nxt = cues[n][0] if n < len(cues) else t1 + 10
             t1 = min(max(t1, t0 + 1.2), nxt - 0.05)
-            lines.append(f"{n}\n{fmt(t0)} --> {fmt(t1)}\n{c}\n")
+            lines.append(f"{n}\n{fmt(t0 + bumpers.INTRO)} --> {fmt(t1 + bumpers.INTRO)}\n{c}\n")
         p = ep / "build" / f"{ep.name}_{lang}.srt"
         p.write_text("\n".join(lines), encoding="utf-8")
         print("subs:", p)
@@ -207,8 +208,13 @@ def compose(ep: Path):
     b = ep / "build"
     clips = json.loads((b / "clips.json").read_text(encoding="utf-8")) if (b / "clips.json").exists() else []
     footage = ROOT / "footage" / ep.name
-    inputs = ["-i", str(b / "video.mp4"), "-i", str(b / "narration.wav")]
-    filters, last, k = [], "[0:v]", 2
+    intro, outro = bumpers.render()
+    full = b / "narration_full.wav"  # intro sting + narration + outro music
+    pcm = (bumpers.wrap(decode(b / "narration.wav"), SR, decode) * 32767).astype(np.int16)
+    subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "s16le", "-ar", str(SR), "-ac", "1", "-i", "-", str(full)],
+                   input=pcm.tobytes(), check=True)
+    inputs = ["-i", str(b / "video.mp4"), "-i", str(full), "-i", str(intro), "-i", str(outro)]
+    filters, last, k = [], "[0:v]", 4
     for c in clips:
         src = next(iter(sorted(footage.glob(c["id"] + ".*"))), None) if footage.exists() else None
         if not src:
@@ -223,11 +229,9 @@ def compose(ep: Path):
         last, k = f"[v{k}]", k + 1
         print(f"clip {c['id']}: {src.name}")
     out = b / f"{ep.name}_final.mp4"
-    cmd = ["ffmpeg", "-v", "error", "-y", *inputs]
-    if filters:
-        cmd += ["-filter_complex", ";".join(filters), "-map", last]
-    else:
-        cmd += ["-map", "0:v"]
+    norm = "fps=30,scale=1920:1080,setsar=1,format=yuv420p"
+    filters += [f"{last}{norm}[body]", f"[2:v]{norm}[in]", f"[3:v]{norm}[out]", "[in][body][out]concat=n=3:v=1:a=0[vid]"]
+    cmd = ["ffmpeg", "-v", "error", "-y", *inputs, "-filter_complex", ";".join(filters), "-map", "[vid]"]
     cmd += ["-map", "1:a", "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-pix_fmt", "yuv420p",
             "-c:a", "aac", "-b:a", "192k", "-shortest", "-movflags", "+faststart", str(out)]
     subprocess.run(cmd, check=True)

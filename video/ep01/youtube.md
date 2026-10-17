@@ -16,18 +16,18 @@ Learn the ESP32 from absolutely zero! In this first episode we install the Ardui
 
 ⏱ Chapters
 0:00 Intro
-0:31 What is an ESP32?
-1:16 Install the Arduino IDE
-2:15 Arduino IDE tour
-3:02 Where is main()?
-3:25 Add ESP32 support
-4:14 Know your board & USB chip
-5:23 USB driver & COM port
-6:24 Select board and port
-6:50 Our first program
-7:51 Upload
-8:29 Serial Monitor
-9:08 Troubleshooting
+0:34 What is an ESP32?
+1:19 Install the Arduino IDE
+2:18 Arduino IDE tour
+3:05 Where is main()?
+3:28 Add ESP32 support
+4:17 Know your board & USB chip
+5:26 USB driver & COM port
+6:27 Select board and port
+6:53 Our first program
+7:54 Upload
+8:32 Serial Monitor
+9:11 Troubleshooting
 
 🎵 Music: "Lobby Time" by Kevin MacLeod (incompetech.com), licensed under CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
 
