@@ -8,7 +8,7 @@ Two curriculum topics in one episode (user 2026-10-17), target 10-15 min.
 - [x] 2. Scenes `video/ep04/ep04.js` (index.html done) + review stills
 - [x] 3. Lesson README `lessons/04-buttons-and-millis/README.md`
 - [x] 4. Dub texts `dub/{tr,hi,pt,es}.json` (make_dubs.py), subtitle texts `subs/{id,ar,ru,de,fr,vi,ja}.json` (make_subs.py), make_localize.py (localize.json + youtube.md done)
-- [ ] 5. Preview render + frame review (render running); Short spec `video/shorts/ep04/short.json` written, crops to check
+- [x] 5. Preview render (build/video.mp4, 10:08) + stills review; Short spec `video/shorts/ep04/short.json` with crops checked on the preview
 - ON HOLD until Chatterbox (2026-10-18): final narration, render, audio/subs/compose, dubs (see tools/CHATTERBOX.md)
 
 ## Notes
