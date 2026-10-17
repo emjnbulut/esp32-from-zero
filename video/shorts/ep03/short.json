@@ -83,21 +83,21 @@
    "id": "h3",
    "chip": "WIRING",
    "headline": {
-    "en": "3V3 → GPIO 23"
+    "en": "Resistor → GPIO 23"
    },
    "say": {
-    "en": "Unplug the USB, then move the red wire from three V three to GPIO twenty-three. Now the pin powers the LED.",
-    "tr": "U Se Be'yi çıkarın, sonra kırmızı kabloyu üç Ve üçten Ge Pe I O yirmi üçe taşıyın. Artık ledi pin besliyor."
+    "en": "Unplug the USB, take out the red wire, and move the resistor's leg to GPIO twenty-three. Now the pin powers the LED.",
+    "tr": "U Se Be'yi çıkarın, kırmızı kabloyu sökün ve direncin bacağını Ge Pe I O yirmi üçe taşıyın. Artık ledi pin besliyor."
    },
    "show": {
-    "en": "Unplug the USB, then move the red wire from 3V3 to GPIO 23. Now the pin powers the LED."
+    "en": "Unplug the USB, take out the red wire, and move the resistor's leg to GPIO 23. Now the pin powers the LED."
    },
    "shots": [
     {
      "at": [
       "s10",
-      "Pull",
-      -0.5
+      "pull",
+      0.0
      ],
      "crop": [
       290,
