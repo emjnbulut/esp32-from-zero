@@ -9,9 +9,16 @@ the local PC; everything here regenerates it.
 | ep01 Setup | final with intro/outro (10:15), dubs TR/HI/PT/ES, 12 subs, localize.json | creator clips `footage/ep01/C1–C3` → `python tools/build.py video/ep01 compose` |
 | ep02 Board + breadboard | final with intro/outro (7:45), dubs, 12 subs, localize.json | clips `footage/ep02/C1–C3` (list in `video/ep02/youtube.md`) → compose. Check s13 "D2 = GPIO 2" and free-hole counts against the real board |
 | ep03 Blink an LED | in progress, **render + dubs on hold until the Chatterbox voice decision**; scenes reviewed + fixed on a preview render, localize.json done. Chatterbox setup/test/switch: `tools/CHATTERBOX.md` — see `video/ep03/PROGRESS.md` (resume from the first unchecked step: render → audio/subs/compose → dubs/subs/localize) | clips C1 move the wire, C2 LED blinking, C3 fast blink |
+| ep04 Buttons + millis (two topics, ~10:30) | script, 5 sketches, scenes (reviewed), lesson README, dub/sub texts, localize.json, Short spec done — **narration/render/dubs on hold for Chatterbox**, see `video/ep04/PROGRESS.md` | clips C1–C6 (list in `video/ep04/youtube.md`) |
 
 Dubs are separate audio tracks: adding clips later only needs `build.py <ep> compose` and then
 `tools/dub.py <ep> <lang>` (re-muxes the dub videos).
+
+## Format (from 2026-10-17)
+From ep04 on: two curriculum topics per episode, 10–15 minutes (CURRICULUM.md renumbered to 11 episodes).
+
+## Tomorrow (2026-10-18)
+Install Chatterbox and test it (`tools/CHATTERBOX.md`), then re-narrate + render ep03 and ep04, dubs, Shorts (ep03, ep04 specs ready; shots follow the narration automatically).
 
 ## Shorts
 - ep01: EN/TR/HI/PT done (regular ending, Lobby Time music).
