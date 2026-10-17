@@ -23,6 +23,9 @@ tools/            # scripts that build the videos
 | # | Episode | Lesson |
 |---|---------|--------|
 | 01 | Setting Up Your Computer | [lessons/01-setup](lessons/01-setup) |
+| 02 | Meet the Board and the Breadboard | [lessons/02-board-and-breadboard](lessons/02-board-and-breadboard) |
+| 03 | Your First Circuit: Blink an LED | [lessons/03-blink-an-led](lessons/03-blink-an-led) |
+| 04 | Buttons and Doing Two Things at Once | [lessons/04-buttons-and-millis](lessons/04-buttons-and-millis) |
 
 ## How the videos are made
 

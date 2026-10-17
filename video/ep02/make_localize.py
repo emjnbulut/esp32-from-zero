@@ -3,11 +3,14 @@ Usage: python video/ep02/make_localize.py"""
 import json
 from pathlib import Path
 
-TIMES_BODY = ["0:00", "0:21", "0:35", "1:16", "1:44", "2:04", "2:28", "3:20", "3:29", "4:30", "5:08", "5:57", "6:30", "6:53"]
-# the channel intro (tools/bumpers.py, 3.5 s) plays before the episode, so chapters shift
-INTRO = 3.5
-TIMES = ["0:00"] + ["%d:%02d" % divmod(int(m) * 60 + int(s) + int(INTRO), 60)
-                    for m, s in (t.split(":") for t in TIMES_BODY[1:])]
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tools"))
+from rechapter import chapter_times  # noqa: E402
+
+# chapter starts come from chapters.json + the schedule (rerun after the narration changes)
+TIMES = chapter_times(Path(__file__).parent)
+# "Safe pins" (index 7) started only 9 s before "The breadboard"; YouTube needs >= 10 s, so it is merged into "Pins to avoid"
+DROP = 7
 CREDIT = '🎵 Music: "Lobby Time" by Kevin MacLeod (incompetech.com), licensed under CC BY 4.0: https://creativecommons.org/licenses/by/4.0/'
 REPO = "https://github.com/emjnbulut/esp32-from-zero"
 LESSON = REPO + "/tree/main/lessons/02-board-and-breadboard"
@@ -79,6 +82,7 @@ T = {
 
 out = {}
 for lang, (title, intro, links, lesson, repo, chap, names) in T.items():
+    names = names[:DROP] + names[DROP + 1:]
     assert len(names) == len(TIMES) and len(title) <= 100, lang
     desc = (f"{intro}\n\n{links}\n• {lesson}: {LESSON}\n• {repo}: {REPO}\n\n{chap}\n"
             + "\n".join(f"{t} {n}" for t, n in zip(TIMES, names)) + f"\n\n{CREDIT}\n\n{TAGS}")

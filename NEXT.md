@@ -18,7 +18,10 @@ Dubs are separate audio tracks: adding clips later only needs `build.py <ep> com
 From ep04 on: two curriculum topics per episode, 10–15 minutes (CURRICULUM.md renumbered to 11 episodes).
 
 ## Tomorrow (2026-10-18)
-Install Chatterbox and test it (`tools/CHATTERBOX.md`), then re-narrate + render ep03 and ep04, dubs, Shorts (ep03, ep04 specs ready; shots follow the narration automatically).
+Install Chatterbox and test it (`tools/CHATTERBOX.md`), then re-narrate + render ALL episodes (ep01-ep04, same voice everywhere),
+dubs, Shorts (all four short.json now use word anchors, so shots follow the new narration), chapters:
+`python tools/rechapter.py video/ep01` (ep02-04: rerun their make_localize.py), then the trailer: `python tools/trailer.py`.
+Thumbnails: `node video/tools/thumbs.mjs` (3 variants per episode in video/thumbs/build/).
 
 ## Shorts
 - ep01: EN/TR/HI/PT done (regular ending, Lobby Time music).
