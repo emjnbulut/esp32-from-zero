@@ -1,4 +1,5 @@
-"""Narrate an episode script with edge-tts.
+"""Narrate an episode script with edge-tts, or Chatterbox when script.json has "engine": "chatterbox"
+(settings in tools/cbx.py; word timings then come from tools/align.py).
 
 Usage: python tools/tts.py video/ep01
 
@@ -15,6 +16,9 @@ import sys
 from pathlib import Path
 
 import edge_tts
+
+sys.path.insert(0, str(Path(__file__).parent))
+import cbx  # noqa: E402
 
 
 def probe_duration(path: Path) -> float:
@@ -47,6 +51,8 @@ async def main(ep_dir: Path):
     timings_path = out / "timings.json"
     old = json.loads(timings_path.read_text(encoding="utf-8")) if timings_path.exists() else {}
 
+    if script.get("engine") == "chatterbox":
+        return chatterbox(script, out, timings_path, old)
     voice, rate = script["voice"], script.get("rate", "+0%")
     timings = {}
     for seg in script["segments"]:
@@ -60,6 +66,28 @@ async def main(ep_dir: Path):
         timings[sid] = {"key": key, "duration": probe_duration(mp3), "words": words}
         print(f"{sid}: {timings[sid]['duration']:.2f}s")
 
+    save(timings, timings_path)
+
+
+def chatterbox(script, out, timings_path, old):
+    import align
+    cfg = cbx.settings(script, "en")
+    keys = {seg["id"]: cbx.key(cfg, seg["text"]) for seg in script["segments"]}
+    todo = [seg for seg in script["segments"]
+            if not (seg["id"] in old and old[seg["id"]]["key"] == keys[seg["id"]] and (out / f"{seg['id']}.mp3").exists())]
+    cbx.say(cfg, [(seg["text"], out / f"{seg['id']}.mp3") for seg in todo])
+    timings = {}
+    for seg in script["segments"]:
+        sid, mp3 = seg["id"], out / f"{seg['id']}.mp3"
+        if seg in todo:
+            timings[sid] = {"key": keys[sid], "duration": probe_duration(mp3), "words": align.align(mp3, seg["text"])}
+            print(f"{sid}: {timings[sid]['duration']:.2f}s")
+        else:
+            timings[sid] = old[sid]
+    save(timings, timings_path)
+
+
+def save(timings, timings_path):
     timings_path.write_text(json.dumps(timings, indent=1), encoding="utf-8")
     total = sum(t["duration"] for t in timings.values())
     print(f"total narration: {total:.1f}s")

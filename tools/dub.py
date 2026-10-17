@@ -9,6 +9,8 @@ Usage:
 
 Translations live in <episode>/dub/<lang>.json:
   {"voice": "tr-TR-AhmetNeural", "rate": "+0%", "segments": {"s01": "...", ...}}
+or with Chatterbox (settings in tools/cbx.py):
+  {"engine": "chatterbox", "cbx": {"prompt": "..."}, "segments": {...}}
 """
 import asyncio
 import hashlib
@@ -22,6 +24,7 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).parent))
 import bumpers  # noqa: E402
+import cbx  # noqa: E402
 import music  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -39,6 +42,20 @@ def decode(path: Path, tempo: float = 1.0) -> np.ndarray:
     af = ["-af", f"atempo={tempo:.4f}"] if tempo > 1.001 else []
     raw = subprocess.check_output(["ffmpeg", "-v", "error", "-i", str(path), *af, "-f", "f32le", "-ac", "1", "-ar", str(SR), "-"])
     return np.frombuffer(raw, dtype=np.float32)
+
+
+def narrate_chatterbox(dub: dict, out: Path, lang: str):
+    out.mkdir(parents=True, exist_ok=True)
+    cache_p = out / "cache.json"
+    cache = json.loads(cache_p.read_text(encoding="utf-8")) if cache_p.exists() else {}
+    cfg = cbx.settings(dub, lang)
+    keys = {sid: cbx.key(cfg, text) for sid, text in dub["segments"].items()}
+    todo = [sid for sid in keys if not (cache.get(sid, {}).get("key") == keys[sid] and (out / f"{sid}.mp3").exists())]
+    cbx.say(cfg, [(dub["segments"][sid], out / f"{sid}.mp3") for sid in todo])
+    for sid in todo:
+        cache[sid] = {"key": keys[sid], "duration": probe(out / f"{sid}.mp3")}
+    cache_p.write_text(json.dumps(cache, indent=1), encoding="utf-8")
+    return cache
 
 
 async def narrate_all(dub: dict, out: Path):
@@ -82,7 +99,10 @@ def main(ep: Path, lang: str, report_only: bool):
     if missing:
         sys.exit(f"missing translations: {missing}")
     out = ep / "build" / f"dub_{lang}"
-    cache = asyncio.run(narrate_all(dub, out))
+    if dub.get("engine") == "chatterbox":
+        cache = narrate_chatterbox(dub, out, lang)
+    else:
+        cache = asyncio.run(narrate_all(dub, out))
 
     sl = slots(sched)
     too_long = []

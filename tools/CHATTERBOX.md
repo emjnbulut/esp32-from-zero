@@ -1,0 +1,45 @@
+# Chatterbox narration (local TTS)
+
+Chatterbox needs torch, so it lives in its own venv `.venv-tts` (gitignored). The main `.venv` only talks
+to it through `tools/cbx.py`; word timings for the scenes come from `tools/align.py` (faster-whisper,
+already installed; checked on ep03's edge-tts takes: same words, mean error 0.06 s).
+
+## Setup (one time, ~5-7 GB download: torch CUDA + model weights)
+Chatterbox is tested on Python 3.11; with 3.12 its pinned numpy may not install.
+
+    py install 3.11                       # Python install manager (or python.org installer)
+    py -3.11 -m venv .venv-tts
+    .venv-tts/Scripts/python -m pip install chatterbox-tts
+    # pip installs a CPU-only torch on Windows; swap in the CUDA build of the SAME version it chose:
+    .venv-tts/Scripts/python -m pip show torch          # e.g. 2.6.0
+    .venv-tts/Scripts/python -m pip install --force-reinstall torch==<ver> torchaudio==<ver> --index-url https://download.pytorch.org/whl/cu124
+    .venv-tts/Scripts/python -c "import torch; print(torch.cuda.is_available())"   # True on the RTX 4060
+
+The weights download from Hugging Face on the first run.
+
+## Voice test (before switching anything)
+
+    python tools/cbx_compare.py video/ep02 s03 s10 s20 s30
+    python tools/cbx_compare.py video/ep02 s03 s10 s20 s30 --lang tr
+    # optional voice clone (10-20 s clean recording, only of a voice we may use):
+    python tools/cbx_compare.py video/ep02 s03 s10 --prompt tools/voice_samples/narrator.wav
+
+Listen in `video/ep02/build/voice_test/` (`*_edge.mp3` vs `*_cbx.mp3`).
+
+## Switching an episode
+In `script.json` (or `dub/<lang>.json`) add:
+
+    "engine": "chatterbox",
+    "cbx": {"prompt": "tools/voice_samples/narrator.wav", "exaggeration": 0.5, "cfg_weight": 0.5, "seed": 1}
+
+(`cbx` is optional; English uses the English model, other languages the multilingual one.)
+For ep03 the script comes from `video/ep03/make_script.py`: put the keys there, then
+
+    python video/ep03/make_script.py
+    python tools/tts.py video/ep03 && python tools/build.py video/ep03 schedule
+    cd video && node engine/render.mjs ep03 && cd ..
+    python tools/build.py video/ep03 audio && python tools/build.py video/ep03 subs && python tools/build.py video/ep03 compose
+    python video/ep03/make_localize.py      # chapter times follow the new narration
+
+A take is cached by text + settings; change `seed` to get a different take of every line, or delete
+`build/audio/<id>.mp3` to redo one line. Check takes with `tools/dub_check.py` for the dubs.

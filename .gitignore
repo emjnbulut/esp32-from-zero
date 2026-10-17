@@ -1,4 +1,5 @@
 .venv/
+.venv-tts/
 .models/
 __pycache__/
 tools/voice_samples/

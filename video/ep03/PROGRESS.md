@@ -35,3 +35,8 @@ Resume rule: do the first unchecked step; commands are run from the repo root.
   rendering now would have to be redone. The cut-off render parts in `build/` (part0-3.mp4) are stale.
 - Done without the voice: `make_localize.py` → `localize.json` + `youtube.md` (12 languages). Chapter times are read from
   `build/schedule.json` (+3.5 s intro), so after the new narration just rerun `python video/ep03/make_localize.py`.
+- Preview render with the edge-tts timing done (build/video.mp4, 5:01) and reviewed frame by frame. Fixed: during the wire move
+  (s10) the wire now stays in the + rail and follows the moving end (it used to vanish, leaving a sliding square); the s11 badges
+  moved under the title (they sat 12 px from the bottom edge). Everything else looked right.
+- Chatterbox is wired in (tools/cbx.py, chatterbox_say.py, align.py, cbx_compare.py; setup + switch steps in tools/CHATTERBOX.md).
+  Tomorrow: install → voice test on ep02 lines → if good, follow "Switching an episode" in CHATTERBOX.md for ep03.

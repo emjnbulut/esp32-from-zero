@@ -118,14 +118,24 @@ sceneOut(sBB, S1("s12") + 0.5);
   SET(tip, W("s10", "Pull") + 0.15, { opacity: 1 });
   TO(tip, W("s10", "Pull") + 0.2, W("s10", "plug") - W("s10", "Pull"), { attr: { x: kx - 9 }, ease: "power2.inOut" });
   SET(tip, W("s10", "plug") + 0.5, { opacity: 0 });
+  // the other end stays in the + rail, so the wire follows the moving tip (same curve as the final wire)
+  const [px, py] = bb.L(2, "bp"), mv0 = W("s10", "Pull") + 0.15, mv1 = W("s10", "plug") + 0.6;
+  const live = svgEl(bb.parts, "path", { fill: "none", stroke: "#ff5d6c", "stroke-width": 10, "stroke-linecap": "round", opacity: 0 });
+  dyn((t) => {
+    const on = t >= mv0 && t < mv1;
+    live.setAttribute("opacity", on ? 1 : 0);
+    if (!on) return;
+    const ex = +tip.getAttribute("x") + 9, dx = px - ex, dy = py - jy;
+    live.setAttribute("d", `M${ex} ${jy} Q${(ex + px) / 2 - dy * 0.08} ${(jy + py) / 2 + dx * 0.08} ${px} ${py}`);
+  });
   bbWire(bb, bb.L(16, "j"), bb.L(2, "bp"), "#ff5d6c", W("s10", "plug"), 0.08);
   const c16 = bb.colStrip[16][1];
   TO(c16, W("s10", "column"), 0.4, { opacity: 0.6 }); TO(c16, S1("s11"), 0.4, { opacity: 0 });
   callout(sBB, "D23 = GPIO 23", p23[0] - 80, p23[1] - 72, W("s10", "twentythree"), S1("s11") + 0.2);
-  const safe = box(sBB, 380, 1018, 0, 0, "badge", "✓&nbsp; a safe pin from episode 2");
+  const safe = box(sBB, 380, 160, 0, 0, "badge", "✓&nbsp; a safe pin from episode 2");
   css(safe, { width: "auto", height: "auto", background: "var(--green)", color: "#05210f" }); hidden(safe);
   pop(safe, W("s11", "safe")); hide(safe, S1("s11") + 0.2);
-  const p38 = box(sBB, 1000, 1018, 0, 0, "badge", "38-pin board: the label is “23”");
+  const p38 = box(sBB, 1000, 160, 0, 0, "badge", "38-pin board: the label is “23”");
   css(p38, { width: "auto", height: "auto", background: "rgba(11,18,32,.92)", border: "1px solid var(--line)", color: "var(--ink, #e8eef7)" }); hidden(p38);
   pop(p38, W("s11", "thirtyeight")); hide(p38, S1("s11") + 0.2);
   clipFrame(sBB, "C1", 1140, 150, 720, 405, W("s10", "Pull") - 0.2, S1("s10") + 1.2, "USB unplugged: move the red wire's end from 3V3 to the D23 column.");
