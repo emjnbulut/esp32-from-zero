@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ESP32 From Zero - thumbnails</title>
+<style>
+  :root { --bg: #0b1220; --panel: #121b2e; --line: #22304d; --text: #eef3fb; --muted: #8fa1c0; --teal: #19c3b4; --amber: #ffb547; --red: #ff5d6c; --green: #4ade80;
+    --ui: "Segoe UI Variable Text", "Segoe UI", sans-serif; --display: "Segoe UI Variable Display", "Segoe UI", sans-serif; --mono: "Cascadia Mono", Consolas, monospace; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1280px; height: 720px; overflow: hidden; background: var(--bg); }
+  body { font-family: var(--ui); color: var(--text); -webkit-font-smoothing: antialiased; }
+  #t { position: absolute; inset: 0; overflow: hidden;
+    background: radial-gradient(760px 520px at 78% 40%, rgba(25,195,180,.20), transparent 62%),
+                radial-gradient(600px 420px at 8% 100%, rgba(255,181,71,.10), transparent 60%), var(--bg); }
+  #t .grid { position: absolute; inset: 0; opacity: .30;
+    background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 48px 48px; mask-image: radial-gradient(circle at 70% 45%, #000 25%, transparent 80%); }
+  .abs { position: absolute; }
+  .brand { left: 40px; top: 34px; display: flex; align-items: center; gap: 14px; font: 800 24px var(--ui); letter-spacing: 3px; color: var(--teal); text-transform: uppercase; }
+  .ep { left: 44px; bottom: 40px; padding: 8px 22px; border-radius: 14px; background: var(--amber); color: #1d1300; font: 900 38px var(--display); }
+  .title { left: 40px; top: 120px; width: 700px; }
+  .title div { font: 900 132px/0.98 var(--display); letter-spacing: -3px; text-shadow: 0 6px 30px rgba(0,0,0,.6); white-space: nowrap; }
+  .card { background: var(--panel); border: 2px solid var(--line); border-radius: 22px; box-shadow: 0 20px 60px rgba(0,0,0,.45); }
+  .pill { display: inline-block; padding: 10px 24px; border-radius: 999px; font: 800 30px var(--ui); white-space: nowrap; }
+  .code { font: 700 34px/1.5 var(--mono); padding: 22px 30px; white-space: pre; }
+  .fn { color: #f39c4a; } .num { color: #e5c07b; } .kw { color: #4fc1ff; }
+</style>
+<script src="../engine/board.js"></script>
+<script src="../../brand/logos.js"></script>
+</head>
+<body>
+<div id="t"><div class="grid"></div></div>
+<script src="thumbs.js"></script>
+</body>
+</html>
