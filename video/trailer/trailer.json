@@ -8,8 +8,22 @@
    "headline": "Code that controls the real world",
    "say": "Want to make real electronics do what your code says? This is ESP32 From Zero.",
    "shots": [
-    {"ep": "ep03", "at": ["s25", "Here's", 0.6]},
-    {"ep": "ep04", "at": ["s50", "In", 0.0]}
+    {
+     "ep": "ep03",
+     "at": [
+      "s25",
+      "Here's",
+      0.6
+     ]
+    },
+    {
+     "ep": "ep04",
+     "at": [
+      "s50",
+      "In",
+      0.0
+     ]
+    }
    ]
   },
   {
@@ -18,8 +32,34 @@
    "headline": "Start from zero",
    "say": "If you know a little C, you're ready. We start at zero: installing the tools, and your very first upload.",
    "shots": [
-    {"ep": "ep01", "at": ["s47", "Writing", 0.0]},
-    {"ep": "ep01", "at": ["s50", "there", 0.0]}
+    {
+     "ep": "ep01",
+     "at": [
+      "s47",
+      "Writing",
+      0.0
+     ],
+     "crop": [
+      0,
+      380,
+      1300,
+      731
+     ]
+    },
+    {
+     "ep": "ep01",
+     "at": [
+      "s50",
+      "there",
+      0.0
+     ],
+     "crop": [
+      0,
+      380,
+      1300,
+      731
+     ]
+    }
    ]
   },
   {
@@ -28,9 +68,30 @@
    "headline": "Real circuits, step by step",
    "say": "Then we build real circuits on a breadboard, step by step, and learn why every part is there.",
    "shots": [
-    {"ep": "ep02", "at": ["s19", "green", 0.0]},
-    {"ep": "ep03", "at": ["s07", "divided", 0.0]},
-    {"ep": "ep04", "at": ["s09", "connected", 0.0]}
+    {
+     "ep": "ep02",
+     "at": [
+      "s19",
+      "green",
+      0.0
+     ]
+    },
+    {
+     "ep": "ep03",
+     "at": [
+      "s07",
+      "divided",
+      0.0
+     ]
+    },
+    {
+     "ep": "ep04",
+     "at": [
+      "s09",
+      "connected",
+      0.0
+     ]
+    }
    ]
   },
   {
@@ -39,8 +100,22 @@
    "headline": "The code, line by line",
    "say": "We write the code together, line by line, and upload it to the board.",
    "shots": [
-    {"ep": "ep04", "at": ["s20", "digital", 0.0]},
-    {"ep": "ep04", "at": ["s32", "wait", 0.0]}
+    {
+     "ep": "ep04",
+     "at": [
+      "s20",
+      "digital",
+      0.0
+     ]
+    },
+    {
+     "ep": "ep04",
+     "at": [
+      "s32",
+      "wait",
+      0.0
+     ]
+    }
    ]
   },
   {
