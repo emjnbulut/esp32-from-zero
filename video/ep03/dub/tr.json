@@ -4,7 +4,7 @@
  "note": "Spoken text only. English terms are written the way a Turkish speaker says them (pin mod, dijital rayt, hay, lov, aplod...).",
  "segments": {
   "s01": "E Se Pe otuz iki From Zero'ya tekrar hoş geldiniz. Geçen sefer ilk devremizi kurduk ve led yandı.",
-  "s02": "Ama hep yanıyordu. Bugün kontrolü kodumuz alıyor. Bir kabloyu taşıyıp kısa bir program yazacak ve ledi yakıp söndüreceğiz.",
+  "s02": "Ama hep yanıyordu. Bugün kontrolü kodumuz alıyor. Bir parçayı taşıyıp kısa program yazacak, ledi yakıp söndüreceğiz.",
   "s03": "Geçen seferki devre şu: üç Ve üç dirence gider, direnç ledin uzun bacağına gider, kısa bacak da toprağa gider.",
   "s04": "Bir şeyi değiştirmeden önce geçen seferden kalan bir soruyu cevaplayalım. Neden tam olarak iki yüz yirmi ohm?",
   "s05": "Cevap, Ohm yasası. Bir dirençten geçen akım, üzerindeki gerilimin direnç değerine bölümüdür.",
@@ -12,11 +12,11 @@
   "s07": "Bir nokta üç volt bölü iki yüz yirmi ohm, yaklaşık altı miliamper eder. Ledi net görmeye yeter ve bir pinin verebileceğinin çok altında.",
   "s08": "Direnç olmazsa akımı hiçbir şey sınırlamaz; led ya da pin yanabilir. Daha büyük direnç ledi daha sönük yapar. İki yüz yirmi ohmdan bir kiloohma kadar her değer olur.",
   "s09": "Şimdi değişiklik. Önce U Se Be kablosunu çıkarın. Elektrik varken devreyi asla değiştirmeyiz.",
-  "s10": "Kırmızı kablo, üç Ve üç pininden artı raya gidiyor. Üç Ve üçteki ucunu çıkarın ve De yirmi üçün sütununa takın.",
+  "s10": "Kırmızı kabloyu tamamen çıkarın; bugün üç Ve üç gerekmiyor. Sonra direncin bacağını artı raydan çekin ve De yirmi üçün sütunundaki Je on altı deliğine takın.",
   "s11": "Bu, Ge Pe I O yirmi üç; geçen seferki güvenli pinlerden biri. Otuz sekiz pinli kartlarda sadece yirmi üç yazar.",
-  "s12": "Artık led gücünü Ge Pe I O yirmi üçten alıyor. U Se Be kablosunu geri takın. Led sönük kalıyor, çünkü o pine henüz kimse yan demedi.",
+  "s12": "Artık led gücünü direnç üzerinden Ge Pe I O yirmi üçten alıyor. U Se Be kablosunu geri takın. Led sönük kalıyor, çünkü o pine henüz kimse yan demedi.",
   "s13": "Bu, kodumuzun işi. Arduino programını açın ve yeni bir skeç başlatın.",
-  "s14": "Önce pine bir isim veriyoruz: değeri yirmi üç olan, led pin adında bir sabit. Kabloyu yine taşırsak sadece bu satırı değiştiririz.",
+  "s14": "Önce pine bir isim veriyoruz: değeri yirmi üç olan, led pin adında bir sabit. Ledi başka pine taşırsak sadece bu satırı değiştiririz.",
   "s15": "Setap içinde pin mod, kartın bu pini nasıl kullanacağımızı söyler. Autput, pini kodumuzun sürdüğü anlamına gelir.",
   "s16": "Geçen seferki gibi seri bağlantıyı da açıyoruz ki kart bize ne yaptığını söyleyebilsin.",
   "s17": "Şimdi luup. Dijital rayt, led pin, hay. Hay, pine üç nokta üç volt verir ve led yanar.",
@@ -30,7 +30,7 @@
   "s25": "Pinde olan şu: üç nokta üç volt, sonra sıfır, sonra yine üç nokta üç. Hay ve lov, bu iki gerilimin sadece adı.",
   "s26": "Şimdi biraz oynayın. İki bekleme süresini de yüz yapın ve yeniden yükleyin. Led saniyede beş kez yanıp söner.",
   "s27": "Kısa yanma, uzun sönme deneyin; bir deniz feneri gibi. Sayıları değiştirerek hiçbir şeyi bozamazsınız.",
-  "s28": "Led yanıp sönmüyor mu? Kırmızı kablonun gerçekten De yirmi üç sütununda olduğuna, kodda yirmi üç yazdığına ve uzun bacağın dirence baktığına bakın. Hep yanıyorsa kablo muhtemelen hâlâ üç Ve üçte.",
+  "s28": "Led yanıp sönmüyor mu? Direncin bacağının gerçekten De yirmi üç sütununda olduğuna, kodda yirmi üç yazdığına ve uzun bacağın dirence baktığına bakın. Hep yanıyorsa direnç muhtemelen hâlâ artı rayda.",
   "s29": "Bugün direncin neden orada olduğunu öğrendik; ledi yakıp söndürmek için pin mod, dijital rayt ve dilay kullandık.",
   "s30": "Gelecek sefer tersini yapıp bir düğmeyi okuyacağız. Kod Git Hab'da, bağlantısı aşağıda. Görüşmek üzere!"
  }

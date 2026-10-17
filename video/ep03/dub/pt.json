@@ -3,7 +3,7 @@
  "rate": "+0%",
  "segments": {
   "s01": "Bem-vindo de volta ao ESP32 From Zero. Da última vez, montamos nosso primeiro circuito, e o LED acendeu.",
-  "s02": "Mas ele ficava sempre aceso. Hoje, nosso código assume o controle. Vamos mudar um fio, escrever um programa curto, e fazer o LED piscar.",
+  "s02": "Mas ficava sempre aceso. Hoje, o código manda. Movemos uma peça, fazemos um programa e o LED pisca.",
   "s03": "Este é o circuito da última vez. O 3V3 vai ao resistor, o resistor vai à perna longa do LED, e a perna curta vai ao terra.",
   "s04": "Antes de mudar algo, vamos responder uma pergunta da última vez. Por que exatamente 220 ohms?",
   "s05": "A resposta é a lei de Ohm. A corrente num resistor é igual à tensão sobre ele, dividida pela resistência.",
@@ -11,11 +11,11 @@
   "s07": "1,3 volt dividido por 220 ohms dá uns 6 miliampères. Dá para ver o LED bem, e é muito menos do que um pino GPIO aguenta.",
   "s08": "Sem o resistor, nada limita a corrente, e o LED ou o pino podem queimar. Um resistor maior deixa o LED mais fraco. De 220 ohms a 1 quilo-ohm, tudo funciona.",
   "s09": "Agora, a mudança. Primeiro, desconecte o cabo USB. Nunca mudamos fios com o circuito ligado.",
-  "s10": "O fio vermelho vai do pino 3V3 ao trilho positivo. Tire a ponta do 3V3, e coloque na coluna do D23.",
+  "s10": "Tire o fio vermelho por completo. Hoje não precisamos do 3V3. Depois tire a perna do resistor do trilho positivo e coloque no furo j16, a coluna do D23.",
   "s11": "Esse é o GPIO 23, um dos pinos seguros da última vez. Numa placa de 38 pinos, está escrito só 23.",
-  "s12": "Agora o LED recebe energia do GPIO 23. Conecte o cabo USB de novo. O LED fica apagado, porque ninguém mandou o pino ligar ainda.",
+  "s12": "Agora o LED recebe energia do GPIO 23, pelo resistor. Conecte o cabo USB de novo. O LED fica apagado, porque ninguém mandou o pino ligar ainda.",
   "s13": "Esse é o trabalho do nosso código. Abra o Arduino IDE, e comece um sketch novo.",
-  "s14": "Primeiro, damos um nome ao pino. Uma constante chamada LED_PIN, valendo 23. Se mudarmos o fio de novo, alteramos só esta linha.",
+  "s14": "Primeiro, damos um nome ao pino. Uma constante chamada LED_PIN, valendo 23. Se mudarmos o LED para outro pino, alteramos só esta linha.",
   "s15": "No setup, o pinMode diz ao ESP32 como vamos usar o pino. OUTPUT significa que o nosso código controla o pino.",
   "s16": "E, como da última vez, abrimos a conexão serial, para a placa contar o que está fazendo.",
   "s17": "Agora o loop. digitalWrite, LED_PIN, HIGH. O HIGH coloca 3,3 volts no pino, e o LED acende.",
@@ -29,7 +29,7 @@
   "s25": "Veja o que acontece no pino. 3,3 volts, depois zero, depois 3,3 de novo. HIGH e LOW são só nomes para essas duas tensões.",
   "s26": "Agora brinque um pouco. Mude os dois delays para 100, e faça o upload de novo. O LED pisca cinco vezes por segundo.",
   "s27": "Tente um tempo aceso curto e um apagado longo, como um farol. Mudar os números não estraga nada.",
-  "s28": "O LED não pisca? Confira se o fio vermelho está mesmo na coluna do D23, se o código diz 23, e se a perna longa está do lado do resistor. Se fica sempre aceso, o fio talvez ainda esteja no 3V3.",
+  "s28": "O LED não pisca? Confira se a perna do resistor está mesmo na coluna do D23, se o código diz 23, e se a perna longa está do lado do resistor. Se fica sempre aceso, o resistor talvez ainda esteja no trilho positivo.",
   "s29": "Hoje entendemos por que o resistor está ali, e usamos pinMode, digitalWrite e delay para piscar um LED.",
   "s30": "Na próxima, faremos o contrário, e vamos ler um botão. O código está no GitHub, link abaixo. Até lá!"
  }

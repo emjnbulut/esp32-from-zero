@@ -2,7 +2,7 @@
  "lang": "vi",
  "segments": {
   "s01": "Chào mừng trở lại với ESP32 From Zero. Lần trước, chúng ta đã lắp mạch đầu tiên, và đèn LED đã sáng.",
-  "s02": "Nhưng nó luôn sáng. Hôm nay, code của chúng ta sẽ điều khiển. Ta sẽ chuyển một sợi dây, viết một chương trình ngắn, và làm LED nhấp nháy.",
+  "s02": "Nhưng nó luôn sáng. Hôm nay, code sẽ điều khiển. Ta chuyển một linh kiện, viết một chương trình ngắn, và cho LED nháy.",
   "s03": "Đây là mạch từ lần trước. 3V3 nối tới điện trở, điện trở nối tới chân dài của LED, và chân ngắn nối xuống GND.",
   "s04": "Trước khi thay đổi gì, hãy trả lời một câu hỏi từ lần trước. Tại sao lại đúng 220 Ω?",
   "s05": "Câu trả lời là định luật Ohm. Dòng điện qua điện trở bằng điện áp trên nó, chia cho giá trị điện trở.",
@@ -10,11 +10,11 @@
   "s07": "1,3 volt chia cho 220 Ω là khoảng 6 miliampe. Đủ để thấy LED rõ ràng, và thấp hơn nhiều so với khả năng của chân GPIO.",
   "s08": "Không có điện trở, không gì giới hạn dòng điện, và LED hoặc chân có thể cháy. Điện trở lớn hơn làm LED mờ hơn. Từ 220 Ω đến 1 kΩ đều được.",
   "s09": "Giờ là phần thay đổi. Trước hết, rút cáp USB ra. Chúng ta không bao giờ đổi dây khi mạch đang có điện.",
-  "s10": "Dây đỏ nối từ chân 3V3 tới thanh nguồn dương. Rút đầu dây ở 3V3 ra, và cắm vào cột của D23.",
+  "s10": "Rút hẳn dây đỏ ra. Hôm nay ta không cần 3V3. Rồi rút chân điện trở khỏi thanh dương, và cắm vào lỗ j16, cột của D23.",
   "s11": "Đó là GPIO 23, một trong các chân an toàn từ lần trước. Trên board 38 chân, nhãn chỉ ghi \"23\".",
-  "s12": "Giờ LED lấy điện từ GPIO 23. Cắm lại cáp USB. LED vẫn tắt, vì chưa có gì bảo chân đó bật lên.",
+  "s12": "Giờ LED nhận điện từ GPIO 23, qua điện trở. Cắm lại cáp USB. LED vẫn tối, vì chưa ai bảo chân đó bật lên.",
   "s13": "Đó là việc của code. Mở Arduino IDE, và tạo một sketch mới.",
-  "s14": "Đầu tiên, ta đặt tên cho chân: một hằng số tên LED_PIN, giá trị 23. Nếu sau này chuyển dây, ta chỉ cần sửa dòng này.",
+  "s14": "Đầu tiên, ta đặt tên cho chân. Một hằng số tên LED_PIN, giá trị 23. Nếu chuyển LED sang chân khác, ta chỉ sửa đúng dòng này.",
   "s15": "Trong setup, pinMode cho ESP32 biết ta dùng chân này thế nào. OUTPUT nghĩa là code của ta điều khiển nó.",
   "s16": "Và như lần trước, ta mở kết nối serial, để board có thể cho ta biết nó đang làm gì.",
   "s17": "Giờ đến loop. digitalWrite(LED_PIN, HIGH). HIGH đặt 3,3 volt lên chân, và LED sáng.",
@@ -28,7 +28,7 @@
   "s25": "Đây là điều xảy ra trên chân: 3,3 volt, rồi 0, rồi lại 3,3. HIGH và LOW chỉ là tên của hai mức điện áp đó.",
   "s26": "Giờ hãy thử nghiệm. Đổi cả hai delay thành 100, rồi upload lại. LED nháy năm lần mỗi giây.",
   "s27": "Thử bật ngắn và tắt lâu, giống ngọn hải đăng. Đổi các con số không thể làm hỏng gì cả.",
-  "s28": "LED không nhấp nháy? Kiểm tra dây đỏ có thật sự ở cột D23, code có ghi 23, và chân dài hướng về điện trở. Nếu luôn sáng, có lẽ dây vẫn còn ở 3V3.",
+  "s28": "LED không nháy? Kiểm tra chân điện trở có thật sự ở cột D23, code ghi 23, và chân dài hướng về điện trở. Nếu luôn sáng, có lẽ điện trở vẫn còn ở thanh dương.",
   "s29": "Hôm nay ta đã hiểu vì sao cần điện trở, và dùng pinMode, digitalWrite, delay để làm LED nhấp nháy.",
   "s30": "Lần tới, ta làm theo chiều ngược lại, và đọc một nút bấm. Code ở trên GitHub, link bên dưới. Hẹn gặp lại!"
  }

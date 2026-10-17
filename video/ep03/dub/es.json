@@ -3,7 +3,7 @@
  "rate": "+0%",
  "segments": {
   "s01": "Bienvenido de nuevo a ESP32 From Zero. La última vez, armamos nuestro primer circuito, y el LED se encendió.",
-  "s02": "Pero estaba siempre encendido. Hoy, nuestro código toma el control. Moveremos un cable, escribiremos un programa corto, y haremos parpadear el LED.",
+  "s02": "Pero siempre estaba encendido. Hoy manda el código. Movemos una pieza, escribimos un programa y el LED parpadea.",
   "s03": "Este es el circuito de la última vez. El 3V3 va a la resistencia, la resistencia va a la pata larga del LED, y la pata corta va a tierra.",
   "s04": "Antes de cambiar algo, respondamos una pregunta de la última vez. ¿Por qué exactamente 220 ohmios?",
   "s05": "La respuesta es la ley de Ohm. La corriente por una resistencia es igual al voltaje sobre ella, dividido por su resistencia.",
@@ -11,11 +11,11 @@
   "s07": "1,3 voltios entre 220 ohmios da unos 6 miliamperios. Suficiente para ver bien el LED, y muy por debajo de lo que da un pin GPIO.",
   "s08": "Sin la resistencia, nada limita la corriente, y el LED o el pin pueden quemarse. Una resistencia mayor hace el LED más tenue. Desde 220 ohmios hasta 1 kiloohmio, todo funciona.",
   "s09": "Ahora, el cambio. Primero, desconecta el cable USB. Nunca cambiamos cables con el circuito encendido.",
-  "s10": "El cable rojo va del pin 3V3 al riel positivo. Saca la punta del 3V3, y ponla en la columna del D23.",
+  "s10": "Saca el cable rojo por completo. Hoy no necesitamos el 3V3. Luego saca la pata de la resistencia del riel positivo y ponla en el agujero j16, la columna del D23.",
   "s11": "Ese es el GPIO 23, uno de los pines seguros de la última vez. En una placa de 38 pines, dice solo 23.",
-  "s12": "Ahora el LED recibe energía del GPIO 23. Vuelve a conectar el cable USB. El LED sigue apagado, porque nadie le dijo al pin que se encienda.",
+  "s12": "Ahora el LED recibe energía del GPIO 23, a través de la resistencia. Vuelve a conectar el cable USB. El LED sigue apagado, porque nadie le dijo al pin que se encienda.",
   "s13": "Ese es el trabajo de nuestro código. Abre el Arduino IDE, y empieza un sketch nuevo.",
-  "s14": "Primero, le damos un nombre al pin. Una constante llamada LED_PIN, con valor 23. Si movemos el cable otra vez, cambiamos solo esta línea.",
+  "s14": "Primero, le damos un nombre al pin. Una constante llamada LED_PIN, con valor 23. Si movemos el LED a otro pin, cambiamos solo esta línea.",
   "s15": "En setup, pinMode le dice al ESP32 cómo usaremos el pin. OUTPUT significa que nuestro código lo controla.",
   "s16": "Y, como la última vez, abrimos la conexión serial, para que la placa nos cuente qué hace.",
   "s17": "Ahora el loop. digitalWrite, LED_PIN, HIGH. HIGH pone 3,3 voltios en el pin, y el LED se enciende.",
@@ -29,7 +29,7 @@
   "s25": "Esto pasa en el pin. 3,3 voltios, luego cero, luego 3,3 otra vez. HIGH y LOW son solo nombres para esos dos voltajes.",
   "s26": "Ahora juega un poco. Cambia los dos delays a 100, y vuelve a cargar. El LED parpadea cinco veces por segundo.",
   "s27": "Prueba un encendido corto y un apagado largo, como un faro. Cambiar los números no rompe nada.",
-  "s28": "¿El LED no parpadea? Revisa que el cable rojo esté de verdad en la columna del D23, que el código diga 23, y que la pata larga mire a la resistencia. Si está siempre encendido, el cable quizá sigue en el 3V3.",
+  "s28": "¿El LED no parpadea? Revisa que la pata de la resistencia esté de verdad en la columna del D23, que el código diga 23, y que la pata larga mire a la resistencia. Si siempre está encendido, la resistencia sigue en el riel positivo.",
   "s29": "Hoy entendimos por qué está la resistencia, y usamos pinMode, digitalWrite y delay para hacer parpadear un LED.",
   "s30": "La próxima vez, haremos lo contrario, y leeremos un botón. El código está en GitHub, enlace abajo. ¡Nos vemos!"
  }

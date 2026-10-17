@@ -2,7 +2,7 @@
  "lang": "id",
  "segments": {
   "s01": "Selamat datang kembali di ESP32 From Zero. Terakhir kali, kita membuat rangkaian pertama, dan LED-nya menyala.",
-  "s02": "Tapi LED-nya selalu menyala. Hari ini, kode kita yang mengendalikan. Kita pindahkan satu kabel, tulis program pendek, dan buat LED berkedip.",
+  "s02": "Tapi LED-nya selalu menyala. Hari ini, kode kita yang mengendalikan. Kita pindahkan satu komponen, tulis program pendek, dan buat LED berkedip.",
   "s03": "Ini rangkaian dari terakhir kali. 3V3 ke resistor, resistor ke kaki panjang LED, dan kaki pendek ke ground.",
   "s04": "Sebelum mengubah apa pun, mari jawab pertanyaan dari terakhir kali. Kenapa tepat 220 Ω?",
   "s05": "Jawabannya hukum Ohm. Arus yang melewati resistor sama dengan tegangan di atasnya, dibagi hambatannya.",
@@ -10,11 +10,11 @@
   "s07": "1,3 volt dibagi 220 Ω, sekitar 6 miliampere. Cukup untuk melihat LED dengan jelas, dan jauh di bawah kemampuan pin GPIO.",
   "s08": "Tanpa resistor, tidak ada yang membatasi arus, dan LED atau pin bisa rusak. Resistor yang lebih besar membuat LED lebih redup. Dari 220 Ω sampai 1 kΩ, semuanya bisa.",
   "s09": "Sekarang, perubahannya. Pertama, cabut kabel USB. Kita tidak pernah mengubah rangkaian yang sedang menyala.",
-  "s10": "Kabel merah berjalan dari pin 3V3 ke rel plus. Cabut ujung di 3V3, dan colokkan ke kolom D23.",
+  "s10": "Cabut kabel merah sepenuhnya. Hari ini kita tidak butuh 3V3. Lalu tarik kaki resistor dari rel plus, dan colokkan ke lubang j16, kolom D23.",
   "s11": "Itu GPIO 23, salah satu pin aman dari terakhir kali. Di papan 38 pin, labelnya hanya \"23\".",
-  "s12": "Sekarang LED mendapat daya dari GPIO 23. Colokkan lagi kabel USB. LED tetap mati, karena belum ada yang menyuruh pin itu menyala.",
+  "s12": "Sekarang LED mendapat daya dari GPIO 23, lewat resistor. Colokkan lagi kabel USB. LED tetap mati, karena belum ada yang menyuruh pin itu menyala.",
   "s13": "Itulah tugas kode kita. Buka Arduino IDE, dan mulai sketch baru.",
-  "s14": "Pertama, kita beri nama pin itu. Konstanta bernama LED_PIN, bernilai 23. Kalau kabelnya dipindah lagi, kita cukup mengubah satu baris ini.",
+  "s14": "Pertama, kita beri nama pin itu. Konstanta bernama LED_PIN, bernilai 23. Kalau LED dipindah ke pin lain, kita cukup mengubah satu baris ini.",
   "s15": "Di setup, pinMode memberi tahu ESP32 bagaimana pin ini dipakai. OUTPUT berarti kode kita yang mengendalikannya.",
   "s16": "Dan seperti sebelumnya, kita buka koneksi serial, supaya papan bisa memberi tahu apa yang sedang dilakukan.",
   "s17": "Sekarang loop. digitalWrite(LED_PIN, HIGH). HIGH memberi 3,3 volt ke pin, dan LED menyala.",
@@ -28,7 +28,7 @@
   "s25": "Ini yang terjadi di pin. 3,3 volt, lalu 0, lalu 3,3 lagi. HIGH dan LOW hanyalah nama untuk dua tegangan itu.",
   "s26": "Sekarang bereksperimenlah. Ubah kedua delay menjadi 100, lalu upload lagi. LED berkedip lima kali per detik.",
   "s27": "Coba nyala singkat dan mati lama, seperti mercusuar. Mengubah angka tidak akan merusak apa pun.",
-  "s28": "LED tidak berkedip? Pastikan kabel merah benar-benar di kolom D23, kodenya menulis 23, dan kaki panjang menghadap resistor. Kalau selalu menyala, kabelnya mungkin masih di 3V3.",
+  "s28": "LED tidak berkedip? Pastikan kaki resistor benar-benar di kolom D23, kodenya menulis 23, dan kaki panjang menghadap resistor. Kalau selalu menyala, resistornya mungkin masih di rel plus.",
   "s29": "Hari ini kita belajar kenapa resistor itu ada, dan memakai pinMode, digitalWrite, dan delay untuk mengedipkan LED.",
   "s30": "Lain kali, kita lakukan arah sebaliknya, dan membaca tombol. Kodenya ada di GitHub, tautannya di bawah. Sampai jumpa!"
  }

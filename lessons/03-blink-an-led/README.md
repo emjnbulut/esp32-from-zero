@@ -1,9 +1,9 @@
 # Episode 3 — Your First Circuit: Blink an LED
 
-Last time the LED was always on, powered from the `3V3` pin. Today we move **one wire** to a GPIO pin
+Last time the LED was always on, powered from the `3V3` pin. Today we move **the resistor** to a GPIO pin
 and let our program switch the LED on and off.
 
-**You need:** the circuit from episode 2 (board on the breadboard, 220 Ω resistor, LED, 3 jumper wires).
+**You need:** the circuit from episode 2 (board on the breadboard, 220 Ω resistor, LED; 2 jumper wires — the black ones — are enough now).
 
 ## 1. Why 220 Ω? (Ohm's law, simply)
 
@@ -16,15 +16,16 @@ and let our program switch the LED on and off.
 Without a resistor nothing limits the current and the LED (or the pin) can burn out.
 A bigger resistor makes the LED dimmer: anything from **220 Ω to 1 kΩ** is fine.
 
-## 2. Move one wire
+## 2. Move the resistor
 
 1. **Unplug the USB cable** — never rewire a powered circuit.
-2. The red wire goes from the `3V3` pin to the **+** rail. Move its pin-side end from the `3V3` column
-   to the column of **`D23`** (GPIO 23). On 38-pin boards the label is just **`23`**.
-3. Plug the USB cable back in. The LED stays dark — nothing has turned the pin on yet.
+2. Take the **red wire** out completely — we don't need `3V3` today.
+3. Move the resistor's leg from the **+** rail into hole **`j16`**, the column of **`D23`** (GPIO 23).
+   On 38-pin boards the column is labeled just **`23`**.
+4. Plug the USB cable back in. The LED stays dark — nothing has turned the pin on yet.
 
 ```
-GPIO 23 ──► + rail ──► 220 Ω ──► LED (long leg … short leg) ──► − rail ──► GND
+GPIO 23 ──► 220 Ω ──► LED (long leg … short leg) ──► − rail ──► GND
 ```
 
 GPIO 23 is one of the **safe** pins from episode 2 (4, 13, 14, 16–19, 21–23, 25–27, 32, 33).
@@ -71,9 +72,9 @@ On the pin this makes a **square wave**: 3.3 V for 500 ms, 0 V for 500 ms, forev
 
 ## Not blinking?
 
-- Is the red wire really in the **D23** column (and the code says `23`)?
+- Is the resistor's leg really in the **D23** column (and the code says `23`)?
 - Is the LED's **long leg** on the resistor side?
-- LED **always on**? The wire is probably still on `3V3`.
+- LED **always on**? The resistor is probably still in the **+** rail.
 - Upload fails at `Connecting...`? Hold **BOOT** while it connects.
 
 **Next episode:** the other direction — reading a button with `digitalRead`.
