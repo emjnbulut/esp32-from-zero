@@ -1,0 +1,61 @@
+{
+ "voice": "en-US-EricNeural",
+ "rate": "+5%",
+ "segments": [
+  {
+   "id": "t1",
+   "kicker": "ESP32 From Zero",
+   "headline": "Code that controls the real world",
+   "say": "Want to make real electronics do what your code says? This is ESP32 From Zero.",
+   "shots": [
+    {"ep": "ep03", "at": ["s25", "Here's", 0.6]},
+    {"ep": "ep04", "at": ["s50", "In", 0.0]}
+   ]
+  },
+  {
+   "id": "t2",
+   "kicker": "Episode 1",
+   "headline": "Start from zero",
+   "say": "If you know a little C, you're ready. We start at zero: installing the tools, and your very first upload.",
+   "shots": [
+    {"ep": "ep01", "at": ["s47", "Writing", 0.0]},
+    {"ep": "ep01", "at": ["s50", "there", 0.0]}
+   ]
+  },
+  {
+   "id": "t3",
+   "kicker": "Episodes 2-4",
+   "headline": "Real circuits, step by step",
+   "say": "Then we build real circuits on a breadboard, step by step, and learn why every part is there.",
+   "shots": [
+    {"ep": "ep02", "at": ["s19", "green", 0.0]},
+    {"ep": "ep03", "at": ["s07", "divided", 0.0]},
+    {"ep": "ep04", "at": ["s09", "connected", 0.0]}
+   ]
+  },
+  {
+   "id": "t4",
+   "kicker": "Arduino IDE",
+   "headline": "The code, line by line",
+   "say": "We write the code together, line by line, and upload it to the board.",
+   "shots": [
+    {"ep": "ep04", "at": ["s20", "digital", 0.0]},
+    {"ep": "ep04", "at": ["s32", "wait", 0.0]}
+   ]
+  },
+  {
+   "id": "t5",
+   "kicker": "Coming up",
+   "headline": "What you'll build",
+   "say": "Buttons and timers, dimming and colors, sensors, a little screen, WiFi, and a web page on your phone.",
+   "card": "topics"
+  },
+  {
+   "id": "t6",
+   "kicker": "Pin by Pin Lab",
+   "headline": "Start with episode 1",
+   "say": "All the code is on GitHub. Subscribe, and start with episode one.",
+   "card": "end"
+  }
+ ]
+}
