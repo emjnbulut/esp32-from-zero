@@ -4,8 +4,9 @@ Usage: python tools/short.py video/shorts/ep01 en
 Output: video/shorts/ep01/build/<lang>/<episode>_short_<lang>.mp4
 
 short.json lists narration segments; each has text per language ("say" is spoken,
-"show" is the on-screen caption), a headline, and shots: moments of the rendered
-episode video ("src" seconds, optional "speed") cropped to a region [x, y, w, h].
+"show" is the on-screen caption), a headline, and shots. Only "say" is needed per
+language; on-screen text (show, headline, chip, cta) falls back to English.
+Shots are moments of the rendered episode video ("src" seconds, optional "speed") cropped to a region [x, y, w, h].
 """
 import asyncio
 import json
@@ -21,8 +22,14 @@ SR = 48000
 FPS = 30
 PANEL = {"x": 70, "y": 380, "w": 940, "h": 940}
 LEAD, GAP, TAIL = 0.35, 0.3, 2.4
-VOICES = {"en": ("en-US-EricNeural", "+5%"), "tr": ("de-DE-FlorianMultilingualNeural", "+0%"),
-          "hi": ("hi-IN-MadhurNeural", "+0%"), "pt": ("pt-BR-AntonioNeural", "+0%")}
+VOICES = {"en": ("en-US-EricNeural", "+5%"), "tr": ("tr-TR-EmelNeural", "+0%"),
+          "hi": ("hi-IN-MadhurNeural", "+10%"), "pt": ("pt-BR-AntonioNeural", "+0%")}
+
+
+def loc(v, lang):
+    """A text that is either one string for every language or {lang: text}.
+    On-screen text may stay English: only "say" must exist per language, the rest falls back to en."""
+    return v.get(lang, v["en"]) if isinstance(v, dict) else v
 
 
 def run(cmd, **kw):
@@ -68,7 +75,7 @@ def main(sdir: Path, lang: str):
         mp3 = out / f"{s['id']}.mp3"
         spoken = asyncio.run(narrate(s["say"][lang], voice, rate, mp3))
         dur = probe(mp3)
-        shown = s["show"][lang].split()
+        shown = loc(s["show"], lang).split()
         # map on-screen words onto spoken word times (they can differ, e.g. "C P 2102" vs "CP2102")
         words = [{"w": w, "t": round(t + spoken[min(len(spoken) - 1, int(j * len(spoken) / len(shown)))], 3)}
                  for j, w in enumerate(shown)] if spoken else []
@@ -77,8 +84,8 @@ def main(sdir: Path, lang: str):
     duration = round(t - GAP + TAIL, 3)
     ids = [s["id"] for s in spec["segments"]]
     data = {"schedule": {"duration": duration, "segments": sched}, "panel": PANEL, "lang": lang,
-            "segs": [{"id": s["id"], "chip": s["chip"], "headline": s["headline"][lang]} for s in spec["segments"]],
-            "cta": {"title": spec["cta"][lang], "sub": spec["cta"].get("sub", "")}}
+            "segs": [{"id": s["id"], "chip": loc(s["chip"], lang), "headline": loc(s["headline"], lang)} for s in spec["segments"]],
+            "cta": {"title": loc(spec["cta"], lang), "sub": loc(spec["cta"].get("sub", ""), lang)}}
     data_txt = json.dumps(data, ensure_ascii=False, indent=1)
     same = (out / "data.json").exists() and (out / "data.json").read_text(encoding="utf-8") == data_txt
     (out / "data.json").write_text(data_txt, encoding="utf-8")

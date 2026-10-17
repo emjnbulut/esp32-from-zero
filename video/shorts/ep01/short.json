@@ -3,20 +3,37 @@
  "source": "video/ep01/build/video.mp4",
  "cta": {
   "en": "Full tutorial",
-  "sub": "linked below this video"
+  "sub": {
+   "en": "linked below this video",
+   "tr": "bu videonun altında",
+   "hi": "इस video के नीचे link है",
+   "pt": "link abaixo deste vídeo"
+  },
+  "tr": "Tam ders",
+  "hi": "पूरा tutorial",
+  "pt": "Tutorial completo"
  },
  "segments": [
   {
    "id": "h1",
    "chip": "ESP32 FROM ZERO",
    "headline": {
-    "en": "Your first ESP32 program"
+    "en": "Your first ESP32 program",
+    "tr": "İlk ESP32 programın",
+    "hi": "आपका पहला ESP32 program",
+    "pt": "Seu primeiro programa no ESP32"
    },
    "say": {
-    "en": "Want to run your first program on an ESP32? Here's the whole setup, in under a minute."
+    "en": "Want to run your first program on an ESP32? Here's the whole setup, in under a minute.",
+    "tr": "İlk programını bir E Se Pe otuz iki üzerinde çalıştırmak ister misin? İşte tüm kurulum, bir dakikadan kısa sürede.",
+    "hi": "क्या आप ESP32 पर अपना पहला program चलाना चाहते हैं? पूरा setup, एक मिनट से भी कम में।",
+    "pt": "Quer rodar seu primeiro programa num ESP32? Aqui está toda a configuração, em menos de um minuto."
    },
    "show": {
-    "en": "Want to run your first program on an ESP32? Here's the whole setup, in under a minute."
+    "en": "Want to run your first program on an ESP32? Here's the whole setup, in under a minute.",
+    "tr": "İlk programını bir ESP32 üzerinde çalıştırmak ister misin? İşte tüm kurulum, bir dakikadan kısa sürede.",
+    "hi": "क्या आप ESP32 पर अपना पहला program चलाना चाहते हैं? पूरा setup, एक मिनट से भी कम में।",
+    "pt": "Quer rodar seu primeiro programa num ESP32? Aqui está toda a configuração, em menos de um minuto."
    },
    "shots": [
     {
@@ -32,15 +49,29 @@
   },
   {
    "id": "h2",
-   "chip": "STEP 1",
+   "chip": {
+    "en": "STEP 1",
+    "tr": "ADIM 1",
+    "hi": "STEP 1",
+    "pt": "PASSO 1"
+   },
    "headline": {
-    "en": "Install the Arduino IDE"
+    "en": "Install the Arduino IDE",
+    "tr": "Arduino IDE'yi kur",
+    "hi": "Arduino IDE install करें",
+    "pt": "Instale o Arduino IDE"
    },
    "say": {
-    "en": "Step one: download the free Arduino IDE, from arduino dot cc."
+    "en": "Step one: download the free Arduino IDE, from arduino dot cc.",
+    "tr": "Birinci adım: ücretsiz Arduino programını, arduino nokta ce ce adresinden indir.",
+    "hi": "पहला step: मुफ़्त Arduino IDE, arduino dot cc से download करें।",
+    "pt": "Passo um: baixe o Arduino IDE gratuito, em arduino ponto cc."
    },
    "show": {
-    "en": "Step one: download the free Arduino IDE, from arduino.cc."
+    "en": "Step one: download the free Arduino IDE, from arduino.cc.",
+    "tr": "Birinci adım: ücretsiz Arduino IDE'yi arduino.cc adresinden indir.",
+    "hi": "पहला step: मुफ़्त Arduino IDE, arduino.cc से download करें।",
+    "pt": "Passo um: baixe o Arduino IDE gratuito, em arduino.cc."
    },
    "shots": [
     {
@@ -57,15 +88,29 @@
   },
   {
    "id": "h3",
-   "chip": "STEP 2",
+   "chip": {
+    "en": "STEP 2",
+    "tr": "ADIM 2",
+    "hi": "STEP 2",
+    "pt": "PASSO 2"
+   },
    "headline": {
-    "en": "Add ESP32 support"
+    "en": "Add ESP32 support",
+    "tr": "ESP32 desteğini ekle",
+    "hi": "ESP32 support जोड़ें",
+    "pt": "Adicione o suporte ao ESP32"
    },
    "say": {
-    "en": "Step two: paste Espressif's board URL into Preferences, then install esp32 from the Boards Manager."
+    "en": "Step two: paste Espressif's board URL into Preferences, then install esp32 from the Boards Manager.",
+    "tr": "İkinci adım: Espressif'in kart adresini ayarlara yapıştır, sonra kart yöneticisinden E Se Pe otuz iki paketini kur.",
+    "hi": "दूसरा step: Espressif का board URL, Preferences में paste करें, फिर Boards Manager से esp32 install करें।",
+    "pt": "Passo dois: cole a URL de placas da Espressif nas Preferências, e instale o esp32 pelo Gerenciador de Placas."
    },
    "show": {
-    "en": "Step two: paste Espressif's board URL into Preferences, then install esp32 from the Boards Manager."
+    "en": "Step two: paste Espressif's board URL into Preferences, then install esp32 from the Boards Manager.",
+    "tr": "İkinci adım: Espressif'in kart URL'sini Preferences'a yapıştır, sonra Boards Manager'dan esp32'yi kur.",
+    "hi": "दूसरा step: Espressif का board URL, Preferences में paste करें, फिर Boards Manager से esp32 install करें।",
+    "pt": "Passo dois: cole a URL de placas da Espressif em Preferences, e instale o esp32 pelo Boards Manager."
    },
    "shots": [
     {
@@ -91,15 +136,29 @@
   },
   {
    "id": "h4",
-   "chip": "STEP 3",
+   "chip": {
+    "en": "STEP 3",
+    "tr": "ADIM 3",
+    "hi": "STEP 3",
+    "pt": "PASSO 3"
+   },
    "headline": {
-    "en": "Connect + USB driver"
+    "en": "Connect + USB driver",
+    "tr": "Bağla + USB sürücüsü",
+    "hi": "Connect + USB driver",
+    "pt": "Conecte + driver USB"
    },
    "say": {
-    "en": "Step three: plug in your board. If Windows can't see it, install the C P 2102, or C H 340 driver."
+    "en": "Step three: plug in your board. If Windows can't see it, install the C P 2102, or C H 340 driver.",
+    "tr": "Üçüncü adım: kartını tak. Vindovs onu görmüyorsa, Ce Pe yirmi bir sıfır iki, ya da Ce Ha üç yüz kırk sürücüsünü kur.",
+    "hi": "तीसरा step: अपना board लगाइए। अगर Windows उसे नहीं देखता, तो C P 2102, या C H 340 driver install करें।",
+    "pt": "Passo três: conecte sua placa. Se o Windows não a reconhecer, instale o driver C P 2102, ou C H 340."
    },
    "show": {
-    "en": "Step three: plug in your board. If Windows can't see it, install the CP2102 or CH340 driver."
+    "en": "Step three: plug in your board. If Windows can't see it, install the CP2102 or CH340 driver.",
+    "tr": "Üçüncü adım: kartını tak. Windows görmüyorsa CP2102 ya da CH340 sürücüsünü kur.",
+    "hi": "तीसरा step: अपना board लगाइए। अगर Windows उसे नहीं देखता, तो CP2102 या CH340 driver install करें।",
+    "pt": "Passo três: conecte sua placa. Se o Windows não a reconhecer, instale o driver CP2102 ou CH340."
    },
    "shots": [
     {
@@ -124,15 +183,29 @@
   },
   {
    "id": "h5",
-   "chip": "STEP 4",
+   "chip": {
+    "en": "STEP 4",
+    "tr": "ADIM 4",
+    "hi": "STEP 4",
+    "pt": "PASSO 4"
+   },
    "headline": {
-    "en": "Pick board + port"
+    "en": "Pick board + port",
+    "tr": "Kart + port seç",
+    "hi": "Board + port चुनें",
+    "pt": "Escolha placa + porta"
    },
    "say": {
-    "en": "Then select ESP32 Dev Module, and your COM port."
+    "en": "Then select ESP32 Dev Module, and your COM port.",
+    "tr": "Sonra E Se Pe otuz iki Dev Modül kartını ve Kom portunu seç.",
+    "hi": "फिर ESP32 Dev Module, और अपना COM port चुनें।",
+    "pt": "Depois selecione ESP32 Dev Module, e a sua porta COM."
    },
    "show": {
-    "en": "Then select ESP32 Dev Module, and your COM port."
+    "en": "Then select ESP32 Dev Module, and your COM port.",
+    "tr": "Sonra ESP32 Dev Module kartını ve COM portunu seç.",
+    "hi": "फिर ESP32 Dev Module, और अपना COM port चुनें।",
+    "pt": "Depois selecione ESP32 Dev Module, e a sua porta COM."
    },
    "shots": [
     {
@@ -149,15 +222,29 @@
   },
   {
    "id": "h6",
-   "chip": "STEP 5",
+   "chip": {
+    "en": "STEP 5",
+    "tr": "ADIM 5",
+    "hi": "STEP 5",
+    "pt": "PASSO 5"
+   },
    "headline": {
-    "en": "Code + Upload"
+    "en": "Code + Upload",
+    "tr": "Kod + Yükle",
+    "hi": "Code + Upload",
+    "pt": "Código + Upload"
    },
    "say": {
-    "en": "Step five: write a few lines of C, and hit Upload."
+    "en": "Step five: write a few lines of C, and hit Upload.",
+    "tr": "Beşinci adım: birkaç satır Ce kodu yaz ve Aplod butonuna bas.",
+    "hi": "पाँचवाँ step: C की कुछ lines लिखें, और Upload दबाएँ।",
+    "pt": "Passo cinco: escreva algumas linhas em C, e clique em Upload."
    },
    "show": {
-    "en": "Step five: write a few lines of C, and hit Upload."
+    "en": "Step five: write a few lines of C, and hit Upload.",
+    "tr": "Beşinci adım: birkaç satır C yaz ve Upload'a bas.",
+    "hi": "पाँचवाँ step: C की कुछ lines लिखें, और Upload दबाएँ।",
+    "pt": "Passo cinco: escreva algumas linhas em C, e clique em Upload."
    },
    "shots": [
     {
@@ -184,15 +271,29 @@
   },
   {
    "id": "h7",
-   "chip": "RESULT",
+   "chip": {
+    "en": "RESULT",
+    "tr": "SONUÇ",
+    "hi": "RESULT",
+    "pt": "RESULTADO"
+   },
    "headline": {
-    "en": "It works!"
+    "en": "It works!",
+    "tr": "Çalışıyor!",
+    "hi": "चल गया!",
+    "pt": "Funcionou!"
    },
    "say": {
-    "en": "And just like that, your ESP32 is talking to you!"
+    "en": "And just like that, your ESP32 is talking to you!",
+    "tr": "Ve işte bu kadar, E Se Pe otuz iki artık seninle konuşuyor!",
+    "hi": "और बस इतना ही, आपका ESP32 अब आपसे बात कर रहा है!",
+    "pt": "E pronto, seu ESP32 já está falando com você!"
    },
    "show": {
-    "en": "And just like that, your ESP32 is talking to you!"
+    "en": "And just like that, your ESP32 is talking to you!",
+    "tr": "Ve işte bu kadar, ESP32 artık seninle konuşuyor!",
+    "hi": "और बस इतना ही, आपका ESP32 अब आपसे बात कर रहा है!",
+    "pt": "E pronto, seu ESP32 já está falando com você!"
    },
    "shots": [
     {
@@ -208,15 +309,29 @@
   },
   {
    "id": "h8",
-   "chip": "EPISODE 1",
+   "chip": {
+    "en": "EPISODE 1",
+    "tr": "BÖLÜM 1",
+    "hi": "EPISODE 1",
+    "pt": "EPISÓDIO 1"
+   },
    "headline": {
-    "en": "Watch the full tutorial"
+    "en": "Watch the full tutorial",
+    "tr": "Tam dersi izle",
+    "hi": "पूरा tutorial देखें",
+    "pt": "Assista ao tutorial completo"
    },
    "say": {
-    "en": "The full step-by-step tutorial is linked below. Subscribe for episode two!"
+    "en": "The full step-by-step tutorial is linked below. Subscribe for episode two!",
+    "tr": "Adım adım tam ders aşağıda. İkinci bölüm için abone olmayı unutma!",
+    "hi": "पूरा step-by-step tutorial नीचे link में है। Episode दो के लिए subscribe करें!",
+    "pt": "O tutorial completo, passo a passo, está no link abaixo. Inscreva-se para o episódio dois!"
    },
    "show": {
-    "en": "The full step-by-step tutorial is linked below. Subscribe for episode two!"
+    "en": "The full step-by-step tutorial is linked below. Subscribe for episode two!",
+    "tr": "Adım adım tam ders aşağıda. İkinci bölüm için abone ol!",
+    "hi": "पूरा step-by-step tutorial नीचे link में है। Episode 2 के लिए subscribe करें!",
+    "pt": "O tutorial completo, passo a passo, está no link abaixo. Inscreva-se para o episódio 2!"
    },
    "shots": [
     {

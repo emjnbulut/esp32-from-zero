@@ -1,5 +1,5 @@
 {
- "voice": "de-DE-FlorianMultilingualNeural",
+ "voice": "tr-TR-EmelNeural",
  "rate": "+0%",
  "note": "Spoken text only. English terms are written the way a Turkish speaker says them, so the multilingual voice never switches language.",
  "segments": {
@@ -37,7 +37,7 @@
   "s32": "Ama sarı uyarı işaretli bilinmeyen bir aygıt varsa, ya da bağlantı noktaları bölümü hiç yoksa, sürücü kurmamız gerekiyor.",
   "s33": "Ce Pe iki bir sıfır iki için Silikon Labs firmasının sürücüsünü, Ce Ha üç dört sıfır için de Ve Ce Ha firmasının sürücüsünü indirin. İki link de açıklamada.",
   "s34": "Şimdi kurulum dosyasını çalıştırın. Sonra kartı çıkarıp tekrar takın ve listeye yeniden bakın. Artık kom portunuz görünmeli.",
-  "s35": "Tekrar Arduino programına dönüyoruz. Kart seçme menüsünü açın ve listenin en altındaki seçeneğe tıklayın.",
+  "s35": "Arduino programına dönün. Kart menüsünü açıp en alttaki seçeneğe tıklayın.",
   "s36": "Arama kutusuna E Se Pe otuz iki dev modül yazın. Bu seçenek çoğu kartta çalışır. Sağ tarafta kom portunuzu seçin ve okey butonuna tıklayın.",
   "s37": "Bakın, sağ alt köşede artık kartımızın adı ve kom üç yazıyor. Hazırlıklar tamamlandı!",
   "s38": "Şimdi eğlenceli kısım: ilk programımız. Editördekileri silin ve benimle birlikte yazın.",
@@ -46,7 +46,7 @@
   "s41": "Sonra bin milisaniye, yani bir saniye bekliyoruz ki ilk mesajı kaçırmayalım. Siriyal nokta print layn ise bir satır yazdırır: Helo, E Se Pe otuz iki!",
   "s42": "Sonra luup içinde sekınds değişkenine bir ekleyip, tıpkı Ce dilindeki print ef gibi çalışan fonksiyonla yazdırıyoruz. Sonra bir saniye bekliyoruz ve döngü yeniden çalışıyor.",
   "s43": "Kaydetmek için kontrol ve es tuşlarına basın ve skeçe, helo alt çizgi E Se Pe otuz iki adını verin.",
-  "s44": "Şimdi heyecanlı an geldi. Yükleme okuna, yani aplod butonuna tıklayın.",
+  "s44": "İşte heyecanlı an. Aplod okuna tıklayın.",
   "s45": "Önce derler. İlk sefer yavaştır, sabırlı olun. Sonra konekting yazısı ve ardından noktalar göreceksiniz.",
   "s46": "Bazı kartlarda noktalar, yükleme başarısız olana kadar devam eder. Böyle olursa, bağlanmaya çalışırken but butonuna basılı tutun, yüzdeler başlayınca bırakın.",
   "s47": "Yazılıyor. Yüzde yüz. Ve kart yeniden başlıyor. Programımız artık kartın içinde yaşıyor!",

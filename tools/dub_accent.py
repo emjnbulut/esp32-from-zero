@@ -4,6 +4,10 @@ Every narrated segment is cut into short overlapping windows and Whisper's
 language identification runs on each one. A window that is not clearly the
 target language is where a listener hears a "foreign voice".
 
+Only useful for multilingual voices (e.g. Florian reading Turkish), which can
+switch voice mid-sentence. With a native voice (tr-TR-EmelNeural, hi-IN-Madhur)
+it mostly flags technical terms like "Arduino" or "USB" - ignore those.
+
 Usage: python tools/dub_accent.py video/ep01 tr [--threshold 0.6]
 """
 import json
