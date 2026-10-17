@@ -7,8 +7,8 @@ Two curriculum topics in one episode (user 2026-10-17), target 10-15 min.
       sketches in `lessons/04-buttons-and-millis/code/` (button_led, button_toggle, blink_button, two_leds, challenge_speed — all compile)
 - [x] 2. Scenes `video/ep04/ep04.js` (index.html done) + review stills
 - [x] 3. Lesson README `lessons/04-buttons-and-millis/README.md`
-- [ ] 4. Dub texts `dub/{tr,hi,pt,es}.json` (make_dubs.py), subtitle texts `subs/{id,ar,ru,de,fr,vi,ja}.json` (make_subs.py), make_localize.py (localize.json + youtube.md done)
-- [ ] 5. Preview render + frame review; Short spec `video/shorts/ep04/short.json`
+- [x] 4. Dub texts `dub/{tr,hi,pt,es}.json` (make_dubs.py), subtitle texts `subs/{id,ar,ru,de,fr,vi,ja}.json` (make_subs.py), make_localize.py (localize.json + youtube.md done)
+- [ ] 5. Preview render + frame review (render running); Short spec `video/shorts/ep04/short.json` written, crops to check
 - ON HOLD until Chatterbox (2026-10-18): final narration, render, audio/subs/compose, dubs (see tools/CHATTERBOX.md)
 
 ## Notes

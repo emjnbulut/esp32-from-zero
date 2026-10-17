@@ -1,0 +1,255 @@
+{
+ "episode": "ep04",
+ "source": "video/ep04/build/video.mp4",
+ "schedule": "video/ep04/build/schedule.json",
+ "cta": {
+  "en": "Full episode",
+  "sub": "linked below this video"
+ },
+ "segments": [
+  {
+   "id": "h1",
+   "chip": "ESP32 FROM ZERO",
+   "headline": {
+    "en": "Read a button"
+   },
+   "say": {
+    "en": "Here's how an ESP32 reads a button, and why one press sometimes counts three times.",
+    "tr": "Bir E Se Pe otuz iki butonu nasıl okur, ve tek basış neden bazen üç kez sayılır, görelim."
+   },
+   "show": {
+    "en": "Here's how an ESP32 reads a button, and why one press sometimes counts three times."
+   },
+   "shots": [
+    {
+     "at": [
+      "s09",
+      "connected",
+      0.0
+     ],
+     "crop": [
+      880,
+      300,
+      900,
+      700
+     ]
+    }
+   ]
+  },
+  {
+   "id": "h2",
+   "chip": "WIRING",
+   "headline": {
+    "en": "GPIO 22 → button → GND"
+   },
+   "say": {
+    "en": "Put the button across the middle gap. One side goes to GPIO twenty-two, the other to ground.",
+    "tr": "Butonu ortadaki boşluğun üzerine takın. Bir tarafı Ge Pe I O yirmi ikiye, diğeri toprağa gider."
+   },
+   "show": {
+    "en": "Put the button across the middle gap. One side goes to GPIO 22, the other to ground."
+   },
+   "shots": [
+    {
+     "at": [
+      "s08",
+      "yellow",
+      -0.3
+     ],
+     "crop": [
+      880,
+      300,
+      900,
+      700
+     ]
+    }
+   ]
+  },
+  {
+   "id": "h3",
+   "chip": "FLOATING",
+   "headline": {
+    "en": "Not pressed? Floating!"
+   },
+   "say": {
+    "en": "But when it's not pressed, the pin is connected to nothing, and reads random values.",
+    "tr": "Ama basılı değilken pin hiçbir şeye bağlı değildir ve rastgele değerler okur."
+   },
+   "show": {
+    "en": "But when it's not pressed, the pin is connected to nothing, and reads random values."
+   },
+   "shots": [
+    {
+     "at": [
+      "s11",
+      "floating",
+      0.0
+     ],
+     "crop": [
+      160,
+      180,
+      1000,
+      800
+     ],
+     "pan": 800
+    }
+   ]
+  },
+  {
+   "id": "h4",
+   "chip": "PULL-UP",
+   "headline": {
+    "en": "INPUT_PULLUP"
+   },
+   "say": {
+    "en": "The fix is a pull-up resistor, and the ESP32 has one built in. Just use pin mode INPUT pull up.",
+    "tr": "Çözüm bir pull-up direnci, ve E Se Pe otuz ikinin içinde zaten var. Sadece pin mod INPUT pull up kullanın."
+   },
+   "show": {
+    "en": "The fix is a pull-up resistor, and the ESP32 has one built in. Just use pinMode INPUT_PULLUP."
+   },
+   "shots": [
+    {
+     "at": [
+      "s15",
+      "built",
+      0.0
+     ],
+     "crop": [
+      100,
+      180,
+      1000,
+      800
+     ],
+     "pan": 800
+    },
+    {
+     "at": [
+      "s18",
+      "means",
+      0.0
+     ],
+     "crop": [
+      200,
+      380,
+      1100,
+      420
+     ]
+    }
+   ]
+  },
+  {
+   "id": "h5",
+   "chip": "BOUNCE",
+   "headline": {
+    "en": "1 press → 3 presses?!"
+   },
+   "say": {
+    "en": "Then the surprise: one press can count as three. Metal contacts bounce. Waiting fifty milliseconds fixes it.",
+    "tr": "Sonra sürpriz: tek basış üç sayılabilir. Metal kontaklar seker. Elli milisaniye beklemek bunu çözer."
+   },
+   "show": {
+    "en": "Then the surprise: one press can count as three. Metal contacts bounce. Waiting 50 ms fixes it."
+   },
+   "shots": [
+    {
+     "at": [
+      "s30",
+      "Press",
+      0.2
+     ],
+     "crop": [
+      1080,
+      180,
+      800,
+      420
+     ]
+    },
+    {
+     "at": [
+      "s32",
+      "wait",
+      0.0
+     ],
+     "crop": [
+      1080,
+      600,
+      800,
+      420
+     ]
+    }
+   ]
+  },
+  {
+   "id": "h6",
+   "chip": "MILLIS",
+   "headline": {
+    "en": "Don't wait: check the clock"
+   },
+   "say": {
+    "en": "And to blink and read the button at the same time, never use delay. Check millis instead.",
+    "tr": "Aynı anda hem yakıp söndürmek hem butonu okumak için delay kullanmayın. Onun yerine millis'e bakın."
+   },
+   "show": {
+    "en": "And to blink and read the button at the same time, never use delay(). Check millis() instead."
+   },
+   "shots": [
+    {
+     "at": [
+      "s35",
+      "freezes",
+      0.0
+     ],
+     "crop": [
+      1020,
+      150,
+      880,
+      560
+     ]
+    },
+    {
+     "at": [
+      "s40",
+      "passed",
+      0.0
+     ],
+     "crop": [
+      80,
+      160,
+      1120,
+      680
+     ]
+    }
+   ]
+  },
+  {
+   "id": "h7",
+   "chip": "EPISODE 4",
+   "headline": {
+    "en": "Watch the full episode"
+   },
+   "say": {
+    "en": "Two LEDs, one button, and nothing ever waits. The full episode is linked below!",
+    "tr": "İki led, bir buton ve hiçbir şey beklemiyor. Bölümün tamamı aşağıda!"
+   },
+   "show": {
+    "en": "Two LEDs, one button, and nothing ever waits. The full episode is linked below!"
+   },
+   "shots": [
+    {
+     "at": [
+      "s51",
+      "both",
+      0.0
+     ],
+     "crop": [
+      1150,
+      180,
+      720,
+      600
+     ]
+    }
+   ]
+  }
+ ]
+}
