@@ -211,11 +211,11 @@
     "en": "Watch the full episode"
    },
    "say": {
-    "en": "The full episode is linked below. Next time, we blink it from code. Until then, remember:",
-    "tr": "Bölümün tamamı aşağıda. Gelecek sefer ledi kodla yakıp söndüreceğiz. O zamana kadar unutmayın:"
+    "en": "The full episode is linked below. Next time, we blink it from code!",
+    "tr": "Bölümün tamamı aşağıda. Gelecek sefer ledi kodla yakıp söndüreceğiz!"
    },
    "show": {
-    "en": "The full episode is linked below. Next time, we blink it from code. Until then, remember:"
+    "en": "The full episode is linked below. Next time, we blink it from code!"
    },
    "shots": [
     {
@@ -230,6 +230,5 @@
     }
    ]
   }
- ],
- "loop": true
+ ]
 }
