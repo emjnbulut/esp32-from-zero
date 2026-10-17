@@ -17,6 +17,9 @@ from pathlib import Path
 
 import numpy as np
 
+sys.path.insert(0, str(Path(__file__).parent))
+import music  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
 SR = 48000
 
@@ -66,15 +69,7 @@ def audio(ep: Path):
         a = decode(ep / "build" / "audio" / f"{sid}.mp3")
         i = int(s["start"] * SR)
         buf[i:i + len(a)] += a
-    music = ROOT / "video" / "assets" / "music.wav"
-    if music.exists():
-        m = decode(music)
-        reps = int(np.ceil(len(buf) / len(m)))
-        m = np.tile(m, reps)[: len(buf)] * 0.07
-        fade = int(3 * SR)
-        m[:fade] *= np.linspace(0, 1, fade)
-        m[-fade:] *= np.linspace(1, 0, fade)
-        buf += m
+    buf = music.mix(buf, SR, decode, level=0.10)
     peak = np.max(np.abs(buf)) or 1
     buf = buf / peak * 0.89
     pcm = (buf * 32767).astype(np.int16)

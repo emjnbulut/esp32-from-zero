@@ -20,6 +20,9 @@ from pathlib import Path
 import edge_tts
 import numpy as np
 
+sys.path.insert(0, str(Path(__file__).parent))
+import music  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
 SR = 48000
 MAX_SPEEDUP = 1.18   # beyond this the translation should be shortened
@@ -100,14 +103,7 @@ def main(ep: Path, lang: str, report_only: bool):
         a = decode(out / f"{sid}.mp3", tempo=max(1.0, d / room))
         i = int(start * SR)
         buf[i:i + len(a)] += a[: len(buf) - i]
-    music = ROOT / "video" / "assets" / "music.wav"
-    if music.exists():
-        m = decode(music)
-        m = np.tile(m, int(np.ceil(len(buf) / len(m))))[: len(buf)] * 0.07
-        f = int(3 * SR)
-        m[:f] *= np.linspace(0, 1, f)
-        m[-f:] *= np.linspace(1, 0, f)
-        buf += m
+    buf = music.mix(buf, SR, decode, level=0.10)
     buf = buf / (np.max(np.abs(buf)) or 1) * 0.89
     wav = ep / "build" / f"dub_{lang}.wav"
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "s16le", "-ar", str(SR), "-ac", "1", "-i", "-", str(wav)],

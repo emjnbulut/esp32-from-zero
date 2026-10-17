@@ -15,3 +15,6 @@ node_modules/
 video/*/assets/web/
 video/*/assets/ref/
 lessons/*/compile_log.txt
+# background music tracks (YouTube Audio Library downloads) stay local
+video/assets/music/*
+!video/assets/music/README.md

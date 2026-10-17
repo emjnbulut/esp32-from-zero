@@ -17,6 +17,9 @@ from pathlib import Path
 import edge_tts
 import numpy as np
 
+sys.path.insert(0, str(Path(__file__).parent))
+import music  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
 SR = 48000
 FPS = 30
@@ -125,13 +128,7 @@ def main(sdir: Path, lang: str):
         a = decode(out / f"{sid}.mp3")
         i = int(sched[sid]["start"] * SR)
         buf[i:i + len(a)] += a
-    music = ROOT / "video" / "assets" / "music.wav"
-    if music.exists():
-        m = decode(music)
-        m = np.tile(m, int(np.ceil(len(buf) / len(m))))[: len(buf)] * 0.11
-        f = int(1.5 * SR)
-        m[-f:] *= np.linspace(1, 0, f)
-        buf += m
+    buf = music.mix(buf, SR, decode, level=0.15, fade_in=0, fade_out=1.5)
     buf = buf / (np.max(np.abs(buf)) or 1) * 0.9
     run(["ffmpeg", "-v", "error", "-y", "-f", "s16le", "-ar", str(SR), "-ac", "1", "-i", "-", str(out / "audio.wav")],
         input=(buf * 32767).astype(np.int16).tobytes())
