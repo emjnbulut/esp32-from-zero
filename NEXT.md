@@ -13,6 +13,14 @@ Resume (skips finished steps, listed in `video/<ep>/build/rebuild.done`):
     bash tools/finish_all.sh          # Shorts (ep01 en/tr/hi/pt, ep02-04 en/tr) + trailer
     python tools/deliver.py           # clean upload folder YAYIN/ (then delete old test/voice_test files)
 
+## STATE 2026-10-19 00:40 (stopped by the low-memory guard, NOT a bug)
+- ep01 DONE with the new voices (TR = pt_fleurs2, user approved), TV-range video. After 00:19, extra retakes
+  replaced hi s31/s42 (and maybe tr s06/s26) → `dub_hi`/`dub_tr` removed from ep01 rebuild.done, the resume
+  re-muxes them (1 min).
+- ep02: narration + TR retakes done, HI retakes were running when Claude Code's memory guard stopped
+  the job (Claude had started a second Chatterbox job in parallel — run ONE job at a time).
+- Resume with the same command below (it skips finished steps).
+
 Run it alone: with Unity/Chrome open, parallel jobs ran out of memory (16 GB).
 State at 18:35: ep01 en/tr/hi/pt narrated + retaken, es narrating; ep01 render and ep02-04 not started.
 
