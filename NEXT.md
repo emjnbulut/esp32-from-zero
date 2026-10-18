@@ -1,4 +1,28 @@
-# Where we left off (2026-10-17, end of session)
+# Where we left off (2026-10-18 evening)
+
+## NEW VOICES (2026-10-18) — rebuild in progress
+All narration is now Chatterbox (local GPU): EN `mark` (LibriVox, public domain), TR `tr_fleurs2` (user's pick),
+HI `hi_fleurs5`, PT `pt_fleurs2`, ES `es_fleurs2` (Google FLEURS, CC BY 4.0 — credit line is in every description).
+Settings in `tools/cbx.py`; setup in `tools/CHATTERBOX.md`; voice prompts in `tools/voice_samples/` (gitignored, README there).
+Lines are cut at punctuation and joined with fixed pauses; `tools/cbx_retake.py` re-narrates lines with long pauses,
+odd speed or (not for Hindi) misheard words. The schedule grows a segment when a dub would not fit.
+
+Resume (skips finished steps, listed in `video/<ep>/build/rebuild.done`):
+
+    bash tools/rebuild_voices.sh ep01 ep02 ep03 ep04 >> build_rebuild_voices.log 2>&1
+    bash tools/finish_all.sh          # Shorts (ep01 en/tr/hi/pt, ep02-04 en/tr) + trailer
+    python tools/deliver.py           # clean upload folder YAYIN/ (then delete old test/voice_test files)
+
+Run it alone: with Unity/Chrome open, parallel jobs ran out of memory (16 GB).
+State at 18:35: ep01 en/tr/hi/pt narrated + retaken, es narrating; ep01 render and ep02-04 not started.
+
+Release plan: `video/YAYIN_PLANI.md` (launch Mon 19 Oct 17:00 TR: ep01 + ep02 + trailer, then daily Shorts).
+Creator clips needed first: footage/ep01/C1-C3 (board plugged in + red LED, BOOT held while "Connecting",
+EN pressed + "Hello, ESP32!") and footage/ep02/C1-C3 (see video/ep02/youtube.md).
+
+---
+
+# Earlier notes (2026-10-17)
 
 Commands run from the repo root (`.venv/Scripts/python`). Large media is gitignored and lives only on
 the local PC; everything here regenerates it.
