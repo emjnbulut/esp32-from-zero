@@ -1,23 +1,23 @@
 # Yayın planı — ESP32 From Zero (Pin by Pin Lab)
 
 Hepsi **Türkiye saatiyle 17:00** (Hindistan akşamı, Avrupa öğleden sonrası, ABD sabahı).
-"Gün 0" = açılış günü. Tarihler 19 Ekim 2026 Pazartesi açılışına göre yazıldı; açılış kayarsa
+"Gün 0" = açılış günü. Tarihler 20 Ekim 2026 Salı açılışına göre yazıldı (19 Ekim'den bir gün ertelendi); açılış kayarsa
 günleri aynı sırayla kaydır.
 
 ## Açılış (ilk 11 gün)
 | Gün | Tarih | Uzun video | Short |
 |---|---|---|---|
-| 0 | Pzt 19 Eki | **ep01 + ep02** + kanal fragmanı | – |
-| 1 | Sal 20 Eki | | ep01 EN |
-| 2 | Çar 21 Eki | | ep01 TR |
-| 3 | Per 22 Eki | **ep03** | ep02 EN |
-| 4 | Cum 23 Eki | | ep02 TR |
-| 5 | Cmt 24 Eki | | ep01 HI |
-| 6 | Paz 25 Eki | | ep03 EN |
-| 7 | Pzt 26 Eki | **ep04** | ep03 TR |
-| 8 | Sal 27 Eki | | ep01 PT |
-| 9 | Çar 28 Eki | | ep04 EN |
-| 10 | Per 29 Eki | | ep04 TR |
+| 0 | Sal 20 Eki | **ep01 + ep02** + kanal fragmanı | – |
+| 1 | Çar 21 Eki | | ep01 EN |
+| 2 | Per 22 Eki | | ep01 TR |
+| 3 | Cum 23 Eki | **ep03** | ep02 EN |
+| 4 | Cmt 24 Eki | | ep02 TR |
+| 5 | Paz 25 Eki | | ep01 HI |
+| 6 | Pzt 26 Eki | | ep03 EN |
+| 7 | Sal 27 Eki | **ep04** | ep03 TR |
+| 8 | Çar 28 Eki | | ep01 PT |
+| 9 | Per 29 Eki | | ep04 EN |
+| 10 | Cum 30 Eki | | ep04 TR |
 
 ## Sonrası (düzenli ritim)
 - Her **Pazartesi** 1 yeni bölüm (ep05: 2 Kasım).

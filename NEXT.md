@@ -16,7 +16,7 @@ Resume (skips finished steps, listed in `video/<ep>/build/rebuild.done`):
 Run it alone: with Unity/Chrome open, parallel jobs ran out of memory (16 GB).
 State at 18:35: ep01 en/tr/hi/pt narrated + retaken, es narrating; ep01 render and ep02-04 not started.
 
-Release plan: `video/YAYIN_PLANI.md` (launch Mon 19 Oct 17:00 TR: ep01 + ep02 + trailer, then daily Shorts).
+Release plan: `video/YAYIN_PLANI.md` (launch Tue 20 Oct 17:00 TR (moved from 19 Oct): ep01 + ep02 + trailer, then daily Shorts).
 Creator clips needed first: footage/ep01/C1-C3 (board plugged in + red LED, BOOT held while "Connecting",
 EN pressed + "Hello, ESP32!") and footage/ep02/C1-C3 (see video/ep02/youtube.md).
 
