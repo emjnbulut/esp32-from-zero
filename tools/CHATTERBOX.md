@@ -17,6 +17,15 @@ Chatterbox is tested on Python 3.11; with 3.12 its pinned numpy may not install.
 
 The weights download from Hugging Face on the first run.
 
+Done on 2026-10-18 with uv instead (Python 3.11.17, chatterbox-tts 0.1.7, torch 2.6.0+cu124):
+
+    uv python install 3.11 && uv venv .venv-tts --python 3.11
+    uv pip install --python .venv-tts/Scripts/python.exe chatterbox-tts "setuptools<81"
+    uv pip install --python .venv-tts/Scripts/python.exe --reinstall torch==2.6.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cu124
+
+`setuptools<81` is needed: the watermarker (perth) imports `pkg_resources`, otherwise
+`PerthImplicitWatermarker` is None. Speed on the RTX 4060: ~40 it/s, about 4 s per line.
+
 ## Voice test (before switching anything)
 
     python tools/cbx_compare.py video/ep02 s03 s10 s20 s30
