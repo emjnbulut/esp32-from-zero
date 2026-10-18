@@ -74,18 +74,28 @@ def main(path):
     if cfg["model"] == "multilingual":
         opts["language_id"] = cfg.get("lang", "en")
     pauses = cfg.get("pauses") or {}
+
+    def gen(text):
+        for attempt in range(4):  # chatterbox's alignment analyzer sometimes crashes (IndexError) on a take
+            try:
+                return tts.generate(text, **opts).squeeze().cpu().numpy().astype("float32")
+            except IndexError:
+                if attempt == 3:
+                    raise
+                torch.manual_seed(1000 + attempt)
+
     for n, item in enumerate(cfg["items"], 1):
         torch.manual_seed(item.get("seed", cfg.get("seed", 1)))  # same text + settings -> same take
         if pauses:
             chunks = []
             for piece, kind in pieces(item["text"]):
-                w = trim(tts.generate(piece, **opts).squeeze().cpu().numpy().astype("float32"), tts.sr)
+                w = trim(gen(piece), tts.sr)
                 chunks.append(w)
                 if kind:
                     chunks.append(np.zeros(int(pauses.get(kind, 0.3) * tts.sr), dtype="float32"))
             wav = np.concatenate(chunks)
         else:
-            wav = tts.generate(item["text"], **opts).squeeze().cpu().numpy().astype("float32")
+            wav = gen(item["text"])
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "f32le", "-ar", str(tts.sr), "-ac", "1", "-i", "-",
                         "-b:a", "192k", item["out"]], input=wav.tobytes(), check=True)
         print(f"[{n}/{len(cfg['items'])}] {item['out']}", flush=True)
