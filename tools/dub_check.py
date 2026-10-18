@@ -9,6 +9,7 @@ import json
 import re
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 import numpy as np
@@ -18,7 +19,15 @@ ROOT = Path(__file__).resolve().parent.parent
 
 
 def load16k(path: Path) -> np.ndarray:
-    raw = subprocess.check_output(["ffmpeg", "-v", "error", "-i", str(path), "-f", "f32le", "-ac", "1", "-ar", "16000", "-"])
+    cmd = ["ffmpeg", "-v", "error", "-i", str(path), "-f", "f32le", "-ac", "1", "-ar", "16000", "-"]
+    for attempt in range(3):  # ffmpeg sometimes fails to start under memory pressure (0xC0000142)
+        try:
+            raw = subprocess.check_output(cmd)
+            break
+        except subprocess.CalledProcessError:
+            if attempt == 2:
+                raise
+            time.sleep(2)
     return np.frombuffer(raw, dtype=np.float32)
 
 
