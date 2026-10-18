@@ -253,10 +253,11 @@ def compose(ep: Path):
         last, k = f"[v{k}]", k + 1
         print(f"clip {c['id']}: {src.name}")
     out = b / f"{ep.name}_final.mp4"
-    norm = "fps=30,scale=1920:1080,setsar=1,format=yuv420p"
+    # frames are full-range JPEG; convert to TV range, some players (Windows) show no picture otherwise
+    norm = "fps=30,scale=1920:1080:out_range=tv,setsar=1,format=yuv420p"
     filters += [f"{last}{norm}[body]", f"[2:v]{norm}[in]", f"[3:v]{norm}[out]", "[in][body][out]concat=n=3:v=1:a=0[vid]"]
     cmd = ["ffmpeg", "-v", "error", "-y", *inputs, "-filter_complex", ";".join(filters), "-map", "[vid]"]
-    cmd += ["-map", "1:a", "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-pix_fmt", "yuv420p",
+    cmd += ["-map", "1:a", "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-pix_fmt", "yuv420p", "-color_range", "tv",
             "-c:a", "aac", "-b:a", "192k", "-shortest", "-movflags", "+faststart", str(out)]
     subprocess.run(cmd, check=True)
     print("final:", out)
