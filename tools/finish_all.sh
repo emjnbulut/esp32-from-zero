@@ -10,6 +10,8 @@ DONE=build/finish.done
 step() { local name=$1; shift; if grep -qx "$name" $DONE 2>/dev/null; then echo "skip $name"; return; fi
   echo "[finish] $name  $(date +%H:%M:%S)"; "$@"; echo "$name" >> $DONE; }
 
+step trailer $PY tools/trailer.py   # first: the launch needs it, Shorts come later
+
 for spec in "ep01:en tr hi pt" "ep02:en tr" "ep03:en tr" "ep04:en tr"; do
   ep=${spec%%:*}
   for l in ${spec#*:}; do
@@ -19,5 +21,4 @@ for spec in "ep01:en tr hi pt" "ep02:en tr" "ep03:en tr" "ep04:en tr"; do
     step short2_${ep}_$l $PY tools/short.py video/shorts/$ep $l
   done
 done
-step trailer $PY tools/trailer.py
 echo "[finish] DONE $(date +%H:%M:%S)"
