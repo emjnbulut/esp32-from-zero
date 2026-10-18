@@ -22,3 +22,4 @@ video/assets/music/*
 # OAuth client + token for tools/publish.py
 .secrets/
 build_rebuild_voices.log
+YAYIN/

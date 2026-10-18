@@ -76,7 +76,8 @@ def main():
         if len(voiced):
             speech = (voiced[-1] - voiced[0] + 1) * 0.02
             gap = float(np.diff(voiced).max() - 1) * 0.02 if len(voiced) > 1 else 0.0
-        return {"match": match, "gap": gap, "rate": len(text) / max(speech, 0.1)}
+        talk = max(len(voiced) * 0.02, 0.1)  # voiced time only, so lines with many pauses don't look slow
+        return {"match": match, "gap": gap, "rate": len(text) / talk}
 
     res = {sid: check(out / f"{sid}.mp3", t) for sid, t in texts.items() if (out / f"{sid}.mp3").exists()}
     med = float(np.median([r["rate"] for r in res.values()]))
