@@ -26,6 +26,7 @@ Meet your ESP32's pins and the breadboard! We learn the power pins (3V3, 5V, GND
 6:57 Recap and next episode
 
 🎵 Music: "Lobby Time" by Kevin MacLeod (incompetech.com), licensed under CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
+🎙 Narration: Chatterbox TTS (Resemble AI, MIT). Voice references: LibriVox (public domain) and FLEURS by Google (CC BY 4.0): https://creativecommons.org/licenses/by/4.0/
 
 #ESP32 #Arduino #Breadboard #Electronics #LED #Microcontroller
 

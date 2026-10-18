@@ -13,7 +13,7 @@ segs = json.loads((here / "build" / "schedule.json").read_text(encoding="utf-8")
 starts = [0] + [int(segs[c]["start"] + INTRO) for c in CHAPTERS[1:]]
 assert all(b - a >= 10 for a, b in zip(starts, starts[1:])), "YouTube chapters must be at least 10 s"
 TIMES = ["%d:%02d" % divmod(s, 60) for s in starts]
-CREDIT = '🎵 Music: "Lobby Time" by Kevin MacLeod (incompetech.com), licensed under CC BY 4.0: https://creativecommons.org/licenses/by/4.0/'
+CREDIT = '🎵 Music: "Lobby Time" by Kevin MacLeod (incompetech.com), licensed under CC BY 4.0: https://creativecommons.org/licenses/by/4.0/\n🎙 Narration: Chatterbox TTS (Resemble AI, MIT). Voice references: LibriVox (public domain) and FLEURS by Google (CC BY 4.0): https://creativecommons.org/licenses/by/4.0/'
 REPO = "https://github.com/emjnbulut/esp32-from-zero"
 LESSON = REPO + "/tree/main/lessons/04-buttons-and-millis"
 TAGS = "#ESP32 #Arduino #Button #millis #Electronics #Microcontroller"

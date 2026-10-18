@@ -14,6 +14,7 @@ ESP32 button: why one press counts 3 times (and the fix) 🔘 #esp32 #arduino
 Reading a push button on the ESP32: wiring, floating pins, INPUT_PULLUP, contact bounce, and millis() instead of delay().
 Full episode: (link the long video)
 🎵 Music: "Lobby Time" by Kevin MacLeod (incompetech.com), licensed under CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
+🎙 Narration: Chatterbox TTS (Resemble AI, MIT). Voice references: LibriVox (public domain) and FLEURS by Google (CC BY 4.0): https://creativecommons.org/licenses/by/4.0/
 
 #ESP32 #Arduino #Electronics #Button #Shorts
 
@@ -26,6 +27,7 @@ ESP32 buton: tek basış neden 3 kez sayılır (ve çözümü) 🔘 #esp32 #ardu
 ESP32'de buton okumak: bağlantı, boşta kalan pinler, INPUT_PULLUP, kontak sekmesi ve delay() yerine millis().
 Bölümün tamamı: (uzun videonun linki)
 🎵 Music: "Lobby Time" by Kevin MacLeod (incompetech.com), licensed under CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
+🎙 Narration: Chatterbox TTS (Resemble AI, MIT). Voice references: LibriVox (public domain) and FLEURS by Google (CC BY 4.0): https://creativecommons.org/licenses/by/4.0/
 
 #ESP32 #Arduino #Elektronik #Buton #Shorts
 

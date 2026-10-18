@@ -14,6 +14,7 @@ Blink an LED with an ESP32: one wire + a few lines of code 💡 #esp32 #arduino
 Why the LED needs a 220 Ω resistor, moving one wire to GPIO 23, and the Blink code: pinMode, digitalWrite and delay.
 Full episode: (link the long video)
 🎵 Music: "Lobby Time" by Kevin MacLeod (incompetech.com), licensed under CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
+🎙 Narration: Chatterbox TTS (Resemble AI, MIT). Voice references: LibriVox (public domain) and FLEURS by Google (CC BY 4.0): https://creativecommons.org/licenses/by/4.0/
 
 #ESP32 #Arduino #Electronics #LED #Shorts
 
@@ -26,6 +27,7 @@ ESP32 ile LED yakıp söndürme: bir kablo + birkaç satır kod 💡 #esp32 #ard
 LED'in neden 220 Ω dirence ihtiyaç duyduğu, bir kabloyu GPIO 23'e taşımak ve Blink kodu: pinMode, digitalWrite ve delay.
 Bölümün tamamı: (uzun videonun linki)
 🎵 Music: "Lobby Time" by Kevin MacLeod (incompetech.com), licensed under CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
+🎙 Narration: Chatterbox TTS (Resemble AI, MIT). Voice references: LibriVox (public domain) and FLEURS by Google (CC BY 4.0): https://creativecommons.org/licenses/by/4.0/
 
 #ESP32 #Arduino #Elektronik #LED #Shorts
 

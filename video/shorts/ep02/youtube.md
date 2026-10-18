@@ -12,6 +12,7 @@ Don't fry your ESP32! The pins to know + your first circuit ⚡ #esp32 #arduino
 Before you plug anything into an ESP32: the power pins, two safety rules, the pins to leave alone, how a breadboard connects, and a first LED circuit — no code needed.
 Full episode: (link the long video)
 🎵 Music: "Lobby Time" by Kevin MacLeod (incompetech.com), licensed under CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
+🎙 Narration: Chatterbox TTS (Resemble AI, MIT). Voice references: LibriVox (public domain) and FLEURS by Google (CC BY 4.0): https://creativecommons.org/licenses/by/4.0/
 
 #ESP32 #Arduino #Electronics #Breadboard #Shorts
 
@@ -24,6 +25,7 @@ ESP32'nizi yakmayın! Bilmeniz gereken pinler + ilk devre ⚡ #esp32 #arduino
 ESP32'ye bir şey takmadan önce: güç pinleri, iki güvenlik kuralı, dokunulmaması gereken pinler, breadboard'un nasıl bağlandığı ve kodsuz ilk LED devresi.
 Bölümün tamamı: (uzun videonun linki)
 🎵 Music: "Lobby Time" by Kevin MacLeod (incompetech.com), licensed under CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
+🎙 Narration: Chatterbox TTS (Resemble AI, MIT). Voice references: LibriVox (public domain) and FLEURS by Google (CC BY 4.0): https://creativecommons.org/licenses/by/4.0/
 
 #ESP32 #Arduino #Elektronik #Breadboard #Shorts
 

@@ -23,6 +23,7 @@ Time for code to take control! We find out why the LED needs a 220 Ω resistor (
 4:49 Recap and next episode
 
 🎵 Music: "Lobby Time" by Kevin MacLeod (incompetech.com), licensed under CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
+🎙 Narration: Chatterbox TTS (Resemble AI, MIT). Voice references: LibriVox (public domain) and FLEURS by Google (CC BY 4.0): https://creativecommons.org/licenses/by/4.0/
 
 #ESP32 #Arduino #Blink #LED #Electronics #Microcontroller
 

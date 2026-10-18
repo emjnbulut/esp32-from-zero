@@ -11,7 +11,7 @@ from rechapter import chapter_times  # noqa: E402
 TIMES = chapter_times(Path(__file__).parent)
 # "Safe pins" (index 7) started only 9 s before "The breadboard"; YouTube needs >= 10 s, so it is merged into "Pins to avoid"
 DROP = 7
-CREDIT = '🎵 Music: "Lobby Time" by Kevin MacLeod (incompetech.com), licensed under CC BY 4.0: https://creativecommons.org/licenses/by/4.0/'
+CREDIT = '🎵 Music: "Lobby Time" by Kevin MacLeod (incompetech.com), licensed under CC BY 4.0: https://creativecommons.org/licenses/by/4.0/\n🎙 Narration: Chatterbox TTS (Resemble AI, MIT). Voice references: LibriVox (public domain) and FLEURS by Google (CC BY 4.0): https://creativecommons.org/licenses/by/4.0/'
 REPO = "https://github.com/emjnbulut/esp32-from-zero"
 LESSON = REPO + "/tree/main/lessons/02-board-and-breadboard"
 TAGS = "#ESP32 #Arduino #Breadboard #Electronics #LED #Microcontroller"
