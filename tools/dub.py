@@ -99,7 +99,7 @@ def main(ep: Path, lang: str, report_only: bool):
     if missing:
         sys.exit(f"missing translations: {missing}")
     out = ep / "build" / f"dub_{lang}"
-    if dub.get("engine") == "chatterbox":
+    if cbx.engine(dub) == "chatterbox":
         cache = narrate_chatterbox(dub, out, lang)
     else:
         cache = asyncio.run(narrate_all(dub, out))

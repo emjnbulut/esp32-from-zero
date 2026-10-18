@@ -51,7 +51,7 @@ async def main(ep_dir: Path):
     timings_path = out / "timings.json"
     old = json.loads(timings_path.read_text(encoding="utf-8")) if timings_path.exists() else {}
 
-    if script.get("engine") == "chatterbox":
+    if cbx.engine(script) == "chatterbox":
         return chatterbox(script, out, timings_path, old)
     voice, rate = script["voice"], script.get("rate", "+0%")
     timings = {}

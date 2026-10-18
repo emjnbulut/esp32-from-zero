@@ -19,6 +19,7 @@ import numpy as np
 
 sys.path.insert(0, str(Path(__file__).parent))
 import bumpers  # noqa: E402
+import cbx  # noqa: E402
 import music  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -28,6 +29,22 @@ LEAD_IN = 3.2      # title animation before the first word
 GAP = 0.45         # pause between segments of the same scene
 SCENE_GAP = 1.1    # pause when the scene changes
 TAIL = 4.0         # outro hold after the last word
+DUB_FIT = 1.08     # a dub may be sped up this much; beyond it the segment's slot grows for every language
+DUB_BREATH = 0.2   # same as tools/dub.py BREATH
+
+
+def dub_durations(ep: Path) -> dict:
+    """{sid: longest narrated dub duration} from build/dub_<lang>/cache.json (Chatterbox dubs only,
+    narrate them first with `tools/dub.py <ep> <lang> --report`)."""
+    longest = {}
+    for f in sorted((ep / "dub").glob("*.json")):
+        if cbx.engine(json.loads(f.read_text(encoding="utf-8"))) != "chatterbox":
+            continue
+        cache = ep / "build" / f"dub_{f.stem}" / "cache.json"
+        if cache.exists():
+            for sid, c in json.loads(cache.read_text(encoding="utf-8")).items():
+                longest[sid] = max(longest.get(sid, 0), c["duration"])
+    return longest
 
 
 def load(ep: Path):
@@ -38,7 +55,8 @@ def load(ep: Path):
 
 def schedule(ep: Path):
     script, timings = load(ep)
-    t, prev_scene, segs = LEAD_IN, None, {}
+    dubs = dub_durations(ep)
+    t, prev_scene, segs, stretched = LEAD_IN, None, {}, 0.0
     for s in script["segments"]:
         if prev_scene and s["scene"] != prev_scene:
             t += SCENE_GAP - GAP
@@ -48,9 +66,15 @@ def schedule(ep: Path):
             "start": round(t, 3), "dur": dur, "end": round(t + dur, 3), "scene": s["scene"],
             "words": [{"w": w["w"], "t": round(w["t"], 3)} for w in timings[s["id"]]["words"]],
         }
+        start = t
         t += dur + GAP + s.get("pad", 0)
+        extra = max(0.0, dubs.get(s["id"], 0) / DUB_FIT + DUB_BREATH - (t - start))
+        t += extra  # the picture waits until the longest dub has finished too
+        stretched += extra
         prev_scene = s["scene"]
     duration = round(t - GAP + TAIL, 3)
+    if stretched:
+        print(f"stretched for dubs: +{stretched:.1f}s")
     out = {"duration": duration, "segments": segs}
     (ep / "build").mkdir(exist_ok=True)
     (ep / "build" / "schedule.json").write_text(json.dumps(out, indent=1), encoding="utf-8")

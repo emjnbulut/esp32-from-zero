@@ -117,7 +117,7 @@ def main(sdir: Path, lang: str):
     out = sdir / "build" / lang
     out.mkdir(parents=True, exist_ok=True)
     resolve_src(spec)
-    chatterbox = spec.get("engine") == "chatterbox"
+    chatterbox = cbx.engine(spec) == "chatterbox"
     if chatterbox:
         cbx_words = narrate_chatterbox(spec, lang, out)
     else:

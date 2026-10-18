@@ -36,8 +36,9 @@ ap.add_argument("--langs", default="en,tr,hi,pt,es")
 ap.add_argument("--voices", help="comma list of voice names (default: all)")
 ap.add_argument("--tag", default="all", help="name of the joined file: <lang>_<tag>.mp3")
 a = ap.parse_args()
-if a.voices:
-    VOICES = [v for v in VOICES if v[0] in a.voices.split(",")]
+if a.voices:  # any tools/voice_samples/<name>.wav works too
+    known = dict(VOICES)
+    VOICES = [(v, known.get(v, {"prompt": f"tools/voice_samples/{v}.wav"})) for v in a.voices.split(",")]
 ep = (ROOT / a.ep).resolve()
 
 
@@ -60,7 +61,8 @@ for lang in a.langs.split(","):
     joined = []
     for n, (name, spec) in enumerate(VOICES, 1):
         cfg = cbx.settings({"cbx": spec}, lang)
-        lines = [out / "lines" / f"{name}_{sid}.mp3" for sid in a.ids]
+        tag = cbx.key(cfg, "")[:6]  # new take when the settings change
+        lines = [out / "lines" / f"{name}_{sid}_{tag}.mp3" for sid in a.ids]
         todo = [(texts[sid], p) for sid, p in zip(a.ids, lines) if not p.exists()]
         cbx.say(cfg, todo)
         joined.append(out / f"{n}_{name}.mp3")

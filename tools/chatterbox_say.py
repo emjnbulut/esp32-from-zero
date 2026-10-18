@@ -3,13 +3,57 @@ tools/tts.py and tools/dub.py call it through tools/cbx.py.
 
 Usage: .venv-tts/Scripts/python tools/chatterbox_say.py jobs.json
 jobs.json: {"model": "en" | "multilingual", "lang": "en", "prompt": "voice.wav" | null,
-            "exaggeration": 0.5, "cfg_weight": 0.5, "seed": 1, "items": [{"text": "...", "out": "s01.mp3"}]}
+            "exaggeration": 0.5, "cfg_weight": 0.5, "seed": 1, "pauses": {"sentence": 0.32, "comma": 0.12},
+            "items": [{"text": "...", "out": "s01.mp3"}]}
+
+Punctuation: every line is cut into sentences (. ! ? : ; ...) and, when both sides are long enough, at
+commas; each piece is narrated on its own, trimmed, and joined with a fixed pause, so the narrator always
+stops at a full stop and breathes at a comma. Numbers like 3.3 or 1,3 are never split.
 """
 import json
+import re
 import subprocess
 import sys
 
+import numpy as np
 import torch
+
+SENT = re.compile(r"(?<=[.!?:;…])\s+")
+COMMA = re.compile(r"(?<=,)\s+")
+MIN_WORDS = 3  # a comma piece shorter than this stays attached (very short inputs narrate badly)
+
+
+def pieces(text: str):
+    """[(piece, pause_after_kind)] with kind 'sentence' | 'comma' | None (last)."""
+    out = []
+    sents = [x for x in SENT.split(text.strip()) if x]
+    for si, sent in enumerate(sents):
+        parts = []
+        for c in [x for x in COMMA.split(sent) if x]:
+            if parts and (len(c.split()) < MIN_WORDS or len(parts[-1].split()) < MIN_WORDS):
+                parts[-1] += " " + c
+            else:
+                parts.append(c)
+        for ci, c in enumerate(parts):
+            last_in_sent = ci == len(parts) - 1
+            kind = None if (last_in_sent and si == len(sents) - 1) else ("sentence" if last_in_sent else "comma")
+            out.append((c, kind))
+    return out
+
+
+def trim(wav: np.ndarray, sr: int, thresh_db=-35.0, keep=0.05):
+    """Cut leading/trailing silence, keeping `keep` seconds around the speech."""
+    hop = int(sr * 0.01)
+    if len(wav) < hop * 3:
+        return wav
+    fr = wav[: len(wav) // hop * hop].reshape(-1, hop)
+    db = 10 * np.log10((fr ** 2).mean(1) + 1e-12)
+    loud = np.where(db > db.max() + thresh_db)[0]
+    if not len(loud):
+        return wav
+    a = max(0, loud[0] * hop - int(keep * sr))
+    b = min(len(wav), (loud[-1] + 1) * hop + int(keep * sr))
+    return wav[a:b]
 
 
 def load(cfg, device):
@@ -29,9 +73,19 @@ def main(path):
         opts["audio_prompt_path"] = cfg["prompt"]
     if cfg["model"] == "multilingual":
         opts["language_id"] = cfg.get("lang", "en")
+    pauses = cfg.get("pauses") or {}
     for n, item in enumerate(cfg["items"], 1):
-        torch.manual_seed(cfg.get("seed", 1))  # same text + settings -> same take
-        wav = tts.generate(item["text"], **opts).squeeze().cpu().numpy().astype("float32")
+        torch.manual_seed(item.get("seed", cfg.get("seed", 1)))  # same text + settings -> same take
+        if pauses:
+            chunks = []
+            for piece, kind in pieces(item["text"]):
+                w = trim(tts.generate(piece, **opts).squeeze().cpu().numpy().astype("float32"), tts.sr)
+                chunks.append(w)
+                if kind:
+                    chunks.append(np.zeros(int(pauses.get(kind, 0.3) * tts.sr), dtype="float32"))
+            wav = np.concatenate(chunks)
+        else:
+            wav = tts.generate(item["text"], **opts).squeeze().cpu().numpy().astype("float32")
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "f32le", "-ar", str(tts.sr), "-ac", "1", "-i", "-",
                         "-b:a", "192k", item["out"]], input=wav.tobytes(), check=True)
         print(f"[{n}/{len(cfg['items'])}] {item['out']}", flush=True)
