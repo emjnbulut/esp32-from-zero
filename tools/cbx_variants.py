@@ -22,13 +22,22 @@ VOICES = [  # name, settings
     ("bob_male", {"prompt": "tools/voice_samples/bob.wav"}),
     ("kara_female", {"prompt": "tools/voice_samples/kara.wav"}),
     ("ruth_female", {"prompt": "tools/voice_samples/ruth.wav"}),
+    # native Turkish speakers (FLEURS, CC BY 4.0) for the Turkish dub
+    ("tr_fleurs1", {"prompt": "tools/voice_samples/tr_fleurs1.wav"}),
+    ("tr_fleurs2", {"prompt": "tools/voice_samples/tr_fleurs2.wav"}),
+    ("tr_fleurs3", {"prompt": "tools/voice_samples/tr_fleurs3.wav"}),
+    ("tr_fleurs4", {"prompt": "tools/voice_samples/tr_fleurs4.wav"}),
 ]
 
 ap = argparse.ArgumentParser()
 ap.add_argument("ep")
 ap.add_argument("ids", nargs="+")
 ap.add_argument("--langs", default="en,tr,hi,pt,es")
+ap.add_argument("--voices", help="comma list of voice names (default: all)")
+ap.add_argument("--tag", default="all", help="name of the joined file: <lang>_<tag>.mp3")
 a = ap.parse_args()
+if a.voices:
+    VOICES = [v for v in VOICES if v[0] in a.voices.split(",")]
 ep = (ROOT / a.ep).resolve()
 
 
@@ -56,5 +65,5 @@ for lang in a.langs.split(","):
         cbx.say(cfg, todo)
         joined.append(out / f"{n}_{name}.mp3")
         concat(lines, joined[-1], gap=0.4)
-    concat(joined, out.parent / f"{lang}_all.mp3", gap=1.2)
-    print("done:", lang, out.parent / f"{lang}_all.mp3", flush=True)
+    concat(joined, out.parent / f"{lang}_{a.tag}.mp3", gap=1.2)
+    print("done:", lang, out.parent / f"{lang}_{a.tag}.mp3", flush=True)
