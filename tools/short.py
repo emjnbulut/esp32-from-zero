@@ -120,6 +120,8 @@ def main(sdir: Path, lang: str):
     chatterbox = cbx.engine(spec) == "chatterbox"
     if chatterbox:
         cbx_words = narrate_chatterbox(spec, lang, out)
+        if "--narrate" in sys.argv:  # only the takes (then tools/cbx_retake.py --short, then the full build)
+            return
     else:
         voice, rate = VOICES[lang]
 

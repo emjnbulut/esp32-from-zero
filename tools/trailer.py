@@ -32,7 +32,7 @@ def narrate(spec, out):
     """One mp3 per segment, cached by text + voice settings."""
     cache_p = out / "cache.json"
     cache = json.loads(cache_p.read_text(encoding="utf-8")) if cache_p.exists() else {}
-    chatterbox = spec.get("engine") == "chatterbox"
+    chatterbox = cbx.engine(spec) == "chatterbox"
     cfg = cbx.settings(spec, "en") if chatterbox else {"voice": spec["voice"], "rate": spec.get("rate", "+0%")}
     todo = []
     for s in spec["segments"]:

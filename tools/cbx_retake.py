@@ -65,7 +65,9 @@ def main():
         """Whisper match + fluency: the longest pause inside the line and the speaking rate."""
         audio = load16k(mp3)
         segs, _ = model.transcribe(audio, language=lang, beam_size=5)
-        match = difflib.SequenceMatcher(None, words(text), words(" ".join(s.text for s in segs))).ratio()
+        # letters, not words: "C P 2 1 0 2" in the script and "CP2102" from Whisper are the same
+        match = difflib.SequenceMatcher(None, "".join(words(text)), "".join(words(" ".join(s.text for s in segs))),
+                                        autojunk=False).ratio()
         hop = 320  # 20 ms
         fr = audio[: len(audio) // hop * hop].reshape(-1, hop)
         db = 10 * np.log10((fr ** 2).mean(1) + 1e-12)
