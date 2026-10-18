@@ -23,3 +23,5 @@ video/assets/music/*
 .secrets/
 build_rebuild_voices.log
 YAYIN/
+build_voice.log
+build_picture.log
