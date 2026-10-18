@@ -103,20 +103,28 @@ def main():
         return
     tmp = out / "retakes"
     tmp.mkdir(exist_ok=True)
-    jobs = [(texts[sid], tmp / f"{sid}_{seed}.mp3", seed) for sid in weak for seed in range(2, 2 + a.takes)]
-    cbx.say(cfg, [j for j in jobs if not j[1].exists()])
+    best = {sid: (None, res[sid]) for sid in weak}
+    open_ = list(weak)  # one seed per round; a line leaves as soon as a take has no problems
+    for seed in range(2, 2 + a.takes):
+        if not open_:
+            break
+        cbx.say(cfg, [(texts[sid], tmp / f"{sid}_{seed}.mp3", seed) for sid in open_
+                      if not (tmp / f"{sid}_{seed}.mp3").exists()])
+        for sid in list(open_):
+            r = check(tmp / f"{sid}_{seed}.mp3", texts[sid])
+            b = best[sid][1]
+            if rank(r) > rank(b) and (len(problems(b)) > 0 or r["match"] > b["match"] + 0.02):
+                best[sid] = (tmp / f"{sid}_{seed}.mp3", r)
+            if not problems(best[sid][1]):
+                open_.remove(sid)
     changed = []
     for sid in weak:
-        best, best_r = None, res[sid]
-        for seed in range(2, 2 + a.takes):
-            r = check(tmp / f"{sid}_{seed}.mp3", texts[sid])
-            if rank(r) > rank(best_r) and (len(problems(best_r)) > 0 or r["match"] > best_r["match"] + 0.02):
-                best, best_r = tmp / f"{sid}_{seed}.mp3", r
-        left = problems(best_r)
-        print(f"  {sid}: {'took seed ' + best.stem.split('_')[-1] if best else 'kept'}"
+        path, r = best[sid]
+        left = problems(r)
+        print(f"  {sid}: {'took seed ' + path.stem.split('_')[-1] if path else 'kept'}"
               f"{' - still ' + ', '.join(left) if left else ' - ok'}", flush=True)
-        if best:
-            shutil.copy(best, out / f"{sid}.mp3")
+        if path:
+            shutil.copy(path, out / f"{sid}.mp3")
             changed.append(sid)
     if not changed:
         return
