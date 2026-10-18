@@ -56,7 +56,23 @@ def trim(wav: np.ndarray, sr: int, thresh_db=-35.0, keep=0.05):
     return wav[a:b]
 
 
+def patch_analyzer():
+    """Chatterbox's alignment analyzer indexes A[:, :-5], which is empty for pieces of 5 text tokens or less
+    ("Başlayalım.") and raises IndexError on every seed. Skip its check for that step instead;
+    cbx_retake.py still catches the long tails it would have cut."""
+    from chatterbox.models.t3.inference import alignment_stream_analyzer as asa
+    step = asa.AlignmentStreamAnalyzer.step
+
+    def safe_step(self, logits, *args, **kwargs):
+        try:
+            return step(self, logits, *args, **kwargs)
+        except IndexError:
+            return logits
+    asa.AlignmentStreamAnalyzer.step = safe_step
+
+
 def load(cfg, device):
+    patch_analyzer()
     if cfg["model"] == "multilingual":
         from chatterbox.mtl_tts import ChatterboxMultilingualTTS
         return ChatterboxMultilingualTTS.from_pretrained(device=device)
