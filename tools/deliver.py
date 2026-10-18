@@ -31,6 +31,7 @@ Her bölüm klasöründe:
   kucuk_resimler/      3 seçenek, birini seç
   shorts/              dikey Shorts videoları + açıklamaları
 
+YAYIN_PLANI.md : hangi gün ne atılacak.
 kanal/ : logo, banner ve kanal fragmanı.
 Gerçek çekim klipleri (C1, C2...) gelince Claude videoları yeniden birleştirir.
 """
@@ -54,6 +55,7 @@ def main():
         shutil.rmtree(OUT)
     OUT.mkdir()
     (OUT / "OKU_BENI.txt").write_text(README, encoding="utf-8")
+    copy(ROOT / "video" / "YAYIN_PLANI.md", OUT / "YAYIN_PLANI.md")
     for f in (ROOT / "brand" / "export").glob("*.png"):
         copy(f, OUT / "kanal" / f.name)
     copy(ROOT / "video" / "trailer" / "build" / "trailer_en.mp4", OUT / "kanal" / "fragman.mp4")
