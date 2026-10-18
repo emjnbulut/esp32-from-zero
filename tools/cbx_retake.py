@@ -102,26 +102,27 @@ def main():
     if not weak:
         return
     tmp = out / "retakes"
+    # the name carries the voice settings + text, so takes of an older voice or text are never reused
+    take = lambda sid, seed: tmp / f"{sid}_{seed}_{cbx.key(cfg, texts[sid])[:8]}.mp3"
     tmp.mkdir(exist_ok=True)
     best = {sid: (None, res[sid]) for sid in weak}
     open_ = list(weak)  # one seed per round; a line leaves as soon as a take has no problems
     for seed in range(2, 2 + a.takes):
         if not open_:
             break
-        cbx.say(cfg, [(texts[sid], tmp / f"{sid}_{seed}.mp3", seed) for sid in open_
-                      if not (tmp / f"{sid}_{seed}.mp3").exists()])
+        cbx.say(cfg, [(texts[sid], take(sid, seed), seed) for sid in open_ if not take(sid, seed).exists()])
         for sid in list(open_):
-            r = check(tmp / f"{sid}_{seed}.mp3", texts[sid])
+            r = check(take(sid, seed), texts[sid])
             b = best[sid][1]
             if rank(r) > rank(b) and (len(problems(b)) > 0 or r["match"] > b["match"] + 0.02):
-                best[sid] = (tmp / f"{sid}_{seed}.mp3", r)
+                best[sid] = (take(sid, seed), r)
             if not problems(best[sid][1]):
                 open_.remove(sid)
     changed = []
     for sid in weak:
         path, r = best[sid]
         left = problems(r)
-        print(f"  {sid}: {'took seed ' + path.stem.split('_')[-1] if path else 'kept'}"
+        print(f"  {sid}: {'took seed ' + path.stem.split('_')[1] if path else 'kept'}"
               f"{' - still ' + ', '.join(left) if left else ' - ok'}", flush=True)
         if path:
             shutil.copy(path, out / f"{sid}.mp3")
