@@ -16,7 +16,7 @@ PY = ROOT / ".venv-tts" / "Scripts" / "python.exe"
 # The channel's narrators (chosen 2026-10-18, sources in tools/voice_samples/README.md)
 VOICES = {
     "en": "tools/voice_samples/mark.wav",        # Mark F. Smith, LibriVox (public domain)
-    "tr": "tools/voice_samples/tr_fleurs2.wav",  # FLEURS speakers (CC BY 4.0), picked by the user (tr)
+    "tr": "tools/voice_samples/pt_fleurs2.wav",  # FLEURS speakers (CC BY 4.0); tr: user picked pt_fleurs2 (tr_fleurs2 had hiss)
     "hi": "tools/voice_samples/hi_fleurs5.wav",  # and by Whisper score + closeness to mark/tr (hi, pt, es)
     "pt": "tools/voice_samples/pt_fleurs2.wav",
     "es": "tools/voice_samples/es_fleurs2.wav",
