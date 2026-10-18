@@ -1,5 +1,6 @@
 """Retakes for Chatterbox narration: Whisper listens to every line; a line that is heard too differently
-from its text is narrated again with other seeds and the clearest take is kept.
+from its text, has a long pause inside, or is much faster/slower than the rest is narrated again with
+other seeds, and the most fluent, clearest take is kept.
 
 Usage:
   python tools/cbx_retake.py video/ep03 en        # build/audio (script.json), updates timings.json
@@ -17,10 +18,13 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
+import numpy as np  # noqa: E402
+
 import cbx  # noqa: E402
 from dub_check import load16k, words  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
+MAX_GAP = 0.75  # seconds of silence inside a line (sentence pauses are 0.32 + trims)
 MIN = {"en": 0.9, "hi": 0.6}  # Whisper writes Hindi's English terms in Devanagari, so Hindi scores low anyway
 
 
@@ -57,13 +61,41 @@ def main():
     from faster_whisper import WhisperModel
     model = WhisperModel("small", device="cpu", compute_type="int8")
 
-    def score(mp3: Path, text: str) -> float:
-        segs, _ = model.transcribe(load16k(mp3), language=lang, beam_size=5)
-        return difflib.SequenceMatcher(None, words(text), words(" ".join(s.text for s in segs))).ratio()
+    def check(mp3: Path, text: str) -> dict:
+        """Whisper match + fluency: the longest pause inside the line and the speaking rate."""
+        audio = load16k(mp3)
+        segs, _ = model.transcribe(audio, language=lang, beam_size=5)
+        match = difflib.SequenceMatcher(None, words(text), words(" ".join(s.text for s in segs))).ratio()
+        hop = 320  # 20 ms
+        fr = audio[: len(audio) // hop * hop].reshape(-1, hop)
+        db = 10 * np.log10((fr ** 2).mean(1) + 1e-12)
+        voiced = np.where(db > db.max() - 38)[0]
+        gap, speech = 0.0, len(audio) / 16000
+        if len(voiced):
+            speech = (voiced[-1] - voiced[0] + 1) * 0.02
+            gap = float(np.diff(voiced).max() - 1) * 0.02 if len(voiced) > 1 else 0.0
+        return {"match": match, "gap": gap, "rate": len(text) / max(speech, 0.1)}
 
-    scores = {sid: score(out / f"{sid}.mp3", t) for sid, t in texts.items() if (out / f"{sid}.mp3").exists()}
-    weak = [sid for sid, s in scores.items() if s < floor]
-    print(f"{lang}: {len(scores)} lines, {len(weak)} below {floor}: {', '.join(weak)}", flush=True)
+    res = {sid: check(out / f"{sid}.mp3", t) for sid, t in texts.items() if (out / f"{sid}.mp3").exists()}
+    med = float(np.median([r["rate"] for r in res.values()]))
+
+    def problems(r):
+        p = []
+        if r["match"] < floor:
+            p.append(f"match {r['match']:.2f}")
+        if r["gap"] > MAX_GAP:
+            p.append(f"pause {r['gap']:.1f}s")
+        if not 0.75 * med < r["rate"] < 1.3 * med:
+            p.append(f"rate x{r['rate'] / med:.2f}")
+        return p
+
+    def rank(r):  # fluent takes first, then the clearest
+        return (len(problems(r)) == 0, r["match"] - 0.1 * max(0, r["gap"] - MAX_GAP))
+
+    weak = {sid: problems(r) for sid, r in res.items() if problems(r)}
+    print(f"{lang}: {len(res)} lines, median {med:.1f} chars/s, {len(weak)} to retake", flush=True)
+    for sid, p in weak.items():
+        print(f"  {sid}: {', '.join(p)}", flush=True)
     if not weak:
         return
     tmp = out / "retakes"
@@ -72,12 +104,14 @@ def main():
     cbx.say(cfg, [j for j in jobs if not j[1].exists()])
     changed = []
     for sid in weak:
-        best, best_s = None, scores[sid]
+        best, best_r = None, res[sid]
         for seed in range(2, 2 + a.takes):
-            s = score(tmp / f"{sid}_{seed}.mp3", texts[sid])
-            if s > best_s + 0.02:
-                best, best_s = tmp / f"{sid}_{seed}.mp3", s
-        print(f"  {sid}: {scores[sid]:.2f} -> {best_s:.2f}{'' if best else ' (kept)'}", flush=True)
+            r = check(tmp / f"{sid}_{seed}.mp3", texts[sid])
+            if rank(r) > rank(best_r) and (len(problems(best_r)) > 0 or r["match"] > best_r["match"] + 0.02):
+                best, best_r = tmp / f"{sid}_{seed}.mp3", r
+        left = problems(best_r)
+        print(f"  {sid}: {'took seed ' + best.stem.split('_')[-1] if best else 'kept'}"
+              f"{' - still ' + ', '.join(left) if left else ' - ok'}", flush=True)
         if best:
             shutil.copy(best, out / f"{sid}.mp3")
             changed.append(sid)
