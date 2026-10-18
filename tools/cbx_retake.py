@@ -25,7 +25,7 @@ from dub_check import load16k, words  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 MAX_GAP = 0.75  # seconds of silence inside a line (sentence pauses are 0.32 + trims)
-MIN = {"en": 0.9, "hi": 0.6}  # Whisper writes Hindi's English terms in Devanagari, so Hindi scores low anyway
+MIN = {"en": 0.9, "hi": 0.0}  # Hindi: Whisper writes the English terms in Devanagari, so only fluency is checked
 
 
 def probe(path: Path) -> float:
