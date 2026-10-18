@@ -25,6 +25,7 @@ from dub_check import load16k, words  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 MAX_GAP = 0.75  # seconds of silence inside a line (sentence pauses are 0.32 + trims)
+MAX_JUNK = 0.25  # seconds of sound away from every recognised word (Chatterbox mumbles/noise after a chunk)
 MIN = {"en": 0.9, "hi": 0.0}  # Hindi: Whisper writes the English terms in Devanagari, so only fluency is checked
 
 
@@ -62,9 +63,10 @@ def main():
     model = WhisperModel("small", device="cpu", compute_type="int8")
 
     def check(mp3: Path, text: str) -> dict:
-        """Whisper match + fluency: the longest pause inside the line and the speaking rate."""
+        """Whisper match + fluency: the longest pause inside the line, the speaking rate and stray sounds."""
         audio = load16k(mp3)
-        segs, _ = model.transcribe(audio, language=lang, beam_size=5)
+        segs, _ = model.transcribe(audio, language=lang, beam_size=5, word_timestamps=True)
+        segs = list(segs)
         # letters, not words: "C P 2 1 0 2" in the script and "CP2102" from Whisper are the same
         match = difflib.SequenceMatcher(None, "".join(words(text)), "".join(words(" ".join(s.text for s in segs))),
                                         autojunk=False).ratio()
@@ -77,9 +79,13 @@ def main():
             speech = (voiced[-1] - voiced[0] + 1) * 0.02
             gap = float(np.diff(voiced).max() - 1) * 0.02 if len(voiced) > 1 else 0.0
         talk = max(len(voiced) * 0.02, 0.1)  # voiced time only, so lines with many pauses don't look slow
-        return {"match": match, "gap": gap, "rate": len(text) / talk}
+        near = np.zeros(len(db), bool)  # frames within 0.3 s of a recognised word
+        for w in (w for sg in segs for w in (sg.words or [])):
+            near[max(0, int((w.start - 0.3) / 0.02)):int((w.end + 0.3) / 0.02) + 1] = True
+        junk = float(((db > db.max() - 30) & ~near).sum()) * 0.02
+        return {"match": match, "gap": gap, "rate": len(text) / talk, "junk": junk, "dur": len(audio) / 16000}
 
-    res = {sid: check(out / f"{sid}.mp3", t) for sid, t in texts.items() if (out / f"{sid}.mp3").exists()}
+    res = {sid: {**check(out / f"{sid}.mp3", t), "sid": sid} for sid, t in texts.items() if (out / f"{sid}.mp3").exists()}
     med = float(np.median([r["rate"] for r in res.values()]))
 
     def problems(r):
@@ -88,12 +94,21 @@ def main():
             p.append(f"match {r['match']:.2f}")
         if r["gap"] > MAX_GAP:
             p.append(f"pause {r['gap']:.1f}s")
+        if r.get("junk", 0) > MAX_JUNK:
+            p.append(f"stray sound {r['junk']:.1f}s")
         if not 0.75 * med < r["rate"] < 1.3 * med:
             p.append(f"rate x{r['rate'] / med:.2f}")
         return p
 
-    def rank(r):  # fluent takes first, then the clearest
-        return (len(problems(r)) == 0, r["match"] - 0.1 * max(0, r["gap"] - MAX_GAP))
+    room = {}  # dub lines: time until the next line in the current schedule; takes that fit are preferred
+    sched_p = ep / "build" / "schedule.json"
+    if not a.short and lang != "en" and sched_p.exists():
+        sg = json.loads(sched_p.read_text(encoding="utf-8"))["segments"]
+        ids = list(sg)
+        room = {sid: sg[ids[i + 1]]["start"] - sg[sid]["start"] - 0.2 for i, sid in enumerate(ids[:-1])}
+
+    def rank(r):  # fluent takes first, then takes that fit their slot, then the clearest
+        return (len(problems(r)) == 0, r.get("dur", 0) <= 1.08 * room.get(r.get("sid"), 1e9), r["match"] - 0.1 * max(0, r["gap"] - MAX_GAP) - 0.2 * r.get("junk", 0))
 
     weak = {sid: problems(r) for sid, r in res.items() if problems(r)}
     print(f"{lang}: {len(res)} lines, median {med:.1f} chars/s, {len(weak)} to retake", flush=True)
@@ -112,7 +127,7 @@ def main():
             break
         cbx.say(cfg, [(texts[sid], take(sid, seed), seed) for sid in open_ if not take(sid, seed).exists()])
         for sid in list(open_):
-            r = check(take(sid, seed), texts[sid])
+            r = {**check(take(sid, seed), texts[sid]), "sid": sid}
             b = best[sid][1]
             if rank(r) > rank(b) and (len(problems(b)) > 0 or r["match"] > b["match"] + 0.02):
                 best[sid] = (take(sid, seed), r)
