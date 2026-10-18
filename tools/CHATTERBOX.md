@@ -52,3 +52,10 @@ For ep03 the script comes from `video/ep03/make_script.py`: put the keys there, 
 
 A take is cached by text + settings; change `seed` to get a different take of every line, or delete
 `build/audio/<id>.mp3` to redo one line. Check takes with `tools/dub_check.py` for the dubs.
+
+## Voice menu (2026-10-18)
+`python tools/cbx_variants.py video/ep02 s03 s20` narrates two lines per language with 7 voices/styles
+(default, calm, lively, and clones of four public-domain LibriVox readers: mark, bob, kara, ruth) →
+`build/voice_test/variants/<lang>_all.mp3`. The clone prompts live in `tools/voice_samples/` (gitignored;
+sources and the ffmpeg cut are in its README). **Chosen narrator: mark** (Mark F. Smith,
+`tools/voice_samples/mark.wav`): Whisper match 1.00 in English, ~164 wpm.
