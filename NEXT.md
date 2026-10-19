@@ -1,34 +1,20 @@
-# Where we left off (2026-10-18 evening)
+# Where we left off (2026-10-19 morning)
 
-## NEW VOICES (2026-10-18) — rebuild in progress
-All narration is now Chatterbox (local GPU): EN `mark` (LibriVox, public domain), TR `tr_fleurs2` (user's pick),
-HI `hi_fleurs5`, PT `pt_fleurs2`, ES `es_fleurs2` (Google FLEURS, CC BY 4.0 — credit line is in every description).
-Settings in `tools/cbx.py`; setup in `tools/CHATTERBOX.md`; voice prompts in `tools/voice_samples/` (gitignored, README there).
-Lines are cut at punctuation and joined with fixed pauses; `tools/cbx_retake.py` re-narrates lines with long pauses,
-odd speed or (not for Hindi) misheard words. The schedule grows a segment when a dub would not fit.
+## ALL REBUILT WITH THE NEW VOICES (done 2026-10-19 ~08:00)
+- ep01 10:35, ep02 7:20, ep03 5:17, ep04 10:17 (incl. intro/outro), dubs tr/hi/pt/es, 12 subtitle languages,
+  chapters/descriptions updated, trailer 37 s, 10 Shorts (ep01 en/tr/hi/pt, ep02-04 en/tr).
+- Upload folder: `YAYIN/` (399 MB, `python tools/deliver.py` rebuilds it). Release plan `video/YAYIN_PLANI.md`:
+  launch **Tue 20 Oct 17:00 TR** (ep01 + ep02 + trailer).
+- Voices (tools/cbx.py VOICES): EN mark; TR **pt_fleurs2** (user approved after tr_fleurs2 had hiss); HI hi_fleurs5;
+  PT pt_fleurs2; ES es_fleurs2. Videos are TV-range now (Windows players showed no picture with full range).
+- New checks: `cbx_retake.py` flags "stray sound" (Chatterbox mumbles/hiss after a chunk, sound >0.3 s from any
+  Whisper word) and never reuses takes of another voice/text; `cbx_fixline.py` = extra seeds for single weak lines.
+  ep01 tr s26 tail was trimmed by hand (15.2 s).
+- Run long jobs ONE at a time (16 GB RAM; Claude Code's memory guard kills background jobs otherwise).
 
-Resume (skips finished steps, listed in `video/<ep>/build/rebuild.done`):
-
-    bash tools/rebuild_voices.sh ep01 ep02 ep03 ep04 >> build_rebuild_voices.log 2>&1
-    bash tools/finish_all.sh          # Shorts (ep01 en/tr/hi/pt, ep02-04 en/tr) + trailer
-    python tools/deliver.py           # clean upload folder YAYIN/ (then delete old test/voice_test files)
-
-## STATE 2026-10-19 00:40 (stopped by the low-memory guard, NOT a bug)
-- ep01 DONE with the new voices (TR = pt_fleurs2, user approved), TV-range video. After 00:19, extra retakes
-  replaced hi s31/s42 (and maybe tr s06/s26) → `dub_hi`/`dub_tr` removed from ep01 rebuild.done, the resume
-  re-muxes them (1 min).
-- ep02: narration + TR retakes done, HI retakes were running when Claude Code's memory guard stopped
-  the job (Claude had started a second Chatterbox job in parallel — run ONE job at a time).
-- Resume with the same command below (it skips finished steps).
-
-Run it alone: with Unity/Chrome open, parallel jobs ran out of memory (16 GB).
-State at 18:35: ep01 en/tr/hi/pt narrated + retaken, es narrating; ep01 render and ep02-04 not started.
-
-Release plan: `video/YAYIN_PLANI.md` (launch Tue 20 Oct 17:00 TR (moved from 19 Oct): ep01 + ep02 + trailer, then daily Shorts).
-Creator clips needed first: footage/ep01/C1-C3 (board plugged in + red LED, BOOT held while "Connecting",
-EN pressed + "Hello, ESP32!") and footage/ep02/C1-C3 (see video/ep02/youtube.md).
-
----
+## Waiting for the creator
+Clips footage/ep01/C1-C3, footage/ep02/C1-C3 (then `build.py <ep> compose` + `dub.py <ep> <lang>` per dub
++ deliver.py). ep02 Short h7 → real C3 footage. Check ep02 s13 "D2 = GPIO 2" and hole counts on the real board.
 
 # Earlier notes (2026-10-17)
 
