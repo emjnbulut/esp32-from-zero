@@ -30,7 +30,7 @@
   "s25": "En sık yapılan acemi hatası da şu: bir parçanın iki bacağını aynı sütuna takmak. O zaman iki bacak birbirine bağlanır ve parça çalışmaz.",
   "s26": "Şimdi kartı bredborda takalım. Kart ortadaki boşluğun üstüne oturur, böylece her pin kendi sütununu alır.",
   "s27": "Pinleri deliklerle hizalayın ve iki taraftan eşit şekilde nazikçe bastırın.",
-  "s28": "Çoğu kart geniştir. Otuz pinli kart, iki tarafta da her pinin yanında bir boş delik bırakır. Otuz sekiz pinli kart ise bir tarafta hiç boş delik bırakmayabilir.",
+  "s28": "Çoğu kart geniştir. Dar bir kart, iki tarafta da her pinin yanında bir boş delik bırakır. Ama otuz ya da otuz sekiz pinli birçok kart, yalnızca bir tarafta boş delik bırakır.",
   "s29": "Bugün için bu yeterli. İleride daha çok yer gerekirse iki bredbordu yan yana kullanırız.",
   "s30": "İlk devremizin zamanı. Üç nokta üç volt pininden aldığımız güçle bir led yakacağız. Kod gerekmiyor.",
   "s31": "Ledin iki bacağı var. Uzun bacak artı taraf, yani anot. Kısa bacak eksi taraf, yani katot. Akım uzun bacaktan kısa bacağa akmalı.",

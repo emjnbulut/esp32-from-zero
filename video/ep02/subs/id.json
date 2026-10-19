@@ -28,7 +28,7 @@
   "s25": "Dan kesalahan pemula yang paling umum: memasang kedua kaki komponen di kolom yang sama. Kedua kaki jadi tersambung, dan komponennya tidak bekerja.",
   "s26": "Sekarang pasang board di breadboard. Board duduk di atas celah tengah, supaya setiap pin dapat kolomnya sendiri.",
   "s27": "Sejajarkan pin dengan lubang, lalu tekan perlahan dan merata di kedua sisi.",
-  "s28": "Kebanyakan board ESP32 itu lebar. Board 30 pin menyisakan satu lubang kosong di samping setiap pin, di kedua sisi. Board 38 pin bisa tidak menyisakan lubang di satu sisi.",
+  "s28": "Kebanyakan board ESP32 itu lebar. Board yang sempit menyisakan satu lubang kosong di samping setiap pin, di kedua sisi. Tapi banyak board 30 atau 38 pin hanya menyisakan lubang kosong di satu sisi.",
   "s29": "Untuk hari ini cukup. Nanti, kalau butuh ruang lebih, kita bisa pakai dua breadboard berdampingan.",
   "s30": "Saatnya rangkaian pertama. Kita nyalakan LED dengan daya dari pin 3,3 volt. Tanpa kode.",
   "s31": "LED punya dua kaki. Kaki panjang adalah sisi plus, disebut anoda. Kaki pendek adalah sisi minus, katoda. Arus harus mengalir dari kaki panjang ke kaki pendek.",

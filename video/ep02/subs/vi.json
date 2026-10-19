@@ -28,7 +28,7 @@
   "s25": "Và lỗi phổ biến nhất của người mới: cắm cả hai chân linh kiện vào cùng một cột. Khi đó hai chân bị nối với nhau, và linh kiện chẳng làm gì cả.",
   "s26": "Giờ cắm board lên breadboard. Board nằm vắt qua rãnh giữa, để mỗi chân có cột riêng.",
   "s27": "Căn các chân thẳng với lỗ, rồi ấn nhẹ và đều ở cả hai bên.",
-  "s28": "Phần lớn board ESP32 khá rộng. Board 30 chân chừa một lỗ trống cạnh mỗi chân, ở cả hai bên. Board 38 chân có thể không chừa lỗ nào ở một bên.",
+  "s28": "Phần lớn board ESP32 khá rộng. Board hẹp chừa một lỗ trống cạnh mỗi chân, ở cả hai bên. Nhưng nhiều board 30 hoặc 38 chân chỉ chừa lỗ trống ở một bên.",
   "s29": "Hôm nay vậy là đủ. Sau này, nếu cần thêm chỗ, ta có thể ghép hai breadboard cạnh nhau.",
   "s30": "Đến lúc lắp mạch đầu tiên. Ta sẽ thắp sáng một LED bằng nguồn từ chân 3,3 volt. Không cần code.",
   "s31": "LED có hai chân. Chân dài là cực dương, gọi là anode. Chân ngắn là cực âm, cathode. Dòng điện phải chạy từ chân dài sang chân ngắn.",

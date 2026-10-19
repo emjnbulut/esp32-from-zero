@@ -79,9 +79,9 @@ s("s26", "mount", "Now, let's put the board on the breadboard. It sits across th
   "Şimdi kartı breadboard'a takalım. Kart ortadaki boşluğun üzerine oturur, böylece her pin kendi sütununu alır.")
 s("s27", "mount", "Line up the pins with the holes, and press down gently and evenly, on both sides.",
   "Pinleri deliklerle hizalayın ve iki taraftan da nazikçe ve eşit şekilde bastırın.", clip="C2", pad=1.5)
-s("s28", "mount", "Most ESP32 boards are wide. A thirty pin board leaves one free hole next to each pin, on both sides. A thirty-eight pin board can leave no free holes on one side.",
-  "ESP32 kartlarının çoğu geniştir. 30 pinli bir kart, iki tarafta da her pinin yanında bir boş delik bırakır. 38 pinli bir kart ise bir tarafta hiç boş delik bırakmayabilir.",
-  sub="Most ESP32 boards are wide. A 30-pin board leaves one free hole next to each pin, on both sides. A 38-pin board can leave no free holes on one side.")
+s("s28", "mount", "Most ESP32 boards are wide. A narrow board leaves one free hole next to each pin, on both sides. But many boards, with thirty or thirty-eight pins, leave free holes on one side only.",
+  "ESP32 kartlarının çoğu geniştir. Dar bir kart, iki tarafta da her pinin yanında bir boş delik bırakır. Ama 30 ya da 38 pinli birçok kart, yalnızca bir tarafta boş delik bırakır.",
+  sub="Most ESP32 boards are wide. A narrow board leaves one free hole next to each pin, on both sides. But many boards, with 30 or 38 pins, leave free holes on one side only.")
 s("s29", "mount", "That's enough for today. Later, when we need more room, we can use two breadboards side by side.",
   "Bugün için bu yeterli. İleride daha fazla yere ihtiyacımız olunca iki breadboard'u yan yana kullanabiliriz.")
 s("s30", "circuit", "Time for our first circuit. We'll light an LED, using power from the three point three volt pin. No code needed.",

@@ -353,10 +353,10 @@ const BBPINS = {
   38: { top: "a", T: ["5V", "CMD", "D3", "D2", "13", "GND", "12", "14", "27", "26", "25", "33", "32", "35", "34", "VN", "VP", "EN", "3V3"],
     B: ["CLK", "D0", "D1", "15", "2", "0", "4", "16", "17", "5", "18", "19", "GND", "21", "RX", "TX", "22", "23", "GND"] },
 };
-function bbBoard(bb, pins, c0) {
+function bbBoard(bb, pins, c0, top0 = BBPINS[pins].top) { // top0 "a": wide board, no free holes on top
   const spec = BBPINS[pins], n = pins / 2;
   const g = svgEl(bb.parts, "g", {});
-  const [x0, yT] = bb.L(c0, spec.top), [x1, yB] = bb.L(c0 + n - 1, "i");
+  const [x0, yT] = bb.L(c0, top0), [x1, yB] = bb.L(c0 + n - 1, "i");
   const left = x0 - 0.6 * P, right = x1 + 0.6 * P + 34, top = yT - 0.55 * P, bot = yB + 0.55 * P, mid = (yT + yB) / 2;
   svgEl(g, "rect", { x: left - 62, y: mid - 34, width: 84, height: 68, rx: 6, fill: "url(#bbshield)", stroke: "#7d8690", "stroke-width": 2 }); // USB
   svgEl(g, "rect", { x: left, y: top, width: right - left, height: bot - top, rx: 12, fill: "#1b1f26", stroke: "#2b313b", "stroke-width": 2, opacity: 0.97 });
@@ -368,7 +368,7 @@ function bbBoard(bb, pins, c0) {
   tx.textContent = "ESP32-WROOM-32";
   const pinXY = {};
   for (let k = 0; k < n; k++) {
-    for (const [row, names, dy] of [[spec.top, spec.T, 25], ["i", spec.B, -17]]) {
+    for (const [row, names, dy] of [[top0, spec.T, 25], ["i", spec.B, -17]]) {
       const [px, py] = bb.L(c0 + k, row);
       svgEl(g, "rect", { x: px - 10, y: py - 10, width: 20, height: 20, rx: 3, fill: "#d4af37" });
       svgEl(g, "circle", { cx: px, cy: py, r: 4.5, fill: "#15181d" });
@@ -377,7 +377,7 @@ function bbBoard(bb, pins, c0) {
       pinXY[(row === "i" ? "B" : "T") + k] = [px, py];
     }
   }
-  return { g, c0, n, top: spec.top };
+  return { g, c0, n, top: top0 };
 }
 /** jumper wire between two local points, drawn on at time t */
 function bbWire(bb, a, b, color, t, bend = 0.18) {
@@ -519,21 +519,26 @@ sceneIn(sMount, S1("s25") + 0.6);
       hidden(r); show(r, t0 + (c - c0) * 0.03, 0.2); hide(r, t1, 0.3);
     }
   };
-  const t30 = W("s28", "thirty"), t38 = W("s28", "thirtyeight");
-  freeRow("a", 2, 15, true, t30 + 0.2, t38 - 0.2);
-  freeRow("j", 2, 15, true, t30 + 0.5, t38 - 0.2);
+  // narrow board: a free hole on both sides; wide 30- and 38-pin boards: on one side only
+  const tN = W("s28", "narrow"), tW = W("s28", "many"), t38 = W("s28", "thirtyeight");
+  freeRow("a", 2, 15, true, tN + 0.2, tW - 0.2);
+  freeRow("j", 2, 15, true, tN + 0.5, tW - 0.2);
   const m30 = mark(sMount, BBX + bb.L(17, "a")[0] + 30, BBY + bb.L(1, "a")[1] - 26, true, "1 free hole");
   const m30b = mark(sMount, BBX + bb.L(17, "j")[0] + 30, BBY + bb.L(1, "j")[1] - 26, true, "1 free hole");
-  pop(m30, t30 + 0.6); pop(m30b, t30 + 0.8); hide([m30, m30b], t38 - 0.2, 0.3);
-  // swap to the 38-pin board
-  const b38 = bbBoard(bb, 38, 2);
-  gsap.set(b38.g, { opacity: 0 });
-  TO(b30.g, t38 - 0.3, 0.4, { opacity: 0 });
+  pop(m30, tN + 0.6); pop(m30b, tN + 0.8); hide([m30, m30b], tW - 0.2, 0.3);
+  const b30w = bbBoard(bb, 30, 2, "a"), b38 = bbBoard(bb, 38, 2);
+  gsap.set([b30w.g, b38.g], { opacity: 0 });
+  TO(b30.g, tW - 0.3, 0.4, { opacity: 0 });
+  TO(b30w.g, tW, 0.5, { opacity: 1 });
+  freeRow("j", 2, 15, true, tW + 0.6, S1("s28") + 0.6);
+  const mW = mark(sMount, BBX + bb.L(17, "j")[0] + 30, BBY + bb.L(1, "j")[1] - 26, true, "1 free hole");
+  const mWt = mark(sMount, BBX + bb.L(17, "a")[0] + 30, BBY + bb.L(1, "a")[1] - 26, false, "no free holes");
+  pop(mW, tW + 0.6); pop(mWt, tW + 0.8); hide([mW, mWt], S1("s28") + 0.6, 0.3);
+  // swap to the 38-pin board; the badges slide along to its end
+  TO(b30w.g, t38 - 0.3, 0.4, { opacity: 0 });
   TO(b38.g, t38, 0.5, { opacity: 1 });
-  freeRow("j", 2, 19, true, t38 + 0.6, S1("s28") + 0.6);
-  const m38 = mark(sMount, BBX + bb.L(21, "j")[0] + 30, BBY + bb.L(1, "j")[1] - 26, true, "1 free hole");
-  const m38t = mark(sMount, BBX + bb.L(21, "a")[0] + 30, BBY + bb.L(1, "a")[1] - 26, false, "no free holes");
-  pop(m38, t38 + 0.8); pop(m38t, W("s28", "no")); hide([m38, m38t], S1("s28") + 0.6, 0.3);
+  TO([mW, mWt], t38, 0.5, { x: bb.L(21, "j")[0] - bb.L(17, "j")[0] });
+  freeRow("j", 17, 4, true, t38 + 0.4, S1("s28") + 0.6);
   // s29: two breadboards
   const dim = box(sMount, 0, 0, 1920, 1080, ""); css(dim, { background: "rgba(8,13,24,.82)", zIndex: 30 }); hidden(dim);
   show(dim, W("s29", "two") - 0.3, 0.35);

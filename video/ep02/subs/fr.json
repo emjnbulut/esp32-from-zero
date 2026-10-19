@@ -28,7 +28,7 @@
   "s25": "Et voici l'erreur de débutant la plus courante : mettre les deux pattes d'un composant dans la même colonne. Les deux pattes sont alors reliées, et le composant ne fait rien.",
   "s26": "Maintenant, posons la carte sur la breadboard. Elle chevauche la rainure centrale, pour que chaque broche ait sa propre colonne.",
   "s27": "Aligne les broches avec les trous, et appuie doucement et uniformément des deux côtés.",
-  "s28": "La plupart des cartes ESP32 sont larges. Une carte 30 broches laisse un trou libre à côté de chaque broche, des deux côtés. Une carte 38 broches peut n'en laisser aucun d'un côté.",
+  "s28": "La plupart des cartes ESP32 sont larges. Une carte étroite laisse un trou libre à côté de chaque broche, des deux côtés. Mais beaucoup de cartes, à 30 ou 38 broches, ne laissent des trous libres que d'un côté.",
   "s29": "Pour aujourd'hui, ça suffit. Plus tard, s'il faut plus de place, on pourra mettre deux breadboards côte à côte.",
   "s30": "Place à notre premier circuit. On va allumer une LED avec le courant de la broche 3,3 volts. Pas besoin de code.",
   "s31": "Une LED a deux pattes. La patte longue est le plus, l'anode. La patte courte est le moins, la cathode. Le courant doit aller de la patte longue vers la courte.",

@@ -61,8 +61,9 @@ Careful on 38-pin boards: the label `D2` there is a **flash** pin (GPIO 9), not 
 
 Press the board in **across the middle gap**, so each pin gets its own column. Press gently and evenly.
 
-- A **30-pin** board leaves **one free hole** next to each pin on both sides.
-- A wider **38-pin** board can leave **no free holes on one side** — later you can put two breadboards side by side.
+- A **narrow** board leaves **one free hole** next to each pin on both sides.
+- Many **30-pin** and **38-pin** boards are wider: they leave free holes on **one side only** — put the free side
+  where you need most pins, or put two breadboards side by side.
 
 ## 4. First circuit: an always-on LED
 

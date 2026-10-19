@@ -29,7 +29,7 @@
   "s25": "Y el error más común de principiante: poner las dos patas de una pieza en la misma columna. Así las patas quedan unidas, y la pieza no hace nada.",
   "s26": "Ahora, pongamos la placa en la protoboard. Va sobre la ranura del centro, para que cada pin tenga su propia columna.",
   "s27": "Alinea los pines con los agujeros, y presiona con suavidad y parejo, de los dos lados.",
-  "s28": "Casi todas las placas ESP32 son anchas. La de treinta pines deja un agujero libre junto a cada pin, en ambos lados. La de treinta y ocho puede no dejar ninguno de un lado.",
+  "s28": "Casi todas las placas ESP32 son anchas. Una placa estrecha deja un agujero libre junto a cada pin, en ambos lados. Pero muchas placas, de treinta o treinta y ocho pines, solo dejan agujeros libres en un lado.",
   "s29": "Para hoy es suficiente. Más adelante, si falta espacio, podemos usar dos protoboards lado a lado.",
   "s30": "Llegó nuestro primer circuito. Vamos a encender un LED con la energía del pin de tres punto tres voltios. Sin código.",
   "s31": "Un LED tiene dos patas. La pata larga es el positivo, el ánodo. La pata corta es el negativo, el cátodo. La corriente debe ir de la pata larga a la corta.",

@@ -12,9 +12,19 @@
   ep01 tr s26 tail was trimmed by hand (15.2 s).
 - Run long jobs ONE at a time (16 GB RAM; Claude Code's memory guard kills background jobs otherwise).
 
+## 2026-10-19 evening
+- ep01 creator clips DONE: originals in footage/ep01/raw/, trimmed + stabilized + cropped to footage/ep01/C1-C3.mp4
+  (ffmpeg vidstab, crop 1056x594 -> 1280x720); composed, dubs re-muxed, YAYIN/ rebuilt.
+- ep02 s28 fixed (creator's 30-pin board leaves free holes on ONE side only): new line in all languages, new
+  animation (narrow board both sides -> wide 30-pin -> 38-pin), ep02 re-rendered (7:21), dubs, Shorts, YAYIN/.
+  s13 "D2 = GPIO 2" confirmed on the real board.
+- Creator's board: 30-pin DevKit, CP2102 (COM6), red power LED, EN top-left / BOOT bottom-left of the USB port.
+- Open: ep04 two_leds/challenge_speed use GPIO 25 (EN side) -> creator needs two breadboards side by side
+  (advised) or move the green LED to GPIO 21 (not done).
+
 ## Waiting for the creator
-Clips footage/ep01/C1-C3, footage/ep02/C1-C3 (then `build.py <ep> compose` + `dub.py <ep> <lang>` per dub
-+ deliver.py). ep02 Short h7 → real C3 footage. Check ep02 s13 "D2 = GPIO 2" and hole counts on the real board.
+Clips footage/ep02/C1-C3 (then `build.py ep02 compose` + `dub.py ep02 <lang>` per dub + deliver.py).
+ep02 Short h7 → real C3 footage.
 
 # Earlier notes (2026-10-17)
 

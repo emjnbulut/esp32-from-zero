@@ -189,9 +189,9 @@
   {
    "id": "s28",
    "scene": "mount",
-   "text": "Most ESP32 boards are wide. A thirty pin board leaves one free hole next to each pin, on both sides. A thirty-eight pin board can leave no free holes on one side.",
-   "sub": "Most ESP32 boards are wide. A 30-pin board leaves one free hole next to each pin, on both sides. A 38-pin board can leave no free holes on one side.",
-   "tr": "ESP32 kartlarının çoğu geniştir. 30 pinli bir kart, iki tarafta da her pinin yanında bir boş delik bırakır. 38 pinli bir kart ise bir tarafta hiç boş delik bırakmayabilir."
+   "text": "Most ESP32 boards are wide. A narrow board leaves one free hole next to each pin, on both sides. But many boards, with thirty or thirty-eight pins, leave free holes on one side only.",
+   "sub": "Most ESP32 boards are wide. A narrow board leaves one free hole next to each pin, on both sides. But many boards, with 30 or 38 pins, leave free holes on one side only.",
+   "tr": "ESP32 kartlarının çoğu geniştir. Dar bir kart, iki tarafta da her pinin yanında bir boş delik bırakır. Ama 30 ya da 38 pinli birçok kart, yalnızca bir tarafta boş delik bırakır."
   },
   {
    "id": "s29",

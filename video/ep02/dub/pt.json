@@ -29,7 +29,7 @@
   "s25": "E o erro mais comum de iniciante: colocar as duas pernas de uma peça na mesma coluna. Assim as pernas ficam ligadas entre si, e a peça não faz nada.",
   "s26": "Agora, vamos colocar a placa na protoboard. Ela fica sobre o vão do meio, para que cada pino tenha sua própria coluna.",
   "s27": "Alinhe os pinos com os furos e pressione com cuidado, por igual, dos dois lados.",
-  "s28": "A maioria das placas ESP32 é larga. A de trinta pinos deixa um furo livre ao lado de cada pino, dos dois lados. A de trinta e oito pode não deixar nenhum furo livre de um lado.",
+  "s28": "A maioria das placas ESP32 é larga. Uma placa estreita deixa um furo livre ao lado de cada pino, dos dois lados. Mas muitas placas, de trinta ou trinta e oito pinos, só deixam furos livres de um lado.",
   "s29": "Para hoje, isso basta. Depois, quando precisar de mais espaço, dá para usar duas protoboards lado a lado.",
   "s30": "Hora do nosso primeiro circuito. Vamos acender um LED com a energia do pino de três vírgula três volts. Sem código.",
   "s31": "O LED tem duas pernas. A perna longa é o lado positivo, o anodo. A perna curta é o negativo, o catodo. A corrente deve ir da perna longa para a curta.",

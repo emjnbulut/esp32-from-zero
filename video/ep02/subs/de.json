@@ -28,7 +28,7 @@
   "s25": "Und der häufigste Anfängerfehler: beide Beinchen eines Bauteils in dieselbe Spalte stecken. Dann sind beide Beinchen verbunden, und das Bauteil tut nichts.",
   "s26": "Jetzt setzen wir das Board aufs Breadboard. Es sitzt über dem mittleren Spalt, damit jeder Pin seine eigene Spalte bekommt.",
   "s27": "Richte die Pins an den Löchern aus und drück vorsichtig und gleichmäßig auf beiden Seiten.",
-  "s28": "Die meisten ESP32-Boards sind breit. Ein 30-Pin-Board lässt neben jedem Pin auf beiden Seiten ein Loch frei. Ein 38-Pin-Board lässt auf einer Seite eventuell keins frei.",
+  "s28": "Die meisten ESP32-Boards sind breit. Ein schmales Board lässt neben jedem Pin auf beiden Seiten ein Loch frei. Viele Boards mit 30 oder 38 Pins lassen aber nur auf einer Seite Löcher frei.",
   "s29": "Für heute reicht das. Wenn wir später mehr Platz brauchen, nehmen wir zwei Breadboards nebeneinander.",
   "s30": "Zeit für unsere erste Schaltung. Wir bringen eine LED zum Leuchten, mit Strom vom 3,3-Volt-Pin. Ganz ohne Code.",
   "s31": "Eine LED hat zwei Beinchen. Das lange ist die Plus-Seite, die Anode. Das kurze ist die Minus-Seite, die Kathode. Der Strom muss vom langen zum kurzen Beinchen fließen.",
