@@ -1,7 +1,12 @@
-"""Extra retakes for single dub lines: keep the take that fits its slot, has no stray sound or long pause, best match."""
+"""Extra retakes for single dub lines after cbx_retake.py: tries more seeds and keeps the take that fits its slot
+(schedule.json), has no stray sound or long pause, and the best Whisper match. Updates cache.json; then run
+tools/dub.py <ep> <lang> to rebuild the dub track.
+
+Usage: python tools/cbx_fixline.py video/ep02 tr s16,s27 [seeds, default 21-26]
+"""
 import json, sys, shutil, difflib, subprocess, numpy as np
 from pathlib import Path
-ROOT = Path(r"C:\Users\emin\esp32-from-zero"); sys.path.insert(0, str(ROOT / "tools"))
+ROOT = Path(__file__).resolve().parent.parent; sys.path.insert(0, str(ROOT / "tools"))
 sys.stdout.reconfigure(encoding="utf-8")
 import cbx
 from dub_check import load16k, words
