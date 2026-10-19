@@ -175,8 +175,14 @@ def fmt(t):
 
 
 def seg_cues(text, seg):
-    """Time cues by mapping their character position onto the spoken word timings."""
+    """Use word anchors when usable, otherwise distribute cues across the segment.
+
+    Whisper can assign identical timestamps to multiple words (even all of them).
+    Such anchors must not produce simultaneous or backwards subtitle intervals.
+    """
     cues = split_cues(text)
+    if not cues:
+        return []
     total = sum(len(c) for c in cues)
     words = seg["words"]
     def time_at(frac):
@@ -184,13 +190,14 @@ def seg_cues(text, seg):
             return seg["start"] + frac * seg["dur"]
         i = min(int(frac * len(words)), len(words) - 1)
         return seg["start"] + words[i]["t"]
-    out, acc = [], 0
-    for c in cues:
-        t0 = seg["start"] if acc == 0 else time_at(acc / total)
-        acc += len(c)
-        t1 = seg["end"] if acc >= total else time_at(acc / total)
-        out.append((t0, t1, wrap2(c)))
-    return out
+    fractions, acc = [0.0], 0
+    for cue in cues:
+        acc += len(cue)
+        fractions.append(acc / total)
+    boundaries = [seg["start"], *[time_at(f) for f in fractions[1:-1]], seg["end"]]
+    if any(z - a < 0.1 for a, z in zip(boundaries, boundaries[1:])):
+        boundaries = [seg["start"] + f * (seg["end"] - seg["start"]) for f in fractions]
+    return [(boundaries[i], boundaries[i + 1], wrap2(c)) for i, c in enumerate(cues)]
 
 
 def sub_texts(ep: Path, script) -> dict:
@@ -220,7 +227,9 @@ def subs(ep: Path):
         lines = []
         for n, (t0, t1, c) in enumerate(cues, 1):
             nxt = cues[n][0] if n < len(cues) else t1 + 10
-            t1 = min(max(t1, t0 + 1.2), nxt - 0.05)
+            t1 = min(max(t1, t0 + 1.2), nxt - min(0.05, (nxt - t0) / 4))
+            if t1 <= t0:
+                raise ValueError(f"Invalid subtitle interval in {ep.name}/{lang}: {t0} -> {t1}")
             lines.append(f"{n}\n{fmt(t0 + bumpers.INTRO)} --> {fmt(t1 + bumpers.INTRO)}\n{c}\n")
         p = ep / "build" / f"{ep.name}_{lang}.srt"
         p.write_text("\n".join(lines), encoding="utf-8")

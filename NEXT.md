@@ -1,3 +1,23 @@
+# Güncel YouTube durumu — 19 Ekim 2026 (Codex)
+
+Güncel ve birleştirilmiş devir notu: [HANDOFF.md](HANDOFF.md).
+
+Bu kayıt aşağıdaki eski devir notlarının yerini alır. Bölüm 4 kullanıcı isteğiyle kapsam dışında tutuldu.
+
+- ep01 RyR4OEA7ESA ve ep02 NwtftTFs_Og: 20 Ekim 17:00 Türkiye; ep03 doPDxOPFjQg: 23 Ekim 17:00 Türkiye.
+- ep01–ep03: 12 dilin tamamında manuel altyazı YAYINLANDI (36/36). İlk 23 API ile, kalan 13 Studio üzerinden yüklendi ve her bölümün tablosunda doğrulandı. API kotası dolu olsa da artık bekleyen altyazı yok; finish_launch.py tekrar çalıştırılmamalı.
+- Her bölümün İngilizce başlık/açıklaması + 11 çevirisi güncellendi; kategori Education. Küçük resimler yüklendi: ep01 C, ep02 A, ep03 A.
+- Bitiş ekranları kaydedildi: ep01 -> ep02 + abone; ep02 -> ep03 + abone; ep03 -> izleyici için en iyisi + abone.
+- Shorts her gün 17:00 Türkiye saatinde planlandı: 21 Ekim ep01 EN T6aVIFkQijQ; 22 Ekim ep01 TR XrDz-M0jYT0; 23 Ekim ep02 EN _M6EGQolUoc; 24 Ekim ep02 TR LLulzWlYYqg; 25 Ekim ep01 HI ZjtXi4-EAd4; 26 Ekim ep03 EN yu4LkhTPmzI. Hintçe başlık ayrıca düzeltildi ve kaydedildi. Yerel kopyalar YAYIN/20-26_Ekim/ klasöründe; plan video/shorts/launch-plan.json.
+- Dublajlar HENÜZ YÜKLENMEDİ. TR/HI/PT/ES M4A dosyaları YAYIN/epXX/dublaj_sesleri/ içinde hazır. Studio çok dilli ses alanını göstermiyor; ileri seviye özellikler için videolu doğrulama incelemede.
+- Shorts 'İlgili video' bağlantıları HENÜZ EKLENMEDİ: aynı doğrulama incelemesi engeli. Açıklamalarda ana bölüm URL'leri mevcut.
+- Kanal fragmanının gerçek ID'si I_70hbSQFQo (büyük I). 20 Ekim yayımlandıktan sonra kanal fragmanı olarak atanması kaldı.
+- Altyazı üretimindeki sıfır/tekrarlanan kelime zamanları tools/build.py içinde düzeltildi. tools/test_subtitles.py: 6 test geçti; 36 SRT pozitif ve çakışmasız. Sadece ep01–ep03 altyazıları yeniden üretildi ve YAYIN'a kopyalandı.
+- ÖNEMLİ: tools/deliver.py YAYIN klasörünü yeniden oluşturur; bu görevde çalıştırılmadı. Medya dosyaları gitignore kapsamında yerelde. Yeni uzun video yükleme, tarih değiştirme veya bölüm 4 işlemi yapılmadı.
+- Studio'da Ekle düğmesi yalnızca fare hücre üstündeyken görünür. Otomasyonun doğrudan metin/hücre tıklaması bunu göstermeyebilir; görsel konuma fare hareketi ardından kalem düğmesine tıklama çalıştı.
+
+---
+
 # Where we left off (2026-10-20 ~00:30) - YOUTUBE LAUNCH (read this first)
 
 Claude runs the YouTube side through Claude-in-Chrome (Studio signed in as Pin by Pin Lab, channel UCOGFzocCfvfYWiA5-MfHHwQ).
