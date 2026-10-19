@@ -26,8 +26,11 @@
   held frame via tpad): composed, dubs re-muxed. ep02 Short h7 now uses footage/ep02/C3.mp4 (short.json shot
   "footage" key, falls back to the episode render if the clip is missing). YAYIN/ rebuilt (426 MB).
 
+- ep03 creator clips DONE (C1 speed-ramped 19 s -> 7.4 s: 3.4-7.6 @2x, 9.4-17.2 @2.6x, 17.2-19.5 @1x); composed,
+  dubs re-muxed; ep03 Short h6 uses footage/ep03/C2.mp4.
+
 ## Waiting for the creator
-Nothing for ep01/ep02. ep03 clips C1-C3 and ep04 clips C1-C6 (lists in video/ep0X/youtube.md) when filming.
+Nothing for ep01-ep03. ep04 clips C1-C6 (lists in video/ep0X/youtube.md) when filming.
 
 # Earlier notes (2026-10-17)
 
