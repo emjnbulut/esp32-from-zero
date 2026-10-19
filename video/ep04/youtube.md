@@ -12,17 +12,17 @@ Today the ESP32 listens! We wire up a push button, learn why floating pins misbe
 
 ⏱ Chapters
 0:00 Intro
-0:32 The push button
-0:54 Wiring the button
-1:29 Floating pins and pull-ups
-2:43 Writing the code
-3:31 Upload and Serial Monitor
-4:12 Toggle, edges and bounce
-5:41 Why delay() gets in the way
-6:20 millis(): check the clock
-8:05 A second LED
-9:13 Troubleshooting
-9:33 Recap and next episode
+0:30 The push button
+0:52 Wiring the button
+1:24 Floating pins and pull-ups
+2:41 Writing the code
+3:27 Upload and Serial Monitor
+4:09 Toggle, edges and bounce
+5:36 Why delay() gets in the way
+6:15 millis(): check the clock
+7:58 A second LED
+8:58 Troubleshooting
+9:17 Recap and next episode
 
 🎵 Music: "Lobby Time" by Kevin MacLeod (incompetech.com), licensed under CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
 🎙 Narration: Chatterbox TTS (Resemble AI, MIT). Voice references: LibriVox (public domain) and FLEURS by Google (CC BY 4.0): https://creativecommons.org/licenses/by/4.0/

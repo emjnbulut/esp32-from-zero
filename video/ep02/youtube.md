@@ -13,17 +13,17 @@ Meet your ESP32's pins and the breadboard! We learn the power pins (3V3, 5V, GND
 ⏱ Chapters
 0:00 Intro
 0:25 What you need
-0:39 The pins
-1:20 Power pins
-1:48 Two safety rules
-2:08 GPIO pins
-2:32 Pins to avoid
-3:33 The breadboard
-4:34 Board on the breadboard
-5:12 LED and resistor
-6:01 Build the circuit
-6:34 Power on!
-6:57 Recap and next episode
+0:38 The pins
+1:14 Power pins
+1:39 Two safety rules
+1:58 GPIO pins
+2:22 Pins to avoid
+3:20 The breadboard
+4:20 Board on the breadboard
+4:58 LED and resistor
+5:42 Build the circuit
+6:13 Power on!
+6:36 Recap and next episode
 
 🎵 Music: "Lobby Time" by Kevin MacLeod (incompetech.com), licensed under CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
 🎙 Narration: Chatterbox TTS (Resemble AI, MIT). Voice references: LibriVox (public domain) and FLEURS by Google (CC BY 4.0): https://creativecommons.org/licenses/by/4.0/

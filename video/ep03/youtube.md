@@ -13,14 +13,14 @@ Time for code to take control! We find out why the LED needs a 220 Ω resistor (
 ⏱ Chapters
 0:00 Intro
 0:26 Last episode's circuit
-0:36 Why 220 Ω? Ohm's law
-1:29 Move the resistor
-2:16 Write the code
-3:27 Upload and blink
-4:02 What happens on the pin
-4:14 Play with the timing
-4:33 LED not blinking?
-4:49 Recap and next episode
+0:39 Why 220 Ω? Ohm's law
+1:30 Move the resistor
+2:12 Write the code
+3:21 Upload and blink
+3:51 What happens on the pin
+4:03 Play with the timing
+4:21 LED not blinking?
+4:37 Recap and next episode
 
 🎵 Music: "Lobby Time" by Kevin MacLeod (incompetech.com), licensed under CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
 🎙 Narration: Chatterbox TTS (Resemble AI, MIT). Voice references: LibriVox (public domain) and FLEURS by Google (CC BY 4.0): https://creativecommons.org/licenses/by/4.0/
