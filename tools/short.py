@@ -168,10 +168,13 @@ def main(sdir: Path, lang: str):
         fixed = sum(sh["dur"] for sh in s["shots"] if "dur" in sh)
         free = [sh for sh in s["shots"] if "dur" not in sh]
         for j, sh in enumerate(s["shots"]):
+            # optional "footage": {"file", "src", "crop"} replaces the shot once that creator clip exists
+            if "footage" in sh and (ROOT / sh["footage"]["file"]).exists():
+                sh = {**sh, **sh["footage"]}
             d = sh.get("dur", (b - a - fixed) / max(1, len(free)))
             sp = sh.get("speed", 1.0)
             k = len(labels)
-            inputs += ["-ss", f"{sh['src']:.3f}", "-t", f"{d * sp + 0.5:.3f}", "-i", str(src)]
+            inputs += ["-ss", f"{sh['src']:.3f}", "-t", f"{d * sp + 0.5:.3f}", "-i", str(ROOT / sh["file"] if "file" in sh else src)]
             x, y, w, h = sh["crop"]
             # optional "pan": crop x slides from x to pan over the shot (for content wider than the panel)
             if "pan" in sh:

@@ -22,9 +22,12 @@
 - Open: ep04 two_leds/challenge_speed use GPIO 25 (EN side) -> creator needs two breadboards side by side
   (advised) or move the green LED to GPIO 21 (not done).
 
+- ep02 creator clips DONE (raw in footage/ep02/raw/; C1 = digital pan along the pin labels, C2/C3 end on a
+  held frame via tpad): composed, dubs re-muxed. ep02 Short h7 now uses footage/ep02/C3.mp4 (short.json shot
+  "footage" key, falls back to the episode render if the clip is missing). YAYIN/ rebuilt (426 MB).
+
 ## Waiting for the creator
-Clips footage/ep02/C1-C3 (then `build.py ep02 compose` + `dub.py ep02 <lang>` per dub + deliver.py).
-ep02 Short h7 → real C3 footage.
+Nothing for ep01/ep02. ep03 clips C1-C3 and ep04 clips C1-C6 (lists in video/ep0X/youtube.md) when filming.
 
 # Earlier notes (2026-10-17)
 
