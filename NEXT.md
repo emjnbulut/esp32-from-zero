@@ -1,3 +1,30 @@
+# Where we left off (2026-10-20 ~00:30) - YOUTUBE LAUNCH (read this first)
+
+Claude runs the YouTube side through Claude-in-Chrome (Studio signed in as Pin by Pin Lab, channel UCOGFzocCfvfYWiA5-MfHHwQ).
+Full notes: memory file `youtube-upload-progress.md`.
+
+**Scheduled (all 17:00 Turkey time):** trailer `l_70hbSQFQo`, ep01 `RyR4OEA7ESA`, ep02 `NwtftTFs_Og` (all Tue 20 Oct),
+ep01 EN Short (Wed 21 Oct), ep03 `doPDxOPFjQg` (Fri 23 Oct). Playlist "ESP32 From Zero - Full Beginner Course" (oldest first)
+holds ep01-ep03. Channel description published (4 dubs, 12 subtitle languages, learning site, GitHub, contact).
+Learning site: https://emjnbulut.github.io/esp32-learning-lab/ (public, GitHub Pages) - every episode/Short description
+carries it via `tools/sitelink.py` (applied by `tools/deliver.py` and `tools/publish.py`).
+
+**Still to do:** Shorts ep01 TR (22 Oct), ep02 EN (23), ep02 TR (24, 11 MB), ep01 HI (25), ep03 EN (26) - ep01 TR/HI need
+their own titles/descriptions, Short descriptions link the episode URL; dub tracks (YAYIN/epXX/dublaj_sesleri) and
+`python tools/publish.py video/epXX <VIDEO_ID>` for 12 subtitle languages + translated titles (token may need
+`publish.py auth`); thumbnails (YAYIN/epXX/kucuk_resimler; chosen: ep01 C "START HERE", ep02 A "DON'T FRY IT!"; custom
+thumbnails and clickable links need the creator to verify the channel by phone: youtube.com/verify); set the trailer as
+channel trailer after it is public; end screens; Shorts "Related video"; check ep03 category = Education.
+
+**How uploads work (important):** browser tool `file_upload` only takes <10 MB; the native file dialog is blocked and a
+localhost fetch from Studio hangs. Files >10 MB = the creator presses "Dosya seç" and pastes the full path (Claude puts it
+on the clipboard); copies live in `YAYIN/_buyuk_dosyalar/` (deliver.py wipes YAYIN, recreate with cp). Everything else
+(title, description, radios via JS `tp-yt-paper-radio-button[name=...]`, tags, language, category, schedule: pick
+the time from the list, typing it does not work, calendar day cells) is done by Claude.
+AI disclosure was answered "Yes" on every video (cloned narration voice) - tell the creator.
+
+# Earlier notes
+
 # Where we left off (2026-10-19 morning)
 
 ## ALL REBUILT WITH THE NEW VOICES (done 2026-10-19 ~08:00)

@@ -17,6 +17,9 @@ import json
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).parent))
+import sitelink  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
 SECRETS = ROOT / ".secrets"
 SCOPES = ["https://www.googleapis.com/auth/youtube.force-ssl"]
@@ -67,6 +70,8 @@ def localize(yt, ep: Path, vid: str, dry: bool):
         print("no localize.json, titles left as they are")
         return
     loc = json.loads(f.read_text(encoding="utf-8"))
+    for lang, entry in loc.items():
+        entry["description"] = sitelink.apply(entry["description"], lang)
     print("titles/descriptions:", ", ".join(loc))
     if dry:
         return

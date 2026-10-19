@@ -13,7 +13,11 @@ YAYIN/
 """
 import json
 import shutil
+import sys
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).parent))
+import sitelink  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "YAYIN"
@@ -46,8 +50,8 @@ def copy(src: Path, dst: Path):
     return False
 
 
-def text(entry: dict) -> str:
-    return f"{entry['title']}\n\n{entry['description']}\n"
+def text(entry: dict, lang: str = "en") -> str:
+    return f"{entry['title']}\n\n{sitelink.apply(entry['description'], lang)}\n"
 
 
 def main():
@@ -65,7 +69,7 @@ def main():
         copy(b / f"{ep}_final.mp4", d / "video.mp4")
         loc = json.loads((e / "localize.json").read_text(encoding="utf-8"))
         for lang in ("en", "tr"):
-            (d / f"aciklama_{lang}.txt").write_text(text(loc[lang]), encoding="utf-8")
+            (d / f"aciklama_{lang}.txt").write_text(text(loc[lang], lang), encoding="utf-8")
         for lang in ("tr", "hi", "pt", "es"):
             copy(b / f"dub_{lang}.m4a", d / "dublaj_sesleri" / f"{lang}.m4a")
         for srt in sorted(b.glob(f"{ep}_*.srt")):
@@ -75,7 +79,10 @@ def main():
         s = ROOT / "video" / "shorts" / ep
         for mp4 in sorted((s / "build").glob(f"*/{ep}_short_*.mp4")):
             copy(mp4, d / "shorts" / mp4.name)
-        copy(s / "youtube.md", d / "shorts" / "shorts_aciklama.md")
+        if (s / "youtube.md").exists():
+            (d / "shorts").mkdir(parents=True, exist_ok=True)
+            (d / "shorts" / "shorts_aciklama.md").write_text(
+                sitelink.apply((s / "youtube.md").read_text(encoding="utf-8")), encoding="utf-8")
     size = sum(f.stat().st_size for f in OUT.rglob("*") if f.is_file()) / 1e6
     print(f"YAYIN/ ready ({size:.0f} MB)")
 
