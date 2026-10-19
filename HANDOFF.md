@@ -1,5 +1,10 @@
 # ESP32 From Zero — devir notu
 
+## Lisans güncellemesi — 19 Ekim 2026
+
+Kullanıcı isteği: ders örnek kodları ve araç yazılımları MIT; yeni özgün ders/video/çizim katkıları CC BY-NC-SA 4.0. Ayrıntılar LICENSING.md, metinler LICENSES/ altında. Önceki MIT/CC BY hakları korunur; eski materyalin ticari kullanımını geriye dönük engellediğimizi iddia etme. Üçüncü taraf atıfları korundu. Platformun ayrı ticari olmayan yazılım lisansı kendi reposundadır. YouTube ayarları, tarihleri ve medya dosyaları bu lisans işlemiyle değiştirilmedi.
+
+
 Güncelleme: 19 Ekim 2026. Önce bu dosyayı oku; NEXT.md içindeki eski kayıtlar geçmiş durumu anlatır.
 
 ## Tamamlanan işler

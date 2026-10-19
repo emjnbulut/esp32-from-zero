@@ -1,5 +1,10 @@
 # Güncel YouTube durumu — 19 Ekim 2026 (Codex)
 
+## Lisans güncellemesi — 19 Ekim 2026
+
+Kullanıcı isteği: ders örnek kodları ve araç yazılımları MIT; yeni özgün ders/video/çizim katkıları CC BY-NC-SA 4.0. Ayrıntılar LICENSING.md, metinler LICENSES/ altında. Önceki MIT/CC BY hakları korunur; eski materyalin ticari kullanımını geriye dönük engellediğimizi iddia etme. Üçüncü taraf atıfları korundu. Platformun ayrı ticari olmayan yazılım lisansı kendi reposundadır. YouTube ayarları, tarihleri ve medya dosyaları bu lisans işlemiyle değiştirilmedi.
+
+
 Güncel ve birleştirilmiş devir notu: [HANDOFF.md](HANDOFF.md).
 
 Bu kayıt aşağıdaki eski devir notlarının yerini alır. Bölüm 4 kullanıcı isteğiyle kapsam dışında tutuldu.

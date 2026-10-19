@@ -52,5 +52,10 @@ python tools/build.py video/ep01 compose       # + camera clips -> final mp4
 
 ## License
 
-Code (`lessons/**/code`, `tools/`) is under the [MIT License](LICENSE).
-Lesson text, diagrams and video sources are under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+- Arduino/ESP32 teaching examples and first-party tools software: **MIT**, including commercial reuse.
+- New original videos, illustrations, lesson text and audiovisual sources: **CC BY-NC-SA 4.0**;
+  commercial use requires separate permission.
+- Historical MIT/CC BY grants and third-party terms remain valid; no retroactive restriction.
+
+Read [LICENSING.md](LICENSING.md) for scope/history, [LICENSE](LICENSE) for license files,
+and [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for exclusions.
