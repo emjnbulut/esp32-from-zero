@@ -28,7 +28,7 @@
   "s23": "Espresif firmasının paketini bulun. Dikkat: Arduino firmasının benzeri sadece Arduino Nano içindir. Espresif paketinde kurulum butonuna basın.",
   "s24": "Büyük bir indirme, birkaç dakika sürebilir.",
   "s25": "Şimdi donanım. Birçok farklı E Se Pe otuz iki kartı var, sizinki benimkinden biraz farklı olabilir. Sorun değil, hepsi aynı şekilde çalışır.",
-  "s26": "Metal kutu, işlemci modülü. Pinler kenarlar boyunca uzanır. Bazı kartlarda otuz, bazılarında otuz sekiz pin var. Bir de iki küçük buton var: e ne butonu kartı yeniden başlatır, but butonunu ise birazdan kullanacağız.",
+  "s26": "Metal kutu, işlemci modülü. Pinler kenarlar boyunca uzanır. Bazı kartlarda otuz, bazılarında otuz sekiz pin var. Bir de iki küçük buton var. E ne butonu kartı yeniden başlatır, but butonunu ise birazdan kullanacağız.",
   "s27": "U Se Be girişinin yanında küçük bir çip var: U Se Be seri dönüştürücü. Bilgisayarınızla kart arasındaki köprü. Genellikle Ce Pe iki bir sıfır iki, ya da Ce Ha üç dört sıfır olur. Üzerindeki yazıyı okumaya çalışın, birazdan lazım.",
   "s28": "Ayrıca bazı U Se Be kabloları sadece şarj eder, içinde veri teli yoktur. Kart algılanmazsa önce kablodan şüphelenin.",
   "s29": "Şimdi kartı bilgisayara takın. Küçük kırmızı bir ışık yanar. Kart güç alıyor.",

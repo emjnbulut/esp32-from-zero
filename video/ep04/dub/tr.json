@@ -17,7 +17,7 @@
   "s12": "Çözüm, pini bilinen bir seviyeye yavaşça çeken bir dirençtir. Pul ap direnci onu üç nokta üç volta çeker.",
   "s13": "Şimdi basılı değilken pin hay okur. Basılıyken buton kazanır, çünkü pini doğrudan toprağa bağlar. Pin lov okur.",
   "s14": "Pul daun direnci tersini yapar. Pinden toprağa on kiloohm koyar, butonu üç nokta üç volta bağlarsınız. O zaman basılı hay okunur.",
-  "s15": "İkisi de olur. Ama müjde: E Se Pe'nin içinde pul ap dirençleri var. Fazladan parça gerekmez. Kodda sadece birini açarız.",
+  "s15": "İkisi de olur. Üstelik E Se Pe'nin içinde pul ap dirençleri var. Fazladan parça gerekmez. Kodda sadece birini açarız.",
   "s16": "Bu dahili pul ap ne kadar güçlü? Yaklaşık kırk beş kiloohm. Düğmenin kolayca kazanacağı kadar zayıf, pini sabit tutacak kadar güçlü.",
   "s17": "U Se Be kablosunu takın ve yeni bir skeç açın. İki pine de isim veriyoruz. Düğme yirmi ikide, led yirmi üçte.",
   "s18": "Setapta buton pinine pin mod input pul ap veriyoruz. Input okuyacağımız demek, pul ap ise dahili direnci açar.",
