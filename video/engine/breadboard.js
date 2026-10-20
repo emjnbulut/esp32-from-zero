@@ -153,3 +153,21 @@ function mark(parent, x, y, ok, txt) {
   return hidden(m);
 }
 
+
+
+/** Animated current flow overlay on a wire path: activeFn(t) returns 0..1 */
+function bbWireFlow(bb, a, b, color = "#ffb547", activeFn) {
+  const [ax, ay] = a, [bx2, by2] = b, mx2 = (ax + bx2) / 2, my2 = (ay + by2) / 2, dx = bx2 - ax, dy = by2 - ay;
+  const cx = mx2 - dy * 0.18, cy = my2 + dx * 0.18;
+  const p = svgEl(bb.over, "path", {
+    d: `M${ax} ${ay} Q${cx} ${cy} ${bx2} ${by2}`,
+    fill: "none", stroke: color, "stroke-width": 6, "stroke-linecap": "round",
+    "stroke-dasharray": "10 18", opacity: 0
+  });
+  dyn((t) => {
+    const v = activeFn ? activeFn(t) : 0;
+    p.setAttribute("opacity", v > 0 ? Math.min(1, v * 0.95) : 0);
+    if (v > 0) p.setAttribute("stroke-dashoffset", String(-((t * 95) % 28)));
+  });
+  return p;
+}

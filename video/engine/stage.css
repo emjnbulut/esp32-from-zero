@@ -202,3 +202,21 @@ body { font-family: var(--ui); color: var(--text); -webkit-font-smoothing: antia
 .ide-toast { position: absolute; right: 14px; bottom: 32px; width: 420px; background: #1b2022; border-radius: 4px; padding: 12px 16px;
   font-size: 13px; opacity: 0; box-shadow: 0 6px 20px rgba(0,0,0,.6); }
 .ide-toast .bar { height: 3px; background: #2a3336; margin-top: 10px; } .ide-toast .bar i { display: block; height: 100%; width: 0; background: #0ca1a6; }
+
+
+/* ---------- upgraded visual components (v2) ---------- */
+.heroclip { position: absolute; border-radius: 26px; overflow: hidden; background: #05080f; opacity: 0; z-index: 70;
+  border: 3px solid rgba(25,195,180,.85); box-shadow: 0 36px 110px rgba(0,0,0,.82), 0 0 50px rgba(25,195,180,.22); }
+.herobar { position: absolute; z-index: 71; display: flex; align-items: center; gap: 14px; padding: 10px 22px;
+  border-radius: 14px; background: rgba(11,18,32,.94); border: 2px solid var(--teal);
+  box-shadow: 0 12px 32px rgba(0,0,0,.6); opacity: 0; }
+.herobar .dot { width: 12px; height: 12px; border-radius: 50%; background: var(--red); box-shadow: 0 0 12px var(--red); }
+.herobar .tag { font: 800 18px var(--ui); letter-spacing: 1.5px; color: var(--teal); text-transform: uppercase; }
+.herobar .sk { font: 600 20px var(--mono); color: var(--text); padding-left: 10px; border-left: 1px solid var(--line); }
+
+
+/* ---------- clean visual "YOUR TURN" card ---------- */
+.yt-badge { display: inline-flex; align-items: center; gap: 14px; padding: 14px 28px; border-radius: 999px;
+  font: 700 26px var(--ui); box-shadow: 0 14px 36px rgba(0,0,0,.4); }
+.yt-badge.com { background: rgba(25,195,180,.16); border: 2px solid var(--teal); color: var(--teal); }
+.yt-badge.sh { background: rgba(255,181,71,.16); border: 2px solid var(--amber); color: var(--amber); }

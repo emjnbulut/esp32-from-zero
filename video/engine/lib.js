@@ -190,3 +190,82 @@ window.__seek = (t) => {
 };
 window.__clips = clips;
 window.__duration = () => D.schedule.duration;
+
+
+/* ---- v2 visual helper: heroClip (large 1280x720 camera frame) ---- */
+function heroClip(parent, id, t0, t1, desc, opts = {}) {
+  const w = opts.w || 1280, h = opts.h || 720;
+  const x = opts.x != null ? opts.x : Math.round((1920 - w) / 2);
+  const y = opts.y != null ? opts.y : Math.round((1080 - h) / 2) + 20;
+  const f = box(parent, x, y, w, h, "clipframe heroclip",
+    `<div class="ph"><div class="big">📹 ${id} (${w}×${h})</div><div class="small">${desc || ""}</div></div>`);
+  const bar = box(parent, x + 28, y - 24, 0, 0, "herobar",
+    `<span class="dot"></span><span class="tag">${opts.label || "ON MY DESK"}</span>` +
+    (opts.sketch ? `<span class="sk">${opts.sketch}</span>` : ""));
+  css(bar, { width: "auto", height: "auto" });
+  if (opts.dim && opts.dim.length) {
+    TO(opts.dim, t0, 0.45, { opacity: 0.22, filter: "blur(3px)", ease: "power2.out" });
+    TO(opts.dim, t1, 0.4, { opacity: 1, filter: "blur(0px)", ease: "power2.out" });
+  }
+  pop(f, t0, 0.45);
+  show(bar, t0 + 0.15, 0.35);
+  hide(f, t1, 0.35);
+  hide(bar, t1, 0.35);
+  clips.push({ id, x, y, w, h, t0: t0 + 0.35, t1 });
+  return { f, bar };
+}
+
+
+/** Clean, explanatory "YOUR TURN" scene builder (Title + Rule 1 + Rule 2 + 1-line Hint + Comments/Shorts footer) */
+function yourTurnScene(parent, {
+  kicker = "YOUR TURN · MINI PROJECT",
+  title,
+  subtitle,
+  rule1Tag = "RULE 1",
+  rule1Title,
+  rule1Desc,
+  rule1FlowHtml,
+  rule2Tag = "RULE 2 · SMART TWIST",
+  rule2Title,
+  rule2Desc,
+  rule2FlowHtml,
+  hintHtml,
+  t0 = 0, tR1, tR2, tHint, tCom, tShort
+}) {
+  const kick = box(parent, 0, 42, 1920, 32, "kicker", kicker); kick.style.textAlign = "center";
+  const h = box(parent, 0, 76, 1920, 70, "h2", title); h.style.textAlign = "center";
+  const sub = box(parent, 0, 148, 1920, 40, "", `<div style="text-align:center;font:500 26px var(--ui);color:var(--muted)">${subtitle || ""}</div>`);
+  const r1 = box(parent, 140, 210, 1640, 250, "card", `<div style="padding:28px 44px">
+    <div style="display:flex;align-items:center;gap:16px">
+      <span style="background:var(--teal);color:#04201d;font:800 20px var(--ui);padding:4px 14px;border-radius:8px">${rule1Tag}</span>
+      <span style="font:700 32px var(--display)">${rule1Title}</span>
+    </div>
+    <div style="font:500 24px var(--ui);color:var(--muted);margin-top:8px">${rule1Desc}</div>
+    <div style="display:flex;align-items:center;gap:24px;margin-top:24px;font:700 24px var(--ui)">${rule1FlowHtml}</div>
+  </div>`);
+  const r2 = box(parent, 140, 485, 1640, 265, "card", `<div style="padding:28px 44px;height:100%;border-radius:22px;border:2px solid rgba(255,181,71,.45)">
+    <div style="display:flex;align-items:center;gap:16px">
+      <span style="background:var(--amber);color:#1b1200;font:800 20px var(--ui);padding:4px 14px;border-radius:8px">${rule2Tag}</span>
+      <span style="font:700 32px var(--display)">${rule2Title}</span>
+    </div>
+    <div style="font:500 24px var(--ui);color:var(--muted);margin-top:8px">${rule2Desc}</div>
+    <div style="display:flex;align-items:center;gap:28px;margin-top:22px;font:700 25px var(--ui)">${rule2FlowHtml}</div>
+  </div>`);
+  const hint = box(parent, 140, 775, 1640, 68, "card", `<div style="height:100%;padding:0 36px;display:flex;align-items:center;gap:18px;font:600 24px var(--ui)">
+    <span style="color:var(--teal);font-weight:800">💡 HINT:</span>
+    <span class="muted">${hintHtml}</span>
+  </div>`);
+  const foot = box(parent, 0, 910, 1920, 90, "", `<div style="display:flex;justify-content:center;gap:36px">
+    <div class="yt-badge com" style="opacity:0">💬 &nbsp;Let's meet in the comments!</div>
+    <div class="yt-badge sh" style="opacity:0">📱 &nbsp;Solution coming in the next Short!</div>
+  </div>`);
+  const bCom = $(".yt-badge.com", foot), bSh = $(".yt-badge.sh", foot);
+  for (const e of [kick, h, sub, r1, r2, hint]) gsap.set(e, { opacity: 0 });
+  show([kick, h, sub], t0, 0.4);
+  pop(r1, tR1 != null ? tR1 : t0 + 0.3);
+  pop(r2, tR2 != null ? tR2 : t0 + 0.6);
+  pop(hint, tHint != null ? tHint : t0 + 0.9);
+  pop(bCom, tCom != null ? tCom : t0 + 1.2);
+  pop(bSh, tShort != null ? tShort : t0 + 1.5);
+  return { kick, h, sub, r1, r2, hint, foot, bCom, bSh };
+}

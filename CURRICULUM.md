@@ -1,34 +1,72 @@
 # Curriculum
 
-Target viewer: knows basic C (variables, `if`, loops, functions), has never used a microcontroller.
+Target viewer: knows basic C (variables, `if/else`, loops, functions), has never used a microcontroller.
 Language: C-style code on the Arduino framework (Arduino IDE 2.x + Espressif ESP32 core).
-Each episode: 5–10 minutes (from 04 on: two topics, 10–15 minutes), English narration, English + Turkish subtitles.
+Each episode: 8–15 minutes, step-by-step practice with 4–5 sketches per episode, English narration, 4 dubs (TR, HI, PT, ES) and 12 subtitle languages.
 
-Kit: direnc.net "ESP-32S WiFi Başlangıç Seti" — ESP32 dev board, 830-point breadboard, 0.96" OLED,
+Kit: direnc.net "ESP-32S WiFi Başlangıç Seti" — ESP32 dev board (30-pin), 2× 830-point breadboards (clipped side by side so both rows of pins have free holes), digital multimeter, 0.96" OLED,
 DHT11, HC-SR501 PIR, obstacle sensor module, LDR module, 10k potentiometer, active + passive buzzer,
 2-channel 5V relay, 6 push buttons, red, yellow and green LEDs (4 of each in the creator's kit), 2 RGB LEDs, 220Ω / 1kΩ / 10kΩ resistors,
 jumper wires (M-M, F-M, F-F), micro USB cable.
 
-## Season 1 — Starter kit
+---
 
-| #  | Episode | You learn | Parts |
-|----|---------|-----------|-------|
-| 01 | Setting Up Your Computer | Install Arduino IDE, USB driver, ESP32 board package; first upload; Serial Monitor "Hello" | Board, USB cable |
-| 02 | Meet the Board and the Breadboard | What the pins are, 3V3/5V/GND, safe GPIOs, how breadboard rows connect | Board, breadboard |
-| 03 | Your First Circuit: Blink an LED | `pinMode`, `digitalWrite`, `delay`, why the 220Ω resistor (Ohm's law, simply) | LED, 220Ω |
-| 04 | Buttons and Doing Two Things at Once | `digitalRead`, pull-up / pull-down, `INPUT_PULLUP`, debounce; why `delay()` blocks, `millis()` timing | Button, LED |
-| 05 | PWM and the Potentiometer | PWM idea, `analogWrite` / LEDC, fading, RGB color mixing; ADC 0–4095, `analogRead`, `map`, a dimmer knob | LED, RGB LED, 220Ω, potentiometer |
-| 06 | Light and Sound | LDR module (analog + digital out), automatic night light; active vs passive buzzer, `tone`, a melody from an array | LDR module, LED, both buzzers |
-| 07 | Temperature and the OLED Screen | Installing a library, DHT11 readings; I2C in plain words, SSD1306 library, text and numbers on screen | DHT11, OLED |
-| 08 | Motion, Obstacles and Interrupts | PIR (HC-SR501) and IR obstacle module, a simple alarm; `attachInterrupt`, ISRs, `volatile` | PIR, obstacle module, buzzer, button |
-| 09 | Relays and WiFi | What a relay does, safety, driving the 2-channel module; station mode, scanning networks, getting an IP | Relay module, board |
-| 10 | Web Server and a Live Sensor Page | Control an LED from your phone's browser; serve DHT11 + LDR readings, auto refresh | LED, DHT11, LDR |
-| 11 | Final Project: Smart Room Monitor | Combine OLED + DHT11 + PIR + buzzer + web page | Most of the kit |
+## Learning Format & The "Zero Unlearned Syntax" Rule
 
-From episode 04 on, each episode covers two topics of the original 18-topic plan (decided 2026-10-17:
-single-topic episodes came out too short), and episodes aim for 10–15 minutes (user, 2026-10-17).
+1. **"Zero Unlearned Syntax" Rule (Sıfır Yabancı Kod Kuralı):**
+   A viewer challenge or milestone project **never** requires a C syntax feature, library function, or hardware trick that was not explicitly taught in that episode or an earlier episode.
+   * No surprise functions (e.g., no `random()`, no C++ `String` manipulation, no pointer arithmetic, no JavaScript `fetch()` in web episodes).
+   * The difficulty comes **100% from algorithmic thinking**—combining `if/else`, state variables (`int step`, `int mode`), `millis()` subtraction, and the exact functions taught in the lesson.
+2. **"Naive Way First → Clean Way Second" in Lessons:**
+   Every concept starts with the intuitive approach a beginner would try first (e.g., `delay()` with a button, single-threshold LDR, polling a fast sensor), shows why it breaks on real hardware, and then teaches the clean engineering tool (`millis()`, debouncing, hysteresis, state machines, interrupts).
+3. **Hands-Free Multimeter Clips (Only 5 Key Episodes, 1 Short Clip Each):**
+   To keep phone filming fast and effortless, real-camera multimeter shots (**1 single 5–8 s clip per episode, probes fixed hands-free**) are used **only in Episodes 05, 06, 08, 11, and 13**, where the meter provides an instant visual "aha!" moment. All other episodes have **0 multimeter camera clips**.
+4. **Algorithmic Challenges → Shorts Solutions:**
+   Every episode ends with a logic puzzle that uses the exact circuit and functions from the lesson, with the working hardware + code walkthrough published a few days later as a **YouTube Short**.
 
-## Season 2 — Ideas (needs extra parts or goes deeper)
+---
 
-Deep sleep and battery power · Bluetooth (BLE) · MQTT and cloud dashboards · Servo and motors ·
+## Season 1 — Starter Kit (16 Episodes)
+
+### Stage 1: Digital I/O, Timing & Analog Foundations (Episodes 01–07)
+
+| # | Episode | Exact Syntax & Functions Taught in Lesson | Multimeter Clip (Phone Camera) | Creative Coding Challenge (Uses *Only* Taught Syntax) | Parts |
+|---|---------|-------------------------------------------|--------------------------------|-------------------------------------------------------|-------|
+| 01 | **Setting Up Your Computer** | `setup()`, `loop()`, `Serial.begin(115200)`, `Serial.println()`, `delay()`, `int` counter variable | — | **Launch Countdown:** Using `int count = 10;`, `if/else` and `delay(1000)`, count down from 10 to 0, print `"WARNING"` on the last 3 seconds, and stop printing after `"LIFTOFF!"` | Board, USB cable |
+| 02 | **Meet the Board and the Breadboard** | Hardware only: 30-pin layout on 2 side-by-side breadboards, `3V3`/`5V`/`GND`, breadboard strips, `3V3` → 220Ω → LED → `GND` | — | **Circuit Detective:** 3 broken breadboard circuits are shown (unconnected rail, middle gap, shorted LED legs)—diagnose why each stays dark and fix it by moving 1 wire | Board, breadboard, LED, 220Ω |
+| 03 | **Your First Circuit: Blink an LED** | `const int`, `pinMode(pin, OUTPUT)`, `digitalWrite(pin, HIGH/LOW)`, custom helper function `void blinkOnce(int ms)` | — | **Emergency Double-Strobe:** Wire a second (green) LED and write a helper function to make a police double-flash pattern (Red-Red pause, Green-Green pause) | Red & green LEDs, 2× 220Ω |
+| 04 | **Buttons and Doing Two Things at Once** | `pinMode(pin, INPUT_PULLUP)`, `digitalRead()`, `bool`, `!`, ternary `?:`, `unsigned long`, `millis()`, edge detection + 50 ms debounce (`now - last >= 50`) | — | **Speed-Shifter (`challenge_speed`):** Red blinks every `500 ms` while Green blinks at `greenInterval`; make each button press swap `greenInterval` between `150 ms` and `600 ms` without disturbing Red | Button, red & green LEDs, 2× 220Ω |
+| 05 | **PWM and RGB Color Mixing** | `analogWrite(pin, 0..255)`, smooth fade with `millis()`, RGB LED wiring (`GPIO 25/26/27`), helper `void setColor(int r, int g, int b)`, `int mode` cycling | **1 Clip (6 s, hands-free):** Code steps PWM 25% → 50% → 100% while meter shows `0.8V → 1.65V → 3.3V` | **Smart Camping Headlamp:** 1 button cycles `mode` (`0`: Off, `1`: Dim White, `2`: Bright White, `3`: Red Blink). **The logic puzzle:** Using `now - lastPress >= 3000`, if the lamp stays in *any* ON mode for over 3 seconds, the next button press must set `mode = 0` (directly OFF) instead of advancing | LED, RGB LED, button, 4× 220Ω, multimeter |
+| 06 | **Analog Input (ADC) and the Potentiometer** | `analogRead(34)` (`0–4095`), averaging 4 reads, `map(val, 0, 4095, min, max)`, dimmer knob, 3-LED level bar (`if/else if`) | **1 Clip (6 s, one hand):** Turn the knob while the meter next to the breadboard sweeps `0.0V → 3.3V` | **Rotary Safe Lock:** Map the knob to `0–99` and print it. Using `int step = 0;`, unlock the safe (RGB Green) only if the user dials **3 target numbers in order** (`25` → press button → `70` → press → `40` → press, checked with `val >= 22 && val <= 28`). Any wrong press flashes Red and resets `step = 0` | Potentiometer, RGB LED, R/Y/G LEDs, button, 220Ω, multimeter |
+| 07 | **🏆 Mini-Project 1: Smart Pedestrian Crossing & Reflex Game** | **Lesson Project:** Combine 5 LEDs + button + potentiometer using a `millis()` state variable (`int state = 0, 1, 2, 3`) for a full Traffic & Pedestrian crossing; also shows how to measure **how long a button was held** (`now - pressStart`) | — | **Milestone Challenge — Reflex Tester (With Anti-Cheat):** Using the same circuit and `state` pattern: Red → Yellow → wait `waitTime` (set by the potentiometer via `map()`), then turn Green ON and record `startTime = millis()`. When pressed, reaction is `now - startTime` (`<250 ms` Green, `<500 ms` Yellow, else Red). **Catch:** If pressed *while still in Yellow* (`state == 1`), jump to a flashing Red "False Start!" state | 5 LEDs (R/Y/G), button, potentiometer, 5× 220Ω |
+
+---
+
+### Stage 2: Sensors, Sound, Display & Interrupts (Episodes 08–12)
+
+| # | Episode | Exact Syntax & Functions Taught in Lesson | Multimeter Clip (Phone Camera) | Creative Coding Challenge (Uses *Only* Taught Syntax) | Parts |
+|---|---------|-------------------------------------------|--------------------------------|-------------------------------------------------------|-------|
+| 08 | **Light Sensing (LDR) and Buzzers** | LDR `analogRead` + hysteresis (`if (light < 1500)` ON, `if (light > 2200)` OFF); active buzzer (`digitalWrite`) vs passive buzzer (`tone(pin, freq)`, `noTone(pin)`); 1D C arrays (`int notes[] = {...}`) played with `millis()` | **1 Clip (6 s, one hand):** Cover the LDR with your hand while the meter in `Ω` mode jumps from `~2 kΩ` to `50+ kΩ` | **Secret Drawer Trap (3-Second Grace Period):** In a dark drawer (`light < 1500`), if opened (`light > 2200`), start a 3-second countdown using `millis()`, playing a short `tone()` beep each second. If the button is pressed *or* the drawer closes within 3 s, return to silent watch; if 3 s expire, trigger the alternating two-tone siren | LDR module, active + passive buzzers, LED, button, multimeter |
+| 09 | **Temperature & Humidity with DHT11** | `#include <DHT.h>`, `dht.begin()`, `float t = dht.readTemperature()`, `float h = dht.readHumidity()`, `isnan(t)`, timed 2-second reads, `float` comparison | — | **Rapid-Change (Draft / Fire) Detector:** Remembering `float baselineTemp` from 10 seconds ago (updated with `millis()`), compare `t - baselineTemp`: if temperature rose by `>= 1.0 °C` within 10 s, blink Red rapidly; if it dropped by `>= 1.0 °C` (open window), turn RGB Blue; otherwise show normal comfort color | DHT11, RGB LED (or R/Y/G LEDs), button |
+| 10 | **I2C and the OLED Screen (SSD1306)** | `#include <Wire.h>`, `#include <Adafruit_SSD1306.h>`, `display.clearDisplay()`, `setTextSize()`, `setCursor(x,y)`, `print()`, `drawRect()`, `fillRect()`, `drawLine()`, `display.display()` | — | **5-Bar Live History Chart + Hold Button:** Using a 5-element array `int bars[5]` (from Ep 08) and `fillRect()` (taught in this lesson), shift past readings left every second (`bars[0] = bars[1]...`) to draw a 5-column historical bar chart of the sensor/knob, and let the button pause (`bool hold`) the chart on screen | 0.96" OLED, DHT11, potentiometer, button |
+| 11 | **Motion (PIR), Obstacles and Hardware Interrupts** | PIR (`digitalRead`), IR obstacle sensor; why polling misses fast pulses; `volatile int count`, `void IRAM_ATTR onSensor()`, `attachInterrupt(digitalPinToInterrupt(pin), onSensor, FALLING)`, saving `lastHitTime = millis()` | **1 Clip (6 s, one hand):** Move hand in front of IR sensor while meter shows `DO` dropping from `3.3V` to `0.0V` (`FALLING` edge) | **Touchless Speedometer (Passes Per Minute):** Using two `unsigned long` timestamps (`prevHit`, `lastHit`), calculate the time gap `dt = lastHit - prevHit` on each interrupt. Convert it to passes per minute (`60000 / dt`), draw it as a speed bar on the OLED with `fillRect()`, and reset speed to `0` if `now - lastHit > 3000` | PIR, IR obstacle module, OLED, buzzer, button, multimeter |
+| 12 | **🏆 Mini-Project 2: Smart Desk Assistant & Security Station** | **Lesson Project:** Combine OLED + DHT11 + PIR + Buzzer + Button into a Desk Station: study timer that automatically **pauses** when PIR sees no motion for 15 s, plus an armed security mode | — | **Milestone Challenge — Single-Button Rhythm Disarm (Short-Short-Long):** Using the press-duration measurement taught in Ep 07 (`pressTime = now - pressStart`), disarm the 8-second alarm countdown only if the user enters **Short (`<250 ms`), Short (`<250 ms`), Long (`>500 ms`)** tracked with `int step = 0, 1, 2`. Draw `.` or `-` on the OLED as each press finishes | OLED, DHT11, PIR, IR obstacle sensor, buzzer, button, RGB LED |
+
+---
+
+### Stage 3: High-Power Switching, Wi-Fi & IoT (Episodes 13–16)
+
+| # | Episode | Exact Syntax & Functions Taught in Lesson | Multimeter Clip (Phone Camera) | Creative Coding Challenge (Uses *Only* Taught Syntax) | Parts |
+|---|---------|-------------------------------------------|--------------------------------|-------------------------------------------------------|-------|
+| 13 | **Relays and Automatic Control** | 2-channel relay wiring, **Active-LOW** logic (`const int RELAY_ON = LOW;`), boot-safe initialization (`digitalWrite(pin, HIGH)` before `pinMode`), automatic DHT11 thermostat + LDR night switch | **1 Clip (6 s, hands-free):** Probes screwed into relay `COM` & `NO` in **Continuity (Beep)** mode — meter beeps every time the relay clicks | **Compressor Anti-Short-Cycle & Safety Cutoff:** Using `millis()` and `bool relayOn`, enforce two real-world rules on Relay 1: (1) after turning OFF, block it from turning back ON for 15 seconds (show `"COOLDOWN"` countdown on OLED), and (2) if ON continuously for 30 seconds, force it OFF into a `"FAULT"` state until the button is pressed | 2-channel relay, DHT11, LDR, OLED, button, multimeter |
+| 14 | **ESP32 Wi-Fi Fundamentals & Network Time** | `#include <WiFi.h>`, `WiFi.scanNetworks()`, `WiFi.RSSI(i)`, non-blocking `WiFi.begin(ssid, pass)` check with `WiFi.status() == WL_CONNECTED`, `configTime()`, `struct tm timeinfo`, `getLocalTime(&timeinfo)` (`tm_hour`, `tm_min`, `tm_sec`) | — | **Offline-Resilient Hybrid Clock:** Fetch `timeinfo.tm_hour / tm_min / tm_sec` into three `int` variables **once** when Wi-Fi connects, then increment `sec++` every `1000 ms` using `millis()` (rolling over `sec == 60 -> min++`, `min == 60 -> hour++`, `hour == 24 -> 0`) so the OLED clock keeps ticking accurately even if you turn off your Wi-Fi router | Board, OLED, button |
+| 15 | **Web Server and Live Sensor Dashboard** | `#include <WebServer.h>`, `WebServer server(80)`, `server.on("/...", handler)`, `server.send(200, "text/html", html)`, `server.handleClient()`, `<meta http-equiv='refresh' content='2'>` (pure C + basic HTML links, **zero JavaScript required**) | — | **Auto-Off Web Timer (`/run10` & `/run30`):** Add two HTML links on the web page (`/run10` and `/run30`) that turn Relay 1 ON and set `unsigned long offDuration = 10000` (or `30000`). Count down the remaining seconds on both the OLED and the auto-refreshing web page, and allow the physical breadboard button to cancel the timer early | LED, RGB LED, 2-channel relay, DHT11, LDR, OLED, button |
+| 16 | **🏆 Final Project: Smart Room Monitor & Controller** | **Lesson Project:** Full modular integration using only previously learned functions — multi-page OLED (`int page`), DHT11 + LDR + PIR, 2-channel relay automation, buzzer alarm, and `WebServer` dashboard | — | **Season 1 Graduation Challenge — Event Counter & Last-Seen Dashboard:** Track total daily activations (`int motionCount`, `int relayCount`) and record the exact `hour` and `min` of the last PIR motion and highest temperature peak. Display this summary on OLED Page 3 **and** on the phone web page, with a physical + web `"Reset Stats"` button | Most of the starter kit |
+
+---
+
+## Season 2 — Going Deeper (Extra Parts & Advanced ESP32)
+
+Deep sleep and battery power (measuring µA/mA sleep current with the multimeter) · Bluetooth Low Energy (BLE) ·
+MQTT and cloud dashboards · Servo, DC and stepper motors · ESP-NOW board-to-board wireless ·
 Pure C with ESP-IDF and FreeRTOS tasks.
