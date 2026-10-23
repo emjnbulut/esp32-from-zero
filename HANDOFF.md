@@ -1,5 +1,9 @@
 # ESP32 From Zero — devir notu
 
+## Yükleme tercihi: yapay zekâ etiketi — 23 Ekim 2026
+
+Kullanıcı videoların yüklenirken yapay zekâ etiketi taşımasını istemiyor. Otomatik `Evet` seçme; bildirim gerekmeyen içerikte `Hayır` seç. İçeriğe göre değerlendirme, klonlanmış ses ve zorunlu bildirim koşulları için [üretim rehberindeki yükleme tercihini](video/PRODUCTION_GUIDELINES.md) uygula. Eski `Evet` kayıtları geçmiş yüklemelere aittir. Bu işlem yalnızca tercihi belgelendirir; YouTube Studio ayarları değiştirilmedi.
+
 ## Sonraki videoların üretim kararı — 23 Ekim 2026
 
 Kullanıcı, başlık/küçük resimde sonucu öne çıkarma, ilk 20 saniyede çalışan sonucu gösterip uygulamaya geçme ve Shorts'u tek sorudan ilgili derse bağlama yaklaşımını sonraki videolar için onayladı. Bölüm 4 ve sonrası hazırlanırken [video/PRODUCTION_GUIDELINES.md](video/PRODUCTION_GUIDELINES.md) dosyasını oku ve üretim kontrol listesini uygula. Bu kayıt mevcut videoları değiştirme veya yeniden yükleme talimatı değildir. Aşağıdaki yayın ve erişim durumu kayıtları 19 Ekim'e aittir; güncel Studio analitiği bu kararda incelenmedi.

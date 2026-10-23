@@ -38,6 +38,18 @@ Hedef açılış düzeni:
 - Bölüm 4 için örnek soru: `Why does your button stop responding during delay()?` Sorunu göster, millis() ile çalışan sonucu göster ve tam derse yönlendir.
 - Müfredattaki alıştırma çözümü Shorts'ları da bu yapıyı izler; öğretilmemiş sözdizimi veya donanım tekniği gerektirmez.
 
+## Yüklemede yapay zekâ etiketi tercihi — 23 Ekim 2026
+
+Kullanıcı, videolar yüklenirken yapay zekâ etiketi görünmesini istemiyor. Gelecek yüklemelerde sırf üretimde AI araçları kullanıldı diye otomatik `Evet / Yes` seçme.
+
+- Studio'daki AI kullanımı / değiştirilmiş veya sentetik içerik sorusunu yüklenen videonun gerçek içeriğine göre değerlendir. Bildirim gerekmiyorsa `Hayır / No` seç.
+- AI ile fikir, senaryo, başlık veya altyazı hazırlamak tek başına bu bildirimi gerektirmez. Telefonla çekilen gerçek devre görüntülerinde ses ve eklenen diğer içerikleri de birlikte değerlendir.
+- Gerçekçi sentetik içerik veya başka bir kişinin klonlanmış sesi varsa güncel YouTube koşullarını kontrol et. Etiketsiz yayın tercihini zorunlu bildirimi yanlış cevaplama talimatı olarak yorumlama; gerekiyorsa nedeni açıkça belirt. Etiketsiz üretim için gerçek çekim ve kullanıcının kendi kaydettiği anlatımı tercih et.
+- Önceki yüklemelerde `Evet` seçilmiş olması gelecekteki bütün yüklemeler için varsayılan değildir. HANDOFF.md ve NEXT.md içindeki eski kayıtlar geçmiş işlemleri anlatır.
+- Bu değişiklik tercih kaydıdır; mevcut videoların Studio ayarları değiştirilmedi. YouTube'un otomatik uygulayabileceği etiketler nedeniyle etiketsiz görünüm garanti edilmez.
+
+Kaynak: [YouTube — GenAI içerik bildirimi](https://support.google.com/youtube/answer/14328491?hl=en), 23 Ekim 2026 tarihinde kontrol edildi.
+
 ## Üretim ve yayın kontrolü
 
 - [ ] Senaryo öncesinde başlık, küçük resim fikri ve ilk 20 saniye birlikte tasarlandı.
