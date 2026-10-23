@@ -1,5 +1,9 @@
 # ESP32 From Zero — devir notu
 
+## Sonraki videoların üretim kararı — 23 Ekim 2026
+
+Kullanıcı, başlık/küçük resimde sonucu öne çıkarma, ilk 20 saniyede çalışan sonucu gösterip uygulamaya geçme ve Shorts'u tek sorudan ilgili derse bağlama yaklaşımını sonraki videolar için onayladı. Bölüm 4 ve sonrası hazırlanırken [video/PRODUCTION_GUIDELINES.md](video/PRODUCTION_GUIDELINES.md) dosyasını oku ve üretim kontrol listesini uygula. Bu kayıt mevcut videoları değiştirme veya yeniden yükleme talimatı değildir. Aşağıdaki yayın ve erişim durumu kayıtları 19 Ekim'e aittir; güncel Studio analitiği bu kararda incelenmedi.
+
 ## Lisans güncellemesi — 19 Ekim 2026
 
 Kullanıcı isteği: ders örnek kodları ve araç yazılımları MIT; yeni özgün ders/video/çizim katkıları CC BY-NC-SA 4.0. Ayrıntılar LICENSING.md, metinler LICENSES/ altında. Önceki MIT/CC BY hakları korunur; eski materyalin ticari kullanımını geriye dönük engellediğimizi iddia etme. Üçüncü taraf atıfları korundu. Platformun ayrı ticari olmayan yazılım lisansı kendi reposundadır. YouTube ayarları, tarihleri ve medya dosyaları bu lisans işlemiyle değiştirilmedi.

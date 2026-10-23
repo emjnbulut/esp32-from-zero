@@ -29,6 +29,8 @@ tools/            # scripts that build the videos
 
 ## How the videos are made
 
+Before producing episode 4 or later, follow the [production guidelines](video/PRODUCTION_GUIDELINES.md): outcome-focused titles and thumbnails, a result-first opening, and Shorts linked to their full lesson.
+
 Each episode is code: `video/epXX/script.json` holds the narration (with Turkish subtitle text),
 `video/epXX/epXX.js` animates a recreated desktop and 2D/3D diagrams in HTML/SVG + GSAP, and
 `video/engine/render.mjs` renders it frame by frame with Playwright. Short real-hardware clips
