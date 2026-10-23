@@ -1,5 +1,9 @@
 # ESP32 From Zero — devir notu
 
+## Animasyon ve öğretim kararı — 23 Ekim 2026
+
+Kullanıcı yeni videolarda okunabilir büyük kod ve bağlantılar, eşzamanlı kod/devre neden-sonuç gösterimi, kavramları sırayla anlatma, tam ekran gerçek devre sonuçları, parçaları kapatmayan açıklamalar ve tahmin-deneme soruları kullanılmasını onayladı. [Üretim rehberinin 4. bölümünü ve güncel kontrol listesini](video/PRODUCTION_GUIDELINES.md) uygula. Bölüm 4 öncelikleri: çalışan sonuçla açılış, büyük kod satırları, millis() zaman çizgisi ve gerçek devre denemesi. Bu not gelecekteki üretim içindir.
+
 ## Yükleme tercihi: yapay zekâ etiketi — 23 Ekim 2026
 
 Kullanıcı videoların yüklenirken yapay zekâ etiketi taşımasını istemiyor. Otomatik `Evet` seçme; bildirim gerekmeyen içerikte `Hayır` seç. İçeriğe göre değerlendirme, klonlanmış ses ve zorunlu bildirim koşulları için [üretim rehberindeki yükleme tercihini](video/PRODUCTION_GUIDELINES.md) uygula. Eski `Evet` kayıtları geçmiş yüklemelere aittir. Bu işlem yalnızca tercihi belgelendirir; YouTube Studio ayarları değiştirilmedi.

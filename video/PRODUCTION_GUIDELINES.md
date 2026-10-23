@@ -38,6 +38,44 @@ Hedef açılış düzeni:
 - Bölüm 4 için örnek soru: `Why does your button stop responding during delay()?` Sorunu göster, millis() ile çalışan sonucu göster ve tam derse yönlendir.
 - Müfredattaki alıştırma çözümü Shorts'ları da bu yapıyı izler; öğretilmemiş sözdizimi veya donanım tekniği gerektirmez.
 
+## 4. Animasyon ve öğretim yaklaşımı — 23 Ekim 2026
+
+Kullanıcı bu önerileri yeni videolar üretilirken dikkate almak üzere onayladı. Mevcut koyu zemin, tutarlı renkler, breadboard iç bağlantıları ve konuşulan satırı vurgulama yaklaşımı korunarak geliştirilir. Bu karar mevcut videoları yeniden üretme talimatı değildir.
+
+### Okunabilir kod ve bağlantılar
+
+- Kod açıklanırken ilgili 3–6 satırı büyük göster. IDE'nin tamamını menü, yükleme veya çalışma ortamını tanıtırken kullan.
+- Bağlantıda önce devrenin tamamını göster, ardından hedef pin ve breadboard deliğine yakınlaş. GPIO etiketi, delik ve kablonun varış noktası telefon ekranında da ayırt edilebilsin.
+- Her sahnede tek ana odak olsun: bir bağlantı, bir kod satırı veya bir davranış. Açıklama kutuları anlatılan parçayı kapatmasın; sorun giderme sırasında ilgili parçanın yanına yerleşsin.
+
+### Koddan devredeki sonuca
+
+- Animasyonlar anlatımla eşzamanlı olarak neden-sonuç ilişkisini göstersin. Örnek: `digitalWrite(LED_PIN, HIGH)` satırı vurgulanır, GPIO'da `HIGH / 3.3 V` gösterilir, bağlantı yolu vurgulanır ve LED yanar.
+- `millis()` anlatımında yalnızca büyüyen sayaç gösterme; `now`, `lastBlink` ve geçen süreyi ilişkilendir. 499 ms'de koşulun sağlanmadığını, 500 ms'de LED'in değiştiğini ve `lastBlink = now` ile yeni aralığın başladığını göster.
+- Görseldeki durumlar çalışan kodla tutarlı olsun. Animasyonun hareketi öğretilen kavramı açıklasın.
+
+### Yeni kavramları sırayla ver
+
+- Aynı anda çok sayıda yeni sözdizimi ve durum değişimi sunma. Buton örneğinde önce yeni basışı algılamayı, sonra LED durumunu değiştirmeyi, ardından kısa yazımı açıkla.
+- İlk anlatımda açık `if/else` kullan; `?:` gibi eşdeğer kısa yazımı daha sonra göster. `bool`, `!`, kenar algılama ve koşullu ifadeleri ayrı adımlarda tanıt.
+- Müfredattaki yalnızca öğretilmiş kavramlarla alıştırma yapma kuralını koru.
+
+### Gerçek devreyle bağ kur
+
+- Uygun kavramlarda şu akışı kullan: gerçek devre, açıklayıcı çizim, ilgili kod, yeniden gerçek devrede deneme.
+- Sonuç gösterilirken gerçek çekime tam ekran alan ver; devrenin davranışını küçük bir pencereye sıkıştırma.
+- Çizimdeki kart yönü, kablo renkleri ve bağlantılar gerçek çekimle eşleşsin. Gerekli çekimleri senaryo aşamasında çekim listesine ekle.
+
+### Tahmin et, dene, değiştir
+
+- Önemli kavramlardan sonra kısa bir tahmin sorusu sor, yaklaşık 2–3 saniye düşünme payı bırak ve sonucu göster.
+- Örnekler: İki bekleme süresi farklı olursa ne değişir? Butonu basılı tutunca LED sürekli değişir mi? Bir LED'in süresi değişince diğeri etkilenir mi?
+- Bölüm sonunda kısa özete ek olarak yalnızca öğretilmiş bilgilerle yapılabilecek küçük bir değişiklik görevi ver; mevcut müfredat alıştırmasını bu amaçla kullan.
+
+### Bölüm 4 için ilk uygulama öncelikleri
+
+Çalışan sonuçla açılış, büyük kod satırları, `millis()` için görünür zaman çizgisi ve tam ekran gerçek devre denemesi. Değerlendirme Bölüm 2–4'ten 18 örnek kare ve senaryo incelemesine dayanır; baştan sona ses/müzik değerlendirmesi veya ölçülmüş öğrenme sonucu değildir.
+
 ## Yüklemede yapay zekâ etiketi tercihi — 23 Ekim 2026
 
 Kullanıcı, videolar yüklenirken yapay zekâ etiketi görünmesini istemiyor. Gelecek yüklemelerde sırf üretimde AI araçları kullanıldı diye otomatik `Evet / Yes` seçme.
@@ -58,6 +96,11 @@ Kaynak: [YouTube — GenAI içerik bildirimi](https://support.google.com/youtube
 - [ ] Short tek konuya odaklanıyor; ana bölüm kimliği ve ilgili video bağlantısı doğru veya erişim engeli açıkça kaydedildi.
 - [ ] Yeni metinlerin çeviri, ses ve altyazı zamanlaması tutarlı.
 
+- [ ] Kod satırları, GPIO etiketleri ve hedef bağlantılar telefon boyutunda okunuyor; açıklamalar ilgili parçayı kapatmıyor.
+- [ ] Vurgulanan kod, gösterilen süre/değerler ve devrenin davranışı birbiriyle tutarlı.
+- [ ] Yeni kavramlar sırayla tanıtıldı; uygun noktalarda tahmin sorusu, kısa düşünme payı ve sonuç gösterimi var.
+- [ ] Gerçek çekim ile çizimdeki yön ve renkler eşleşiyor; sonuç çekimi yeterince büyük gösteriliyor.
+
 ## Yayından sonra değerlendirme
 
 - Uzun videolarda gösterim, trafik kaynağına göre gösterim tıklama oranı (CTR), ilk 30 saniyede kalan izleyici oranı ve ortalama izlenme süresini incele.
@@ -71,3 +114,4 @@ Kaynak: [YouTube — GenAI içerik bildirimi](https://support.google.com/youtube
 - [YouTube: izleyici tutma raporu](https://support.google.com/youtube/answer/9314415?hl=en)
 - [YouTube: Shorts'a ilgili video ekleme](https://support.google.com/youtube/answer/14075157?hl=en)
 - [YouTube: tıklanabilir bağlantılar](https://support.google.com/youtube/answer/13748639?hl=en)
+- [Brame (2016): eğitim videolarında vurgulama, bölümleme ve aktif öğrenme](https://pmc.ncbi.nlm.nih.gov/articles/PMC5132380/)
