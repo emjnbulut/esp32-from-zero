@@ -76,6 +76,17 @@ Kullanıcı bu önerileri yeni videolar üretilirken dikkate almak üzere onayla
 
 Çalışan sonuçla açılış, büyük kod satırları, `millis()` için görünür zaman çizgisi ve tam ekran gerçek devre denemesi. Değerlendirme Bölüm 2–4'ten 18 örnek kare ve senaryo incelemesine dayanır; baştan sona ses/müzik değerlendirmesi veya ölçülmüş öğrenme sonucu değildir.
 
+## 5. Beğen / abone ol hatırlatmaları ve kapanış — 25 Ekim 2026
+
+Kullanıcı kararı: Bölüm 05 ve sonrasındaki yeni videolarda uygulanır (Bölüm 04 olduğu gibi kalır).
+
+- Animasyonların arasına **küçük ve sade** beğen 👍 / abone ol 🔔 ikonları eklenir; dikkat dağıtmaz, göz boyamaz.
+  - Bölüm başına en fazla 2 kez: biri ilk çalışan sonuçtan hemen sonra (~1. dakika), biri bölümün ortasında, bir "oldu!" anının ardından.
+  - Ekranın köşesinde, yaklaşık 2–3 saniye, hafif bir giriş/çıkış animasyonuyla; kodu, devreyi veya açıklama kutularını kapatmaz. Ses efekti ve yanıp sönme yok.
+  - Anlatımda ayrıca "abone olun" denmez; ikon kendi başına yeterli.
+- Her bölümün sonunda anlatım izleyiciyi yorumlara davet eder; örnek: "Let's meet in the comments: tell me what you built." Ödevli bölümlerde ödev çözümleri için de yorumlara çağrılır.
+- Shorts'a bu ikonlar konmaz (kısa ve tek odaklı kalır); kapanış cümlesi yine ilgili derse yönlendirir.
+
 ## Yüklemede yapay zekâ etiketi tercihi — 23 Ekim 2026
 
 Kullanıcı, videolar yüklenirken yapay zekâ etiketi görünmesini istemiyor. Gelecek yüklemelerde sırf üretimde AI araçları kullanıldı diye otomatik `Evet / Yes` seçme.
@@ -95,6 +106,7 @@ Kaynak: [YouTube — GenAI içerik bildirimi](https://support.google.com/youtube
 - [ ] Önizlemede açılışın vaat edilen sonucu gösterdiği, ilk uygulama adımına hızla geçtiği ve küçük resmin mobil boyutta okunduğu kontrol edildi.
 - [ ] Short tek konuya odaklanıyor; ana bölüm kimliği ve ilgili video bağlantısı doğru veya erişim engeli açıkça kaydedildi.
 - [ ] Yeni metinlerin çeviri, ses ve altyazı zamanlaması tutarlı.
+- [ ] En fazla 2 sade beğen/abone ikonu, hiçbir şeyi kapatmıyor; bölüm sonunda yorumlara davet var.
 
 - [ ] Kod satırları, GPIO etiketleri ve hedef bağlantılar telefon boyutunda okunuyor; açıklamalar ilgili parçayı kapatmıyor.
 - [ ] Vurgulanan kod, gösterilen süre/değerler ve devrenin davranışı birbiriyle tutarlı.
