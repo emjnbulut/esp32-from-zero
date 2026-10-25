@@ -31,11 +31,12 @@ for ep in "$@"; do
   step $ep schedule $PY tools/build.py $E schedule
   step $ep render bash -c "cd video && node engine/render.mjs $ep > $ep/build/render.log 2>&1"
   step $ep audio $PY tools/build.py $E audio
-  step $ep subs $PY tools/build.py $E subs
   step $ep compose $PY tools/build.py $E compose
   for l in $LANGS; do
     step $ep dub_$l $PY tools/dub.py $E $l
   done
+  # after the dubs: their build/dub_<lang>/timing.json times the dubbed languages' subtitles
+  step $ep subs_dubtimed $PY tools/build.py $E subs
   if [ -f $E/make_localize.py ]; then step $ep localize $PY $E/make_localize.py
   else step $ep localize $PY tools/rechapter.py $E; fi
   echo "[$ep] DONE $(date +%H:%M:%S)"

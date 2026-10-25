@@ -43,7 +43,7 @@ def dub_durations(ep: Path) -> dict:
         cache = ep / "build" / f"dub_{f.stem}" / "cache.json"
         if cache.exists():
             for sid, c in json.loads(cache.read_text(encoding="utf-8")).items():
-                longest[sid] = max(longest.get(sid, 0), c["duration"])
+                longest[sid] = max(longest.get(sid, 0), c["duration"] / cbx.DUB_TEMPO.get(f.stem, 1.0))
     return longest
 
 

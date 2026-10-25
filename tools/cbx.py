@@ -24,6 +24,9 @@ VOICES = {
     "pt": {"prompt": _S + "creator_en.wav", "accent_prompt": _S + "pt_fleurs2.wav"},
     "es": {"prompt": _S + "creator_en.wav", "accent_prompt": _S + "es_fleurs2.wav"},
 }
+# Dub voices that speak slower than the English narration are played this much faster (atempo) when the dub is
+# laid out, so their slots need not stretch the English video (ep04 2026-10-26: es median x1.26, pt x1.21 vs en).
+DUB_TEMPO = {"es": 1.15, "pt": 1.12}
 ENGINE = "chatterbox"  # default for every script / dub / Short; a file can still say "engine": "edge"
 
 

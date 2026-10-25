@@ -123,9 +123,11 @@ def main(ep: Path, lang: str, report_only: bool):
         cache = asyncio.run(narrate_all(dub, out))
 
     sl = slots(sched)
+    base = cbx.DUB_TEMPO.get(lang, 1.0) if cbx.engine(dub) == "chatterbox" else 1.0
+    dur = {sid: cache[sid]["duration"] / base for sid in sl}  # length after the language's base tempo
     too_long = []
     for sid, (start, room) in sl.items():
-        d = cache[sid]["duration"]
+        d = dur[sid]
         ratio = d / room
         flag = "  <-- shorten" if ratio > MAX_SPEEDUP else ""
         if ratio > MAX_SPEEDUP:
@@ -137,7 +139,7 @@ def main(ep: Path, lang: str, report_only: bool):
         return
 
     buf = np.zeros(int((sched["duration"] + 1) * SR), dtype=np.float32)
-    tempos = {sid: max(1.0, cache[sid]["duration"] / room) for sid, (start, room) in sl.items()}
+    tempos = {sid: base * max(1.0, dur[sid] / room) for sid, (start, room) in sl.items()}
     word_times(dub, out, lang, cache, sl, tempos)
     for sid, (start, room) in sl.items():
         a = decode(out / f"{sid}.mp3", tempo=tempos[sid])
