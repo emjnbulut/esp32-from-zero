@@ -46,3 +46,8 @@ Genel: her çekimin başında ve sonunda 1 sn fazla. Ses önemli değil. Dosyala
 - S1 (8 sn, karanlık oda): titreyen turuncu "alev", mümkünse LED'in üstüne beyaz bir kâğıt/pipet kapağı (ışığı yayar).
 - S2 (4 sn): butona bas → söner, bas → yanar.
 - S3 (3 sn): devrenin genel görüntüsü.
+
+## Üretim (Reel aracı)
+`python tools/reel.py projects/01-sos-beacon` → `projects/01-sos-beacon/build/reel.mp4` (1080×1920, ~20–25 sn, müzik + yazı, seslendirme yok).
+Sahne listesi her projenin `reel.json` dosyasında (çekim parçaları, kod kartları, ekran yazıları). Çekim dosyası yoksa yer tutucu kart çıkar;
+çekimler `footage/projects/NN/` klasörüne konunca aynı komut gerçek videoyu üretir (~5 dk). Instagram ve YouTube Short için aynı dosya.

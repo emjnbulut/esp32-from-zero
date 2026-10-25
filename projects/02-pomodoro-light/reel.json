@@ -1,0 +1,43 @@
+{
+ "note": "Reel/Short without narration (tools/reel.py); footage = creator's vertical clips",
+ "segments": [
+  {
+   "footage": "footage/projects/02/S1.mp4",
+   "in": 0.3,
+   "dur": 3.0,
+   "text": "A focus timer that<br><b>panics</b> at the end",
+   "sub": "ESP32 Pomodoro light",
+   "desc": "S1: press, the red LED starts blinking slowly"
+  },
+  {
+   "code": "if (left < FOCUS_TIME / 2) {\n  interval = 400;\n}\nif (left < FOCUS_TIME / 5) {\n  interval = 120;\n}",
+   "hl": [
+    1,
+    4
+   ],
+   "dur": 4.5,
+   "text": "less time = <b>faster</b> blink"
+  },
+  {
+   "footage": "footage/projects/02/S2.mp4",
+   "in": 0.5,
+   "speed": 4.2,
+   "dur": 6.0,
+   "text": "slow… faster… <b>hurry!</b>",
+   "desc": "S2: one full 25 s round, sped up"
+  },
+  {
+   "footage": "footage/projects/02/S3.mp4",
+   "in": 0.3,
+   "dur": 2.6,
+   "text": "time's up:<br><b>break!</b>",
+   "desc": "S3: green LED on"
+  },
+  {
+   "end": true,
+   "dur": 3.2,
+   "text": "Code + wiring:<br><b>link in bio</b>",
+   "sub": "Full ESP32 course · Pin by Pin Lab"
+  }
+ ]
+}

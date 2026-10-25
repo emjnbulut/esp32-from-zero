@@ -1,0 +1,43 @@
+{
+ "note": "Reel/Short without narration (tools/reel.py); footage = creator's vertical clips",
+ "segments": [
+  {
+   "footage": "footage/projects/04/S1.mp4",
+   "in": 0.5,
+   "dur": 3.0,
+   "text": "An electric candle<br>that <b>flickers</b>",
+   "sub": "ESP32 + RGB LED",
+   "desc": "S1: flickering orange flame, dark room"
+  },
+  {
+   "code": "seed = seed * 109 + 89;\nint flame = 150 + seed % 106;\nsetColor(flame, flame * 30 / 100, 0);",
+   "hl": [
+    0,
+    1,
+    2
+   ],
+   "dur": 4.6,
+   "text": "no random():<br>one tiny <b>formula</b>"
+  },
+  {
+   "footage": "footage/projects/04/S1.mp4",
+   "in": 3.5,
+   "dur": 4.0,
+   "text": "a new flame every<br><b>40–150 ms</b>",
+   "desc": "S1: the flame"
+  },
+  {
+   "footage": "footage/projects/04/S2.mp4",
+   "in": 0.3,
+   "dur": 3.0,
+   "text": "press:<br><b>blow it out</b>",
+   "desc": "S2: press -> off, press -> on"
+  },
+  {
+   "end": true,
+   "dur": 3.2,
+   "text": "Code + wiring:<br><b>link in bio</b>",
+   "sub": "Full ESP32 course · Pin by Pin Lab"
+  }
+ ]
+}

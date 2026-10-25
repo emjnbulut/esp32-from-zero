@@ -1,0 +1,54 @@
+{
+ "note": "Reel/Short without narration (tools/reel.py); footage = creator's vertical clips",
+ "segments": [
+  {
+   "footage": "footage/projects/01/S1.mp4",
+   "in": 0.5,
+   "dur": 3.0,
+   "text": "I made my ESP32<br>call for <b>help</b>",
+   "sub": "SOS in Morse code",
+   "desc": "S1: the red LED blinking SOS, dark room"
+  },
+  {
+   "code": "void letterS() {\n  flash(1);\n  flash(1);\n  flash(1);\n}",
+   "hl": [
+    1,
+    2,
+    3
+   ],
+   "dur": 3.8,
+   "text": "S = three <b>short</b>"
+  },
+  {
+   "code": "void letterO() {\n  flash(3);\n  flash(3);\n  flash(3);\n}",
+   "hl": [
+    1,
+    2,
+    3
+   ],
+   "dur": 3.8,
+   "text": "O = three <b>long</b>"
+  },
+  {
+   "footage": "footage/projects/01/S1.mp4",
+   "in": 3.5,
+   "dur": 5.0,
+   "text": "··· ––– ···",
+   "sub": "one dot = 200 ms",
+   "desc": "S1: the full SOS"
+  },
+  {
+   "footage": "footage/projects/01/S3.mp4",
+   "in": 0.3,
+   "dur": 2.5,
+   "text": "it even <b>prints</b> it",
+   "desc": "S3: Serial Monitor showing S O S"
+  },
+  {
+   "end": true,
+   "dur": 3.2,
+   "text": "Code + wiring:<br><b>link in bio</b>",
+   "sub": "Full ESP32 course · Pin by Pin Lab"
+  }
+ ]
+}

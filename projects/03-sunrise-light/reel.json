@@ -1,0 +1,43 @@
+{
+ "note": "Reel/Short without narration (tools/reel.py); footage = creator's vertical clips",
+ "segments": [
+  {
+   "footage": "footage/projects/03/S2.mp4",
+   "in": 0.3,
+   "dur": 2.8,
+   "text": "My ESP32<br><b>sunrise</b> light",
+   "sub": "60 s from red to warm white",
+   "desc": "S2: RGB LED close-up, warm white"
+  },
+  {
+   "code": "int r = t * 255 / HALF;\nsetColor(r, r / 5, 0);",
+   "hl": [
+    0,
+    1
+   ],
+   "dur": 4.2,
+   "text": "the color follows<br>the <b>clock</b>"
+  },
+  {
+   "footage": "footage/projects/03/S1.mp4",
+   "in": 1.0,
+   "speed": 9.0,
+   "dur": 7.0,
+   "text": "red → orange →<br><b>warm white</b>",
+   "desc": "S1: the whole 60 s sunrise, dark room, sped up"
+  },
+  {
+   "footage": "footage/projects/03/S3.mp4",
+   "in": 0.3,
+   "dur": 3.0,
+   "text": "15 minutes =<br>a real <b>wake-up light</b>",
+   "desc": "S3: the light on a wall / paper"
+  },
+  {
+   "end": true,
+   "dur": 3.2,
+   "text": "Code + wiring:<br><b>link in bio</b>",
+   "sub": "Full ESP32 course · Pin by Pin Lab"
+  }
+ ]
+}

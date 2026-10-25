@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Pin by Pin Lab - project Reel overlay</title>
+<link rel="stylesheet" href="../engine/stage.css">
+<style>
+  /* rendered with a transparent background over the creator's vertical footage (tools/reel.py) */
+  html, body { width: 1080px; height: 1920px; background: transparent; }
+  #stage { width: 1080px; height: 1920px; background: transparent; }
+  .rtext { position: absolute; left: 50px; width: 980px; text-align: center; color: #fff; }
+  .rtext .big { font: 900 92px/1.02 var(--display); letter-spacing: -2px;
+    text-shadow: 0 0 6px #000, 0 6px 0 #000, 4px 4px 0 #000, -4px 4px 0 #000, 0 10px 40px rgba(0,0,0,.7); }
+  .rtext .big b { color: var(--amber); font-weight: 900; }
+  .rtext .small { display: inline-block; margin-top: 22px; padding: 10px 26px; border-radius: 999px; background: rgba(11,18,32,.82);
+    border: 2px solid rgba(25,195,180,.6); color: var(--teal); font: 800 34px var(--ui); letter-spacing: 1px; }
+  .rscene { position: absolute; inset: 0; background:
+    radial-gradient(900px 700px at 80% 15%, rgba(25,195,180,.16), transparent 60%),
+    radial-gradient(800px 700px at 10% 95%, rgba(255,181,71,.10), transparent 60%), var(--bg); }
+  .ph { position: absolute; inset: 120px 70px; border: 4px dashed rgba(255,181,71,.6); border-radius: 40px; display: flex;
+    flex-direction: column; align-items: center; justify-content: center; gap: 18px; color: var(--amber); text-align: center; padding: 40px;
+    background: #05080f; }
+  .ph .k { font: 800 64px var(--display); } .ph .d { font: 500 34px var(--ui); color: var(--muted); }
+  .brand { display: flex; align-items: center; justify-content: center; gap: 18px; font: 800 34px var(--ui); letter-spacing: 4px; color: var(--teal); }
+  #bar { position: absolute; left: 0; top: 0; height: 12px; background: linear-gradient(90deg, var(--teal), var(--amber)); z-index: 99; }
+</style>
+<script src="../node_modules/gsap/dist/gsap.min.js"></script>
+<script src="../engine/lib.js"></script>
+<script src="../../brand/logos.js"></script>
+</head>
+<body>
+<div id="stage"></div>
+<script src="reel.js"></script>
+</body>
+</html>
