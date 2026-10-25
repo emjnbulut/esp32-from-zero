@@ -17,7 +17,7 @@ on the lower one, green LED GPIO 25 on the upper one.
 - [x] 5. Lesson README + two_leds comment for two breadboards
 - [x] 6. EN narration (tts.py + cbx_retake.py en) -> schedule; re-run tts for s10 (text changed after the run began)
 - [x] 7. Stills review (render.mjs ep04 --stills ...) and scene fixes; grep render log for "word not found"
-- [ ] 8. Dubs: dub.py --report per language, fix long lines, cbx_retake per language, schedule again
+- [ ] 8. Dubs: ON HOLD (user 2026-10-25: English only for now). Old dub caches parked in build/_dubs_parked; when dubs resume: dub.py --report per language, cbx_retake, schedule (stretches), re-render
 - [ ] 9. Full render, audio, subs, compose (clips missing -> placeholders), dubs, make_localize.py
 - [x] 10. Short spec (built after the full render) (video/shorts/ep04/short.json): one question "Why does your button stop responding during delay()?"
 - [ ] 11. Creator clips C0-C7 (see script.json "clips"), then compose again

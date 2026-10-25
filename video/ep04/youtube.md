@@ -1,28 +1,31 @@
 # YouTube upload — Episode 4
 
 ## Title
-ESP32 From Zero #4 — Buttons, Debounce & millis(): Doing Two Things at Once
+ESP32 Buttons & millis(): Blink LEDs Without Blocking | ESP32 From Zero #4
 
 ## Description
-Today the ESP32 listens! We wire up a push button, learn why floating pins misbehave and how pull-up resistors fix them, and read the button with digitalRead and INPUT_PULLUP. Then we toggle an LED, tame button bounce, see why delay() freezes everything, and use millis() to blink two LEDs at their own speed while the button still reacts instantly.
+Press a button and one LED stops at once, while the other keeps blinking at its own speed. In this lesson you build that yourself: wire a push button on two breadboards, learn why floating pins misbehave and how INPUT_PULLUP fixes them, read the button with digitalRead, catch the edge of a press, tame button bounce, see why delay() freezes everything, and use millis() to do two things at once. At the end there is a challenge for you: the speed-shifter.
 
 🔗 Links
 • Lesson + all 5 sketches: https://github.com/emjnbulut/esp32-from-zero/tree/main/lessons/04-buttons-and-millis
 • All code + lessons: https://github.com/emjnbulut/esp32-from-zero
 
 ⏱ Chapters
-0:00 Intro
-0:30 The push button
-0:52 Wiring the button
-1:24 Floating pins and pull-ups
-2:41 Writing the code
-3:27 Upload and Serial Monitor
-4:09 Toggle, edges and bounce
-5:36 Why delay() gets in the way
-6:15 millis(): check the clock
-7:58 A second LED
-8:58 Troubleshooting
-9:17 Recap and next episode
+0:00 Two things at once (demo)
+0:24 What you need
+0:34 The push button
+0:53 Two breadboards and the wiring
+1:53 Floating pins and pull-ups
+2:56 The code, line by line
+3:45 Upload and Serial Monitor
+4:21 Toggle: catching the edge
+5:44 Bounce and debounce
+6:23 Why delay() gets in the way
+7:00 millis(): check the clock
+8:27 A second LED
+9:29 Your turn: the speed-shifter
+9:52 Troubleshooting
+10:10 Recap and next episode
 
 🎵 Music: "Lobby Time" by Kevin MacLeod (incompetech.com), licensed under CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
 🎙 Narration: Chatterbox TTS (Resemble AI, MIT). Voice references: LibriVox (public domain) and FLEURS by Google (CC BY 4.0): https://creativecommons.org/licenses/by/4.0/
@@ -30,12 +33,14 @@ Today the ESP32 listens! We wire up a push button, learn why floating pins misbe
 #ESP32 #Arduino #Button #millis #Electronics #Microcontroller
 
 ## Creator clips (footage/ep04/)
-- `C1` — USB unplugged. Press the push button into the breadboard across the middle gap (columns 25-27), then add the yellow wire (D22 -> left side) and the black wire (right side -> minus rail). Close-up from above, landscape, 6-10 s.
-- `C2` — button_led sketch: a finger presses and holds the button - the LED lights while it's held, goes dark on release. Landscape, 5-8 s.
-- `C3` — button_toggle sketch: press, LED on; press again, LED off (two or three presses). Landscape, 5-8 s.
-- `C4` — blink_button sketch: the LED blinks; one press stops it at once, another press starts it again. Landscape, 6-10 s.
-- `C5` — USB unplugged. Top half: green wire D25 -> column 18, 220 ohm resistor 18 -> 21, green LED (long leg 21, short leg 22), black wire 22 -> top minus rail, black wire GND pin -> top minus rail. Close-up from above, landscape, 8-12 s.
-- `C6` — two_leds sketch: red and green LEDs blink at different speeds; a press stops/starts the red one while the green keeps going. Landscape, 6-10 s.
+- `C0` — OPENING, full screen (same take can serve C7): finished two_leds circuit on the two breadboards, USB plugged in. Red blinks every 0.5 s, green blinks fast; after ~3 s a finger presses the button once (red stops at once, green keeps going), ~2 s later presses again (red starts again). Landscape, steady, both LEDs + button clearly in frame, 10-12 s.
+- `C1` — USB unplugged. Two breadboards one above the other, the ESP32 across both (top pins in the upper breadboard's row j, bottom pins in the lower one's row a). Rebuild the red LED circuit on the lower breadboard as in the drawing. Top view, landscape, 8-12 s.
+- `C2` — USB unplugged. Press the button into the lower breadboard across the middle gap (columns 25-27), then the yellow wire (D22 -> button left side) and the black wire (button right side -> minus rail). Close-up from above, landscape, 6-10 s.
+- `C3` — button_led sketch, full screen: a finger presses and holds the button - the LED lights while it's held, goes dark on release (twice). Landscape, 5-8 s.
+- `C4` — button_toggle sketch, full screen: press, LED on; press again, LED off (three or four presses). Landscape, 6-8 s.
+- `C5` — blink_button sketch, full screen: the LED blinks; one press stops it at once, another press starts it again. Landscape, 6-10 s.
+- `C6` — USB unplugged. Upper breadboard: green wire D25 -> column 18, 220 ohm resistor 18 -> 21, green LED (long leg 21, short leg 22), black wire 22 -> top minus rail, black wire GND pin -> top minus rail. Close-up from above, landscape, 8-12 s.
+- `C7` — two_leds sketch, full screen: red and green blink at their own speeds; a press stops the red one while the green keeps going, another press starts red again. Landscape, 8-10 s (may be the same take as C0).
 
 Then: `python tools/build.py video/ep04 compose`.
 
