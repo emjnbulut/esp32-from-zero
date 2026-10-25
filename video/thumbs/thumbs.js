@@ -89,6 +89,25 @@ const V = {
       <div style="font:700 30px var(--ui);color:var(--teal);margin-top:20px">check the clock,<br>don't wait</div></div>`);
   },
   ep04_C() { title([["BUTTONS", "white"], ["+ millis()", "teal", "font-family:var(--mono);font-size:104px;letter-spacing:-2px"]]); button(740, 300, 220); led(1010, 90, 110, "red"); led(1140, 90, 110, "green"); },
+  // v2 (2026-10-25, PRODUCTION_GUIDELINES.md): one focus (the working result), 2-3 words
+  ep04_D() {
+    title([["DO", "white"], ["BOTH!", "teal"]], 150, 176);
+    led(800, 60, 150, "red"); led(1050, 60, 150, "green");
+    button(880, 400, 230, true);
+    pill(780, 640, "blink + button, no delay()", "rgba(25,195,180,.18)", "var(--teal)");
+  },
+  ep04_E() {
+    title([["NEVER", "white"], ["WAIT", "amber"]], 150, 160);
+    led(830, 50, 130, "red"); led(1060, 50, 130, "green");
+    card(700, 380, 540, 200, `<div style="padding:30px 34px;text-align:center"><div style="font:800 60px var(--mono)"><span class="fn">millis</span>()</div>
+      <div style="font:700 28px var(--ui);color:var(--amber);margin-top:14px">not <span style="font-family:var(--mono)">delay()</span></div></div>`);
+  },
+  ep04_F() {
+    title([["PRESS", "white"], ["= INSTANT", "red", "font-size:118px"]], 150, 150);
+    button(760, 300, 250, true);
+    led(1070, 80, 140, "red", false); led(1070, 420, 110, "green");
+    pill(1010, 330, "stops", "var(--red)", "#fff");
+  },
 };
 
 const key = location.search.slice(1);
