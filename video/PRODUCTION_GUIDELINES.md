@@ -87,6 +87,16 @@ Kullanıcı kararı: Bölüm 05 ve sonrasındaki yeni videolarda uygulanır (Bö
 - Her bölümün sonunda anlatım izleyiciyi yorumlara davet eder; örnek: "Let's meet in the comments: tell me what you built." Ödevli bölümlerde ödev çözümleri için de yorumlara çağrılır.
 - Shorts'a bu ikonlar konmaz (kısa ve tek odaklı kalır); kapanış cümlesi yine ilgili derse yönlendirir.
 
+## 6. Dublaj ile altyazı aynı ve hizalı — 25 Ekim 2026
+
+Kullanıcı kararı: bir dilin dublaj diyaloğu ile o dilin altyazısı **aynı cümleler** olmalı ve **birlikte akmalı**.
+- Tek kaynak: her dilin metni bir kez yazılır. Altyazı bu metnin okunur hâlidir (rakamlar, kod adları), dublaj aynı
+  kelimelerin sese uygun yazımıdır (TR'de sayıların okunuşu, İngilizce terimlerin Türkçe telaffuzu). Dublaj metninde
+  kelime değiştirmek, kısaltmak, yeniden cümle kurmak yok; satır sığmıyorsa **iki metin birlikte** değiştirilir.
+- Zamanlama: dublaj her bölümün (segment) İngilizce başlangıcına oturur; altyazı satırları da aynı segment
+  sınırlarında kalır, böylece ses ve yazı birlikte ilerler.
+- Kontrol: yayından önce her dublaj dili için metin karşılaştırması (altyazı ↔ dublaj) çalıştırılır.
+
 ## Yüklemede yapay zekâ etiketi tercihi — 23 Ekim 2026
 
 Kullanıcı, videolar yüklenirken yapay zekâ etiketi görünmesini istemiyor. Gelecek yüklemelerde sırf üretimde AI araçları kullanıldı diye otomatik `Evet / Yes` seçme.
@@ -106,6 +116,7 @@ Kaynak: [YouTube — GenAI içerik bildirimi](https://support.google.com/youtube
 - [ ] Önizlemede açılışın vaat edilen sonucu gösterdiği, ilk uygulama adımına hızla geçtiği ve küçük resmin mobil boyutta okunduğu kontrol edildi.
 - [ ] Short tek konuya odaklanıyor; ana bölüm kimliği ve ilgili video bağlantısı doğru veya erişim engeli açıkça kaydedildi.
 - [ ] Yeni metinlerin çeviri, ses ve altyazı zamanlaması tutarlı.
+- [ ] Her dublaj dilinde altyazı = dublaj diyaloğu (aynı cümleler, aynı segmentler).
 - [ ] En fazla 2 sade beğen/abone ikonu, hiçbir şeyi kapatmıyor; bölüm sonunda yorumlara davet var.
 
 - [ ] Kod satırları, GPIO etiketleri ve hedef bağlantılar telefon boyutunda okunuyor; açıklamalar ilgili parçayı kapatmıyor.

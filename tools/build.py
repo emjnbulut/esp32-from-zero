@@ -203,9 +203,14 @@ def seg_cues(text, seg):
 def sub_texts(ep: Path, script) -> dict:
     """{lang: {segment id: subtitle text}}. en and tr come from script.json; other languages
     from <ep>/subs/<lang>.json, else from the dub translation <ep>/dub/<lang>.json.
-    (The tr dub is spelled phonetically for the voice, so it is never used as subtitles.)"""
+    (The tr dub is spelled phonetically for the voice, so it is never used as subtitles directly;
+    subs/tr.json is its display-spelled copy.)"""
     texts = {"en": {s["id"]: s.get("sub", s["text"]) for s in script["segments"]},
              "tr": {s["id"]: s["tr"] for s in script["segments"]}}
+    # PRODUCTION_GUIDELINES.md section 6: subtitles must say what the dub says. <ep>/subs/tr.json holds the
+    # TR dub's own sentences in display spelling; when it exists it replaces script.json "tr".
+    if (ep / "subs" / "tr.json").exists():
+        texts["tr"] = json.loads((ep / "subs" / "tr.json").read_text(encoding="utf-8"))["segments"]
     for folder in ("subs", "dub"):
         for f in sorted((ep / folder).glob("*.json")) if (ep / folder).exists() else []:
             if f.stem not in texts:
