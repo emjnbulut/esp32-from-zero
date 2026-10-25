@@ -14,7 +14,7 @@ for (const s of segs) {
     fadeBoth(sc, s.t0, s.t1);
     if (s.missing) sc.innerHTML = `<div class="ph"><div class="k">📹 ${s.missing}</div><div class="d">${s.desc || ""}</div></div>`;
     if (s.kind === "code") {
-      const lines = s.code.split("\n").length, size = lines > 6 ? 38 : 44;
+      const lines = s.code.split("\n").length, size = lines > 6 ? 42 : 54;
       const c = bigCode(sc, 50, 0, 980, s.code, { size, pad: 36 });
       c.c.style.top = (1000 - c.h / 2) + "px";
       gsap.set(c.c, { opacity: 1 });
