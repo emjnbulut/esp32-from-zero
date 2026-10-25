@@ -28,7 +28,17 @@ MIN_WORDS = 3  # a comma piece shorter than this stays attached (very short inpu
 def pieces(text: str):
     """[(piece, pause_after_kind)] with kind 'sentence' | 'comma' | None (last)."""
     out = []
-    sents = [x for x in SENT.split(text.strip()) if x]
+    sents = []
+    for x in [x for x in SENT.split(text.strip()) if x]:
+        # A sentence of one or two words ("Watch this.") narrated alone often starts with a stray mumble;
+        # it rides along with the next sentence instead (the model still pauses at the full stop).
+        if sents and len(sents[-1].split()) < MIN_WORDS:
+            sents[-1] += " " + x
+        else:
+            sents.append(x)
+    if len(sents) > 1 and len(sents[-1].split()) < MIN_WORDS:  # a short last sentence joins the one before
+        last = sents.pop()
+        sents[-1] += " " + last
     for si, sent in enumerate(sents):
         parts = []
         for c in [x for x in COMMA.split(sent) if x]:
