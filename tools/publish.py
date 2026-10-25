@@ -35,8 +35,12 @@ def creds():
     tok = SECRETS / "token.json"
     c = Credentials.from_authorized_user_file(str(tok), SCOPES) if tok.exists() else None
     if c and c.expired and c.refresh_token:
-        c.refresh(Request())
-    elif not c or not c.valid:
+        from google.auth.exceptions import RefreshError
+        try:
+            c.refresh(Request())
+        except RefreshError:  # the app is in Testing mode: refresh tokens expire after 7 days -> sign in again
+            c = None
+    if not c or not c.valid:
         flow = InstalledAppFlow.from_client_secrets_file(str(SECRETS / "client_secret.json"), SCOPES)
         c = flow.run_local_server(port=0)
     tok.write_text(c.to_json(), encoding="utf-8")
