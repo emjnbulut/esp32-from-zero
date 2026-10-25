@@ -196,9 +196,11 @@ sceneOut(sBB, S1("s55") + 0.5);
 const Z = box(sBB, 0, 0, 1920, 1080, ""); // zoom container for the two breadboards
 Z.style.transformOrigin = "0 0";
 const bb = makeBB2(Z, 0, 0);
-const VIEW = { all: [667, 732, 0.56], lower: [900, 1290, 0.95], button: [880, 1250, 1.25], upper: [900, 420, 0.95] };
+const VIEW = { all: [667, 760, 0.56], lower: [900, 1350, 0.95], button: [880, 1300, 1.25], upper: [900, 380, 0.95] };
 {
-  const hd = box(sBB, 0, 26, 1920, 80, "h2", ""); hd.style.textAlign = "center"; css(hd, { zIndex: 30, textShadow: "0 4px 18px #000" });
+  const band = box(sBB, 0, 0, 1920, 150, ""); // keeps the heading readable over the zoomed breadboards
+  css(band, { zIndex: 29, background: "linear-gradient(rgba(11,18,32,.96) 55%, rgba(11,18,32,0))" });
+  const hd = box(sBB, 0, 26, 1920, 80, "h2", ""); hd.style.textAlign = "center"; css(hd, { zIndex: 30 });
   panelAt(hd, [[0, ""], [T("s08"), "One breadboard is not enough"], [T("s09"), "Two breadboards, one board across both"], [W("s10", "rebuild"), "The circuit from episode 3"],
     [T("s11"), "Add the button"], [T("s13"), "Pressed: GPIO 22 → GND"], [T("s53") - 0.2, "A second LED, upper breadboard"]]);
   // s08: a single breadboard, the board covers one side completely
@@ -231,8 +233,8 @@ const VIEW = { all: [667, 732, 0.56], lower: [900, 1290, 0.95], button: [880, 12
   const freeS = [];
   for (let c = 2; c <= 16; c++) freeS.push(bb.colStrip[1][c][1], bb.colStrip[2][c][0]);
   TO(freeS, W("s09", "free"), 0.4, { opacity: 0.6 }); TO(freeS, T("s10"), 0.4, { opacity: 0 });
-  callout(Z, "top pins → upper breadboard", bb.L(17, "1j")[0] + 20, bb.L(17, "1j")[1] - 30, W("s09", "upper"), T("s10"), { style: { fontSize: "30px" } });
-  callout(Z, "bottom pins → lower breadboard", bb.L(17, "2a")[0] + 20, bb.L(17, "2a")[1] - 10, W("s09", "lower"), T("s10"), { style: { fontSize: "30px" } });
+  callout(Z, "top pins → upper breadboard", bb.L(17, "1j")[0] + 20, bb.L(17, "1j")[1] - 30, W("s09", "upper"), T("s10"), { style: { fontSize: "46px" } });
+  callout(Z, "bottom pins → lower breadboard", bb.L(17, "2a")[0] + 20, bb.L(17, "2a")[1] - 10, W("s09", "lower"), T("s10"), { style: { fontSize: "46px" } });
   // USB status badge
   const usb = box(sBB, 60, 40, 0, 0, "badge", "");
   css(usb, { width: "auto", height: "auto", background: "rgba(11,18,32,.9)", border: "1px solid var(--line)", zIndex: 31 });
@@ -273,7 +275,7 @@ const VIEW = { all: [667, 732, 0.56], lower: [900, 1290, 0.95], button: [880, 12
   const p22 = bb.L(15, "2a");
   callout(Z, "D22", p22[0] - 32, p22[1] + 30, W("s12", "twentytwo"), S1("s12"), { style: { fontSize: "24px" } });
   bbWire(bb, bb.L(27, "2j"), bb.L(27, "2bm"), "#2b2f36", W("s12", "black"), -0.35);
-  callout(Z, "− rail = GND", bb.L(27, "2bm")[0] + 30, bb.L(27, "2bm")[1] - 40, W("s12", "minus"), S1("s12"), { style: { fontSize: "24px" } });
+  callout(Z, "− rail = GND", bb.L(27, "2bm")[0] - 230, bb.L(27, "2bm")[1] - 64, W("s12", "minus"), S1("s12"), { style: { fontSize: "24px" } });
   heroClip(stage, "C2", W("s11", "Press") - 0.2, S1("s12") + 0.3, "Button across the lower gap (columns 25-27), yellow wire D22 -> left side, black wire right side -> minus rail.",
     { w: 600, h: 338, x: 40, y: 160, sketch: "the button" });
   // s13: pressed -> GPIO 22 is connected to ground
@@ -281,7 +283,7 @@ const VIEW = { all: [667, 732, 0.56], lower: [900, 1290, 0.95], button: [880, 12
   const path = svgEl(bb.over, "path", { d: "M" + pts.map((p) => p.join(" ")).join(" L"), fill: "none", stroke: "#19c3b4", "stroke-width": 7, "stroke-linejoin": "round", opacity: 0.95 });
   drawOn(path, W("s13", "connected"), 1.6);
   TO(path, S1("s13"), 0.3, { opacity: 0 });
-  zcam(Z, W("s13", "connected") - 0.3, 1.2, 640, 1250, 0.85);
+  zcam(Z, W("s13", "connected") - 0.3, 1.2, 667, 1300, 0.82);
   const tPr = W("s13", "press");
   dyn((t) => { const pr = t >= tPr && t < S1("s13"); bcap.setAttribute("r", pr ? 28 : 34); bcap.setAttribute("fill", pr ? "#ffb547" : "#4a5262"); });
   // s53-s55: the green LED on the upper breadboard
@@ -463,12 +465,12 @@ sceneOut(sCode, S1("s24") + 0.4);
   const zz2 = []; for (let i = 0; i <= 6; i++) zz2.push(`L${1450 + (i === 0 || i === 6 ? 0 : i % 2 ? 16 : -16)} ${370 - i * 16}`);
   svgEl(pu, "path", { d: `M1450 400 V370 ${zz2.join(" ")} V250 M1410 250 H1490`, stroke: "#ffb547", "stroke-width": 6, fill: "none" });
   svgEl(pu, "text", { x: 1450, y: 236, "text-anchor": "middle", "font-family": "Segoe UI", "font-weight": 700, "font-size": 24, fill: "#ffb547" }).textContent = "3.3 V (pull-up)";
-  TO(pu, W("s21", "PULLUP") - 0.1, 0.4, { opacity: 1 });
+  TO(pu, W("s21", "pull") - 0.1, 0.4, { opacity: 1 });
   // live labels
   const presses = [[W("s22", "LOW") - 0.1, W("s22", "LOW") + 1.3], [W("s23", "pressed"), W("s24", "Otherwise")]];
   B.press(presses);
   const tHigh = W("s23", "HIGH"), tLow = W("s24", "LOW");
-  const v22 = box(sCode, 1300, 270, 260, 50, ""), v23 = box(sCode, 1300, 760, 240, 50, ""), st = box(sCode, chipX, 470, chipW, 120, "");
+  const v22 = box(sCode, 1290, 420, 260, 50, ""), v23 = box(sCode, 1300, 760, 240, 50, ""), st = box(sCode, chipX, 470, chipW, 120, "");
   css(v22, { font: "700 26px var(--mono)", textAlign: "center" }); css(v23, { font: "700 26px var(--mono)", textAlign: "center" });
   css(st, { font: "700 30px var(--mono)", textAlign: "center", lineHeight: "1.5" });
   for (const e of [v22, v23, st]) { hidden(e); show(e, T("s21") + 0.3, 0.3); }
@@ -576,12 +578,12 @@ const tFloatEdit = W("s27", "plain"), tFloatBack = W("s28", "back");
   dyn((t) => { o1.className = t >= tOpen ? "o1" : "on o1"; o2.className = t >= tOpen ? "on o2" : "o2"; });
   styleAt(ide.out, "display", [[0, "block"], [tOpen, "none"]]);
   styleAt(ide.serial, "display", [[0, "none"], [tOpen, "block"]]);
-  cam(tOpen + 0.3, 1.0, 640, 900, 1.9);
+  cam(tOpen + 0.3, 1.0, 560, 900, 1.9);
   // s27: back to the code for the floating experiment, then the monitor again
   cam(W(s27, "Change") - 0.2, 0.9, 520, 300, 2.0);
   ring(camera, cx(2) - 4, lineY(7) - 1, cx(36) - cx(2) + 8, 24, W(s27, "Change"), W(s27, "upload"));
   cam(W(s27, "upload") + 0.2, 0.8, 960, 540, 1);
-  cam(T(s28) - 0.1, 0.9, 640, 900, 1.9);
+  cam(T(s28) - 0.1, 0.9, 560, 900, 1.9);
   const pressed = [[W(s26, "Press"), W(s26, "Let")]];
   const tFloatRun = uploads[1][1] + 0.3;
   const rnd = (k2) => { let x = Math.sin(k2 * 78.233) * 43758.5453; return x - Math.floor(x); };
@@ -661,8 +663,9 @@ sceneOut(sTog, S1("s36") + 0.4);
     ptr.style.opacity = vis; pl.style.opacity = vis;
     if (i >= 1) { const x = X0 + (i - 1) * CW - 7; ptr.style.left = x + "px"; pl.style.left = x + 10 + "px"; }
   });
-  const verdict = box(sTog, 1230, 420, 620, 220, "card", "");
-  hidden(verdict); show(verdict, W("s31", "remember") + 0.2, 0.3); hide(verdict, T("s34") - 0.1, 0.3);
+  const vwrap = box(sTog, 1230, 420, 620, 220, "card", "");
+  hidden(vwrap); show(vwrap, W("s31", "remember") + 0.2, 0.3); hide(vwrap, T("s34") - 0.1, 0.3);
+  const verdict = box(vwrap, 0, 0, 620, 220, "");
   panelAt(verdict, [[0, ""],
     [W("s31", "remember") + 0.2, `<div style="padding:30px 36px;font:700 34px var(--display)">HIGH → HIGH<div style="font:600 28px var(--ui);color:var(--muted);margin-top:10px">same: nothing happens</div></div>`],
     [W("s31", "different"), `<div style="padding:30px 36px;font:700 34px var(--display)">HIGH → LOW<div style="font:700 30px var(--ui);color:var(--red);margin-top:10px">changed, and LOW: a new press!</div></div>`],
@@ -722,9 +725,9 @@ sceneOut(sBo, S1("s40") + 0.4);
   css(ctr2, { font: "700 44px var(--mono)" }); hidden(ctr2); show(ctr2, T("s40"), 0.3);
   textAt(ctr2, [[0, "presses: 0"], [W("s40", "every"), "presses: 1"], [W("s40", "flips"), "presses: 2"]]);
   // s38-s39: the bounce, magnified
-  const sv = svgLayer(sBo);
   const X0 = 1100, X1 = 1820, YH = 560, YL = 720;
   const zoomBox = box(sBo, X0 - 30, YH - 110, X1 - X0 + 60, YL - YH + 260, "card", `<div class="kicker" style="padding:18px 24px;font-size:18px">the pin, magnified: one press</div>`);
+  const sv = svgLayer(sBo);
   hidden(zoomBox); show(zoomBox, T("s38") - 0.1, 0.3); hide(zoomBox, T("s40") - 0.1, 0.3);
   const bg = svgEl(sv, "g", { opacity: 0 });
   TO(bg, T("s38"), 0.4, { opacity: 1 }); TO(bg, T("s40") - 0.1, 0.3, { opacity: 0 });
@@ -772,7 +775,7 @@ sceneOut(sBlock, S1("s44") + 0.4);
   };
   c1.hl(loopHl(0.5, W("s43", "Delay"), W("s44", "Shorter")));
   c2.hl(loopHl(0.1, W("s44", "Shorter"), S1("s44") + 1));
-  const L = ledIcon(sBlock, 1560, 170, 100);
+  const L = ledIcon(sBlock, 1730, 150, 90);
   hidden(L.r); show(L.r, T("s41"), 0.4);
   L.drive((t) => (t < W("s44", "Shorter") ? blink(t, tB, 0.5, 0.5) : blink(t, tB, 0.1, 0.1)));
   const sv = svgLayer(sBlock);
@@ -1013,7 +1016,7 @@ const sTrouble = SC();
 sceneIn(sTrouble, S1("s60") + 0.4);
 sceneOut(sTrouble, S1("s61") + 0.5);
 {
-  const chk = box(sTrouble, 300, 170, 1320, 760, "card", "");
+  const chk = box(sTrouble, 300, 220, 1320, 600, "card", "");
   const rows = [["Button across the middle gap", "across"], ["Yellow wire in the D22 column", "yellow"], ["Always 0? Button turned sideways", "always"], ["Green dark? Black wire from its − rail to GND", "green"]];
   chk.innerHTML = `<div style="padding:44px 60px"><div class="kicker">Something not working?</div>` + rows.map(([a]) => `<div class="row" style="display:flex;gap:22px;align-items:center;margin-top:40px;opacity:0">
     <div style="width:56px;height:56px;border-radius:50%;background:var(--green);color:#052;font:800 32px var(--ui);display:flex;align-items:center;justify-content:center">✓</div>
