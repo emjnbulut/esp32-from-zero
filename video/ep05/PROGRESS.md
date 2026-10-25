@@ -11,8 +11,9 @@ User 2026-10-25: script now, NO render yet; English only (dubs on hold).
 - [x] 1b. Compile check: all 5 OK, no warnings (esp32 core 3.3.12)
 - [x] 2. Script `make_script.py` (45 segments, ~1170 words) + clip list C0-C5 in script.json
 - [x] 3. Lesson README (RGB layout: row c cols 20-23, R/K/G/B; resistors across the gap at 20/22/23)
-- [ ] 4. Scenes `ep05.js` + index.html (reuse ep04: makeBB2, bigCode, quizCard, heroClip full; add like/subscribe corner icon helper)
-- [ ] 5. EN narration (tts + cbx_retake en, GPU Whisper) -> schedule -> stills review   (WAIT: user said no render now)
+- [x] 4. Scenes `ep05.js` + index.html (reuse ep04: makeBB2, bigCode, quizCard, heroClip full; add like/subscribe corner icon helper)
+- [x] 5. EN narration (Mark voice, GPU Whisper) -> schedule (body 7:44) -> stills review + fixes. NOTE: the user may switch
+      the narration to a clone of their OWN voice (YouTube AI-label exemption); then re-run tts + schedule, scenes follow the words
 - [ ] 6. Subs (7 langs) + make_localize.py (titles result-first) -> Sonnet subagent
 - [ ] 7. Render, compose with clips, Short spec (EN + TR), thumbnail
 

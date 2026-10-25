@@ -213,11 +213,11 @@ sceneOut(sAw, S1("s13") + 0.4);
     return 128;
   };
   const bar = box(sAw, 260, 470, 1400, 80, "card", "");
-  hidden(bar); show(bar, T("s10") + 0.3, 0.4); hide(bar, T("s12") - 0.1, 0.3);
+  hidden(bar); show(bar, T("s10") + 0.3, 0.4); hide(bar, T("s11") - 0.1, 0.3);
   const fill = box(bar, 0, 0, 0, 80, "");
   css(fill, { background: "linear-gradient(90deg, rgba(255,181,71,.35), rgba(255,181,71,.9))", borderRadius: "20px" });
   const lab = box(sAw, 260, 570, 1400, 60, "", "");
-  css(lab, { font: "700 34px var(--mono)", textAlign: "center" }); hidden(lab); show(lab, T("s10") + 0.3, 0.4); hide(lab, T("s12") - 0.1, 0.3);
+  css(lab, { font: "700 34px var(--mono)", textAlign: "center" }); hidden(lab); show(lab, T("s10") + 0.3, 0.4); hide(lab, T("s11") - 0.1, 0.3);
   const L = ledIcon(sAw, 1700, 620, 110);
   hidden(L.r); show(L.r, T("s10") + 0.3, 0.4); hide(L.r, T("s12") - 0.1, 0.3);
   L.drive((t) => val(t) / 255);
@@ -326,8 +326,9 @@ sceneOut(sRgb, S1("s28") + 0.4);
   const pk = box(sRgb, 0, 0, 1920, 1080, ""); hidden(pk); show(pk, T("s23"), 0.4); hide(pk, T("s24") - 0.1, 0.3);
   const big = rgbIcon(pk, 820, 200, 280);
   big.drive((t) => (t < W("s23", "red") ? [0, 0, 0] : t < W("s23", "green") ? [255, 0, 0] : t < W("s23", "blue") ? [0, 255, 0] : t < W("s23", "four") ? [0, 0, 255] : [255, 255, 255]));
-  [["red", "R", 900, "#ff5d6c"], ["longest", "common (longest)", 1000, "#e8eef7"], ["green", "G", 1040, "#4ade80"], ["blue", "B", 1110, "#5aa9ff"]].forEach(([w, txt, x, col], i) => {
-    const c = pill(pk, [600, 830, 1150, 1330][i], 880, txt, `font-size:26px;color:${col}`); pop(c, W("s23", w));
+  // one label per leg, in leg order, as a list beside the LED
+  [["red", "● red leg", "#ff5d6c"], ["longest", "● common leg (the longest)", "#e8eef7"], ["green", "● green leg", "#4ade80"], ["blue", "● blue leg", "#5aa9ff"]].forEach(([w, txt, col], i) => {
+    const c = pill(pk, 1200, 300 + i * 90, txt, `font-size:30px;color:${col}`); pop(c, W("s23", w));
   });
   // the breadboards (episode 4 circuit), then the green LED comes off and the RGB LED goes in
   const Z = box(sRgb, 0, 0, 1920, 1080, ""); Z.style.transformOrigin = "0 0";
@@ -368,8 +369,11 @@ sceneOut(sRgb, S1("s28") + 0.4);
     bbWire(bb, bb.L(pin, row), bb.L(col, row), color, t0, -0.05);
     const rg = svgEl(bb.parts, "g", { opacity: 0 }); rg.appendChild(bbResistor(bb, bb.L(col, "1f"), bb.L(col, "1e")));
     TO(rg, t0 + 0.4, 0.3, { opacity: 1 });
-    callout(Z, name, bb.L(pin, "1j")[0] - 28, bb.L(pin, "1j")[1] - 80 - (9 - pin) * 0, t0, S1("s26"), { style: { fontSize: "24px" } });
   }
+  // the three pins sit side by side: one label for all of them, in pin order
+  const pl = bb.L(7, "1j");
+  callout(Z, `<span style="color:#1b3d7a">D27 blue</span> · <span style="color:#14532d">D26 green</span> · <span style="color:#7a1020">D25 red</span>`,
+    pl[0] - 120, pl[1] - 250, W("s26", "red"), S1("s26"), { style: { fontSize: "26px" } });
   heroClip(stage, "C3", S1("s26") + 0.2, T("s27") - 0.3, "RGB LED wiring on the upper breadboard: long leg -> minus rail, three resistors + wires to D25/D26/D27.", { full: true });
   // s27: why three resistors
   const why = box(sRgb, 0, 0, 1920, 1080, ""); hidden(why); show(why, T("s27"), 0.4); hide(why, T("s28") - 0.1, 0.3);
@@ -471,8 +475,10 @@ sceneOut(sMode, S1("s40") + 0.4);
     const a = -Math.PI / 2 + i * Math.PI / 2, x = cx + R * Math.cos(a), y = cy + R * Math.sin(a);
     return box(ring, x - 70, y - 70, 140, 140, "", `<div style="width:140px;height:140px;border-radius:50%;background:${cols[i]};display:flex;flex-direction:column;align-items:center;justify-content:center;font:800 40px var(--mono);color:#0b1220">${i}<span style="font:700 20px var(--ui)">${l}</span></div>`);
   });
-  const presses = [W("s36", "press"), W("s36", "adds") + 0.8, W("s36", "last"), W("s36", "zero"), W("s38", "zero") + 0.2];
-  const cur = (t) => { let m = 0; for (const p of presses) if (t >= p) m = (m + 1) % 4; return t >= W("s37", "Quick") && t < W("s38", "zero") ? 3 : m; };
+  // the lit mode follows the narration: four presses around the circle, then the quiz (mode 3 -> back to 0)
+  const modeAt = [[0, 0], [W("s36", "press"), 1], [W("s36", "adds") + 0.8, 2], [W("s36", "last"), 3], [W("s36", "zero"), 0],
+    [W("s37", "Quick"), 3], [W("s38", "zero"), 0]];
+  const cur = (t) => stateAt(modeAt, t);
   dyn((t) => dots.forEach((d, i) => { const on = cur(t) === i; d.style.transform = `scale(${on ? 1.15 : 0.85})`; d.style.opacity = on ? 1 : 0.45; }));
   const mv = valBox(sMode, 90, 520, 600, [[0, "mode = 0"], [W("s37", "Quick"), "mode = 3"], [W("s38", "four"), "mode = <span style='color:var(--red)'>4</span> ?"], [W("s38", "zero"), "mode = <span style='color:var(--teal)'>0</span>  → red"]], 40);
   show(mv, W("s37", "Quick") - 0.2, 0.3); hide(mv, T("s39") - 0.1, 0.3);
@@ -518,7 +524,7 @@ const sTrouble = SC();
 sceneIn(sTrouble, S1("s42") + 0.4);
 sceneOut(sTrouble, S1("s43") + 0.5);
 {
-  const chk = box(sTrouble, 300, 220, 1320, 560, "card", "");
+  const chk = box(sTrouble, 300, 260, 1320, 440, "card", "");
   const rows = [["One color dark? Check that leg's resistor and wire", "color"], ["Inverted (white when off)? Common anode", "inverted"], ["COMMON_ANODE = true, long leg to 3.3 V", "set"]];
   chk.innerHTML = `<div style="padding:44px 60px"><div class="kicker">Something not working?</div>` + rows.map(([a]) => `<div class="row" style="display:flex;gap:22px;align-items:center;margin-top:40px;opacity:0">
     <div style="width:56px;height:56px;border-radius:50%;background:var(--green);color:#052;font:800 32px var(--ui);display:flex;align-items:center;justify-content:center">✓</div>
