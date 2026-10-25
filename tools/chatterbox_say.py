@@ -68,6 +68,18 @@ def trim(wav: np.ndarray, sr: int, thresh_db=-35.0, keep=0.05):
     return wav[a:b]
 
 
+def ffmpeg(args, data):
+    """Windows sometimes fails to start ffmpeg (0xC0000142, low desktop heap / memory): try again."""
+    import time
+    for attempt in range(5):
+        r = subprocess.run(["ffmpeg", "-v", "error", *args], input=data, capture_output=True)
+        if r.returncode == 0:
+            return r.stdout
+        if r.returncode != 0xC0000142 or attempt == 4:
+            raise subprocess.CalledProcessError(r.returncode, ["ffmpeg", *args], r.stdout, r.stderr)
+        time.sleep(3)
+
+
 def patch_analyzer():
     """Chatterbox's alignment analyzer indexes A[:, :-5], which is empty for pieces of 5 text tokens or less
     ("Başlayalım.") and raises IndexError on every seed. Skip its check for that step instead;
@@ -147,12 +159,11 @@ def main(path):
         polish = ["-af", cfg["polish"]] if cfg.get("polish") else []
         sr = tts.sr
         if denoiser:  # same order the user approved (2026-10-25): polish, then DeepFilterNet
-            raw = subprocess.run(["ffmpeg", "-v", "error", "-f", "f32le", "-ar", str(sr), "-ac", "1", "-i", "-", *polish,
-                                  "-ar", str(denoiser[1].sr()), "-f", "f32le", "-"],
-                                 input=wav.tobytes(), capture_output=True, check=True).stdout
+            raw = ffmpeg(["-f", "f32le", "-ar", str(sr), "-ac", "1", "-i", "-", *polish,
+                          "-ar", str(denoiser[1].sr()), "-f", "f32le", "-"], wav.tobytes())
             wav, sr, polish = denoise(np.frombuffer(raw, np.float32)), denoiser[1].sr(), []
-        subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "f32le", "-ar", str(sr), "-ac", "1", "-i", "-",
-                        *polish, "-b:a", "192k", item["out"]], input=wav.tobytes(), check=True)
+        ffmpeg(["-y", "-f", "f32le", "-ar", str(sr), "-ac", "1", "-i", "-", *polish, "-b:a", "192k", item["out"]],
+               wav.tobytes())
         print(f"[{n}/{len(cfg['items'])}] {item['out']}", flush=True)
 
 
