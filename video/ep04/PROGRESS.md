@@ -20,9 +20,11 @@ on the lower one, green LED GPIO 25 on the upper one.
 - [ ] 8. Dubs: ON HOLD (user 2026-10-25: English only for now). Old dub caches parked in build/_dubs_parked; when dubs resume: dub.py --report per language, cbx_retake, schedule (stretches), re-render
 - [ ] 9. Full render, audio, subs, compose (clips missing -> placeholders), dubs, make_localize.py
 - [x] 10. Short spec (built after the full render) (video/shorts/ep04/short.json): one question "Why does your button stop responding during delay()?"
+- [ ] 12. Challenge solution Short (speed-shifter, challenge_speed.ino): spec + build once C8 is filmed
 - [ ] 11. Creator clips C0-C7 (see script.json "clips"), then compose again
 
 ## Clips (creator)
 C0 opening (full screen, 14-16 s, press ~8 s and ~11 s), C1 two breadboards + red circuit, C2 button wiring,
 C3 button_led, C4 button_toggle, C5 blink_button, C6 green LED wiring, C7 two_leds (may be the C0 take).
+C8 (for the challenge solution Short): challenge_speed running, red steady 500 ms, each press switches green fast <-> slow, 8-10 s.
 The drawing assumes the layout above; after C1 arrives, align the drawing with the real breadboards if needed.

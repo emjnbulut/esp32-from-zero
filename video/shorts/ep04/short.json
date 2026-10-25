@@ -2,12 +2,51 @@
  "episode": "ep04",
  "source": "video/ep04/build/video.mp4",
  "schedule": "video/ep04/build/schedule.json",
- "note": "v2 (2026-10-25, PRODUCTION_GUIDELINES.md section 3): one question, one takeaway, then the linked lesson. Related video = the ep04 episode.",
+ "note": "v2 (2026-10-25, PRODUCTION_GUIDELINES.md section 3): one question, one takeaway, then the linked lesson. Related video = the ep04 episode. Opens with the working result (user, 2026-10-25), then the question.",
  "cta": {
   "en": "Full lesson",
   "sub": "linked: related video"
  },
  "segments": [
+  {
+   "id": "h0",
+   "chip": "ESP32 · BUTTON + LED",
+   "headline": {
+    "en": "Blinks AND reacts"
+   },
+   "say": {
+    "en": "This LED keeps blinking, and one press stops it instantly.",
+    "tr": "Bu LED yanıp sönmeye devam ediyor ve tek bir basış onu anında durduruyor."
+   },
+   "show": {
+    "en": "This LED keeps blinking, and one press stops it instantly."
+   },
+   "shots": [
+    {
+     "at": [
+      "s03",
+      "button",
+      -0.3
+     ],
+     "crop": [
+      1180,
+      200,
+      720,
+      720
+     ],
+     "footage": {
+      "file": "footage/ep04/C5.mp4",
+      "src": 0.5,
+      "crop": [
+       180,
+       0,
+       1080,
+       1080
+      ]
+     }
+    }
+   ]
+  },
   {
    "id": "h1",
    "chip": "ESP32 QUESTION",
@@ -15,16 +54,25 @@
     "en": "Why is my button ignored?"
    },
    "say": {
-    "en": "Why does your button stop responding when your code uses delay?",
-    "tr": "Kodunuzda dilay varken buton neden tepki vermiyor?"
+    "en": "But with delay in your code, the button stops responding. Why?",
+    "tr": "Ama kodunuzda dilay varsa buton tepki vermez. Neden?"
    },
    "show": {
-    "en": "Why does your button stop responding when your code uses delay()?"
+    "en": "But with delay() in your code, the button stops responding. Why?"
    },
    "shots": [
     {
-     "at": ["s42", "press", -0.2],
-     "crop": [1000, 120, 900, 760]
+     "at": [
+      "s42",
+      "press",
+      -0.2
+     ],
+     "crop": [
+      1000,
+      120,
+      900,
+      760
+     ]
     }
    ]
   },
@@ -43,8 +91,17 @@
    },
    "shots": [
     {
-     "at": ["s43", "freezes", 0.0],
-     "crop": [40, 150, 1000, 760],
+     "at": [
+      "s43",
+      "freezes",
+      0.0
+     ],
+     "crop": [
+      40,
+      150,
+      1000,
+      760
+     ],
      "pan": 960
     }
    ]
@@ -64,12 +121,30 @@
    },
    "shots": [
     {
-     "at": ["s46", "question", 0.0],
-     "crop": [40, 130, 1100, 700]
+     "at": [
+      "s46",
+      "question",
+      0.0
+     ],
+     "crop": [
+      40,
+      130,
+      1100,
+      700
+     ]
     },
     {
-     "at": ["s48", "later", -0.6],
-     "crop": [100, 520, 1760, 520],
+     "at": [
+      "s48",
+      "later",
+      -0.6
+     ],
+     "crop": [
+      100,
+      520,
+      1760,
+      520
+     ],
      "pan": 860
     }
    ]
@@ -81,20 +156,34 @@
     "en": "Blinks AND reacts"
    },
    "say": {
-    "en": "Now the loop never waits. The LED keeps blinking, and the button reacts instantly.",
-    "tr": "Artık loop hiç beklemiyor. LED yanıp sönmeye devam ediyor ve buton anında tepki veriyor."
+    "en": "Now the loop never waits, and the button always reacts.",
+    "tr": "Artık loop hiç beklemiyor ve buton her zaman tepki veriyor."
    },
    "show": {
-    "en": "Now the loop never waits. The LED keeps blinking, and the button reacts instantly."
+    "en": "Now the loop never waits, and the button always reacts."
    },
    "shots": [
     {
-     "at": ["s51", "button", 0.0],
-     "crop": [300, 200, 1320, 700],
+     "at": [
+      "s51",
+      "button",
+      0.0
+     ],
+     "crop": [
+      300,
+      200,
+      1320,
+      700
+     ],
      "footage": {
       "file": "footage/ep04/C5.mp4",
       "src": 0.5,
-      "crop": [180, 0, 1080, 1080]
+      "crop": [
+       180,
+       0,
+       1080,
+       1080
+      ]
      }
     }
    ]
@@ -114,8 +203,17 @@
    },
    "shots": [
     {
-     "at": ["s56", "green", 0.5],
-     "crop": [1120, 180, 760, 760]
+     "at": [
+      "s56",
+      "green",
+      0.5
+     ],
+     "crop": [
+      1120,
+      180,
+      760,
+      760
+     ]
     }
    ]
   }
