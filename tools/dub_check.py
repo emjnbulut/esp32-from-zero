@@ -13,7 +13,8 @@ import time
 from pathlib import Path
 
 import numpy as np
-from faster_whisper import WhisperModel
+sys.path.insert(0, str(Path(__file__).parent))
+import whisper_dev  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 
@@ -39,7 +40,7 @@ def words(s: str):
 
 def main(ep: Path, lang: str, model_name: str):
     dub = json.loads((ep / "dub" / f"{lang}.json").read_text(encoding="utf-8"))
-    model = WhisperModel(model_name, device="cpu", compute_type="int8")
+    model = whisper_dev.model(model_name)
     bad = []
     for sid, text in dub["segments"].items():
         audio = load16k(ep / "build" / f"dub_{lang}" / f"{sid}.mp3")

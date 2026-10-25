@@ -59,8 +59,8 @@ def main():
         texts = spec["segments"]
         out, cfg = ep / "build" / f"dub_{lang}", cbx.settings(spec, lang)
 
-    from faster_whisper import WhisperModel
-    model = WhisperModel("small", device="cpu", compute_type="int8")
+    import whisper_dev
+    model = whisper_dev.model("small")
 
     def check(mp3: Path, text: str) -> dict:
         """Whisper match + fluency: the longest pause inside the line, the speaking rate and stray sounds."""

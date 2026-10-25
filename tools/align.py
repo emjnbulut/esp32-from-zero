@@ -23,8 +23,9 @@ _model = None
 def model():
     global _model
     if _model is None:
-        from faster_whisper import WhisperModel
-        _model = WhisperModel("small", device="cpu", compute_type="int8")
+        sys.path.insert(0, str(Path(__file__).parent))
+        import whisper_dev
+        _model = whisper_dev.model("small")
     return _model
 
 
