@@ -20,3 +20,5 @@ User 2026-10-25: script now, NO render yet; English only (dubs on hold).
 ## Clips (creator, due Wed 28 Oct)
 C0 opening (red breathing + RGB fade, 14-16 s), C1 multimeter (pwm_levels, hands-free), C2 fade_millis + press,
 C3 RGB wiring close-up, C4 rgb_colors, C5 color_modes presses. Details in script.json "clips".
+
+Thumbnail: ep05_A "ANY COLOR!" (Claude decides thumbnails, user 2026-10-25) -> video/thumbs/build/ep05_A.png

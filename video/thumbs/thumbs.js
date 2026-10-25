@@ -25,6 +25,15 @@ function led(x, y, w, color = "red", lit = true) {
     <path d="M28 96 V52 a32 32 0 0 1 64 0 V96 z" fill="url(#${id})"/>${lit ? `<path d="M28 96 V52 a32 32 0 0 1 64 0 V96 z" fill="${col[4]}" opacity=".75"/>` : ""}
     <path d="M22 92 h70 v14 h-70 z" fill="${col[2]}"/></svg>`);
 }
+/** an RGB LED lit in color c = [r, g, b] */
+function rgbLed(x, y, w, c) {
+  const [r, g, b] = c;
+  put(x - w * 1.1, y - w * 0.9, w * 3.2, w * 3.2, "", "", `border-radius:50%;background:radial-gradient(circle, rgba(${r},${g},${b},.95) 0%, rgba(${r},${g},${b},.35) 32%, rgba(0,0,0,0) 62%)`);
+  const tint = `rgb(${Math.round(170 + r / 3)},${Math.round(170 + g / 3)},${Math.round(170 + b / 3)})`;
+  put(x, y, w, w * 190 / 120, `<svg width="${w}" viewBox="0 0 120 190"><path d="M34 96 V176 M52 96 V190 M68 96 V176 M86 96 V172" stroke="#c3c9d1" stroke-width="6" stroke-linecap="round"/>
+    <path d="M24 96 V52 a36 36 0 0 1 72 0 V96 z" fill="${tint}"/><path d="M34 60 a24 24 0 0 1 20 -26" stroke="#fff" stroke-width="7" fill="none" opacity=".7" stroke-linecap="round"/>
+    <path d="M18 92 h84 v12 h-84 z" fill="#c9d0d8"/></svg>`);
+}
 function board(x, y, w, rot = 0) {
   put(x, y, w, 0, boardSVG({ pins: 30, chip: "cp2102", p: "b", width: w }), "",
     `filter:drop-shadow(0 30px 50px rgba(0,0,0,.6)) drop-shadow(0 0 40px rgba(25,195,180,.3));transform:rotate(${rot}deg)`);
@@ -101,6 +110,18 @@ const V = {
     led(830, 50, 130, "red"); led(1060, 50, 130, "green");
     card(700, 380, 540, 200, `<div style="padding:30px 34px;text-align:center"><div style="font:800 60px var(--mono)"><span class="fn">millis</span>()</div>
       <div style="font:700 28px var(--ui);color:var(--amber);margin-top:14px">not <span style="font-family:var(--mono)">delay()</span></div></div>`);
+  },
+  // ep05: one focus = a glowing RGB LED; 2-3 words (PRODUCTION_GUIDELINES.md section 1)
+  ep05_A() {
+    title([["ANY", "white"], ["COLOR!", "amber"]], 150, 176);
+    rgbLed(860, 40, 250, [255, 60, 220]);
+    pill(790, 600, "analogWrite(0…255) × 3", "rgba(25,195,180,.18)", "var(--teal)");
+  },
+  ep05_B() {
+    title([["FADE", "white"], ["+ MIX", "teal"]], 150, 170);
+    led(760, 90, 150, "red");
+    rgbLed(1010, 60, 210, [60, 140, 255]);
+    pill(760, 600, "PWM: no delay()", "rgba(255,181,71,.18)", "var(--amber)");
   },
   ep04_F() {
     title([["PRESS", "white"], ["= INSTANT", "red", "font-size:118px"]], 150, 150);
