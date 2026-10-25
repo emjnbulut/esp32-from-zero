@@ -15,11 +15,11 @@ on the lower one, green LED GPIO 25 on the upper one.
       longer than the subtitle text, mostly spelled numbers: check dub --report ratios)
 - [x] 4. Scenes `ep04.js` v2 (first draft)
 - [x] 5. Lesson README + two_leds comment for two breadboards
-- [ ] 6. EN narration (tts.py + cbx_retake.py en) -> schedule; re-run tts for s10 (text changed after the run began)
-- [ ] 7. Stills review (render.mjs ep04 --stills ...) and scene fixes; grep render log for "word not found"
+- [x] 6. EN narration (tts.py + cbx_retake.py en) -> schedule; re-run tts for s10 (text changed after the run began)
+- [x] 7. Stills review (render.mjs ep04 --stills ...) and scene fixes; grep render log for "word not found"
 - [ ] 8. Dubs: dub.py --report per language, fix long lines, cbx_retake per language, schedule again
 - [ ] 9. Full render, audio, subs, compose (clips missing -> placeholders), dubs, make_localize.py
-- [ ] 10. Short spec (video/shorts/ep04/short.json): one question "Why does your button stop responding during delay()?"
+- [x] 10. Short spec (built after the full render) (video/shorts/ep04/short.json): one question "Why does your button stop responding during delay()?"
 - [ ] 11. Creator clips C0-C7 (see script.json "clips"), then compose again
 
 ## Clips (creator)
