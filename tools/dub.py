@@ -81,6 +81,24 @@ async def narrate_all(dub: dict, out: Path):
     return cache
 
 
+def word_times(dub: dict, out: Path, lang: str, cache: dict, sl: dict, tempos: dict):
+    """build/dub_<lang>/timing.json: where each dubbed segment sits in the episode and when its words are spoken
+    (PRODUCTION_GUIDELINES.md section 6: the subtitles follow the dub's own voice, not the English one)."""
+    import align
+    tp = out / "timing.json"
+    old = json.loads(tp.read_text(encoding="utf-8")) if tp.exists() else {}
+    res = {}
+    for sid, (start, room) in sl.items():
+        key = cache[sid].get("key") or hashlib.sha1(dub["segments"][sid].encode()).hexdigest()
+        words = old.get(sid, {}).get("words") if old.get(sid, {}).get("key") == key else None
+        if words is None:
+            words = align.align(out / f"{sid}.mp3", dub["segments"][sid], lang)
+        k = 1 / tempos[sid]
+        res[sid] = {"key": key, "words": words, "start": round(start, 3), "dur": round(cache[sid]["duration"] * k, 3),
+                    "scaled": [{"w": w["w"], "t": round(w["t"] * k, 3)} for w in words]}
+    tp.write_text(json.dumps(res, ensure_ascii=False, indent=1), encoding="utf-8")
+
+
 def slots(sched: dict):
     """Available time for each segment: until the next segment starts."""
     ids = list(sched["segments"])
@@ -119,9 +137,10 @@ def main(ep: Path, lang: str, report_only: bool):
         return
 
     buf = np.zeros(int((sched["duration"] + 1) * SR), dtype=np.float32)
+    tempos = {sid: max(1.0, cache[sid]["duration"] / room) for sid, (start, room) in sl.items()}
+    word_times(dub, out, lang, cache, sl, tempos)
     for sid, (start, room) in sl.items():
-        d = cache[sid]["duration"]
-        a = decode(out / f"{sid}.mp3", tempo=max(1.0, d / room))
+        a = decode(out / f"{sid}.mp3", tempo=tempos[sid])
         i = int(start * SR)
         buf[i:i + len(a)] += a[: len(buf) - i]
     buf = music.mix(buf, SR, decode, level=0.08, fade_in=1.0)

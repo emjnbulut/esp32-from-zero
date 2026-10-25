@@ -35,7 +35,7 @@ def load16k(path: Path) -> np.ndarray:
 
 
 def norm(w: str) -> str:
-    return re.sub(r"[^a-z0-9]", "", w.lower())
+    return re.sub(r"[\W_]", "", w.lower())  # any script (Turkish, Devanagari), not only a-z
 
 
 def script_words(text: str) -> list:

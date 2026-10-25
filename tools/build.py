@@ -227,8 +227,14 @@ def subs(ep: Path):
             print(f"subs {lang}: skipped, missing {', '.join(missing)}")
             continue
         cues, c = [], bumpers.cut(ep)
+        dub_t = ep / "build" / f"dub_{lang}" / "timing.json"
+        dub_t = json.loads(dub_t.read_text(encoding="utf-8")) if lang != "en" and dub_t.exists() else {}
         for s in script["segments"]:
-            cues += seg_cues(texts[s["id"]], sched["segments"][s["id"]])
+            seg = sched["segments"][s["id"]]
+            if s["id"] in dub_t:  # a dubbed language: cue times follow the dub's own words (guidelines section 6)
+                d = dub_t[s["id"]]
+                seg = {"start": d["start"], "end": d["start"] + d["dur"], "dur": d["dur"], "words": d["scaled"]}
+            cues += seg_cues(texts[s["id"]], seg)
         lines = []
         for n, (t0, t1, txt) in enumerate(cues, 1):
             nxt = cues[n][0] if n < len(cues) else t1 + 10
