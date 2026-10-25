@@ -235,7 +235,7 @@ def subs(ep: Path):
             t1 = min(max(t1, t0 + 1.2), nxt - min(0.05, (nxt - t0) / 4))
             if t1 <= t0:
                 raise ValueError(f"Invalid subtitle interval in {ep.name}/{lang}: {t0} -> {t1}")
-            lines.append(f"{n}\n{fmt(t0 + bumpers.INTRO)} --> {fmt(t1 + bumpers.INTRO)}\n{c}\n")
+            lines.append(f"{n}\n{fmt(bumpers.shift(t0, c))} --> {fmt(bumpers.shift(t1, c))}\n{txt}\n")
         p = ep / "build" / f"{ep.name}_{lang}.srt"
         p.write_text("\n".join(lines), encoding="utf-8")
         print("subs:", p)
