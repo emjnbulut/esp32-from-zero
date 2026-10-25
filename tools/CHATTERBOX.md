@@ -59,3 +59,12 @@ A take is cached by text + settings; change `seed` to get a different take of ev
 `build/voice_test/variants/<lang>_all.mp3`. The clone prompts live in `tools/voice_samples/` (gitignored;
 sources and the ffmpeg cut are in its README). **Chosen narrator: mark** (Mark F. Smith,
 `tools/voice_samples/mark.wav`): Whisper match 1.00 in English, ~164 wpm.
+
+## Creator's own voice (2026-10-25)
+All languages now speak with the creator's voice: `tools/cbx.py` VOICES gives each language a `prompt`
+(timbre, S3Gen) = `creator_en.wav` (`creator_tr.wav` for Turkish) and an `accent_prompt` (rhythm/accent, T3) =
+a native speaker (en mark, tr tr_fleurs3, hi hi_fleurs5, pt pt_fleurs2, es es_fleurs2); T3 keeps the creator's
+speaker embedding (`accent_speaker: "prompt"`). Every take also gets `cbx.POLISH` (EQ, de-esser, light compression).
+References (gitignored): creator recordings `footage/voice/{en,tr}_raw.m4a`, cut with
+`ffmpeg -ss 18.75 -t 15.6` (en) / `-ss 13.85 -t 14.2` (tr) `-ac 1 -ar 24000 -af "highpass=f=70,loudnorm=I=-18"`.
+A file whose `cbx` sets its own `prompt` drops the accent split. Published episodes ep01-ep04 used the old voices.

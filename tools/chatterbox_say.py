@@ -4,6 +4,7 @@ tools/tts.py and tools/dub.py call it through tools/cbx.py.
 Usage: .venv-tts/Scripts/python tools/chatterbox_say.py jobs.json
 jobs.json: {"model": "en" | "multilingual", "lang": "en", "prompt": "voice.wav" | null,
             "exaggeration": 0.5, "cfg_weight": 0.5, "seed": 1, "pauses": {"sentence": 0.32, "comma": 0.12},
+            "accent_prompt": "native.wav" (optional), "accent_speaker": "prompt" (optional), "polish": "ffmpeg -af chain",
             "items": [{"text": "...", "out": "s01.mp3"}]}
 
 Punctuation: every line is cut into sentences (. ! ? : ; ...) and, when both sides are long enough, at
@@ -121,8 +122,9 @@ def main(path):
             wav = np.concatenate(chunks)
         else:
             wav = gen(item["text"])
+        polish = ["-af", cfg["polish"]] if cfg.get("polish") else []
         subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "f32le", "-ar", str(tts.sr), "-ac", "1", "-i", "-",
-                        "-b:a", "192k", item["out"]], input=wav.tobytes(), check=True)
+                        *polish, "-b:a", "192k", item["out"]], input=wav.tobytes(), check=True)
         print(f"[{n}/{len(cfg['items'])}] {item['out']}", flush=True)
 
 

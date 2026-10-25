@@ -13,13 +13,16 @@ ROOT = Path(__file__).resolve().parent.parent
 PY = ROOT / ".venv-tts" / "Scripts" / "python.exe"
 
 
-# The channel's narrators (chosen 2026-10-18, sources in tools/voice_samples/README.md)
+# The channel's narrators. Since 2026-10-25 every language speaks with the creator's own voice (timbre, S3Gen)
+# while the rhythm/accent model (T3) follows a native speaker of that language (accent_prompt).
+# Sources: tools/voice_samples/README.md. Before: en mark, tr/pt pt_fleurs2, hi hi_fleurs5, es es_fleurs2 alone.
+_S = "tools/voice_samples/"
 VOICES = {
-    "en": "tools/voice_samples/mark.wav",        # Mark F. Smith, LibriVox (public domain)
-    "tr": "tools/voice_samples/pt_fleurs2.wav",  # FLEURS speakers (CC BY 4.0); tr: user picked pt_fleurs2 (tr_fleurs2 had hiss)
-    "hi": "tools/voice_samples/hi_fleurs5.wav",  # and by Whisper score + closeness to mark/tr (hi, pt, es)
-    "pt": "tools/voice_samples/pt_fleurs2.wav",
-    "es": "tools/voice_samples/es_fleurs2.wav",
+    "en": {"prompt": _S + "creator_en.wav", "accent_prompt": _S + "mark.wav"},        # user pick EN_3
+    "tr": {"prompt": _S + "creator_tr.wav", "accent_prompt": _S + "tr_fleurs3.wav"},  # user pick TR_2
+    "hi": {"prompt": _S + "creator_en.wav", "accent_prompt": _S + "hi_fleurs5.wav"},
+    "pt": {"prompt": _S + "creator_en.wav", "accent_prompt": _S + "pt_fleurs2.wav"},
+    "es": {"prompt": _S + "creator_en.wav", "accent_prompt": _S + "es_fleurs2.wav"},
 }
 ENGINE = "chatterbox"  # default for every script / dub / Short; a file can still say "engine": "edge"
 
@@ -29,14 +32,25 @@ def engine(spec: dict) -> str:
 
 
 PAUSES = {"sentence": 0.32, "comma": 0.12}  # seconds of silence at . ! ? : ; and at commas
+# Voice clean-up on every take (user approved 2026-10-25): rumble cut, less mud, more presence, softer "s", gentle compression
+POLISH = ("highpass=f=80,equalizer=f=250:t=q:w=1:g=-2,equalizer=f=3500:t=q:w=1.2:g=2,deesser=i=0.4,"
+          "acompressor=threshold=-20dB:ratio=2.5:attack=8:release=120")
 
 
 def settings(spec: dict, lang: str) -> dict:
-    cfg = {"model": "en" if lang == "en" else "multilingual", "lang": lang, "prompt": VOICES.get(lang),
-           "exaggeration": 0.5, "cfg_weight": 0.5, "seed": 1, "pauses": PAUSES}
-    cfg.update(spec.get("cbx", {}))
-    if cfg["prompt"]:
-        cfg["prompt"] = str((ROOT / cfg["prompt"]).resolve())
+    cfg = {"model": "en" if lang == "en" else "multilingual", "lang": lang, "prompt": None,
+           "exaggeration": 0.5, "cfg_weight": 0.5, "seed": 1, "pauses": PAUSES, "polish": POLISH}
+    cfg.update(VOICES.get(lang, {}))
+    if cfg.get("accent_prompt"):
+        cfg["accent_speaker"] = "prompt"  # T3 keeps the creator's speaker embedding too
+    over = spec.get("cbx", {})
+    if "prompt" in over:  # a file that picks its own voice drops the split-voice accent
+        cfg.pop("accent_prompt", None)
+        cfg.pop("accent_speaker", None)
+    cfg.update(over)
+    for k in ("prompt", "accent_prompt"):
+        if cfg.get(k):
+            cfg[k] = str((ROOT / cfg[k]).resolve())
     return cfg
 
 
