@@ -8,14 +8,17 @@ import re
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).parent))
+import bumpers  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
-INTRO = 3.5  # the channel intro (tools/bumpers.py) plays before the episode
 
 
 def chapter_times(ep: Path) -> list:
     ids = json.loads((ep / "chapters.json").read_text(encoding="utf-8"))
     segs = json.loads((ep / "build" / "schedule.json").read_text(encoding="utf-8"))["segments"]
-    starts = [0] + [int(segs[c]["start"] + INTRO) for c in ids[1:]]
+    tc = bumpers.cut(ep)
+    starts = [0] + [int(bumpers.shift(segs[c]["start"], tc)) for c in ids[1:]]
     assert all(b - a >= 10 for a, b in zip(starts, starts[1:])), "YouTube chapters must be at least 10 s"
     return ["%d:%02d" % divmod(s, 60) for s in starts]
 

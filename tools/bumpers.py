@@ -5,6 +5,8 @@ The pictures are rendered once from video/bumper/ (re-rendered when bumper.js ch
 Audio: the intro gets a soft synthesized sting (one note per pin lighting up, then a chord
 under the P); the outro gets the music bed on its own. No speech, so dubs need nothing extra.
 Anything timed against the episode (subtitles, chapters) shifts by INTRO seconds.
+Cold open (ep04 on): script.json "sting_after": "<segment id>" plays the episode up to the next
+segment first, then the sting, then the rest; only times after that cut shift (see cut()/shift()).
 
 Usage: python tools/bumpers.py        # (re)render the bumper videos
 """
@@ -85,12 +87,30 @@ def body_seconds(ep: Path) -> float:
                                           str(ep / "build" / "video.mp4")]).strip())
 
 
+def cut(ep: Path) -> float:
+    """Episode time where the sting plays: 0 (before everything) unless script.json has "sting_after"."""
+    import json
+    sid = json.loads((ep / "script.json").read_text(encoding="utf-8")).get("sting_after")
+    if not sid:
+        return 0.0
+    segs = json.loads((ep / "build" / "schedule.json").read_text(encoding="utf-8"))["segments"]
+    ids = list(segs)
+    return round(segs[ids[ids.index(sid) + 1]]["start"] - 0.1, 3)
+
+
+def shift(t: float, c: float) -> float:
+    """Episode time -> time in the final video (with the sting inserted at c)."""
+    return t + INTRO if t >= c else t
+
+
 def wrap(buf: np.ndarray, sr: int, decode, ep: Path) -> np.ndarray:
-    """intro sting + episode audio (fitted to the picture length) + outro music, matching the bumper videos."""
+    """intro sting + episode audio (fitted to the picture length) + outro music, matching the bumper videos.
+    With a cold open the sting sits at cut(ep) instead of the very start."""
     n = int(round(body_seconds(ep) * sr))
     body = np.zeros(n, np.float32)
     body[: min(n, len(buf))] = buf[:n]
-    return np.concatenate([intro_audio(sr), body, outro_audio(sr, decode)])
+    k = int(round(cut(ep) * sr))
+    return np.concatenate([body[:k], intro_audio(sr), body[k:], outro_audio(sr, decode)])
 
 
 if __name__ == "__main__":

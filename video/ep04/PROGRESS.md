@@ -1,18 +1,28 @@
-# Episode 4 — "Buttons and Doing Two Things at Once" — progress
+# Episode 4 — "Buttons and Doing Two Things at Once" — progress (v2)
 
 Resume rule: do the first unchecked step; commands are run from the repo root.
-Two curriculum topics in one episode (user 2026-10-17), target 10-15 min.
+v2 (2026-10-25) rebuilds the episode to video/PRODUCTION_GUIDELINES.md: cold open with the real result,
+the channel sting after the cold open (script.json "sting_after"), big 3-6 line code cards, code -> pin -> LED
+cause and effect, if/else before `!` and `?:`, four quick questions, a millis() timeline, full-screen real results,
+the "speed-shifter" challenge (solution comes as a Short). Hardware (user, 2026-10-25): TWO breadboards one above
+the other, the board across both (top pins upper row j, bottom pins lower row a); red LED GPIO 23 + button GPIO 22
+on the lower one, green LED GPIO 25 on the upper one.
 
-- [x] 1. Script (EN + tr) `video/ep04/make_script.py` → `script.json` (56 segments, ~1415 words, preview 10:08 + intro/outro);
-      sketches in `lessons/04-buttons-and-millis/code/` (button_led, button_toggle, blink_button, two_leds, challenge_speed — all compile)
-- [x] 2. Scenes `video/ep04/ep04.js` (index.html done) + review stills
-- [x] 3. Lesson README `lessons/04-buttons-and-millis/README.md`
-- [x] 4. Dub texts `dub/{tr,hi,pt,es}.json` (make_dubs.py), subtitle texts `subs/{id,ar,ru,de,fr,vi,ja}.json` (make_subs.py), make_localize.py (localize.json + youtube.md done)
-- [x] 5. Preview render (build/video.mp4, 10:08) + stills review; Short spec `video/shorts/ep04/short.json` with crops checked on the preview
-- ON HOLD until Chatterbox (2026-10-18): final narration, render, audio/subs/compose, dubs (see tools/CHATTERBOX.md)
+- [x] 1. Engine: makeBB2 (two breadboards), bbBoard rows, green bbLED, bigCode, quizCard, full-frame heroClip,
+      cold-open sting (tools/bumpers.py cut/shift, build.py compose/subs, rechapter.py), script "lead_in"
+- [x] 2. Script v2 `make_script.py` (63 segments, ~1640 words)
+- [x] 3. Translations: dub/{tr,hi,pt,es}.json, subs/*.json, make_localize.py (Sonnet subagent; TR dub had 34 lines
+      longer than the subtitle text, mostly spelled numbers: check dub --report ratios)
+- [x] 4. Scenes `ep04.js` v2 (first draft)
+- [x] 5. Lesson README + two_leds comment for two breadboards
+- [ ] 6. EN narration (tts.py + cbx_retake.py en) -> schedule; re-run tts for s10 (text changed after the run began)
+- [ ] 7. Stills review (render.mjs ep04 --stills ...) and scene fixes; grep render log for "word not found"
+- [ ] 8. Dubs: dub.py --report per language, fix long lines, cbx_retake per language, schedule again
+- [ ] 9. Full render, audio, subs, compose (clips missing -> placeholders), dubs, make_localize.py
+- [ ] 10. Short spec (video/shorts/ep04/short.json): one question "Why does your button stop responding during delay()?"
+- [ ] 11. Creator clips C0-C7 (see script.json "clips"), then compose again
 
-## Notes
-- Breadboard: ep03 circuit kept (red wire j16 → + rail, resistor + rail col 20 → h20, red LED f20/f21, black j21 → −, black j3 → −).
-  Button straddles the gap at cols 25/27 (legs e25 e27 f25 f27); yellow wire j15 (D22) → j25; black j27 → − rail.
-  Green LED (top half): green wire a9 (D25) → a18, resistor b18 → b21, LED d21 (long) / d22, black a22 → top − rail (tm), black a3 (GND, top row) → tm.
-- Clips C1-C6 listed in script.json.
+## Clips (creator)
+C0 opening (full screen, 14-16 s, press ~8 s and ~11 s), C1 two breadboards + red circuit, C2 button wiring,
+C3 button_led, C4 button_toggle, C5 blink_button, C6 green LED wiring, C7 two_leds (may be the C0 take).
+The drawing assumes the layout above; after C1 arrives, align the drawing with the real breadboards if needed.

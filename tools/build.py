@@ -56,7 +56,7 @@ def load(ep: Path):
 def schedule(ep: Path):
     script, timings = load(ep)
     dubs = dub_durations(ep)
-    t, prev_scene, segs, stretched = LEAD_IN, None, {}, 0.0
+    t, prev_scene, segs, stretched = script.get("lead_in", LEAD_IN), None, {}, 0.0
     for s in script["segments"]:
         if prev_scene and s["scene"] != prev_scene:
             t += SCENE_GAP - GAP
@@ -221,11 +221,11 @@ def subs(ep: Path):
         if missing:
             print(f"subs {lang}: skipped, missing {', '.join(missing)}")
             continue
-        cues = []
+        cues, c = [], bumpers.cut(ep)
         for s in script["segments"]:
             cues += seg_cues(texts[s["id"]], sched["segments"][s["id"]])
         lines = []
-        for n, (t0, t1, c) in enumerate(cues, 1):
+        for n, (t0, t1, txt) in enumerate(cues, 1):
             nxt = cues[n][0] if n < len(cues) else t1 + 10
             t1 = min(max(t1, t0 + 1.2), nxt - min(0.05, (nxt - t0) / 4))
             if t1 <= t0:
@@ -254,17 +254,24 @@ def compose(ep: Path):
             print(f"clip {c['id']}: no footage yet, placeholder stays")
             continue
         inputs += ["-i", str(src)]
-        w, h, d = c["w"] - 6, c["h"] - 6, c["t1"] - c["t0"]
+        inset = 0 if c.get("full") else 3  # framed clips keep their 3 px border
+        w, h, d = c["w"] - 2 * inset, c["h"] - 2 * inset, c["t1"] - c["t0"]
         filters.append(f"[{k}:v]trim=0:{d:.3f},setpts=PTS-STARTPTS+{c['t0']:.3f}/TB,"
                        f"scale={w}:{h}:force_original_aspect_ratio=increase,crop={w}:{h},fps=30[c{k}]")
-        filters.append(f"{last}[c{k}]overlay={c['x'] + 3}:{c['y'] + 3}:eof_action=pass:"
+        filters.append(f"{last}[c{k}]overlay={c['x'] + inset}:{c['y'] + inset}:eof_action=pass:"
                        f"enable='between(t,{c['t0']:.3f},{c['t1']:.3f})'[v{k}]")
         last, k = f"[v{k}]", k + 1
         print(f"clip {c['id']}: {src.name}")
     out = b / f"{ep.name}_final.mp4"
     # frames are full-range JPEG; convert to TV range, some players (Windows) show no picture otherwise
     norm = "fps=30,scale=1920:1080:out_range=tv,setsar=1,format=yuv420p"
-    filters += [f"{last}{norm}[body]", f"[2:v]{norm}[in]", f"[3:v]{norm}[out]", "[in][body][out]concat=n=3:v=1:a=0[vid]"]
+    filters += [f"{last}{norm}[body]", f"[2:v]{norm}[in]", f"[3:v]{norm}[out]"]
+    tc = bumpers.cut(ep)
+    if tc > 0:  # cold open: episode up to tc, sting, rest of the episode
+        filters += ["[body]split[b0][b1]", f"[b0]trim=0:{tc:.3f},setpts=PTS-STARTPTS[p0]",
+                    f"[b1]trim=start={tc:.3f},setpts=PTS-STARTPTS[p1]", "[p0][in][p1][out]concat=n=4:v=1:a=0[vid]"]
+    else:
+        filters.append("[in][body][out]concat=n=3:v=1:a=0[vid]")
     cmd = ["ffmpeg", "-v", "error", "-y", *inputs, "-filter_complex", ";".join(filters), "-map", "[vid]"]
     cmd += ["-map", "1:a", "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-pix_fmt", "yuv420p", "-color_range", "tv",
             "-c:a", "aac", "-b:a", "192k", "-shortest", "-movflags", "+faststart", str(out)]

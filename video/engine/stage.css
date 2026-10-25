@@ -220,3 +220,13 @@ body { font-family: var(--ui); color: var(--text); -webkit-font-smoothing: antia
   font: 700 26px var(--ui); box-shadow: 0 14px 36px rgba(0,0,0,.4); }
 .yt-badge.com { background: rgba(25,195,180,.16); border: 2px solid var(--teal); color: var(--teal); }
 .yt-badge.sh { background: rgba(255,181,71,.16); border: 2px solid var(--amber); color: var(--amber); }
+
+/* ---------- v2: full-frame clips, big code cards, quick questions ---------- */
+.heroclip.full { border: none; border-radius: 0; box-shadow: none; }
+.bigcode .bc-hl { position: absolute; border-radius: 10px; border: 2px solid rgba(255,181,71,.85); }
+.quiz { padding: 26px 40px 30px; border: 2px solid rgba(255,181,71,.55); }
+.quiz .qk { font: 800 20px var(--ui); letter-spacing: 3px; color: var(--amber); }
+.quiz .qq { font: 700 38px var(--display); margin-top: 8px; line-height: 1.25; }
+.quiz .qbar { height: 8px; border-radius: 4px; background: #22304d; margin-top: 20px; overflow: hidden; }
+.quiz .qbar i { display: block; height: 100%; width: 0; background: var(--amber); }
+.quiz .qa { display: none; font: 700 34px var(--display); color: var(--teal); margin-top: 16px; }

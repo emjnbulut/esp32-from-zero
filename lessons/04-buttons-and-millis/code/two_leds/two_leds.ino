@@ -1,5 +1,5 @@
 // ESP32 From Zero - Episode 4: two LEDs at their own speed + a button, nothing waits
-// red LED on GPIO 23 (bottom half), green LED on GPIO 25 (top half), button on GPIO 22
+// two breadboards: red LED on GPIO 23 + button on GPIO 22 (lower), green LED on GPIO 25 (upper)
 
 const int BUTTON_PIN = 22;
 const int RED_PIN = 23;        // switched on/off by the button

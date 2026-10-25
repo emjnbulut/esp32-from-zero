@@ -91,7 +91,7 @@ function countAt(times, t) {
 
 /* ---- C syntax highlighting ---- */
 const KW = new Set("int void char float double long unsigned bool const static volatile if else while for return true false".split(" "));
-const FN = new Set("setup loop Serial begin println print printf delay pinMode digitalWrite digitalRead analogRead main".split(" "));
+const FN = new Set("setup loop Serial begin println print printf delay pinMode digitalWrite digitalRead analogRead millis main".split(" "));
 function tokenize(src) {
   const out = []; const re = /(\/\/[^\n]*)|("(?:[^"\\]|\\.)*"?)|(#\w+)|(\b\d+\b)|([A-Za-z_]\w*)|(\s+)|(.)/g;
   let m;
@@ -194,10 +194,11 @@ window.__duration = () => D.schedule.duration;
 
 /* ---- v2 visual helper: heroClip (large 1280x720 camera frame) ---- */
 function heroClip(parent, id, t0, t1, desc, opts = {}) {
+  if (opts.full) Object.assign(opts, { w: 1920, h: 1080, x: 0, y: 0 }); // the whole frame: real results
   const w = opts.w || 1280, h = opts.h || 720;
   const x = opts.x != null ? opts.x : Math.round((1920 - w) / 2);
   const y = opts.y != null ? opts.y : Math.round((1080 - h) / 2) + 20;
-  const f = box(parent, x, y, w, h, "clipframe heroclip",
+  const f = box(parent, x, y, w, h, "clipframe heroclip" + (opts.full ? " full" : ""),
     `<div class="ph"><div class="big">📹 ${id} (${w}×${h})</div><div class="small">${desc || ""}</div></div>`);
   const bar = box(parent, x + 28, y - 24, 0, 0, "herobar",
     `<span class="dot"></span><span class="tag">${opts.label || "ON MY DESK"}</span>` +
@@ -207,12 +208,58 @@ function heroClip(parent, id, t0, t1, desc, opts = {}) {
     TO(opts.dim, t0, 0.45, { opacity: 0.22, filter: "blur(3px)", ease: "power2.out" });
     TO(opts.dim, t1, 0.4, { opacity: 1, filter: "blur(0px)", ease: "power2.out" });
   }
-  pop(f, t0, 0.45);
-  show(bar, t0 + 0.15, 0.35);
+  if (opts.full) show(f, t0, 0.3); else pop(f, t0, 0.45);
+  if (!opts.full) show(bar, t0 + 0.15, 0.35); // a full-frame clip covers it anyway
   hide(f, t1, 0.35);
   hide(bar, t1, 0.35);
-  clips.push({ id, x, y, w, h, t0: t0 + 0.35, t1 });
+  clips.push(Object.assign({ id, x, y, w, h, t0: t0 + (opts.full ? 0.3 : 0.35), t1 }, opts.full ? { full: true } : {}));
   return { f, bar };
+}
+
+/* ---- v2: big code card (3-6 lines, readable on a phone) ----
+ * hl([[t, lineIndex | -1, color?], ...]) moves a highlight bar over the lines */
+function bigCode(parent, x, y, w, src, opts = {}) {
+  const size = opts.size || 40, lh = Math.round(size * 1.55), pad = opts.pad || 32;
+  const lines = hlLines(src);
+  const h = lines.length * lh + pad * 2;
+  const c = box(parent, x, y, w, h, "card bigcode");
+  const bar = box(c, 14, pad, w - 28, lh, "bc-hl");
+  const body = box(c, pad + 8, pad, w - pad * 2, lines.length * lh, "");
+  css(body, { font: `500 ${size}px/${lh}px var(--mono)`, whiteSpace: "pre" });
+  body.innerHTML = lines.map((l) => `<div>${l || " "}</div>`).join("");
+  const hl = (list) => dyn((t) => {
+    let cur = [0, -1];
+    for (const e of list) if (t >= e[0]) cur = e;
+    const [, i, col] = cur;
+    bar.style.opacity = i < 0 ? 0 : 1;
+    if (i >= 0) {
+      bar.style.top = pad + i * lh + "px";
+      bar.style.background = col || "rgba(255,181,71,.2)";
+      bar.style.borderColor = col ? "transparent" : "rgba(255,181,71,.85)";
+    }
+  });
+  gsap.set(c, { opacity: 0 });
+  gsap.set(bar, { opacity: 0 });
+  return { c, body, bar, hl, lh, pad, h, lineY: (i) => y + pad + i * lh + lh / 2 };
+}
+
+/* ---- v2: "quick question": the question, a thinking bar during the pause, then the answer ---- */
+function quizCard(parent, q, t0, tAns, answer, opts = {}) {
+  const w = opts.w || 1300, x = opts.x != null ? opts.x : (1920 - w) / 2, y = opts.y != null ? opts.y : 780;
+  const c = box(parent, x, y, w, 0, "card quiz", `<div class="qk">QUICK QUESTION</div><div class="qq">${q}</div>
+    <div class="qbar"><i></i></div><div class="qa">${answer}</div>`);
+  css(c, { height: "auto", zIndex: 40 });
+  const fill = $(".qbar i", c), qa = $(".qa", c), bar = $(".qbar", c);
+  gsap.set(c, { opacity: 0 });
+  pop(c, t0);
+  const tThink = opts.think != null ? opts.think : t0 + 0.6;
+  TO(fill, tThink, Math.max(0.5, tAns - tThink), { width: "100%", ease: "none" });
+  styleAt(bar, "display", [[0, "block"], [tAns, "none"]]);
+  styleAt(qa, "display", [[0, "none"], [tAns, "block"]]);
+  SET(qa, tAns - 0.001, { opacity: 0, y: 10 });
+  TO(qa, tAns, 0.35, { opacity: 1, y: 0, ease: "power2.out" });
+  if (opts.t1) hide(c, opts.t1, 0.3);
+  return c;
 }
 
 

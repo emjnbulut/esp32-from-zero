@@ -3,8 +3,8 @@
 Last time our code switched an LED on and off. Today the ESP32 **listens**: we read a push button with
 `digitalRead`, and then teach the board to do **two things at once** with `millis()`.
 
-**You need:** the circuit from episode 3 (red LED on GPIO 23), a push button, a second (green) LED,
-another 220 Ω resistor and a few jumper wires (yellow, black, green).
+**You need:** the board, **two breadboards**, a push button, a red and a green LED, two 220 Ω resistors and a few
+jumper wires (yellow, black, green).
 
 ## 1. How the push button works
 
@@ -14,12 +14,17 @@ The button has four legs, but inside it is just a simple switch.
 - When you **press** the button, a small metal plate connects the left side to the right side.
 - Let go, and the two sides are apart again.
 
-## 2. Wiring
+## 2. Two breadboards and the wiring
+
+On a single breadboard a 30-pin board leaves free holes on **one side only**. From this episode on we use **two
+breadboards, one above the other**: the board's top pins go into the upper breadboard's row `j`, its bottom pins
+into the lower breadboard's row `a`. Now every pin has free holes next to it.
 
 1. **Unplug the USB cable** first.
-2. Keep the circuit from episode 3: red LED on **GPIO 23**.
-3. Press the button into the breadboard **across the middle gap**, at columns **25–27**.
-4. **Yellow wire:** `D22` → column 25 (bottom half, the button's left side).
+2. Rebuild the circuit from episode 3 on the **lower** breadboard: `D23` → 220 Ω resistor → red LED, and two black
+   wires to the lower minus rail (one from the LED's short leg, one from a `GND` pin).
+3. Press the button into the lower breadboard **across the middle gap**, at columns **25–27**.
+4. **Yellow wire:** `D22` → column 25 (the button's left side).
 5. **Black wire:** column 27 (the button's right side) → the **minus rail** (ground).
 
 ```
@@ -89,8 +94,23 @@ Instead of holding the button: press once for on, once more for off.
 
 - We remember the last state. When the state **changes** and is now `LOW`, that is a new press.
 - On a timeline `HIGH, HIGH, HIGH, LOW`, the single moment HIGH turns into LOW is the press. It is called an **edge**.
-- `bool ledOn` is `true` or `false`. `ledOn = !ledOn;` — the `!` means *not*, so it swaps the value.
-- `ledOn ? HIGH : LOW` — the `?:` picks `HIGH` when `ledOn` is true, otherwise `LOW`.
+- Quick question: hold the button down. Does the LED keep flipping? No: `state` and `lastState` both stay `LOW`,
+  nothing changes, so there is no new edge.
+- On a press we flip a `bool ledOn` (`true` or `false`), first the long, easy-to-read way:
+
+```cpp
+if (ledOn) {
+  ledOn = false;
+  digitalWrite(LED_PIN, LOW);
+} else {
+  ledOn = true;
+  digitalWrite(LED_PIN, HIGH);
+}
+```
+
+- The short way, same result in two lines (this is what the sketch uses):
+  - `ledOn = !ledOn;` — the `!` means *not*, so it swaps the value.
+  - `digitalWrite(LED_PIN, ledOn ? HIGH : LOW);` — the `?:` picks `HIGH` when `ledOn` is true, otherwise `LOW`.
 
 **Bounce:** count the presses and sometimes one press counts twice or three times. When metal contacts touch they
 bounce for a few milliseconds, and the ESP32 checks the pin hundreds of thousands of times a second, so one press
@@ -158,27 +178,30 @@ Upload it: the LED blinks, a press stops it at once, another press starts it aga
 
 ## 8. A second LED — [`code/two_leds/two_leds.ino`](code/two_leds/two_leds.ino)
 
-This scales. Add a green LED that blinks at its own speed. **Unplug the USB cable.** This time we use the **top
-half** of the breadboard:
+This scales. Add a green LED that blinks at its own speed. **Unplug the USB cable.** This time we use the **upper
+breadboard**:
 
 1. **Green wire:** `D25` → column 18.
 2. **220 Ω resistor:** column 18 → column 21.
 3. **Green LED:** long leg in column 21, short leg in column 22.
-4. **Black wire:** column 22 → the **top minus rail**.
-5. **Black wire:** the top `GND` pin (column 3) → the top minus rail.
+4. **Black wire:** column 22 → the upper breadboard's **minus rail**.
+5. **Black wire:** the top `GND` pin (column 3) → that minus rail.
 
 ```
 GPIO 25 ──► 220 Ω ──► green LED (long leg … short leg) ──► top − rail ──► GND
 ```
 
 In the code each LED gets its own timer: red flips every **500 ms**, green every **150 ms**. Upload: both blink at
-their own pace while the button (it switches the red one on and off) still reacts instantly. Try building that
-with `delay()`. It is a mess.
+their own pace while the button (it switches the red one on and off) still reacts instantly.
+
+Quick question: change green to 300 ms. Does red change too? No: each `if` checks only its own timer.
 
 ## 9. Challenge — [`code/challenge_speed/challenge_speed.ino`](code/challenge_speed/challenge_speed.ino)
 
-Make the button change the **green LED's speed** instead: fast, slow, fast… while red keeps blinking. One
-solution is in the folder (green interval toggles between 150 ms and 600 ms) — try it yourself first.
+**The speed-shifter.** Red keeps blinking every 500 ms. Make each button press switch the **green LED** between fast
+(150 ms) and slow (600 ms), without disturbing red. You only need what this episode used: a variable for the green
+interval, the edge of a press and an `if`. Post your solution in the comments; one solution is in the folder and in
+a Short — try it yourself first.
 
 ## All five sketches
 
@@ -196,7 +219,7 @@ solution is in the folder (green interval toggles between 150 ms and 600 ms) —
 - Is the yellow wire in the **D22** column (and the code says `22`)?
 - Always reads `0`? The button is probably turned **sideways** (the always-connected legs sit in the same row pair).
 - Numbers jump around? You probably used `INPUT` instead of `INPUT_PULLUP`.
-- Green LED stays dark? Check that the **top minus rail** is wired to `GND`, and the long leg is in column 21.
+- Green LED stays dark? Check the black wire from the upper minus rail to `GND`, and that the long leg is in column 21.
 - Count jumps by two on one press? Add the 50 ms debounce.
 
 **Next episode:** dimming with PWM, RGB colors, and a potentiometer knob.
