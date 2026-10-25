@@ -23,6 +23,8 @@ on the lower one, green LED GPIO 25 on the upper one.
 - [ ] 12. Challenge solution Short (speed-shifter, challenge_speed.ino): spec + build once C8 is filmed
 - [ ] 11. Creator clips C0-C7 (see script.json "clips"), then compose again
 
+Thumbnail: ep04_D "DO BOTH!" (user, 2026-10-25) -> video/thumbs/build/ep04_D.png
+
 ## Clips (creator)
 C0 opening (full screen, 14-16 s, press ~8 s and ~11 s), C1 two breadboards + red circuit, C2 button wiring,
 C3 button_led, C4 button_toggle, C5 blink_button, C6 green LED wiring, C7 two_leds (may be the C0 take).
