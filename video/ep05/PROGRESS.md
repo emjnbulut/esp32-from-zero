@@ -14,7 +14,7 @@ User 2026-10-25: script now, NO render yet; English only (dubs on hold).
 - [x] 4. Scenes `ep05.js` + index.html (reuse ep04: makeBB2, bigCode, quizCard, heroClip full; add like/subscribe corner icon helper)
 - [x] 5. EN narration (Mark voice, GPU Whisper) -> schedule (body 7:44) -> stills review + fixes. NOTE: the user may switch
       the narration to a clone of their OWN voice (YouTube AI-label exemption); then re-run tts + schedule, scenes follow the words
-- [ ] 6. Subs (7 langs) + make_localize.py (titles result-first) -> Sonnet subagent
+- [x] 6. Subs (7 langs), HI/PT/ES texts (dub + subtitles), make_localize.py run (11 chapters, 12 languages)
 - [ ] 7. Render, compose with clips, Short spec (EN + TR), thumbnail
 
 ## Clips (creator, due Wed 28 Oct)
