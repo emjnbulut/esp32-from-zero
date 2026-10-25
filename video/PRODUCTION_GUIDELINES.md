@@ -107,6 +107,11 @@ Kullanıcı, videolar yüklenirken yapay zekâ etiketi görünmesini istemiyor. 
 - Önceki yüklemelerde `Evet` seçilmiş olması gelecekteki bütün yüklemeler için varsayılan değildir. HANDOFF.md ve NEXT.md içindeki eski kayıtlar geçmiş işlemleri anlatır.
 - Bu değişiklik tercih kaydıdır; mevcut videoların Studio ayarları değiştirilmedi. YouTube'un otomatik uygulayabileceği etiketler nedeniyle etiketsiz görünüm garanti edilmez.
 
+- 25 Ekim 2026 güncellemesi: ep04'ten itibaren anlatım ve dublajlar kullanıcının **kendi sesinin klonu**. YouTube'un
+  sayfası "Cloning one's own voice to create voice overs or dubs" örneğini bildirim **gerektirmeyen** (Minor) işler
+  arasında sayıyor; bu yüzden bu bölümlerde AI sorusu `Hayır / No`. Gerçekçi başka bir kişi ya da gerçek dışı olaylar
+  eklenirse yeniden değerlendir.
+
 Kaynak: [YouTube — GenAI içerik bildirimi](https://support.google.com/youtube/answer/14328491?hl=en), 23 Ekim 2026 tarihinde kontrol edildi.
 
 ## Üretim ve yayın kontrolü
