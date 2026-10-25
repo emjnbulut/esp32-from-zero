@@ -68,3 +68,6 @@ speaker embedding (`accent_speaker: "prompt"`). Every take also gets `cbx.POLISH
 References (gitignored): creator recordings `footage/voice/{en,tr}_raw.m4a`, cut with
 `ffmpeg -ss 18.75 -t 15.6` (en) / `-ss 13.85 -t 14.2` (tr) `-ac 1 -ar 24000 -af "highpass=f=70,loudnorm=I=-18"`.
 A file whose `cbx` sets its own `prompt` drops the accent split. Published episodes ep01-ep04 used the old voices.
+Every take is then cleaned with DeepFilterNet (`cbx.py` "denoise": "deepfilternet", after the POLISH chain, as the
+user approved on 2026-10-25). Install in .venv-tts: `uv pip install --python .venv-tts/Scripts/python.exe --no-deps
+deepfilternet deepfilterlib` and `uv pip install --python .venv-tts/Scripts/python.exe loguru appdirs`.

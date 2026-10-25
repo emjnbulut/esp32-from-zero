@@ -5,6 +5,7 @@ Usage: .venv-tts/Scripts/python tools/chatterbox_say.py jobs.json
 jobs.json: {"model": "en" | "multilingual", "lang": "en", "prompt": "voice.wav" | null,
             "exaggeration": 0.5, "cfg_weight": 0.5, "seed": 1, "pauses": {"sentence": 0.32, "comma": 0.12},
             "accent_prompt": "native.wav" (optional), "accent_speaker": "prompt" (optional), "polish": "ffmpeg -af chain",
+            "denoise": "deepfilternet" (optional),
             "items": [{"text": "...", "out": "s01.mp3"}]}
 
 Punctuation: every line is cut into sentences (. ! ? : ; ...) and, when both sides are long enough, at
@@ -100,6 +101,17 @@ def main(path):
     if cfg["model"] == "multilingual":
         opts["language_id"] = cfg.get("lang", "en")
     pauses = cfg.get("pauses") or {}
+    denoiser = None
+    if cfg.get("denoise") == "deepfilternet":
+        # Removes the faint hiss/rasp Chatterbox leaves in its takes (tools/CHATTERBOX.md, 2026-10-25)
+        import warnings
+        warnings.filterwarnings("ignore", module="df")
+        from df.enhance import enhance, init_df
+        denoiser = init_df(log_level="ERROR")[:2]
+
+    def denoise(x):
+        y = enhance(denoiser[0], denoiser[1], torch.from_numpy(x.copy())[None], atten_lim_db=None)
+        return y.squeeze().cpu().numpy().astype("float32")
 
     def gen(text):
         for attempt in range(4):  # chatterbox's alignment analyzer sometimes crashes (IndexError) on a take
@@ -123,7 +135,13 @@ def main(path):
         else:
             wav = gen(item["text"])
         polish = ["-af", cfg["polish"]] if cfg.get("polish") else []
-        subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "f32le", "-ar", str(tts.sr), "-ac", "1", "-i", "-",
+        sr = tts.sr
+        if denoiser:  # same order the user approved (2026-10-25): polish, then DeepFilterNet
+            raw = subprocess.run(["ffmpeg", "-v", "error", "-f", "f32le", "-ar", str(sr), "-ac", "1", "-i", "-", *polish,
+                                  "-ar", str(denoiser[1].sr()), "-f", "f32le", "-"],
+                                 input=wav.tobytes(), capture_output=True, check=True).stdout
+            wav, sr, polish = denoise(np.frombuffer(raw, np.float32)), denoiser[1].sr(), []
+        subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "f32le", "-ar", str(sr), "-ac", "1", "-i", "-",
                         *polish, "-b:a", "192k", item["out"]], input=wav.tobytes(), check=True)
         print(f"[{n}/{len(cfg['items'])}] {item['out']}", flush=True)
 

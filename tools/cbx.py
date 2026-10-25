@@ -39,7 +39,8 @@ POLISH = ("highpass=f=80,equalizer=f=250:t=q:w=1:g=-2,equalizer=f=3500:t=q:w=1.2
 
 def settings(spec: dict, lang: str) -> dict:
     cfg = {"model": "en" if lang == "en" else "multilingual", "lang": lang, "prompt": None,
-           "exaggeration": 0.5, "cfg_weight": 0.5, "seed": 1, "pauses": PAUSES, "polish": POLISH}
+           "exaggeration": 0.5, "cfg_weight": 0.5, "seed": 1, "pauses": PAUSES, "polish": POLISH,
+           "denoise": "deepfilternet"}  # DeepFilterNet in .venv-tts (pip deepfilternet deepfilterlib --no-deps, loguru, appdirs)
     cfg.update(VOICES.get(lang, {}))
     if cfg.get("accent_prompt"):
         cfg["accent_speaker"] = "prompt"  # T3 keeps the creator's speaker embedding too
