@@ -95,7 +95,7 @@ s("rgb3", "rgb", "Push the RGB LED into the upper breadboard, with the longest l
   "RGB LED'i üstteki breadboard'a, en uzun bacağı soldan ikinci olacak şekilde takın. Siyah bir kablo o uzun bacağı eksi raya götürür.")
 s("rgb4", "rgb", "Each color gets its own two-hundred-twenty ohm resistor and its own pin: red to D twenty-five, green to D twenty-six, and blue to D twenty-seven.",
   "Her rengin kendi 220 ohm direnci ve kendi pini var: kırmızı D25'e, yeşil D26'ya, mavi D27'ye.",
-  sub="Each color gets its own 220 Ω resistor and its own pin: red to D25, green to D26, and blue to D27.", clip="C3", pad=1.5)
+  sub="Each color gets its own 220 Ω resistor and its own pin: red to D25, green to D26, and blue to D27.", clip="C3", pad=4.0)
 s("rgb4b", "rgb", "Why three resistors, and not one on the shared leg? Because each color is its own LED, with its own current. One shared resistor would let the colors steal current from each other, and the mix would change.",
   "Neden ortak bacakta tek direnç değil de üç direnç? Çünkü her renk kendi akımı olan ayrı bir LED. Ortak tek bir direnç renklerin birbirinden akım çalmasına yol açar ve karışım değişir.")
 s("rgb5", "rgb", "One thing to check: most kits have common cathode LEDs, where the long leg goes to ground. If yours is common anode, the long leg goes to three point three volts, and the colors come out inverted. The code has one line for that.",

@@ -277,7 +277,8 @@ function yourTurnScene(parent, {
   rule2Desc,
   rule2FlowHtml,
   hintHtml,
-  t0 = 0, tR1, tR2, tHint, tCom, tShort
+  t0 = 0, tR1, tR2, tHint, tCom, tShort,
+  shortText = "📱 &nbsp;Solution coming in the next Short!"  // episodes without a solution Short pass their own line
 }) {
   const kick = box(parent, 0, 42, 1920, 32, "kicker", kicker); kick.style.textAlign = "center";
   const h = box(parent, 0, 76, 1920, 70, "h2", title); h.style.textAlign = "center";
@@ -304,7 +305,7 @@ function yourTurnScene(parent, {
   </div>`);
   const foot = box(parent, 0, 910, 1920, 90, "", `<div style="display:flex;justify-content:center;gap:36px">
     <div class="yt-badge com" style="opacity:0">💬 &nbsp;Let's meet in the comments!</div>
-    <div class="yt-badge sh" style="opacity:0">📱 &nbsp;Solution coming in the next Short!</div>
+    <div class="yt-badge sh" style="opacity:0">${shortText}</div>
   </div>`);
   const bCom = $(".yt-badge.com", foot), bSh = $(".yt-badge.sh", foot);
   for (const e of [kick, h, sub, r1, r2, hint]) gsap.set(e, { opacity: 0 });
@@ -315,4 +316,16 @@ function yourTurnScene(parent, {
   pop(bCom, tCom != null ? tCom : t0 + 1.2);
   pop(bSh, tShort != null ? tShort : t0 + 1.5);
   return { kick, h, sub, r1, r2, hint, foot, bCom, bSh };
+}
+
+
+/* ---- v2: subtle like / subscribe reminder (PRODUCTION_GUIDELINES.md section 5: max 2 per episode,
+ * a corner, 2-3 s, no flashing, never over code or the circuit) ---- */
+function likeSub(parent, t0, dur = 2.6, opts = {}) {
+  const e = box(parent, 0, 0, 0, 0, "likesub", `<span class="ls-i">👍</span><span>Like</span><span class="ls-d"></span><span class="ls-i">🔔</span><span>Subscribe</span>`);
+  css(e, Object.assign({ width: "auto", height: "auto", right: "40px", bottom: "36px", left: "auto", top: "auto" }, opts.style || {}));
+  gsap.set(e, { opacity: 0, y: 14 });
+  TO(e, t0, 0.45, { opacity: 1, y: 0, ease: "power2.out" });
+  TO(e, t0 + dur, 0.45, { opacity: 0, y: 8, ease: "power2.in" });
+  return e;
 }

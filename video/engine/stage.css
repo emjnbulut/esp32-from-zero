@@ -230,3 +230,6 @@ body { font-family: var(--ui); color: var(--text); -webkit-font-smoothing: antia
 .quiz .qbar { height: 8px; border-radius: 4px; background: #22304d; margin-top: 20px; overflow: hidden; }
 .quiz .qbar i { display: block; height: 100%; width: 0; background: var(--amber); }
 .quiz .qa { display: none; font: 700 34px var(--display); color: var(--teal); margin-top: 16px; }
+.likesub { position: absolute; z-index: 90; display: flex; align-items: center; gap: 10px; padding: 10px 20px; border-radius: 999px;
+  background: rgba(11,18,32,.82); border: 1px solid rgba(255,255,255,.14); font: 600 22px var(--ui); color: #dfe6f2; }
+.likesub .ls-i { font-size: 24px; } .likesub .ls-d { width: 1px; height: 22px; background: rgba(255,255,255,.2); margin: 0 4px; }

@@ -190,7 +190,7 @@
    "sub": "Each color gets its own 220 Ω resistor and its own pin: red to D25, green to D26, and blue to D27.",
    "tr": "Her rengin kendi 220 ohm direnci ve kendi pini var: kırmızı D25'e, yeşil D26'ya, mavi D27'ye.",
    "clip": "C3",
-   "pad": 1.5
+   "pad": 4.0
   },
   {
    "id": "s27",
