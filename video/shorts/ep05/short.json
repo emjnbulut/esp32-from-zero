@@ -1,0 +1,207 @@
+{
+ "episode": "ep05",
+ "source": "video/ep05/build/video.mp4",
+ "schedule": "video/ep05/build/schedule.json",
+ "note": "DRAFT 2026-10-25 (no render yet): texts final, shot anchors set, CROPS ARE PLACEHOLDERS until ep05.js scenes exist. One question (PRODUCTION_GUIDELINES.md section 3): result first, then the question, the trick, the result, the linked lesson. EN 17:00 + TR 20:00 (on-screen text English).",
+ "cta": {
+  "en": "Full lesson",
+  "sub": "linked: related video"
+ },
+ "segments": [
+  {
+   "id": "h0",
+   "chip": "ESP32 · PWM",
+   "headline": {
+    "en": "Smooth fade, any color"
+   },
+   "say": {
+    "en": "This LED fades in and out smoothly, and this one mixes any color.",
+    "tr": "Bu LED yumuşakça yanıp sönüyor, bu da istediği her rengi karıştırıyor."
+   },
+   "show": {
+    "en": "This LED fades in and out smoothly, and this one mixes any color."
+   },
+   "shots": [
+    {
+     "at": [
+      "s03",
+      "fade",
+      -0.3
+     ],
+     "crop": [
+      1100,
+      180,
+      760,
+      760
+     ],
+     "footage": {
+      "file": "footage/ep05/C0.mp4",
+      "src": 1.0,
+      "crop": [
+       420,
+       0,
+       1080,
+       1080
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "h1",
+   "chip": "ESP32 QUESTION",
+   "headline": {
+    "en": "Only ON or OFF?"
+   },
+   "say": {
+    "en": "But a pin can only be on or off. So how do you get half brightness?",
+    "tr": "Ama bir pin yalnızca açık ya da kapalı olabilir. Peki yarım parlaklık nasıl olur?"
+   },
+   "show": {
+    "en": "But a pin can only be on or off. So how do you get half brightness?"
+   },
+   "shots": [
+    {
+     "at": [
+      "s06",
+      "Quick",
+      0.0
+     ],
+     "crop": [
+      480,
+      160,
+      960,
+      760
+     ]
+    }
+   ]
+  },
+  {
+   "id": "h2",
+   "chip": "THE TRICK",
+   "headline": {
+    "en": "PWM: switch it fast"
+   },
+   "say": {
+    "en": "Switch it on and off a thousand times a second. On half the time, and your eye sees half brightness.",
+    "tr": "Saniyede bin kez açıp kapatın. Yarı zaman açık; gözünüz yarı parlaklık görür."
+   },
+   "show": {
+    "en": "Switch it on and off a thousand times a second. On half the time, and your eye sees half brightness."
+   },
+   "shots": [
+    {
+     "at": [
+      "s07",
+      "fast",
+      0.0
+     ],
+     "crop": [
+      240,
+      200,
+      1440,
+      700
+     ],
+     "pan": 700
+    }
+   ]
+  },
+  {
+   "id": "h3",
+   "chip": "IN CODE",
+   "headline": {
+    "en": "analogWrite(pin, 0..255)"
+   },
+   "say": {
+    "en": "In code, it's one line: analog write, with a number from zero to two fifty-five.",
+    "tr": "Kodda bu tek satır: analogWrite, sıfır ile iki yüz elli beş arasında bir sayıyla."
+   },
+   "show": {
+    "en": "In code, it's one line: analogWrite(), with a number from 0 to 255."
+   },
+   "shots": [
+    {
+     "at": [
+      "s10",
+      "function",
+      0.0
+     ],
+     "crop": [
+      60,
+      160,
+      1100,
+      700
+     ]
+    }
+   ]
+  },
+  {
+   "id": "h4",
+   "chip": "THE RESULT",
+   "headline": {
+    "en": "Mix your own colors"
+   },
+   "say": {
+    "en": "Three of those in one LED, red, green and blue, and you can mix any color.",
+    "tr": "Bunlardan üçü tek bir LED'de, kırmızı, yeşil ve mavi; istediğiniz rengi karıştırabilirsiniz."
+   },
+   "show": {
+    "en": "Three of those in one LED, red, green and blue, and you can mix any color."
+   },
+   "shots": [
+    {
+     "at": [
+      "s35",
+      "steps",
+      0.0
+     ],
+     "crop": [
+      480,
+      160,
+      960,
+      760
+     ],
+     "footage": {
+      "file": "footage/ep05/C4.mp4",
+      "src": 0.5,
+      "crop": [
+       420,
+       0,
+       1080,
+       1080
+      ]
+     }
+    }
+   ]
+  },
+  {
+   "id": "h5",
+   "chip": "EPISODE 5",
+   "headline": {
+    "en": "Build it step by step"
+   },
+   "say": {
+    "en": "Build the full circuit step by step in the linked lesson.",
+    "tr": "Devrenin tamamını bağlantıdaki derste adım adım kurun."
+   },
+   "show": {
+    "en": "Build the full circuit step by step in the linked lesson."
+   },
+   "shots": [
+    {
+     "at": [
+      "s40",
+      "Press",
+      0.0
+     ],
+     "crop": [
+      1120,
+      180,
+      760,
+      760
+     ]
+    }
+   ]
+  }
+ ]
+}
