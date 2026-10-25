@@ -85,7 +85,16 @@ def main(path):
     device = "cuda" if torch.cuda.is_available() else "cpu"
     tts = load(cfg, device)
     opts = {"exaggeration": cfg.get("exaggeration", 0.5), "cfg_weight": cfg.get("cfg_weight", 0.5)}
-    if cfg.get("prompt"):
+    if cfg.get("prompt") and cfg.get("accent_prompt"):
+        # Split voice: the text-to-speech-token model (T3: rhythm, accent) follows accent_prompt, the decoder
+        # (S3Gen: timbre) follows prompt. accent_speaker "prompt" keeps prompt's speaker embedding in T3 too.
+        tts.prepare_conditionals(cfg["accent_prompt"], exaggeration=opts["exaggeration"])
+        t3 = tts.conds.t3
+        tts.prepare_conditionals(cfg["prompt"], exaggeration=opts["exaggeration"])
+        if cfg.get("accent_speaker") == "prompt":
+            t3.speaker_emb = tts.conds.t3.speaker_emb
+        tts.conds.t3 = t3
+    elif cfg.get("prompt"):
         opts["audio_prompt_path"] = cfg["prompt"]
     if cfg["model"] == "multilingual":
         opts["language_id"] = cfg.get("lang", "en")
