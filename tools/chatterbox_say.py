@@ -71,13 +71,13 @@ def trim(wav: np.ndarray, sr: int, thresh_db=-35.0, keep=0.05):
 def ffmpeg(args, data):
     """Windows sometimes fails to start ffmpeg (0xC0000142, low desktop heap / memory): try again."""
     import time
-    for attempt in range(5):
+    for attempt in range(10):
         r = subprocess.run(["ffmpeg", "-v", "error", *args], input=data, capture_output=True)
         if r.returncode == 0:
             return r.stdout
-        if r.returncode != 0xC0000142 or attempt == 4:
+        if r.returncode != 0xC0000142 or attempt == 9:
             raise subprocess.CalledProcessError(r.returncode, ["ffmpeg", *args], r.stdout, r.stderr)
-        time.sleep(3)
+        time.sleep(5 + 5 * attempt)  # memory pressure usually passes within a minute or two
 
 
 def patch_analyzer():
