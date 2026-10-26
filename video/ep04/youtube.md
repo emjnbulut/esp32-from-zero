@@ -12,20 +12,20 @@ Press a button and one LED stops at once, while the other keeps blinking at its 
 
 ⏱ Chapters
 0:00 Two things at once (demo)
-0:30 What you need
-0:44 The push button
-1:09 Two breadboards and the wiring
-2:15 Floating pins and pull-ups
-3:26 The code, line by line
-4:21 Upload and Serial Monitor
-5:04 Toggle: catching the edge
-6:41 Bounce and debounce
-7:25 Why delay() gets in the way
-8:12 millis(): check the clock
-9:59 A second LED
-11:09 Your turn: the speed-shifter
-11:36 Troubleshooting
-11:59 Recap and next episode
+0:29 What you need
+0:42 The push button
+1:05 Two breadboards and the wiring
+2:10 Floating pins and pull-ups
+3:19 The code, line by line
+4:13 Upload and Serial Monitor
+4:55 Toggle: catching the edge
+6:29 Bounce and debounce
+7:12 Why delay() gets in the way
+7:56 millis(): check the clock
+9:39 A second LED
+10:49 Your turn: the speed-shifter
+11:15 Troubleshooting
+11:36 Recap and next episode
 
 🎵 Music: "Lobby Time" by Kevin MacLeod (incompetech.com), licensed under CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
 🎙 Narration: Chatterbox TTS (Resemble AI, MIT). Voice references: LibriVox (public domain) and FLEURS by Google (CC BY 4.0): https://creativecommons.org/licenses/by/4.0/

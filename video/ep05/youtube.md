@@ -12,16 +12,16 @@ One LED breathes in and out, another mixes any color you want, and a button swit
 
 ⏱ Chapters
 0:00 Fade it, mix it (demo)
-0:24 What you need
-0:38 PWM: on and off, fast
-1:26 analogWrite() and the multimeter
-2:17 A fade that never waits
-3:44 The RGB LED and its wiring
-4:55 setColor() and mixing light
-5:56 One button, four color modes
-6:43 Your turn: the camping headlamp
-7:06 Troubleshooting
-7:23 Recap and next episode
+0:29 What you need
+0:43 PWM: on and off, fast
+1:42 analogWrite() and the multimeter
+2:42 A fade that never waits
+4:21 The RGB LED and its wiring
+5:43 setColor() and mixing light
+6:56 One button, four color modes
+7:53 Your turn: the camping headlamp
+8:22 Troubleshooting
+8:40 Recap and next episode
 
 🎵 Music: "Lobby Time" by Kevin MacLeod (incompetech.com), licensed under CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
 🎙 Narration: Chatterbox TTS (Resemble AI, MIT). Voice references: LibriVox (public domain) and FLEURS by Google (CC BY 4.0): https://creativecommons.org/licenses/by/4.0/
