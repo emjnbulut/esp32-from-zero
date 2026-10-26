@@ -123,7 +123,7 @@ def main(ep: Path, lang: str, report_only: bool):
         cache = asyncio.run(narrate_all(dub, out))
 
     sl = slots(sched)
-    base = cbx.DUB_TEMPO.get(lang, 1.0) if cbx.engine(dub) == "chatterbox" else 1.0
+    base = cbx.dub_tempo(ep, lang) if cbx.engine(dub) == "chatterbox" else 1.0
     dur = {sid: cache[sid]["duration"] / base for sid in sl}  # length after the language's base tempo
     too_long = []
     for sid, (start, room) in sl.items():

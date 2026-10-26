@@ -25,9 +25,26 @@ VOICES = {
     "pt": {"prompt": _S + "creator_en.wav", "accent_prompt": _S + "pt_fleurs2.wav"},
     "es": {"prompt": _S + "creator_en.wav", "accent_prompt": _S + "es_fleurs2.wav"},
 }
-# Dub voices that speak slower than the English narration are played this much faster (atempo) when the dub is
-# laid out, so their slots need not stretch the English video (ep04 2026-10-26: es median x1.26, pt x1.21 vs en).
-DUB_TEMPO = {"es": 1.15, "pt": 1.12}
+# Dub voices that speak slower than the English narration are played faster (atempo) when the dub is laid out,
+# so their slots need not stretch the English video. The base tempo is measured per episode: the median ratio
+# dub/English over all segments, capped at DUB_TEMPO_MAX. Turkish stays at 1.0 (user: TR must sound natural).
+DUB_TEMPO_MAX = 1.2
+DUB_TEMPO_FIXED = {"tr": 1.0}
+
+
+def dub_tempo(ep: Path, lang: str) -> float:
+    if lang in DUB_TEMPO_FIXED:
+        return DUB_TEMPO_FIXED[lang]
+    b = ep / "build"
+    try:
+        en = json.loads((b / "audio" / "timings.json").read_text(encoding="utf-8"))
+        dub = json.loads((b / f"dub_{lang}" / "cache.json").read_text(encoding="utf-8"))
+    except FileNotFoundError:
+        return 1.0
+    r = sorted(dub[s]["duration"] / en[s]["duration"] for s in en if s in dub and en[s]["duration"] > 0)
+    return round(min(DUB_TEMPO_MAX, max(1.0, r[len(r) // 2])), 3) if r else 1.0
+
+
 ENGINE = "chatterbox"  # default for every script / dub / Short; a file can still say "engine": "edge"
 
 
