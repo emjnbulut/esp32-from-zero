@@ -5,6 +5,7 @@ A script or dub file opts in with  "engine": "chatterbox"  and optional settings
           "exaggeration": 0.5, "cfg_weight": 0.5, "seed": 1}
 """
 import json
+import os
 import subprocess
 import tempfile
 from pathlib import Path
@@ -75,4 +76,7 @@ def say(cfg: dict, items: list):
         jobs.write_text(json.dumps({**cfg, "items": [{"text": it[0], "out": str(it[1]), **({"seed": it[2]} if len(it) > 2 else {})}
                                                      for it in items]},
                                    ensure_ascii=False), encoding="utf-8")
-        subprocess.run([str(PY), str(ROOT / "tools" / "chatterbox_say.py"), str(jobs)], check=True)
+        # The models are cached locally; offline mode keeps a slow or dropped connection from hanging the load
+        # (2026-10-26: from_pretrained waited 5 hours on the Hugging Face hub).
+        env = {**os.environ, "HF_HUB_OFFLINE": "1", "TRANSFORMERS_OFFLINE": "1"}
+        subprocess.run([str(PY), str(ROOT / "tools" / "chatterbox_say.py"), str(jobs)], check=True, env=env)

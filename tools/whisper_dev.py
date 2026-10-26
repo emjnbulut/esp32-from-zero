@@ -8,6 +8,9 @@ import os
 import sys
 from pathlib import Path
 
+# Models are cached locally; offline mode keeps a slow connection from hanging the load (see cbx.say)
+os.environ.setdefault("HF_HUB_OFFLINE", "1")
+
 _choice = None
 
 
