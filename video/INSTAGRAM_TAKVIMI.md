@@ -16,7 +16,7 @@ yoğun takvimin boş günlerine konur). Projelerde **seslendirme yok**: müzik +
 | Cmt 7 Kas | Bölüm 05 tanıtımı (Ep05 Short EN) | — |
 | Pzt 9 Kas | Proje 04 · Electric candle | 7 Kas'a kadar |
 
-Sonraki projeler (05+) Bölüm 06–08'den sonra eklenir (potansiyometre, ses, ışık sensörü).
+Sonraki projeler (05+) Bölüm 06–10'dan sonra eklenir (potansiyometre, ışık sensörü, ses).
 
 ## Reel yapısı (20–35 sn, dikey 1080×1920)
 1. **0–2 sn** sonuç (senin çekimin) + büyük yazı, ör. "I built an SOS beacon".

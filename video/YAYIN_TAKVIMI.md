@@ -1,6 +1,7 @@
-# Yayın takvimi (v3, 25 Ekim 2026)
+# Yayın takvimi (v4, 27 Ekim 2026)
 
-Kullanıcı kararları (25 Ekim 2026): haftada **2 bölüm** (Salı + Cuma 17:00) · Short'lar **iki günde bir** 17:00 · her bölüm Short'unun **TR** hali aynı gün 20:00 (ekran yazıları İngilizce) · **ödev çözümü Short'u yalnız mini projelerde** (Bölüm 07, 12, 16) + Bölüm 04 (anlatımında söz verildi) · HI/PT/ES Short yok (dublajlar dönünce deneme).
+Kullanıcı kararları: haftada **2 bölüm** (Salı + Cuma 17:00) · Short'lar **iki günde bir** 17:00 · her bölüm Short'unun **TR** hali aynı gün 20:00 (ekran yazıları İngilizce) · **ödev çözümü Short'u yalnız mini projelerde** (Bölüm 08, 15, 19) + Bölüm 04 (anlatımında söz verildi) · HI/PT/ES Short yok (dublajlar dönünce deneme).
+**v4 değişikliği (27 Ekim 2026):** Bölüm 6'dan itibaren her bölüm tek konu + pratik, yaklaşık 10 dk (PRODUCTION_GUIDELINES.md bölüm 8). Bölüm sayısı 16 → 19; yayın bitişi 8 Aralık'tan 18 Aralık'a kaydı. Bölüm numaraları ve konular CURRICULUM.md ile aynı.
 Yayındakiler burada yok; eski planlar `video/YAYIN_PLANI.md`. Gerçek çekimler her bölümden **2 gün önce** gelmeli.
 
 | Tarih | Ne çıkıyor |
@@ -12,28 +13,34 @@ Yayındakiler burada yok; eski planlar `video/YAYIN_PLANI.md`. Gerçek çekimler
 | Sal 3 Kas | **Bölüm 06** — Analog giriş ve potansiyometre |
 | Sal 3 Kas | Bölüm 04 ödev çözümü Short |
 | Per 5 Kas | Bölüm 06 Short EN (17:00) + TR (20:00) |
-| Cum 6 Kas | **Bölüm 07** — 1. mini proje: yaya geçidi + refleks oyunu |
-| Cmt 7 Kas | Bölüm 07 Short EN (17:00) + TR (20:00) |
-| Sal 10 Kas | **Bölüm 08** — LDR ve buzzer |
-| Çar 11 Kas | Bölüm 08 Short EN (17:00) + TR (20:00) |
-| Cum 13 Kas | **Bölüm 09** — DHT11 sıcaklık ve nem |
-| Cum 13 Kas | Bölüm 07 ödev çözümü Short |
+| Cum 6 Kas | **Bölüm 07** — map() ve seviye göstergeleri |
+| Paz 8 Kas | Bölüm 07 Short EN (17:00) + TR (20:00) |
+| Sal 10 Kas | **Bölüm 08** — 1. mini proje: yaya geçidi + refleks oyunu |
+| Per 12 Kas | Bölüm 08 Short EN (17:00) + TR (20:00) |
+| Cum 13 Kas | **Bölüm 09** — LDR ve histerezis |
 | Paz 15 Kas | Bölüm 09 Short EN (17:00) + TR (20:00) |
-| Sal 17 Kas | **Bölüm 10** — I2C ve OLED ekran |
+| Sal 17 Kas | **Bölüm 10** — Buzzer, notalar ve diziler |
+| Sal 17 Kas | Bölüm 08 ödev çözümü Short |
 | Per 19 Kas | Bölüm 10 Short EN (17:00) + TR (20:00) |
-| Cum 20 Kas | **Bölüm 11** — PIR, engel sensörü, kesmeler |
-| Cmt 21 Kas | Bölüm 11 Short EN (17:00) + TR (20:00) |
-| Sal 24 Kas | **Bölüm 12** — 2. mini proje: akıllı masa asistanı |
-| Çar 25 Kas | Bölüm 12 Short EN (17:00) + TR (20:00) |
-| Cum 27 Kas | **Bölüm 13** — Röleler |
+| Cum 20 Kas | **Bölüm 11** — DHT11 sıcaklık ve nem |
+| Paz 22 Kas | Bölüm 11 Short EN (17:00) + TR (20:00) |
+| Sal 24 Kas | **Bölüm 12** — I2C ve OLED ekran |
+| Per 26 Kas | Bölüm 12 Short EN (17:00) + TR (20:00) |
+| Cum 27 Kas | **Bölüm 13** — PIR ve engel sensörleri |
 | Paz 29 Kas | Bölüm 13 Short EN (17:00) + TR (20:00) |
-| Sal 1 Ara | **Bölüm 14** — Wi-Fi ve internet saati |
-| Sal 1 Ara | Bölüm 12 ödev çözümü Short |
+| Sal 1 Ara | **Bölüm 14** — Donanım kesmeleri |
 | Per 3 Ara | Bölüm 14 Short EN (17:00) + TR (20:00) |
-| Cum 4 Ara | **Bölüm 15** — Web sunucu ve canlı panel |
-| Cmt 5 Ara | Bölüm 15 Short EN (17:00) + TR (20:00) |
-| Sal 8 Ara | **Bölüm 16** — Final projesi: akıllı oda |
-| Çar 9 Ara | Bölüm 16 Short EN (17:00) + TR (20:00) |
-| Sal 15 Ara | Bölüm 16 ödev çözümü Short |
+| Cum 4 Ara | **Bölüm 15** — 2. mini proje: akıllı masa asistanı |
+| Paz 6 Ara | Bölüm 15 Short EN (17:00) + TR (20:00) |
+| Sal 8 Ara | **Bölüm 16** — Röleler |
+| Per 10 Ara | Bölüm 16 Short EN (17:00) + TR (20:00) |
+| Cum 11 Ara | **Bölüm 17** — Wi-Fi ve internet saati |
+| Cum 11 Ara | Bölüm 15 ödev çözümü Short |
+| Paz 13 Ara | Bölüm 17 Short EN (17:00) + TR (20:00) |
+| Sal 15 Ara | **Bölüm 18** — Web sunucu ve canlı panel |
+| Per 17 Ara | Bölüm 18 Short EN (17:00) + TR (20:00) |
+| Cum 18 Ara | **Bölüm 19** — Final projesi: akıllı oda |
+| Paz 20 Ara | Bölüm 19 Short EN (17:00) + TR (20:00) |
+| Cum 25 Ara | Bölüm 19 ödev çözümü Short |
 
-Senaryo kuralı: Bölüm 05–15'te (07, 12 hariç) ödev çözümü için "Short'ta göstereceğim" denmez; "yorumlara yazın, çözüm ders klasöründe" denir.
+Senaryo kuralı: Bölüm 05–18'de (08, 15 hariç) ödev çözümü için "Short'ta göstereceğim" denmez; "yorumlara yazın, çözüm ders klasöründe" denir.
