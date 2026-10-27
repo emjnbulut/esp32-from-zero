@@ -5,8 +5,14 @@ Footage: reused clips only (footage/recap1/C1-C4, trimmed from ep03 C2 and ep04 
 Resume rule: do the first unchecked step; commands from the repo root.
 
 - [x] 1. Script make_script.py (46 segments, EN + TR sub + TR spoken) + page index.html + scenes recap1.js (live trace component)
-- [ ] 2. EN narration: python tools/tts.py video/recap1 ; python tools/cbx_retake.py video/recap1 en ; python tools/build.py video/recap1 schedule
-- [ ] 3. lesson_lint + stills review (node engine/render.mjs recap1 --stills ...)
-- [ ] 4. TR dub: tools/dub.py video/recap1 tr --report ; cbx_retake ... tr ; schedule
-- [ ] 5. Render, audio, compose, dub tr, subs
+- [x] 2. EN narration: python tools/tts.py video/recap1 ; python tools/cbx_retake.py video/recap1 en ; python tools/build.py video/recap1 schedule
+- [x] 3. lesson_lint + stills review (node engine/render.mjs recap1 --stills ...)
+- [x] 4. TR dub: tools/dub.py video/recap1 tr --report ; cbx_retake ... tr ; schedule
+- [x] 5. Render, audio, compose, dub tr, subs
 - [ ] 6. Thumbnail, youtube.md, user review
+
+## State 2026-10-27 23:32 (session paused by the user)
+Built end to end: build/recap1_final.mp4 (EN, 7.6 min), build/recap1_tr_dub.mp4, build/recap1_en.srt + recap1_tr.srt. lesson_lint 0 warnings.
+Not watched by the user yet. Open points: user review (does the MEMORY panel make the code clear? blink_button code is small on a phone),
+thumbnail (Claude decides), youtube.md + localize (titles/descriptions), HI/PT/ES dubs later, Short for the recap, upload Fri 30 Oct 17:00.
+Re-run all: bash video/recap1/build_all.sh (delete build/rebuild.done first); scenes: video/recap1/recap1.js; text: make_script.py.
