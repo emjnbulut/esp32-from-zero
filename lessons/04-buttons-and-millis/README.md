@@ -112,6 +112,41 @@ if (ledOn) {
   - `ledOn = !ledOn;` — the `!` means *not*, so it swaps the value.
   - `digitalWrite(LED_PIN, ledOn ? HIGH : LOW);` — the `?:` picks `HIGH` when `ledOn` is true, otherwise `LOW`.
 
+The full sketch:
+
+```c
+// ESP32 From Zero - Episode 4: toggle the LED with each press (with debounce)
+// GPIO 22 -> button -> GND (internal pull-up), LED on GPIO 23
+
+const int BUTTON_PIN = 22;
+const int LED_PIN = 23;
+
+int lastState = HIGH;          // the button is not pressed at the start
+bool ledOn = false;
+int presses = 0;
+
+void setup() {
+  pinMode(BUTTON_PIN, INPUT_PULLUP);
+  pinMode(LED_PIN, OUTPUT);
+  Serial.begin(115200);
+}
+
+void loop() {
+  int state = digitalRead(BUTTON_PIN);
+  if (state != lastState) {    // the button changed
+    if (state == LOW) {        // ...and it's now pressed: a new press
+      presses++;
+      ledOn = !ledOn;
+      digitalWrite(LED_PIN, ledOn ? HIGH : LOW);
+      Serial.print("presses: ");
+      Serial.println(presses);
+    }
+    delay(50);                 // debounce: wait until the contacts stop bouncing
+  }
+  lastState = state;
+}
+```
+
 **Bounce:** count the presses and sometimes one press counts twice or three times. When metal contacts touch they
 bounce for a few milliseconds, and the ESP32 checks the pin hundreds of thousands of times a second, so one press
 can look like five. The simple fix is **debouncing**: after every change, pressed or released, wait **50 ms**
@@ -137,6 +172,26 @@ Example: the LED last changed at 700. Now it is 1000: 1000 − 700 = 300, not ye
 1200 − 700 = 500, flip the LED, and the last time becomes 1200.
 
 ```c
+// ESP32 From Zero - Episode 4: blink AND read a button at the same time
+// GPIO 22 -> button -> GND (internal pull-up), LED on GPIO 23
+// The button switches the blinking on and off. Nothing in loop() ever waits.
+
+const int BUTTON_PIN = 22;
+const int LED_PIN = 23;
+
+bool blinking = true;
+bool ledOn = false;
+unsigned long lastBlink = 0;   // when the LED last changed (ms)
+
+int lastState = HIGH;
+unsigned long lastChange = 0;  // when the button last changed (ms)
+
+void setup() {
+  pinMode(BUTTON_PIN, INPUT_PULLUP);
+  pinMode(LED_PIN, OUTPUT);
+  Serial.begin(115200);
+}
+
 void loop() {
   unsigned long now = millis(); // milliseconds since the board started
 
@@ -163,9 +218,6 @@ void loop() {
   }
 }
 ```
-
-(The variables `blinking`, `ledOn`, `lastBlink`, `lastState`, `lastChange` are declared above `setup()`; see the
-full file.)
 
 - Times live in an **`unsigned long`**: a big whole number that cannot go negative.
 - We **always subtract**: `now - last`. After about **49.7 days** `millis()` rolls over to 0. With subtraction the
@@ -195,6 +247,59 @@ In the code each LED gets its own timer: red flips every **500 ms**, green every
 their own pace while the button (it switches the red one on and off) still reacts instantly.
 
 Quick question: change green to 300 ms. Does red change too? No: each `if` checks only its own timer.
+
+```c
+// ESP32 From Zero - Episode 4: two LEDs at their own speed + a button, nothing waits
+// two breadboards: red LED on GPIO 23 + button on GPIO 22 (lower), green LED on GPIO 25 (upper)
+
+const int BUTTON_PIN = 22;
+const int RED_PIN = 23;        // switched on/off by the button
+const int GREEN_PIN = 25;      // always blinking
+
+bool redBlinking = true;
+bool redOn = false, greenOn = false;
+unsigned long lastRed = 0, lastGreen = 0;
+
+int lastState = HIGH;
+unsigned long lastChange = 0;
+
+void setup() {
+  pinMode(BUTTON_PIN, INPUT_PULLUP);
+  pinMode(RED_PIN, OUTPUT);
+  pinMode(GREEN_PIN, OUTPUT);
+  Serial.begin(115200);
+}
+
+void loop() {
+  unsigned long now = millis();
+
+  // the button: a new press switches the red blinking on or off
+  int state = digitalRead(BUTTON_PIN);
+  if (state != lastState && now - lastChange >= 50) {
+    lastChange = now;
+    lastState = state;
+    if (state == LOW) redBlinking = !redBlinking;
+  }
+
+  // red: every 500 ms (only while blinking)
+  if (redBlinking && now - lastRed >= 500) {
+    lastRed = now;
+    redOn = !redOn;
+    digitalWrite(RED_PIN, redOn ? HIGH : LOW);
+  }
+  if (!redBlinking && redOn) {
+    redOn = false;
+    digitalWrite(RED_PIN, LOW);
+  }
+
+  // green: every 150 ms, always
+  if (now - lastGreen >= 150) {
+    lastGreen = now;
+    greenOn = !greenOn;
+    digitalWrite(GREEN_PIN, greenOn ? HIGH : LOW);
+  }
+}
+```
 
 ## 9. Challenge — [`code/challenge_speed/challenge_speed.ino`](code/challenge_speed/challenge_speed.ino)
 
