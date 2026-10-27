@@ -28,8 +28,8 @@ THINK = 2.6  # silence after a "quick question"
 # ---- cold open
 s("cold1", "cold", "Watch this. One LED breathes in and out, smoothly. And this one mixes any color you want.",
   "İzleyin. Bir LED yumuşakça nefes alıp veriyor. Bu da istediğiniz her rengi karıştırıyor.")
-s("cold2", "cold", "One press, and it jumps to the next color. And it all comes from pins that can only be on, or off.",
-  "Bir basış ve sıradaki renge geçiyor. Üstelik hepsi yalnızca açık ya da kapalı olabilen pinlerden geliyor.")
+s("cold2", "cold", "One press, and it jumps to the next color. All from pins that can only be on, or off.",
+  "Bir basış ve sıradaki renge geçiyor. Hepsi yalnızca açık ya da kapalı olabilen pinlerden geliyor.")
 s("cold3", "cold", "By the end of this video, you'll fade any LED and mix your own colors, with one function: analog write.",
   "Bu videonun sonunda her LED'i yumuşakça yakıp söndürecek ve kendi renklerinizi karıştıracaksınız; tek bir fonksiyonla: analogWrite.",
   sub="By the end of this video, you'll fade any LED and mix your own colors, with one function: analogWrite().")
@@ -45,11 +45,11 @@ s("pwm2", "pwm", "Quick question: how could a pin that's only ever on or off mak
   "Kısa bir soru: yalnızca açık ya da kapalı olabilen bir pin, LED'i nasıl yarı parlaklıkta yakabilir? Bir saniye düşünün.", pad=THINK)
 s("pwm3", "pwm", "The answer: switch it on and off very fast, much faster than your eyes can follow. On half the time, off half the time, and your eye sees half brightness.",
   "Cevap: onu çok hızlı açıp kapatmak, gözünüzün takip edemeyeceği kadar hızlı. Yarı zaman açık, yarı zaman kapalı; gözünüz yarı parlaklık görür.")
-s("pwm4", "pwm", "This is called PWM, pulse width modulation. The pin repeats a short cycle, about a thousand times a second. What changes is how long it stays on in each cycle. That's the duty cycle.",
-  "Buna PWM, yani darbe genişlik modülasyonu denir. Pin kısa bir döngüyü saniyede yaklaşık bin kez tekrarlar. Değişen şey, her döngüde ne kadar açık kaldığıdır. Buna doluluk oranı, yani duty cycle denir.")
-s("pwm5", "pwm", "Twenty-five percent on looks dim. Fifty percent, medium. A hundred percent, fully bright.",
-  "Yüzde 25 açık loş görünür. Yüzde 50, orta. Yüzde 100, tam parlak.",
-  sub="25% on looks dim. 50%, medium. 100%, fully bright.")
+s("pwm4", "pwm", "This is called PWM, pulse width modulation. The pin repeats a short cycle, about a thousand times a second.",
+  "Buna PWM, yani darbe genişlik modülasyonu denir. Pin kısa bir döngüyü saniyede yaklaşık bin kez tekrarlar.")
+s("pwm5", "pwm", "What changes is how long it stays on in each cycle. That's the duty cycle. Twenty-five percent on looks dim. Fifty percent, medium. A hundred percent, fully bright.",
+  "Değişen şey, her döngüde ne kadar açık kaldığıdır. Buna doluluk oranı, yani duty cycle denir. Yüzde 25 açık loş görünür. Yüzde 50, orta. Yüzde 100, tam parlak.",
+  sub="What changes is how long it stays on in each cycle. That's the duty cycle. 25% on looks dim. 50%, medium. 100%, fully bright.")
 # ---- analogWrite
 s("aw1", "aw", "In code, it's one function: analog write. Give it a pin, and a number from zero to two hundred fifty-five. Zero is always off. Two fifty-five is always on.",
   "Kodda bu tek bir fonksiyon: analogWrite. Ona bir pin ve sıfır ile 255 arasında bir sayı verin. Sıfır her zaman kapalı. 255 her zaman açık.",
@@ -69,9 +69,9 @@ s("tp3", "tourpwm", "The loop just calls show level four times: with zero, sixty
   sub="The loop just calls showLevel() four times: with 0, 64, 128, and 255. Then it starts again from the top.", tour=True)
 s("aw2b", "aw", "And on the ESP32, almost every output pin can do PWM. On many classic Arduino boards, only a few marked pins can. Here, you just pick a pin.",
   "ESP32'de neredeyse her çıkış pini PWM yapabilir. Birçok klasik Arduino kartında yalnızca işaretli birkaç pin yapabilir. Burada bir pin seçmeniz yeterli.")
-s("aw3", "aw", "Here's a neat check. Put a multimeter on the LED pin. It can't follow the fast switching, so it shows the average: about zero point eight volts at twenty-five percent, one point six five at fifty, and three point three at a hundred.",
-  "Güzel bir kontrol: multimetreyi LED pinine bağlayın. Hızlı açıp kapanmayı takip edemez, bu yüzden ortalamayı gösterir: yüzde 25'te yaklaşık 0,8 volt, yüzde 50'de 1,65, yüzde 100'de 3,3 volt.",
-  sub="Here's a neat check. Put a multimeter on the LED pin. It can't follow the fast switching, so it shows the average: about 0.8 V at 25%, 1.65 V at 50%, and 3.3 V at 100%.",
+s("aw3", "aw", "Put a multimeter on the LED pin. It can't follow the switching, so it shows the average: about zero point eight volts at twenty-five percent, one point six five at fifty, and three point three at a hundred.",
+  "Multimetreyi LED pinine bağlayın. Hızlı geçişi takip edemez, bu yüzden ortalamayı gösterir: yüzde 25'te yaklaşık 0,8 volt, yüzde 50'de 1,65, yüzde 100'de 3,3 volt.",
+  sub="Put a multimeter on the LED pin. It can't follow the switching, so it shows the average: about 0.8 V at 25%, 1.65 V at 50%, and 3.3 V at 100%.",
   clip="C1", pad=3.0)
 # ---- the fade: naive first, then millis()
 s("fd1", "fade", "Now let's make it breathe. The obvious way: a for loop that counts the brightness up from zero to two fifty-five, with a short delay on every step. Then another loop counts back down.",
@@ -124,9 +124,9 @@ s("rgb4", "rgb", "Each color gets its own two-hundred-twenty ohm resistor and it
   sub="Each color gets its own 220 Ω resistor and its own pin: red to D25, green to D26, and blue to D27.", clip="C3", pad=4.0)
 s("rgb4b", "rgb", "Why three resistors, and not one on the shared leg? Because each color is its own LED, with its own current. One shared resistor would let the colors steal current from each other, and the mix would change.",
   "Neden ortak bacakta tek direnç değil de üç direnç? Çünkü her renk kendi akımı olan ayrı bir LED. Ortak tek bir direnç renklerin birbirinden akım çalmasına yol açar ve karışım değişir.")
-s("rgb5", "rgb", "One thing to check: most kits have common cathode LEDs, where the long leg goes to ground. If yours is common anode, the long leg goes to three point three volts, and the colors come out inverted. The code has one line for that.",
-  "Bir şeyi kontrol edin: çoğu sette ortak katotlu LED olur; uzun bacak toprağa gider. Sizinki ortak anotluysa uzun bacak 3,3 volta gider ve renkler ters çıkar. Kodda bunun için tek bir satır var.",
-  sub="One thing to check: most kits have common cathode LEDs, where the long leg goes to ground. If yours is common anode, the long leg goes to 3.3 V, and the colors come out inverted. The code has one line for that.")
+s("rgb5", "rgb", "One thing to check: most kits have common cathode LEDs, where the long leg goes to ground. If yours is the other way around, the code has one line for that.",
+  "Bir şeyi kontrol edin: çoğu sette ortak katotlu LED olur; uzun bacak toprağa gider. Sizinki tersse, kodda bunun için tek bir satır var.",
+  sub="One thing to check: most kits have common cathode LEDs, where the long leg goes to ground. If yours is the other way around, the code has one line for that.")
 # ---- setColor
 s("col1", "color", "To set a color, we write a small helper function: set color, with three numbers, red, green and blue, each from zero to two fifty-five.",
   "Bir renk ayarlamak için küçük bir yardımcı fonksiyon yazıyoruz: setColor; üç sayı alıyor, kırmızı, yeşil ve mavi, her biri sıfır ile 255 arası.",
@@ -192,9 +192,9 @@ s("ch1", "challenge", "Your turn: build a smart camping headlamp. One button cyc
 s("ch2", "challenge", "The twist: if the lamp has been on for three seconds or more, the next press switches it straight off. Hint: remember when the mode last changed. Post your solution in the comments. One solution is in the lesson folder.",
   "İşin püf noktası: lamba üç saniye ya da daha uzun süredir açıksa, sıradaki basış onu doğrudan kapatsın. İpucu: modun en son ne zaman değiştiğini hatırlayın. Çözümünüzü yorumlara yazın. Bir çözüm ders klasöründe.")
 # ---- troubleshooting
-s("tr1", "trouble", "Something not working? If one color never lights, check that leg's resistor and wire. If everything is inverted, white when it should be off, your LED is common anode: set common anode to true, and move the long leg to three point three volts.",
-  "Bir şey çalışmıyor mu? Bir renk hiç yanmıyorsa o bacağın direncini ve kablosunu kontrol edin. Her şey tersse, sönük olması gerekirken beyazsa, LED'iniz ortak anotludur: COMMON_ANODE'u true yapın ve uzun bacağı 3,3 volta taşıyın.",
-  sub="Something not working? If one color never lights, check that leg's resistor and wire. If everything is inverted, white when it should be off, your LED is common anode: set COMMON_ANODE to true, and move the long leg to 3.3 V.")
+s("tr1", "trouble", "Something not working? If one color never lights, check that leg's resistor and wire. If everything is inverted, your LED is common anode: set common anode to true, and move the long leg to three point three volts.",
+  "Bir şey çalışmıyor mu? Bir renk hiç yanmıyorsa o bacağın direncini ve kablosunu kontrol edin. Her şey tersse LED'iniz ortak anotludur: COMMON_ANODE'u true yapın ve uzun bacağı 3,3 volta taşıyın.",
+  sub="Something not working? If one color never lights, check that leg's resistor and wire. If everything is inverted, your LED is common anode: set COMMON_ANODE to true, and move the long leg to 3.3 V.")
 # ---- outro
 s("out1", "outro", "Today, we used PWM to dim an LED, built a fade that never waits, and mixed colors with an RGB LED and our own set color function.",
   "Bugün PWM ile bir LED'i kıstık, hiç beklemeyen bir geçiş yaptık ve bir RGB LED ile kendi setColor fonksiyonumuzla renk karıştırdık.",
@@ -202,6 +202,11 @@ s("out1", "outro", "Today, we used PWM to dim an LED, built a fade that never wa
 s("out2", "outro", "Next time: a knob. We'll read a potentiometer with analog read, and turn it into brightness and color. Let's meet in the comments: tell me which color you mixed. See you there!",
   "Gelecek sefer: bir düğme. Bir potansiyometreyi analogRead ile okuyup parlaklığa ve renge dönüştüreceğiz. Yorumlarda buluşalım: hangi rengi karıştırdığınızı yazın. Görüşmek üzere!",
   sub="Next time: a knob. We'll read a potentiometer with analogRead(), and turn it into brightness and color. Let's meet in the comments: tell me which color you mixed. See you there!")
+
+# breathing room (+0.6 s) before three new terms that followed too closely (lesson_lint NEWTERM, 2026-10-27)
+for d in S:
+    if d["id"] in ("tp1", "fd5", "tm3"):
+        d["pad"] = d.get("pad", 0) + 0.6
 
 # ids: the original segments keep s01..s45 (their narration and dub caches are keyed by id);
 # code-tour segments (tour=True, added 2026-10-27) are named after the segment before them: s11t1, s11t2, ...

@@ -24,8 +24,8 @@
   {
    "id": "s02",
    "scene": "cold",
-   "text": "One press, and it jumps to the next color. And it all comes from pins that can only be on, or off.",
-   "tr": "Bir basış ve sıradaki renge geçiyor. Üstelik hepsi yalnızca açık ya da kapalı olabilen pinlerden geliyor."
+   "text": "One press, and it jumps to the next color. All from pins that can only be on, or off.",
+   "tr": "Bir basış ve sıradaki renge geçiyor. Hepsi yalnızca açık ya da kapalı olabilen pinlerden geliyor."
   },
   {
    "id": "s03",
@@ -64,15 +64,15 @@
   {
    "id": "s08",
    "scene": "pwm",
-   "text": "This is called PWM, pulse width modulation. The pin repeats a short cycle, about a thousand times a second. What changes is how long it stays on in each cycle. That's the duty cycle.",
-   "tr": "Buna PWM, yani darbe genişlik modülasyonu denir. Pin kısa bir döngüyü saniyede yaklaşık bin kez tekrarlar. Değişen şey, her döngüde ne kadar açık kaldığıdır. Buna doluluk oranı, yani duty cycle denir."
+   "text": "This is called PWM, pulse width modulation. The pin repeats a short cycle, about a thousand times a second.",
+   "tr": "Buna PWM, yani darbe genişlik modülasyonu denir. Pin kısa bir döngüyü saniyede yaklaşık bin kez tekrarlar."
   },
   {
    "id": "s09",
    "scene": "pwm",
-   "text": "Twenty-five percent on looks dim. Fifty percent, medium. A hundred percent, fully bright.",
-   "sub": "25% on looks dim. 50%, medium. 100%, fully bright.",
-   "tr": "Yüzde 25 açık loş görünür. Yüzde 50, orta. Yüzde 100, tam parlak."
+   "text": "What changes is how long it stays on in each cycle. That's the duty cycle. Twenty-five percent on looks dim. Fifty percent, medium. A hundred percent, fully bright.",
+   "sub": "What changes is how long it stays on in each cycle. That's the duty cycle. 25% on looks dim. 50%, medium. 100%, fully bright.",
+   "tr": "Değişen şey, her döngüde ne kadar açık kaldığıdır. Buna doluluk oranı, yani duty cycle denir. Yüzde 25 açık loş görünür. Yüzde 50, orta. Yüzde 100, tam parlak."
   },
   {
    "id": "s10",
@@ -93,7 +93,8 @@
    "scene": "tourpwm",
    "text": "Here's the whole sketch. At the top, we give pin twenty-three a name: LED pin. Setup runs once. The pin becomes an output, and we start the Serial Monitor.",
    "sub": "Here's the whole sketch. At the top, we give pin 23 a name: LED_PIN. setup() runs once. The pin becomes an output, and we start the Serial Monitor.",
-   "tr": "İşte sketch'in tamamı. En üstte 23. pine bir ad veriyoruz: LED_PIN. setup bir kez çalışır: pin çıkış olur ve Seri Monitör'ü başlatırız."
+   "tr": "İşte sketch'in tamamı. En üstte 23. pine bir ad veriyoruz: LED_PIN. setup bir kez çalışır: pin çıkış olur ve Seri Monitör'ü başlatırız.",
+   "pad": 0.6
   },
   {
    "id": "s11t2",
@@ -118,9 +119,9 @@
   {
    "id": "s13",
    "scene": "aw",
-   "text": "Here's a neat check. Put a multimeter on the LED pin. It can't follow the fast switching, so it shows the average: about zero point eight volts at twenty-five percent, one point six five at fifty, and three point three at a hundred.",
-   "sub": "Here's a neat check. Put a multimeter on the LED pin. It can't follow the fast switching, so it shows the average: about 0.8 V at 25%, 1.65 V at 50%, and 3.3 V at 100%.",
-   "tr": "Güzel bir kontrol: multimetreyi LED pinine bağlayın. Hızlı açıp kapanmayı takip edemez, bu yüzden ortalamayı gösterir: yüzde 25'te yaklaşık 0,8 volt, yüzde 50'de 1,65, yüzde 100'de 3,3 volt.",
+   "text": "Put a multimeter on the LED pin. It can't follow the switching, so it shows the average: about zero point eight volts at twenty-five percent, one point six five at fifty, and three point three at a hundred.",
+   "sub": "Put a multimeter on the LED pin. It can't follow the switching, so it shows the average: about 0.8 V at 25%, 1.65 V at 50%, and 3.3 V at 100%.",
+   "tr": "Multimetreyi LED pinine bağlayın. Hızlı geçişi takip edemez, bu yüzden ortalamayı gösterir: yüzde 25'te yaklaşık 0,8 volt, yüzde 50'de 1,65, yüzde 100'de 3,3 volt.",
    "clip": "C1",
    "pad": 3.0
   },
@@ -155,7 +156,8 @@
    "id": "s18",
    "scene": "fade",
    "text": "At the top, step becomes minus one, and the LED fades down. At the bottom, it becomes plus one again.",
-   "tr": "Tepeye varınca adım eksi bir olur ve LED kısılır. Dibe varınca yine artı bir olur."
+   "tr": "Tepeye varınca adım eksi bir olur ve LED kısılır. Dibe varınca yine artı bir olur.",
+   "pad": 0.6
   },
   {
    "id": "s19",
@@ -257,9 +259,9 @@
   {
    "id": "s28",
    "scene": "rgb",
-   "text": "One thing to check: most kits have common cathode LEDs, where the long leg goes to ground. If yours is common anode, the long leg goes to three point three volts, and the colors come out inverted. The code has one line for that.",
-   "sub": "One thing to check: most kits have common cathode LEDs, where the long leg goes to ground. If yours is common anode, the long leg goes to 3.3 V, and the colors come out inverted. The code has one line for that.",
-   "tr": "Bir şeyi kontrol edin: çoğu sette ortak katotlu LED olur; uzun bacak toprağa gider. Sizinki ortak anotluysa uzun bacak 3,3 volta gider ve renkler ters çıkar. Kodda bunun için tek bir satır var."
+   "text": "One thing to check: most kits have common cathode LEDs, where the long leg goes to ground. If yours is the other way around, the code has one line for that.",
+   "sub": "One thing to check: most kits have common cathode LEDs, where the long leg goes to ground. If yours is the other way around, the code has one line for that.",
+   "tr": "Bir şeyi kontrol edin: çoğu sette ortak katotlu LED olur; uzun bacak toprağa gider. Sizinki tersse, kodda bunun için tek bir satır var."
   },
   {
    "id": "s29",
@@ -377,7 +379,8 @@
    "scene": "tourmodes",
    "text": "Part one, the button. On a new press, mode goes up by one. And after three, it goes back to zero.",
    "sub": "Part one, the button. On a new press, mode goes up by one. And after 3, it goes back to 0.",
-   "tr": "Birinci kısım, buton. Yeni bir basışta mode bir artar. Üçten sonra da sıfıra döner."
+   "tr": "Birinci kısım, buton. Yeni bir basışta mode bir artar. Üçten sonra da sıfıra döner.",
+   "pad": 0.6
   },
   {
    "id": "s39t4",
@@ -417,9 +420,9 @@
   {
    "id": "s43",
    "scene": "trouble",
-   "text": "Something not working? If one color never lights, check that leg's resistor and wire. If everything is inverted, white when it should be off, your LED is common anode: set common anode to true, and move the long leg to three point three volts.",
-   "sub": "Something not working? If one color never lights, check that leg's resistor and wire. If everything is inverted, white when it should be off, your LED is common anode: set COMMON_ANODE to true, and move the long leg to 3.3 V.",
-   "tr": "Bir şey çalışmıyor mu? Bir renk hiç yanmıyorsa o bacağın direncini ve kablosunu kontrol edin. Her şey tersse, sönük olması gerekirken beyazsa, LED'iniz ortak anotludur: COMMON_ANODE'u true yapın ve uzun bacağı 3,3 volta taşıyın."
+   "text": "Something not working? If one color never lights, check that leg's resistor and wire. If everything is inverted, your LED is common anode: set common anode to true, and move the long leg to three point three volts.",
+   "sub": "Something not working? If one color never lights, check that leg's resistor and wire. If everything is inverted, your LED is common anode: set COMMON_ANODE to true, and move the long leg to 3.3 V.",
+   "tr": "Bir şey çalışmıyor mu? Bir renk hiç yanmıyorsa o bacağın direncini ve kablosunu kontrol edin. Her şey tersse LED'iniz ortak anotludur: COMMON_ANODE'u true yapın ve uzun bacağı 3,3 volta taşıyın."
   },
   {
    "id": "s44",
