@@ -83,6 +83,8 @@ function trace(scene, o) {
   return bc;
 }
 const title = (scene, html, t0) => { const e = box(scene, 0, 32, 1920, 60, "ptitle", html); hidden(e); show(e, t0, 0.4); return e; };
+/* the real result next to the trace (reused creator clips, looped by footage prep): PRODUCTION_GUIDELINES.md section 4 */
+const inset = (id, t0, t1, desc, sketch) => heroClip(stage, id, t0, t1, desc, { x: 1330, y: 744, w: 520, h: 293, sketch });
 const SRC = {
   hello: `int seconds = 0;
 
@@ -272,6 +274,8 @@ sceneOut(sBlink, S1("s14") + 0.4);
   });
 }
 
+inset("C1", T("s11") + 0.5, S1("s14") + 0.2, "blink_led: the LED blinking once per second.", "blink_led");
+
 /* ======================================================================
  * PART 3 - DECISIONS (button_led): s15-s21
  * ==================================================================== */
@@ -301,6 +305,8 @@ sceneOut(sBtn, S1("s21") + 0.4);
   });
   quizCard(sBtn, "No memory: can it tell you pressed the button <b>just now</b>?", W("s20", "Quick"), T("s21"), "No: only pressed or not pressed. It must remember the last reading.", { x: 1170, y: 480, w: 690, t1: S1("s21") });
 }
+
+inset("C2", T("s16"), W("s20", "Quick") - 0.3, "button_led: the LED lights while the button is held.", "button_led");
 
 /* ======================================================================
  * PART 4 - MEMORY 1 (button_toggle): s22-s28
@@ -337,6 +343,7 @@ sceneOut(sTog, S1("s28") + 0.4);
     ],
   });
 }
+inset("C3", T("s26"), S1("s28") + 0.2, "button_toggle: press on, press off.", "button_toggle");
 likeSub(stage, T("s28") + 2.2, 2.6); // reminder 2 of 2
 
 /* ======================================================================
@@ -369,6 +376,8 @@ sceneOut(sMs, S1("s34") + 0.4);
     ],
   });
 }
+
+inset("C4", T("s29"), S1("s34") + 0.2, "blink_button: the LED blinks; a press stops it.", "blink_button");
 
 /* ======================================================================
  * THE FOUR QUESTIONS: s35-s37
