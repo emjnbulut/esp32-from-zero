@@ -8,6 +8,9 @@ const SC = (cls = "") => el("div", "scene " + cls, '<div class="grid"></div>', s
 const T = (id) => S0(id);
 const hidden = (e) => { gsap.set(e, { opacity: 0 }); return e; };
 const CUT = S0("s04") - 0.1; // the channel sting is inserted here (tools/bumpers.py cut())
+// full-code card after each sketch's real result (user 2026-10-27); make_script.py gives those segments the extra pad
+const FC = 4.5, REPO = "Full code: <b>github.com/emjnbulut/esp32-from-zero</b> → lessons/04-buttons-and-millis · link in the description";
+const fullAfter = (file, next) => fullCode(stage, file + ".ino", SKETCHES[file], T(next) - 0.3 - FC, T(next) - 0.3, REPO);
 function head(parent, html, y = 70) {
   const h = box(parent, 0, y, 1920, 80, "h2", html);
   h.style.textAlign = "center";
@@ -751,7 +754,8 @@ sceneOut(sBo, S1("s40") + 0.4);
   TO(winT, W("s39", "fifty"), 0.3, { opacity: 1 });
   const ok = pill(sBo, 1180, 560, "✓ one press = one count = one flip", "");
   pop(ok, W("s40", "exactly")); hide(ok, W("s40", "sketch"), 0.3);
-  heroClip(stage, "C4", W("s40", "This") - 0.1, T("s41") - 0.3, "button_toggle: press, LED on; press again, LED off.", { full: true });
+  heroClip(stage, "C4", W("s40", "This") - 0.1, T("s41") - 0.3 - FC, "button_toggle: press, LED on; press again, LED off.", { full: true });
+  fullAfter("button_toggle", "s41");
 }
 
 /* ======================================================================
@@ -933,7 +937,8 @@ sceneOut(sMil, S1("s52") + 0.4);
     hidden(c); pop(c, W("s51", w)); hide(c, S1("s51") + 0.1, 0.3);
   }
   // s52: the real result
-  heroClip(stage, "C5", W("s52", "Upload") + 0.6, T("s53") - 0.3, "blink_button: the LED blinks; a press stops it at once, another starts it again.", { full: true });
+  heroClip(stage, "C5", W("s52", "Upload") + 0.6, T("s53") - 0.3 - FC, "blink_button: the LED blinks; a press stops it at once, another starts it again.", { full: true });
+  fullAfter("blink_button", "s53");
 }
 
 /* ======================================================================
@@ -982,7 +987,8 @@ sceneOut(sTwo, S1("s58") + 0.4);
   quizCard(sTwo, "Green interval 150 → 300. Does the red LED change too?", W("s57", "Quick"), T("s58"), "No: each if checks only its own timer", { y: 800, w: 1500, t1: W("s58", "Upload") - 0.2 });
   const unchanged = pill(sTwo, 1500, 210, "red: unchanged ✓", "font-size:24px;background:rgba(74,222,128,.16);color:var(--green)");
   pop(unchanged, W("s58", "only")); hide(unchanged, W("s58", "Upload"), 0.3);
-  heroClip(stage, "C7", W("s58", "Upload") + 0.3, T("s59") - 0.3, "two_leds: red and green blink at their own speeds; a press stops red, green keeps going.", { full: true });
+  heroClip(stage, "C7", W("s58", "Upload") + 0.3, T("s59") - 0.3 - FC, "two_leds: red and green blink at their own speeds; a press stops red, green keeps going.", { full: true });
+  fullAfter("two_leds", "s59");
 }
 
 /* ======================================================================

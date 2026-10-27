@@ -286,7 +286,7 @@
    "sub": "Now every press counts exactly once, and flips the LED exactly once. This sketch is in the lesson folder as button_toggle.",
    "tr": "Artık her basış tam bir kez sayılıyor ve LED'i tam bir kez çeviriyor. Bu sketch ders klasöründe button_toggle adıyla duruyor.",
    "clip": "C4",
-   "pad": 2.0
+   "pad": 6.5
   },
   {
    "id": "s41",
@@ -367,7 +367,7 @@
    "text": "Upload it. The LED blinks, and the moment you press the button, it stops. Press again, and it blinks again.",
    "tr": "Yükleyin. LED yanıp sönüyor ve butona bastığınız anda duruyor. Tekrar basın, yeniden yanıp sönüyor.",
    "clip": "C5",
-   "pad": 2.0
+   "pad": 6.5
   },
   {
    "id": "s53",
@@ -412,7 +412,7 @@
    "text": "No. Each if checks only its own timer. Change one number, and only that LED changes. Upload, and both blink at their own pace, while the button still reacts instantly.",
    "tr": "Hayır. Her if yalnızca kendi zamanlayıcısına bakar. Bir sayıyı değiştirin, yalnızca o LED değişir. Yükleyin; ikisi de kendi hızında yanıp sönüyor ve buton hâlâ anında tepki veriyor.",
    "clip": "C7",
-   "pad": 2.0
+   "pad": 6.5
   },
   {
    "id": "s59",

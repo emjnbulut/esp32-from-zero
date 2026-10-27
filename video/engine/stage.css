@@ -233,3 +233,13 @@ body { font-family: var(--ui); color: var(--text); -webkit-font-smoothing: antia
 .likesub { position: absolute; z-index: 90; display: flex; align-items: center; gap: 10px; padding: 10px 20px; border-radius: 999px;
   background: rgba(11,18,32,.82); border: 1px solid rgba(255,255,255,.14); font: 600 22px var(--ui); color: #dfe6f2; }
 .likesub .ls-i { font-size: 24px; } .likesub .ls-d { width: 1px; height: 22px; background: rgba(255,255,255,.2); margin: 0 4px; }
+/* full sketch card (fullCode in lib.js) */
+.fullcode { position: absolute; z-index: 75; background: var(--bg); display: flex; flex-direction: column; padding: 46px 70px 34px; box-sizing: border-box; }
+.fullcode .fc-head { display: flex; align-items: baseline; gap: 22px; margin-bottom: 26px; }
+.fullcode .fc-k { font: 800 24px var(--ui); letter-spacing: .12em; color: var(--teal); }
+.fullcode .fc-f { font: 700 40px var(--mono); color: var(--text); }
+.fullcode .fc-p { margin-left: auto; font: 600 24px var(--ui); color: var(--muted); }
+.fullcode .fc-cols { flex: 1; display: flex; gap: 34px; }
+.fullcode .fc-col { flex: 1; background: var(--panel); border: 1px solid var(--line); border-radius: 18px; padding: 22px 28px; white-space: pre; overflow: hidden; color: var(--text); }
+.fullcode .fc-foot { margin-top: 20px; font: 600 24px var(--ui); color: var(--muted); }
+.fullcode .fc-foot b { color: var(--amber); font-weight: 700; }

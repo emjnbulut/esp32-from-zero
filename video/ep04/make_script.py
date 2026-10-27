@@ -137,7 +137,7 @@ s("bo3", "bounce", "The simple fix is called debouncing. After every change, pre
 s("bo4", "bounce", "Now every press counts exactly once, and flips the LED exactly once. This sketch is in the lesson folder as button toggle.",
   "Artık her basış tam bir kez sayılıyor ve LED'i tam bir kez çeviriyor. Bu sketch ders klasöründe button_toggle adıyla duruyor.",
   sub="Now every press counts exactly once, and flips the LED exactly once. This sketch is in the lesson folder as button_toggle.",
-  clip="C4", pad=2.0)
+  clip="C4", pad=6.5)  # +4.5 s: full-code card after the result
 # ---- part two: why delay() gets in the way
 s("bl1", "block", "Now, part two. Let's bring back the blinking from last episode, and let the button switch the blinking on and off.",
   "Şimdi ikinci kısım. Geçen bölümdeki yanıp sönmeyi geri getirelim ve butonun yanıp sönmeyi açıp kapatmasını sağlayalım.")
@@ -171,7 +171,7 @@ s("mi7", "millis", "Now the loop never waits. It runs thousands of times a secon
   "Artık loop hiç beklemiyor. Saniyede binlerce kez dönüyor ve her seferinde butonu ve saati kontrol ediyor.")
 s("mi8", "millis", "Upload it. The LED blinks, and the moment you press the button, it stops. Press again, and it blinks again.",
   "Yükleyin. LED yanıp sönüyor ve butona bastığınız anda duruyor. Tekrar basın, yeniden yanıp sönüyor.",
-  clip="C5", pad=2.0)
+  clip="C5", pad=6.5)  # +4.5 s: full-code card after the result
 # ---- a second LED on the upper breadboard
 s("gr1", "green", "And this scales. Let's add a second LED, a green one, with its own speed. Unplug the USB cable. This time we use the upper breadboard.",
   "Ve bu yöntem büyür. Kendi hızı olan ikinci bir LED ekleyelim, yeşil bir LED. USB kablosunu çıkarın. Bu sefer üstteki breadboard'u kullanıyoruz.")
@@ -190,7 +190,7 @@ s("gr5", "green", "Quick question: if we change the green interval to three hund
   sub="Quick question: if we change the green interval to 300, does the red LED change too?", pad=THINK)
 s("gr6", "green", "No. Each if checks only its own timer. Change one number, and only that LED changes. Upload, and both blink at their own pace, while the button still reacts instantly.",
   "Hayır. Her if yalnızca kendi zamanlayıcısına bakar. Bir sayıyı değiştirin, yalnızca o LED değişir. Yükleyin; ikisi de kendi hızında yanıp sönüyor ve buton hâlâ anında tepki veriyor.",
-  clip="C7", pad=2.0)
+  clip="C7", pad=6.5)  # +4.5 s: full-code card after the result
 # ---- your turn
 s("ch1", "challenge", "Your turn. Red keeps blinking every five hundred milliseconds. Make each button press switch the green LED between fast, one hundred fifty, and slow, six hundred, without disturbing red.",
   "Sıra sizde. Kırmızı her 500 milisaniyede yanıp sönmeye devam etsin. Her basışta yeşil LED hızlı, yani 150, ile yavaş, yani 600, arasında değişsin; kırmızı hiç etkilenmesin.",

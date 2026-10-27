@@ -243,6 +243,31 @@ function bigCode(parent, x, y, w, src, opts = {}) {
   return { c, body, bar, hl, lh, pad, h, lineY: (i) => y + pad + i * lh + lh / 2 };
 }
 
+/* ---- full sketch card (user 2026-10-27): after a sketch's real result, the whole file for a few seconds,
+ * small but pausable, with the GitHub path. Long files go in two columns, split at the blank line nearest the middle. */
+function fullCode(parent, file, src, t0, t1, where) {
+  const lines = src.replace(/\s+$/, "").split("\n");
+  while (lines.length && (lines[0].startsWith("//") || !lines[0].trim())) lines.shift(); // file header: the title names the file
+  let cols = [lines];
+  if (lines.length > 24) {
+    let cut = Math.ceil(lines.length / 2), best = 1e9;
+    lines.forEach((l, i) => { if (!l.trim() && Math.abs(i - lines.length / 2) < best) { best = Math.abs(i - lines.length / 2); cut = i; } });
+    cols = [lines.slice(0, cut), lines.slice(cut + 1)];
+  }
+  const rows = Math.max(...cols.map((c) => c.length));
+  const colW = (1780 - 34 * (cols.length - 1)) / cols.length - 60, widest = Math.max(...lines.map((l) => l.length));
+  const size = Math.min(30, Math.floor(800 / rows / 1.45), Math.floor(colW / (widest * 0.6))), lh = Math.round(size * 1.45);
+  const f = box(parent, 0, 0, 1920, 1080, "fullcode",
+    `<div class="fc-head"><span class="fc-k">FULL CODE</span><span class="fc-f">${file}</span><span class="fc-p">⏸ pause to read</span></div>` +
+    `<div class="fc-cols">${cols.map((c) => `<div class="fc-col" style="font:500 ${size}px/${lh}px var(--mono)">` +
+      hlLines(c.join("\n")).map((l) => `<div>${l || " "}</div>`).join("") + "</div>").join("")}</div>` +
+    `<div class="fc-foot">${where}</div>`);
+  gsap.set(f, { opacity: 0 });
+  show(f, t0, 0.3);
+  hide(f, t1, 0.3);
+  return f;
+}
+
 /* ---- v2: "quick question": the question, a thinking bar during the pause, then the answer ---- */
 function quizCard(parent, q, t0, tAns, answer, opts = {}) {
   const w = opts.w || 1300, x = opts.x != null ? opts.x : (1920 - w) / 2, y = opts.y != null ? opts.y : 780;
