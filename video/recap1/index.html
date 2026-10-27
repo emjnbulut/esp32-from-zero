@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ESP32 From Zero - Recap: how to read a sketch</title>
+<link rel="stylesheet" href="../engine/stage.css">
+<style>
+  .memk { position: absolute; font: 700 22px var(--ui); letter-spacing: .14em; color: var(--muted); }
+  .mrow { position: absolute; display: flex; align-items: center; justify-content: space-between; border-radius: 14px;
+    background: #16203a; border: 2px solid #2c3b5e; padding: 0 22px; font: 600 30px var(--mono); }
+  .mrow .nm { color: #9fb0cf; }
+  .mrow .vl { font: 800 40px var(--mono); color: var(--text); }
+  .chip { position: absolute; border-radius: 12px; padding: 10px 18px; font: 700 26px var(--ui); white-space: nowrap; }
+  .serial { position: absolute; border-radius: 14px; background: #060a14; border: 2px solid #2c3b5e; padding: 14px 20px;
+    font: 500 24px/1.45 var(--mono); color: #b9f3ec; overflow: hidden; }
+  .tag3 { position: absolute; border-radius: 10px; padding: 6px 16px; font: 800 24px var(--ui); letter-spacing: .08em; white-space: nowrap; }
+  .qrow { position: absolute; display: flex; align-items: center; gap: 26px; width: 1500px; padding: 22px 34px; border-radius: 18px;
+    background: #121b2e; border: 2px solid #22304d; font: 700 44px var(--display); }
+  .qrow .n { width: 70px; height: 70px; border-radius: 50%; background: var(--teal); color: #04201d; display: flex; align-items: center;
+    justify-content: center; font: 800 40px var(--display); flex: none; }
+  .qrow.hot { border-color: var(--amber); background: rgba(255,181,71,.12); }
+  .qrow.hot .n { background: var(--amber); color: #2a1a00; }
+  .ptitle { position: absolute; left: 0; width: 1920px; text-align: center; font: 700 40px var(--display); color: var(--text); }
+  .ptitle small { color: var(--muted); font: 600 26px var(--ui); margin-left: 16px; }
+</style>
+<script src="../node_modules/gsap/dist/gsap.min.js"></script>
+<script src="../engine/lib.js"></script>
+</head>
+<body>
+<div id="stage"></div>
+<script src="recap1.js"></script>
+</body>
+</html>

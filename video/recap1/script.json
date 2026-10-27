@@ -1,0 +1,305 @@
+{
+ "episode": "recap1",
+ "title": "Recap: Episodes 1-4, how to read a sketch",
+ "voice": "en-US-EricNeural",
+ "rate": "+5%",
+ "lead_in": 0.8,
+ "sting_after": "s02",
+ "clips": {
+  "C1": "REUSED from episode 3 (footage/ep03/C2.mp4): the LED blinking once per second.",
+  "C2": "REUSED from episode 4 (footage/ep04/C3.mp4): button_led, the LED lights while the button is held.",
+  "C3": "REUSED from episode 4 (footage/ep04/C4.mp4): button_toggle, press on, press off.",
+  "C4": "REUSED from episode 4 (footage/ep04/C5.mp4): blink_button, the LED blinks; a press stops it."
+ },
+ "segments": [
+  {
+   "id": "s01",
+   "scene": "cold",
+   "text": "Five sketches. You've already run all of them. Watch them work, one after another.",
+   "tr": "Beş sketch. Hepsini zaten çalıştırdınız. Birbiri ardına çalışmalarını izleyin."
+  },
+  {
+   "id": "s02",
+   "scene": "cold",
+   "text": "By the end of this video, you'll read any of them like a sentence. We'll go slowly, with every value on screen.",
+   "tr": "Bu videonun sonunda hepsini bir cümle gibi okuyabileceksiniz. Yavaş gideceğiz; her değer ekranda olacak."
+  },
+  {
+   "id": "s03",
+   "scene": "skel",
+   "text": "Every sketch has the same three parts. Names at the top. Then setup. Then loop.",
+   "tr": "Her sketch'in üç parçası aynıdır. Üstte isimler. Sonra setup. Sonra loop."
+  },
+  {
+   "id": "s04",
+   "scene": "skel",
+   "text": "A name is a variable: a small box with a label. This box is called seconds, and right now it holds zero.",
+   "tr": "İsim, bir değişkendir: üzerinde etiket olan küçük bir kutu. Bu kutunun adı seconds ve şu an içinde sıfır var."
+  },
+  {
+   "id": "s05",
+   "scene": "skel",
+   "text": "Setup runs once, when the board starts. Here it opens the serial channel, and says hello.",
+   "tr": "Setup, kart başladığında bir kez çalışır. Burada seri kanalı açar ve merhaba der."
+  },
+  {
+   "id": "s06",
+   "scene": "skel",
+   "text": "Loop runs forever. When it reaches the bottom, it jumps straight back to the top.",
+   "tr": "Loop sonsuza kadar çalışır. En alta varınca doğrudan başa döner."
+  },
+  {
+   "id": "s07",
+   "scene": "skel",
+   "text": "Watch the box. Seconds is zero. Add one: now it's one. Print it. Wait a second. Back to the top, add one again: two.",
+   "tr": "Kutuya bakın. Seconds sıfır. Bir ekle: artık bir. Yazdır. Bir saniye bekle. Başa dön, bir daha ekle: iki."
+  },
+  {
+   "id": "s08",
+   "scene": "skel",
+   "text": "That's the first big idea. A variable is the sketch's memory. It keeps its value, round after round.",
+   "tr": "İlk büyük fikir bu. Değişken, sketch'in hafızasıdır. Değerini tur tur korur."
+  },
+  {
+   "id": "s09",
+   "scene": "skel",
+   "text": "Quick question: after the loop has run five times, what does seconds hold?",
+   "tr": "Kısa bir soru: loop beş kez çalıştıktan sonra seconds içinde ne var?",
+   "pad": 2.6
+  },
+  {
+   "id": "s10",
+   "scene": "skel",
+   "text": "Five. Each round adds one, and the box remembers.",
+   "tr": "Beş. Her tur bir ekler ve kutu hatırlar."
+  },
+  {
+   "id": "s11",
+   "scene": "blink",
+   "text": "Blink is the same three parts. The name at the top is a constant: LED pin, twenty-three. That's the pin our LED is wired to.",
+   "sub": "Blink is the same three parts. The name at the top is a constant: LED_PIN, 23. That's the pin our LED is wired to.",
+   "tr": "Blink de aynı üç parçadır. Üstteki isim bir sabit: LED_PIN, 23. LED'imizin bağlı olduğu pin bu."
+  },
+  {
+   "id": "s12",
+   "scene": "blink",
+   "text": "In setup, pin mode says: this pin is an output. Our code will drive it.",
+   "tr": "Setup içinde pinMode şunu söyler: bu pin bir çıkıştır. Kodumuz onu sürecek."
+  },
+  {
+   "id": "s13",
+   "scene": "blink",
+   "text": "In loop, digital write HIGH puts three point three volts on the pin, and the LED lights. Digital write LOW puts zero volts, and it goes dark.",
+   "sub": "In loop, digitalWrite HIGH puts 3.3 volts on the pin, and the LED lights. digitalWrite LOW puts 0 volts, and it goes dark.",
+   "tr": "Loop içinde digitalWrite HIGH pine 3,3 volt verir ve LED yanar. digitalWrite LOW sıfır volt verir ve LED söner."
+  },
+  {
+   "id": "s14",
+   "scene": "blink",
+   "text": "And delay means: wait. For that time, the sketch does nothing at all. Half a second on, half a second off, forever.",
+   "tr": "delay ise şu demek: bekle. O süre boyunca sketch hiçbir şey yapmaz. Yarım saniye açık, yarım saniye kapalı, sonsuza kadar."
+  },
+  {
+   "id": "s15",
+   "scene": "btn",
+   "text": "Now a button. A new name: button pin, twenty-two. And in setup: input pull up. Input means we read the pin. Pull up means: when nobody touches it, it reads HIGH.",
+   "sub": "Now a button. A new name: BUTTON_PIN, 22. And in setup: INPUT_PULLUP. Input means we read the pin. Pull-up means: when nobody touches it, it reads HIGH.",
+   "tr": "Şimdi bir buton. Yeni bir isim: BUTTON_PIN, 22. Setup içinde de INPUT_PULLUP. Input, pini okuyacağımız anlamına gelir. Pull-up ise: kimse dokunmazsa HIGH okur demektir."
+  },
+  {
+   "id": "s16",
+   "scene": "btn",
+   "text": "So the button works backwards. Not pressed: HIGH. Pressed: LOW, because the button connects the pin to ground.",
+   "tr": "Yani buton tersine çalışır. Basılmamış: HIGH. Basılı: LOW, çünkü buton pini toprağa bağlar."
+  },
+  {
+   "id": "s17",
+   "scene": "btn",
+   "text": "In loop, digital read is a question: what is the pin right now? The answer, HIGH or LOW, goes into a box called state.",
+   "tr": "Loop içinde digitalRead bir sorudur: pin şu an ne durumda? Cevap, HIGH ya da LOW, state adlı kutuya girer."
+  },
+  {
+   "id": "s18",
+   "scene": "btn",
+   "text": "Then an if. If state is LOW, the button is pressed, so the LED gets HIGH. Otherwise, it gets LOW.",
+   "tr": "Sonra bir if. State LOW ise buton basılıdır, LED'e HIGH veririz. Değilse LOW veririz."
+  },
+  {
+   "id": "s19",
+   "scene": "btn",
+   "text": "Notice what this sketch remembers. Nothing. Every round it asks again, and decides from scratch.",
+   "tr": "Bu sketch'in neyi hatırladığına dikkat edin. Hiçbir şeyi. Her turda yeniden sorar ve sıfırdan karar verir."
+  },
+  {
+   "id": "s20",
+   "scene": "btn",
+   "text": "Quick question: this sketch has no memory. Can it tell that you pressed the button just now?",
+   "tr": "Kısa bir soru: bu sketch'in hafızası yok. Butona şimdi bastığınızı anlayabilir mi?",
+   "pad": 2.6
+  },
+  {
+   "id": "s21",
+   "scene": "btn",
+   "text": "No. It only knows pressed, or not pressed. To know just pressed, a sketch must remember the last reading.",
+   "tr": "Hayır. Yalnızca basılı ya da basılı değil bilir. Yeni basıldığını anlamak için sketch'in son okumayı hatırlaması gerekir."
+  },
+  {
+   "id": "s22",
+   "scene": "tog",
+   "text": "So we add a second box: last state. It keeps the reading from the round before.",
+   "tr": "O yüzden ikinci bir kutu ekliyoruz: lastState. Bir önceki turdaki okumayı tutar."
+  },
+  {
+   "id": "s23",
+   "scene": "tog",
+   "text": "Each round, we compare. If state is different from last state, something changed. And if it's now LOW, that's a new press.",
+   "tr": "Her turda karşılaştırırız. State, lastState'ten farklıysa bir şey değişmiştir. Şimdi LOW ise bu yeni bir basıştır."
+  },
+  {
+   "id": "s24",
+   "scene": "tog",
+   "text": "On a new press, we flip a true-or-false box called LED on. Not LED on means the opposite. And we count the press.",
+   "sub": "On a new press, we flip a true-or-false box called ledOn. !ledOn means the opposite. And we count the press.",
+   "tr": "Yeni bir basışta, ledOn adlı doğru-yanlış kutusunu çeviririz. !ledOn tersi demektir. Basışı da sayarız."
+  },
+  {
+   "id": "s25",
+   "scene": "tog",
+   "text": "At the very end of the round, we copy state into last state. So next round, the box remembers this round.",
+   "tr": "Turun en sonunda state'i lastState'e kopyalarız. Böylece sonraki tur, bu turu hatırlar."
+  },
+  {
+   "id": "s26",
+   "scene": "tog",
+   "text": "Let's run it. Not pressed: state HIGH, last state HIGH. Same, nothing happens. Now press: state LOW, last state HIGH. Different, and LOW: a new press. The LED turns on.",
+   "sub": "Let's run it. Not pressed: state HIGH, lastState HIGH. Same, nothing happens. Now press: state LOW, lastState HIGH. Different, and LOW: a new press. The LED turns on.",
+   "tr": "Çalıştıralım. Basılmamış: state HIGH, lastState HIGH. Aynı, hiçbir şey olmaz. Şimdi basın: state LOW, lastState HIGH. Farklı ve LOW: yeni bir basış. LED yanar."
+  },
+  {
+   "id": "s27",
+   "scene": "tog",
+   "text": "Keep holding: LOW and LOW. Same again, nothing happens. Let go: HIGH, different, but not LOW. So it's not a press.",
+   "tr": "Basılı tutmaya devam: LOW ve LOW. Yine aynı, hiçbir şey olmaz. Bırakın: HIGH, farklı ama LOW değil. Yani bu bir basış değil.",
+   "pad": 0.7
+  },
+  {
+   "id": "s28",
+   "scene": "tog",
+   "text": "The short delay of fifty milliseconds is the debounce: it waits until the metal contacts stop bouncing.",
+   "tr": "Elli milisaniyelik kısa bekleme, sıçrama önleyicidir: metal temaslar sıçramayı bırakana kadar bekler."
+  },
+  {
+   "id": "s29",
+   "scene": "ms",
+   "text": "One problem is left. Delay freezes everything. To blink and read a button at the same time, we need a different tool: the clock.",
+   "tr": "Bir sorun kaldı. delay her şeyi dondurur. Aynı anda hem yanıp sönmek hem butonu okumak için başka bir araç gerekir: saat.",
+   "pad": 0.7
+  },
+  {
+   "id": "s30",
+   "scene": "ms",
+   "text": "Millis is the number of milliseconds since the board started. It keeps counting by itself. We never wait: we just look at it.",
+   "tr": "millis, kart başladığından beri geçen milisaniye sayısıdır. Kendi kendine saymaya devam eder. Hiç beklemeyiz: sadece ona bakarız."
+  },
+  {
+   "id": "s31",
+   "scene": "ms",
+   "text": "Now is the time right now. Last blink is the time the LED last changed. Now minus last blink is how long ago that was.",
+   "tr": "now, şu anki zamandır. lastBlink, LED'in en son değiştiği zamandır. now eksi lastBlink, bunun ne kadar önce olduğudur."
+  },
+  {
+   "id": "s32",
+   "scene": "ms",
+   "text": "At one thousand, the LED flips, and last blink becomes one thousand. At twelve hundred: two hundred ago, not yet. At fifteen hundred: five hundred. Flip, and last blink is now fifteen hundred.",
+   "sub": "At 1000, the LED flips, and lastBlink becomes 1000. At 1200: 200 ago, not yet. At 1500: 500. Flip, and lastBlink is now 1500.",
+   "tr": "1000'de LED değişir ve lastBlink 1000 olur. 1200'de: 200 önce, daha değil. 1500'de: 500. LED değişir ve lastBlink artık 1500 olur."
+  },
+  {
+   "id": "s33",
+   "scene": "ms",
+   "text": "The button uses the same trick: last change remembers when the button last changed, and we ignore anything faster than fifty milliseconds.",
+   "tr": "Buton da aynı numarayı kullanır: lastChange butonun en son ne zaman değiştiğini hatırlar ve elli milisaniyeden hızlı olan her şeyi yok sayarız."
+  },
+  {
+   "id": "s34",
+   "scene": "ms",
+   "text": "And blinking is a true-or-false box. A press flips it. When it's false, the LED part is skipped, but the button still works, because the loop never waits.",
+   "tr": "blinking de bir doğru-yanlış kutusudur. Bir basış onu çevirir. Yanlış olduğunda LED kısmı atlanır ama buton çalışmaya devam eder, çünkü loop hiç beklemez."
+  },
+  {
+   "id": "s35",
+   "scene": "four",
+   "text": "That's all five sketches. And every sketch answers the same four questions.",
+   "tr": "Beş sketch bu kadar. Ve her sketch aynı dört soruya cevap verir."
+  },
+  {
+   "id": "s36",
+   "scene": "four",
+   "text": "One: what are the names? Two: what happens once, in setup? Three: what repeats, in loop? And four: what does it remember?",
+   "tr": "Bir: isimler neler? İki: setup içinde bir kez ne olur? Üç: loop içinde ne tekrar eder? Dört: neyi hatırlar?"
+  },
+  {
+   "id": "s37",
+   "scene": "four",
+   "text": "The fourth matters most. A box that keeps its value between rounds is how a sketch knows what happened before.",
+   "tr": "En önemlisi dördüncüsü. Turlar arasında değerini koruyan kutu, bir sketch'in daha önce ne olduğunu bilme yoludur."
+  },
+  {
+   "id": "s38",
+   "scene": "prac",
+   "text": "Your turn: three quick ones. Pause the video if you want to think.",
+   "tr": "Sıra sizde: üç kısa soru. Düşünmek isterseniz videoyu durdurun."
+  },
+  {
+   "id": "s39",
+   "scene": "prac",
+   "text": "One. Count starts at zero, and each round adds two. What are the first three prints?",
+   "tr": "Bir. count sıfırdan başlıyor ve her tur iki ekliyor. İlk üç çıktı nedir?",
+   "pad": 3.6
+  },
+  {
+   "id": "s40",
+   "scene": "prac",
+   "text": "Two, four, six. The box remembers, and adds two every round.",
+   "tr": "İki, dört, altı. Kutu hatırlar ve her tur iki ekler."
+  },
+  {
+   "id": "s41",
+   "scene": "prac",
+   "text": "Two. You hold the button for five rounds. The sketch counts a press only when state is LOW and last state is HIGH. How many presses?",
+   "tr": "İki. Butona beş tur boyunca basılı tutuyorsunuz. Sketch yalnızca state LOW ve lastState HIGH iken bir basış sayıyor. Kaç basış olur?",
+   "pad": 3.6
+  },
+  {
+   "id": "s42",
+   "scene": "prac",
+   "text": "One. Only the first round has a change. After that it's LOW and LOW, the same.",
+   "tr": "Bir. Yalnızca ilk turda değişiklik var. Sonrasında LOW ve LOW, aynı."
+  },
+  {
+   "id": "s43",
+   "scene": "prac",
+   "text": "Three. Last blink is zero, and now is seven hundred. The rule is: now minus last blink, at least five hundred. Does the LED flip?",
+   "tr": "Üç. lastBlink sıfır ve now yedi yüz. Kural: now eksi lastBlink en az beş yüz. LED değişir mi?",
+   "pad": 3.6
+  },
+  {
+   "id": "s44",
+   "scene": "prac",
+   "text": "Yes: seven hundred minus zero is seven hundred, and that's at least five hundred. Then last blink becomes seven hundred.",
+   "tr": "Evet: yedi yüz eksi sıfır yedi yüz eder ve bu en az beş yüzdür. Sonra lastBlink yedi yüz olur."
+  },
+  {
+   "id": "s45",
+   "scene": "outro",
+   "text": "Today, we read five sketches with the same four questions, and watched their memory change. If one of them still feels unclear, tell me which one in the comments.",
+   "tr": "Bugün beş sketch'i aynı dört soruyla okuduk ve hafızalarının değişmesini izledik. Hâlâ net olmayan biri varsa yorumlarda hangisi olduğunu yazın."
+  },
+  {
+   "id": "s46",
+   "scene": "outro",
+   "text": "Next time: PWM. We'll fade an LED smoothly, and mix any color. Let's meet in the comments: which sketch was the hardest to read? See you there!",
+   "tr": "Gelecek sefer: PWM. Bir LED'i yumuşakça yakıp söndüreceğiz ve istediğimiz rengi karıştıracağız. Yorumlarda buluşalım: hangi sketch okumak için en zordu? Görüşmek üzere!"
+  }
+ ]
+}
