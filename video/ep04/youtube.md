@@ -20,12 +20,12 @@ Press a button and one LED stops at once, while the other keeps blinking at its 
 4:13 Upload and Serial Monitor
 4:55 Toggle: catching the edge
 6:29 Bounce and debounce
-7:12 Why delay() gets in the way
-7:56 millis(): check the clock
-9:39 A second LED
-10:49 Your turn: the speed-shifter
-11:15 Troubleshooting
-11:36 Recap and next episode
+7:17 Why delay() gets in the way
+8:01 millis(): check the clock
+9:47 A second LED
+11:01 Your turn: the speed-shifter
+11:27 Troubleshooting
+11:49 Recap and next episode
 
 🎵 Music: "Lobby Time" by Kevin MacLeod (incompetech.com), licensed under CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
 🎙 Narration: Chatterbox TTS (Resemble AI, MIT). Voice references: LibriVox (public domain) and FLEURS by Google (CC BY 4.0): https://creativecommons.org/licenses/by/4.0/
