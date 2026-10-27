@@ -245,26 +245,75 @@ function bigCode(parent, x, y, w, src, opts = {}) {
 
 /* ---- full sketch card (user 2026-10-27): after a sketch's real result, the whole file for a few seconds,
  * small but pausable, with the GitHub path. Long files go in two columns, split at the blank line nearest the middle. */
-function fullCode(parent, file, src, t0, t1, where) {
-  const lines = src.replace(/\s+$/, "").split("\n");
+/* marks (code tour, user 2026-10-27): [[t, from, to], ...] highlight the lines from the first line containing `from`
+ * to the first line after it containing `to` (to omitted: just that line; from null: no highlight). */
+function fullCode(parent, file, src, t0, t1, where, marks = []) {
+  let lines = src.replace(/\s+$/, "").split("\n");
   while (lines.length && (lines[0].startsWith("//") || !lines[0].trim())) lines.shift(); // file header: the title names the file
-  let cols = [lines];
-  if (lines.length > 24) {
-    let cut = Math.ceil(lines.length / 2), best = 1e9;
-    lines.forEach((l, i) => { if (!l.trim() && Math.abs(i - lines.length / 2) < best) { best = Math.abs(i - lines.length / 2); cut = i; } });
-    cols = [lines.slice(0, cut), lines.slice(cut + 1)];
-  }
-  const rows = Math.max(...cols.map((c) => c.length));
-  const colW = (1780 - 34 * (cols.length - 1)) / cols.length - 60, widest = Math.max(...lines.map((l) => l.length));
-  const size = Math.min(30, Math.floor(800 / rows / 1.45), Math.floor(colW / (widest * 0.6))), lh = Math.round(size * 1.45);
+  let cols, size;
+  const layout = () => {
+    cols = [lines];
+    if (lines.length > 24) {
+      let cut = Math.ceil(lines.length / 2), best = 1e9;
+      lines.forEach((l, i) => { if (!l.trim() && Math.abs(i - lines.length / 2) < best) { best = Math.abs(i - lines.length / 2); cut = i; } });
+      cols = [lines.slice(0, cut), lines.slice(cut + 1)];
+    }
+    const rows = Math.max(...cols.map((c) => c.length));
+    const colW = (1780 - 34 * (cols.length - 1)) / cols.length - 60, widest = Math.max(...lines.map((l) => l.length));
+    size = Math.min(30, Math.floor(800 / rows / 1.45), Math.floor(colW / (widest * 0.6)));
+  };
+  layout();
+  // too small to read: drop the end-of-line comments (the lesson file keeps them, the narration explains)
+  if (size < 20) { lines = lines.map((l) => (l.trim().startsWith("//") ? l : l.replace(/\s+\/\/.*$/, ""))); layout(); }
+  const lh = Math.round(size * 1.45);
   const f = box(parent, 0, 0, 1920, 1080, "fullcode",
     `<div class="fc-head"><span class="fc-k">FULL CODE</span><span class="fc-f">${file}</span><span class="fc-p">⏸ pause to read</span></div>` +
-    `<div class="fc-cols">${cols.map((c) => `<div class="fc-col" style="font:500 ${size}px/${lh}px var(--mono)">` +
-      hlLines(c.join("\n")).map((l) => `<div>${l || " "}</div>`).join("") + "</div>").join("")}</div>` +
+    `<div class="fc-cols"><div class="fc-in">${cols.map((c) => `<div class="fc-col" style="font:500 ${size}px/${lh}px var(--mono)">` +
+      hlLines(c.join("\n")).map((l) => `<div>${l || " "}</div>`).join("") + "</div>").join("")}</div></div>` +
     `<div class="fc-foot">${where}</div>`);
   gsap.set(f, { opacity: 0 });
   show(f, t0, 0.3);
   hide(f, t1, 0.3);
+  if (marks.length) {
+    const colEls = [...f.querySelectorAll(".fc-col")], PAD = 22; // .fc-col padding-top
+    const bars = colEls.map((c) => { const b = document.createElement("div"); b.className = "fc-hl"; c.prepend(b); return b; });
+    const where_ = (i) => { let n = i; for (let c = 0; c < cols.length; c++) { if (n < cols[c].length) return [c, n]; n -= cols[c].length + (c === 0 && cols.length > 1 ? 1 : 0); } return [cols.length - 1, 0]; };
+    const find = (pat, from = 0) => { for (let i = from; i < lines.length; i++) if (lines[i].includes(pat)) return i; throw new Error(`fullCode ${file}: no line with "${pat}"`); };
+    const spans = marks.map(([t, a, b]) => { if (a == null) return [t, null]; const i = find(a); return [t, i, b ? find(b, i) : i]; });
+    // small text (long sketches): the camera moves in on the highlighted lines, up to 1.7x
+    const inner = f.querySelector(".fc-in"), view = f.querySelector(".fc-cols");
+    let VW, VH;
+    const target = (m) => {
+      if (!m || m[1] == null || size >= 26) return [1, 0, 0];
+      VW = VW || view.offsetWidth; VH = VH || view.offsetHeight;
+      const [c0, r0] = where_(m[1]), [c1, r1] = where_(m[2]);
+      const x0 = colEls[c0].offsetLeft, x1 = colEls[c1].offsetLeft + colEls[c1].offsetWidth;
+      const y0 = c0 === c1 ? PAD + r0 * lh : PAD, y1 = c0 === c1 ? PAD + (r1 + 1) * lh : VH;
+      const s = Math.max(1, Math.min(1.7, 26 / size, (VH * 0.85) / (y1 - y0), (VW * 0.97) / (x1 - x0)));
+      const tx = Math.min(0, Math.max(VW - s * VW, VW / 2 - s * (x0 + x1) / 2));
+      const ty = Math.min(0, Math.max(VH - s * VH, VH / 2 - s * (y0 + y1) / 2));
+      return [s, tx, ty];
+    };
+    const ease = (p) => (p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2);
+    dyn((t) => {
+      let k = -1;
+      spans.forEach((m, i) => { if (t >= m[0]) k = i; });
+      const cur = k < 0 ? [0, null] : spans[k];
+      bars.forEach((b) => (b.style.opacity = 0));
+      if (cur[1] != null) {
+        const [c0, r0] = where_(cur[1]), [c1, r1] = where_(cur[2]);
+        for (let c = c0; c <= c1; c++) {
+          const a = c === c0 ? r0 : 0, z = c === c1 ? r1 : cols[c].length - 1;
+          Object.assign(bars[c].style, { opacity: 1, top: PAD + a * lh - 3 + "px", height: (z - a + 1) * lh + 6 + "px" });
+        }
+      }
+      if (t < t0 - 0.5 || t > t1 + 0.5) return;
+      const A = target(k > 0 ? spans[k - 1] : null), B = target(cur);
+      const p = k < 0 ? 1 : ease(Math.min(1, (t - cur[0]) / 0.6));
+      const v = A.map((a, i) => a + (B[i] - a) * p);
+      inner.style.transform = `translate(${v[1]}px, ${v[2]}px) scale(${v[0]})`;
+    });
+  }
   return f;
 }
 

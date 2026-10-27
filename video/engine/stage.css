@@ -239,7 +239,10 @@ body { font-family: var(--ui); color: var(--text); -webkit-font-smoothing: antia
 .fullcode .fc-k { font: 800 24px var(--ui); letter-spacing: .12em; color: var(--teal); }
 .fullcode .fc-f { font: 700 40px var(--mono); color: var(--text); }
 .fullcode .fc-p { margin-left: auto; font: 600 24px var(--ui); color: var(--muted); }
-.fullcode .fc-cols { flex: 1; display: flex; gap: 34px; }
+.fullcode .fc-cols { flex: 1; position: relative; overflow: hidden; }
+.fullcode .fc-in { position: absolute; inset: 0; display: flex; gap: 34px; transform-origin: 0 0; }
 .fullcode .fc-col { flex: 1; background: var(--panel); border: 1px solid var(--line); border-radius: 18px; padding: 22px 28px; white-space: pre; overflow: hidden; color: var(--text); }
 .fullcode .fc-foot { margin-top: 20px; font: 600 24px var(--ui); color: var(--muted); }
 .fullcode .fc-foot b { color: var(--amber); font-weight: 700; }
+.fullcode .fc-col { position: relative; }
+.fullcode .fc-hl { position: absolute; left: 10px; right: 10px; border-radius: 10px; background: rgba(255,181,71,.16); border: 2px solid rgba(255,181,71,.85); opacity: 0; transition: none; }

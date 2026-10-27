@@ -560,5 +560,61 @@ sceneIn(sOutro, S1("s43") + 0.5);
   TO(fade, D.schedule.duration - 1.2, 1.2, { opacity: 1, ease: "none" });
 }
 
+/* ======================================================================
+ * CODE TOURS (user 2026-10-27: explain every sketch in more detail). The whole sketch on screen while the
+ * narration walks through it; the lines being explained are highlighted (fullCode marks: [t, from, to]).
+ * A tour replaces the separate full-code card (PRODUCTION_GUIDELINES.md section 7) for these sketches.
+ * ==================================================================== */
+const REPO = "Full code: <b>github.com/emjnbulut/esp32-from-zero</b> → lessons/05-pwm-and-rgb · link in the description";
+const tour = (file, first, last, marks) => fullCode(stage, file + ".ino", SKETCHES[file], T(first) - 0.4, S1(last) + 0.4, REPO, marks);
+
+tour("pwm_levels", "s11t1", "s11t3", [
+  [T("s11t1"), "const int LED_PIN"],
+  [W("s11t1", "Setup"), "void setup", "}"],
+  [W("s11t2", "function"), "void showLevel"],
+  [W("s11t2", "Inside"), "analogWrite(LED_PIN, value)"],
+  [W("s11t2", "print"), 'Serial.print("analogWrite', 'Serial.println("% on'],
+  [W("s11t2", "wait"), "delay(2000)"],
+  [T("s11t3"), "void loop", "showLevel(255)"],
+]);
+
+tour("fade_millis", "s21t1", "s21t5", [
+  [W("s21t1", "Brightness"), "int brightness"],
+  [W("s21t1", "Step"), "int step"],
+  [T("s21t2"), "unsigned long lastStep"],
+  [W("s21t2", "fading"), "bool fading"],
+  [W("s21t2", "two"), "int lastState", "unsigned long lastChange"],
+  [T("s21t3"), "unsigned long now = millis"],
+  [W("s21t3", "Part"), "// PART 1", "fading = !fading"],
+  [W("s21t3", "flips"), "fading = !fading"],
+  [T("s21t4"), "// PART 2", "if (fading && now - lastStep"],
+  [W("s21t4", "note"), "lastStep = now;", "brightness = brightness + step"],
+  [W("s21t5", "At"), "if (brightness >= 255)", "step = -1"],
+  [W("s21t5", "At", 2), "if (brightness <= 0)", "step = 1;"],
+  [W("s21t5", "Finally"), "analogWrite(LED_PIN, brightness)"],
+]);
+
+tour("rgb_colors", "s34t1", "s34t3", [
+  [T("s34t1"), "const int RED_PIN", "const int BLUE_PIN"],
+  [W("s34t1", "common"), "const bool COMMON_ANODE"],
+  [T("s34t2"), "void setColor"],
+  [W("s34t2", "If"), "if (COMMON_ANODE)", "b = 255 - b"],
+  [W("s34t2", "Then"), "analogWrite(RED_PIN, r)", "analogWrite(BLUE_PIN, b)"],
+  [T("s34t3"), "void loop", "40,"],
+  [W("s34t3", "fifty-five"), "255, 255,   0"],
+]);
+
+tour("color_modes", "s39t1", "s39t5", [
+  [T("s39t1"), null],
+  [T("s39t2"), "int mode"],
+  [W("s39t2", "Level"), "int level", "unsigned long lastStep"],
+  [T("s39t3"), "// PART 1", "Serial.println(mode)"],
+  [W("s39t3", "new"), "mode = mode + 1", "mode = 0;"],
+  [T("s39t4"), "// PART 2", "setColor(0, 0, 255)"],
+  [W("s39t4", "Else"), "} else if (mode == 1)"],
+  [W("s39t4", "else", 2), "} else {", "step = 1;"],
+  [T("s39t5"), "setColor(level, 0, 255 - level)"],
+]);
+
 window.__seek(0);
 window.__ready = true;
