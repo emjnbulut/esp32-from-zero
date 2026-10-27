@@ -103,6 +103,14 @@ Kullanıcı kararı: anlatımdaki büyük 3–6 satırlık kod kartları kalır;
 
 **Kod turu (27 Ekim 2026, kullanıcı: "kodlar kafa karıştırıcı olmaya başladı"):** Bölüm 5'ten itibaren her ana kodun sonuç çekiminden hemen önce 20–45 sn'lik bir **kod turu** gelir: tam kod ekranda (`fullCode` + `marks`), anlatıcı sırayla değişkenleri, setup'ı ve loop'un kısımlarını anlatır; anlatılan satırlar vurgulanır, yazı küçükse kamera o satırlara yaklaşır. Kod turu olan kodda ayrı tam kod kartı gerekmez. Kod dosyalarındaki yorumlar sade dille her bloğu açıklar ("What it does" özeti + PART 1 / PART 2 başlıkları); ders sayfasında her kodun tamamı ve "Line by line" tablosu bulunur. Yeni segmentler mevcut kimlikleri değiştirmez (`s11t1` gibi), böylece hazır seslendirmeler korunur.
 
+## 8. Bir bölüm = bir konu + pratik, ~10 dk — 27 Ekim 2026
+
+Kullanıcı kararı ("kodlama kısmı kafa karıştırıcı", izleyici gözüyle): bölüm 6'dan itibaren her bölüm **tek bir yeni konu** öğretir, kalan süre o konunun **pratiği** olur; hedef süre **yaklaşık 10 dk**. Bölüm 4–5'teki "iki konu" biçimi (27 Ekim'e kadar) bırakıldı; yayınlanmış/hazır bölümler (04, 05) olduğu gibi kalır.
+- Yapı: açılış sonucu → konunun sade anlatımı (önce kodsuz, tek cümle) → kodu **parça parça büyüt** (3 satırlık çalışan sürüm, sonuç, sonra bir satır ekle) → pratik (önceki bilgilerle küçük görevler) → alıştırma.
+- Zor fikir en fazla 1 tane; ikinci yarıda yeni mantık değil, bilinenlerin birleşmesi öğretilir.
+- Kodun önemli değişkenleri anlatım sırasında ekranda "şu an" kutusunda canlı gösterilir (ör. `brightness = 128, step = +1`).
+- Kontrol: `python tools/lesson_lint.py epXX` senaryo aşamasında çalıştırılır; uyarılar ses üretilmeden önce giderilir.
+
 ## Yüklemede yapay zekâ etiketi tercihi — 23 Ekim 2026
 
 Kullanıcı, videolar yüklenirken yapay zekâ etiketi görünmesini istemiyor. Gelecek yüklemelerde sırf üretimde AI araçları kullanıldı diye otomatik `Evet / Yes` seçme.
