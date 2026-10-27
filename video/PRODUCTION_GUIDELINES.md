@@ -97,6 +97,10 @@ Kullanıcı kararı: bir dilin dublaj diyaloğu ile o dilin altyazısı **aynı 
   sınırlarında kalır, böylece ses ve yazı birlikte ilerler.
 - Kontrol: yayından önce her dublaj dili için metin karşılaştırması (altyazı ↔ dublaj) çalıştırılır.
 
+## 7. Her kodun tam hali ekranda — 27 Ekim 2026
+
+Kullanıcı kararı: anlatımdaki büyük 3–6 satırlık kod kartları kalır; ayrıca her kod dosyasının gerçek sonuç çekiminden hemen sonra **~4,5 saniyelik "FULL CODE" kartı** gelir. Kart dosyanın tamamını (baştaki açıklama satırları hariç) bir ya da iki sütunda, sığacak boyutta gösterir; köşede "pause to read", altta GitHub yolu yazar. Motor: `fullCode()` (`video/engine/lib.js`), kodlar `node tools/sketches.mjs epXX <ders-klasörü>` ile `epXX/sketches.js` dosyasına toplanır. İlgili segmente `make_script.py` içinde +4,5 s `pad` eklenir; sonuç çekiminin bitişi kart kadar öne alınır. Ödev çözümleri gösterilmez. Bölüm 4 ilk uygulamadır; Bölüm 5 ve sonrası aynı şekilde yapılır.
+
 ## Yüklemede yapay zekâ etiketi tercihi — 23 Ekim 2026
 
 Kullanıcı, videolar yüklenirken yapay zekâ etiketi görünmesini istemiyor. Gelecek yüklemelerde sırf üretimde AI araçları kullanıldı diye otomatik `Evet / Yes` seçme.
