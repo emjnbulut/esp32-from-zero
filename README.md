@@ -3,7 +3,8 @@
 A free, beginner-friendly video series that teaches the ESP32 microcontroller step by step.
 If you know a little C, you can follow along.
 
-- **Videos:** YouTube (link coming soon), English narration with English and Turkish subtitles
+- **Videos:** [Pin by Pin Lab on YouTube](https://www.youtube.com/channel/UCOGFzocCfvfYWiA5-MfHHwQ), English narration, dubs in Turkish, Hindi, Portuguese and Spanish, subtitles in 12 languages
+- **Practice in the browser:** [Pin by Pin Lab](https://emjnbulut.github.io/esp32-learning-lab/), a free ESP32 simulator with projects for every episode ([source](https://github.com/emjnbulut/esp32-learning-lab))
 - **Episode list:** see [CURRICULUM.md](CURRICULUM.md)
 
 ## Repository layout
@@ -26,6 +27,9 @@ tools/            # scripts that build the videos
 | 02 | Meet the Board and the Breadboard | [lessons/02-board-and-breadboard](lessons/02-board-and-breadboard) |
 | 03 | Your First Circuit: Blink an LED | [lessons/03-blink-an-led](lessons/03-blink-an-led) |
 | 04 | Buttons and Doing Two Things at Once | [lessons/04-buttons-and-millis](lessons/04-buttons-and-millis) |
+| 05 | PWM and RGB Color Mixing | [lessons/05-pwm-and-rgb](lessons/05-pwm-and-rgb) |
+
+The full 16-episode plan is in [CURRICULUM.md](CURRICULUM.md).
 
 ## How the videos are made
 
