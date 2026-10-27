@@ -123,6 +123,24 @@ const V = {
     rgbLed(1010, 60, 210, [60, 140, 255]);
     pill(760, 600, "PWM: no delay()", "rgba(255,181,71,.18)", "var(--amber)");
   },
+  // recap (numberless special, 2026-10-27): one focus = a line of code and the box that remembers (MEMORY)
+  recap_A() {
+    title([["READ ANY", "white", "font-size:112px"], ["SKETCH", "amber"]], 150, 176);
+    card(690, 110, 560, 250, `<div class="code" style="font-size:34px;line-height:1.55"><span class="kw">int</span> seconds = <span class="num">0</span>;
+<span style="background:rgba(255,181,71,.25);border-radius:8px;padding:0 8px;margin:0 -8px;display:inline-block">seconds = seconds + <span class="num">1</span>;</span>
+<span class="fn">delay</span>(<span class="num">1000</span>);</div>`);
+    card(770, 400, 400, 170, `<div style="padding:22px 30px;text-align:center;border:3px solid var(--amber);border-radius:22px;height:100%"><div style="font:700 26px var(--ui);letter-spacing:.14em;color:var(--muted)">MEMORY</div>
+      <div style="font:800 56px var(--mono);margin-top:6px">seconds <span style="color:var(--amber)">5</span></div></div>`);
+    pill(760, 612, "5 sketches · 1 idea", "rgba(25,195,180,.18)", "var(--teal)");
+  },
+  recap_B() {
+    title([["CODE", "white"], ["MEMORY", "teal"]], 150, 150);
+    card(700, 130, 520, 200, `<div class="code" style="font-size:34px"><span class="kw">int</span> lastState = HIGH;
+<span class="kw">bool</span> ledOn = <span class="kw">false</span>;
+<span class="kw">int</span> presses = <span class="num">0</span>;</div>`);
+    card(700, 380, 520, 210, `<div style="padding:20px 28px;font:800 44px/1.45 var(--mono)">lastState <span style="color:var(--amber);float:right">LOW</span><br>ledOn <span style="color:var(--amber);float:right">true</span><br>presses <span style="color:var(--amber);float:right">1</span></div>`);
+    pill(740, 618, "how a sketch remembers", "rgba(255,181,71,.18)", "var(--amber)");
+  },
   ep04_F() {
     title([["PRESS", "white"], ["= INSTANT", "red", "font-size:118px"]], 150, 150);
     button(760, 300, 250, true);
@@ -133,7 +151,7 @@ const V = {
 
 const key = location.search.slice(1);
 put(null, null, 0, 0, `${LOGOS.A().replace("<svg ", '<svg width="46" height="46" ')}<span>ESP32 From Zero</span>`, "brand", "width:auto;height:auto");
-put(null, null, 0, 0, `EP ${Number(key.slice(2, 4))}`, "ep", "width:auto;height:auto");
+put(null, null, 0, 0, key.startsWith("recap") ? "RECAP" : `EP ${Number(key.slice(2, 4))}`, "ep", "width:auto;height:auto");
 V[key]();
 window.__keys = Object.keys(V);
 window.__ready = true;
