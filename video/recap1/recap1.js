@@ -300,7 +300,8 @@ sceneOut(sBtn, S1("s21") + 0.4);
       st(W("s18", "Otherwise"), 14, { state: "HIGH" }, { led: false, chip: { html: "otherwise → LED gets LOW", col: "amber" } }),
       st(T("s19"), -1, null, { chip: { html: "remembers: nothing", col: "red" } }),
       st(T("s20"), -1, null, { chip: { html: "pressed? yes. JUST pressed? ?", col: "amber" } }),
-      st(T("s21"), -1, null, { chip: { html: "needs the LAST reading", col: "teal" } }),
+      st(T("s21"), -1, null, { chip: { html: "🚪 closed now… was it open before?", col: "teal" } }),
+      st(W("s21", "remember"), -1, null, { chip: { html: "needs the LAST reading", col: "teal" } }),
     ],
   });
   quizCard(sBtn, "No memory: can it tell you pressed the button <b>just now</b>?", W("s20", "Quick"), T("s21"), "No: only pressed or not pressed. It must remember the last reading.", { x: 1170, y: 480, w: 690, t1: S1("s21") });
@@ -360,7 +361,8 @@ sceneOut(sMs, S1("s34") + 0.4);
     code: SRC.ms, t0: S0("s29") - 0.1, led: true, size: 25,
     vars: [{ name: "now" }, { name: "lastBlink" }, { name: "diff", label: "now − lastBlink" }, { name: "ledOn" }, { name: "blinking" }],
     steps: [
-      st(T("s29"), 6, { lastBlink: 0, ledOn: "false", blinking: "true" }, { chip: { html: "delay() freezes everything", col: "red" } }),
+      st(T("s29"), 6, { lastBlink: 0, ledOn: "false", blinking: "true" }, { chip: { html: "⏲ delay = staring at a kitchen timer", col: "red" } }),
+      st(W("s29", "wall"), 6, null, { chip: { html: "🕒 millis = glancing at a wall clock", col: "teal" } }),
       ...tickSteps,
       st(T("s31"), 7, { now: 1200, lastBlink: 1000, diff: 200 }, { chip: { html: "now = the time right now", col: "teal" } }),
       st(W("s31", "Last"), 2, null, { chip: { html: "lastBlink = when it last changed", col: "teal" } }),

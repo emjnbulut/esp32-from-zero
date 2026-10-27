@@ -140,8 +140,8 @@
   {
    "id": "s21",
    "scene": "btn",
-   "text": "No. It only knows pressed, or not pressed. To know just pressed, a sketch must remember the last reading.",
-   "tr": "Hayır. Yalnızca basılı ya da basılı değil bilir. Yeni basıldığını anlamak için sketch'in son okumayı hatırlaması gerekir."
+   "text": "No. It only knows pressed, or not pressed. Think of a door: to know someone just closed it, you must remember it was open a moment ago. A sketch needs to remember the last reading.",
+   "tr": "Hayır. Yalnızca basılı ya da basılı değil bilir. Bir kapı gibi düşünün: birinin kapıyı yeni kapattığını anlamak için kapının az önce açık olduğunu hatırlamanız gerekir. Sketch'in son okumayı hatırlaması gerekir."
   },
   {
    "id": "s22",
@@ -191,8 +191,8 @@
   {
    "id": "s29",
    "scene": "ms",
-   "text": "One problem is left. Delay freezes everything. To blink and read a button at the same time, we need a different tool: the clock.",
-   "tr": "Bir sorun kaldı. delay her şeyi dondurur. Aynı anda hem yanıp sönmek hem butonu okumak için başka bir araç gerekir: saat.",
+   "text": "One problem is left. Delay is like staring at a kitchen timer: you can't do anything else. It's better to glance at a wall clock while you work. A sketch has one too.",
+   "tr": "Bir sorun kaldı. delay, mutfak zamanlayıcısına bakakalmak gibidir: başka hiçbir şey yapamazsınız. İşinizi yaparken duvar saatine göz atmak daha iyi. Bir sketch'in de bir saati var.",
    "pad": 0.7
   },
   {

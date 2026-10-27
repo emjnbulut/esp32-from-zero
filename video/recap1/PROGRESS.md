@@ -16,3 +16,12 @@ Built end to end: build/recap1_final.mp4 (EN, 7.6 min), build/recap1_tr_dub.mp4,
 Not watched by the user yet. Open points: user review (does the MEMORY panel make the code clear? blink_button code is small on a phone),
 thumbnail (Claude decides), youtube.md + localize (titles/descriptions), HI/PT/ES dubs later, Short for the recap, upload Fri 30 Oct 17:00.
 Re-run all: bash video/recap1/build_all.sh (delete build/rebuild.done first); scenes: video/recap1/recap1.js; text: make_script.py.
+
+## State 2026-10-28 ~00:40 (user closed the session mid-rebuild)
+Changes since the last full build: real-footage insets next to every trace (footage/recap1/C1-C4 are looped 70 s files, gitignored) and two analogies
+(s21 door, s29 kitchen timer vs wall clock) in EN + TR; EN narration + schedule are redone, the TR dub was being retaken, render/audio/compose/dub_tr/subs were NOT finished.
+build/recap1_final.mp4 on disk = the previous version (insets, WITHOUT the analogies).
+RESUME: `bash video/recap1/build_all.sh >> video/recap1/build_all3.log 2>&1` (resumable through build/rebuild.done; it skips finished steps; run it in short foreground chunks or let it run in the background).
+If build/rebuild.done lists schedule, render, audio, compose, dub_tr and subs the build is complete: then rerun `python video/recap1/make_localize.py` (chapter times moved) and watch the video.
+Open: user has not given feedback on clarity yet; HI/PT/ES dubs not made (EN + TR first); upload Fri 30 Oct 17:00; thumbnail = video/thumbs/build/recap_A.png.
+Also pending from this session: ep06 lessons/06-analog-input sketches written and compiled (not committed yet), no script/scenes for ep06 until the recap feedback is in.

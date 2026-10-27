@@ -90,9 +90,9 @@ s("s19", "btn", "Notice what this sketch remembers. Nothing. Every round it asks
 s("s20", "btn", "Quick question: this sketch has no memory. Can it tell that you pressed the button just now?",
   "Kısa bir soru: bu sketch'in hafızası yok. Butona şimdi bastığınızı anlayabilir mi?",
   "Kısa bir soru: bu sketçin hafızası yok. Butona şimdi bastığınızı anlayabilir mi?", pad=THINK)
-s("s21", "btn", "No. It only knows pressed, or not pressed. To know just pressed, a sketch must remember the last reading.",
-  "Hayır. Yalnızca basılı ya da basılı değil bilir. Yeni basıldığını anlamak için sketch'in son okumayı hatırlaması gerekir.",
-  "Hayır. Yalnızca basılı ya da basılı değil bilir. Yeni basıldığını anlamak için sketçin son okumayı hatırlaması gerekir.")
+s("s21", "btn", "No. It only knows pressed, or not pressed. Think of a door: to know someone just closed it, you must remember it was open a moment ago. A sketch needs to remember the last reading.",
+  "Hayır. Yalnızca basılı ya da basılı değil bilir. Bir kapı gibi düşünün: birinin kapıyı yeni kapattığını anlamak için kapının az önce açık olduğunu hatırlamanız gerekir. Sketch'in son okumayı hatırlaması gerekir.",
+  "Hayır. Yalnızca basılı ya da basılı değil bilir. Bir kapı gibi düşünün: birinin kapıyı yeni kapattığını anlamak için kapının az önce açık olduğunu hatırlamanız gerekir. Sketçin son okumayı hatırlaması gerekir.")
 # ---- memory 1 (button_toggle)
 s("s22", "tog", "So we add a second box: last state. It keeps the reading from the round before.",
   "O yüzden ikinci bir kutu ekliyoruz: lastState. Bir önceki turdaki okumayı tutar.",
@@ -118,9 +118,9 @@ s("s28", "tog", "The short delay of fifty milliseconds is the debounce: it waits
   "Elli milisaniyelik kısa bekleme, sıçrama önleyicidir: metal temaslar sıçramayı bırakana kadar bekler.",
   "Elli milisaniyelik kısa bekleme, sıçrama önleyicidir: metal temaslar sıçramayı bırakana kadar bekler.")
 # ---- memory 2 (blink_button)
-s("s29", "ms", "One problem is left. Delay freezes everything. To blink and read a button at the same time, we need a different tool: the clock.",
-  "Bir sorun kaldı. delay her şeyi dondurur. Aynı anda hem yanıp sönmek hem butonu okumak için başka bir araç gerekir: saat.",
-  "Bir sorun kaldı. Dilay her şeyi dondurur. Aynı anda hem yanıp sönmek hem butonu okumak için başka bir araç gerekir: saat.", pad=0.7)
+s("s29", "ms", "One problem is left. Delay is like staring at a kitchen timer: you can't do anything else. It's better to glance at a wall clock while you work. A sketch has one too.",
+  "Bir sorun kaldı. delay, mutfak zamanlayıcısına bakakalmak gibidir: başka hiçbir şey yapamazsınız. İşinizi yaparken duvar saatine göz atmak daha iyi. Bir sketch'in de bir saati var.",
+  "Bir sorun kaldı. Dilay, mutfak zamanlayıcısına bakakalmak gibidir: başka hiçbir şey yapamazsınız. İşinizi yaparken duvar saatine göz atmak daha iyi. Bir sketçin de bir saati var.", pad=0.7)
 s("s30", "ms", "Millis is the number of milliseconds since the board started. It keeps counting by itself. We never wait: we just look at it.",
   "millis, kart başladığından beri geçen milisaniye sayısıdır. Kendi kendine saymaya devam eder. Hiç beklemeyiz: sadece ona bakarız.",
   "Milis, kart başladığından beri geçen milisaniye sayısıdır. Kendi kendine saymaya devam eder. Hiç beklemeyiz: sadece ona bakarız.")
