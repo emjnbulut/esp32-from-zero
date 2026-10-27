@@ -1,0 +1,170 @@
+{
+ "episode": "ep04_challenge",
+ "source": "video/ep04/build/video.mp4",
+ "note": "Challenge-solution Short for episode 4 (speed-shifter), 2026-10-27. User: tight crops, fast cuts, nobody gets bored. Footage: footage/ep04/C8_run.mp4 (creator, green LED switches speed, yellow steady), C8_build.mp4 (teardown played backwards, 6x), C8_code1-3.mp4 (code cards). Related video = episode 4.",
+ "cta": {
+  "en": "Full lesson",
+  "sub": "linked: related video"
+ },
+ "segments": [
+  {
+   "id": "c0",
+   "chip": "CHALLENGE SOLVED",
+   "headline": {
+    "en": "The speed-shifter"
+   },
+   "say": {
+    "en": "Last episode's challenge, solved. One press, and the green LED switches between fast and slow.",
+    "tr": "Geçen bölümün ödevi çözüldü. Bir basış ve yeşil LED hızlı ile yavaş arasında geçiyor."
+   },
+   "show": {
+    "en": "Last episode's challenge, solved. One press, and the green LED switches between fast and slow."
+   },
+   "shots": [
+    {
+     "file": "footage/ep04/C8_run.mp4",
+     "src": 2.2,
+     "speed": 1.0,
+     "crop": [
+      20,
+      330,
+      1000,
+      1000
+     ]
+    }
+   ]
+  },
+  {
+   "id": "c1",
+   "chip": "THE CIRCUIT",
+   "headline": {
+    "en": "Same circuit as episode 4"
+   },
+   "say": {
+    "en": "Same circuit as episode four. The yellow one keeps its own beat.",
+    "tr": "Devre dördüncü bölümdekiyle aynı. Sarı LED kendi ritminde devam ediyor."
+   },
+   "show": {
+    "en": "Same circuit as episode 4. The yellow one keeps its own beat."
+   },
+   "shots": [
+    {
+     "file": "footage/ep04/C8_build.mp4",
+     "src": 0.3,
+     "speed": 2.6,
+     "crop": [
+      0,
+      300,
+      1080,
+      1080
+     ]
+    }
+   ]
+  },
+  {
+   "id": "c2",
+   "chip": "THE TRICK",
+   "headline": {
+    "en": "Speed = a variable"
+   },
+   "say": {
+    "en": "The trick: the speed is just a variable, green interval.",
+    "tr": "Püf noktası: hız sadece bir değişken, grin intırvıl."
+   },
+   "show": {
+    "en": "The trick: the speed is just a variable, greenInterval."
+   },
+   "shots": [
+    {
+     "file": "footage/ep04/C8_code1.mp4",
+     "src": 0,
+     "crop": [
+      0,
+      0,
+      1080,
+      1080
+     ]
+    }
+   ]
+  },
+  {
+   "id": "c3",
+   "chip": "ON EVERY PRESS",
+   "headline": {
+    "en": "150 ↔ 600"
+   },
+   "say": {
+    "en": "Each new press swaps it. One fifty becomes six hundred, and back.",
+    "tr": "Her yeni basış onu değiştiriyor. Yüz elli altı yüz oluyor, sonra geri."
+   },
+   "show": {
+    "en": "Each new press swaps it. 150 becomes 600, and back."
+   },
+   "shots": [
+    {
+     "file": "footage/ep04/C8_code2.mp4",
+     "src": 0,
+     "crop": [
+      0,
+      0,
+      1080,
+      1080
+     ]
+    }
+   ]
+  },
+  {
+   "id": "c4",
+   "chip": "THE TIMER",
+   "headline": {
+    "en": "millis() does the rest"
+   },
+   "say": {
+    "en": "And the green timer simply waits for green interval. Nothing else changes.",
+    "tr": "Yeşilin zamanlayıcısı da sadece grin intırvıl kadar bekliyor. Başka hiçbir şey değişmiyor."
+   },
+   "show": {
+    "en": "And the green timer simply waits for greenInterval. Nothing else changes."
+   },
+   "shots": [
+    {
+     "file": "footage/ep04/C8_code3.mp4",
+     "src": 0,
+     "crop": [
+      0,
+      0,
+      1080,
+      1080
+     ]
+    }
+   ]
+  },
+  {
+   "id": "c5",
+   "chip": "EPISODE 4",
+   "headline": {
+    "en": "How did YOU solve it?"
+   },
+   "say": {
+    "en": "Full code is in the lesson folder. How did you solve it? Tell me in the comments.",
+    "tr": "Kodun tamamı ders klasöründe. Sen nasıl çözdün? Yorumlarda anlat."
+   },
+   "show": {
+    "en": "Full code is in the lesson folder. How did you solve it? Tell me in the comments."
+   },
+   "shots": [
+    {
+     "file": "footage/ep04/C8_run.mp4",
+     "src": 8.6,
+     "speed": 1.0,
+     "crop": [
+      20,
+      330,
+      1000,
+      1000
+     ]
+    }
+   ]
+  }
+ ]
+}
