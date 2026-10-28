@@ -403,3 +403,17 @@ function likeSub(parent, t0, dur = 2.6, opts = {}) {
   TO(e, t0 + dur, 0.45, { opacity: 0, y: 8, ease: "power2.in" });
   return e;
 }
+
+/* ---- v3: everyday example card (PRODUCTION_GUIDELINES.md section 9, 2026-10-28): the picture of an idea over the
+ * dimmed scene while the narrator tells it, e.g. exampleCard(stage, "📦", "A labelled moving box", "a variable = …", t0, t1).
+ * Real-footage insets are composited on top later, so keep the card above y = 740. ---- */
+function exampleCard(parent, emoji, head, line, t0, t1, opts = {}) {
+  const dim = box(parent, 0, 0, 1920, 1080, "", ""); css(dim, { background: "rgba(6,10,20,.74)" });
+  const c = box(parent, opts.x || 330, opts.y || 360, opts.w || 1260, opts.h || 330, "excard",
+    `<div class="em">${emoji}</div><div><div class="hd">${head}</div><div class="ln">${line}</div></div>`);
+  gsap.set([dim, c], { opacity: 0 });
+  TO(dim, t0 - 0.1, 0.3, { opacity: 1, ease: "power1.out" });
+  pop(c, t0, 0.4);
+  TO([dim, c], t1, 0.35, { opacity: 0, ease: "power1.in" });
+  return c;
+}

@@ -29,8 +29,8 @@ LEAD_IN = 3.2      # title animation before the first word
 GAP = 0.45         # pause between segments of the same scene
 SCENE_GAP = 1.1    # pause when the scene changes
 TAIL = 4.0         # outro hold after the last word
-DUB_FIT = 1.08     # a dub may be sped up this much; beyond it the segment's slot grows for every language
-DUB_BREATH = 0.2   # same as tools/dub.py BREATH
+DUB_FIT = 1.03     # a dub may be sped up this much (inaudible); beyond it the segment's slot grows for every language
+DUB_BREATH = 0.35  # same as tools/dub.py BREATH
 
 
 def dub_durations(ep: Path) -> dict:

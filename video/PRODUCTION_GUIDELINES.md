@@ -111,6 +111,27 @@ Kullanıcı kararı ("kodlama kısmı kafa karıştırıcı", izleyici gözüyle
 - Kodun önemli değişkenleri anlatım sırasında ekranda "şu an" kutusunda canlı gösterilir (ör. `brightness = 128, step = +1`).
 - Kontrol: `python tools/lesson_lint.py epXX` senaryo aşamasında çalıştırılır; uyarılar ses üretilmeden önce giderilir.
 
+## 9. Anlatım: insan gibi, günlük örneklerle, nefes alarak — 28 Ekim 2026
+
+Kullanıcı kararı (Recap TR dublajını dinledikten sonra): "konuyu çok kötü anlatıyor; noktalama ve nefese dikkat etmediği için her şey karman çorman; terimlere boğup geçiyor; daha açıklayıcı, insan gibi, günlük hayattan bol örnekle anlatsın". Bütün dillerde geçerli. **Recap ve Bölüm 05'ten itibaren** uygulanır (05 yayından önce yeniden yazılır); yayımlanmış 01–04 olduğu gibi kalır.
+
+Ölçülen sorun (Recap, 28 Ekim): İngilizce konuşma hızı ~198 kelime/dk (hece 4,5/sn, tek satırlarda 5,6); Türkçe satırdan satıra 106–217 kelime/dk savruluyor; Hindi dublajda 24 yerde cümle ortasında >1 sn takılma; HI/PT/ES dublajlar yerleştirilirken 1,2× hızlandırılıyordu. Cümle sonu duraklaması sabit 0,32 sn, virgül 0,12 sn idi.
+
+**Metin**
+- Her yeni fikir **önce günlük hayattan bir örnekle** gelir, sonra adı (terim), sonra kod. Aynı örnek kod izlenirken yeniden anılır ("skor tabelası gibi"). Her bölüm kısmında en az bir örnek; ekranda emoji + kısa karşılık kartıyla gösterilir.
+- **Benzetmeden hemen sonra nesnel tanım** (kullanıcı, 28 Ekim: "terimlerin gerçekten ne işe yaradığını nesnel anlamda da bilmeleri gerek"): "Gerçekte olan şu: …" / "Teknik olarak …" diye başlayan 1–2 cümle, terimin kartta/kodda gerçekte ne yaptığını söyler (ör. değişken = hafızada adı olan yer; `INPUT_PULLUP` = çipin içindeki direnç pini 3,3 V'a çeker; `delay(500)` = program 500 ms durur, hiçbir satır çalışmaz; `loop` dışında tanımlanan kutu değerini korur, içindeki her turda yeniden oluşur). Kod işaretleri (`==`, `!=`, `!`, `++`, `&&`, `? :`) ilk geçtikleri yerde anlamıyla söylenir. Benzetme tek başına bırakılmaz.
+- Bir cümlede en fazla bir yeni terim; terimden hemen sonra sade anlamı.
+- Konuşmada kod adları zincirlenmez: "state LOW, lastState HIGH" yerine "şu anki okuma LOW, bir önceki okuma HIGH". Kod adı ekranda yazılı kalır, anlatıcı ne anlama geldiğini söyler.
+- Telgraf cümlesi yok ("Yazdır. Bekle."): tam, konuşma dilinde cümleler; izleyiciye "siz" diye hitap, küçük geçişler ("Peki neden?", "Şimdi bir turu izleyelim").
+- Her dilin metni o dilde **doğal** yazılır, çeviri kokmaz. Dublaj ve altyazı aynı cümlelerdir (bölüm 6).
+- Daha fazla açıklama süre ister: bölüm 8'deki ~10 dk hedefi aşılırsa konu bölünmez, ama gereksiz tekrar da yapılmaz (Recap ~12 dk).
+
+**Ses (tools/cbx.py, tools/chatterbox_say.py)**
+- Duraklama noktalamaya göre: nokta 0,5 sn, soru 0,7 sn, iki nokta 0,35 sn, virgül 0,22 sn (0,6/0,28 denendi: kullanıcı "çok yavaş" dedi).
+- Ses **asla zaman germe (time-stretch) ile yavaşlatılmaz**: 28 Ekim'de rubberband ile %15'e kadar yavaşlatma denendi, kullanıcı "çok yavaş ve robot gibi, ses tonu değişti" dedi. Hız farkı olan satırlar yeniden seslendirilir (`cbx_retake.py`: bölüm ortalamasının 0,85–1,18 katı dışındaki satırlar). `MAX_SPS` yalnızca raporda aykırı satırı gösterir.
+- Dublajlar **hızlandırılmaz** (en çok %3): bir dil uzun sürerse görüntü onu bekler (`build.py schedule`). Bu yüzden önce bütün dillerin dublajı seslendirilir, sonra zamanlama ve render.
+- Kontrol: `python tools/pace_check.py video/<ep>` her dilde hece hızı, satırlar arası savrulma ve takılmaları gösterir. Kullanıcıya her dilden kısa dinleme örneği verilmeden "bitti" denmez.
+
 ## Yüklemede yapay zekâ etiketi tercihi — 23 Ekim 2026
 
 Kullanıcı, videolar yüklenirken yapay zekâ etiketi görünmesini istemiyor. Gelecek yüklemelerde sırf üretimde AI araçları kullanıldı diye otomatik `Evet / Yes` seçme.

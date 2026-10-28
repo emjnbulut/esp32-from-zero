@@ -29,8 +29,8 @@ import music  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 SR = 48000
-MAX_SPEEDUP = 1.18   # beyond this the translation should be shortened
-BREATH = 0.2         # silence kept before the next segment starts
+MAX_SPEEDUP = 1.03   # beyond this the translation should be shortened (user 2026-10-28: dubs are never rushed)
+BREATH = 0.35        # silence kept before the next segment starts (same as build.py DUB_BREATH)
 
 
 def probe(path: Path) -> float:

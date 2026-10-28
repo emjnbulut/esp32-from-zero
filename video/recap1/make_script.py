@@ -4,7 +4,15 @@
 ONE topic: how to read a sketch. Only syntax taught in episodes 1-4. Every sketch is run as a live trace: the
 highlighted line moves, a "memory" panel shows every variable changing. Quick questions, two like/subscribe icons,
 the end invites the comments (PRODUCTION_GUIDELINES.md sections 2, 4, 5, 8).
-Each s(...) gives: id, scene, English narration (numbers spelled out), Turkish subtitle text, Turkish spoken text.
+v2 2026-10-28 (user: "terimlere boğup geçiyor; insan gibi, günlük hayattan bol örnekle"; guidelines section 9):
+every idea starts with an everyday picture (recipe card, labelled moving box, morning routine, night guard, scoreboard,
+house number, walkie-talkie, microwave, spring door, window, umbrella, goldfish, photo, click pen, bouncing ball,
+wall clock, pasta and sauce), code names are explained instead of chained, full spoken sentences.
+v3 2026-10-28 (user: "terimlerin gerçekten ne işe yaradığını nesnel anlamda da bilmeleri gerek"): right after each
+picture, one or two sentences say what the term objectively does ("What actually happens: ..."), incl. where a
+variable lives (outside loop = keeps its value, inside loop = new every round) and the symbols == != ! ++ && ?:.
+Each s(...) gives: id, scene, English narration (numbers spelled out), Turkish subtitle text, Turkish spoken text
+(the same sentences; numbers as words, English terms spelled the way a Turkish speaker says them).
 """
 import json
 from pathlib import Path
@@ -23,159 +31,187 @@ def s(id, scene, text, tr, dub, sub=None, **kw):
     S.append(d)
 
 
-# ---- cold open: the four results, then the promise
-s("s01", "cold", "Five sketches. You've already run all of them. Watch them work, one after another.",
-  "Beş sketch. Hepsini zaten çalıştırdınız. Birbiri ardına çalışmalarını izleyin.",
-  "Beş sketç. Hepsini zaten çalıştırdınız. Birbiri ardına çalışmalarını izleyin.")
-s("s02", "cold", "By the end of this video, you'll read any of them like a sentence. We'll go slowly, with every value on screen.",
-  "Bu videonun sonunda hepsini bir cümle gibi okuyabileceksiniz. Yavaş gideceğiz; her değer ekranda olacak.",
-  "Bu videonun sonunda hepsini bir cümle gibi okuyabileceksiniz. Yavaş gideceğiz; her değer ekranda olacak.")
-# ---- the skeleton (hello_esp32)
-s("s03", "skel", "Every sketch has the same three parts. Names at the top. Then setup. Then loop.",
-  "Her sketch'in üç parçası aynıdır. Üstte isimler. Sonra setup. Sonra loop.",
-  "Her sketçin üç parçası aynıdır. Üstte isimler. Sonra set ap. Sonra lup.")
-s("s04", "skel", "A name is a variable: a small box with a label. This box is called seconds, and right now it holds zero.",
-  "İsim, bir değişkendir: üzerinde etiket olan küçük bir kutu. Bu kutunun adı seconds ve şu an içinde sıfır var.",
-  "İsim, bir değişkendir: üzerinde etiket olan küçük bir kutu. Bu kutunun adı sekınds ve şu an içinde sıfır var.")
-s("s05", "skel", "Setup runs once, when the board starts. Here it opens the serial channel, and says hello.",
-  "Setup, kart başladığında bir kez çalışır. Burada seri kanalı açar ve merhaba der.",
-  "Set ap, kart başladığında bir kez çalışır. Burada seri kanalı açar ve merhaba der.")
-s("s06", "skel", "Loop runs forever. When it reaches the bottom, it jumps straight back to the top.",
-  "Loop sonsuza kadar çalışır. En alta varınca doğrudan başa döner.",
-  "Lup sonsuza kadar çalışır. En alta varınca doğrudan başa döner.")
-s("s07", "skel", "Watch the box. Seconds is zero. Add one: now it's one. Print it. Wait a second. Back to the top, add one again: two.",
-  "Kutuya bakın. Seconds sıfır. Bir ekle: artık bir. Yazdır. Bir saniye bekle. Başa dön, bir daha ekle: iki.",
-  "Kutuya bakın. Sekınds sıfır. Bir ekle: artık bir. Yazdır. Bir saniye bekle. Başa dön, bir daha ekle: iki.")
-s("s08", "skel", "That's the first big idea. A variable is the sketch's memory. It keeps its value, round after round.",
-  "İlk büyük fikir bu. Değişken, sketch'in hafızasıdır. Değerini tur tur korur.",
-  "İlk büyük fikir bu. Değişken, sketçin hafızasıdır. Değerini tur tur korur.")
-s("s09", "skel", "Quick question: after the loop has run five times, what does seconds hold?",
-  "Kısa bir soru: loop beş kez çalıştıktan sonra seconds içinde ne var?",
-  "Kısa bir soru: lup beş kez çalıştıktan sonra sekınds içinde ne var?", pad=THINK)
-s("s10", "skel", "Five. Each round adds one, and the box remembers.",
-  "Beş. Her tur bir ekler ve kutu hatırlar.",
-  "Beş. Her tur bir ekler ve kutu hatırlar.")
-# ---- outputs (blink_led)
-s("s11", "blink", "Blink is the same three parts. The name at the top is a constant: LED pin, twenty-three. That's the pin our LED is wired to.",
-  "Blink de aynı üç parçadır. Üstteki isim bir sabit: LED_PIN, 23. LED'imizin bağlı olduğu pin bu.",
-  "Blink de aynı üç parçadır. Üstteki isim bir sabit: led pin, yirmi üç. Led'imizin bağlı olduğu pin bu.",
-  sub="Blink is the same three parts. The name at the top is a constant: LED_PIN, 23. That's the pin our LED is wired to.")
-s("s12", "blink", "In setup, pin mode says: this pin is an output. Our code will drive it.",
-  "Setup içinde pinMode şunu söyler: bu pin bir çıkıştır. Kodumuz onu sürecek.",
-  "Set apta pin mod şunu söyler: bu pin bir çıkıştır. Kodumuz onu sürecek.")
-s("s13", "blink", "In loop, digital write HIGH puts three point three volts on the pin, and the LED lights. Digital write LOW puts zero volts, and it goes dark.",
-  "Loop içinde digitalWrite HIGH pine 3,3 volt verir ve LED yanar. digitalWrite LOW sıfır volt verir ve LED söner.",
-  "Lup içinde dijital rayt hay pine üç virgül üç volt verir ve led yanar. Dijital rayt lov sıfır volt verir ve led söner.",
-  sub="In loop, digitalWrite HIGH puts 3.3 volts on the pin, and the LED lights. digitalWrite LOW puts 0 volts, and it goes dark.")
-s("s14", "blink", "And delay means: wait. For that time, the sketch does nothing at all. Half a second on, half a second off, forever.",
-  "delay ise şu demek: bekle. O süre boyunca sketch hiçbir şey yapmaz. Yarım saniye açık, yarım saniye kapalı, sonsuza kadar.",
-  "Dilay ise şu demek: bekle. O süre boyunca sketç hiçbir şey yapmaz. Yarım saniye açık, yarım saniye kapalı, sonsuza kadar.")
-# ---- decisions (button_led)
-s("s15", "btn", "Now a button. A new name: button pin, twenty-two. And in setup: input pull up. Input means we read the pin. Pull up means: when nobody touches it, it reads HIGH.",
-  "Şimdi bir buton. Yeni bir isim: BUTTON_PIN, 22. Setup içinde de INPUT_PULLUP. Input, pini okuyacağımız anlamına gelir. Pull-up ise: kimse dokunmazsa HIGH okur demektir.",
-  "Şimdi bir buton. Yeni bir isim: batın pin, yirmi iki. Set apta da input pul ap. Input, pini okuyacağımız anlamına gelir. Pul ap ise: kimse dokunmazsa hay okur demektir.",
-  sub="Now a button. A new name: BUTTON_PIN, 22. And in setup: INPUT_PULLUP. Input means we read the pin. Pull-up means: when nobody touches it, it reads HIGH.")
-s("s16", "btn", "So the button works backwards. Not pressed: HIGH. Pressed: LOW, because the button connects the pin to ground.",
-  "Yani buton tersine çalışır. Basılmamış: HIGH. Basılı: LOW, çünkü buton pini toprağa bağlar.",
-  "Yani buton tersine çalışır. Basılmamış: hay. Basılı: lov, çünkü buton pini toprağa bağlar.")
-s("s17", "btn", "In loop, digital read is a question: what is the pin right now? The answer, HIGH or LOW, goes into a box called state.",
-  "Loop içinde digitalRead bir sorudur: pin şu an ne durumda? Cevap, HIGH ya da LOW, state adlı kutuya girer.",
-  "Lup içinde dijital rid bir sorudur: pin şu an ne durumda? Cevap, hay ya da lov, steyt adlı kutuya girer.")
-s("s18", "btn", "Then an if. If state is LOW, the button is pressed, so the LED gets HIGH. Otherwise, it gets LOW.",
-  "Sonra bir if. State LOW ise buton basılıdır, LED'e HIGH veririz. Değilse LOW veririz.",
-  "Sonra bir if. Steyt lov ise buton basılıdır, led'e hay veririz. Değilse lov veririz.")
-s("s19", "btn", "Notice what this sketch remembers. Nothing. Every round it asks again, and decides from scratch.",
-  "Bu sketch'in neyi hatırladığına dikkat edin. Hiçbir şeyi. Her turda yeniden sorar ve sıfırdan karar verir.",
-  "Bu sketçin neyi hatırladığına dikkat edin. Hiçbir şeyi. Her turda yeniden sorar ve sıfırdan karar verir.")
+# ---- cold open: the five results, then the promise
+s("s01", "cold", "Here are the five sketches we've built so far. Let's watch them run one more time, one after another.",
+  "Bunlar şimdiye kadar birlikte yaptığımız beş sketch. Hepsini bir kez daha, sırayla çalışırken izleyelim.",
+  "Bunlar şimdiye kadar birlikte yaptığımız beş sketç. Hepsini bir kez daha, sırayla çalışırken izleyelim.")
+s("s02", "cold", "Today, we won't add anything new. Instead, we'll learn to read these sketches, line by line, the way you'd read a recipe. By the end of this video, every one of them will make sense.",
+  "Bugün yeni bir şey eklemeyeceğiz. Onun yerine bu kodları okumayı öğreneceğiz: satır satır, tıpkı bir yemek tarifini okur gibi. Videonun sonunda her biri size çok daha anlamlı gelecek.",
+  "Bugün yeni bir şey eklemeyeceğiz. Onun yerine bu kodları okumayı öğreneceğiz: satır satır, tıpkı bir yemek tarifini okur gibi. Videonun sonunda her biri size çok daha anlamlı gelecek.")
+# ---- part 1: the skeleton (hello_esp32)
+s("s03", "skel", "Let's start with the very first sketch, from episode one. Every sketch is organized like a recipe card. At the top, the ingredients: the names we're going to use. Then setup: the preparation you do once. And then loop: the steps you repeat, again and again. In code, setup and loop are functions: named blocks of code between curly braces, which the board runs for you.",
+  "İlk bölümdeki sketch'le başlayalım. Her sketch bir tarif kartı gibi düzenlenir. En üstte malzemeler var: kullanacağımız isimler. Sonra setup geliyor: başlamadan önce bir kez yapılan hazırlık. En sonda da loop var: tekrar tekrar uygulanan adımlar. Kodda setup ve loop birer fonksiyondur: süslü parantezler arasında duran, adı olan kod bloklarıdır ve kart onları sizin yerinize çalıştırır.",
+  "İlk bölümdeki sketçle başlayalım. Her sketç bir tarif kartı gibi düzenlenir. En üstte malzemeler var: kullanacağımız isimler. Sonra set ap geliyor: başlamadan önce bir kez yapılan hazırlık. En sonda da lup var: tekrar tekrar uygulanan adımlar. Kodda set ap ve lup birer fonksiyondur: süslü parantezler arasında duran, adı olan kod bloklarıdır ve kart onları sizin yerinize çalıştırır.")
+s("s04", "skel", "The first line creates a variable. Think of a cardboard box when you move house: you write a label on it, so you know what's inside. What actually happens: the board reserves a small spot in its memory, and gives it the name seconds. Int means it holds a whole number, like zero, one or two. And the equals sign here means: put this value inside. So right now, the box holds zero.",
+  "İlk satır bir değişken oluşturuyor. Taşınırken kullandığınız kolileri düşünün: içinde ne olduğunu bilmek için üzerine bir etiket yazarsınız. Gerçekte olan şu: kart hafızasında küçük bir yer ayırıyor ve ona seconds adını veriyor. int, bu kutunun tam sayı tuttuğu anlamına geliyor: sıfır, bir, iki gibi. Buradaki eşittir işareti de 'bu değeri içine koy' demek. Yani şu anda kutuda sıfır var.",
+  "İlk satır bir değişken oluşturuyor. Taşınırken kullandığınız kolileri düşünün: içinde ne olduğunu bilmek için üzerine bir etiket yazarsınız. Gerçekte olan şu: kart hafızasında küçük bir yer ayırıyor ve ona sekınds adını veriyor. İnt, bu kutunun tam sayı tuttuğu anlamına geliyor: sıfır, bir, iki gibi. Buradaki eşittir işareti de bu değeri içine koy demek. Yani şu anda kutuda sıfır var.",
+  sub="The first line creates a variable. Think of a cardboard box when you move house: you write a label on it, so you know what's inside. What actually happens: the board reserves a small spot in its memory, and gives it the name seconds. int means it holds a whole number, like 0, 1 or 2. And the equals sign here means: put this value inside. So right now, the box holds 0.")
+s("s05", "skel", "Setup runs only once, right when the board wakes up. It's like your morning routine: you get out of bed once, not every five minutes. What actually happens: after power-on, or after you press the reset button, the board runs setup exactly one time. Here, Serial begin opens the connection over the USB cable, delay waits one second, and Serial print line sends hello to your computer.",
+  "setup, kart uyandığında yalnızca bir kez çalışır. Sabah rutininiz gibi düşünün: yataktan bir kez kalkarsınız, beş dakikada bir değil. Gerçekte olan şu: kart açıldıktan ya da reset düğmesine bastıktan sonra setup tam olarak bir kez çalışır. Burada Serial.begin USB kablosu üzerinden bağlantıyı açıyor, delay bir saniye bekliyor ve Serial.println bilgisayarınıza merhaba gönderiyor.",
+  "Set ap, kart uyandığında yalnızca bir kez çalışır. Sabah rutininiz gibi düşünün: yataktan bir kez kalkarsınız, beş dakikada bir değil. Gerçekte olan şu: kart açıldıktan ya da reset düğmesine bastıktan sonra set ap tam olarak bir kez çalışır. Burada siriyal bigin U Se Be kablosu üzerinden bağlantıyı açıyor, dilay bir saniye bekliyor ve siriyal print layn bilgisayarınıza merhaba gönderiyor.",
+  sub="Setup runs only once, right when the board wakes up. It's like your morning routine: you get out of bed once, not every five minutes. What actually happens: after power-on, or after you press the reset button, the board runs setup exactly one time. Here, Serial.begin() opens the connection over the USB cable, delay() waits one second, and Serial.println() sends hello to your computer.")
+s("s06", "skel", "Loop is the part that never ends. Picture a night guard doing rounds in a building: at the last door, they walk back to the first one and start again. What actually happens: loop is a function too. When the board reaches its closing curly brace, it simply calls loop again. Over and over, for as long as it has power.",
+  "loop ise hiç bitmeyen kısım. Gece bir binada tur atan bir bekçi düşünün: son kapıya gelince ilk kapıya geri yürür ve turu yeniden başlatır. Gerçekte olan şu: loop da bir fonksiyon. Kart onun kapanan süslü parantezine ulaşınca loop'u hemen yeniden çağırır. Elektrik olduğu sürece, tekrar tekrar.",
+  "Lup ise hiç bitmeyen kısım. Gece bir binada tur atan bir bekçi düşünün: son kapıya gelince ilk kapıya geri yürür ve turu yeniden başlatır. Gerçekte olan şu: lup da bir fonksiyon. Kart onun kapanan süslü parantezine ulaşınca lupu hemen yeniden çağırır. Elektrik olduğu sürece, tekrar tekrar.")
+s("s07", "skel", "Now let's follow one round, and keep an eye on the box. It holds zero. The first line inside loop says: seconds equals seconds plus one. Read it from right to left: take what's in the box, add one, and store the result back in the same box. So now the box holds one. Next, we print that number. Then delay makes the board wait one second. And back to the top: we add one again, and now the box holds two.",
+  "Şimdi bir turu adım adım izleyelim ve gözümüz kutuda olsun. Kutuda sıfır var. loop'un ilk satırı şöyle: seconds eşittir seconds artı bir. Bunu sağdan sola okuyun: kutudakini al, bir ekle ve sonucu yine aynı kutuya koy. Yani artık kutuda bir var. Sonra bu sayıyı yazdırıyoruz. Ardından delay kartı bir saniye bekletiyor. Ve yine başa dönüyoruz: bir daha ekliyoruz, artık kutuda iki var.",
+  "Şimdi bir turu adım adım izleyelim ve gözümüz kutuda olsun. Kutuda sıfır var. Lupun ilk satırı şöyle: sekınds eşittir sekınds artı bir. Bunu sağdan sola okuyun: kutudakini al, bir ekle ve sonucu yine aynı kutuya koy. Yani artık kutuda bir var. Sonra bu sayıyı yazdırıyoruz. Ardından dilay kartı bir saniye bekletiyor. Ve yine başa dönüyoruz: bir daha ekliyoruz, artık kutuda iki var.",
+  sub="Now let's follow one round, and keep an eye on the box. It holds 0. The first line inside loop says: seconds = seconds + 1. Read it from right to left: take what's in the box, add one, and store the result back in the same box. So now the box holds 1. Next, we print that number. Then delay() makes the board wait one second. And back to the top: we add one again, and now the box holds 2.")
+s("s08", "skel", "That's the first big idea in programming: a variable is the sketch's memory. It's like the scoreboard at a football match: the score stays there, and only changes when something happens. And here's why it stays: seconds was made at the very top, outside setup and loop. A box made there lives as long as the board runs. A box made inside loop would be made again from scratch, every round.",
+  "Bu, programlamanın ilk büyük fikri: değişken, sketch'in hafızasıdır. Bir futbol maçındaki skor tabelası gibi: skor orada kalır ve yalnızca bir şey olduğunda değişir. Peki neden kalıyor? Çünkü seconds en üstte, setup ve loop'un dışında oluşturuldu. Orada oluşturulan bir kutu, kart çalıştığı sürece yaşar. loop'un içinde oluşturulan bir kutu ise her turda sıfırdan yeniden oluşturulurdu.",
+  "Bu, programlamanın ilk büyük fikri: değişken, sketçin hafızasıdır. Bir futbol maçındaki skor tabelası gibi: skor orada kalır ve yalnızca bir şey olduğunda değişir. Peki neden kalıyor? Çünkü sekınds en üstte, set ap ve lupun dışında oluşturuldu. Orada oluşturulan bir kutu, kart çalıştığı sürece yaşar. Lupun içinde oluşturulan bir kutu ise her turda sıfırdan yeniden oluşturulurdu.")
+s("s09", "skel", "Quick question: after the loop has gone around five times, which number is in the box?",
+  "Kısa bir soru: loop beş tur attıktan sonra kutuda hangi sayı olur?",
+  "Kısa bir soru: lup beş tur attıktan sonra kutuda hangi sayı olur?", pad=THINK)
+s("s10", "skel", "Five. Each round adds one, and the box remembers what it held before. Just like that scoreboard.",
+  "Beş. Her tur bir ekliyor ve kutu önceki sayıyı hatırlıyor. Tıpkı o skor tabelası gibi.",
+  "Beş. Her tur bir ekliyor ve kutu önceki sayıyı hatırlıyor. Tıpkı o skor tabelası gibi.")
+# ---- part 2: outputs (blink_led)
+s("s11", "blink", "Now the blink sketch, from episode three. Same recipe card: names, setup, loop. At the top, there's one name: LED pin, with the number twenty-three. Think of it as a house number: it tells the board where our LED lives. In the code, LED pin is simply another name for twenty-three: wherever it appears, the board uses twenty-three.",
+  "Şimdi üçüncü bölümdeki blink sketch'i. Aynı tarif kartı: isimler, setup, loop. En üstte tek bir isim var: LED_PIN ve yanında 23 sayısı. Bunu bir kapı numarası gibi düşünün: karta LED'imizin nerede oturduğunu söylüyor. Kodda LED_PIN, 23'ün başka bir adı: nerede geçerse kart 23'ü kullanır.",
+  "Şimdi üçüncü bölümdeki blink sketçi. Aynı tarif kartı: isimler, set ap, lup. En üstte tek bir isim var: led pin ve yanında yirmi üç sayısı. Bunu bir kapı numarası gibi düşünün: karta ledimizin nerede oturduğunu söylüyor. Kodda led pin, yirmi üçün başka bir adı: nerede geçerse kart yirmi üçü kullanır.",
+  sub="Now the blink sketch, from episode 3. Same recipe card: names, setup, loop. At the top, there's one name: LED_PIN, with the number 23. Think of it as a house number: it tells the board where our LED lives. In the code, LED_PIN is simply another name for 23: wherever it appears, the board uses 23.")
+s("s11b", "blink", "The word const in front makes it a constant: this value can never change while the sketch runs, just like a house never moves to another street. If a line tried to change it, the compiler would refuse, with an error.",
+  "Başındaki const kelimesi onu bir sabit yapıyor: bu değer sketch çalışırken asla değişemez; tıpkı bir evin başka bir sokağa taşınamaması gibi. Bir satır onu değiştirmeye çalışırsa derleyici hata verip durur.",
+  "Başındaki konst kelimesi onu bir sabit yapıyor: bu değer sketç çalışırken asla değişemez; tıpkı bir evin başka bir sokağa taşınamaması gibi. Bir satır onu değiştirmeye çalışırsa derleyici hata verip durur.")
+s("s12", "blink", "In setup, pin mode gives that pin its job. It's a bit like a walkie-talkie: you either talk, or you listen. Output means this pin talks. Technically, the chip now drives the pin itself: it connects it to three point three volts, or to ground, whenever our code says so.",
+  "setup'ta pinMode o pine görevini veriyor. Biraz telsiz gibi: ya konuşursunuz ya da dinlersiniz. OUTPUT, bu pinin konuşacağı anlamına geliyor. Teknik olarak artık pini çipin kendisi sürüyor: kodumuz ne zaman isterse pini 3,3 volta ya da toprağa bağlıyor.",
+  "Set apta pin mod o pine görevini veriyor. Biraz telsiz gibi: ya konuşursunuz ya da dinlersiniz. Autput, bu pinin konuşacağı anlamına geliyor. Teknik olarak artık pini çipin kendisi sürüyor: kodumuz ne zaman isterse pini üç virgül üç volta ya da toprağa bağlıyor.",
+  sub="In setup, pinMode() gives that pin its job. It's a bit like a walkie-talkie: you either talk, or you listen. OUTPUT means this pin talks. Technically, the chip now drives the pin itself: it connects it to 3.3 V, or to ground, whenever our code says so.")
+s("s13", "blink", "In loop, digital write works like a light switch. HIGH switches it on: the pin gets three point three volts. Current flows from the pin, through the resistor and the LED, to ground, and the LED lights up. LOW switches it off: zero volts, no current, and the LED goes dark.",
+  "loop'ta digitalWrite bir ışık anahtarı gibi çalışıyor. HIGH anahtarı açıyor: pine 3,3 volt geliyor. Akım pinden dirence, oradan LED'e ve toprağa akıyor ve LED yanıyor. LOW kapatıyor: sıfır volt, akım yok, LED sönüyor.",
+  "Lupta dijital rayt bir ışık anahtarı gibi çalışıyor. Hay anahtarı açıyor: pine üç virgül üç volt geliyor. Akım pinden dirence, oradan lede ve toprağa akıyor ve led yanıyor. Lov kapatıyor: sıfır volt, akım yok, led sönüyor.",
+  sub="In loop, digitalWrite() works like a light switch. HIGH switches it on: the pin gets 3.3 V. Current flows from the pin, through the resistor and the LED, to ground, and the LED lights up. LOW switches it off: 0 V, no current, and the LED goes dark.")
+s("s14", "blink", "And delay simply means: wait. It's like standing in front of the microwave, watching the timer count down. Technically, delay of five hundred stops the program for five hundred milliseconds, that's half a second. During that time, not a single line of your code runs. So: on, wait half a second, off, wait half a second, forever.",
+  "delay ise sadece 'bekle' demek. Mikrodalganın önünde durup sayacın geri saymasını izlemek gibi. Teknik olarak delay(500), programı 500 milisaniye, yani yarım saniye durduruyor. Bu sürede kodunuzun tek bir satırı bile çalışmıyor. Yani: aç, yarım saniye bekle, kapat, yarım saniye bekle, sonsuza kadar.",
+  "Dilay ise sadece bekle demek. Mikrodalganın önünde durup sayacın geri saymasını izlemek gibi. Teknik olarak dilay beş yüz, programı beş yüz milisaniye, yani yarım saniye durduruyor. Bu sürede kodunuzun tek bir satırı bile çalışmıyor. Yani: aç, yarım saniye bekle, kapat, yarım saniye bekle, sonsuza kadar.",
+  sub="And delay() simply means: wait. It's like standing in front of the microwave, watching the timer count down. Technically, delay(500) stops the program for 500 milliseconds, that's half a second. During that time, not a single line of your code runs. So: on, wait half a second, off, wait half a second, forever.")
+# ---- part 3: decisions (button_led)
+s("s15", "btn", "Next, a button, from episode four. Now there are two names: the button lives at pin twenty-two, and the LED, as before, at twenty-three. In setup, the button's pin gets a different job: input. This time, the pin listens: it doesn't push out any voltage, it only measures the voltage that's already there.",
+  "Sırada dördüncü bölümdeki buton var. Artık iki isim var: buton 22 numaralı pinde, LED ise yine 23'te. setup'ta butonun pinine farklı bir görev veriliyor: INPUT. Bu sefer pin dinliyor: dışarıya hiçbir voltaj vermiyor, yalnızca orada olan voltajı ölçüyor.",
+  "Sırada dördüncü bölümdeki buton var. Artık iki isim var: buton yirmi iki numaralı pinde, led ise yine yirmi üçte. Set apta butonun pinine farklı bir görev veriliyor: input. Bu sefer pin dinliyor: dışarıya hiçbir voltaj vermiyor, yalnızca orada olan voltajı ölçüyor.",
+  sub="Next, a button, from episode 4. Now there are two names: the button lives at pin 22, and the LED, as before, at 23. In setup, the button's pin gets a different job: INPUT. This time, the pin listens: it doesn't push out any voltage, it only measures the voltage that's already there.")
+s("s15b", "btn", "And it's input pull up. Picture a door with a spring: when nobody pushes it, the spring keeps it closed. Pull up works the same way: it switches on a resistor inside the chip, between the pin and three point three volts. When nobody touches the button, that resistor gently pulls the pin up, so it reads HIGH.",
+  "Hem de INPUT_PULLUP. Yaylı bir kapı düşünün: kimse itmediğinde yay onu kapalı tutar. Pull-up da aynı şekilde çalışıyor: çipin içinde, pin ile 3,3 volt arasında duran bir direnci devreye sokuyor. Butona kimse dokunmadığında o direnç pini nazikçe yukarı çekiyor ve pin HIGH okuyor.",
+  "Hem de input pul ap. Yaylı bir kapı düşünün: kimse itmediğinde yay onu kapalı tutar. Pul ap da aynı şekilde çalışıyor: çipin içinde, pin ile üç virgül üç volt arasında duran bir direnci devreye sokuyor. Butona kimse dokunmadığında o direnç pini nazikçe yukarı çekiyor ve pin hay okuyor.",
+  sub="And it's INPUT_PULLUP. Picture a door with a spring: when nobody pushes it, the spring keeps it closed. Pull-up works the same way: it switches on a resistor inside the chip, between the pin and 3.3 V. When nobody touches the button, that resistor gently pulls the pin up, so it reads HIGH.")
+s("s16", "btn", "So the button works backwards. When it's not pressed, the pin reads HIGH. When you press it, the button connects the pin straight to ground. Ground wins over the weak pull-up resistor, so the pin drops to zero volts and reads LOW.",
+  "Bu yüzden buton ters çalışır. Basılmamışken pin HIGH okur. Bastığınızda buton pini doğrudan toprağa bağlar. Toprak, zayıf pull-up direncinden güçlüdür; pin sıfır volta düşer ve LOW okur.",
+  "Bu yüzden buton ters çalışır. Basılmamışken pin hay okur. Bastığınızda buton pini doğrudan toprağa bağlar. Toprak, zayıf pul ap direncinden güçlüdür; pin sıfır volta düşer ve lov okur.",
+  sub="So the button works backwards. When it's not pressed, the pin reads HIGH. When you press it, the button connects the pin straight to ground. Ground wins over the weak pull-up resistor, so the pin drops to 0 V and reads LOW.")
+s("s17", "btn", "In loop, digital read asks a question: what is the pin doing right now? It's like looking out of the window to check if it's raining. Technically, it measures the pin's voltage at that instant: close to three point three volts gives HIGH, close to zero gives LOW. The answer goes into a box called state.",
+  "loop'ta digitalRead bir soru soruyor: pin şu anda ne durumda? Yağmur yağıyor mu diye pencereden bakmak gibi. Teknik olarak o anda pindeki voltajı ölçüyor: 3,3 volta yakınsa HIGH, sıfıra yakınsa LOW. Cevap, state adında bir kutuya giriyor.",
+  "Lupta dijital rid bir soru soruyor: pin şu anda ne durumda? Yağmur yağıyor mu diye pencereden bakmak gibi. Teknik olarak o anda pindeki voltajı ölçüyor: üç virgül üç volta yakınsa hay, sıfıra yakınsa lov. Cevap, steyt adında bir kutuya giriyor.",
+  sub="In loop, digitalRead() asks a question: what is the pin doing right now? It's like looking out of the window to check if it's raining. Technically, it measures the pin's voltage at that instant: close to 3.3 V gives HIGH, close to 0 V gives LOW. The answer goes into a box called state.")
+s("s18", "btn", "Then comes an if. It works like a decision you make every morning: if it's raining, you take an umbrella. Otherwise, you leave it at home. In code, if checks a condition: is state equal to LOW? The double equals sign means compare, not store. If the answer is yes, the lines in the first curly braces run. Otherwise, the lines after else run. So: pressed, the LED gets HIGH. Not pressed, it gets LOW.",
+  "Sonra bir if geliyor. Her sabah verdiğiniz bir karar gibi: yağmur yağıyorsa şemsiyenizi alırsınız, yağmıyorsa evde bırakırsınız. Kodda if bir koşulu kontrol ediyor: state, LOW'a eşit mi? Çift eşittir işareti 'karşılaştır' demek, 'içine koy' değil. Cevap evetse ilk süslü parantezlerin içindeki satırlar çalışıyor. Değilse else'ten sonraki satırlar çalışıyor. Yani basılıysa LED'e HIGH, basılı değilse LOW veriliyor.",
+  "Sonra bir if geliyor. Her sabah verdiğiniz bir karar gibi: yağmur yağıyorsa şemsiyenizi alırsınız, yağmıyorsa evde bırakırsınız. Kodda if bir koşulu kontrol ediyor: steyt, lova eşit mi? Çift eşittir işareti karşılaştır demek, içine koy değil. Cevap evetse ilk süslü parantezlerin içindeki satırlar çalışıyor. Değilse elsten sonraki satırlar çalışıyor. Yani basılıysa lede hay, basılı değilse lov veriliyor.")
+s("s19", "btn", "Now notice what this sketch remembers. Nothing at all. Look where state is made: inside loop. So every round, it's a brand-new box, and the old reading is gone. Like a goldfish: every round starts with a fresh memory.",
+  "Şimdi bu sketch'in neyi hatırladığına bakın. Hiçbir şeyi. state'in nerede oluşturulduğuna bakın: loop'un içinde. Yani her turda yepyeni bir kutu oluyor ve eski okuma kayboluyor. Tıpkı bir Japon balığı gibi: her tur tertemiz bir hafızayla başlıyor.",
+  "Şimdi bu sketçin neyi hatırladığına bakın. Hiçbir şeyi. Steytin nerede oluşturulduğuna bakın: lupun içinde. Yani her turda yepyeni bir kutu oluyor ve eski okuma kayboluyor. Tıpkı bir Japon balığı gibi: her tur tertemiz bir hafızayla başlıyor.")
 s("s20", "btn", "Quick question: this sketch has no memory. Can it tell that you pressed the button just now?",
-  "Kısa bir soru: bu sketch'in hafızası yok. Butona şimdi bastığınızı anlayabilir mi?",
-  "Kısa bir soru: bu sketçin hafızası yok. Butona şimdi bastığınızı anlayabilir mi?", pad=THINK)
-s("s21", "btn", "No. It only knows pressed, or not pressed. Think of a door: to know someone just closed it, you must remember it was open a moment ago. A sketch needs to remember the last reading.",
-  "Hayır. Yalnızca basılı ya da basılı değil bilir. Bir kapı gibi düşünün: birinin kapıyı yeni kapattığını anlamak için kapının az önce açık olduğunu hatırlamanız gerekir. Sketch'in son okumayı hatırlaması gerekir.",
-  "Hayır. Yalnızca basılı ya da basılı değil bilir. Bir kapı gibi düşünün: birinin kapıyı yeni kapattığını anlamak için kapının az önce açık olduğunu hatırlamanız gerekir. Sketçin son okumayı hatırlaması gerekir.")
-# ---- memory 1 (button_toggle)
-s("s22", "tog", "So we add a second box: last state. It keeps the reading from the round before.",
-  "O yüzden ikinci bir kutu ekliyoruz: lastState. Bir önceki turdaki okumayı tutar.",
-  "O yüzden ikinci bir kutu ekliyoruz: last steyt. Bir önceki turdaki okumayı tutar.")
-s("s23", "tog", "Each round, we compare. If state is different from last state, something changed. And if it's now LOW, that's a new press.",
-  "Her turda karşılaştırırız. State, lastState'ten farklıysa bir şey değişmiştir. Şimdi LOW ise bu yeni bir basıştır.",
-  "Her turda karşılaştırırız. Steyt, last steyttan farklıysa bir şey değişmiştir. Şimdi lov ise bu yeni bir basıştır.")
-s("s24", "tog", "On a new press, we flip a true-or-false box called LED on. Not LED on means the opposite. And we count the press.",
-  "Yeni bir basışta, ledOn adlı doğru-yanlış kutusunu çeviririz. !ledOn tersi demektir. Basışı da sayarız.",
-  "Yeni bir basışta, led on adlı doğru yanlış kutusunu çeviririz. Not led on tersi demektir. Basışı da sayarız.",
-  sub="On a new press, we flip a true-or-false box called ledOn. !ledOn means the opposite. And we count the press.")
-s("s25", "tog", "At the very end of the round, we copy state into last state. So next round, the box remembers this round.",
-  "Turun en sonunda state'i lastState'e kopyalarız. Böylece sonraki tur, bu turu hatırlar.",
-  "Turun en sonunda steyti last steyte kopyalarız. Böylece sonraki tur, bu turu hatırlar.")
-s("s26", "tog", "Let's run it. Not pressed: state HIGH, last state HIGH. Same, nothing happens. Now press: state LOW, last state HIGH. Different, and LOW: a new press. The LED turns on.",
-  "Çalıştıralım. Basılmamış: state HIGH, lastState HIGH. Aynı, hiçbir şey olmaz. Şimdi basın: state LOW, lastState HIGH. Farklı ve LOW: yeni bir basış. LED yanar.",
-  "Çalıştıralım. Basılmamış: steyt hay, last steyt hay. Aynı, hiçbir şey olmaz. Şimdi basın: steyt lov, last steyt hay. Farklı ve lov: yeni bir basış. Led yanar.",
-  sub="Let's run it. Not pressed: state HIGH, lastState HIGH. Same, nothing happens. Now press: state LOW, lastState HIGH. Different, and LOW: a new press. The LED turns on.")
-s("s27", "tog", "Keep holding: LOW and LOW. Same again, nothing happens. Let go: HIGH, different, but not LOW. So it's not a press.",
-  "Basılı tutmaya devam: LOW ve LOW. Yine aynı, hiçbir şey olmaz. Bırakın: HIGH, farklı ama LOW değil. Yani bu bir basış değil.",
-  "Basılı tutmaya devam: lov ve lov. Yine aynı, hiçbir şey olmaz. Bırakın: hay, farklı ama lov değil. Yani bu bir basış değil.", pad=0.7)
-s("s28", "tog", "The short delay of fifty milliseconds is the debounce: it waits until the metal contacts stop bouncing.",
-  "Elli milisaniyelik kısa bekleme, sıçrama önleyicidir: metal temaslar sıçramayı bırakana kadar bekler.",
-  "Elli milisaniyelik kısa bekleme, sıçrama önleyicidir: metal temaslar sıçramayı bırakana kadar bekler.")
-# ---- memory 2 (blink_button)
-s("s29", "ms", "One problem is left. Delay is like staring at a kitchen timer: you can't do anything else. It's better to glance at a wall clock while you work. A sketch has one too.",
-  "Bir sorun kaldı. delay, mutfak zamanlayıcısına bakakalmak gibidir: başka hiçbir şey yapamazsınız. İşinizi yaparken duvar saatine göz atmak daha iyi. Bir sketch'in de bir saati var.",
-  "Bir sorun kaldı. Dilay, mutfak zamanlayıcısına bakakalmak gibidir: başka hiçbir şey yapamazsınız. İşinizi yaparken duvar saatine göz atmak daha iyi. Bir sketçin de bir saati var.", pad=0.7)
-s("s30", "ms", "Millis is the number of milliseconds since the board started. It keeps counting by itself. We never wait: we just look at it.",
-  "millis, kart başladığından beri geçen milisaniye sayısıdır. Kendi kendine saymaya devam eder. Hiç beklemeyiz: sadece ona bakarız.",
-  "Milis, kart başladığından beri geçen milisaniye sayısıdır. Kendi kendine saymaya devam eder. Hiç beklemeyiz: sadece ona bakarız.")
-s("s31", "ms", "Now is the time right now. Last blink is the time the LED last changed. Now minus last blink is how long ago that was.",
-  "now, şu anki zamandır. lastBlink, LED'in en son değiştiği zamandır. now eksi lastBlink, bunun ne kadar önce olduğudur.",
-  "Nau, şu anki zamandır. Last blink, led'in en son değiştiği zamandır. Nau eksi last blink, bunun ne kadar önce olduğudur.")
-s("s32", "ms", "At one thousand, the LED flips, and last blink becomes one thousand. At twelve hundred: two hundred ago, not yet. At fifteen hundred: five hundred. Flip, and last blink is now fifteen hundred.",
-  "1000'de LED değişir ve lastBlink 1000 olur. 1200'de: 200 önce, daha değil. 1500'de: 500. LED değişir ve lastBlink artık 1500 olur.",
-  "Bin de led değişir ve last blink bin olur. Bin iki yüzde: iki yüz önce, daha değil. Bin beş yüzde: beş yüz. Led değişir ve last blink artık bin beş yüz olur.",
-  sub="At 1000, the LED flips, and lastBlink becomes 1000. At 1200: 200 ago, not yet. At 1500: 500. Flip, and lastBlink is now 1500.")
-s("s33", "ms", "The button uses the same trick: last change remembers when the button last changed, and we ignore anything faster than fifty milliseconds.",
-  "Buton da aynı numarayı kullanır: lastChange butonun en son ne zaman değiştiğini hatırlar ve elli milisaniyeden hızlı olan her şeyi yok sayarız.",
-  "Buton da aynı numarayı kullanır: last çeynç butonun en son ne zaman değiştiğini hatırlar ve elli milisaniyeden hızlı olan her şeyi yok sayarız.")
-s("s34", "ms", "And blinking is a true-or-false box. A press flips it. When it's false, the LED part is skipped, but the button still works, because the loop never waits.",
-  "blinking de bir doğru-yanlış kutusudur. Bir basış onu çevirir. Yanlış olduğunda LED kısmı atlanır ama buton çalışmaya devam eder, çünkü loop hiç beklemez.",
-  "Blinking de bir doğru yanlış kutusudur. Bir basış onu çevirir. Yanlış olduğunda led kısmı atlanır ama buton çalışmaya devam eder, çünkü lup hiç beklemez.")
+  "Kısa bir soru: bu sketch'in hafızası yok. Butona az önce bastığınızı anlayabilir mi?",
+  "Kısa bir soru: bu sketçin hafızası yok. Butona az önce bastığınızı anlayabilir mi?", pad=THINK)
+s("s21", "btn", "No. It only knows pressed or not pressed, right now. Think of a door again: to know that someone just closed it, you have to remember that a moment ago, it was open. The sketch needs the same thing: a box made outside loop, that remembers the last reading.",
+  "Hayır. Yalnızca şu anda basılı olup olmadığını bilir. Yine bir kapı düşünün: birinin kapıyı az önce kapattığını anlamak için, bir an önce açık olduğunu hatırlamanız gerekir. Sketch'in de aynısına ihtiyacı var: loop'un dışında oluşturulmuş, son okumayı hatırlayan bir kutu.",
+  "Hayır. Yalnızca şu anda basılı olup olmadığını bilir. Yine bir kapı düşünün: birinin kapıyı az önce kapattığını anlamak için, bir an önce açık olduğunu hatırlamanız gerekir. Sketçin de aynısına ihtiyacı var: lupun dışında oluşturulmuş, son okumayı hatırlayan bir kutu.")
+# ---- part 4: memory (button_toggle)
+s("s22", "tog", "So in the toggle sketch, we add a second box: last state. It's made at the top, outside loop, so it keeps its value from one round to the next. It's like keeping the photo from the round before, to compare it with the new one.",
+  "Bu yüzden toggle sketch'inde ikinci bir kutu ekliyoruz: lastState. En üstte, loop'un dışında oluşturuluyor; bu yüzden değerini bir turdan diğerine koruyor. Bir önceki turun fotoğrafını, yenisiyle karşılaştırmak için saklamak gibi.",
+  "Bu yüzden togıl sketçinde ikinci bir kutu ekliyoruz: last steyt. En üstte, lupun dışında oluşturuluyor; bu yüzden değerini bir turdan diğerine koruyor. Bir önceki turun fotoğrafını, yenisiyle karşılaştırmak için saklamak gibi.",
+  sub="So in the toggle sketch, we add a second box: lastState. It's made at the top, outside loop, so it keeps its value from one round to the next. It's like keeping the photo from the round before, to compare it with the new one.")
+s("s23", "tog", "Each round, we compare the two photos. An exclamation mark with an equals sign means: is not equal to. So if the new reading is different from the old one, something just changed. And if the new one is LOW, the button was just pressed down. That's a new press.",
+  "Her turda iki fotoğrafı karşılaştırıyoruz. Ünlem ve eşittir işareti yan yana 'eşit değil' demek. Yani yeni okuma eskisinden farklıysa, bir şey az önce değişmiş demektir. Yeni okuma LOW ise buton az önce basılmıştır. İşte bu yeni bir basış.",
+  "Her turda iki fotoğrafı karşılaştırıyoruz. Ünlem ve eşittir işareti yan yana eşit değil demek. Yani yeni okuma eskisinden farklıysa, bir şey az önce değişmiş demektir. Yeni okuma lov ise buton az önce basılmıştır. İşte bu yeni bir basış.")
+s("s24", "tog", "It works like a click pen: click once, and the tip comes out. Click again, and it goes back in. On every new press, we flip a box called LED on. It's a bool: a box that can only hold true or false.",
+  "Tükenmez kalem gibi çalışıyor: bir kez basınca ucu çıkar. Bir daha basınca içeri girer. Her yeni basışta ledOn adında bir kutuyu çeviriyoruz. Bu bir bool: yalnızca true ya da false, yani doğru ya da yanlış tutabilen bir kutu.",
+  "Tükenmez kalem gibi çalışıyor: bir kez basınca ucu çıkar. Bir daha basınca içeri girer. Her yeni basışta led on adında bir kutuyu çeviriyoruz. Bu bir bul: yalnızca tru ya da fols, yani doğru ya da yanlış tutabilen bir kutu.",
+  sub="It works like a click pen: click once, and the tip comes out. Click again, and it goes back in. On every new press, we flip a box called ledOn. It's a bool: a box that can only hold true or false.")
+s("s24b", "tog", "In the code, the exclamation mark in front means: the opposite of. So LED on equals not LED on turns true into false, and false into true. The line above it, presses plus plus, simply adds one to the press counter.",
+  "Kodda öndeki ünlem işareti 'tersi' demek. Yani ledOn eşittir ünlem ledOn satırı true'yu false'a, false'u true'ya çeviriyor. Üstündeki presses artı artı satırı ise basış sayacına bir ekliyor.",
+  "Kodda öndeki ünlem işareti tersi demek. Yani led on eşittir ünlem led on satırı truyu folsa, folsu truya çeviriyor. Üstündeki presis artı artı satırı ise basış sayacına bir ekliyor.",
+  sub="In the code, the exclamation mark in front means: the opposite of. So ledOn = !ledOn turns true into false, and false into true. The line above it, presses++, simply adds one to the press counter.")
+s("s25", "tog", "The next line is a short if: if LED on is true, write HIGH. Otherwise, write LOW. And at the very end of the round, we copy the new reading into last state. That's how the next round gets this round's photo.",
+  "Sonraki satır kısa bir if: ledOn true ise HIGH yaz, değilse LOW yaz. Turun en sonunda da yeni okumayı lastState'e kopyalıyoruz. Böylece bir sonraki tur, bu turun fotoğrafını elinde tutuyor.",
+  "Sonraki satır kısa bir if: led on tru ise hay yaz, değilse lov yaz. Turun en sonunda da yeni okumayı last steyte kopyalıyoruz. Böylece bir sonraki tur, bu turun fotoğrafını elinde tutuyor.",
+  sub="The next line is a short if: if ledOn is true, write HIGH. Otherwise, write LOW. And at the very end of the round, we copy the new reading into lastState. That's how the next round gets this round's photo.")
+s("s26", "tog", "Let's run it. You're not touching the button: the new reading is HIGH, and the old one is HIGH. Same photo, so nothing happens. Now you press: the new reading is LOW, and the old one is still HIGH. They're different, and the new one is LOW: a new press! The LED turns on.",
+  "Çalıştıralım. Butona dokunmuyorsunuz: yeni okuma HIGH, eskisi de HIGH. Fotoğraflar aynı, bir şey olmuyor. Şimdi basıyorsunuz: yeni okuma LOW, eskisi hâlâ HIGH. İkisi farklı ve yenisi LOW: yeni bir basış! LED yanıyor.",
+  "Çalıştıralım. Butona dokunmuyorsunuz: yeni okuma hay, eskisi de hay. Fotoğraflar aynı, bir şey olmuyor. Şimdi basıyorsunuz: yeni okuma lov, eskisi hâlâ hay. İkisi farklı ve yenisi lov: yeni bir basış! Led yanıyor.")
+s("s27", "tog", "You keep holding: LOW and LOW. The photos are the same again, so nothing happens, no matter how long you hold. Then you let go: HIGH. Different, yes, but not LOW. Letting go is not a press.",
+  "Basılı tutmaya devam ediyorsunuz: LOW ve LOW. Fotoğraflar yine aynı; ne kadar uzun tutarsanız tutun, bir şey olmuyor. Sonra bırakıyorsunuz: HIGH. Farklı, evet, ama LOW değil. Bırakmak bir basış sayılmaz.",
+  "Basılı tutmaya devam ediyorsunuz: lov ve lov. Fotoğraflar yine aynı; ne kadar uzun tutarsanız tutun, bir şey olmuyor. Sonra bırakıyorsunuz: hay. Farklı, evet, ama lov değil. Bırakmak bir basış sayılmaz.", pad=0.7)
+s("s28", "tog", "One more detail: the short delay of fifty milliseconds. Metal contacts inside the button bounce, like a ball you drop: a few tiny bounces before it settles. For a few milliseconds, the pin flickers between HIGH and LOW. Waiting fifty milliseconds lets the bounce end, so one press counts as one. That's called debounce.",
+  "Bir ayrıntı daha: 50 milisaniyelik kısa bekleme. Butonun içindeki metal parçalar, yere düşen bir top gibi seker: durulmadan önce birkaç minik sıçrama yapar. Birkaç milisaniye boyunca pin HIGH ile LOW arasında titrer. 50 milisaniye beklemek sıçramanın bitmesine izin verir; böylece bir basış bir kez sayılır. Buna debounce, yani sıçrama önleme deniyor.",
+  "Bir ayrıntı daha: elli milisaniyelik kısa bekleme. Butonun içindeki metal parçalar, yere düşen bir top gibi seker: durulmadan önce birkaç minik sıçrama yapar. Birkaç milisaniye boyunca pin hay ile lov arasında titrer. Elli milisaniye beklemek sıçramanın bitmesine izin verir; böylece bir basış bir kez sayılır. Buna dibauns, yani sıçrama önleme deniyor.",
+  sub="One more detail: the short delay of 50 milliseconds. Metal contacts inside the button bounce, like a ball you drop: a few tiny bounces before it settles. For a few milliseconds, the pin flickers between HIGH and LOW. Waiting 50 milliseconds lets the bounce end, so one press counts as one. That's called debounce.")
+# ---- part 5: the clock (blink_button)
+s("s29", "ms", "One problem is left. Remember the microwave? Delay is like staring at its timer: you can't do anything else. When you really cook, you don't do that. You glance at the clock on the wall, and keep working.",
+  "Geriye bir sorun kaldı. Mikrodalgayı hatırlıyor musunuz? delay, onun sayacına bakakalmak gibi: başka hiçbir şey yapamazsınız. Gerçekten yemek yaparken bunu yapmazsınız. Duvardaki saate şöyle bir göz atar, işinize devam edersiniz.",
+  "Geriye bir sorun kaldı. Mikrodalgayı hatırlıyor musunuz? Dilay, onun sayacına bakakalmak gibi: başka hiçbir şey yapamazsınız. Gerçekten yemek yaparken bunu yapmazsınız. Duvardaki saate şöyle bir göz atar, işinize devam edersiniz.")
+s("s29b", "ms", "Say you're cooking pasta and a sauce at the same time. You note the time when the pasta goes in. Every now and then, you look at the clock: has it been ten minutes yet? Not yet: stir the sauce. Yes: drain the pasta.",
+  "Diyelim ki aynı anda hem makarna hem sos yapıyorsunuz. Makarnayı suya attığınız saati aklınızda tutuyorsunuz. Arada bir saate bakıyorsunuz: on dakika oldu mu? Daha olmadıysa sosu karıştırıyorsunuz. Olduysa makarnayı süzüyorsunuz.",
+  "Diyelim ki aynı anda hem makarna hem sos yapıyorsunuz. Makarnayı suya attığınız saati aklınızda tutuyorsunuz. Arada bir saate bakıyorsunuz: on dakika oldu mu? Daha olmadıysa sosu karıştırıyorsunuz. Olduysa makarnayı süzüyorsunuz.", pad=0.5)
+s("s30", "ms", "The board has a wall clock too. It's called millis. Technically, a timer inside the chip keeps counting in the background, from the moment the board starts. Millis gives you that count, in milliseconds. Reading it takes almost no time, so the program never stops.",
+  "Kartın da bir duvar saati var. Adı millis. Teknik olarak çipin içindeki bir zamanlayıcı, kart çalışmaya başladığı andan itibaren arka planda saymaya devam ediyor. millis size bu sayıyı milisaniye olarak veriyor. Onu okumak neredeyse hiç zaman almıyor; bu yüzden program hiç durmuyor.",
+  "Kartın da bir duvar saati var. Adı milis. Teknik olarak çipin içindeki bir zamanlayıcı, kart çalışmaya başladığı andan itibaren arka planda saymaya devam ediyor. Milis size bu sayıyı milisaniye olarak veriyor. Onu okumak neredeyse hiç zaman almıyor; bu yüzden program hiç durmuyor.",
+  sub="The board has a wall clock too. It's called millis(). Technically, a timer inside the chip keeps counting in the background, from the moment the board starts. millis() gives you that count, in milliseconds. Reading it takes almost no time, so the program never stops.")
+s("s31", "ms", "Each round, we read the clock into a box called now. It's an unsigned long: a box for very big numbers that are never negative, because the count only grows. Last blink is the time the LED last changed, like the moment the pasta went in. And now minus last blink is how much time has passed since then.",
+  "Her turda saati now adında bir kutuya okuyoruz. Bu bir unsigned long: çok büyük ve hiç eksi olmayan sayılar için bir kutu, çünkü sayı hep büyüyor. lastBlink, LED'in en son değiştiği an; tıpkı makarnayı suya attığınız an gibi. now eksi lastBlink de o andan bu yana ne kadar zaman geçtiğini söylüyor.",
+  "Her turda saati nau adında bir kutuya okuyoruz. Bu bir ansaynd long: çok büyük ve hiç eksi olmayan sayılar için bir kutu, çünkü sayı hep büyüyor. Last blink, ledin en son değiştiği an; tıpkı makarnayı suya attığınız an gibi. Nau eksi last blink de o andan bu yana ne kadar zaman geçtiğini söylüyor.",
+  sub="Each round, we read the clock into a box called now. It's an unsigned long: a box for very big numbers that are never negative, because the count only grows. lastBlink is the time the LED last changed, like the moment the pasta went in. And now minus lastBlink is how much time has passed since then.")
+s("s32", "ms", "Let's watch it. At one thousand, the LED changes, and last blink becomes one thousand. At twelve hundred, it's been two hundred milliseconds: not yet. At fifteen hundred, it's been five hundred: time to change again. Flip, and last blink becomes fifteen hundred.",
+  "İzleyelim. 1000'de LED değişiyor ve lastBlink 1000 oluyor. 1200'de, üzerinden 200 milisaniye geçmiş: daha değil. 1500'de, 500 geçmiş: yeniden değişme zamanı. LED değişiyor ve lastBlink 1500 oluyor.",
+  "İzleyelim. Binde led değişiyor ve last blink bin oluyor. Bin iki yüzde, üzerinden iki yüz milisaniye geçmiş: daha değil. Bin beş yüzde, beş yüz geçmiş: yeniden değişme zamanı. Led değişiyor ve last blink bin beş yüz oluyor.",
+  sub="Let's watch it. At 1000, the LED changes, and lastBlink becomes 1000. At 1200, it's been 200 milliseconds: not yet. At 1500, it's been 500: time to change again. Flip, and lastBlink becomes 1500.")
+s("s33", "ms", "The button uses the same trick. Last change remembers when the button last changed. Anything faster than fifty milliseconds is just the bounce, so we ignore it.",
+  "Buton da aynı yöntemi kullanıyor. lastChange, butonun en son ne zaman değiştiğini hatırlıyor. 50 milisaniyeden hızlı olan her şey sadece sıçramadır, onu yok sayıyoruz.",
+  "Buton da aynı yöntemi kullanıyor. Last çeynç, butonun en son ne zaman değiştiğini hatırlıyor. Elli milisaniyeden hızlı olan her şey sadece sıçramadır, onu yok sayıyoruz.",
+  sub="The button uses the same trick. lastChange remembers when the button last changed. Anything faster than 50 milliseconds is just the bounce, so we ignore it.")
+s("s34", "ms", "And blinking is a true or false box, like the click pen. A press flips it. The two ampersands in the code mean: and. The LED part runs only if blinking is true, and enough time has passed. When blinking is false, that part is skipped, but the button still works, because the loop never waits.",
+  "blinking de tükenmez kalem gibi bir doğru-yanlış kutusu. Bir basış onu çeviriyor. Koddaki iki ve işareti 've' demek: LED kısmı yalnızca blinking true ise ve yeterince zaman geçtiyse çalışıyor. blinking false olduğunda o kısım atlanıyor, ama buton çalışmaya devam ediyor. Çünkü loop hiç beklemiyor.",
+  "Blinking de tükenmez kalem gibi bir doğru yanlış kutusu. Bir basış onu çeviriyor. Koddaki iki ve işareti ve demek: led kısmı yalnızca blinking tru ise ve yeterince zaman geçtiyse çalışıyor. Blinking fols olduğunda o kısım atlanıyor, ama buton çalışmaya devam ediyor. Çünkü lup hiç beklemiyor.")
 # ---- the four questions
-s("s35", "four", "That's all five sketches. And every sketch answers the same four questions.",
-  "Beş sketch bu kadar. Ve her sketch aynı dört soruya cevap verir.",
-  "Beş sketç bu kadar. Ve her sketç aynı dört soruya cevap verir.")
-s("s36", "four", "One: what are the names? Two: what happens once, in setup? Three: what repeats, in loop? And four: what does it remember?",
-  "Bir: isimler neler? İki: setup içinde bir kez ne olur? Üç: loop içinde ne tekrar eder? Dört: neyi hatırlar?",
-  "Bir: isimler neler? İki: set apta bir kez ne olur? Üç: lupta ne tekrar eder? Dört: neyi hatırlar?")
-s("s37", "four", "The fourth matters most. A box that keeps its value between rounds is how a sketch knows what happened before.",
-  "En önemlisi dördüncüsü. Turlar arasında değerini koruyan kutu, bir sketch'in daha önce ne olduğunu bilme yoludur.",
-  "En önemlisi dördüncüsü. Turlar arasında değerini koruyan kutu, bir sketçin daha önce ne olduğunu bilme yoludur.")
+s("s35", "four", "That's all five sketches. And here's the good news: you can read every one of them by asking the same four questions, just like reading a new recipe.",
+  "Beş sketch'in hepsi bu kadar. İşin güzel yanı şu: hepsini aynı dört soruyu sorarak okuyabilirsiniz, tıpkı yeni bir tarif okur gibi.",
+  "Beş sketçin hepsi bu kadar. İşin güzel yanı şu: hepsini aynı dört soruyu sorarak okuyabilirsiniz, tıpkı yeni bir tarif okur gibi.")
+s("s36", "four", "One: what are the names, the ingredients? Two: what happens once, in setup, the preparation? Three: what repeats, in loop, the steps? And four: what does it remember between rounds?",
+  "Bir: isimler neler, yani malzemeler? İki: setup'ta bir kez ne oluyor, yani hazırlık? Üç: loop'ta ne tekrar ediyor, yani adımlar? Ve dört: turlar arasında neyi hatırlıyor?",
+  "Bir: isimler neler, yani malzemeler? İki: set apta bir kez ne oluyor, yani hazırlık? Üç: lupta ne tekrar ediyor, yani adımlar? Ve dört: turlar arasında neyi hatırlıyor?")
+s("s37", "four", "The fourth question matters most. A box that keeps its value between rounds is how a sketch knows what happened before. Like the scoreboard, the photo, and the clock.",
+  "En önemlisi dördüncü soru. Turlar arasında değerini koruyan bir kutu, sketch'in daha önce ne olduğunu bilmesinin yolu. Tıpkı skor tabelası, fotoğraf ve saat gibi.",
+  "En önemlisi dördüncü soru. Turlar arasında değerini koruyan bir kutu, sketçin daha önce ne olduğunu bilmesinin yolu. Tıpkı skor tabelası, fotoğraf ve saat gibi.")
 # ---- practice
-s("s38", "prac", "Your turn: three quick ones. Pause the video if you want to think.",
-  "Sıra sizde: üç kısa soru. Düşünmek isterseniz videoyu durdurun.",
-  "Sıra sizde: üç kısa soru. Düşünmek isterseniz videoyu durdurun.")
-s("s39", "prac", "One. Count starts at zero, and each round adds two. What are the first three prints?",
-  "Bir. count sıfırdan başlıyor ve her tur iki ekliyor. İlk üç çıktı nedir?",
-  "Bir. Kaunt sıfırdan başlıyor ve her tur iki ekliyor. İlk üç çıktı nedir?", pad=THINK + 1.0)
-s("s40", "prac", "Two, four, six. The box remembers, and adds two every round.",
-  "İki, dört, altı. Kutu hatırlar ve her tur iki ekler.",
-  "İki, dört, altı. Kutu hatırlar ve her tur iki ekler.")
-s("s41", "prac", "Two. You hold the button for five rounds. The sketch counts a press only when state is LOW and last state is HIGH. How many presses?",
-  "İki. Butona beş tur boyunca basılı tutuyorsunuz. Sketch yalnızca state LOW ve lastState HIGH iken bir basış sayıyor. Kaç basış olur?",
-  "İki. Butona beş tur boyunca basılı tutuyorsunuz. Sketç yalnızca steyt lov ve last steyt hay iken bir basış sayıyor. Kaç basış olur?", pad=THINK + 1.0)
-s("s42", "prac", "One. Only the first round has a change. After that it's LOW and LOW, the same.",
-  "Bir. Yalnızca ilk turda değişiklik var. Sonrasında LOW ve LOW, aynı.",
-  "Bir. Yalnızca ilk turda değişiklik var. Sonrasında lov ve lov, aynı.")
-s("s43", "prac", "Three. Last blink is zero, and now is seven hundred. The rule is: now minus last blink, at least five hundred. Does the LED flip?",
-  "Üç. lastBlink sıfır ve now yedi yüz. Kural: now eksi lastBlink en az beş yüz. LED değişir mi?",
-  "Üç. Last blink sıfır ve nau yedi yüz. Kural: nau eksi last blink en az beş yüz. Led değişir mi?", pad=THINK + 1.0)
-s("s44", "prac", "Yes: seven hundred minus zero is seven hundred, and that's at least five hundred. Then last blink becomes seven hundred.",
-  "Evet: yedi yüz eksi sıfır yedi yüz eder ve bu en az beş yüzdür. Sonra lastBlink yedi yüz olur.",
-  "Evet: yedi yüz eksi sıfır yedi yüz eder ve bu en az beş yüzdür. Sonra last blink yedi yüz olur.")
+s("s38", "prac", "Your turn: three quick ones. Pause the video whenever you want to think.",
+  "Sıra sizde: üç kısa soru. Düşünmek istediğinizde videoyu durdurabilirsiniz.",
+  "Sıra sizde: üç kısa soru. Düşünmek istediğinizde videoyu durdurabilirsiniz.")
+s("s39", "prac", "Number one. A box called count starts at zero, and every round adds two. What are the first three numbers printed?",
+  "Birinci soru. count adında bir kutu sıfırdan başlıyor ve her tur iki ekliyor. Ekrana yazılan ilk üç sayı ne olur?",
+  "Birinci soru. Kaunt adında bir kutu sıfırdan başlıyor ve her tur iki ekliyor. Ekrana yazılan ilk üç sayı ne olur?", pad=THINK + 1.0)
+s("s40", "prac", "Two, four, six. The box remembers, and adds two every round, just like the scoreboard.",
+  "İki, dört, altı. Kutu hatırlıyor ve her tur iki ekliyor; tıpkı skor tabelası gibi.",
+  "İki, dört, altı. Kutu hatırlıyor ve her tur iki ekliyor; tıpkı skor tabelası gibi.")
+s("s41", "prac", "Number two. You press the button and hold it for five rounds. The sketch only counts a press when the new reading is LOW and the old one is HIGH. How many presses does it count?",
+  "İkinci soru. Butona basıp beş tur boyunca basılı tutuyorsunuz. Sketch bir basışı yalnızca yeni okuma LOW ve eski okuma HIGH olduğunda sayıyor. Kaç basış sayar?",
+  "İkinci soru. Butona basıp beş tur boyunca basılı tutuyorsunuz. Sketç bir basışı yalnızca yeni okuma lov ve eski okuma hay olduğunda sayıyor. Kaç basış sayar?", pad=THINK + 1.0)
+s("s42", "prac", "Just one. Only the first round has a change. After that, it's LOW and LOW: the same photo.",
+  "Yalnızca bir. Sadece ilk turda bir değişiklik var. Sonrasında LOW ve LOW: aynı fotoğraf.",
+  "Yalnızca bir. Sadece ilk turda bir değişiklik var. Sonrasında lov ve lov: aynı fotoğraf.")
+s("s43", "prac", "Number three. Last blink is zero, and now is seven hundred. The rule says: change the LED when now minus last blink is at least five hundred. Does the LED change?",
+  "Üçüncü soru. lastBlink sıfır, now ise 700. Kural şu: now eksi lastBlink en az 500 olduğunda LED'i değiştir. LED değişir mi?",
+  "Üçüncü soru. Last blink sıfır, nau ise yedi yüz. Kural şu: nau eksi last blink en az beş yüz olduğunda ledi değiştir. Led değişir mi?",
+  sub="Number three. lastBlink is 0, and now is 700. The rule says: change the LED when now minus lastBlink is at least 500. Does the LED change?", pad=THINK + 1.0)
+s("s44", "prac", "Yes. Seven hundred minus zero is seven hundred, and that's more than five hundred. Then last blink becomes seven hundred, and the next wait starts from there.",
+  "Evet. 700 eksi sıfır 700 eder ve bu 500'den fazla. Sonra lastBlink 700 oluyor ve bir sonraki bekleme oradan başlıyor.",
+  "Evet. Yedi yüz eksi sıfır yedi yüz eder ve bu beş yüzden fazla. Sonra last blink yedi yüz oluyor ve bir sonraki bekleme oradan başlıyor.",
+  sub="Yes. 700 minus 0 is 700, and that's more than 500. Then lastBlink becomes 700, and the next wait starts from there.")
 # ---- outro
-s("s45", "outro", "Today, we read five sketches with the same four questions, and watched their memory change. If one of them still feels unclear, tell me which one in the comments.",
-  "Bugün beş sketch'i aynı dört soruyla okuduk ve hafızalarının değişmesini izledik. Hâlâ net olmayan biri varsa yorumlarda hangisi olduğunu yazın.",
-  "Bugün beş sketçi aynı dört soruyla okuduk ve hafızalarının değişmesini izledik. Hâlâ net olmayan biri varsa yorumlarda hangisi olduğunu yazın.")
-s("s46", "outro", "Next time: PWM. We'll fade an LED smoothly, and mix any color. Let's meet in the comments: which sketch was the hardest to read? See you there!",
-  "Gelecek sefer: PWM. Bir LED'i yumuşakça yakıp söndüreceğiz ve istediğimiz rengi karıştıracağız. Yorumlarda buluşalım: hangi sketch okumak için en zordu? Görüşmek üzere!",
-  "Gelecek sefer: Pe Ve Me. Bir led'i yumuşakça yakıp söndüreceğiz ve istediğimiz rengi karıştıracağız. Yorumlarda buluşalım: hangi sketç okumak için en zordu? Görüşmek üzere!")
+s("s45", "outro", "Today, we read five sketches with the same four questions, and watched their memory change, round by round. If one of them still feels unclear, tell me which one in the comments.",
+  "Bugün beş sketch'i aynı dört soruyla okuduk ve hafızalarının tur tur nasıl değiştiğini izledik. Hâlâ net olmayan biri varsa, hangisi olduğunu yorumlarda yazın.",
+  "Bugün beş sketçi aynı dört soruyla okuduk ve hafızalarının tur tur nasıl değiştiğini izledik. Hâlâ net olmayan biri varsa, hangisi olduğunu yorumlarda yazın.")
+s("s46", "outro", "Next time: PWM. We'll fade an LED smoothly, like a dimmer switch, and mix any color we like. Let's meet in the comments: which sketch was the hardest to read? See you there!",
+  "Gelecek sefer: PWM. Bir LED'i, ışığı kısıp açan bir dimmer düğmesi gibi yumuşakça yakıp söndüreceğiz ve istediğimiz her rengi karıştıracağız. Yorumlarda buluşalım: okuması en zor sketch hangisiydi? Görüşmek üzere!",
+  "Gelecek sefer: Pe Ve Me. Bir ledi, ışığı kısıp açan bir dimır düğmesi gibi yumuşakça yakıp söndüreceğiz ve istediğimiz her rengi karıştıracağız. Yorumlarda buluşalım: okuması en zor sketç hangisiydi? Görüşmek üzere!")
 
 dub = {d["id"]: d.pop("dub") for d in S}
 script = {

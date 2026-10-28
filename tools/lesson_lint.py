@@ -2,17 +2,28 @@
 
 Reads video/<ep>/script.json and video/<ep>/build/schedule.json and prints warnings for:
   FAST    segment spoken faster than MAX_WPM
-  DENSE   segment longer than MAX_WORDS (a long run of facts in one breath)
+  LONG    sentence longer than MAX_SENT words (30 in dub texts)
+  DENSE   segment longer than MAX_WORDS
+  FRAGMENT segment with 2+ sentences of <= 3 words (telegraphic style)
+  JARGON  sentence with 3+ code terms chained
+  EXAMPLE scene of 3+ segments without an everyday-example phrase
   NEWTERM segment introduces >1 new term, or a new term right after a short gap (< MIN_TERM_GAP s)
   QUESTION "Quick question" without a 2.5-4.5 s thinking pause after it
   RULES   production-guideline checks: cold open shows the result, no spoken "subscribe", comments invitation at the end
 
 Usage: python tools/lesson_lint.py ep05 [ep04 ...]
 """
-import json, re, sys
+import glob, json, os, re, sys
 
-MAX_WPM = 200
-MAX_WORDS = 40
+MAX_WPM = 175
+MAX_WORDS = 85
+MAX_SENT = 24
+CODE_TERMS = ["HIGH", "LOW", "state", "last state", "last blink", "last change", "LED on", "now", "millis", "delay", "setup", "loop",
+              "digital read", "digital write", "pin mode", "input", "output", "pull up", "const", "true", "false", "analog read",
+              "analog write", "map", "blinking", "presses"]
+CODE_RX = re.compile(r"\b(?:" + "|".join(CODE_TERMS) + r")\b", re.I)
+NO_EXAMPLE = {"cold", "outro", "prac", "parts", "trouble", "challenge"}
+EXAMPLE_RX = re.compile(r"\b(like (a|an|the|your)|just like|it's like|works like|think of|imagine|picture an?|say you're|as if)\b", re.I)
 MIN_TERM_GAP = 0.8
 Q_MIN, Q_MAX = 2.5, 4.5
 # first appearance of any of these in narration = "introduction" of a new concept
@@ -24,6 +35,20 @@ TERMS = {
     "serial plotter": r"serial plotter", "potentiometer": r"potentiometer", "analog read": r"analog read", "ADC": r"\badc\b",
     "interrupt": r"\binterrupt", "LDR": r"\bldr\b", "tone": r"\btone\b",
 }
+
+def sentences(t):
+    return [x for x in re.split(r"(?<=[.!?:;])\s+", t.strip()) if x]
+
+def fragments(t):
+    # full stops only: "Quick question:" or "Part two:" lead into a sentence, they are not fragments
+    full = [x for x in re.split(r"(?<=[.!?])\s+", t.strip()) if x]
+    return sum(len(x.split()) <= 3 for x in full) >= 2
+
+def dubs(ep):
+    out = {}
+    for f in sorted(glob.glob(f"video/{ep}/dub/*.json")):
+        out[os.path.basename(f)[:-5]] = json.load(open(f, encoding="utf-8")).get("segments", {})
+    return out
 
 def load(ep):
     sc = json.load(open(f"video/{ep}/script.json", encoding="utf-8"))["segments"]
@@ -47,6 +72,13 @@ def main():
                 warns.append((i, "FAST", f"{wpm:.0f} wpm: {t[:70]}"))
             if w > MAX_WORDS:
                 warns.append((i, "DENSE", f"{w} words, {seg['dur']:.0f} s: {t[:70]}"))
+            for x in sentences(t):
+                if len(x.split()) > MAX_SENT:
+                    warns.append((i, "LONG", f"{len(x.split())}-word sentence: {x[:70]}"))
+                if len(CODE_RX.findall(x)) >= 3:
+                    warns.append((i, "JARGON", f"{len(CODE_RX.findall(x))} code terms: {x[:70]}"))
+            if fragments(t):
+                warns.append((i, "FRAGMENT", f"telegraphic: {t[:70]}"))
             teaser = re.search(r"next time", t, re.I)  # outro teaser names future topics: not taught here
             new = [] if teaser else [k for k, rx in TERMS.items() if k not in seen and re.search(rx, t, re.I)]
             seen.update(new)

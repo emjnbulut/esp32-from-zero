@@ -6,6 +6,7 @@ A script or dub file opts in with  "engine": "chatterbox"  and optional settings
 """
 import json
 import os
+import re
 import subprocess
 import tempfile
 from pathlib import Path
@@ -25,10 +26,26 @@ VOICES = {
     "pt": {"prompt": _S + "creator_en.wav", "accent_prompt": _S + "pt_fleurs2.wav"},
     "es": {"prompt": _S + "creator_en.wav", "accent_prompt": _S + "es_fleurs2.wav"},
 }
-# Dub voices that speak slower than the English narration are played faster (atempo) when the dub is laid out,
-# so their slots need not stretch the English video. The base tempo is measured per episode: the median ratio
-# dub/English over all segments, capped at DUB_TEMPO_MAX. Turkish stays at 1.0 (user: TR must sound natural).
-DUB_TEMPO_MAX = 1.2
+VOWELS = re.compile(r"[aeiouyáéíóúâêîôûãõàèìòùäëïöüıœæ]+", re.I)
+
+
+def syllables(text: str) -> int:
+    """Rough syllable count: vowel groups for Latin scripts, aksharas (consonant or vowel not followed by a virama)
+    for Devanagari. Only used to compare lines with their own language's pace limit."""
+    n = sum(1 for m in re.finditer(r"[ऄ-औक-हक़-य़]", text)
+            if text[m.end():m.end() + 1] != "्")
+    return n + len(VOWELS.findall(re.sub(r"[ऀ-ॿ]", " ", text)))
+
+
+# Pace per language in syllables per voiced second, for reports (tools/pace_check.py): a line above this is an outlier.
+# Measured 2026-10-28 on the recap: EN 4.5, TR 5.0, HI 5.3 median, single lines up to 7.0 -> "rushed, jumpy".
+# NOT enforced by time-stretching (that sounded robotic and too slow, user 2026-10-28); cbx_retake.py re-narrates
+# lines whose pace is far from the episode's median instead.
+MAX_SPS = {"en": 4.9, "tr": 5.4, "hi": 5.8, "pt": 5.8, "es": 6.2}
+# Dubs used to be played up to 1.2x faster (base tempo) so they fit the English slots. User 2026-10-28: every
+# language sounded rushed -> no base speed-up any more (DUB_TEMPO_MAX 1.0); build.py schedule lets the picture wait
+# for the longest dub instead. The base-tempo code stays so the cap can be raised again on purpose.
+DUB_TEMPO_MAX = 1.0
 DUB_TEMPO_FIXED = {"tr": 1.0}
 
 
@@ -52,7 +69,9 @@ def engine(spec: dict) -> str:
     return spec.get("engine", ENGINE)
 
 
-PAUSES = {"sentence": 0.32, "comma": 0.12}  # seconds of silence at . ! ? : ; and at commas
+# seconds of silence after a piece, by the punctuation it ends on (user 2026-10-28: the narrator must breathe at
+# punctuation; 0.32 / 0.12 s made sentences run into each other; 0.6 / 0.28 felt too slow)
+PAUSES = {"sentence": 0.5, "question": 0.7, "colon": 0.35, "comma": 0.22}
 # Voice clean-up on every take (user approved 2026-10-25): rumble cut, less mud, more presence, softer "s", gentle compression
 POLISH = ("highpass=f=80,equalizer=f=250:t=q:w=1:g=-2,equalizer=f=3500:t=q:w=1.2:g=2,deesser=i=0.4,"
           "acompressor=threshold=-20dB:ratio=2.5:attack=8:release=120")

@@ -24,7 +24,7 @@ import cbx  # noqa: E402
 from dub_check import load16k, words  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
-MAX_GAP = 0.75  # seconds of silence inside a line (sentence pauses are 0.32 + trims)
+MAX_GAP = 1.15  # seconds of silence inside a line (a question pause is 0.8 + trims; more is a stumble)
 MAX_JUNK = 0.25  # seconds of sound away from every recognised word (Chatterbox mumbles/noise after a chunk)
 MIN = {"en": 0.9, "hi": 0.0}  # Hindi: Whisper writes the English terms in Devanagari, so only fluency is checked
 
@@ -96,7 +96,9 @@ def main():
             p.append(f"pause {r['gap']:.1f}s")
         if r.get("junk", 0) > MAX_JUNK:
             p.append(f"stray sound {r['junk']:.1f}s")
-        if not 0.75 * med < r["rate"] < 1.3 * med:
+        # a line much faster/slower than the rest makes the rhythm jump (user 2026-10-28: "karman çorman");
+        # the band was 0.75-1.3 before, retakes are cheaper than time-stretching (which sounded robotic)
+        if not 0.85 * med < r["rate"] < 1.18 * med:
             p.append(f"rate x{r['rate'] / med:.2f}")
         return p
 
@@ -108,7 +110,7 @@ def main():
         room = {sid: sg[ids[i + 1]]["start"] - sg[sid]["start"] - 0.2 for i, sid in enumerate(ids[:-1])}
 
     def rank(r):  # fluent takes first, then takes that fit their slot, then the clearest
-        return (len(problems(r)) == 0, r.get("dur", 0) <= 1.08 * room.get(r.get("sid"), 1e9), r["match"] - 0.1 * max(0, r["gap"] - MAX_GAP) - 0.2 * r.get("junk", 0))
+        return (len(problems(r)) == 0, r.get("dur", 0) <= 1.03 * room.get(r.get("sid"), 1e9), r["match"] - 0.1 * max(0, r["gap"] - MAX_GAP) - 0.2 * r.get("junk", 0))
 
     weak = {sid: problems(r) for sid, r in res.items() if problems(r)}
     print(f"{lang}: {len(res)} lines, median {med:.1f} chars/s, {len(weak)} to retake", flush=True)

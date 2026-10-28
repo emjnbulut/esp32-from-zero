@@ -3,14 +3,18 @@ tools/tts.py and tools/dub.py call it through tools/cbx.py.
 
 Usage: .venv-tts/Scripts/python tools/chatterbox_say.py jobs.json
 jobs.json: {"model": "en" | "multilingual", "lang": "en", "prompt": "voice.wav" | null,
-            "exaggeration": 0.5, "cfg_weight": 0.5, "seed": 1, "pauses": {"sentence": 0.32, "comma": 0.12},
+            "exaggeration": 0.5, "cfg_weight": 0.5, "seed": 1,
+            "pauses": {"sentence": 0.5, "question": 0.7, "colon": 0.35, "comma": 0.22},
             "accent_prompt": "native.wav" (optional), "accent_speaker": "prompt" (optional), "polish": "ffmpeg -af chain",
             "denoise": "deepfilternet" (optional),
             "items": [{"text": "...", "out": "s01.mp3"}]}
 
 Punctuation: every line is cut into sentences (. ! ? : ; ...) and, when both sides are long enough, at
-commas; each piece is narrated on its own, trimmed, and joined with a fixed pause, so the narrator always
-stops at a full stop and breathes at a comma. Numbers like 3.3 or 1,3 are never split.
+commas; each piece is narrated on its own, trimmed, and joined with a pause that fits the punctuation it ended on
+(a question waits longest, a comma is a short breath), so the narrator always stops where a person would.
+Numbers like 3.3 or 1,3 are never split.
+No time-stretching: slowing pieces down with rubberband (tried 2026-10-28) made the voice sound robotic and too slow
+(user). Lines that run much faster or slower than the rest are narrated again instead (tools/cbx_retake.py).
 """
 import json
 import re
@@ -23,10 +27,11 @@ import torch
 SENT = re.compile(r"(?<=[.!?:;…])\s+")
 COMMA = re.compile(r"(?<=,)\s+")
 MIN_WORDS = 3  # a comma piece shorter than this stays attached (very short inputs narrate badly)
+KIND = {"?": "question", ":": "colon", ";": "colon", ",": "comma"}  # anything else (. ! …) is "sentence"
 
 
 def pieces(text: str):
-    """[(piece, pause_after_kind)] with kind 'sentence' | 'comma' | None (last)."""
+    """[(piece, pause_after_kind)] with kind 'sentence' | 'question' | 'colon' | 'comma' | None (last)."""
     out = []
     sents = []
     for x in [x for x in SENT.split(text.strip()) if x]:
@@ -47,13 +52,12 @@ def pieces(text: str):
             else:
                 parts.append(c)
         for ci, c in enumerate(parts):
-            last_in_sent = ci == len(parts) - 1
-            kind = None if (last_in_sent and si == len(sents) - 1) else ("sentence" if last_in_sent else "comma")
-            out.append((c, kind))
+            last = ci == len(parts) - 1 and si == len(sents) - 1
+            out.append((c, None if last else KIND.get(c.rstrip()[-1:], "sentence")))
     return out
 
 
-def trim(wav: np.ndarray, sr: int, thresh_db=-35.0, keep=0.05):
+def trim(wav: np.ndarray, sr: int, thresh_db=-35.0, keep=0.08):
     """Cut leading/trailing silence, keeping `keep` seconds around the speech."""
     hop = int(sr * 0.01)
     if len(wav) < hop * 3:
@@ -152,7 +156,7 @@ def main(path):
                 w = trim(gen(piece), tts.sr)
                 chunks.append(w)
                 if kind:
-                    chunks.append(np.zeros(int(pauses.get(kind, 0.3) * tts.sr), dtype="float32"))
+                    chunks.append(np.zeros(int(pauses.get(kind, pauses.get("sentence", 0.5)) * tts.sr), dtype="float32"))
             wav = np.concatenate(chunks)
         else:
             wav = gen(item["text"])

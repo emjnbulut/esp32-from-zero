@@ -25,3 +25,19 @@ RESUME: `bash video/recap1/build_all.sh >> video/recap1/build_all3.log 2>&1` (re
 If build/rebuild.done lists schedule, render, audio, compose, dub_tr and subs the build is complete: then rerun `python video/recap1/make_localize.py` (chapter times moved) and watch the video.
 Open: user has not given feedback on clarity yet; HI/PT/ES dubs not made (EN + TR first); upload Fri 30 Oct 17:00; thumbnail = video/thumbs/build/recap_A.png.
 Also pending from this session: ep06 lessons/06-analog-input sketches written and compiled (not committed yet), no script/scenes for ep06 until the recap feedback is in.
+
+## v3 2026-10-28 afternoon: rewritten narration (user feedback) - resume here
+User on the first full build: the TR dub explains badly (jumbled at punctuation, robotic term lists); same in every language;
+wants human explanation with many everyday examples AND the objective meaning of every term. Guidelines section 9.
+- make_script.py v3: 50 segments (new s11b, s15b, s24b, s29b), 2145 words; every idea = everyday picture + "What actually
+  happens: ..." + code. recap1.js: exCard() example cards (engine/lib.js exampleCard, stage.css .excard), new chips for the
+  objective sentences, like/subscribe moved to the top right (insets cover the bottom right). tools/anchor_check.py recap1 = 0 problems.
+- Voice engine (tools/cbx.py, chatterbox_say.py): punctuation pauses 0.5/0.7/0.35/0.22 s, NO time-stretch (rubberband pilot
+  sounded robotic/slow), dubs never sped up (DUB_TEMPO_MAX 1.0, build.py DUB_FIT 1.03), cbx_retake rate band 0.85-1.18.
+  User approved pilot C (video/recap1/build/pilot/PILOT_tr_C.mp3).
+- HI/PT/ES dub texts: dub/{hi,pt,es}.json (Sonnet agents, 27 changed segments re-translated for v3).
+- Build: `bash tools/rebuild_voices.sh recap1 >> video/recap1/build_v2.log 2>&1` (resumable via build/rebuild.done; all 5
+  languages are narrated BEFORE schedule/render so the picture waits for the longest dub). Then: pace_check.py, listen
+  excerpts for the user (TR first), thumbnail recap_A, youtube.md/localize, upload Fri 30 Oct 17:00.
+- ep05 v2 draft (same style, not yet with objective sentences): video/ep05/make_script.v2-draft.py - only after the user
+  likes the recap (user: "şu an recapa odaklanalım, beğenirsem bölüm 5'e sonra geçeriz").

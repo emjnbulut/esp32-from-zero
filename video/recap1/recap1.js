@@ -1,7 +1,8 @@
 /* Recap: episodes 1-4 - how to read a sketch (2026-10-27).
  * One topic: every sketch = names + setup + loop, and variables are its memory. Each sketch is run as a LIVE TRACE:
  * the highlighted line moves with the narration and a MEMORY panel shows every variable changing (PRODUCTION_GUIDELINES.md
- * section 8). Segment ids: see make_script.py. Only syntax from episodes 1-4. */
+ * section 8). Segment ids: see make_script.py. Only syntax from episodes 1-4.
+ * v2 2026-10-28: every idea starts with an everyday picture (section 9); exCard() shows it while the narrator tells it. */
 const stage = $("#stage");
 const SC = (cls = "") => el("div", "scene " + cls, '<div class="grid"></div>', stage);
 const T = (id) => S0(id);
@@ -83,6 +84,10 @@ function trace(scene, o) {
   return bc;
 }
 const title = (scene, html, t0) => { const e = box(scene, 0, 32, 1920, 60, "ptitle", html); hidden(e); show(e, t0, 0.4); return e; };
+/* everyday example card (lib.js exampleCard): the picture of the idea while the narrator tells it */
+const exCard = (emoji, head, line, t0, t1) => exampleCard(stage, emoji, head, line, t0, t1);
+/* like/subscribe in the TOP right: the real-footage insets cover the bottom-right corner */
+const likeTop = (t0) => likeSub(stage, t0, 2.6, { style: { top: "36px", bottom: "auto" } });
 /* the real result next to the trace (reused creator clips, looped by footage prep): PRODUCTION_GUIDELINES.md section 4 */
 const inset = (id, t0, t1, desc, sketch) => heroClip(stage, id, t0, t1, desc, { x: 1330, y: 744, w: 520, h: 293, sketch });
 const SRC = {
@@ -203,7 +208,8 @@ sceneOut(sSkel, S1("s10") + 0.4);
 {
   title(sSkel, `Part 1 · the skeleton <small>hello_esp32.ino · episode 1</small>`, CUT + 0.1);
   // the three parts as colored tags next to the code (s03)
-  const tags = [["NAMES", "#ffb547", "#2a1a00", 0, 0], ["SETUP · once", "#19c3b4", "#04201d", 2, 6], ["LOOP · forever", "#b48cff", "#1e1040", 8, 12]];
+  const tags = [["NAMES · the ingredients", "#ffb547", "#2a1a00", 0, 0], ["SETUP · once · the preparation", "#19c3b4", "#04201d", 2, 6],
+    ["LOOP · forever · the steps", "#b48cff", "#1e1040", 8, 12]];
   const lh = Math.round(25 * 1.55);
   const tg = tags.map(([txt, bg, fg, a, b], i) => {
     const e = box(sSkel, 1130, 120 + 24 + a * lh + ((b - a + 1) * lh - 42) / 2, 0, 0, "tag3", txt);
@@ -214,27 +220,32 @@ sceneOut(sSkel, S1("s10") + 0.4);
   });
   [W("s03", "Names"), W("s03", "setup"), W("s03", "loop")].forEach((t, i) => { show(tg[i], t - 0.05, 0.35); hide(tg[i], T("s04") - 0.1, 0.3); });
   const back = box(sSkel, 1130, 120 + 24 + 8 * lh + 6, 0, 0, "tag3", "↺ then back to the top"); css(back, { background: "#b48cff", color: "#1e1040", width: "auto", height: "auto" }); hidden(back);
-  show(back, W("s06", "jumps") - 0.05, 0.35); hide(back, T("s07") - 0.1, 0.3);
+  show(back, W("s06", "calls") - 0.05, 0.35); hide(back, T("s07") - 0.1, 0.3);
   trace(sSkel, {
     code: SRC.hello, t0: CUT + 0.2, memFrom: T("s04") - 0.1, serial: true, size: 25,
     vars: [{ name: "seconds" }],
     steps: [
       st(T("s03"), -1),
       st(W("s03", "Names"), 0), st(W("s03", "setup"), [2, 6]), st(W("s03", "loop"), [8, 12]),
-      st(T("s04"), 0, { seconds: 0 }, { chip: { html: "a box with a label", col: "amber" } }),
+      st(T("s04"), 0, { seconds: 0 }, { chip: { html: "📦 a box with a label", col: "amber" } }),
+      st(W("s04", "What"), 0, null, { chip: { html: "a named spot in the board's memory", col: "teal" } }),
+      st(W("s04", "Int"), 0, null, { chip: { html: "int = a whole number · = puts a value in", col: "teal" } }),
       st(T("s05"), [2, 5], null, { chip: { html: "runs once: serial opens, hello", col: "teal" } }),
-      st(W("s05", "says"), 5, null, { say: "Hello, ESP32!" }),
-      st(T("s06"), [8, 12], null, { chip: { html: "runs forever", col: "teal" } }),
+      st(W("s05", "What"), [2, 6], null, { chip: { html: "once, after power-on or reset", col: "teal" } }),
+      st(W("s05", "sends"), 5, null, { say: "Hello, ESP32!" }),
+      st(T("s06"), [8, 12], null, { chip: { html: "🔦 runs forever, round after round", col: "teal" } }),
+      st(W("s06", "What"), 12, null, { chip: { html: "at the closing } loop is called again", col: "teal" } }),
       st(T("s07"), -1, { seconds: 0 }, { chip: { html: "round 1", col: "amber" } }),
-      st(W("s07", "Add"), 9),
-      st(W("s07", "now"), 9, { seconds: 1 }),
-      st(W("s07", "Print"), 10, null, { say: "I have been running for 1 seconds" }),
-      st(W("s07", "Wait"), 11),
-      st(W("s07", "Back"), 8, null, { chip: { html: "round 2", col: "amber" } }),
+      st(W("s07", "says"), 9, null, { chip: { html: "read right to left: box + 1 → box", col: "amber" } }),
+      st(W("s07", "now", 2), 9, { seconds: 1 }),
+      st(W("s07", "print"), 10, null, { say: "I have been running for 1 seconds" }),
+      st(W("s07", "wait"), 11),
+      st(W("s07", "back", 2), 8, null, { chip: { html: "round 2", col: "amber" } }),
       st(W("s07", "add", 2), 9),
       st(W("s07", "two"), 9, { seconds: 2 }),
       st(W("s07", "two") + 0.6, 10, null, { say: "I have been running for 2 seconds" }),
-      st(T("s08"), -1, null, { chip: { html: "a variable = the sketch's MEMORY", col: "amber" } }),
+      st(T("s08"), -1, null, { chip: { html: "🏟 a variable = the sketch's MEMORY", col: "amber" } }),
+      st(W("s08", "outside"), 0, null, { chip: { html: "made OUTSIDE setup and loop → it stays", col: "teal" } }),
       st(T("s09"), -1),
       st(T("s10") + 0.2, 9, { seconds: 3 }, { chip: { html: "round 3", col: "amber" } }),
       st(T("s10") + 0.9, 9, { seconds: 4 }, { chip: { html: "round 4", col: "amber" } }),
@@ -242,8 +253,12 @@ sceneOut(sSkel, S1("s10") + 0.4);
     ],
   });
   quizCard(sSkel, "After the loop has run 5 times, what does <b>seconds</b> hold?", W("s09", "Quick"), T("s10"), "5: each round adds one, and the box remembers.", { y: 840, w: 1500, t1: S1("s10") });
+  exCard("📦", "A labelled moving box", "a variable = a box with a label, so you know what's inside", W("s04", "Think"), W("s04", "What") - 0.2);
+  exCard("🛏️", "Your morning routine", "you get up once, not every five minutes → setup runs once", W("s05", "like"), W("s05", "What") - 0.2);
+  exCard("🔦", "A night guard's rounds", "at the last door, back to the first one → loop never ends", W("s06", "Picture"), W("s06", "What") - 0.2);
+  exCard("🏟️", "A scoreboard", "the score stays, and changes only when something happens → a variable", W("s08", "like"), W("s08", "why") - 0.4);
 }
-likeSub(stage, T("s11") + 0.6, 2.6); // reminder 1 of 2
+likeTop(T("s11") + 0.6); // reminder 1 of 2
 
 /* ======================================================================
  * PART 2 - OUTPUTS (blink_led): s11-s14
@@ -255,23 +270,30 @@ sceneOut(sBlink, S1("s14") + 0.4);
   title(sBlink, `Part 2 · outputs <small>blink_led.ino · episode 3</small>`, S0("s11"));
   const blinkSteps = [];
   const cyc = [[7, true, "GPIO 23 = 3.3 V"], [8, true, "GPIO 23 = 3.3 V"], [9, false, "GPIO 23 = 0 V"], [10, false, "GPIO 23 = 0 V"]];
+  const tBlink = W("s14", "So");  // "So: on, wait half a second, off, ..." - the LED runs the cycle while it is said
   for (let k = 0; k < 10; k++) {
     const [ln, on, volt] = cyc[k % 4];
-    blinkSteps.push(st(T("s14") + 1.2 + 0.7 * k, ln, null, { led: on, chip: { html: (ln === 8 || ln === 10 ? "delay: waiting, doing nothing" : volt), col: ln === 8 || ln === 10 ? "red" : "amber" } }));
+    blinkSteps.push(st(tBlink + 0.7 * k, ln, null, { led: on, chip: { html: (ln === 8 || ln === 10 ? "delay: waiting, doing nothing" : volt), col: ln === 8 || ln === 10 ? "red" : "amber" } }));
   }
   trace(sBlink, {
     code: SRC.blink, t0: S0("s11") - 0.1, led: true,
     vars: [{ name: "LED_PIN", label: "LED_PIN (constant)" }],
     steps: [
       st(T("s11"), 0, { LED_PIN: 23 }, { chip: { html: "GPIO 23 → 220 Ω → LED → GND", col: "teal" } }),
-      st(T("s12"), 3, null, { chip: { html: "pinMode: this pin is an OUTPUT", col: "teal" } }),
-      st(T("s13"), [6, 11]),
-      st(W("s13", "HIGH"), 7, null, { led: true, chip: { html: "HIGH = 3.3 V → LED on", col: "amber" } }),
-      st(W("s13", "LOW"), 9, null, { led: false, chip: { html: "LOW = 0 V → LED off", col: "amber" } }),
-      st(T("s14"), 8, null, { chip: { html: "delay: waiting, doing nothing", col: "red" } }),
+      st(W("s11", "In"), 0, null, { chip: { html: "LED_PIN is another name for 23", col: "teal" } }),
+      st(T("s11b"), 0, null, { chip: { html: "const: this number never changes", col: "teal" } }),
+      st(T("s12"), 3, null, { chip: { html: "📻 OUTPUT: this pin talks", col: "teal" } }),
+      st(W("s12", "Technically"), 3, null, { chip: { html: "the chip drives it: 3.3 V or GND", col: "teal" } }),
+      st(T("s13"), [6, 11], null, { chip: { html: "💡 digitalWrite = a light switch", col: "amber" } }),
+      st(W("s13", "HIGH"), 7, null, { led: true, chip: { html: "HIGH = 3.3 V → current flows → LED on", col: "amber" } }),
+      st(W("s13", "LOW"), 9, null, { led: false, chip: { html: "LOW = 0 V → no current → LED off", col: "amber" } }),
+      st(W("s14", "Technically"), 8, null, { chip: { html: "delay(500): the program stops 0.5 s", col: "red" } }),
       ...blinkSteps,
     ],
   });
+  exCard("🏠", "A house number", "LED_PIN = 23 tells the board where the LED lives", W("s11", "Think"), W("s11", "In") - 0.2);
+  exCard("📻", "A walkie-talkie", "you either talk or listen → OUTPUT: this pin talks", W("s12", "like"), W("s12", "Output") - 0.2);
+  exCard("⏲️", "Watching the microwave timer", "while you wait, you can't do anything else → delay()", W("s14", "like"), W("s14", "Technically") - 0.2);
 }
 
 inset("C1", T("s11") + 0.5, S1("s14") + 0.2, "blink_led: the LED blinking once per second.", "blink_led");
@@ -289,22 +311,31 @@ sceneOut(sBtn, S1("s21") + 0.4);
     vars: [{ name: "state" }],
     steps: [
       st(T("s15"), [0, 1], null, { chip: { html: "names: the two pins", col: "amber" } }),
-      st(W("s15", "setup"), 4, null, { chip: { html: "INPUT: we read this pin", col: "teal" } }),
-      st(W("s15", "Pull"), 4, null, { chip: { html: "PULL-UP: idle = HIGH", col: "teal" } }),
+      st(W("s15", "setup"), 4, null, { chip: { html: "INPUT: this pin listens", col: "teal" } }),
+      st(W("s15", "push"), 4, null, { chip: { html: "INPUT: no voltage out, it only measures", col: "teal" } }),
+      st(W("s15b", "Pull", 2), 4, null, { chip: { html: "pull-up: a resistor inside the chip → 3.3 V", col: "teal" } }),
+      st(W("s15b", "When", 2), 4, null, { chip: { html: "nobody touches it → HIGH", col: "teal" } }),
       st(T("s16"), 4, { state: "HIGH" }, { chip: { html: "not pressed → HIGH", col: "green" } }),
-      st(W("s16", "Pressed"), 4, { state: "LOW" }, { chip: { html: "pressed → LOW", col: "red" } }),
+      st(W("s16", "press"), 4, { state: "LOW" }, { chip: { html: "pressed → pin to ground → LOW", col: "red" } }),
       st(T("s17"), 9, null, { chip: { html: "digitalRead = a question", col: "teal" } }),
+      st(W("s17", "Technically"), 9, null, { chip: { html: "≈ 3.3 V → HIGH · ≈ 0 V → LOW", col: "teal" } }),
       st(W("s17", "answer"), 9, { state: "HIGH" }, { chip: { html: "the answer goes into state", col: "amber" } }),
-      st(T("s18"), 11, { state: "LOW" }, { chip: { html: "button pressed", col: "red" } }),
+      st(W("s18", "condition"), 11, { state: "LOW" }, { chip: { html: "if: is state equal to LOW?", col: "red" } }),
+      st(W("s18", "double"), 11, null, { chip: { html: "== compares · = stores", col: "amber" } }),
       st(W("s18", "LED"), 12, null, { led: true, chip: { html: "LOW → LED gets HIGH", col: "amber" } }),
-      st(W("s18", "Otherwise"), 14, { state: "HIGH" }, { led: false, chip: { html: "otherwise → LED gets LOW", col: "amber" } }),
-      st(T("s19"), -1, null, { chip: { html: "remembers: nothing", col: "red" } }),
+      st(W("s18", "Not", 2), 14, { state: "HIGH" }, { led: false, chip: { html: "otherwise → LED gets LOW", col: "amber" } }),
+      st(T("s19"), -1, null, { chip: { html: "🐟 remembers: nothing", col: "red" } }),
+      st(W("s19", "inside"), 9, null, { chip: { html: "made INSIDE loop → a new box every round", col: "red" } }),
       st(T("s20"), -1, null, { chip: { html: "pressed? yes. JUST pressed? ?", col: "amber" } }),
       st(T("s21"), -1, null, { chip: { html: "🚪 closed now… was it open before?", col: "teal" } }),
-      st(W("s21", "remember"), -1, null, { chip: { html: "needs the LAST reading", col: "teal" } }),
+      st(W("s21", "remembers"), -1, null, { chip: { html: "needs a box OUTSIDE loop", col: "teal" } }),
     ],
   });
   quizCard(sBtn, "No memory: can it tell you pressed the button <b>just now</b>?", W("s20", "Quick"), T("s21"), "No: only pressed or not pressed. It must remember the last reading.", { x: 1170, y: 480, w: 690, t1: S1("s21") });
+  exCard("🚪", "A door with a spring", "nobody pushes it → it stays closed → the pin reads HIGH", W("s15b", "Picture"), W("s15b", "Pull", 2) - 0.2);
+  exCard("🪟", "Looking out of the window", "is it raining right now? → digitalRead: is the button pressed right now?", W("s17", "like"), W("s17", "Technically") - 0.2);
+  exCard("☂️", "If it rains, take an umbrella", "if … otherwise … → if ( ) { … } else { … }", W("s18", "like"), W("s18", "In") - 0.2);
+  exCard("🐟", "A goldfish", "every round starts with a fresh memory", W("s19", "Like"), S1("s19") + 0.2);
 }
 
 inset("C2", T("s16"), W("s20", "Quick") - 0.3, "button_led: the LED lights while the button is held.", "button_led");
@@ -321,31 +352,42 @@ sceneOut(sTog, S1("s28") + 0.4);
     code: SRC.tog, t0: S0("s22") - 0.1, led: true,
     vars: [{ name: "state" }, { name: "lastState" }, { name: "ledOn" }, { name: "presses" }],
     steps: [
-      st(T("s22"), 0, { lastState: "HIGH", ledOn: "false", presses: 0 }, { chip: { html: "last state = the round before", col: "teal" } }),
+      st(T("s22"), 0, { lastState: "HIGH", ledOn: "false", presses: 0 }, { chip: { html: "a second box: lastState", col: "teal" } }),
+      st(W("s22", "outside"), 0, null, { chip: { html: "made OUTSIDE loop → keeps its value", col: "teal" } }),
+      st(W("s22", "like"), 0, null, { chip: { html: "📸 lastState = the previous photo", col: "teal" } }),
       st(T("s23"), 5, null, { chip: { html: "compare state with lastState", col: "teal" } }),
+      st(W("s23", "exclamation"), 6, null, { chip: { html: "!= means: is NOT equal to", col: "amber" } }),
       st(W("s23", "different"), 6, null, { chip: { html: "different = something changed", col: "amber" } }),
       st(W("s23", "LOW"), 7, null, { chip: { html: "…and now LOW = new press", col: "amber" } }),
-      st(T("s24"), [8, 10], null, { chip: { html: "flip ledOn, count the press", col: "amber" } }),
-      st(T("s25"), 14, null, { chip: { html: "copy state → lastState", col: "teal" } }),
+      st(W("s24", "On"), [8, 10], null, { chip: { html: "🖊 a new press flips ledOn", col: "amber" } }),
+      st(W("s24", "bool"), 1, null, { chip: { html: "bool: only true or false", col: "teal" } }),
+      st(T("s24b"), 9, null, { chip: { html: "! = the opposite: true ↔ false", col: "amber" } }),
+      st(W("s24b", "presses"), 8, null, { chip: { html: "presses++ adds 1", col: "amber" } }),
+      st(T("s25"), 10, null, { chip: { html: "? : = a short if: true → HIGH, else LOW", col: "amber" } }),
+      st(W("s25", "copy"), 14, null, { chip: { html: "copy state → lastState", col: "teal" } }),
       // the run (s26-s27)
       st(T("s26"), 5, { state: "HIGH" }, { chip: { html: "round: not pressed", col: "green" } }),
       st(W("s26", "Same"), 6, null, { chip: { html: "HIGH = HIGH: same, nothing", col: "green" } }),
       st(W("s26", "Now"), 5, { state: "LOW" }, { chip: { html: "round: PRESSED", col: "red" } }),
-      st(W("s26", "Different"), 6, null, { chip: { html: "LOW ≠ HIGH: different", col: "amber" } }),
-      st(W("s26", "new"), [7, 10], { presses: 1, ledOn: "true" }, { led: true, chip: { html: "new press! ledOn flips", col: "red" } }),
+      st(W("s26", "different"), 6, null, { chip: { html: "LOW ≠ HIGH: different", col: "amber" } }),
+      st(W("s26", "new", 4), [7, 10], { presses: 1, ledOn: "true" }, { led: true, chip: { html: "new press! ledOn flips", col: "red" } }),
       st(W("s26", "turns") + 0.4, 14, { lastState: "LOW" }, { chip: { html: "lastState = LOW", col: "teal" } }),
       st(T("s27"), 5, { state: "LOW" }, { chip: { html: "round: still held", col: "red" } }),
-      st(W("s27", "Same"), 6, null, { chip: { html: "LOW = LOW: same, nothing", col: "green" } }),
-      st(W("s27", "Let"), 5, { state: "HIGH" }, { chip: { html: "round: let go", col: "green" } }),
-      st(W("s27", "different"), 6, null, { chip: { html: "HIGH ≠ LOW: different", col: "amber" } }),
+      st(W("s27", "same"), 6, null, { chip: { html: "LOW = LOW: same, nothing", col: "green" } }),
+      st(W("s27", "let"), 5, { state: "HIGH" }, { chip: { html: "round: let go", col: "green" } }),
+      st(W("s27", "Different"), 6, null, { chip: { html: "HIGH ≠ LOW: different", col: "amber" } }),
       st(W("s27", "not"), 7, null, { chip: { html: "…but not LOW: no press", col: "green" } }),
-      st(W("s27", "So"), 14, { lastState: "HIGH" }, { chip: { html: "lastState = HIGH", col: "teal" } }),
-      st(T("s28"), 12, null, { chip: { html: "50 ms: wait for the bounce to end", col: "amber" } }),
+      st(W("s27", "Letting"), 14, { lastState: "HIGH" }, { chip: { html: "lastState = HIGH", col: "teal" } }),
+      st(T("s28"), 12, null, { chip: { html: "⚽ 50 ms: wait for the bounce to end", col: "amber" } }),
+      st(W("s28", "For"), 12, null, { chip: { html: "the pin flickers HIGH/LOW for a few ms", col: "amber" } }),
     ],
   });
+  exCard("📸", "A photo every round", "keep the previous photo to compare → lastState", W("s22", "like"), S1("s22") + 0.2);
+  exCard("🖊️", "A click pen", "click: the tip comes out · click again: it goes back in", T("s24"), W("s24", "On") - 0.2);
+  exCard("⚽", "A dropped ball", "a few tiny bounces before it settles → wait 50 ms", W("s28", "Metal"), W("s28", "For") - 0.2);
 }
 inset("C3", T("s26"), S1("s28") + 0.2, "button_toggle: press on, press off.", "button_toggle");
-likeSub(stage, T("s28") + 2.2, 2.6); // reminder 2 of 2
+likeTop(W("s26", "turns") + 1.0); // reminder 2 of 2, right after the "new press!" moment
 
 /* ======================================================================
  * PART 5 - MEMORY 2 (blink_button): s29-s34
@@ -356,27 +398,33 @@ sceneOut(sMs, S1("s34") + 0.4);
 {
   title(sMs, `Part 5 · the clock <small>blink_button.ino · episode 4 (shortened)</small>`, S0("s29"));
   const tickSteps = [];
-  for (let k = 0; k < 6; k++) tickSteps.push(st(T("s30") + 0.5 + k * ((S1("s30") - T("s30") - 1) / 6), 7, { now: 1000 + 120 * k }, { chip: { html: "millis() counts by itself", col: "teal" } }));
+  for (let k = 0; k < 6; k++) tickSteps.push(st(T("s30") + 0.5 + k * ((S1("s30") - T("s30") - 1) / 6), 7, { now: 1000 + 120 * k }, { chip: { html: "a timer in the chip counts in the background", col: "teal" } }));
   trace(sMs, {
     code: SRC.ms, t0: S0("s29") - 0.1, led: true, size: 25,
     vars: [{ name: "now" }, { name: "lastBlink" }, { name: "diff", label: "now − lastBlink" }, { name: "ledOn" }, { name: "blinking" }],
     steps: [
-      st(T("s29"), 6, { lastBlink: 0, ledOn: "false", blinking: "true" }, { chip: { html: "⏲ delay = staring at a kitchen timer", col: "red" } }),
+      st(T("s29"), 6, { lastBlink: 0, ledOn: "false", blinking: "true" }, { chip: { html: "⏲ delay = staring at the microwave", col: "red" } }),
       st(W("s29", "wall"), 6, null, { chip: { html: "🕒 millis = glancing at a wall clock", col: "teal" } }),
+      st(T("s29b"), 6, null, { chip: { html: "🍝 note the start, glance at the clock", col: "teal" } }),
       ...tickSteps,
       st(T("s31"), 7, { now: 1200, lastBlink: 1000, diff: 200 }, { chip: { html: "now = the time right now", col: "teal" } }),
-      st(W("s31", "Last"), 2, null, { chip: { html: "lastBlink = when it last changed", col: "teal" } }),
+      st(W("s31", "unsigned"), 7, null, { chip: { html: "unsigned long: big, never negative", col: "teal" } }),
+      st(W("s31", "Last"), 2, null, { chip: { html: "lastBlink = when the pasta went in", col: "teal" } }),
       st(W("s31", "minus"), 16, null, { chip: { html: "now − lastBlink = how long ago", col: "amber" } }),
       st(T("s32"), 16, { now: 1000, lastBlink: 1000, diff: 0, ledOn: "true" }, { led: true, chip: { html: "1000: LED flips, lastBlink = 1000", col: "amber" } }),
       st(W("s32", "twelve"), 16, { now: 1200, diff: 200 }, { chip: { html: "200 < 500: not yet", col: "green" } }),
       st(W("s32", "fifteen"), 16, { now: 1500, diff: 500 }, { chip: { html: "500 ≥ 500: flip!", col: "red" } }),
       st(W("s32", "Flip"), [17, 19], { lastBlink: 1500, diff: 0, ledOn: "false" }, { led: false, chip: { html: "flipped; lastBlink = 1500", col: "amber" } }),
       st(T("s33"), [10, 12], { lastBlink: 1500 }, { chip: { html: "same trick for the button: 50 ms", col: "teal" } }),
-      st(T("s34"), 13, { blinking: "false" }, { chip: { html: "a press flips blinking", col: "amber" } }),
-      st(W("s34", "false"), 16, null, { chip: { html: "false: the LED part is skipped", col: "red" } }),
+      st(T("s34"), 13, { blinking: "false" }, { chip: { html: "🖊 a press flips blinking", col: "amber" } }),
+      st(W("s34", "ampersands"), 16, null, { chip: { html: "&& = and: both must be true", col: "amber" } }),
+      st(W("s34", "false", 2), 16, null, { chip: { html: "false: the LED part is skipped", col: "red" } }),
       st(W("s34", "never"), 9, null, { chip: { html: "the loop never waits: button still works", col: "green" } }),
     ],
   });
+  exCard("⏲️ 🕒", "Microwave timer or wall clock?", "delay: stare and wait · millis: glance and keep working", W("s29", "Remember"), S1("s29") + 0.2);
+  exCard("🍝", "Pasta and sauce at once", "note when the pasta went in · glance at the clock · 10 min yet? no → stir · yes → drain",
+    T("s29b"), S1("s29b") + 0.3);
 }
 
 inset("C4", T("s29"), S1("s34") + 0.2, "blink_button: the LED blinks; a press stops it.", "blink_button");
@@ -389,10 +437,10 @@ sceneIn(sFour, S0("s35") - 0.1, 0.4);
 sceneOut(sFour, S1("s37") + 0.4);
 {
   title(sFour, "Every sketch answers the same four questions", S0("s35"));
-  const qs = [["names", "What are the <b style='color:var(--amber)'>names</b>?", W("s36", "One")],
-    ["once", "What happens <b style='color:var(--teal)'>once</b>? (setup)", W("s36", "Two")],
-    ["repeats", "What <b style='color:#b48cff'>repeats</b>? (loop)", W("s36", "Three")],
-    ["remember", "What does it <b style='color:var(--red)'>remember</b>?", W("s36", "four")]];
+  const qs = [["names", "What are the <b style='color:var(--amber)'>names</b>? <small>the ingredients</small>", W("s36", "One")],
+    ["once", "What happens <b style='color:var(--teal)'>once</b>? <small>setup · the preparation</small>", W("s36", "Two")],
+    ["repeats", "What <b style='color:#b48cff'>repeats</b>? <small>loop · the steps</small>", W("s36", "Three")],
+    ["remember", "What does it <b style='color:var(--red)'>remember</b>? <small>between rounds</small>", W("s36", "four")]];
   const els = qs.map(([k, html, t], i) => {
     const r = box(sFour, 210, 170 + i * 175, 1500, 130, "qrow", `<span class="n">${i + 1}</span><span>${html}</span>`);
     hidden(r); pop(r, t - 0.05, 0.4);
@@ -400,6 +448,9 @@ sceneOut(sFour, S1("s37") + 0.4);
   });
   styleAt(els[3], "boxShadow", [[0, "none"], [T("s37"), "0 0 50px rgba(255,181,71,.55)"]]);
   dyn((t) => { els[3].classList.toggle("hot", t >= T("s37")); });
+  // "Like the scoreboard, the photo, and the clock": the three memory pictures of the episode
+  const pics = box(sFour, 0, 900, 1920, 80, "", `<div style="text-align:center;font:700 40px var(--ui);color:#b9f3ec">🏟 the scoreboard · 📸 the photo · 🕒 the clock</div>`);
+  hidden(pics); show(pics, W("s37", "Like") - 0.1, 0.4);
 }
 
 /* ======================================================================
@@ -413,7 +464,7 @@ sceneOut(sPrac, S1("s44") + 0.4);
   const snippets = [
     ["1", "int count = 0;\n\nvoid loop() {\n  count = count + 2;\n  Serial.println(count);\n  delay(1000);\n}", "s39", "s40", "Round after round, what are the first <b>3 prints</b>?", "2, 4, 6: the box remembers and adds 2 every round."],
     ["2", "if (state == LOW && lastState == HIGH) {\n  presses++;\n}\nlastState = state;", "s41", "s42", "You hold the button for <b>5 rounds</b>. How many presses?", "1: only the first round has a change; after that it's LOW and LOW."],
-    ["3", "unsigned long lastBlink = 0;\nunsigned long now = 700;\n\nif (now - lastBlink >= 500) {\n  // flip the LED\n  lastBlink = now;\n}", "s43", "s44", "Does the LED flip?", "Yes: 700 − 0 = 700, and that's at least 500. Then lastBlink = 700."],
+    ["3", "unsigned long lastBlink = 0;\nunsigned long now = 700;\n\nif (now - lastBlink >= 500) {\n  // change the LED\n  lastBlink = now;\n}", "s43", "s44", "Does the LED change?", "Yes: 700 − 0 = 700, more than 500. Then lastBlink = 700."],
   ];
   snippets.forEach(([n, code, qa, an, q, a]) => {
     const t0 = S0(qa), t1 = S1(an) + 0.2;
