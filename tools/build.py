@@ -267,11 +267,17 @@ def compose(ep: Path):
             continue
         inputs += ["-i", str(src)]
         inset = 0 if c.get("full") else 3  # framed clips keep their 3 px border
-        w, h, d = c["w"] - 2 * inset, c["h"] - 2 * inset, c["t1"] - c["t0"]
-        filters.append(f"[{k}:v]trim=0:{d:.3f},setpts=PTS-STARTPTS+{c['t0']:.3f}/TB,"
+        w, h = c["w"] - 2 * inset, c["h"] - 2 * inset
+        t0, t1 = c["t0"], c["t1"]
+        if c.get("full"):
+            # the placeholder frame fades in (0.3 s) before t0 and out (0.35 s) after t1; cover both fades,
+            # otherwise the "C2 (1920x1080)" marker flashes between back-to-back clips
+            t0, t1 = max(0.0, t0 - 0.3), t1 + 0.35
+        d = t1 - t0
+        filters.append(f"[{k}:v]trim=0:{d:.3f},setpts=PTS-STARTPTS+{t0:.3f}/TB,"
                        f"scale={w}:{h}:force_original_aspect_ratio=increase,crop={w}:{h},fps=30[c{k}]")
         filters.append(f"{last}[c{k}]overlay={c['x'] + inset}:{c['y'] + inset}:eof_action=pass:"
-                       f"enable='between(t,{c['t0']:.3f},{c['t1']:.3f})'[v{k}]")
+                       f"enable='between(t,{t0:.3f},{t1:.3f})'[v{k}]")
         last, k = f"[v{k}]", k + 1
         print(f"clip {c['id']}: {src.name}")
     out = b / f"{ep.name}_final.mp4"
