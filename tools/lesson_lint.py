@@ -10,6 +10,10 @@ Reads video/<ep>/script.json and video/<ep>/build/schedule.json and prints warni
   NEWTERM segment introduces >1 new term, or a new term right after a short gap (< MIN_TERM_GAP s)
   QUESTION "Quick question" without a 2.5-4.5 s thinking pause after it
   RULES   production-guideline checks: cold open shows the result, no spoken "subscribe", comments invitation at the end
+Section-10 checks (only when script.json has "music": "results"):
+  LENGTH  body over 10 min (info line always)   QGAP  over 180 s between question moments
+  RETRIEVAL no "retrieval" scene right after the sting   LIMIT  everyday example without its limit
+  PREDICT tour/trace scene without a prediction pause   MISTAKE no "mistake" scene   EXPLAIN no "in your own words"
 
 Usage: python tools/lesson_lint.py ep05 [ep04 ...]
 """
@@ -55,10 +59,46 @@ def load(ep):
     sch = json.load(open(f"video/{ep}/build/schedule.json", encoding="utf-8"))
     return sc, sch["segments"], sch["duration"]
 
+Q_RX = re.compile(r"quick question|pause the video|pause now|predict|what do you think|what will|your turn", re.I)
+EX_RX = re.compile(r"(like (a|an|the|your)|just like|it's like|works like|think of|imagine|picture an?|say you're)", re.I)
+LIMIT_RX = re.compile(r"the difference|unlike|but a real|where the picture breaks|the picture stops", re.I)
+PRED_RX = re.compile(r"pause|predict|what will|what do you think", re.I)
+QGAP_MAX, RETR_MAX, LEN_MAX = 180, 120, 600
+
+def section10(sc, sch, ids, total, sting):
+    warns = []
+    info = f"{total/60:.1f} min (target 6-9)"
+    if total > LEN_MAX:
+        warns.append(("-", "LENGTH", f"{total/60:.1f} min: over 10 min, split into parts"))
+    qs = [sch[s["id"]]["start"] for s in sc if s["id"] in sch and Q_RX.search(s["text"])]
+    end = sch[sting]["end"] if sting in sch else 0
+    pts = [end] + qs + [total]
+    for a, b in zip(pts, pts[1:]):
+        if b - a > QGAP_MAX:
+            warns.append(("-", "QGAP", f"{b-a:.0f} s without a question moment ({a:.0f}-{b:.0f} s)"))
+    if not any(s["scene"] == "retrieval" and s["id"] in sch and 0 <= sch[s["id"]]["start"] - end <= RETR_MAX for s in sc):
+        warns.append(("-", "RETRIEVAL", f"no retrieval scene within {RETR_MAX} s after the sting"))
+    scenes = {}
+    for s in sc:
+        if s["id"] in sch:
+            scenes.setdefault(s["scene"], []).append(s)
+    for name, segs in scenes.items():
+        t = " ".join(x["text"] for x in segs)
+        if EX_RX.search(t) and not LIMIT_RX.search(t):
+            warns.append((segs[0]["id"], "LIMIT", f"scene {name}: example without its limit"))
+        if (name.startswith("tour") or "trace" in name) and not PRED_RX.search(t):
+            warns.append((segs[0]["id"], "PREDICT", f"scene {name}: no prediction pause"))
+    if "mistake" not in scenes:
+        warns.append(("-", "MISTAKE", "no common-mistake scene"))
+    if not re.search(r"in your own words", " ".join(s["text"] for s in sc), re.I):
+        warns.append(("-", "EXPLAIN", "no 'in your own words' invitation"))
+    return warns, info
+
 def main():
     eps = [a for a in sys.argv[1:] if not a.startswith("--")]
     for ep in eps:
         sc, sch, total = load(ep)
+        meta = json.load(open(f"video/{ep}/script.json", encoding="utf-8"))
         ids = [s["id"] for s in sc if s["id"] in sch]
         text = {s["id"]: s["text"] for s in sc}
         warns = []
@@ -97,9 +137,15 @@ def main():
             warns.append(("-", "RULES", "episode does not open with a cold-open result scene"))
         if re.search(r"\b(subscribe|like and)\b", " ".join(text.values()), re.I):
             warns.append(("-", "RULES", "narration says 'subscribe'/'like and' (icons only)"))
-        if int(re.sub(r"\D", "", ep)) >= 5 and not re.search(r"comments", " ".join(text[i] for i in ids[-3:]), re.I):  # rule applies from ep05
+        if int(re.sub(r"\D", "", ep) or 0) >= 5 and not re.search(r"comments", " ".join(text[i] for i in ids[-3:]), re.I):  # rule applies from ep05
             warns.append(("-", "RULES", "last segments do not invite viewers to the comments"))
+        info = None
+        if meta.get("music") == "results":
+            w10, info = section10(sc, sch, ids, total, meta.get("sting_after"))
+            warns += w10
         print(f"\n== {ep}: {len(ids)} segments, {total/60:.1f} min narration timeline, avg {spoken/ (total/60):.0f} wpm incl. pauses ==")
+        if info:
+            print(f"  -       INFO     {info}")
         for i, kind, msg in warns:
             print(f"  {i:7s} {kind:8s} {msg}")
         print(f"  -> {len(warns)} warnings")

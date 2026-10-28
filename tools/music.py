@@ -60,10 +60,48 @@ def duck_env(voice: np.ndarray, sr: int) -> np.ndarray:
     return np.repeat(out, hop)[: len(voice)]
 
 
-def mix(voice: np.ndarray, sr: int, decode, level: float, fade_in=3.0, fade_out=3.0, seamless=False) -> np.ndarray:
+def windows(ep: Path, sched: dict):
+    """Where the music may play (PRODUCTION_GUIDELINES.md section 10, Mayer's coherence principle: no music under the
+    explanation): the cold open up to the sting, full-screen real footage (build/clips.json) and the outro scene.
+    Only for episodes whose script.json says "music": "results"; None = the old bed under the whole episode."""
+    import json
+    script = json.loads((ep / "script.json").read_text(encoding="utf-8"))
+    if script.get("music") != "results":
+        return None
+    segs = sched["segments"]
+    win = []
+    if script.get("sting_after") in segs:
+        win.append((0.0, segs[script["sting_after"]]["end"] + 0.5))
+    clips = ep / "build" / "clips.json"
+    if clips.exists():
+        win += [(c["t0"] - 0.3, c["t1"] + 0.35) for c in json.loads(clips.read_text(encoding="utf-8")) if c.get("full")]
+    outro = [s["start"] for s in segs.values() if s["scene"] == "outro"]
+    if outro:
+        win.append((min(outro) - 0.5, sched["duration"] + 1.0))
+    return win
+
+
+def window_env(win, n: int, sr: int, fade=0.8) -> np.ndarray:
+    """Gain 1 inside the windows, 0 outside, with `fade` seconds ramps."""
+    g = np.zeros(n, dtype=np.float32)
+    for a, b in win:
+        i, j = max(0, int(a * sr)), min(n, int(b * sr))
+        if j <= i:
+            continue
+        w = np.ones(j - i, dtype=np.float32)
+        k = min(int(fade * sr), (j - i) // 2)
+        if k:
+            w[:k] = np.linspace(0, 1, k)
+            w[-k:] = np.linspace(1, 0, k)
+        g[i:j] = np.maximum(g[i:j], w)
+    return g
+
+
+def mix(voice: np.ndarray, sr: int, decode, level: float, fade_in=3.0, fade_out=3.0, seamless=False, win=None) -> np.ndarray:
     """voice + music bed (if a track exists). `decode(path)` returns mono float32 at sr.
     seamless: for a looping video - no fades; the music that would follow the end is blended
-    into the start, so playing the file again continues the music without a jump."""
+    into the start, so playing the file again continues the music without a jump.
+    win: [(t0, t1), ...] seconds where the music plays (see windows()); None = everywhere."""
     t = track()
     if t is None:
         return voice
@@ -76,6 +114,8 @@ def mix(voice: np.ndarray, sr: int, decode, level: float, fade_in=3.0, fade_out=
         return voice + m[:n] * level * duck_env(voice, sr)
     m = loop_to(decode(t), n, sr) * level
     m *= duck_env(voice, sr)
+    if win is not None:
+        m *= window_env(win, n, sr)
     if fade_in:
         f = int(fade_in * sr); m[:f] *= np.linspace(0, 1, f)
     f = int(fade_out * sr); m[-f:] *= np.linspace(1, 0, f)

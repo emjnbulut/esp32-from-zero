@@ -124,13 +124,44 @@ Kullanıcı kararı (Recap TR dublajını dinledikten sonra): "konuyu çok köt�
 - Konuşmada kod adları zincirlenmez: "state LOW, lastState HIGH" yerine "şu anki okuma LOW, bir önceki okuma HIGH". Kod adı ekranda yazılı kalır, anlatıcı ne anlama geldiğini söyler.
 - Telgraf cümlesi yok ("Yazdır. Bekle."): tam, konuşma dilinde cümleler; izleyiciye "siz" diye hitap, küçük geçişler ("Peki neden?", "Şimdi bir turu izleyelim").
 - Her dilin metni o dilde **doğal** yazılır, çeviri kokmaz. Dublaj ve altyazı aynı cümlelerdir (bölüm 6).
-- Daha fazla açıklama süre ister: bölüm 8'deki ~10 dk hedefi aşılırsa konu bölünmez, ama gereksiz tekrar da yapılmaz (Recap ~12 dk).
+- Daha fazla açıklama süre ister: kullanıcı (28 Ekim) "uzunluk sorun değil" dedi. Bölüm 8'deki ~10 dk hedefi açıklama için aşılabilir; konu bölünmez, ama gereksiz tekrar da yapılmaz (Recap ~15–16 dk).
 
 **Ses (tools/cbx.py, tools/chatterbox_say.py)**
 - Duraklama noktalamaya göre: nokta 0,5 sn, soru 0,7 sn, iki nokta 0,35 sn, virgül 0,22 sn (0,6/0,28 denendi: kullanıcı "çok yavaş" dedi).
 - Ses **asla zaman germe (time-stretch) ile yavaşlatılmaz**: 28 Ekim'de rubberband ile %15'e kadar yavaşlatma denendi, kullanıcı "çok yavaş ve robot gibi, ses tonu değişti" dedi. Hız farkı olan satırlar yeniden seslendirilir (`cbx_retake.py`: bölüm ortalamasının 0,85–1,18 katı dışındaki satırlar). `MAX_SPS` yalnızca raporda aykırı satırı gösterir.
 - Dublajlar **hızlandırılmaz** (en çok %3): bir dil uzun sürerse görüntü onu bekler (`build.py schedule`). Bu yüzden önce bütün dillerin dublajı seslendirilir, sonra zamanlama ve render.
 - Kontrol: `python tools/pace_check.py video/<ep>` her dilde hece hızı, satırlar arası savrulma ve takılmaları gösterir. Kullanıcıya her dilden kısa dinleme örneği verilmeden "bitti" denmez.
+
+## 10. Kanıta dayalı ders tasarımı — 28 Ekim 2026 (Bölüm 05'ten itibaren)
+
+Kullanıcı kararı: eğitim araştırmalarıyla karşılaştırmada (kaynaklar bölüm sonunda) eksik çıkan her şey **Bölüm 05'ten itibaren** uygulanır, video uzunluğu dahil. Recap 1 (v3) olduğu gibi kalır. Bölüm 8 ve 9'daki kurallar geçerliliğini korur; çelişirse bu bölüm geçerlidir.
+
+**Uzunluk ve bölme** (Guo vd. 2014: izlenme ~6 dk'dan sonra azalıyor, 9–12 dk arasında sert düşüyor; Mayer: parçalara bölme)
+- Bir video **6–9 dk** hedeflenir, **en fazla 10 dk** (açılış ve kapanış bumper'ları hariç). Sığmayan konu iki videoya bölünür: **Bölüm N · Kısım 1** (kavram + ilk çalışan kod) ve **Kısım 2** (ikinci kod / birleştirme + ödev). Her kısım kendi açılış sonucu, kendi hatırlatma dakikası ve kendi kapanışıyla tek başına izlenebilir. Başlıkta "(Ep N · Part 1)".
+- Video içi parçalar 2–3 dk'dır (YouTube bölüm başlıkları). **En geç 3 dakikada bir** soru ya da tahmin molası olur (Szpunar vd. 2013: ara sorular dikkat dağılmasını yarıya indirir).
+
+**Her videonun iskeleti**
+1. 0–15 sn açılış: gerçek sonuç ve söz (bölüm 2) → sting.
+2. **Hatırlatma dakikası** (30–45 sn): önceki bölümlerden 2 kısa soru, düşünme payı, cevap (aralıklı tekrar + kendini sınama: Dunlosky vd. 2013'te en yüksek fayda alan iki teknik).
+3. Her yeni kavram: günlük örnek → nesnel anlam (bölüm 9) → **benzetmenin sınırı**, tek cümle: "Farkı şu: …" (Glynn'in benzetmeyle öğretme modelinin 5. adımı) → kod.
+4. Her kod **PRIMM** sırasıyla: **Tahmin** (çalıştırmadan önce "sizce ne olacak?") → **Çalıştır** (gerçek çekim) → **İncele** (kod turu ya da canlı izleme; içinde 2–3 "durdurun: bu satırdan sonra ne olur?" molası, Naps vd. 2002) → **Değiştir** ("şu tek sayıyı değiştirin, ne olur?" sorusu + aynı görev Learning Lab'da). **Yap** = Kısım 2'deki ödev.
+5. Videoda bir **yaygın hata** gösterimi: yanlış kod/bağlantı → neden olur → doğrusu (ör. `=` ile `==`, ters takılan LED).
+6. Bir **kendi cümlenizle açıklayın** daveti: "Durdurun ve … neden … olduğunu kendi cümlenizle söyleyin."
+7. Kapanış: 3 maddelik "artık şunları yapabilirsiniz" listesi (ekranda), Kısım 2'de ödev, yorumlara davet.
+
+**Benzetmeler**: her kavramın tek bir benzetmesi vardır ve seri boyunca aynı kalır (`video/ANALOGIES.md`). Aynı benzetme iki farklı kavrama verilmez. Değişken: "etiketli kutu, ama aynı anda yalnızca **bir** değer tutar; yeni değer eskisini siler" (Hermans vd. 2018: kutu benzetmesi "kutuda birden çok değer olabilir" yanılgısını besliyor).
+
+**Müzik** (Mayer tutarlılık ilkesi: öğrenmeye katkısı olmayan sesler çıkarılmalı): anlatım ve kod sırasında müzik **yok**. Müzik yalnızca açılış sonucunda, tam ekran gerçek çekimlerde ve kapanışta çalar (`script.json "music": "results"`, tools/music.py pencereleri). Sting ve bitiş ekranı eskisi gibi.
+
+**Desteği azaltma** (uzmanlık tersine dönme etkisi, Kalyuga vd. 2003; adım adım azaltılan örnekler, Renkl & Atkinson; Salden vd. 2010): 05–07 tam çözümlü örnek + Learning Lab'da yarım kalmış kodu tamamlama; 08'den (1. mini proje) itibaren önce "durdurun ve kendiniz deneyin", sonra çözüm; 10'dan itibaren kod turları kısalır, tahmin soruları artar. Learning Lab'a satır sıralama (Parsons) görevleri eklenir (Ericson vd. 2023: sıfırdan yazmaktan hızlı, öğrenme kazancı aynı).
+
+**Tekrar videoları** (aralıklı tekrar): her 4 bölümde bir Recap: Recap 1 (01–04) hazır; Recap 2 → 08'den sonra, Recap 3 → 12'den sonra, Recap 4 → 16'dan sonra. Recap'ler de 10 dk sınırına uyar (gerekirse iki kısım).
+
+**Ses** (Guo vd.: hevesli, akıcı anlatım ilgiyi artırır; Craig & Schroeder: modern sentetik ses insan sesi kadar iyi öğretir, eski "robot" ses daha kötü): doğal hız, işlemle yavaşlatma yok (bölüm 9).
+
+**Kontrol**: `python tools/lesson_lint.py epXX` senaryo aşamasında: LENGTH (tahmini süre > 10 dk), QGAP (iki soru arası > 3 dk), RETRIEVAL (hatırlatma dakikası yok), LIMIT (benzetmenin sınırı söylenmemiş), PREDICT (kod turunda tahmin molası yok), MISTAKE (yaygın hata gösterimi yok), EXPLAIN (kendi cümlenle açıkla daveti yok).
+
+**Kaynaklar (28 Ekim 2026 araştırması)**: Mayer, *Multimedia Learning* (3. bs.) ve J. Comput. Assist. Learn. 2017 derlemesi; Guo, Kim & Rubin 2014 (L@S, edX videoları); Szpunar, Khan & Schacter 2013 (PNAS); Dunlosky vd. 2013 (Psychological Science in the Public Interest); Glynn 1991 / Glynn, Duit & Thiele 1995 (Teaching-With-Analogies); Hermans, Swidan, Aivaloglou & Smit 2018 (WiPSCE, değişken benzetmeleri); Sentance, Waite & Kallia 2019 (PRIMM); Lopez, Whalley, Robbins & Lister 2008 (okuma-izleme-yazma sıralaması); Naps vd. 2002 (ITiCSE, görselleştirmede katılım düzeyleri); Fyfe, McNeil, Son & Goldstone 2014 (somuttan soyuta geçiş); Kalyuga vd. 2003, Salden vd. 2010 (destek azaltma); Ericson vd. 2023 (Parsons problemleri); Craig & Schroeder 2017 (sentetik ses).
 
 ## Yüklemede yapay zekâ etiketi tercihi — 23 Ekim 2026
 
@@ -158,6 +189,7 @@ Kaynak: [YouTube — GenAI içerik bildirimi](https://support.google.com/youtube
 - [ ] Yeni metinlerin çeviri, ses ve altyazı zamanlaması tutarlı.
 - [ ] Her dublaj dilinde altyazı = dublaj diyaloğu (aynı cümleler, aynı segmentler).
 - [ ] En fazla 2 sade beğen/abone ikonu, hiçbir şeyi kapatmıyor; bölüm sonunda yorumlara davet var.
+- [ ] (Bölüm 10) Video 6–9 dk, en fazla 10 dk; hatırlatma dakikası; her kavramda örnek → nesnel anlam → benzetmenin sınırı; her kodda tahmin, çalıştır, incele (tahmin molalı), değiştir; en geç 3 dk'da bir soru; bir yaygın hata; bir "kendi cümlenizle açıklayın"; anlatım sırasında müzik yok; `lesson_lint` temiz.
 
 - [ ] Kod satırları, GPIO etiketleri ve hedef bağlantılar telefon boyutunda okunuyor; açıklamalar ilgili parçayı kapatmıyor.
 - [ ] Vurgulanan kod, gösterilen süre/değerler ve devrenin davranışı birbiriyle tutarlı.

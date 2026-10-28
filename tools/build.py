@@ -95,7 +95,7 @@ def audio(ep: Path):
         a = decode(ep / "build" / "audio" / f"{sid}.mp3")
         i = int(s["start"] * SR)
         buf[i:i + len(a)] += a
-    buf = music.mix(buf, SR, decode, level=0.08, fade_in=1.0)
+    buf = music.mix(buf, SR, decode, level=0.08, fade_in=1.0, win=music.windows(ep, sched))
     peak = np.max(np.abs(buf)) or 1
     buf = buf / peak * 0.89
     pcm = (buf * 32767).astype(np.int16)

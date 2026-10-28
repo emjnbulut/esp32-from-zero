@@ -145,7 +145,7 @@ def main(ep: Path, lang: str, report_only: bool):
         a = decode(out / f"{sid}.mp3", tempo=tempos[sid])
         i = int(start * SR)
         buf[i:i + len(a)] += a[: len(buf) - i]
-    buf = music.mix(buf, SR, decode, level=0.08, fade_in=1.0)
+    buf = music.mix(buf, SR, decode, level=0.08, fade_in=1.0, win=music.windows(ep, sched))
     buf = buf / (np.max(np.abs(buf)) or 1) * 0.89
     buf = bumpers.wrap(buf, SR, decode, ep)  # same intro/outro as the final video
     wav = ep / "build" / f"dub_{lang}.wav"
