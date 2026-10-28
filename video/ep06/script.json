@@ -1,0 +1,333 @@
+{
+ "episode": 6,
+ "title": "Analog Input and the Potentiometer",
+ "voice": "en-US-EricNeural",
+ "rate": "+5%",
+ "lead_in": 0.8,
+ "sting_after": "s03",
+ "clips": {
+  "C0": "OPENING, full screen, 12-15 s: one hand turns the knob slowly from one end to the other and back; the red LED gets brighter and dimmer with the knob (pot_dimmer). Landscape, steady, knob and LED in frame, room slightly dim so the brightness change is clear.",
+  "C1": "MULTIMETER, hands-free, 8-10 s: pot_read running; probes on the knob's middle leg strip and the minus rail (DC volts). One hand turns the knob from one end to the other and the display sweeps 0.0 -> ~3.3 V. Meter display readable.",
+  "C2": "USB unplugged, close-up from above, 8-12 s: potentiometer in the upper breadboard; left leg -> minus rail, right leg -> 3V3 rail, middle leg -> wire to D34. Exact columns: see the lesson README drawing.",
+  "C3": "pot_dimmer, full screen, 6-8 s: slow turn of the knob, the red LED follows. (Can be the same take as C0.)",
+  "C4": "pot_zones, full screen, 8-10 s: slow turn through the three zones, the LED clearly steps dim -> medium -> full (and back). Slightly dim room."
+ },
+ "segments": [
+  {
+   "id": "s01",
+   "scene": "cold",
+   "text": "Watch this. I turn a knob, and the LED follows my hand. Brighter, dimmer, instantly, with no delay at all.",
+   "tr": "İzleyin. Bir düğmeyi çeviriyorum ve LED elimi takip ediyor. Daha parlak, daha loş, anında, hiç delay olmadan."
+  },
+  {
+   "id": "s02",
+   "scene": "cold",
+   "text": "A little later, we cut the knob into three zones, and each zone gives the LED its own brightness.",
+   "tr": "Biraz sonra düğmeyi üç bölgeye ayıracağız ve her bölge LED'e kendi parlaklığını verecek."
+  },
+  {
+   "id": "s03",
+   "scene": "cold",
+   "text": "By the end of this video, you'll read any knob, or any analog sensor, with one function: analog read.",
+   "sub": "By the end of this video, you'll read any knob, or any analog sensor, with one function: analogRead().",
+   "tr": "Bu videonun sonunda herhangi bir düğmeyi ya da analog sensörü tek bir fonksiyonla okuyacaksınız: analogRead."
+  },
+  {
+   "id": "s04",
+   "scene": "parts",
+   "text": "You need last episode's circuit with the red LED. Plus one ten kilo-ohm potentiometer, that's a knob with three legs, and a few wires. A multimeter is a nice extra.",
+   "sub": "You need last episode's circuit with the red LED. Plus one 10 kΩ potentiometer, that's a knob with three legs, and a few wires. A multimeter is a nice extra.",
+   "tr": "Geçen bölümün kırmızı LED'li devresi gerekiyor. Bir de 10 kilo-ohm'luk bir potansiyometre, yani üç bacaklı bir düğme, ve birkaç kablo. Multimetre de güzel bir ekstra."
+  },
+  {
+   "id": "s05",
+   "scene": "idea",
+   "text": "Until now, every input we read was a button: pressed, or not pressed. Two answers. A knob is different. It can give every answer in between.",
+   "tr": "Şimdiye kadar okuduğumuz her giriş bir butondu: basılı ya da basılı değil. İki cevap. Düğme farklı. Aradaki her cevabı verebilir."
+  },
+  {
+   "id": "s06",
+   "scene": "idea",
+   "text": "Inside, a knob is a resistor with a sliding contact. The two outer legs connect to three point three volts and to ground. The middle leg gives us a voltage anywhere between them.",
+   "sub": "Inside, a knob is a resistor with a sliding contact. The two outer legs connect to 3.3 V and to ground. The middle leg gives us a voltage anywhere between them.",
+   "tr": "İçinde bir düğme, kayan bir temas noktası olan bir dirençtir. İki dış bacak 3,3 volta ve toprağa bağlanır. Orta bacak bize ikisinin arasında herhangi bir voltaj verir."
+  },
+  {
+   "id": "s07",
+   "scene": "idea",
+   "text": "Turn the knob to one end, and the middle leg sits at zero volts. Turn it to the other end, and it sits at three point three. In the middle, about half of that.",
+   "sub": "Turn the knob to one end, and the middle leg sits at 0 V. Turn it to the other end, and it sits at 3.3 V. In the middle, about half of that.",
+   "tr": "Düğmeyi bir uca çevirin: orta bacak sıfır voltta durur. Diğer uca çevirin: 3,3 voltta durur. Ortada yaklaşık yarısı."
+  },
+  {
+   "id": "s08",
+   "scene": "idea",
+   "text": "Quick question: the knob is exactly in the middle. Roughly how many volts are on the middle leg?",
+   "tr": "Kısa bir soru: düğme tam ortada. Orta bacakta yaklaşık kaç volt var?",
+   "pad": 2.6
+  },
+  {
+   "id": "s09",
+   "scene": "idea",
+   "text": "About one point six five volts. Half of three point three. Every position of the knob is its own voltage.",
+   "sub": "About 1.65 V. Half of 3.3. Every position of the knob is its own voltage.",
+   "tr": "Yaklaşık 1,65 volt. 3,3'ün yarısı. Düğmenin her konumu kendi voltajıdır."
+  },
+  {
+   "id": "s10",
+   "scene": "wire",
+   "text": "Unplug the USB cable. Push the potentiometer into the upper breadboard. The left leg goes to the minus rail, the right leg to three point three volts, and the middle leg to G P I O thirty-four.",
+   "sub": "Unplug the USB cable. Push the potentiometer into the upper breadboard. The left leg goes to the minus rail, the right leg to 3.3 V, and the middle leg to GPIO 34.",
+   "tr": "USB kablosunu çıkarın. Potansiyometreyi üstteki breadboard'a takın. Sol bacak eksi raya, sağ bacak 3,3 volta, orta bacak da GPIO 34'e gider.",
+   "clip": "C2",
+   "pad": 3.0
+  },
+  {
+   "id": "s11",
+   "scene": "wire",
+   "text": "Swap the two outer legs and nothing breaks. The knob just works backwards. And pin thirty-four only does input, which makes it a perfect home for sensors.",
+   "sub": "Swap the two outer legs and nothing breaks. The knob just works backwards. And pin 34 only does input, which makes it a perfect home for sensors.",
+   "tr": "İki dış bacağı değiştirirseniz hiçbir şey bozulmaz; düğme sadece ters çalışır. Ayrıca 34. pin yalnızca giriş yapar, bu da onu sensörler için ideal yapar."
+  },
+  {
+   "id": "s12",
+   "scene": "read",
+   "text": "The function is analog read. Give it a pin, and it gives back a number. The ESP32 measures the voltage in four thousand ninety-six steps, from zero up to four thousand ninety-five.",
+   "sub": "The function is analogRead(). Give it a pin, and it gives back a number. The ESP32 measures the voltage in 4096 steps, from 0 up to 4095.",
+   "tr": "Fonksiyonun adı analogRead. Ona bir pin verirsiniz, size bir sayı geri verir. ESP32 voltajı 4096 adımda ölçer; sıfırdan 4095'e kadar."
+  },
+  {
+   "id": "s13",
+   "scene": "read",
+   "text": "Zero means zero volts. Four thousand ninety-five means three point three volts. Everything else is in between.",
+   "sub": "0 means 0 V. 4095 means 3.3 V. Everything else is in between.",
+   "tr": "Sıfır, sıfır volt demektir. 4095, 3,3 volt demektir. Geri kalan her şey ikisinin arasındadır."
+  },
+  {
+   "id": "s13t1",
+   "scene": "tourread",
+   "text": "Here's the whole sketch, and it's tiny. Pin thirty-four gets a name: pot pin. Setup only starts the Serial Monitor. An input needs no pin mode.",
+   "sub": "Here's the whole sketch, and it's tiny. Pin 34 gets a name: POT_PIN. setup() only starts the Serial Monitor. An input needs no pinMode().",
+   "tr": "İşte sketch'in tamamı ve çok küçük. 34. pine bir ad veriyoruz: POT_PIN. setup yalnızca Seri Monitör'ü başlatır. Bir giriş için pinMode gerekmez."
+  },
+  {
+   "id": "s13t2",
+   "scene": "tourread",
+   "text": "In the loop, analog read goes into a box called value. We print the box, and wait a tenth of a second. That's ten readings every second.",
+   "sub": "In the loop, analogRead() goes into a box called value. We print the box, and wait a tenth of a second. That's ten readings every second.",
+   "tr": "loop'ta analogRead'in sonucu value adlı bir kutuya girer. Kutuyu yazdırır ve saniyenin onda biri kadar bekleriz. Yani saniyede on okuma."
+  },
+  {
+   "id": "s14",
+   "scene": "read",
+   "text": "Turn the knob and watch the number: zero at one end, about four thousand at the other. A multimeter on the middle leg shows the same sweep in volts. This sketch is pot read.",
+   "sub": "Turn the knob and watch the number: 0 at one end, about 4000 at the other. A multimeter on the middle leg shows the same sweep in volts. This sketch is pot_read.",
+   "tr": "Düğmeyi çevirin ve sayıyı izleyin: bir uçta sıfır, diğer uçta yaklaşık dört bin. Orta bacaktaki multimetre aynı geçişi volt olarak gösterir. Bu sketch'in adı pot_read.",
+   "clip": "C1",
+   "pad": 3.0
+  },
+  {
+   "id": "s15",
+   "scene": "read",
+   "text": "Near the very ends, the ESP32's reader flattens a little, so you may not see exactly zero or exactly four thousand ninety-five. That's normal.",
+   "sub": "Near the very ends, the ESP32's reader flattens a little, so you may not see exactly 0 or exactly 4095. That's normal.",
+   "tr": "Uçlara çok yakın yerlerde ESP32'nin okuyucusu biraz düzleşir; bu yüzden tam sıfırı ya da tam 4095'i görmeyebilirsiniz. Bu normal."
+  },
+  {
+   "id": "s16",
+   "scene": "read",
+   "text": "Quick question: the Serial Monitor says two thousand. About where is the knob?",
+   "sub": "Quick question: the Serial Monitor says 2000. About where is the knob?",
+   "tr": "Kısa bir soru: Seri Monitör iki bin diyor. Düğme yaklaşık nerede?",
+   "pad": 2.6
+  },
+  {
+   "id": "s17",
+   "scene": "read",
+   "text": "A little before the middle. Two thousand is just under half of four thousand ninety-five.",
+   "sub": "A little before the middle. 2000 is just under half of 4095.",
+   "tr": "Ortanın biraz öncesinde. İki bin, 4095'in yarısının hemen altında."
+  },
+  {
+   "id": "s18",
+   "scene": "dim",
+   "text": "Now let the knob do something. In episode five, analog write set the brightness. It takes a number from zero to two fifty-five.",
+   "sub": "Now let the knob do something. In episode 5, analogWrite() set the brightness. It takes a number from 0 to 255.",
+   "tr": "Şimdi düğme bir şey yapsın. 5. bölümde analogWrite parlaklığı ayarlıyordu. Sıfır ile 255 arasında bir sayı alıyor."
+  },
+  {
+   "id": "s19",
+   "scene": "dim",
+   "text": "But the knob gives zero to four thousand ninety-five. Quick question: how do we squeeze a big range into a smaller one?",
+   "sub": "But the knob gives 0 to 4095. Quick question: how do we squeeze a big range into a smaller one?",
+   "tr": "Ama düğme sıfırdan 4095'e kadar veriyor. Kısa bir soru: büyük bir aralığı küçük bir aralığa nasıl sığdırırız?",
+   "pad": 2.6
+  },
+  {
+   "id": "s20",
+   "scene": "dim",
+   "text": "We divide. Four thousand ninety-five divided by sixteen is about two fifty-five. So the knob value divided by sixteen is the brightness, and both ends of the knob fit both ends of the scale.",
+   "sub": "We divide. 4095 divided by 16 is about 255. So the knob value divided by 16 is the brightness, and both ends of the knob fit both ends of the scale.",
+   "tr": "Bölüyoruz. 4095 bölü 16 yaklaşık 255 eder. Yani düğme değeri bölü 16 parlaklıktır; düğmenin iki ucu ölçeğin iki ucuna oturur."
+  },
+  {
+   "id": "s20t1",
+   "scene": "tourdim",
+   "text": "The whole sketch: two pin names, the knob and the red LED. Setup makes the LED an output and starts the Serial Monitor.",
+   "tr": "Sketch'in tamamı: iki pin adı, düğme ve kırmızı LED. setup LED'i çıkış yapar ve Seri Monitör'ü başlatır."
+  },
+  {
+   "id": "s20t2",
+   "scene": "tourdim",
+   "text": "In the loop: read the knob into value. Divide by sixteen into brightness. Then analog write shows it on the LED. We print it, and wait twenty milliseconds.",
+   "sub": "In the loop: read the knob into value. Divide by 16 into brightness. Then analogWrite() shows it on the LED. We print it, and wait 20 milliseconds.",
+   "tr": "loop'ta: düğmeyi value'ya okuruz. 16'ya bölüp brightness'a koyarız. Sonra analogWrite bunu LED'de gösterir. Yazdırır ve yirmi milisaniye bekleriz."
+  },
+  {
+   "id": "s21",
+   "scene": "dim",
+   "text": "Turn the knob, and the LED follows instantly. This sketch is pot dimmer.",
+   "sub": "Turn the knob, and the LED follows instantly. This sketch is pot_dimmer.",
+   "tr": "Düğmeyi çevirin; LED anında takip ediyor. Bu sketch'in adı pot_dimmer.",
+   "clip": "C3",
+   "pad": 2.5
+  },
+  {
+   "id": "s22",
+   "scene": "dim",
+   "text": "Quick question: what if we divide by thirty-two instead of sixteen?",
+   "sub": "Quick question: what if we divide by 32 instead of 16?",
+   "tr": "Kısa bir soru: 16 yerine 32'ye bölersek ne olur?",
+   "pad": 2.6
+  },
+  {
+   "id": "s23",
+   "scene": "dim",
+   "text": "The biggest number is now only about one twenty-seven. The LED never gets brighter than half, even with the knob all the way up.",
+   "sub": "The biggest number is now only about 127. The LED never gets brighter than half, even with the knob all the way up.",
+   "tr": "En büyük sayı artık yalnızca 127 civarında. Düğme sonuna kadar çevrilse bile LED yarıdan fazla parlamaz."
+  },
+  {
+   "id": "s24",
+   "scene": "zones",
+   "text": "Sometimes you don't want every value. You just want a few choices. Let's cut the knob into three zones: left, middle and right.",
+   "tr": "Bazen her değeri istemezsiniz; sadece birkaç seçenek istersiniz. Düğmeyi üç bölgeye ayıralım: sol, orta ve sağ."
+  },
+  {
+   "id": "s25",
+   "scene": "zones",
+   "text": "Four thousand ninety-five divided by three is about thirteen sixty-five. So below thirteen sixty-five is the left zone. Below twenty-seven thirty, the middle zone. And everything else, the right zone.",
+   "sub": "4095 divided by 3 is about 1365. So below 1365 is the left zone. Below 2730, the middle zone. And everything else, the right zone.",
+   "tr": "4095 bölü 3 yaklaşık 1365 eder. Yani 1365'in altı sol bölge. 2730'un altı orta bölge. Geri kalan her şey sağ bölge."
+  },
+  {
+   "id": "s26",
+   "scene": "zones",
+   "text": "In code, that's an if, an else if, and an else. Check the first. Only check the next one if the one before was false.",
+   "tr": "Kodda bu bir if, bir else if ve bir else. Birincisini kontrol et. Bir öncekisi yanlışsa sıradakini kontrol et."
+  },
+  {
+   "id": "s26t1",
+   "scene": "tourzones",
+   "text": "The whole sketch: the knob, the red LED, and a read at the top of the loop. Then the first if. Below thirteen sixty-five, the LED gets twenty: dim.",
+   "sub": "The whole sketch: the knob, the red LED, and a read at the top of the loop. Then the first if. Below 1365, the LED gets 20: dim.",
+   "tr": "Sketch'in tamamı: düğme, kırmızı LED ve loop'un başında bir okuma. Sonra ilk if. 1365'in altında LED 20 alır: loş."
+  },
+  {
+   "id": "s26t2",
+   "scene": "tourzones",
+   "text": "Else if below twenty-seven thirty: the middle zone, one twenty, medium. Else: the right zone, two fifty-five, full brightness.",
+   "sub": "Else if below 2730: the middle zone, 120, medium. Else: the right zone, 255, full brightness.",
+   "tr": "Yoksa 2730'un altındaysa: orta bölge, 120, orta parlaklık. Değilse: sağ bölge, 255, tam parlaklık."
+  },
+  {
+   "id": "s26t3",
+   "scene": "tourzones",
+   "text": "Only one of the three branches runs each time around the loop. Then we print the value, and wait twenty milliseconds.",
+   "sub": "Only one of the three branches runs each time around the loop. Then we print the value, and wait 20 milliseconds.",
+   "tr": "Loop'un her turunda üç daldan yalnızca biri çalışır. Sonra değeri yazdırır ve yirmi milisaniye bekleriz."
+  },
+  {
+   "id": "s27",
+   "scene": "zones",
+   "text": "Turn the knob slowly: dim, medium, full, in three clear steps. This sketch is pot zones.",
+   "sub": "Turn the knob slowly: dim, medium, full, in three clear steps. This sketch is pot_zones.",
+   "tr": "Düğmeyi yavaşça çevirin: loş, orta, tam; üç net adımda. Bu sketch'in adı pot_zones.",
+   "clip": "C4",
+   "pad": 2.5
+  },
+  {
+   "id": "s28",
+   "scene": "smooth",
+   "text": "One last thing. Watch the number while you don't touch the knob at all. It wobbles a little. That's electrical noise, and every analog reading has some.",
+   "tr": "Son bir şey. Düğmeye hiç dokunmazken sayıyı izleyin. Biraz titriyor. Bu elektriksel gürültü ve her analog okumada biraz vardır."
+  },
+  {
+   "id": "s29",
+   "scene": "smooth",
+   "text": "The fix: read four times, add the readings up, and divide by four. An average is calmer than a single reading.",
+   "tr": "Çözüm: dört kez oku, okumaları topla ve dörde böl. Ortalama, tek bir okumadan daha sakindir."
+  },
+  {
+   "id": "s29t1",
+   "scene": "toursmooth",
+   "text": "Raw is one single reading. Sum starts at zero. Then a for loop runs four times, and every time it adds a fresh reading to sum.",
+   "tr": "raw tek bir okuma. sum sıfırdan başlar. Sonra bir for döngüsü dört kez çalışır ve her seferinde sum'a yeni bir okuma ekler."
+  },
+  {
+   "id": "s29t2",
+   "scene": "toursmooth",
+   "text": "Read the for like this: start i at zero, keep going while i is less than four, and add one to i every round. Four rounds.",
+   "tr": "for'u şöyle okuyun: i sıfırdan başlasın, i dörtten küçük olduğu sürece devam etsin ve her turda i'ye bir eklensin. Dört tur."
+  },
+  {
+   "id": "s29t3",
+   "scene": "toursmooth",
+   "text": "After the loop, sum divided by four is the average. We print raw and average, each with a name, so the Serial Plotter can draw two lines.",
+   "sub": "After the loop, sum divided by 4 is the average. We print raw and avg, each with a name, so the Serial Plotter can draw two lines.",
+   "tr": "Döngüden sonra sum bölü dört ortalamadır. raw ve avg'yi her biri bir adla yazdırırız; böylece Serial Plotter iki çizgi çizebilir."
+  },
+  {
+   "id": "s30",
+   "scene": "smooth",
+   "text": "Open the Serial Plotter, right next to the Serial Monitor. The raw line jitters. The average line is smoother. This sketch is pot smooth.",
+   "sub": "Open the Serial Plotter, right next to the Serial Monitor. The raw line jitters. The average line is smoother. This sketch is pot_smooth.",
+   "tr": "Seri Monitör'ün hemen yanındaki Serial Plotter'ı açın. raw çizgisi titrer. Ortalama çizgisi daha düzgündür. Bu sketch'in adı pot_smooth."
+  },
+  {
+   "id": "s31",
+   "scene": "challenge",
+   "text": "Your turn: Knob Blink Speed. The red LED blinks all the time, and the knob picks how fast, in three zones: left, every one hundred milliseconds. Middle, four hundred. Right, one second.",
+   "sub": "Your turn: Knob Blink Speed. The red LED blinks all the time, and the knob picks how fast, in three zones: left, every 100 milliseconds. Middle, 400. Right, one second.",
+   "tr": "Sıra sizde: Düğmeyle Yanıp Sönme Hızı. Kırmızı LED sürekli yanıp söner ve düğme ne kadar hızlı olacağını üç bölgede seçer: solda her 100 milisaniyede. Ortada 400. Sağda bir saniye."
+  },
+  {
+   "id": "s32",
+   "scene": "challenge",
+   "text": "Hint: today's zones choose the interval, and the millis blink from episode four does the blinking. Nothing may wait with delay. Post your solution in the comments. One solution is in the lesson folder.",
+   "sub": "Hint: today's zones choose the interval, and the millis() blink from episode 4 does the blinking. Nothing may wait with delay(). Post your solution in the comments. One solution is in the lesson folder.",
+   "tr": "İpucu: bugünkü bölgeler aralığı seçsin, yanıp sönmeyi de 4. bölümdeki millis yöntemi yapsın. Hiçbir şey delay ile beklemesin. Çözümünüzü yorumlara yazın. Bir çözüm ders klasöründe."
+  },
+  {
+   "id": "s33",
+   "scene": "trouble",
+   "text": "Something not working? If the number jumps wildly, check that the middle leg is on pin thirty-four. If it's stuck at zero or at four thousand ninety-five, one outer leg is loose or on the wrong rail.",
+   "sub": "Something not working? If the number jumps wildly, check that the middle leg is on pin 34. If it's stuck at 0 or at 4095, one outer leg is loose or on the wrong rail.",
+   "tr": "Bir şey çalışmıyor mu? Sayı çılgınca zıplıyorsa orta bacağın 34. pinde olduğunu kontrol edin. Sıfırda ya da 4095'te takılı kalıyorsa bir dış bacak gevşektir ya da yanlış raydadır."
+  },
+  {
+   "id": "s34",
+   "scene": "outro",
+   "text": "Today, we read a knob with analog read, turned it into brightness by dividing, cut it into zones with if and else if, and calmed the noise with an average.",
+   "sub": "Today, we read a knob with analogRead(), turned it into brightness by dividing, cut it into zones with if and else if, and calmed the noise with an average.",
+   "tr": "Bugün bir düğmeyi analogRead ile okuduk, bölerek parlaklığa çevirdik, if ve else if ile bölgelere ayırdık ve ortalama ile gürültüyü yatıştırdık."
+  },
+  {
+   "id": "s35",
+   "scene": "outro",
+   "text": "Next time: a function that does the dividing for us, called map, and a bar of LEDs that fills up as you turn the knob. Let's meet in the comments: tell me what you would control with a knob. See you there!",
+   "sub": "Next time: a function that does the dividing for us, called map(), and a bar of LEDs that fills up as you turn the knob. Let's meet in the comments: tell me what you would control with a knob. See you there!",
+   "tr": "Gelecek sefer: bölme işini bizim yerimize yapan map adında bir fonksiyon ve düğmeyi çevirdikçe dolan bir LED çubuğu. Yorumlarda buluşalım: bir düğmeyle neyi kontrol ederdiniz, yazın. Görüşmek üzere!"
+  }
+ ]
+}
