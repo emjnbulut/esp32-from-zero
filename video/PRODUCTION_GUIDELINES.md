@@ -137,7 +137,7 @@ Kullanıcı kararı (Recap TR dublajını dinledikten sonra): "konuyu çok köt�
 Kullanıcı kararı: eğitim araştırmalarıyla karşılaştırmada (kaynaklar bölüm sonunda) eksik çıkan her şey **Bölüm 05'ten itibaren** uygulanır, video uzunluğu dahil. Recap 1 (v3) olduğu gibi kalır. Bölüm 8 ve 9'daki kurallar geçerliliğini korur; çelişirse bu bölüm geçerlidir.
 
 **Uzunluk ve bölme** (Guo vd. 2014: izlenme ~6 dk'dan sonra azalıyor, 9–12 dk arasında sert düşüyor; Mayer: parçalara bölme)
-- Bir video **6–9 dk** hedeflenir, **en fazla 10 dk** (açılış ve kapanış bumper'ları hariç). Sığmayan konu iki videoya bölünür: **Bölüm N · Kısım 1** (kavram + ilk çalışan kod) ve **Kısım 2** (ikinci kod / birleştirme + ödev). Her kısım kendi açılış sonucu, kendi hatırlatma dakikası ve kendi kapanışıyla tek başına izlenebilir. Başlıkta "(Ep N · Part 1)".
+- Bir video **6–9 dk** hedeflenir, **en fazla 10 dk** (açılış ve kapanış bumper'ları hariç). Sığmayan konu art arda **iki ayrı bölüme** yayılır (v6, kullanıcı 29 Eki: "1. kısım 2. kısım yerine hepsini ayrı bölüme ayıralım"; ör. Bölüm 5 PWM, Bölüm 6 RGB). Her bölüm kendi açılış sonucu, hatırlatma dakikası, kapanışı ve **kendi Short'u** ile tek başına izlenebilir; ödev, konunun ikinci bölümünün sonunda.
 - Video içi parçalar 2–3 dk'dır (YouTube bölüm başlıkları). **En geç 3 dakikada bir** soru ya da tahmin molası olur (Szpunar vd. 2013: ara sorular dikkat dağılmasını yarıya indirir).
 
 **Her videonun iskeleti**
@@ -153,9 +153,9 @@ Kullanıcı kararı: eğitim araştırmalarıyla karşılaştırmada (kaynaklar 
 
 **Müzik** (Mayer tutarlılık ilkesi: öğrenmeye katkısı olmayan sesler çıkarılmalı): anlatım ve kod sırasında müzik **yok**. Müzik yalnızca açılış sonucunda, tam ekran gerçek çekimlerde ve kapanışta çalar (`script.json "music": "results"`, tools/music.py pencereleri). Sting ve bitiş ekranı eskisi gibi.
 
-**Desteği azaltma** (uzmanlık tersine dönme etkisi, Kalyuga vd. 2003; adım adım azaltılan örnekler, Renkl & Atkinson; Salden vd. 2010): 05–07 tam çözümlü örnek + Learning Lab'da yarım kalmış kodu tamamlama; 07'den (1. mini proje) itibaren önce "durdurun ve kendiniz deneyin", sonra çözüm; 10'dan itibaren kod turları kısalır, tahmin soruları artar. Learning Lab'a satır sıralama (Parsons) görevleri eklenir (Ericson vd. 2023: sıfırdan yazmaktan hızlı, öğrenme kazancı aynı).
+**Desteği azaltma** (uzmanlık tersine dönme etkisi, Kalyuga vd. 2003; adım adım azaltılan örnekler, Renkl & Atkinson; Salden vd. 2010): 05–07 tam çözümlü örnek + Learning Lab'da yarım kalmış kodu tamamlama; 09'dan (1. mini proje) itibaren önce "durdurun ve kendiniz deneyin", sonra çözüm; 10'dan itibaren kod turları kısalır, tahmin soruları artar. Learning Lab'a satır sıralama (Parsons) görevleri eklenir (Ericson vd. 2023: sıfırdan yazmaktan hızlı, öğrenme kazancı aynı).
 
-**Tekrar videoları** (aralıklı tekrar): müfredat v5'te Recap 1 (01–04) hazır; Recap 2 → 07'den sonra, Recap 3 → 11'den sonra, Recap 4 → 14'ten sonra (`video/YAYIN_TAKVIMI.md`). Recap'ler de 10 dk sınırına uyar (gerekirse iki kısım).
+**Tekrar videoları** (aralıklı tekrar): müfredat v6'da Recap 1 (01–04) hazır; Recap 2 → Bölüm 10'dan sonra, Recap 3 → 18'den sonra, Recap 4 → 24'ten sonra (`video/YAYIN_TAKVIMI.md`). Recap'ler de 10 dk sınırına uyar (gerekirse iki kısım).
 
 **Ses** (Guo vd.: hevesli, akıcı anlatım ilgiyi artırır; Craig & Schroeder: modern sentetik ses insan sesi kadar iyi öğretir, eski "robot" ses daha kötü): doğal hız, işlemle yavaşlatma yok (bölüm 9).
 
