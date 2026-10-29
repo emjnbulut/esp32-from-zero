@@ -1,45 +1,47 @@
-// ESP32 From Zero - Episode 6 (part 2): a 3-LED level bar
-// Potentiometer on GPIO 34; green LED on GPIO 17, yellow on GPIO 18, red on GPIO 23.
-// What it does: like a volume meter. Knob at the left: all off. Turn it right:
-// first green lights, then green + yellow, then all three.
-// map() turns 0 .. 4095 into a level 0 .. 3; if / else if picks which LEDs are on.
+// ESP32 From Zero - Episode 4 challenge (one solution):
+// the button switches the green LED between fast and slow; the red LED keeps blinking.
 
-const int POT_PIN = 34;
-const int GREEN_PIN = 17;
-const int YELLOW_PIN = 18;
+const int BUTTON_PIN = 22;
 const int RED_PIN = 23;
+const int GREEN_PIN = 25;
+
+unsigned long greenInterval = 150;   // ms: 150 = fast, 600 = slow
+bool redOn = false, greenOn = false;
+unsigned long lastRed = 0, lastGreen = 0;
+
+int lastState = HIGH;
+unsigned long lastChange = 0;
 
 void setup() {
-  pinMode(GREEN_PIN, OUTPUT);
-  pinMode(YELLOW_PIN, OUTPUT);
+  pinMode(BUTTON_PIN, INPUT_PULLUP);
   pinMode(RED_PIN, OUTPUT);
+  pinMode(GREEN_PIN, OUTPUT);
   Serial.begin(115200);
 }
 
 void loop() {
-  int value = analogRead(POT_PIN);       // 0 .. 4095
-  int level = map(value, 0, 4096, 0, 4); // 0, 1, 2 or 3 (4096 and 4: so the right end still gives 3)
+  unsigned long now = millis();
 
-  if (level == 0) {                      // nothing
-    digitalWrite(GREEN_PIN, LOW);
-    digitalWrite(YELLOW_PIN, LOW);
-    digitalWrite(RED_PIN, LOW);
-  } else if (level == 1) {               // green
-    digitalWrite(GREEN_PIN, HIGH);
-    digitalWrite(YELLOW_PIN, LOW);
-    digitalWrite(RED_PIN, LOW);
-  } else if (level == 2) {               // green + yellow
-    digitalWrite(GREEN_PIN, HIGH);
-    digitalWrite(YELLOW_PIN, HIGH);
-    digitalWrite(RED_PIN, LOW);
-  } else {                               // all three
-    digitalWrite(GREEN_PIN, HIGH);
-    digitalWrite(YELLOW_PIN, HIGH);
-    digitalWrite(RED_PIN, HIGH);
+  int state = digitalRead(BUTTON_PIN);
+  if (state != lastState && now - lastChange >= 50) {
+    lastChange = now;
+    lastState = state;
+    if (state == LOW) {
+      greenInterval = (greenInterval == 150) ? 600 : 150;
+      Serial.print("green every ");
+      Serial.print(greenInterval);
+      Serial.println(" ms");
+    }
   }
 
-  Serial.println(level);
-  delay(20);
+  if (now - lastRed >= 500) {
+    lastRed = now;
+    redOn = !redOn;
+    digitalWrite(RED_PIN, redOn ? HIGH : LOW);
+  }
+  if (now - lastGreen >= greenInterval) {
+    lastGreen = now;
+    greenOn = !greenOn;
+    digitalWrite(GREEN_PIN, greenOn ? HIGH : LOW);
+  }
 }
-
-
