@@ -12,14 +12,14 @@ two breadboards grows instead of being rebuilt. Scripts, sketches, shoot packs a
 | 34 | Potentiometer wiper | 07 | Input-only pin; ADC1 (works with Wi-Fi on). Pot ends on 3V3 and GND, never 5 V |
 | 18 | Yellow LED (220 Ω) | 08 | Level bar, car yellow light |
 | 17 | Green LED (220 Ω) | 08 | Level bar, car green light. **Retired in 23**: GPIO 17 becomes relay 2 |
-| 35 | LDR module `AO` | 11 | Input-only, ADC1 (works with Wi-Fi on) |
+| 35 | LDR module `AO` | 11 | Input-only, ADC1 (works with Wi-Fi on). Creator's module (photo 2026-10-29, footage/gelen/ldr): MH-Sensor-Series LDR, 4 pins AO DO GND VCC (front, left to right), LM393 + trim pot, DO-LED/PWR-LED. VCC on 3V3. AO probably RISES in the dark: test before writing thresholds |
 | 14 | Touch pad (a bare jumper wire) | 12 | `touchRead(14)` = T6 |
 | 32 | Buzzer (passive; active buzzer on the same pin when compared) | 13 | |
 | 4 | DHT11 data | 15 | |
 | 21 / 22 | OLED I2C SDA / SCL | 17 | ESP32 default I2C pins |
 | 19 | Button (new place) | 17 | Same button, same code with `BUTTON_PIN = 19` |
 | 33 | PIR `OUT` | 19 | |
-| 13 | IR obstacle `DO` | 19 | Interrupt pin in 20 |
+| 13 | IR obstacle `OUT` | 19 | Interrupt pin in 20. Creator's module: MH-B Flying-Fish, 3 pins OUT GND VCC (front, left to right), LOW when an obstacle is seen |
 | 16 / 17 | Relay `IN1` / `IN2` (active-LOW, module powered from 5 V / VIN) | 23 | Boot-safe: `digitalWrite(pin, HIGH)` before `pinMode` |
 
 ## Pin rules taught in 07 (Espressif)
