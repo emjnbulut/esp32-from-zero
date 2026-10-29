@@ -120,7 +120,7 @@ function trafficLeds() {
 const SETUPS = {
   base() {
     text("wtitle", "Şu anki devreniz (Bölüm 04 sonu)");
-    text("wsub", "Bölüm 05 · Kısım 1 için hiçbir şeyi değiştirmeyin.");
+    text("wsub", "Bölüm 5 için hiçbir şeyi değiştirmeyin.");
     gnd(); redLed(); button(); greenLed();
     text("wnote", "Kırmızı LED → D23 · Buton → D22 · Yeşil LED → D25 (üst breadboard). İki siyah kablo GND pinlerinden eksi raylara.");
   },
@@ -163,13 +163,13 @@ const SETUPS = {
     text("wnote", "Tek elle düğmeyi yavaşça bir uçtan diğerine çevirin: ekran 0,0 → 3,3 V. Prob uçları sabit kalsın.");
   },
   "07"() {
-    text("wtitle", "07 — Devre 06·2 ile aynı (yeni kablo yok)");
+    text("wtitle", "Bölüm 9–10 — Devre Bölüm 8 ile aynı (yeni kablo yok)");
     text("wsub", "Araba ışıkları: kırmızı D23, sarı D18, yeşil D17 · Yaya ışığı: RGB (kırmızı/yeşil)");
     gnd(); redLed(); button(); rgb(); pot(); trafficLeds();
-    text("wnote", "Buton = yaya düğmesi (07·1) ve oyun düğmesi (07·2) · Potansiyometre: yeşil süresi (07·1), sarı bekleme süresi (07·2).");
+    text("wnote", "Buton = yaya düğmesi (Bölüm 9) ve oyun düğmesi (Bölüm 10) · Potansiyometre: yeşil süresi (Bölüm 9), sarı bekleme süresi (Bölüm 10).");
   },
   "06-2"() {
-    text("wtitle", "06·2 — Sarı ve yeşil LED (seviye çubuğu)");
+    text("wtitle", "Bölüm 8 — Sarı ve yeşil LED (seviye çubuğu)");
     text("wsub", "Önce USB'yi çıkarın. Bu iki LED 07'de trafik ışığı olarak da kalacak.");
     gnd(); redLed(); button(); rgb(); pot(); trafficLeds();
     badge(1, L(11, "2f"), 0, 30); badge(2, L(12.5, "2i"), 0, 70); badge(3, L(8.5, "2f"), 0, 30); badge(4, L(9.5, "2i"), 0, 70);
@@ -182,53 +182,53 @@ const SETUPS = {
 function CLIPS_SPEC() {
   const LOW = ["2b", "2bm"], RGBA = ["1tm", "1g"];
   return {
-    "05-1-C0": { setup: "base", t: "05·1 · C0 — açılış", s: "fade_millis yüklü", f: [14, "2b", 29, "2bm"], red: 0.6,
+    "05-1-C0": { setup: "base", t: "Bölüm 5 · C0 — açılış", s: "fade_millis yüklü", f: [14, "2b", 29, "2bm"], red: 0.6,
       m: [["press", 26, "2e", "bas: durur · tekrar bas: devam"], ["note", 20, "2i", "nefes alıyor"]] },
-    "05-1-C1": { setup: "05-1-meter", t: "05·1 · C1 — multimetre", s: "pwm_levels yüklü · DC volt", f: [12, "2a", 31, "2bm"], red: 0.5,
+    "05-1-C1": { setup: "05-1-meter", t: "Bölüm 5 · C1 — multimetre", s: "pwm_levels yüklü · DC volt", f: [12, "2a", 31, "2bm"], red: 0.5,
       m: [["note", 27, "2c", "multimetre ekranı da kadrajda (sağda)"]] },
-    "05-1-C2": { setup: "base", t: "05·1 · C2 — pwm_levels", s: "LED yakın plan, oda biraz loş", f: [16, "2e", 24, "2bm"], red: 0.3,
+    "05-1-C2": { setup: "base", t: "Bölüm 5 · C2 — pwm_levels", s: "LED yakın plan, oda biraz loş", f: [16, "2e", 24, "2bm"], red: 0.3,
       m: [["note", 20, "2g", "kapalı → %25 → %50 → %100"]] },
-    "05-1-C3": { setup: "base", t: "05·1 · C3 — yaygın hata", s: "fade_naive yüklü", f: [14, "2b", 29, "2bm"], red: 0.6,
+    "05-1-C3": { setup: "base", t: "Bölüm 5 · C3 — yaygın hata", s: "fade_naive yüklü", f: [14, "2b", 29, "2bm"], red: 0.6,
       m: [["press", 26, "2e", "3–4 kez kısa bas: LED durmuyor"]] },
-    "05-1-C4": { setup: "base", t: "05·1 · C4 — çalıştır", s: "fade_millis yüklü, C0'dan yakın", f: [17, "2c", 29, "2bm"], red: 0.5,
+    "05-1-C4": { setup: "base", t: "Bölüm 5 · C4 — çalıştır", s: "fade_millis yüklü, C0'dan yakın", f: [17, "2c", 29, "2bm"], red: 0.5,
       m: [["press", 26, "2e", "bas: anında durur"]] },
-    "05-1-C5": { setup: "base", t: "05·1 · C5 — değiştir (isteğe bağlı)", s: "fade_millis, 39. satır: 4 → 10", f: [17, "2c", 29, "2bm"], red: 0.4,
+    "05-1-C5": { setup: "base", t: "Bölüm 5 · C5 — değiştir (isteğe bağlı)", s: "fade_millis, 39. satır: 4 → 10", f: [17, "2c", 29, "2bm"], red: 0.4,
       m: [["note", 20, "2i", "nefes daha yavaş"]] },
-    "05-2-C0": { setup: "05-2", t: "05·2 · C0 — açılış", s: "color_modes yüklü", f: [14, "1a", 30, "2j"], rgb: "#ff3b3b",
+    "05-2-C0": { setup: "05-2", t: "Bölüm 6 · C0 — açılış", s: "color_modes yüklü", f: [14, "1a", 30, "2j"], rgb: "#ff3b3b",
       m: [["press", 26, "2e", "3 kez bas"], ["note", 21.5, "1e", "kırmızı → yeşil → mavi → geçiş"]] },
-    "05-2-C1": { setup: "05-2", badges: true, t: "05·2 · C1 — kurulum", s: "USB çıkarılmış · üstten yakın", f: [5, "1tm", 26, "1j"],
+    "05-2-C1": { setup: "05-2", badges: true, t: "Bölüm 6 · C1 — kurulum", s: "USB çıkarılmış · üstten yakın", f: [5, "1tm", 26, "1j"],
       m: [] },
-    "05-2-C2": { setup: "05-2", t: "05·2 · C2 — rgb_colors", s: "RGB yakın plan, oda biraz loş", f: [17, "1tm", 26, "1g"], rgb: "#ffd400",
+    "05-2-C2": { setup: "05-2", t: "Bölüm 6 · C2 — rgb_colors", s: "RGB yakın plan, oda biraz loş", f: [17, "1tm", 26, "1g"], rgb: "#ffd400",
       m: [["note", 21.5, "1e", "8 renk sırayla"]] },
-    "05-2-C3": { setup: "05-2", t: "05·2 · C3 — yaygın hata", s: "rgb_colors çalışırken", f: [16, "1tm", 26, "1g"], rgb: "#00e5ff",
+    "05-2-C3": { setup: "05-2", t: "Bölüm 6 · C3 — yaygın hata", s: "rgb_colors çalışırken", f: [16, "1tm", 26, "1g"], rgb: "#00e5ff",
       m: [["pull", 21, "1a", "siyah kabloyu çek: söner · geri tak: döner"]] },
-    "05-2-C4": { setup: "05-2", t: "05·2 · C4 — çalıştır", s: "color_modes, C0'dan yakın", f: [14, "1a", 30, "2j"], rgb: "#2f6bff",
+    "05-2-C4": { setup: "05-2", t: "Bölüm 6 · C4 — çalıştır", s: "color_modes, C0'dan yakın", f: [14, "1a", 30, "2j"], rgb: "#2f6bff",
       m: [["press", 26, "2e", "her basışta renk değişir"]] },
-    "06-1-C0": { setup: "06", t: "06·1 · C0 — açılış", s: "pot_dimmer yüklü", f: [17, "2c", 34, "2bm"], red: 0.7,
+    "06-1-C0": { setup: "06", t: "Bölüm 7 · C0 — açılış", s: "pot_dimmer yüklü", f: [17, "2c", 34, "2bm"], red: 0.7,
       m: [["turn", 30, "2f", "yavaşça çevir, geri çevir"], ["note", 20, "2i", "parlaklık takip ediyor"]] },
-    "06-1-C1": { setup: "06", badges: true, t: "06·1 · C1 — kurulum", s: "USB çıkarılmış · üstten", f: [1, "1f", 34, "2bm"], m: [] },
-    "06-1-C2": { setup: "06-meter", t: "06·1 · C2 — multimetre", s: "pot_read yüklü · DC volt", f: [20, "2c", 34, "2bm"],
+    "06-1-C1": { setup: "06", badges: true, t: "Bölüm 7 · C1 — kurulum", s: "USB çıkarılmış · üstten", f: [1, "1f", 34, "2bm"], m: [] },
+    "06-1-C2": { setup: "06-meter", t: "Bölüm 7 · C2 — multimetre", s: "pot_read yüklü · DC volt", f: [20, "2c", 34, "2bm"],
       m: [["turn", 30, "2f", "tek elle yavaşça çevir: 0 → 3,3 V"], ["note", 23, "2c", "multimetre ekranı kadrajda"]] },
-    "06-2-C0": { setup: "06-2", t: "06·2 · C0 — açılış", s: "level_bar yüklü", f: [6, "2c", 34, "2bm"], red: 0.7, yellow: 0.7, green: 0.7,
+    "06-2-C0": { setup: "06-2", t: "Bölüm 8 · C0 — açılış", s: "level_bar yüklü", f: [6, "2c", 34, "2bm"], red: 0.7, yellow: 0.7, green: 0.7,
       m: [["turn", 30, "2f", "yavaşça sağa çevir: yeşil → +sarı → +kırmızı"]] },
-    "06-2-C1": { setup: "06-2", badges: true, t: "06·2 · C1 — kurulum", s: "USB çıkarılmış · üstten", f: [5, "2a", 16, "2bm"], m: [] },
-    "06-2-C2": { setup: "06-2", t: "06·2 · C2 — map_dimmer", s: "map_dimmer yüklü", f: [17, "2c", 34, "2bm"], red: 0.6,
+    "06-2-C1": { setup: "06-2", badges: true, t: "Bölüm 8 · C1 — kurulum", s: "USB çıkarılmış · üstten", f: [5, "2a", 16, "2bm"], m: [] },
+    "06-2-C2": { setup: "06-2", t: "Bölüm 8 · C2 — map_dimmer", s: "map_dimmer yüklü", f: [17, "2c", 34, "2bm"], red: 0.6,
       m: [["turn", 30, "2f", "yavaşça çevir"], ["note", 20, "2i", "parlaklık takip ediyor"]] },
-    "06-2-C3": { setup: "06-2", t: "06·2 · C3 — çalıştır", s: "level_bar, C0'dan yakın", f: [6, "2e", 34, "2bm"], yellow: 0.7, green: 0.7,
+    "06-2-C3": { setup: "06-2", t: "Bölüm 8 · C3 — çalıştır", s: "level_bar, C0'dan yakın", f: [6, "2e", 34, "2bm"], yellow: 0.7, green: 0.7,
       m: [["turn", 30, "2f", "ileri geri çevir"]] },
-    "06-2-C4": { setup: "06-2", t: "06·2 · C4 — yaygın hata", s: "level_bar çalışırken", f: [6, "2e", 22, "2bm"], green: 0.7, red: 0.7,
+    "06-2-C4": { setup: "06-2", t: "Bölüm 8 · C4 — yaygın hata", s: "level_bar çalışırken", f: [6, "2e", 22, "2bm"], green: 0.7, red: 0.7,
       m: [["pull", 12.5, "2h", "sarı LED'i ters tak: yanmaz · düzelt: yanar"]] },
-    "07-1-C0": { setup: "07", t: "07·1 · C0 — açılış", s: "crossing yüklü · tam bir tur (~20 sn)", f: [6, "1a", 30, "2bm"], green: 0.7, rgb: "#ff3b3b",
+    "07-1-C0": { setup: "07", t: "Bölüm 9 · C0 — açılış", s: "crossing yüklü · tam bir tur (~20 sn)", f: [6, "1a", 30, "2bm"], green: 0.7, rgb: "#ff3b3b",
       m: [["press", 26, "2e", "bas: istek"], ["note", 21.5, "1e", "yaya ışığı"]] },
-    "07-1-C1": { setup: "07", t: "07·1 · C1 — basma süresi", s: "press_time yüklü", f: [6, "2c", 29, "2bm"], yellow: 0.8,
+    "07-1-C1": { setup: "07", t: "Bölüm 9 · C1 — basma süresi", s: "press_time yüklü", f: [6, "2c", 29, "2bm"], yellow: 0.8,
       m: [["press", 26, "2e", "bir kısa, bir uzun bas"], ["note", 12.5, "2i", "basılıyken yanar"]] },
-    "07-1-C2": { setup: "07", t: "07·1 · C2 — yaya ışığı yanıp sönüyor", s: "crossing, yaya yeşili", f: [16, "1tm", 26, "1g"], rgb: "#2bff6a",
+    "07-1-C2": { setup: "07", t: "Bölüm 9 · C2 — yaya ışığı yanıp sönüyor", s: "crossing, yaya yeşili", f: [16, "1tm", 26, "1g"], rgb: "#2bff6a",
       m: [["note", 21.5, "1e", "son 2 sn yanıp söner"]] },
-    "07-2-C0": { setup: "07", t: "07·2 · C0 — açılış", s: "reflex_game yüklü", f: [6, "1a", 30, "2bm"], green: 0.8, rgb: "#2bff6a",
+    "07-2-C0": { setup: "07", t: "Bölüm 10 · C0 — açılış", s: "reflex_game yüklü", f: [6, "1a", 30, "2bm"], green: 0.8, rgb: "#2bff6a",
       m: [["press", 26, "2e", "başlat · yeşil yanınca hemen bas"]] },
-    "07-2-C1": { setup: "07", t: "07·2 · C1 — yavaş tepki", s: "reflex_game: yeşilden ~1 sn sonra bas", f: [6, "1a", 30, "2bm"], rgb: "#ff3b3b",
+    "07-2-C1": { setup: "07", t: "Bölüm 10 · C1 — yavaş tepki", s: "reflex_game: yeşilden ~1 sn sonra bas", f: [6, "1a", 30, "2bm"], rgb: "#ff3b3b",
       m: [["press", 26, "2e", "geç bas → RGB kırmızı"]] },
-    "07-2-C2": { setup: "07", t: "07·2 · C2 — elektrik kesilse de rekor kalır", s: "USB kablosunu çıkarıp geri tak (3–5 sn)", f: [0.2, "1h", 9, "2c"],
+    "07-2-C2": { setup: "07", t: "Bölüm 10 · C2 — elektrik kesilse de rekor kalır", s: "USB kablosunu çıkarıp geri tak (3–5 sn)", f: [0.2, "1h", 9, "2c"],
       m: [["pull", 2.2, "1j", "USB'yi çek, geri tak", 205]] },
   };
 }

@@ -21,7 +21,8 @@ def img(name, ext="png"):
 
 
 def code(lesson, sketch):
-    p = ROOT / "lessons" / lesson / "code" / sketch / f"{sketch}.ino"
+    # curriculum v6 (2026-10-29) split the lesson folders per episode: find the sketch wherever it lives now
+    p = next(ROOT.glob(f"lessons/*/code/{sketch}/{sketch}.ino"))
     return {"name": sketch, "path": str(p), "src": p.read_text(encoding="utf-8")}
 
 
@@ -29,7 +30,7 @@ L5, L6, L7 = "05-pwm-and-rgb", "06-analog-input", "07-mini-project-1"
 
 # id, title, release date, pictures (setup, caption), steps, sketches, clips (id, what, seconds, framing, check)
 PARTS = [
-    {"id": "p05-1", "tag": "05 · Kısım 1", "title": "PWM: LED'i nefes aldırmak", "date": "Sal 3 Kas",
+    {"id": "p05-1", "tag": "Bölüm 5", "title": "PWM: LED'i nefes aldırmak", "date": "Sal 3 Kas",
      "pics": [("base", "Devre: hiçbir şeyi değiştirmeyin (Bölüm 04 sonundaki hali)"),
               ("05-1-meter", "C1 için multimetre probları")],
      "steps": ["Devre olduğu gibi kalıyor: kırmızı LED D23, buton D22, yeşil LED D25."],
@@ -42,7 +43,7 @@ PARTS = [
          ("C4", "Çalıştır: fade_millis yüklü. Nefes alırken basın: durur; tekrar basın: devam eder.", "10", "C0'dan daha yakın: LED ve buton.", "Durma ve devam anı net görünüyor."),
          ("C5", "İsteğe bağlı, değiştir görevi: fade_millis'te 39. satırdaki 4'ü 10 yapıp yükleyin. Nefes daha yavaş.", "8", "C4 ile aynı kadraj.", "Nefes belirgin şekilde yavaş."),
      ]},
-    {"id": "p05-2", "tag": "05 · Kısım 2", "title": "RGB renk karıştırma", "date": "Cum 6 Kas",
+    {"id": "p05-2", "tag": "Bölüm 6", "title": "RGB renk karıştırma", "date": "Cum 6 Kas",
      "pics": [("05-2-remove", "Adım 1: üst breadboard'daki yeşil LED devresini sökün"),
               ("05-2", "Adım 2: RGB LED'i takın")],
      "steps": ["USB kablosunu çıkarın.",
@@ -60,7 +61,7 @@ PARTS = [
          ("C3", "Yaygın hata: rgb_colors çalışırken RGB'nin siyah kablosunu (21a) çekin: LED söner. Geri takın: renkler döner.", "8–10", "RGB ve siyah kablo, el kadrajda.", "Sönme ve geri gelme net."),
          ("C4", "Çalıştır: color_modes. 3 basış: kırmızı → yeşil → mavi → geçiş başlıyor.", "10", "C0'dan daha yakın.", "Her basışta anında değişiyor."),
      ]},
-    {"id": "p06-1", "tag": "06 · Kısım 1", "title": "Analog giriş ve potansiyometre", "date": "Sal 10 Kas",
+    {"id": "p06-1", "tag": "Bölüm 7", "title": "Analog giriş ve potansiyometre", "date": "Sal 10 Kas",
      "pics": [("06", "Potansiyometreyi alt breadboard'un sağına ekleyin"),
               ("06-meter", "C2 için multimetre probları"),
               ("06-pot-fix", "Sizin devrenizin fotoğrafı üzerinde: ray ortada kesik, iki köprü kablo şart")],
@@ -76,12 +77,12 @@ PARTS = [
          ("C1", "Kurulum: USB çıkarılmış. Pot, 3V3 kablosu, iki ray kablosu, turuncu kablo.", "20–30", "Üstten, alt breadboard'un sağ tarafı.", "Her bağlantı seçiliyor."),
          ("C2", "Multimetre: pot_read yüklü. Problar görseldeki gibi. Tek elle düğmeyi yavaşça çevirin: ekran 0,0 → 3,3 V.", "10", "Multimetre ekranı okunur, düğme kadrajda.", "Değer yumuşakça 0'dan 3,3 V'a çıkıyor."),
      ]},
-    {"id": "p06-2", "tag": "06 · Kısım 2", "title": "map(), dimmer ve seviye çubuğu", "date": "Cum 13 Kas",
+    {"id": "p06-2", "tag": "Bölüm 8", "title": "map(), dimmer ve seviye çubuğu", "date": "Cum 13 Kas",
      "pics": [("06-2", "Sarı (D18) ve yeşil (D17) LED'i alt breadboard'a ekleyin")],
      "steps": ["USB kablosunu çıkarın. Önceki her şey yerinde kalır.",
                "Sarı: 220 Ω direnç D18 sütunundan (10e) boşluğun üstünden 12g'ye. LED'in uzun bacağı 12h, kısa bacağı 13h. Siyah kablo 13j → eksi ray.",
                "Yeşil: 220 Ω direnç D17 sütunundan (8d) 9g'ye. Uzun bacak 9h, kısa bacak 10h. Siyah kablo 10j → eksi ray.",
-               "Bu iki LED Bölüm 07'de trafik ışığı olarak da kullanılacak; sökmeyin."],
+               "Bu iki LED Bölüm 9'da trafik ışığı olarak da kullanılacak; sökmeyin."],
      "code": [code(L6, "level_bar"), code(L6, "map_dimmer")],
      "clips": [
          ("C0", "Açılış: level_bar yüklü. Düğmeyi yavaşça sağa çevirin: önce yeşil, sonra sarı, sonra kırmızı yanıyor. Sonra geri çevirin.", "12", "Üç LED ve düğme kadrajda.", "LED'ler sırayla doluyor ve boşalıyor."),
@@ -90,8 +91,8 @@ PARTS = [
          ("C3", "Çalıştır: level_bar, C0'dan daha yakın. Düğmeyi ileri geri çevirin.", "8–10", "Üç LED yakın plan.", "Her seviye net."),
          ("C4", "Yaygın hata: level_bar çalışırken sarı LED'i çıkarıp ters takın: o seviyede sarı yanmıyor. Doğru takın: yanıyor.", "10–12", "Sarı LED ve el kadrajda.", "Ters takılıyken sönük, düzeltince yanıyor."),
      ]},
-    {"id": "p07-1", "tag": "07 · Kısım 1", "title": "Mini proje 1: akıllı yaya geçidi", "date": "Sal 17 Kas",
-     "pics": [("07", "Devre 06·2 ile aynı, yeni kablo yok")],
+    {"id": "p07-1", "tag": "Bölüm 9 · Proje 1", "title": "Mini proje 1: akıllı yaya geçidi", "date": "Sal 17 Kas",
+     "pics": [("07", "Devre Bölüm 8 ile aynı, yeni kablo yok")],
      "steps": ["Kablolamaya dokunmayın. Araba ışıkları: kırmızı D23, sarı D18, yeşil D17. Yaya ışığı: RGB LED. Buton: yaya düğmesi. Düğme: arabaların yeşil süresi (3–10 sn)."],
      "code": [code(L7, "crossing"), code(L7, "press_time")],
      "clips": [
@@ -99,7 +100,7 @@ PARTS = [
          ("C1", "press_time yüklü: önce kısa bir basış, sonra 1 sn'lik uzun bir basış. Sarı LED basılıyken yanıyor.", "8–10", "Buton ve sarı LED.", "İki basış da net, LED basılı tutulduğu sürece yanıyor."),
          ("C2", "crossing: yaya yeşilinin son 2 sn'si yanıp sönüyor. RGB'ye yakın plan.", "8", "RGB yakın plan.", "Yanıp sönme net görünüyor."),
      ]},
-    {"id": "p07-2", "tag": "07 · Kısım 2", "title": "Refleks oyunu ve kalıcı rekor", "date": "Cum 20 Kas",
+    {"id": "p07-2", "tag": "Bölüm 10 · Proje 1", "title": "Refleks oyunu ve kalıcı rekor", "date": "Cum 20 Kas",
      "pics": [("07", "Devre aynı")],
      "steps": ["Kablolamaya dokunmayın. Düğme: sarı ışığın bekleme süresi (1–4 sn)."],
      "code": [code(L7, "reflex_game")],
@@ -110,7 +111,7 @@ PARTS = [
      ]},
 ]
 
-LATER = [("08", "Işık sensörü ve dokunmatik pin (ışık sensörü modülünün fotoğrafını bekliyorum)", "Cum 27 Kas / Sal 1 Ara")]
+LATER = [("Bölüm 11 ve 12", "Işık sensörü ve dokunmatik pin (ışık sensörü modülünün fotoğrafını bekliyorum)", "Cum 27 Kas / Sal 1 Ara")]
 
 RULES = ["Telefon yatay (16:9), 1080p, 30 fps.",
          "Telefonu sabitleyin: tripod ya da kitaplara yaslayın. Elde çekim titrer.",
@@ -228,7 +229,7 @@ def main():
 <style>{CSS}</style>
 <div class="wrap">
 <h1>ESP32 Çekim Paketi</h1>
-<p class="lede">Pin by Pin Lab · Bölüm 05–08 gerçek çekimleri. Her video için devre, kod ve çekim listesi.</p>
+<p class="lede">Pin by Pin Lab · Bölüm 5–12 gerçek çekimleri. Her video için devre, kod ve çekim listesi.</p>
 <div class="box how"><ol>
 <li>Devreyi görseldeki gibi kurun (numaralar takma sırası, ✕ sökülecek parça).</li>
 <li>Kodu Arduino IDE'de açıp yükleyin (dosya yolu kodun başlığında).</li>
