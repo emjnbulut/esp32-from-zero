@@ -97,6 +97,9 @@ function pot() {
   bbWire(bb, L(28, "2j"), L(28, "2bm"), BLACK, -1, -0.35);
   bbWire(bb, L(32, "2j"), L(32, "2bp"), RED, -1, 0.35);
   bbWire(bb, L(30, "2i"), L(13, "1f"), ORG, -1, 0.22);     // middle leg -> D34 (upper, column 13, row f)
+  // the creator's rails are split in the middle (2026-10-29: the pot stayed dark): bridge both lower rails across the gap
+  bbWire(bb, L(29, "2bp"), L(35, "2bp"), RED, -1, 0.5);
+  bbWire(bb, L(29, "2bm"), L(35, "2bm"), BLACK, -1, -0.5);
   const g = svgEl(bb.parts, "g", {});
   const [x0, y] = L(28, "2h"), [x1] = L(32, "2h");
   for (const c of [28, 30, 32]) { const [x, yy] = L(c, "2h"); svgEl(g, "path", { d: `M${x} ${yy} V${yy - 40}`, stroke: "#b8bec6", "stroke-width": 5 }); svgEl(g, "circle", { cx: x, cy: yy, r: 6, fill: "#9aa1aa" }); }
@@ -148,8 +151,8 @@ const SETUPS = {
     text("wtitle", "06 — Potansiyometre (alt breadboard, sağ)");
     text("wsub", "Önce USB'yi çıkarın. RGB ve kırmızı LED yerinde kalır.");
     gnd(); redLed(); button(); rgb(); pot();
-    badge(1, L(30, "2h"), 0, -150); badge(2, L(2, "2d"), 34, 40); badge(3, L(28, "2j"), -30, 30); badge(4, L(32, "2j"), 30, 30); badge(5, L(13, "1f"), -40, 6);
-    text("wnote", "① Pot: 3 bacak h sırasında, 28–30–32 (bacaklar bitişikse 28–29–30 da olur) · ② kırmızı: 3V3 (2. sütun) → alt artı ray · ③ sol bacak → eksi ray · ④ sağ bacak → ARTI ray (3,3 V; asla VIN/5 V değil) · ⑤ turuncu: orta bacak (30i) → D34 sütunu (üst, 13f).");
+    badge(1, L(30, "2h"), 0, -150); badge(2, L(2, "2d"), 34, 40); badge(3, L(28, "2j"), -30, 30); badge(4, L(32, "2j"), 30, 30); badge(5, L(13, "1f"), -40, 6); badge(6, L(35, "2bp"), 40, 60);
+    text("wnote", "① Pot: 3 bacak h sırasında, 28–30–32 (bacaklar bitişikse 28–29–30 da olur) · ② kırmızı: 3V3 (2. sütun) → alt artı ray · ③ sol bacak → eksi ray · ④ sağ bacak → ARTI ray (3,3 V; asla VIN/5 V değil) · ⑤ turuncu: orta bacak (30i) → D34 sütunu (üst, 13f) · ⑥ ÖNEMLİ: artı ve eksi ray ortada kesik; iki köprü kablo (29 → 35) iki yarıyı birleştirir, yoksa pot elektrik almaz.");
   },
   "06-meter"() {
     text("wtitle", "06 — multimetre çekimi");

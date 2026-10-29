@@ -14,6 +14,8 @@ INBOX = r"C:\Users\emin\esp32-from-zero\footage\gelen"
 
 
 def img(name, ext="png"):
+    if ext == "png" and not (B / f"{name}.png").exists():
+        ext = "jpg"  # photos annotated over a real clip frame
     mime = "jpeg" if ext == "jpg" else "png"
     return f"data:image/{mime};base64," + base64.b64encode((B / f"{name}.{ext}").read_bytes()).decode()
 
@@ -60,12 +62,14 @@ PARTS = [
      ]},
     {"id": "p06-1", "tag": "06 · Kısım 1", "title": "Analog giriş ve potansiyometre", "date": "Sal 10 Kas",
      "pics": [("06", "Potansiyometreyi alt breadboard'un sağına ekleyin"),
-              ("06-meter", "C2 için multimetre probları")],
+              ("06-meter", "C2 için multimetre probları"),
+              ("06-pot-fix", "Sizin devrenizin fotoğrafı üzerinde: ray ortada kesik, iki köprü kablo şart")],
      "steps": ["USB kablosunu çıkarın. RGB, kırmızı LED ve buton yerinde kalır.",
                "Potansiyometrenin 3 bacağı alt breadboard'da h sırasında: 28–30–32 (bacaklar bitişikse 28–29–30).",
                "Kırmızı kablo: 3V3 (2. sütun, d sırası) → alt artı ray.",
                "Sol bacak → eksi ray, sağ bacak → ARTI ray (3,3 V). Asla VIN ya da 5 V'a bağlamayın: ESP32'nin girişi en fazla 3,3 V.",
-               "Turuncu kablo: orta bacak (30i) → üst breadboard 13f (D34'ün sütunu)."],
+               "Turuncu kablo: orta bacak (30i) → üst breadboard 13f (D34'ün sütunu).",
+               "ÖNEMLİ: alt breadboard'un artı ve eksi rayı ortada (30. sütun civarı) kesik. Kırmızı köprü: artı ray 29 → 35, siyah köprü: eksi ray 29 → 35. Bunlar olmadan pot elektrik almaz, LED yanmaz ve düğme çalışmaz."],
      "code": [code(L6, "pot_dimmer"), code(L6, "pot_read")],
      "clips": [
          ("C0", "Açılış: pot_dimmer yüklü. Düğmeyi yavaşça bir uçtan diğerine, sonra geri çevirin: kırmızı LED elinizi takip ediyor.", "12", "Düğme, el ve kırmızı LED kadrajda.", "Parlaklık düğmeyle birlikte değişiyor."),
