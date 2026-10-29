@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ESP32 From Zero - Episode 5: PWM</title>
+<link rel="stylesheet" href="../engine/stage.css">
+<style>
+  .badge { position: absolute; display: inline-flex; align-items: center; gap: 12px; padding: 10px 18px; border-radius: 12px;
+    font: 700 22px var(--ui); white-space: nowrap; }
+  .partrow { position: absolute; display: flex; align-items: center; gap: 28px; padding: 0 30px; border-radius: 18px;
+    background: #121b2e; border: 2px solid #22304d; }
+  .partrow .ic { width: 96px; height: 96px; flex: none; display: flex; align-items: center; justify-content: center; font-size: 64px; }
+  .partrow .nm { font: 700 38px var(--display); }
+  .partrow .ds { font: 600 26px var(--ui); color: var(--muted); margin-top: 4px; }
+  .partrow .ds b { color: var(--teal); font-family: var(--mono); }
+  .excard2 { position: absolute; z-index: 80; display: flex; align-items: center; gap: 44px; padding: 40px 56px; border-radius: 26px;
+    background: #131c31; border: 3px solid var(--teal); box-shadow: 0 30px 80px rgba(0,0,0,.55); box-sizing: border-box; }
+  .excard2 .em { font-size: 150px; line-height: 1; flex: none; }
+  .excard2 .hd { font: 800 56px var(--display); color: var(--text); }
+  .excard2 .ln { margin-top: 14px; font: 600 34px/1.35 var(--ui); color: #b9f3ec; }
+  .excard2 .lim { margin-top: 22px; padding-top: 18px; border-top: 2px solid rgba(255,181,71,.35); font: 600 32px/1.35 var(--ui); color: #ffe3b8; }
+  .excard2 .lim b { color: var(--amber); }
+  .banner { position: absolute; display: flex; align-items: center; gap: 18px; padding: 12px 30px; border-radius: 14px;
+    background: rgba(255,93,108,.16); border: 2px solid var(--red); color: #ffc2c8; font: 800 30px var(--ui); letter-spacing: .06em; white-space: nowrap; }
+  .nowbox { position: absolute; border-radius: 18px; background: #0f1830; border: 2px solid #2c3b5e; padding: 18px 26px;
+    font: 700 34px/1.5 var(--mono); white-space: nowrap; z-index: 20; }
+  .nowbox .k { font: 800 20px var(--ui); letter-spacing: .14em; color: var(--muted); }
+  .nowbox b { color: var(--amber); font-weight: 800; }
+  .fc-now { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; margin-top: -6px; }
+  .fc-now .live { display: flex; align-items: center; gap: 14px; font: 700 28px var(--mono); color: var(--text); white-space: nowrap; }
+  .fc-now .live .k { font: 800 20px var(--ui); letter-spacing: .14em; color: var(--muted); }
+  .fc-now .live .v { padding: 6px 16px; border-radius: 10px; background: #16203a; border: 2px solid #2c3b5e; }
+  .fc-now .live .v b { color: var(--amber); }
+  .fc-now .repo { font: 600 22px var(--ui); color: var(--muted); white-space: nowrap; }
+  .fc-now .repo b { color: var(--amber); }
+  .yn { position: absolute; border-radius: 22px; padding: 34px 40px; box-sizing: border-box; background: var(--panel); }
+  .yn .t { font: 800 36px var(--display); }
+  .yn .d { font: 600 32px/1.4 var(--ui); color: var(--text); margin-top: 18px; }
+  .yn .c { font: 600 26px var(--mono); color: var(--muted); margin-top: 6px; }
+</style>
+<script src="../node_modules/gsap/dist/gsap.min.js"></script>
+<script src="../engine/lib.js"></script>
+<script src="../engine/breadboard.js"></script>
+</head>
+<body>
+<div id="stage"></div>
+<script src="sketches.js"></script>
+<script src="ep05.js"></script>
+</body>
+</html>
