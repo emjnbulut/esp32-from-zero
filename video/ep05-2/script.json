@@ -205,6 +205,12 @@
    "pad": 2.5
   },
   {
+   "id": "s27b",
+   "scene": "run",
+   "text": "Notice that yellow looks a little green, and magenta a little blue. The three colors aren't equally bright. Try lowering green and blue to balance them.",
+   "tr": "Sarının biraz yeşil, macentanın biraz mavi göründüğüne dikkat edin. Üç renk eşit parlak değil. Dengelemek için yeşili ve maviyi biraz düşürmeyi deneyin."
+  },
+  {
    "id": "s28",
    "scene": "mistake",
    "text": "Quick question: the colors are running. What happens if this black wire comes loose?",

@@ -114,6 +114,8 @@ s("s26", "tourrgb", "Full red plus full green: yellow. Each color stays for one 
   "Tam kırmızı artı tam yeşil: sarı. Her renk bir saniye kalıyor; turuncudan sonra liste yeniden başlıyor.")
 s("s27", "run", "Let's run it: red, green, blue, yellow, magenta, cyan, white, and orange.",
   "Çalıştıralım: kırmızı, yeşil, mavi, sarı, macenta, camgöbeği, beyaz ve turuncu.", clip="C2", pad=2.5)
+s("s27b", "run", "Notice that yellow looks a little green, and magenta a little blue. The three colors aren't equally bright. Try lowering green and blue to balance them.",
+  "Sarının biraz yeşil, macentanın biraz mavi göründüğüne dikkat edin. Üç renk eşit parlak değil. Dengelemek için yeşili ve maviyi biraz düşürmeyi deneyin.")
 # ---- common mistake: no way back to ground
 s("s28", "mistake", "Quick question: the colors are running. What happens if this black wire comes loose?",
   "Kısa bir soru: renkler dönüyor. Bu siyah kablo yerinden çıkarsa ne olur?", pad=THINK)
