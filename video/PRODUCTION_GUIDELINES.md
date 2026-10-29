@@ -153,9 +153,9 @@ Kullanıcı kararı: eğitim araştırmalarıyla karşılaştırmada (kaynaklar 
 
 **Müzik** (Mayer tutarlılık ilkesi: öğrenmeye katkısı olmayan sesler çıkarılmalı): anlatım ve kod sırasında müzik **yok**. Müzik yalnızca açılış sonucunda, tam ekran gerçek çekimlerde ve kapanışta çalar (`script.json "music": "results"`, tools/music.py pencereleri). Sting ve bitiş ekranı eskisi gibi.
 
-**Desteği azaltma** (uzmanlık tersine dönme etkisi, Kalyuga vd. 2003; adım adım azaltılan örnekler, Renkl & Atkinson; Salden vd. 2010): 05–07 tam çözümlü örnek + Learning Lab'da yarım kalmış kodu tamamlama; 08'den (1. mini proje) itibaren önce "durdurun ve kendiniz deneyin", sonra çözüm; 10'dan itibaren kod turları kısalır, tahmin soruları artar. Learning Lab'a satır sıralama (Parsons) görevleri eklenir (Ericson vd. 2023: sıfırdan yazmaktan hızlı, öğrenme kazancı aynı).
+**Desteği azaltma** (uzmanlık tersine dönme etkisi, Kalyuga vd. 2003; adım adım azaltılan örnekler, Renkl & Atkinson; Salden vd. 2010): 05–07 tam çözümlü örnek + Learning Lab'da yarım kalmış kodu tamamlama; 07'den (1. mini proje) itibaren önce "durdurun ve kendiniz deneyin", sonra çözüm; 10'dan itibaren kod turları kısalır, tahmin soruları artar. Learning Lab'a satır sıralama (Parsons) görevleri eklenir (Ericson vd. 2023: sıfırdan yazmaktan hızlı, öğrenme kazancı aynı).
 
-**Tekrar videoları** (aralıklı tekrar): her 4 bölümde bir Recap: Recap 1 (01–04) hazır; Recap 2 → 08'den sonra, Recap 3 → 12'den sonra, Recap 4 → 16'dan sonra. Recap'ler de 10 dk sınırına uyar (gerekirse iki kısım).
+**Tekrar videoları** (aralıklı tekrar): müfredat v5'te Recap 1 (01–04) hazır; Recap 2 → 07'den sonra, Recap 3 → 11'den sonra, Recap 4 → 14'ten sonra (`video/YAYIN_TAKVIMI.md`). Recap'ler de 10 dk sınırına uyar (gerekirse iki kısım).
 
 **Ses** (Guo vd.: hevesli, akıcı anlatım ilgiyi artırır; Craig & Schroeder: modern sentetik ses insan sesi kadar iyi öğretir, eski "robot" ses daha kötü): doğal hız, işlemle yavaşlatma yok (bölüm 9).
 

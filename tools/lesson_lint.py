@@ -15,7 +15,8 @@ Section-10 checks (only when script.json has "music": "results"):
   RETRIEVAL no "retrieval" scene right after the sting   LIMIT  everyday example without its limit
   PREDICT tour/trace scene without a prediction pause   MISTAKE no "mistake" scene   EXPLAIN no "in your own words"
 
-Usage: python tools/lesson_lint.py ep05 [ep04 ...]
+Usage: python tools/lesson_lint.py ep05 [ep04 ...] [--estimate]
+(--estimate, or no build/schedule.json yet: timeline estimated from word counts, for the script stage)
 """
 import glob, json, os, re, sys
 
@@ -54,9 +55,25 @@ def dubs(ep):
         out[os.path.basename(f)[:-5]] = json.load(open(f, encoding="utf-8")).get("segments", {})
     return out
 
-def load(ep):
-    sc = json.load(open(f"video/{ep}/script.json", encoding="utf-8"))["segments"]
-    sch = json.load(open(f"video/{ep}/build/schedule.json", encoding="utf-8"))
+EST_WPM, EST_GAP = 148, 0.5  # --estimate: measured on the recap v3 narration (2026-10-29)
+
+def estimate(sc, lead_in=0.8):
+    """Script-stage timeline before any narration exists: words at EST_WPM, EST_GAP + pad between segments."""
+    t, out = lead_in, {}
+    for s in sc:
+        dur = len(s["text"].split()) / EST_WPM * 60
+        out[s["id"]] = {"start": t, "dur": dur, "end": t + dur, "scene": s["scene"]}
+        t += dur + EST_GAP + s.get("pad", 0)
+    return out, t
+
+def load(ep, est=False):
+    meta = json.load(open(f"video/{ep}/script.json", encoding="utf-8"))
+    sc = meta["segments"]
+    path = f"video/{ep}/build/schedule.json"
+    if est or not os.path.exists(path):
+        segs, total = estimate(sc, meta.get("lead_in", 0.8))
+        return sc, segs, total
+    sch = json.load(open(path, encoding="utf-8"))
     return sc, sch["segments"], sch["duration"]
 
 Q_RX = re.compile(r"quick question|pause the video|pause now|predict|what do you think|what will|your turn", re.I)
@@ -97,7 +114,9 @@ def section10(sc, sch, ids, total, sting):
 def main():
     eps = [a for a in sys.argv[1:] if not a.startswith("--")]
     for ep in eps:
-        sc, sch, total = load(ep)
+        sc, sch, total = load(ep, "--estimate" in sys.argv)
+        if "--estimate" in sys.argv or not os.path.exists(f"video/{ep}/build/schedule.json"):
+            print(f"(estimated timeline: {EST_WPM} wpm, no narration yet)")
         meta = json.load(open(f"video/{ep}/script.json", encoding="utf-8"))
         ids = [s["id"] for s in sc if s["id"] in sch]
         text = {s["id"]: s["text"] for s in sc}

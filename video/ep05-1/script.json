@@ -1,0 +1,385 @@
+{
+ "episode": 5,
+ "part": 1,
+ "title": "PWM: Make an LED Breathe",
+ "voice": "en-US-EricNeural",
+ "rate": "+5%",
+ "lead_in": 0.8,
+ "sting_after": "s03",
+ "music": "results",
+ "clips": {
+  "C0": "OPENING, full screen, 12-15 s: fade_millis; the red LED breathes; one press stops it at once, a second press 2 s later resumes it. Red LED and button centred.",
+  "C1": "MULTIMETER, hands-free, 10-12 s: pwm_levels; probes on the red LED's GPIO 23 strip and the minus rail (DC volts). The display steps 0 -> ~0.8 -> ~1.65 -> ~3.3 V, 2 s each.",
+  "C2": "pwm_levels, 10 s: the LED in four steps: off, 25 %, 50 %, 100 %. Slightly dim room.",
+  "C3": "COMMON MISTAKE, 10-12 s: fade_naive; 3-4 short presses while it breathes; the fade does not stop.",
+  "C4": "fade_millis, 10 s, closer than C0: a press pauses it mid-fade, another press resumes it.",
+  "C5": "MODIFY, optional, 8 s: fade_millis with line 39 changed from 4 to 10; a visibly slower breath."
+ },
+ "segments": [
+  {
+   "id": "s01",
+   "scene": "cold",
+   "text": "Watch this LED. It slowly gets brighter, then dimmer, again and again, like someone breathing in their sleep.",
+   "tr": "Şu LED'e bakın. Yavaşça parlıyor, sonra kısılıyor, tekrar tekrar; uykuda nefes alan biri gibi.",
+   "clip": "C0"
+  },
+  {
+   "id": "s02",
+   "scene": "cold",
+   "text": "And when I press the button, it stops at once, right in the middle of a breath. Press again, and it carries on.",
+   "tr": "Butona bastığımda da hemen duruyor, tam bir nefesin ortasında. Bir daha basınca kaldığı yerden devam ediyor."
+  },
+  {
+   "id": "s03",
+   "scene": "cold",
+   "text": "Yet this pin can only be fully on, or fully off. By the end of this video, you'll know the trick, and you'll make any LED breathe.",
+   "tr": "Oysa bu pin yalnızca tamamen açık ya da tamamen kapalı olabiliyor. Bu videonun sonunda hileyi öğrenmiş olacaksınız ve her LED'i nefes aldırabileceksiniz.",
+   "pad": 0.4
+  },
+  {
+   "id": "s04",
+   "scene": "retrieval",
+   "text": "Before we start, two questions from earlier episodes. Quick question: the button uses the built-in pull-up resistor. While you press it, does the pin read HIGH or LOW?",
+   "tr": "Başlamadan önce önceki bölümlerden iki soru. Kısa bir soru: buton, çipin içindeki pull-up direncini kullanıyor. Butona basılıyken pin HIGH mı okur, LOW mu?",
+   "pad": 2.6
+  },
+  {
+   "id": "s05",
+   "scene": "retrieval",
+   "text": "LOW. Pressing connects the pin to ground, and ground wins against the weak resistor inside the chip that pulls it up.",
+   "tr": "LOW. Basınca pin toprağa bağlanıyor ve toprak, çipin içinde pini yukarı çeken zayıf dirence karşı kazanıyor."
+  },
+  {
+   "id": "s06",
+   "scene": "retrieval",
+   "text": "Quick question: why does a long delay make the board miss a button press?",
+   "tr": "Kısa bir soru: uzun bir delay neden kartın bir buton basışını kaçırmasına yol açar?",
+   "pad": 2.6
+  },
+  {
+   "id": "s07",
+   "scene": "retrieval",
+   "text": "Because during a delay, the program simply stops, and nobody looks at the button. Keep that in mind: it comes back today.",
+   "tr": "Çünkü delay sırasında program düpedüz durur ve butona kimse bakmaz. Bunu aklınızda tutun: bugün yeniden karşımıza çıkacak."
+  },
+  {
+   "id": "s08",
+   "scene": "parts",
+   "text": "You only need the circuit from episode four: the red LED on GPIO twenty-three, and the button on GPIO twenty-two. A multimeter is a nice extra.",
+   "sub": "You only need the circuit from episode 4: the red LED on GPIO 23, and the button on GPIO 22. A multimeter is a nice extra.",
+   "tr": "Yalnızca dördüncü bölümün devresi gerekiyor: GPIO 23'teki kırmızı LED ve GPIO 22'deki buton. Multimetre de güzel bir ekstra."
+  },
+  {
+   "id": "s09",
+   "scene": "pwm",
+   "text": "So far, digital write gave us two choices, like an ordinary light switch: fully on, or fully off.",
+   "sub": "So far, digitalWrite() gave us two choices, like an ordinary light switch: fully on, or fully off.",
+   "tr": "Şimdiye kadar digitalWrite bize, sıradan bir ışık anahtarı gibi, yalnızca iki seçenek verdi: tamamen açık ya da tamamen kapalı."
+  },
+  {
+   "id": "s10",
+   "scene": "pwm",
+   "text": "Quick question: how could a pin that's only ever on or off make an LED glow at half brightness? Think about it for a moment.",
+   "tr": "Kısa bir soru: yalnızca açık ya da kapalı olabilen bir pin, bir LED'i nasıl yarı parlaklıkta yakabilir? Bir an düşünün.",
+   "pad": 2.6
+  },
+  {
+   "id": "s11",
+   "scene": "pwm",
+   "text": "The answer is speed. Think of a ceiling fan. When it spins fast, you can't see the single blades anymore, only a soft blur.",
+   "tr": "Cevap hız. Bir tavan vantilatörünü düşünün. Hızlı dönünce kanatları tek tek göremezsiniz, yalnızca yumuşak bir bulanıklık görürsünüz."
+  },
+  {
+   "id": "s12",
+   "scene": "pwm",
+   "text": "The pin does the same with light. It switches the LED on and off about a thousand times a second, and your eye only sees the average.",
+   "tr": "Pin de ışıkla aynısını yapıyor. LED'i saniyede yaklaşık bin kez açıp kapatıyor ve gözünüz yalnızca ortalamayı görüyor.",
+   "pad": 0.4
+  },
+  {
+   "id": "s13",
+   "scene": "pwm",
+   "text": "This trick is called PWM, short for pulse width modulation. What actually happens: the pin is always at either three point three volts, or zero volts. Only the timing changes.",
+   "sub": "This trick is called PWM, short for pulse width modulation. What actually happens: the pin is always at either 3.3 V, or 0 V. Only the timing changes.",
+   "tr": "Bu yönteme PWM deniyor, yani darbe genişlik modülasyonu. Gerçekte olan şu: pin her an ya 3,3 volttadır ya da sıfır volttadır. Değişen yalnızca zamanlama."
+  },
+  {
+   "id": "s14",
+   "scene": "pwm",
+   "text": "The difference from the fan: a fan really passes through every position in between. The LED is only ever fully on, or fully off, and the in-between happens in your eye.",
+   "tr": "Vantilatörden farkı şu: vantilatör aradaki her konumdan gerçekten geçer. LED ise ya tamamen açıktır ya tamamen kapalı; aradaki ton sizin gözünüzde oluşur.",
+   "pad": 0.4
+  },
+  {
+   "id": "s15",
+   "scene": "duty",
+   "text": "What we control is how long the pin stays on in each short cycle. That share is called the duty cycle.",
+   "tr": "Bizim kontrol ettiğimiz şey, pinin her kısa döngüde ne kadar süre açık kaldığı. Bu paya doluluk oranı deniyor; İngilizcesi duty cycle."
+  },
+  {
+   "id": "s16",
+   "scene": "duty",
+   "text": "Think of a tap that you open briefly every second. Open it for a quarter of each second, and only a little water flows. Leave it open, and you get the full stream.",
+   "tr": "Her saniye kısa bir an açtığınız bir musluk düşünün. Her saniyenin dörtte birinde açarsanız biraz su akar. Açık bırakırsanız tam akışı alırsınız."
+  },
+  {
+   "id": "s17",
+   "scene": "duty",
+   "text": "The difference: a real tap can be half open, but a PWM pin is never half on.",
+   "tr": "Farkı şu: gerçek bir musluk yarı açık olabilir, ama bir PWM pini asla yarı açık olmaz."
+  },
+  {
+   "id": "s18",
+   "scene": "duty",
+   "text": "So twenty-five percent on looks dim, fifty percent looks medium, and a hundred percent is fully bright.",
+   "sub": "So 25% on looks dim, 50% looks medium, and 100% is fully bright.",
+   "tr": "Yani yüzde 25 açık loş görünür, yüzde 50 orta görünür, yüzde 100 ise tam parlaktır.",
+   "pad": 0.4
+  },
+  {
+   "id": "s19",
+   "scene": "aw",
+   "text": "In code, all of this is one function: analog write. You give it a pin, and a number from zero to two hundred fifty-five.",
+   "sub": "In code, all of this is one function: analogWrite(). You give it a pin, and a number from 0 to 255.",
+   "tr": "Kodda bunların hepsi tek bir fonksiyon: analogWrite. Ona bir pin ve sıfır ile 255 arasında bir sayı veriyorsunuz."
+  },
+  {
+   "id": "s20",
+   "scene": "aw",
+   "text": "It works like a dimmer knob with many small clicks: zero is always off, and two fifty-five is always on. Quick question: which number gives about half brightness?",
+   "sub": "It works like a dimmer knob with many small clicks: 0 is always off, and 255 is always on. Quick question: which number gives about half brightness?",
+   "tr": "Çok sayıda küçük kademesi olan bir dimmer düğmesi gibi çalışıyor: sıfır hep kapalı, 255 hep açık. Kısa bir soru: hangi sayı yaklaşık yarı parlaklık verir?",
+   "pad": 2.6
+  },
+  {
+   "id": "s21",
+   "scene": "aw",
+   "text": "About one twenty-eight, on for half of every cycle. The difference from a real dimmer: a real one turns smoothly, but this one has exactly two hundred fifty-six steps.",
+   "sub": "About 128, on for half of every cycle. The difference from a real dimmer: a real one turns smoothly, but this one has exactly 256 steps.",
+   "tr": "Yaklaşık 128; her döngünün yarısında açık. Gerçek bir dimmerdan farkı şu: gerçeği kesintisiz döner, bu ise tam 256 adımdan oluşur."
+  },
+  {
+   "id": "s23",
+   "scene": "tourpwm",
+   "text": "Here is the first sketch, PWM levels. At the top, pin twenty-three gets a name. Setup makes it an output, and starts the Serial Monitor.",
+   "sub": "Here is the first sketch, pwm_levels. At the top, pin 23 gets a name. setup() makes it an output, and starts the Serial Monitor.",
+   "tr": "İşte ilk sketch: pwm_levels. En üstte 23. pine bir ad veriyoruz. setup onu çıkış yapıyor ve Seri Monitör'ü başlatıyor.",
+   "pad": 0.4
+  },
+  {
+   "id": "s24",
+   "scene": "tourpwm",
+   "text": "Then something new: our own function, show level. Think of it as a recipe with a blank: the number in the brackets fills that blank on every call.",
+   "sub": "Then something new: our own function, showLevel(). Think of it as a recipe with a blank: the number in the brackets fills that blank on every call.",
+   "tr": "Sonra yeni bir şey: kendi fonksiyonumuz, showLevel. Bunu boşluğu olan bir tarif gibi düşünün: parantezdeki sayı her çağrıda o boşluğu dolduruyor."
+  },
+  {
+   "id": "s25",
+   "scene": "tourpwm",
+   "text": "What actually happens: when we call show level with sixty-four, the value inside the function becomes sixty-four. Analog write uses it, the sketch prints it, and then waits two seconds.",
+   "sub": "What actually happens: when we call showLevel() with 64, the value inside the function becomes 64. analogWrite() uses it, the sketch prints it, and then waits two seconds.",
+   "tr": "Gerçekte olan şu: showLevel'ı 64 ile çağırdığımızda fonksiyonun içindeki value 64 oluyor. analogWrite onu kullanıyor, sketch onu yazdırıyor ve sonra iki saniye bekliyor."
+  },
+  {
+   "id": "s26",
+   "scene": "tourpwm",
+   "text": "The difference from a paper recipe: the function forgets the value as soon as it finishes.",
+   "tr": "Kâğıttaki bir tariften farkı şu: fonksiyon işi biter bitmez o değeri unutur."
+  },
+  {
+   "id": "s27",
+   "scene": "tourpwm",
+   "text": "The loop calls show level four times: with zero, sixty-four, one twenty-eight, and two fifty-five. Pause the video and predict: what will the LED do at each step?",
+   "sub": "The loop calls showLevel() four times: with 0, 64, 128, and 255. Pause the video and predict: what will the LED do at each step?",
+   "tr": "loop, showLevel'ı dört kez çağırıyor: sıfır, 64, 128 ve 255 ile. Videoyu durdurun ve tahmin edin: LED her adımda ne yapacak?",
+   "pad": 3.0
+  },
+  {
+   "id": "s28",
+   "scene": "run",
+   "text": "Let's run it. The LED steps up in four clear levels: off, dim, medium, and fully bright. Then it starts again from the top.",
+   "tr": "Çalıştıralım. LED dört belirgin seviyede parlıyor: kapalı, loş, orta ve tam parlak. Sonra en baştan yeniden başlıyor.",
+   "clip": "C2",
+   "pad": 2.5
+  },
+  {
+   "id": "s29",
+   "scene": "meter",
+   "text": "Now a multimeter on the LED pin. It's too slow to follow the switching, so it shows the average voltage.",
+   "tr": "Şimdi multimetreyi LED pinine bağlayalım. Hızlı geçişi takip edemeyecek kadar yavaş, bu yüzden ortalama voltajı gösteriyor."
+  },
+  {
+   "id": "s30",
+   "scene": "meter",
+   "text": "About zero point eight volts at twenty-five percent, one point six five at fifty, and three point three at a hundred: exactly the share of the time the pin is on.",
+   "sub": "About 0.8 V at 25%, 1.65 V at 50%, and 3.3 V at 100%: exactly the share of the time the pin is on.",
+   "tr": "Yüzde 25'te yaklaşık 0,8 volt, yüzde 50'de 1,65, yüzde 100'de 3,3 volt: tam da pinin açık kaldığı süreyle orantılı.",
+   "clip": "C1",
+   "pad": 3.0
+  },
+  {
+   "id": "s31",
+   "scene": "meter",
+   "text": "Your turn: replace sixty-four with ten. What do you think you'll see? A very faint glow, and about a tenth of a volt.",
+   "sub": "Your turn: replace 64 with 10. What do you think you'll see? A very faint glow, and about a tenth of a volt.",
+   "tr": "Sıra sizde: 64 yerine 10 yazın. Sizce ne göreceksiniz? Çok sönük bir ışık ve voltun onda biri kadar bir değer."
+  },
+  {
+   "id": "s32",
+   "scene": "fade",
+   "text": "Now let's make the LED breathe. The obvious way is two for loops. One counts the brightness up with a tiny delay on every step, and the other counts it down.",
+   "tr": "Şimdi LED'i nefes aldıralım. Akla gelen ilk yol iki for döngüsü. Biri parlaklığı her adımda küçücük bir delay ile yukarı sayıyor, diğeri aşağı sayıyor."
+  },
+  {
+   "id": "s34",
+   "scene": "mistake",
+   "text": "Quick question: while this LED is fading, what happens when you press the button?",
+   "tr": "Kısa bir soru: LED kısılıp parlarken butona basarsanız ne olur?",
+   "pad": 2.6
+  },
+  {
+   "id": "s35",
+   "scene": "mistake",
+   "text": "Watch. I press three, four times, and the fade just carries on, as if nothing happened.",
+   "tr": "İzleyin. Üç, dört kez basıyorum ve geçiş hiçbir şey olmamış gibi devam ediyor.",
+   "clip": "C3",
+   "pad": 2.5
+  },
+  {
+   "id": "s36",
+   "scene": "mistake",
+   "text": "It's the delay problem from the start of this video. It's like climbing stairs with headphones on: until you reach the top, you don't hear the doorbell.",
+   "tr": "Bu, videonun başındaki delay sorunu. Kulaklıkla merdiven çıkmak gibi: tepeye varana kadar kapı zilini duymazsınız."
+  },
+  {
+   "id": "s37",
+   "scene": "mistake",
+   "text": "What actually happens: one whole fade takes about two seconds, and the button is only read between two fades. So a short press is almost always missed.",
+   "tr": "Gerçekte olan şu: bütün bir geçiş yaklaşık iki saniye sürüyor ve buton yalnızca iki geçişin arasında okunuyor. Bu yüzden kısa bir basış neredeyse her zaman kaçıyor."
+  },
+  {
+   "id": "s38",
+   "scene": "mistake",
+   "text": "The difference: you might still feel a tap on your shoulder, but the board notices nothing until the loop ends.",
+   "tr": "Farkı şu: siz yine de omzunuza dokunulduğunu hissedebilirsiniz, ama kart döngü bitene kadar hiçbir şey fark etmez."
+  },
+  {
+   "id": "s39",
+   "scene": "fade2",
+   "text": "The fix is the wall clock from episode four. We glance at it on every round, and act only when enough time has passed.",
+   "tr": "Çözüm, dördüncü bölümdeki duvar saati. Her turda ona bir göz atıyoruz ve yalnızca yeterince zaman geçtiyse harekete geçiyoruz."
+  },
+  {
+   "id": "s40",
+   "scene": "fade2",
+   "text": "Every four milliseconds, we take one small step, and the brightness grows by one. Two hundred fifty-five steps take about one second.",
+   "sub": "Every 4 milliseconds, we take one small step, and the brightness grows by one. 255 steps take about one second.",
+   "tr": "Her dört milisaniyede bir küçük adım atıyoruz ve parlaklık bir artıyor. 255 adım yaklaşık bir saniye sürüyor."
+  },
+  {
+   "id": "s41",
+   "scene": "fade2",
+   "text": "At the top, we turn around and count down. At the bottom, we turn around again, and the next breath begins.",
+   "tr": "Tepeye varınca dönüp geri sayıyoruz. Dibe varınca yine dönüyoruz ve sonraki nefes başlıyor.",
+   "pad": 0.4
+  },
+  {
+   "id": "s43",
+   "scene": "tourfade",
+   "text": "Here's the whole sketch, fade millis. Brightness is how bright the LED is right now. Step is what we add each time: plus one going up, and minus one going down.",
+   "sub": "Here's the whole sketch, fade_millis. brightness is how bright the LED is right now. step is what we add each time: +1 going up, and -1 going down.",
+   "tr": "İşte sketch'in tamamı: fade_millis. brightness, LED'in şu anki parlaklığı. step, her seferinde eklediğimiz sayı: yukarı çıkarken artı bir, aşağı inerken eksi bir."
+  },
+  {
+   "id": "s44",
+   "scene": "tourfade",
+   "text": "Last step holds the time of the last step, and fading says whether the LED breathes or is paused. Below them sits the button's memory from episode four.",
+   "sub": "lastStep holds the time of the last step, and fading says whether the LED breathes or is paused. Below them sits the button's memory from episode 4.",
+   "tr": "lastStep son adımın zamanını tutuyor, fading de LED'in nefes mi aldığını yoksa durmuş mu olduğunu söylüyor. Altlarında dördüncü bölümden tanıdığımız buton hafızası var."
+  },
+  {
+   "id": "s45",
+   "scene": "tourfade",
+   "text": "In the loop, we read the clock once. Part one is the button from episode four. A new press flips fading, because the exclamation mark means not.",
+   "sub": "In the loop, we read the clock once. Part one is the button from episode 4. A new press flips fading, because the exclamation mark means not.",
+   "tr": "loop'ta saati bir kez okuyoruz. Birinci kısım dördüncü bölümün butonu. Yeni bir basış fading'i tersine çeviriyor, çünkü ünlem işareti \"değil\" demek."
+  },
+  {
+   "id": "s46",
+   "scene": "tourfade",
+   "text": "Part two is the fade. Pause the video and predict: the LED is breathing, but only two milliseconds have passed. What does this part do?",
+   "tr": "İkinci kısım geçiş. Videoyu durdurun ve tahmin edin: LED nefes alıyor ama yalnızca iki milisaniye geçmiş. Bu kısım ne yapar?",
+   "pad": 3.0
+  },
+  {
+   "id": "s47",
+   "scene": "tourfade",
+   "text": "Nothing at all. The loop simply runs on and checks the button again, which is why a press is never missed.",
+   "tr": "Hiçbir şey. Döngü yoluna devam ediyor ve butonu yeniden kontrol ediyor; bir basışın hiç kaçmamasının nedeni bu."
+  },
+  {
+   "id": "s48",
+   "scene": "tourfade",
+   "text": "When four milliseconds have passed, we note the time, and add the step to the brightness. At two fifty-five, the step becomes minus one, and at zero, plus one again.",
+   "sub": "When 4 milliseconds have passed, we note the time, and add the step to the brightness. At 255, the step becomes -1, and at 0, +1 again.",
+   "tr": "Dört milisaniye geçtiğinde zamanı not ediyoruz ve adımı parlaklığa ekliyoruz. 255'te adım eksi bir oluyor, sıfırda yeniden artı bir."
+  },
+  {
+   "id": "s49",
+   "scene": "tourfade",
+   "text": "Finally, analog write shows the new brightness on the LED.",
+   "sub": "Finally, analogWrite() shows the new brightness on the LED.",
+   "tr": "En sonda analogWrite yeni parlaklığı LED'de gösteriyor."
+  },
+  {
+   "id": "s50",
+   "scene": "run2",
+   "text": "Let's run it. The LED breathes, and a press stops it at once, right in the middle of a fade. Press again, and it carries on.",
+   "tr": "Çalıştıralım. LED nefes alıyor ve bir basış onu anında, geçişin tam ortasında durduruyor. Bir daha basınca devam ediyor.",
+   "clip": "C4",
+   "pad": 2.5
+  },
+  {
+   "id": "s51",
+   "scene": "run2",
+   "text": "Quick question: in line thirty-nine, we change the four to a ten. Will the breath get faster, or slower?",
+   "sub": "Quick question: in line 39, we change the 4 to a 10. Will the breath get faster, or slower?",
+   "tr": "Kısa bir soru: 39. satırdaki 4'ü 10 yapıyoruz. Nefes hızlanır mı, yavaşlar mı?",
+   "pad": 2.6
+  },
+  {
+   "id": "s52",
+   "scene": "run2",
+   "text": "Slower. Each step now waits ten milliseconds, so one way takes about two and a half seconds, and the breath feels calmer.",
+   "tr": "Yavaşlar. Her adım artık on milisaniye bekliyor, yani bir yön yaklaşık iki buçuk saniye sürüyor ve nefes daha sakin görünüyor.",
+   "clip": "C5",
+   "pad": 2.0
+  },
+  {
+   "id": "s53",
+   "scene": "explain",
+   "text": "Now pause the video, and explain in your own words why the button works in this sketch, but not in the first one. One or two sentences are enough.",
+   "tr": "Şimdi videoyu durdurun ve butonun neden bu sketch'te çalışıp ilkinde çalışmadığını kendi cümlelerinizle açıklayın. Bir iki cümle yeter.",
+   "pad": 4.0
+  },
+  {
+   "id": "s54",
+   "scene": "explain",
+   "text": "Here's one way to say it. The first sketch waited on every step, so nobody read the button. This one never waits: it glances at the clock, and moves on.",
+   "tr": "Şöyle söylenebilir. İlk sketch her adımda bekliyordu, bu yüzden butonu kimse okumuyordu. Bu ise hiç beklemiyor: saate bir göz atıyor ve yoluna devam ediyor."
+  },
+  {
+   "id": "s55",
+   "scene": "outro",
+   "text": "Today you learned three things. PWM dims an LED by switching it very fast. Analog write takes a number from zero to two fifty-five. And a fade built on the clock never stops listening.",
+   "sub": "Today you learned three things. PWM dims an LED by switching it very fast. analogWrite() takes a number from 0 to 255. And a fade built on the clock never stops listening.",
+   "tr": "Bugün üç şey öğrendiniz. PWM, bir LED'i çok hızlı açıp kapatarak kısar. analogWrite sıfır ile 255 arasında bir sayı alır. Saate dayanan bir geçiş de dinlemeyi hiç bırakmaz."
+  },
+  {
+   "id": "s56",
+   "scene": "outro",
+   "text": "Next time, in part two, we'll mix any color you like with an RGB LED. Until then, tell me in the comments: what would you make breathe? See you there!",
+   "tr": "Gelecek sefer, ikinci kısımda, bir RGB LED ile istediğiniz her rengi karıştıracağız. O zamana kadar yorumlarda yazın: siz neyi nefes aldırırdınız? Görüşmek üzere!"
+  }
+ ]
+}
