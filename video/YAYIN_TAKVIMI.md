@@ -1,6 +1,6 @@
 # Yayın takvimi (v6, 29 Ekim 2026)
 
-Kullanıcı kararları (29 Ekim): kısımlar yerine **her video ayrı bölüm** (eski 05·1 → Bölüm 5 … 17·2 → Bölüm 30) · uzun videolar **Salı + Cuma 17:00** · **her videonun kendi Short'u**: **TR ertesi gün 17:00**, **EN ondan sonraki gün 22:00** (TR ve EN ayrı günlerde, aynı görüntüler birbirine rakip olmasın) · Recap'lerin Short'u yok · Bölüm 4 ödev çözümü Cmt 31 Eki TR / Paz 1 Kas EN · proje ödev çözümleri projeden kısa süre sonra (kullanıcı: "arasından uzun zaman geçmemeli"; tarihler öneri).
+Kullanıcı kararları (29 Ekim): kısımlar yerine **her video ayrı bölüm** (eski 05·1 → Bölüm 5 … 17·2 → Bölüm 30) · uzun videolar **Salı + Cuma 17:00** · **her videonun kendi Short'u**: **TR ertesi gün 17:00**, **EN ondan sonraki gün 22:00** (TR ve EN ayrı günlerde, aynı görüntüler birbirine rakip olmasın) · Recap'lerin Short'u yok · Bölüm 4 ödev çözümü Cmt 31 Eki TR / Paz 1 Kas EN · proje ödev çözümleri projeden hemen sonra (kullanıcı: "arasından uzun zaman geçmemeli"; tarihler 29 Eki onaylandı).
 EN saati 22:00 TR = ABD Doğu 14:00 / Batı 11:00, İngiltere 19:00: kanalın "izleyiciler ne zaman aktif" raporunda henüz yeterli veri yok (29 Eki), bu yüzden ABD öğleden sonrası seçildi; veri gelince yeniden bakılacak.
 Pin planı: `PINMAP.md` · müfredat: `CURRICULUM.md` · gerçek çekimler her videodan en az 2 gün önce gelmeli.
 
@@ -27,9 +27,9 @@ Pin planı: `PINMAP.md` · müfredat: `CURRICULUM.md` · gerçek çekimler her v
 | Cum 20 Kas | 🎬 Video 17:00 | **Bölüm 10**: 🏆 Proje 1: refleks oyunu ve kalıcı rekor |
 | Cmt 21 Kas | 📱 Short TR 17:00 | Bölüm 10 |
 | Paz 22 Kas | 📱 Short EN 22:00 | Bölüm 10 |
-| Pzt 23 Kas | 📱 Short TR 17:00 | Proje 1 ödev çözümü (öneri, onay bekliyor) |
+| Pzt 23 Kas | 📱 Short TR 17:00 | Proje 1 ödev çözümü |
 | Sal 24 Kas | 🎬 Video 17:00 | **Recap 2**: Bölüm 5–10 tekrarı |
-| Sal 24 Kas | 📱 Short EN 22:00 | Proje 1 ödev çözümü (öneri, onay bekliyor) |
+| Sal 24 Kas | 📱 Short EN 22:00 | Proje 1 ödev çözümü |
 | Cum 27 Kas | 🎬 Video 17:00 | **Bölüm 11**: Işık sensörü (LDR) ve histerezis |
 | Cmt 28 Kas | 📱 Short TR 17:00 | Bölüm 11 |
 | Paz 29 Kas | 📱 Short EN 22:00 | Bölüm 11 |
@@ -67,9 +67,9 @@ Pin planı: `PINMAP.md` · müfredat: `CURRICULUM.md` · gerçek çekimler her v
 | Cum 8 Oca | 🎬 Video 17:00 | **Bölüm 22**: 🏆 Proje 2: güvenlik istasyonu |
 | Cmt 9 Oca | 📱 Short TR 17:00 | Bölüm 22 |
 | Paz 10 Oca | 📱 Short EN 22:00 | Bölüm 22 |
-| Pzt 11 Oca | 📱 Short TR 17:00 | Proje 2 ödev çözümü (öneri, onay bekliyor) |
+| Pzt 11 Oca | 📱 Short TR 17:00 | Proje 2 ödev çözümü |
 | Sal 12 Oca | 🎬 Video 17:00 | **Bölüm 23**: Röleler |
-| Sal 12 Oca | 📱 Short EN 22:00 | Proje 2 ödev çözümü (öneri, onay bekliyor) |
+| Sal 12 Oca | 📱 Short EN 22:00 | Proje 2 ödev çözümü |
 | Çar 13 Oca | 📱 Short TR 17:00 | Bölüm 23 |
 | Per 14 Oca | 📱 Short EN 22:00 | Bölüm 23 |
 | Cum 15 Oca | 🎬 Video 17:00 | **Bölüm 24**: Otomatik kontrol |
@@ -94,5 +94,5 @@ Pin planı: `PINMAP.md` · müfredat: `CURRICULUM.md` · gerçek çekimler her v
 | Sal 9 Şub | 🎬 Video 17:00 | **Bölüm 30**: 🏆 Final projesi: akıllı oda telefonda |
 | Çar 10 Şub | 📱 Short TR 17:00 | Bölüm 30 |
 | Per 11 Şub | 📱 Short EN 22:00 | Bölüm 30 |
-| Cum 12 Şub | 📱 Short TR 17:00 | Final projesi ödev çözümü (öneri, onay bekliyor) |
-| Cmt 13 Şub | 📱 Short EN 22:00 | Final projesi ödev çözümü (öneri, onay bekliyor) |
+| Cum 12 Şub | 📱 Short TR 17:00 | Final projesi ödev çözümü |
+| Cmt 13 Şub | 📱 Short EN 22:00 | Final projesi ödev çözümü |
