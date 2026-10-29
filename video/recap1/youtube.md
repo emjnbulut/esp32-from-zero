@@ -16,14 +16,14 @@ Code still confusing? In this recap we go through all five sketches from episode
 
 ⏱ Chapters
 0:00 Five sketches (demo)
-0:20 The skeleton: names, setup, loop
-1:19 Outputs: pinMode and digitalWrite
-1:57 Decisions: digitalRead and if
-3:07 Memory: lastState and presses
-4:14 The clock: millis()
-5:21 The four questions
-5:44 Your turn: three quick ones
-6:50 Recap and next episode
+0:33 The skeleton: names, setup, loop
+4:41 Outputs: pinMode and digitalWrite
+7:03 Decisions: digitalRead and if
+10:36 Memory: lastState and presses
+14:01 The clock: millis()
+17:02 The four questions
+17:52 Your turn: three quick ones
+19:27 Recap and next episode
 
 🎵 Music: "Lobby Time" by Kevin MacLeod (incompetech.com), licensed under CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
 🎙 Narration: Chatterbox TTS (Resemble AI, MIT). Voice references: LibriVox (public domain) and FLEURS by Google (CC BY 4.0): https://creativecommons.org/licenses/by/4.0/
