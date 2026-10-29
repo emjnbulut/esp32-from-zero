@@ -1,47 +1,60 @@
-# Yayın takvimi (v4, 27 Ekim 2026)
+# Yayın takvimi (v5, 29 Ekim 2026)
 
-Kullanıcı kararları: haftada **2 bölüm** (Salı + Cuma 17:00) · Short'lar **iki günde bir** 17:00 · her bölüm Short'unun **TR** hali aynı gün 20:00 (ekran yazıları İngilizce) · **ödev çözümü Short'u yalnız mini projelerde** (Bölüm 08, 15, 19) + Bölüm 04 (anlatımında söz verildi) · HI/PT/ES Short yok (dublajlar dönünce deneme).
-**v4 değişikliği (27 Ekim 2026):** Bölüm 6'dan itibaren her bölüm tek konu + pratik, yaklaşık 10 dk (PRODUCTION_GUIDELINES.md bölüm 8). Bölüm sayısı 16 → 19; ayrıca 30 Ekim'de numarasız "Recap" özel bölümü (ilk 4 bölümün kodları) eklendi, bu yüzden Bölüm 05'ten itibaren her şey bir slot kaydı: yayın bitişi 8 Aralık'tan 22 Aralık'a (ödev çözümü Short'u 29 Aralık). Bölüm numaraları ve konular CURRICULUM.md ile aynı. Bölüm 05'in hazır sürümü (PWM + RGB) olduğu gibi kalır, yalnızca tarihi 3 Kas'a kayar.
-Yayındakiler burada yok; eski planlar `video/YAYIN_PLANI.md`. Gerçek çekimler her bölümden **2 gün önce** gelmeli.
+Kullanıcı kararları: haftada **2 video** (Salı + Cuma 17:00) · Bölüm 05'ten itibaren her bölüm **iki kısım** (6–9 dk) · bölüm Short'u **Kısım 2'den 2 gün sonra** 17:00, **TR** hali aynı gün 20:00 (ekran yazıları İngilizce) · **ödev çözümü Short'u** yalnız Bölüm 04 ve projelerde (07, 13, 17), Kısım 2'den 1 hafta sonra · HI/PT/ES Short yok (dublajlar dönünce deneme).
+**v5 değişikliği (28 Ekim 2026):** müfredat 19 → 17 bölüm, her bölüm iki kısım, Recap'ler 04, 07, 11 ve 14'ten sonra (CURRICULUM.md "What changed in v5"). Seri **Sal 9 Şubat 2027**'de biter. Pin planı: `PINMAP.md`.
+Sınav dönemi: Bölüm 05–08'in bütün gerçek çekimleri **Cmt 31 Eki**'ye kadar (çekim paketi `video/shoot/`); sonrasında çekimler her videodan **2 gün önce** gelmeli.
+Yayındakiler burada yok; eski planlar `video/YAYIN_PLANI.md`.
 
 | Tarih | Ne çıkıyor |
 |---|---|
 | Sal 27 Eki | **Bölüm 04** — Buttons + millis() |
 | Çar 28 Eki | Bölüm 04 Short EN (17:00) + TR (20:00) |
-| Cum 30 Eki | **Recap: Bölüm 1–4 kodları** — numarasız özel bölüm (kodu okumayı öğreten özet) |
-| Sal 3 Kas | **Bölüm 05** — PWM ve RGB renk karıştırma |
+| Cum 30 Eki | **Recap 1: Bölüm 1–4 kodları** — numarasız özel bölüm |
+| Sal 3 Kas | **05 · Kısım 1** — PWM: LED'i nefes aldırmak |
 | Sal 3 Kas | Bölüm 04 ödev çözümü Short |
-| Per 5 Kas | Bölüm 05 Short EN (17:00) + TR (20:00) |
-| Cum 6 Kas | **Bölüm 06** — Analog giriş ve potansiyometre |
-| Paz 8 Kas | Bölüm 06 Short EN (17:00) + TR (20:00) |
-| Sal 10 Kas | **Bölüm 07** — map() ve seviye göstergeleri |
-| Per 12 Kas | Bölüm 07 Short EN (17:00) + TR (20:00) |
-| Cum 13 Kas | **Bölüm 08** — 1. mini proje: yaya geçidi + refleks oyunu |
-| Paz 15 Kas | Bölüm 08 Short EN (17:00) + TR (20:00) |
-| Sal 17 Kas | **Bölüm 09** — LDR ve histerezis |
-| Per 19 Kas | Bölüm 09 Short EN (17:00) + TR (20:00) |
-| Cum 20 Kas | **Bölüm 10** — Buzzer, notalar ve diziler |
-| Cum 20 Kas | Bölüm 08 ödev çözümü Short |
-| Paz 22 Kas | Bölüm 10 Short EN (17:00) + TR (20:00) |
-| Sal 24 Kas | **Bölüm 11** — DHT11 sıcaklık ve nem |
-| Per 26 Kas | Bölüm 11 Short EN (17:00) + TR (20:00) |
-| Cum 27 Kas | **Bölüm 12** — I2C ve OLED ekran |
-| Paz 29 Kas | Bölüm 12 Short EN (17:00) + TR (20:00) |
-| Sal 1 Ara | **Bölüm 13** — PIR ve engel sensörleri |
-| Per 3 Ara | Bölüm 13 Short EN (17:00) + TR (20:00) |
-| Cum 4 Ara | **Bölüm 14** — Donanım kesmeleri |
-| Paz 6 Ara | Bölüm 14 Short EN (17:00) + TR (20:00) |
-| Sal 8 Ara | **Bölüm 15** — 2. mini proje: akıllı masa asistanı |
-| Per 10 Ara | Bölüm 15 Short EN (17:00) + TR (20:00) |
-| Cum 11 Ara | **Bölüm 16** — Röleler |
-| Paz 13 Ara | Bölüm 16 Short EN (17:00) + TR (20:00) |
-| Sal 15 Ara | **Bölüm 17** — Wi-Fi ve internet saati |
-| Sal 15 Ara | Bölüm 15 ödev çözümü Short |
-| Per 17 Ara | Bölüm 17 Short EN (17:00) + TR (20:00) |
-| Cum 18 Ara | **Bölüm 18** — Web sunucu ve canlı panel |
-| Paz 20 Ara | Bölüm 18 Short EN (17:00) + TR (20:00) |
-| Sal 22 Ara | **Bölüm 19** — Final projesi: akıllı oda |
-| Per 24 Ara | Bölüm 19 Short EN (17:00) + TR (20:00) |
-| Sal 29 Ara | Bölüm 19 ödev çözümü Short |
+| Cum 6 Kas | **05 · Kısım 2** — RGB renk karıştırma + ödev |
+| Paz 8 Kas | Bölüm 05 Short EN (17:00) + TR (20:00) |
+| Sal 10 Kas | **06 · Kısım 1** — Analog giriş, pin kuralları, Serial ile hata ayıklama |
+| Cum 13 Kas | **06 · Kısım 2** — map(), dimmer ve seviye çubuğu + ödev |
+| Paz 15 Kas | Bölüm 06 Short EN + TR |
+| Sal 17 Kas | **07 · Kısım 1** — 1. mini proje: akıllı yaya geçidi |
+| Cum 20 Kas | **07 · Kısım 2** — Refleks oyunu ve kalıcı rekor (Preferences) + ödev |
+| Paz 22 Kas | Bölüm 07 Short EN + TR |
+| Sal 24 Kas | **Recap 2: Bölüm 05–07** |
+| Cum 27 Kas | **08 · Kısım 1** — Işık sensörü (LDR) ve histerezis |
+| Cum 27 Kas | Bölüm 07 ödev çözümü Short |
+| Sal 1 Ara | **08 · Kısım 2** — Dokunmatik pin + ödev |
+| Per 3 Ara | Bölüm 08 Short EN + TR |
+| Cum 4 Ara | **09 · Kısım 1** — Buzzer ve notalar |
+| Sal 8 Ara | **09 · Kısım 2** — Diziler ve Serial'dan komut okuma + ödev |
+| Per 10 Ara | Bölüm 09 Short EN + TR |
+| Cum 11 Ara | **10 · Kısım 1** — DHT11 sıcaklık ve nem, kütüphane kurma |
+| Sal 15 Ara | **10 · Kısım 2** — DHT11 pratik: konfor ışığı + ödev |
+| Per 17 Ara | Bölüm 10 Short EN + TR |
+| Cum 18 Ara | **11 · Kısım 1** — I2C ve OLED ekran: yazı (buton 22 → 19) |
+| Sal 22 Ara | **11 · Kısım 2** — OLED'de çizim ve grafik + ödev |
+| Per 24 Ara | Bölüm 11 Short EN + TR |
+| Cum 25 Ara | **Recap 3: Bölüm 08–11** |
+| Sal 29 Ara | **12 · Kısım 1** — PIR ve engel sensörü |
+| Cum 1 Oca | **12 · Kısım 2** — Donanım kesmeleri + ödev |
+| Paz 3 Oca | Bölüm 12 Short EN + TR |
+| Sal 5 Oca | **13 · Kısım 1** — 2. mini proje: akıllı masa asistanı |
+| Cum 8 Oca | **13 · Kısım 2** — Güvenlik istasyonu + ödev |
+| Paz 10 Oca | Bölüm 13 Short EN + TR |
+| Sal 12 Oca | **14 · Kısım 1** — Röleler: gerçek yükü güvenle anahtarlamak |
+| Cum 15 Oca | **14 · Kısım 2** — Otomatik kontrol + ödev |
+| Cum 15 Oca | Bölüm 13 ödev çözümü Short |
+| Paz 17 Oca | Bölüm 14 Short EN + TR |
+| Sal 19 Oca | **Recap 4: Bölüm 12–14** |
+| Cum 22 Oca | **15 · Kısım 1** — Wi-Fi ve internet saati |
+| Sal 26 Oca | **15 · Kısım 2** — Erişim noktası modu + ödev |
+| Per 28 Oca | Bölüm 15 Short EN + TR |
+| Cum 29 Oca | **16 · Kısım 1** — Web sunucu: telefondan kontrol |
+| Sal 2 Şub | **16 · Kısım 2** — Canlı sensör paneli + ödev |
+| Per 4 Şub | Bölüm 16 Short EN + TR |
+| Cum 5 Şub | **17 · Kısım 1** — Final projesi: akıllı oda |
+| Sal 9 Şub | **17 · Kısım 2** — Akıllı oda telefonda + mezuniyet ödevi |
+| Per 11 Şub | Bölüm 17 Short EN + TR |
+| Sal 16 Şub | Bölüm 17 ödev çözümü Short |
 
-Senaryo kuralı: Bölüm 05–18'de (08, 15 hariç) ödev çözümü için "Short'ta göstereceğim" denmez; "yorumlara yazın, çözüm ders klasöründe" denir.
+Senaryo kuralı: 07, 13 ve 17 dışındaki bölümlerde ödev çözümü için "Short'ta göstereceğim" denmez; "yorumlara yazın, çözüm ders klasöründe" denir.

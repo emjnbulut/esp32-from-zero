@@ -29,7 +29,7 @@ tools/            # scripts that build the videos
 | 04 | Buttons and Doing Two Things at Once | [lessons/04-buttons-and-millis](lessons/04-buttons-and-millis) |
 | 05 | PWM and RGB Color Mixing | [lessons/05-pwm-and-rgb](lessons/05-pwm-and-rgb) |
 
-The full 16-episode plan is in [CURRICULUM.md](CURRICULUM.md).
+The full 17-episode plan (two parts per episode from 05) is in [CURRICULUM.md](CURRICULUM.md); the season pin plan is in [PINMAP.md](PINMAP.md).
 
 ## How the videos are made
 
