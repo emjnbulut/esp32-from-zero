@@ -7,6 +7,16 @@
  * bottom across both with the USB cable pointing down; red LED (rows 38-40, 220 ohm below) and button (rows 33-36) on the
  * right board, black ground wire at row ~60 to the minus rail (footage/gelen/ep05/20261029_154331.mp4). */
 const stage = $("#stage");
+// Physical source lengths; cap each slot including compose's full-screen fades.
+const EP05_CLIP_SECONDS = {"C0": 12.2, "C1": 26.866667, "C2": 16.633333, "C3": 10.2, "C4": 11.366667, "C5": 15.7};
+function ep05Hero(id, t0, requestedEnd, description, opts = {}) {
+  const lead = opts.full ? Math.min(0.3, t0) : 0;
+  const tail = opts.full ? 0.35 : 0;
+  const t1 = Math.min(requestedEnd, t0 + EP05_CLIP_SECONDS[id] - lead - tail - 1 / 30);
+  if (!(t1 > t0)) throw new Error('No usable episode 5 footage: ' + id);
+  return heroClip(stage, id, t0, t1, description, opts);
+}
+
 const SC = (cls = "") => el("div", "scene " + cls, '<div class="grid"></div>', stage);
 const T = (id) => S0(id);
 const hidden = (e) => { gsap.set(e, { opacity: 0 }); return e; };
@@ -239,7 +249,7 @@ function deskCircuit(parent, x, p, rowTop, yTop) {
 const sCold = SC();
 SET(sCold, 0, { opacity: 1 });
 SET(sCold, CUT, { opacity: 0 });
-heroClip(stage, "C0", 0, S1("s02") + 0.35, "fade_millis: the red LED breathes; one press stops it at once, a second press resumes it.", { full: true });
+ep05Hero( "C0", 0, S1("s02") + 0.35, "fade_millis: the red LED breathes; one press stops it at once, a second press resumes it.", { full: true });
 {
   const kick = box(sCold, 140, 230, 900, 40, "kicker", "ESP32 From Zero · Episode 5");
   const title = box(sCold, 134, 276, 1100, 280, "h1", "Make an LED<br>breathe.");
@@ -509,7 +519,7 @@ const vv = (name, v) => `<span class="v">${name} = <b>${v}</b></span>`;
 /* ======================================================================
  * RUN (s28): clip C2, the four levels named under it
  * ==================================================================== */
-heroClip(stage, "C2", T("s28"), T("s29") - 0.4, "pwm_levels: the LED in four steps: off, 25 %, 50 %, 100 %. Slightly dim room.", { full: true });
+ep05Hero( "C2", T("s28"), T("s29") - 0.4, "pwm_levels: the LED in four steps: off, 25 %, 50 %, 100 %. Slightly dim room.", { full: true });
 {
   const p = box(stage, 0, 930, 1920, 80, "", ""); css(p, { zIndex: 70, textAlign: "center" });
   const lv = (n, s) => `<span class="pill" style="font-size:36px;background:rgba(11,18,32,.85);border:2px solid #19c3b4;color:#d9fffa">analogWrite <b style="color:var(--amber)">${n}</b> · ${s}</span>`;
@@ -548,7 +558,7 @@ likeTop(T("s29") + 0.6); // reminder 1 of 2: right after the first real result
   const slow = pill(sMeter, 120, 900, "too slow to follow the switching → it shows the <b>average</b>", "font-size:30px");
   pop(slow, W("s29", "slow")); hide(slow, T("s30") - 0.1, 0.3);
 }
-heroClip(stage, "C1", T("s30"), T("s31") - 0.4, "Multimeter, hands-free: pwm_levels; probes on GPIO 23's strip and the minus rail. 0 -> 0.8 -> 1.65 -> 3.3 V.", { full: true });
+ep05Hero( "C1", T("s30"), T("s31") - 0.4, "Multimeter, hands-free: pwm_levels; probes on GPIO 23's strip and the minus rail. 0 -> 0.8 -> 1.65 -> 3.3 V.", { full: true });
 {
   const p = box(stage, 0, 930, 1920, 80, "", ""); css(p, { zIndex: 70, textAlign: "center" });
   const v = (pc, volts) => `<span class="pill" style="font-size:38px;background:rgba(11,18,32,.85);border:2px solid #ffb547;color:#ffe3b8">${pc} on → <b style="color:#fff">${volts}</b></span>`;
@@ -558,7 +568,7 @@ heroClip(stage, "C1", T("s30"), T("s31") - 0.4, "Multimeter, hands-free: pwm_lev
 {
   // s31: your turn, 64 -> 10 (the meter scene underneath still shows the meter and the circuit)
   const yt = ask(sMeter, "YOUR TURN", "In pwm_levels, replace <span style='font-family:var(--mono);color:var(--amber)'>showLevel(64)</span> with <span style='font-family:var(--mono);color:var(--amber)'>showLevel(10)</span>. What will you see?",
-    W("s31", "replace"), W("s31", "A"), "A very faint glow, and about a tenth of a volt (10 / 255 × 3.3 V ≈ 0.13 V)", { x: 80, y: 790, w: 1000 });
+    W("s31", "replace"), W("s31", "A"), "A very faint glow, and about a tenth of a volt (10 / 255 × 3.3 V ≈ 0.13 V)", { x: 80, y: 700, w: 1000 });
   css(yt, { zIndex: 40 });
 }
 
@@ -587,6 +597,7 @@ span(sFade, B("s31", "s32"), B("s32", "s34"));
 /* ======================================================================
  * COMMON MISTAKE (s34-s38): the blocking fade misses the button
  * ==================================================================== */
+ep05Hero("C3", T("s35"), T("s36") - 0.4, "COMMON MISTAKE: the blocking fade ignores a button press; return to the explanation afterwards.", { full: true });
 const sMis = SC();
 span(sMis, B("s32", "s34"), B("s38", "s39"));
 {
@@ -716,7 +727,7 @@ span(sFix, B("s38", "s39"), B("s41", "s43"));
 /* ======================================================================
  * RUN 2 (s50-s52): clip C4, quick question 4 -> 10, clip C5
  * ==================================================================== */
-heroClip(stage, "C4", T("s50"), T("s51") - 0.4, "fade_millis, closer than C0: a press pauses it mid-fade, another press resumes it.", { full: true });
+ep05Hero( "C4", T("s50"), T("s51") - 0.4, "fade_millis, closer than C0: a press pauses it mid-fade, another press resumes it.", { full: true });
 const sRun2 = SC();
 span(sRun2, T("s51") - 0.5, T("s53") - 0.5);
 likeTop(T("s51") + 0.3); // reminder 2 of 2: after the "it works" moment
@@ -732,7 +743,7 @@ likeTop(T("s51") + 0.3); // reminder 2 of 2: after the "it works" moment
   ask(sRun2, "QUICK QUESTION", "We change the <b>4</b> to a <b>10</b>. Will the breath get faster, or slower?", W("s51", "Quick"), T("s52"),
     "Slower: each step waits 10 ms, so one way takes about 2.5 s", { y: 520, w: 1400 });
 }
-heroClip(stage, "C5", W("s52", "Each"), T("s53") - 0.4, "MODIFY: fade_millis with line 39 changed from 4 to 10; a visibly slower breath.", { full: true });
+ep05Hero( "C5", W("s52", "Each"), T("s53") - 0.4, "MODIFY: fade_millis with line 39 changed from 4 to 10; a visibly slower breath.", { full: true });
 
 /* ======================================================================
  * EXPLAIN IN YOUR OWN WORDS (s53-s54)

@@ -1,3 +1,7 @@
+# Latest creator decision - 30 October 2026
+
+The creator clarified the target: average about 10 minutes, generally around 8-12 minutes. This is an approximate pacing target. Do not shorten narration or regenerate voices merely to stay below 10 minutes. Prioritize clear, complete explanations and natural speech. Earlier 6-9-minute targets and strict 10-minute limits in this document are superseded by this decision.
+
 # Sonraki videolar için üretim kuralları
 
 Kullanıcı kararı: 23 Ekim 2026. Bölüm 4 ve sonraki yeni videolarda uygulanır.

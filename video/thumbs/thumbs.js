@@ -111,17 +111,28 @@ const V = {
     card(700, 380, 540, 200, `<div style="padding:30px 34px;text-align:center"><div style="font:800 60px var(--mono)"><span class="fn">millis</span>()</div>
       <div style="font:700 28px var(--ui);color:var(--amber);margin-top:14px">not <span style="font-family:var(--mono)">delay()</span></div></div>`);
   },
-  // ep05: one focus = a glowing RGB LED; 2-3 words (PRODUCTION_GUIDELINES.md section 1)
+  // v6: Episode 5 teaches PWM; Episode 6 teaches RGB mixing.
   ep05_A() {
-    title([["ANY", "white"], ["COLOR!", "amber"]], 150, 176);
-    rgbLed(860, 40, 250, [255, 60, 220]);
-    pill(790, 600, "analogWrite(0…255) × 3", "rgba(25,195,180,.18)", "var(--teal)");
+    title([["MAKE IT", "white", "font-size:132px"], ["BREATHE", "amber", "font-size:142px"]], 150, 142);
+    led(930, 60, 210, "red");
+    wave(760, 525, 430, 80);
+    pill(760, 640, "PWM · analogWrite()", "rgba(25,195,180,.18)", "var(--teal)");
   },
   ep05_B() {
-    title([["FADE", "white"], ["+ MIX", "teal"]], 150, 170);
-    led(760, 90, 150, "red");
-    rgbLed(1010, 60, 210, [60, 140, 255]);
-    pill(760, 600, "PWM: no delay()", "rgba(255,181,71,.18)", "var(--amber)");
+    title([["PAUSE", "white"], ["A BREATH", "teal", "font-size:128px"]], 150, 150);
+    led(1020, 55, 165, "red");
+    button(805, 420, 200, true);
+    pill(960, 615, "no delay()", "rgba(255,181,71,.18)", "var(--amber)");
+  },
+  ep06_A() {
+    title([["ANY", "white"], ["COLOR!", "amber"]], 150, 176);
+    rgbLed(860, 40, 250, [255, 60, 220]);
+    pill(790, 600, "red + green + blue", "rgba(25,195,180,.18)", "var(--teal)");
+  },
+  ep06_B() {
+    title([["MIX", "white"], ["LIGHT", "teal"]], 150, 176);
+    rgbLed(890, 45, 240, [255, 230, 20]);
+    pill(790, 600, "RED + GREEN = YELLOW", "rgba(255,181,71,.18)", "var(--amber)");
   },
   // recap (numberless special, 2026-10-27): one focus = a line of code and the box that remembers (MEMORY)
   recap_A() {

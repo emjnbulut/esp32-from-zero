@@ -1,0 +1,123 @@
+{
+ "episode": "ep06",
+ "engine": "chatterbox",
+ "source": "video/ep06/build/video.mp4",
+ "schedule": "video/ep06/build/schedule.json",
+ "note": "v6: one question, additive RGB mixing. TR 7 Nov 2026 17:00; EN 8 Nov 22:00 Europe/Istanbul. Verify final crops and real C2 colour timing before publication.",
+ "cta": {
+  "en": "Full lesson",
+  "sub": "linked: related video"
+ },
+ "segments": [
+  {
+   "id": "h0",
+   "chip": "ESP32 RGB",
+   "headline": {
+    "en": "Red + green = yellow?"
+   },
+   "say": {
+    "en": "One LED can shine red, green, or blue. But switch on red and green together, and you get yellow.",
+    "tr": "Tek bir LED kırmızı, yeşil veya mavi yanabilir. Kırmızıyla yeşili birlikte açarsanız sarı elde edersiniz."
+   },
+   "show": {
+    "en": "One LED can shine red, green, or blue. But switch on red and green together, and you get yellow."
+   },
+   "shots": [
+    {
+     "file": "footage/ep06/C2.mp4",
+     "src": 0,
+     "crop": [
+      420,
+      0,
+      1080,
+      1080
+     ]
+    }
+   ]
+  },
+  {
+   "id": "h1",
+   "chip": "MIX LIGHT",
+   "headline": {
+    "en": "Three LEDs in one"
+   },
+   "say": {
+    "en": "An RGB LED holds three tiny LEDs. Their light adds together. This is light mixing, so it works differently from mixing paint.",
+    "tr": "RGB LED'in içinde üç küçük LED vardır. Işıkları birbirine eklenir. Bu ışık karışımıdır; boya karıştırmaktan farklı çalışır."
+   },
+   "show": {
+    "en": "An RGB LED holds three tiny LEDs. Their light adds together. This is light mixing, so it works differently from mixing paint."
+   },
+   "shots": [
+    {
+     "at": [
+      "s10",
+      null,
+      0.5
+     ],
+     "crop": [
+      130,
+      100,
+      1660,
+      850
+     ]
+    }
+   ]
+  },
+  {
+   "id": "h2",
+   "chip": "IN CODE",
+   "headline": {
+    "en": "setColor(255, 255, 0)"
+   },
+   "say": {
+    "en": "Set red to two fifty-five, green to two fifty-five, and blue to zero. Red plus green gives yellow.",
+    "tr": "Kırmızıya iki yüz elli beş, yeşile iki yüz elli beş, maviye sıfır verin. Kırmızıyla yeşil sarı oluşturur."
+   },
+   "show": {
+    "en": "Set red to 255, green to 255, and blue to 0. Red plus green gives yellow."
+   },
+   "shots": [
+    {
+     "at": [
+      "s10",
+      null,
+      0.4
+     ],
+     "crop": [
+      100,
+      120,
+      1720,
+      800
+     ]
+    }
+   ]
+  },
+  {
+   "id": "h3",
+   "chip": "YOUR TURN",
+   "headline": {
+    "en": "Mix your own color"
+   },
+   "say": {
+    "en": "Change just one of those three numbers, and try your own color. Wire the full circuit step by step in the linked lesson.",
+    "tr": "Bu üç sayıdan yalnızca birini değiştirip kendi renginizi deneyin. Devrenin tamamını bağlantıdaki derste adım adım kurun."
+   },
+   "show": {
+    "en": "Change just one of those three numbers, and try your own color. Wire the full circuit step by step in the linked lesson."
+   },
+   "shots": [
+    {
+     "file": "footage/ep06/C4.mp4",
+     "src": 0.2,
+     "crop": [
+      0,
+      0,
+      1080,
+      1080
+     ]
+    }
+   ]
+  }
+ ]
+}

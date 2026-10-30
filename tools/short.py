@@ -186,7 +186,7 @@ def main(sdir: Path, lang: str):
                            f"boxblur=28:2,eq=brightness=-0.1:saturation=0.8[bg{k}];"
                            f"[f{k}]scale={W}:{H}:force_original_aspect_ratio=decrease:flags=lanczos[fg{k}];"
                            f"[bg{k}][fg{k}]overlay=(W-w)/2:(H-h)/2,"
-                           f"trim=duration={d:.3f},setpts=PTS-STARTPTS,setsar=1[s{k}]")
+                           f"tpad=stop_mode=clone:stop_duration={d + 0.1:.3f},trim=duration={d:.3f},setpts=PTS-STARTPTS,setsar=1[s{k}]")
             labels.append(f"[s{k}]")
     filters.append("".join(labels) + f"concat=n={len(labels)}:v=1:a=0[panel]")
     run(["ffmpeg", "-v", "error", "-y", *inputs, "-filter_complex", ";".join(filters), "-map", "[panel]",

@@ -1,8 +1,9 @@
 {
  "episode": "ep05",
+ "engine": "chatterbox",
  "source": "video/ep05/build/video.mp4",
  "schedule": "video/ep05/build/schedule.json",
- "note": "DRAFT 2026-10-25 (no render yet): texts final, shot anchors set, CROPS ARE PLACEHOLDERS until ep05.js scenes exist. One question (PRODUCTION_GUIDELINES.md section 3): result first, then the question, the trick, the result, the linked lesson. EN 17:00 + TR 20:00 (on-screen text English).",
+ "note": "v6: PWM only. TR 4 Nov 2026 17:00; EN 5 Nov 22:00 Europe/Istanbul. Text stays English; narration follows selected language. Verify crops against final source before publication.",
  "cta": {
   "en": "Full lesson",
   "sub": "linked: related video"
@@ -10,68 +11,55 @@
  "segments": [
   {
    "id": "h0",
-   "chip": "ESP32 · PWM",
+   "chip": "ESP32 PWM",
    "headline": {
-    "en": "Smooth fade, any color"
+    "en": "Make an LED breathe"
    },
    "say": {
-    "en": "This LED fades in and out smoothly, and this one mixes any color.",
-    "tr": "Bu LED yumuşakça yanıp sönüyor, bu da istediği her rengi karıştırıyor."
+    "en": "This LED gets brighter and dimmer, smoothly, like breathing.",
+    "tr": "Bu LED, nefes alır gibi yumuşakça parlayıp kısılıyor."
    },
    "show": {
-    "en": "This LED fades in and out smoothly, and this one mixes any color."
+    "en": "This LED gets brighter and dimmer, smoothly, like breathing."
    },
    "shots": [
     {
-     "at": [
-      "s03",
-      "fade",
-      -0.3
-     ],
+     "file": "footage/ep05/C0.mp4",
+     "src": 0.5,
      "crop": [
-      1100,
-      180,
-      760,
-      760
-     ],
-     "footage": {
-      "file": "footage/ep05/C0.mp4",
-      "src": 1.0,
-      "crop": [
-       420,
-       0,
-       1080,
-       1080
-      ]
-     }
+      420,
+      0,
+      1080,
+      1080
+     ]
     }
    ]
   },
   {
    "id": "h1",
-   "chip": "ESP32 QUESTION",
+   "chip": "ONE QUESTION",
    "headline": {
     "en": "Only ON or OFF?"
    },
    "say": {
-    "en": "But a pin can only be on or off. So how do you get half brightness?",
-    "tr": "Ama bir pin yalnızca açık ya da kapalı olabilir. Peki yarım parlaklık nasıl olur?"
+    "en": "But its pin can only be fully on or fully off. So where does medium brightness come from?",
+    "tr": "Oysa pini yalnızca tamamen açık ya da kapalı olabilir. Peki orta parlaklık nereden geliyor?"
    },
    "show": {
-    "en": "But a pin can only be on or off. So how do you get half brightness?"
+    "en": "But its pin can only be fully on or fully off. So where does medium brightness come from?"
    },
    "shots": [
     {
      "at": [
-      "s06",
-      "Quick",
-      0.0
+      "s09",
+      null,
+      0.4
      ],
      "crop": [
-      480,
-      160,
-      960,
-      760
+      120,
+      120,
+      1680,
+      860
      ]
     }
    ]
@@ -80,29 +68,28 @@
    "id": "h2",
    "chip": "THE TRICK",
    "headline": {
-    "en": "PWM: switch it fast"
+    "en": "Switch it fast: PWM"
    },
    "say": {
-    "en": "Switch it on and off a thousand times a second. On half the time, and your eye sees half brightness.",
-    "tr": "Saniyede bin kez açıp kapatın. Yarı zaman açık; gözünüz yarı parlaklık görür."
+    "en": "The pin switches on and off very fast. Your eye sees the average. On for more of each cycle means brighter.",
+    "tr": "Pin çok hızlı açılıp kapanır. Gözünüz ortalamayı görür. Her döngüde daha uzun açık kalırsa daha parlak görünür."
    },
    "show": {
-    "en": "Switch it on and off a thousand times a second. On half the time, and your eye sees half brightness."
+    "en": "The pin switches on and off very fast. Your eye sees the average. On for more of each cycle means brighter."
    },
    "shots": [
     {
      "at": [
-      "s07",
-      "fast",
-      0.0
+      "s12",
+      null,
+      0.5
      ],
      "crop": [
-      240,
       200,
-      1440,
-      700
-     ],
-     "pan": 700
+      150,
+      1500,
+      740
+     ]
     }
    ]
   },
@@ -110,95 +97,53 @@
    "id": "h3",
    "chip": "IN CODE",
    "headline": {
-    "en": "analogWrite(pin, 0..255)"
+    "en": "analogWrite(LED_PIN, 128)"
    },
    "say": {
-    "en": "In code, it's one line: analog write, with a number from zero to two fifty-five.",
-    "tr": "Kodda bu tek satır: analogWrite, sıfır ile iki yüz elli beş arasında bir sayıyla."
+    "en": "Analog write takes a number from zero to two fifty-five. One twenty-eight is on for about half the cycle.",
+    "tr": "AnalogWrite, sıfır ile iki yüz elli beş arasında bir sayı alır. Yüz yirmi sekiz, döngünün yaklaşık yarısında açık demektir."
    },
    "show": {
-    "en": "In code, it's one line: analogWrite(), with a number from 0 to 255."
+    "en": "analogWrite() takes a number from 0 to 255. 128 is on for about half the cycle."
    },
    "shots": [
     {
      "at": [
-      "s10",
-      "function",
-      0.0
+      "s19",
+      null,
+      1
      ],
      "crop": [
+      200,
       60,
-      160,
-      1100,
-      700
+      1640,
+      740
      ]
     }
    ]
   },
   {
    "id": "h4",
-   "chip": "THE RESULT",
-   "headline": {
-    "en": "Mix your own colors"
-   },
-   "say": {
-    "en": "Three of those in one LED, red, green and blue, and you can mix any color.",
-    "tr": "Bunlardan üçü tek bir LED'de, kırmızı, yeşil ve mavi; istediğiniz rengi karıştırabilirsiniz."
-   },
-   "show": {
-    "en": "Three of those in one LED, red, green and blue, and you can mix any color."
-   },
-   "shots": [
-    {
-     "at": [
-      "s35",
-      "steps",
-      0.0
-     ],
-     "crop": [
-      480,
-      160,
-      960,
-      760
-     ],
-     "footage": {
-      "file": "footage/ep05/C4.mp4",
-      "src": 0.5,
-      "crop": [
-       420,
-       0,
-       1080,
-       1080
-      ]
-     }
-    }
-   ]
-  },
-  {
-   "id": "h5",
    "chip": "EPISODE 5",
    "headline": {
     "en": "Build it step by step"
    },
    "say": {
-    "en": "Build the full circuit step by step in the linked lesson.",
-    "tr": "Devrenin tamamını bağlantıdaki derste adım adım kurun."
+    "en": "Make the breathing LED and pause it with a button. Build it step by step in the linked lesson.",
+    "tr": "Nefes alan LED'i yapın ve butonla durdurun. Bağlantıdaki derste adım adım kurun."
    },
    "show": {
-    "en": "Build the full circuit step by step in the linked lesson."
+    "en": "Make the breathing LED and pause it with a button. Build it step by step in the linked lesson."
    },
    "shots": [
     {
-     "at": [
-      "s40",
-      "Press",
-      0.0
-     ],
+     "file": "footage/ep05/C4.mp4",
+     "src": 0.2,
      "crop": [
-      1120,
-      180,
-      760,
-      760
+      420,
+      0,
+      1080,
+      1080
      ]
     }
    ]

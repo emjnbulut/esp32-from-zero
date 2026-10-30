@@ -1,3 +1,13 @@
+# Current production - 30 October 2026
+
+Local production complete: 10:22 final (body 9:59), five voices, 12 subtitle languages, metadata, A/B thumbnails and EN/TR Shorts. Package: YAYIN/ep05/; listening samples: YAYIN/ep05/dinleme/.
+
+Duration target: average 10 minutes, roughly 8-12. Creator final listening/publication review is separate from technical completion. No YouTube upload was performed. Proof: build/production/verification.json; final-media frames: build/review/.
+
+---
+
+Earlier progress notes follow.
+
 # Episode 5 — "PWM: Make an LED Breathe" — progress
 
 Curriculum v6 (CURRICULUM.md), release Tue 3 Nov 2026 17:00 (video/YAYIN_TAKVIMI.md). Episode 6 = video/ep06.

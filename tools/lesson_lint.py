@@ -11,7 +11,7 @@ Reads video/<ep>/script.json and video/<ep>/build/schedule.json and prints warni
   QUESTION "Quick question" without a 2.5-4.5 s thinking pause after it
   RULES   production-guideline checks: cold open shows the result, no spoken "subscribe", comments invitation at the end
 Section-10 checks (only when script.json has "music": "results"):
-  LENGTH  body over 10 min (info line always)   QGAP  over 180 s between question moments
+  LENGTH  body above the approximate 12-minute target (info line always)   QGAP  over 180 s between question moments
   RETRIEVAL no "retrieval" scene right after the sting   LIMIT  everyday example without its limit
   PREDICT tour/trace scene without a prediction pause   MISTAKE no "mistake" scene   EXPLAIN no "in your own words"
 
@@ -80,13 +80,13 @@ Q_RX = re.compile(r"quick question|pause the video|pause now|predict|what do you
 EX_RX = re.compile(r"(like (a|an|the|your)|just like|it's like|works like|think of|imagine|picture an?|say you're)", re.I)
 LIMIT_RX = re.compile(r"the difference|unlike|but a real|where the picture breaks|the picture stops", re.I)
 PRED_RX = re.compile(r"pause|predict|what will|what do you think", re.I)
-QGAP_MAX, RETR_MAX, LEN_MAX = 180, 120, 600
+QGAP_MAX, RETR_MAX, LEN_MAX = 180, 120, 720
 
 def section10(sc, sch, ids, total, sting):
     warns = []
-    info = f"{total/60:.1f} min (target 6-9)"
+    info = f"{total/60:.1f} min (target about 8-12 min; average 10)"
     if total > LEN_MAX:
-        warns.append(("-", "LENGTH", f"{total/60:.1f} min: over 10 min, split into parts"))
+        warns.append(("-", "LENGTH", f"{total/60:.1f} min: above the approximate 8-12 min target; review pacing"))
     qs = [sch[s["id"]]["start"] for s in sc if s["id"] in sch and Q_RX.search(s["text"])]
     end = sch[sting]["end"] if sting in sch else 0
     pts = [end] + qs + [total]

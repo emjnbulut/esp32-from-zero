@@ -1,3 +1,26 @@
+# Current task state - 30 October 2026
+
+Creator confirmed: Recap 1 and the Episode 4 homework package are already published. Treat those tasks as complete and do not regenerate or republish them without a new request. Unrequested tracked Recap edits from this session were restored; backups are in build/recovery/previously-published-20261030/.
+
+Current completed work is Episode 5 and Episode 6 local production:
+
+- ep05: 10:22 final video, EN narration + TR/HI/PT/ES audio, 12 subtitle languages, metadata, A/B thumbnails, EN/TR Shorts and five listening samples in YAYIN/ep05/.
+- ep06: 9:45 final video, EN narration + TR/HI/PT/ES audio, 12 subtitle languages, metadata, A/B thumbnails, EN/TR Shorts and five listening samples in YAYIN/ep06/.
+
+Duration preference: average about 10 minutes, generally around 8-12. No strict 10-minute production gate; do not shorten explanations just to meet 10 minutes.
+
+Technical checks cover current voice/cache keys, render provenance, exact dub/video durations, subtitles, source-footage windows, Unicode and Short panel lengths. Long-video result frames and endings were inspected. Retake logs may retain heuristic speech flags; creator listening approval is not implied. Samples are in YAYIN/epXX/dinleme/.
+
+YouTube Studio was not opened and no uploads, online settings or release dates were changed for Episodes 5-6. The creator-provided publication state of Recap/Episode 4 is authoritative.
+
+Use tools/production_resume.py (voice, stills, picture, review, shorts, finish) for Windows production. One voice/Shorts job holds the GPU lock. Current proofs are in video/epXX/build/production/ and video/shorts/epXX/build/production-proof.json. Do not regenerate completed media unnecessarily. tools/deliver.py recreates YAYIN; do not run it casually.
+
+The displaced local Episode 4 sketch was preserved at build/recovery/challenge_speed.local-20261030.ino before restoring the correct HEAD solution; its ESP32 compilation passed.
+
+---
+
+Earlier notes follow.
+
 # ESP32 From Zero — devir notu
 
 ## Animasyon ve öğretim kararı — 23 Ekim 2026
