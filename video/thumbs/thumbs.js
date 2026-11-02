@@ -134,6 +134,12 @@ const V = {
     rgbLed(890, 45, 240, [255, 230, 20]);
     pill(790, 600, "RED + GREEN = YELLOW", "rgba(255,181,71,.18)", "var(--amber)");
   },
+  // channel trailer: the promise of the whole course
+  trailer_A() {
+    title([["LEARN", "white", "font-size:128px"], ["ESP32", "amber", "font-size:176px"], ["FROM ZERO", "white", "font-size:92px"]], 130, 150);
+    board(880, 50, 300, -6);
+    rgbLed(690, 300, 150, [40, 200, 255]);
+  },
   // recap (numberless special, 2026-10-27): one focus = a line of code and the box that remembers (MEMORY)
   recap_A() {
     title([["READ ANY", "white", "font-size:112px"], ["SKETCH", "amber"]], 150, 176);
@@ -162,7 +168,7 @@ const V = {
 
 const key = location.search.slice(1);
 put(null, null, 0, 0, `${LOGOS.A().replace("<svg ", '<svg width="46" height="46" ')}<span>ESP32 From Zero</span>`, "brand", "width:auto;height:auto");
-put(null, null, 0, 0, key.startsWith("recap") ? "RECAP" : `EP ${Number(key.slice(2, 4))}`, "ep", "width:auto;height:auto");
+put(null, null, 0, 0, key.startsWith("recap") ? "RECAP" : key.startsWith("trailer") ? "FREE COURSE" : `EP ${Number(key.slice(2, 4))}`, "ep", "width:auto;height:auto");
 V[key]();
 window.__keys = Object.keys(V);
 window.__ready = true;
