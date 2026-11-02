@@ -1,3 +1,18 @@
+# Open work - 3 November 2026, session closed about 02:00 (read first)
+
+Scheduled on YouTube, nothing more needed: Episode 5 `VaqdZeV5tRQ` 3 Nov 17:00, TR Short `mJjP6nf-5IQ` 4 Nov 17:00, EN Short `SBtl26Fyf1o` 5 Nov 22:00.
+
+Timed jobs were session-only and ended with the session. Do these by hand:
+- After 3 Nov 17:00: confirm Episode 5 is public and its 4 dubs finished; check the thumbnail A/B test runs (it said "not public" before release); point the Episode 4 and Recap 1 end screens at Episode 5.
+- Instagram, one Reel per slot, plan approved by the creator: 3 Nov 19:00 Episode 4 EN Short (video/shorts/ep04/build/en), 4 Nov 19:00 Episode 4 solution Short (YAYIN/shorts_ep04c), 7 Nov 19:00 Episode 5 EN Short (YAYIN/ep05/shorts/upload_10mb). Instagram web cannot schedule.
+- After 4 Nov 17:00 and 5 Nov 22:00: set Related video on the Episode 5 TR and EN Shorts.
+
+Episode 6, not uploaded, due 6 Nov 17:00. The long video and new titles are in YAYIN/ep06. Its Short has a new opening in video/shorts/ep06/short.json, but the rebuild was stopped by the creator before it finished: the Short mp4 files, including YAYIN/ep06/shorts/upload_10mb, are STILL THE OLD OPENING. Rebuild EN then TR with `tools/production_resume.py shorts ep06`, check the frames, make the under-10 MB copies, and only then upload.
+
+Studio tip: enter a video from the channel content list and click its title; opening /video/ID/edit by URL leaves the pickers empty. Channel-data rules: video/PRODUCTION_GUIDELINES.md section 11. Episode 7 not started (due 10 Nov); check Episode 5 retention at 0:30-1:30 and bring the result to the creator before its script.
+
+---
+
 # Current state - 3 November 2026
 
 Episodes 5 and 6 were reviewed end to end and rebuilt (see the top of video/ep05/PROGRESS.md and video/ep06/PROGRESS.md). Nothing was uploaded in that session; whether Episode 5 or 6 is already in Studio was not verified (extension not connected, API token expired). Upload from YAYIN/epXX, with the upload_10mb copies for dubs and Shorts. Episode 5 is due 3 Nov 17:00.

@@ -1,3 +1,7 @@
+# 3 November 2026, channel data
+
+Title now leads with the search term. New Short opening in short.json (question + yellow LED): rebuild NOT finished, the Short mp4 files still have the old opening. See the top of HANDOFF.md.
+
 # Review - 3 November 2026 (Claude, whole-package check)
 
 - Cold open: only a title showed from 15 to 19.5 s. footage/ep06/C0.mp4 is now the take + 5 s of the colour cycle from C2. Original: footage/ep06/_orig/.

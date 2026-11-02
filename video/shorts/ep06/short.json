@@ -16,16 +16,18 @@
     "en": "Red + green = yellow?"
    },
    "say": {
-    "en": "One LED can shine red, green, or blue. But switch on red and green together, and you get yellow.",
-    "tr": "Tek bir LED kırmızı, yeşil veya mavi yanabilir. Kırmızıyla yeşili birlikte açarsanız sarı elde edersiniz."
+    "en": "Red light plus green light makes yellow. So how does one tiny LED pull that off?",
+    "tr": "Kırmızı ışık ile yeşil ışık birleşince sarı olur. Peki tek bir küçük LED bunu nasıl başarıyor?"
    },
    "show": {
-    "en": "One LED can shine red, green, or blue. But switch on red and green together, and you get yellow."
+    "en": "Red light plus green light makes yellow. So how does one tiny LED pull that off?"
    },
    "shots": [
     {
      "file": "footage/ep06/C2.mp4",
-     "src": 7,
+     "src": 2.4,
+     "speed": 0.4,
+     "dur": 2.0,
      "crop": [
       240,
       0,
@@ -35,9 +37,7 @@
     },
     {
      "file": "footage/ep06/C2.mp4",
-     "src": 2.4,
-     "speed": 0.6,
-     "dur": 1.2,
+     "src": 7,
      "crop": [
       240,
       0,

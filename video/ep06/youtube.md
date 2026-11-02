@@ -6,7 +6,7 @@ Release target: 6 November 2026, 17:00 Turkey time. Category: Education. Origina
 
 ## English
 
-Mix RGB Colors with One Button | ESP32 From Zero #6
+ESP32 RGB LED: Mix Any Color with One Button | ESP32 From Zero #6
 
 Make eight colors with one RGB LED, then choose colors and a smooth fade with a button. Learn setColor(), common cathode and common anode, a mode counter and ground-wire troubleshooting. Your challenge: a smart camping headlamp.
 
@@ -33,7 +33,7 @@ Narration: Chatterbox TTS (Resemble AI, MIT), with the creator's own voice. Acce
 
 ## Turkish
 
-Tek Butonla RGB Renkleri Karıştır | ESP32 From Zero #6
+ESP32 RGB LED: Tek Butonla İstediğin Rengi Karıştır | ESP32 From Zero #6
 
 Bir RGB LED ile sekiz renk üretin, ardından bir butonla renk ve yumuşak geçiş seçin. setColor(), ortak katot ve anot, mod sayacı ve toprak kablosuyla hata bulmayı öğrenin. Göreviniz: akıllı kamp kafa lambası.
 

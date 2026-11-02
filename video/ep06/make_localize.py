@@ -235,8 +235,11 @@ T={
 repo='https://github.com/emjnbulut/esp32-from-zero'
 links='\n\nCode + lesson: '+repo+'/tree/main/lessons/06-rgb\nLearning Lab: https://emjnbulut.github.io/esp32-learning-lab/\nCourse source: '+repo
 credit='\n\nMusic: "Lobby Time" by Kevin MacLeod (incompetech.com), CC BY 4.0: https://creativecommons.org/licenses/by/4.0/\nNarration: Chatterbox TTS (Resemble AI, MIT), with the creator\'s own voice. Accent references: LibriVox (public domain) and Google FLEURS (CC BY 4.0). https://creativecommons.org/licenses/by/4.0/\n\n#ESP32 #Arduino #RGBLED #PWM #Electronics'
+# Titles lead with the search term (channel analytics, 3 Nov 2026)
+TITLES={"en": "ESP32 RGB LED: Mix Any Color with One Button", "tr": "ESP32 RGB LED: Tek Butonla İstediğin Rengi Karıştır", "hi": "ESP32 RGB LED: एक बटन से रंग मिलाएँ", "pt": "ESP32 RGB LED: Misture Cores com Um Botão", "es": "ESP32 RGB LED: Mezcla Colores con Un Botón", "de": "ESP32 RGB LED: Farben mit einem Taster mischen", "fr": "ESP32 RGB LED : mélanger les couleurs avec un bouton", "ar": "ESP32 RGB LED: مزج الألوان بزر واحد", "id": "ESP32 RGB LED: Campur Warna dengan Satu Tombol", "ja": "ESP32 RGB LED：ボタン1つで色を混ぜる", "ru": "ESP32 RGB LED: смешиваем цвета одной кнопкой", "vi": "ESP32 RGB LED: trộn màu bằng một nút nhấn"}
 loc={}
 for lang,(title,intro,names) in T.items():
+    title=TITLES[lang]+' | ESP32 From Zero #6'
     assert len(names)==len(times),(lang,len(names))
     assert len(title)<=100,(lang,len(title))
     loc[lang]={'title':title,'description':intro+links+'\n\n'+'\n'.join(t+' '+n for t,n in zip(times,names))+credit}

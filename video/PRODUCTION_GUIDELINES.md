@@ -167,6 +167,22 @@ Kullanıcı kararı: eğitim araştırmalarıyla karşılaştırmada (kaynaklar 
 
 **Kaynaklar (28 Ekim 2026 araştırması)**: Mayer, *Multimedia Learning* (3. bs.) ve J. Comput. Assist. Learn. 2017 derlemesi; Guo, Kim & Rubin 2014 (L@S, edX videoları); Szpunar, Khan & Schacter 2013 (PNAS); Dunlosky vd. 2013 (Psychological Science in the Public Interest); Glynn 1991 / Glynn, Duit & Thiele 1995 (Teaching-With-Analogies); Hermans, Swidan, Aivaloglou & Smit 2018 (WiPSCE, değişken benzetmeleri); Sentance, Waite & Kallia 2019 (PRIMM); Lopez, Whalley, Robbins & Lister 2008 (okuma-izleme-yazma sıralaması); Naps vd. 2002 (ITiCSE, görselleştirmede katılım düzeyleri); Fyfe, McNeil, Son & Goldstone 2014 (somuttan soyuta geçiş); Kalyuga vd. 2003, Salden vd. 2010 (destek azaltma); Ericson vd. 2023 (Parsons problemleri); Craig & Schroeder 2017 (sentetik ses).
 
+## 11. Kanal verisinden çıkan kurallar — 3 Kasım 2026
+
+Kullanıcı kararı: "analizler sonucunda daha iyi hale getirmek için uğraşalım". Veri az (5 Ekim-1 Kasım: 4,1 bin izlenme, +35 abone); bunlar kesin sonuç değil, her bölümde yeniden ölçülür. Bölüm 6 ve sonrasında uygulanır.
+
+Ölçülen: uzun videolar 1,6 bin izlenme, küçük resim tıklama oranı %3,8, ortalama süre 2:37, 30. saniyede kalan %53-57, trafik %80 ana sayfa + önerilen; Short'lar 2,5 bin izlenme ama +1 abone, en iyisi 36 sn'de ortalama 12 sn (%35); kitlenin %99,5'i yeni izleyici; Türkçe Short'lar son üç çiftte İngilizcenin 4-9 katı izlendi.
+
+- **Başlık:** arama terimi başa ("ESP32 RGB LED: ..."), sonra izleyicinin elde edeceği sonuç, en sonda `| ESP32 From Zero #N`.
+- **Küçük resim testi:** her bölümde A ve B, Studio'daki A/B testi ile yayın sonrası karşılaştırılır (test ancak video herkese açıkken çalışır).
+- **Short açılışı:** ilk cümle soru ya da şaşırtan sonuç olur, cevap sonraya kalır; görüntü ilk saniyeden onu gösterir. En iyi örnek: "Butonun bozuk değil, suçlu delay()!".
+- **Short'tan derse:** İlgili video, Short herkese açık olur olmaz eklenir; Short'un asıl işi izleyiciyi derse taşımaktır.
+- **Bitiş ekranı:** üç öğe, videodaki yuvalarına oturur: sonraki bölüm (yoksa "izleyici için en iyisi"), oynatma listesi, abone ol. Yeni bölüm çıkınca önceki bölümün bitiş ekranı ona bağlanır.
+- **Seri girişi:** hatırlatma sorularının başına, yeni izleyici için Bölüm 1'e/oynatma listesine götüren bir kart konur.
+- **Recap:** 12 dakikayı geçmez (Recap 1, 20:33, 4 günde 77 izlenme).
+- **Açık soru:** yeni izleyici çoğunluktayken açılıştan hemen sonraki hatırlatma soruları izleyici kaçırıyor mu? Bölüm 5'in tutma grafiğinde 0:30-1:30 arası ölçülür, Bölüm 7 senaryosundan önce kullanıcıya sonuç ve öneri sunulur. Bölüm 10'daki düzen o zamana kadar değişmez.
+- **Türkçe:** uzun videolarda dublaj dili kullanım oranı izlenir; Türkçe ağırlıklıysa başlık/küçük resim dili yeniden değerlendirilir.
+
 ## Yüklemede yapay zekâ etiketi tercihi — 23 Ekim 2026
 
 Kullanıcı, videolar yüklenirken yapay zekâ etiketi görünmesini istemiyor. Gelecek yüklemelerde sırf üretimde AI araçları kullanıldı diye otomatik `Evet / Yes` seçme.
