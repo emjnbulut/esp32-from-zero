@@ -1,3 +1,12 @@
+# Review - 3 November 2026 (Claude, whole-package check)
+
+- Cold open: only a title showed from 15 to 19.5 s. footage/ep06/C0.mp4 is now the take + 5 s of the colour cycle from C2. Original: footage/ep06/_orig/.
+- Wire-mistake scene: the heading no longer gives the answer away before the prediction.
+- Metadata: the voice credit matches the other episodes.
+- Short: panels recropped; h2 now shows the setColor code (it showed the parts scene) and ends on the real LED; h0 ends on the yellow step.
+- Upload copies under 10 MB: YAYIN/ep06/dublaj_sesleri/upload_10mb, YAYIN/ep06/shorts/upload_10mb.
+- On camera the yellow looks greenish (s27b says so). Creator listening approval still pending: YAYIN/ep06/dinleme/ep06_riskli_satirlar.mp3.
+
 # Current production - 30 October 2026
 
 Local production complete: 9:45 final (body 9:22), five voices, 12 subtitle languages, metadata, A/B thumbnails and EN/TR Shorts. Package: YAYIN/ep06/; listening samples: YAYIN/ep06/dinleme/.

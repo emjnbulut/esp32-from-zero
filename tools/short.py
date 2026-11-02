@@ -183,7 +183,7 @@ def main(sdir: Path, lang: str):
             W, H = PANEL["w"], PANEL["h"]
             filters.append(f"[{k}:v]setpts=(PTS-STARTPTS)/{sp},fps={FPS},crop={w}:{h}:{x}:{y},split[f{k}][b{k}];"
                            f"[b{k}]scale={W}:{H}:force_original_aspect_ratio=increase,crop={W}:{H},"
-                           f"boxblur=28:2,eq=brightness=-0.1:saturation=0.8[bg{k}];"
+                           f"boxblur={sh.get('bg_blur', 28)}:2,eq=brightness={sh.get('bg_dim', -0.1)}:saturation=0.8[bg{k}];"
                            f"[f{k}]scale={W}:{H}:force_original_aspect_ratio=decrease:flags=lanczos[fg{k}];"
                            f"[bg{k}][fg{k}]overlay=(W-w)/2:(H-h)/2,"
                            f"tpad=stop_mode=clone:stop_duration={d + 0.1:.3f},trim=duration={d:.3f},setpts=PTS-STARTPTS,setsar=1[s{k}]")

@@ -1,3 +1,12 @@
+# Review - 3 November 2026 (Claude, whole-package check)
+
+- Cold open: the picture went empty from 12 to 18.5 s while the narrator spoke. footage/ep05/C0.mp4 is now 8 s of hand-free breathing (the clean tail of the take, played forward, back, forward) + the whole take, so the two presses land on "press" and "press again". Originals: footage/ep05/_orig/.
+- C1 now starts 10.2 s into the take: 0.82 / 1.64 / 3.29 V show as the narrator says them (it showed 0.00 V and the hand moving in).
+- Metadata: title ends "ESP32 From Zero #5" like the other episodes; TR says "doluluk oranı" as the narration does.
+- Short: square, tighter panels (no clipped text, readable), h0 keeps the LED inside the frame.
+- Upload copies under 10 MB: YAYIN/ep05/dublaj_sesleri/upload_10mb, YAYIN/ep05/shorts/upload_10mb.
+- Creator listening approval still pending: YAYIN/ep05/dinleme/ep05_riskli_satirlar.mp3 holds the lines the tools flagged.
+
 # Current production - 30 October 2026
 
 Local production complete: 10:22 final (body 9:59), five voices, 12 subtitle languages, metadata, A/B thumbnails and EN/TR Shorts. Package: YAYIN/ep05/; listening samples: YAYIN/ep05/dinleme/.

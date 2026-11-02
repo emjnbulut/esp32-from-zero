@@ -4,7 +4,7 @@ Release: 3 November 2026, 17:00 Europe/Istanbul.
 Thumbnail: video/thumbs/build/ep05_A.png (breathing red LED).
 
 ## Title
-ESP32 PWM: Make an LED Breathe with analogWrite() and millis() | From Zero #5
+ESP32 PWM: Make an LED Breathe with analogWrite() and millis() | ESP32 From Zero #5
 
 ## Description
 Make an LED fade smoothly and pause it instantly with a button. Learn PWM, duty cycle, analogWrite(), average voltage and a fade that uses millis() without missing a press.

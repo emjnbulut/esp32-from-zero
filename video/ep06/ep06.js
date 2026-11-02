@@ -1,6 +1,6 @@
 /* Episode 6 RGB Color Mixing: segment-anchored scenes, creator footage C0-C4, and complete-code tours. */
 const stage = $("#stage");
-const EP06_CLIP_SECONDS = {"C0": 14.966667, "C1": 10.1, "C2": 15.033333, "C3": 14.8, "C4": 15.6};
+const EP06_CLIP_SECONDS = {"C0": 19.966667, "C1": 10.1, "C2": 15.033333, "C3": 14.8, "C4": 15.6};
 function ep06Hero(id, t0, requestedEnd, description, opts = {}) {
   const lead = opts.full ? Math.min(0.3, t0) : 0;
   const tail = opts.full ? 0.35 : 0;
@@ -254,7 +254,7 @@ function tour(file,first,last,marks){return fullCode(stage,file+".ino",SKETCHES[
 // Cold open: the real result fills the frame.
 const cold=SC();SET(cold,0,{opacity:1});SET(cold,CUT,{opacity:0});
 title(cold,"One LED. Your colors.","s01");
-ep06Hero("C0",0,Math.min(CUT-0.2,14.5),"color_modes: red, green, blue, then a slow blue-red fade.",{full:true});
+ep06Hero("C0",0,CUT-0.2,"color_modes: red, green, blue, then a slow blue-red fade; then the colour cycle up to the sting.",{full:true});
 
 // Recall: two answers remain hidden until their spoken answer segments.
 const ret=chapter("s03","s07");title(ret,"Quick recall: PWM and the loop","s03");
@@ -348,7 +348,7 @@ ep06Hero("C2",T("s27b"),Math.min(S1("s27b")-0.2,T("s27b")+14.5),"Compare the rea
 likeTop(T("s27b")+0.3);
 
 // Common ground mistake: predict, real result, then trace the complete path.
-const bad=chapter("s28","s32");title(bad,"All three colors went dark. What do you check?","s28");
+const bad=chapter("s28","s32");title(bad,"One wire comes loose. What do you check?","s28");
 {
  const L=rgbIcon(bad,330,230,210);L.drive(t=>t<T("s29")?[255,0,255]:t<T("s30")?[0,0,0]:[255,0,255]);
  const g=bigCode(bad,790,250,1000,"pin -> LED -> common leg -> GND",{size:40});show(g.c,T("s30"));

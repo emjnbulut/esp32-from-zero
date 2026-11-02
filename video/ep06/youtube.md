@@ -27,7 +27,8 @@ Course source: https://github.com/emjnbulut/esp32-from-zero
 8:53 Recap and next lesson
 
 Music: "Lobby Time" by Kevin MacLeod (incompetech.com), CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
-Narration: Chatterbox TTS (Resemble AI, MIT), creator-authorized voice reference. Accent references: LibriVox (public domain) and Google FLEURS (CC BY 4.0). https://creativecommons.org/licenses/by/4.0/
+Narration: Chatterbox TTS (Resemble AI, MIT), with the creator's own voice. Accent references: LibriVox (public domain) and Google FLEURS (CC BY 4.0). https://creativecommons.org/licenses/by/4.0/
+
 #ESP32 #Arduino #RGBLED #PWM #Electronics
 
 ## Turkish
@@ -53,7 +54,8 @@ Course source: https://github.com/emjnbulut/esp32-from-zero
 8:53 Özet ve sonraki ders
 
 Music: "Lobby Time" by Kevin MacLeod (incompetech.com), CC BY 4.0: https://creativecommons.org/licenses/by/4.0/
-Narration: Chatterbox TTS (Resemble AI, MIT), creator-authorized voice reference. Accent references: LibriVox (public domain) and Google FLEURS (CC BY 4.0). https://creativecommons.org/licenses/by/4.0/
+Narration: Chatterbox TTS (Resemble AI, MIT), with the creator's own voice. Accent references: LibriVox (public domain) and Google FLEURS (CC BY 4.0). https://creativecommons.org/licenses/by/4.0/
+
 #ESP32 #Arduino #RGBLED #PWM #Electronics
 
 ## Upload checklist

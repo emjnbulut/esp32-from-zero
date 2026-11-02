@@ -234,7 +234,7 @@ T={
 }
 repo='https://github.com/emjnbulut/esp32-from-zero'
 links='\n\nCode + lesson: '+repo+'/tree/main/lessons/06-rgb\nLearning Lab: https://emjnbulut.github.io/esp32-learning-lab/\nCourse source: '+repo
-credit='\n\nMusic: "Lobby Time" by Kevin MacLeod (incompetech.com), CC BY 4.0: https://creativecommons.org/licenses/by/4.0/\nNarration: Chatterbox TTS (Resemble AI, MIT), creator-authorized voice reference. Accent references: LibriVox (public domain) and Google FLEURS (CC BY 4.0). https://creativecommons.org/licenses/by/4.0/\n#ESP32 #Arduino #RGBLED #PWM #Electronics'
+credit='\n\nMusic: "Lobby Time" by Kevin MacLeod (incompetech.com), CC BY 4.0: https://creativecommons.org/licenses/by/4.0/\nNarration: Chatterbox TTS (Resemble AI, MIT), with the creator\'s own voice. Accent references: LibriVox (public domain) and Google FLEURS (CC BY 4.0). https://creativecommons.org/licenses/by/4.0/\n\n#ESP32 #Arduino #RGBLED #PWM #Electronics'
 loc={}
 for lang,(title,intro,names) in T.items():
     assert len(names)==len(times),(lang,len(names))

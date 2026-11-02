@@ -8,7 +8,7 @@
  * right board, black ground wire at row ~60 to the minus rail (footage/gelen/ep05/20261029_154331.mp4). */
 const stage = $("#stage");
 // Physical source lengths; cap each slot including compose's full-screen fades.
-const EP05_CLIP_SECONDS = {"C0": 12.2, "C1": 26.866667, "C2": 16.633333, "C3": 10.2, "C4": 11.366667, "C5": 15.7};
+const EP05_CLIP_SECONDS = {"C0": 20.2, "C1": 16.666667, "C2": 16.633333, "C3": 10.2, "C4": 11.366667, "C5": 15.7};
 function ep05Hero(id, t0, requestedEnd, description, opts = {}) {
   const lead = opts.full ? Math.min(0.3, t0) : 0;
   const tail = opts.full ? 0.35 : 0;

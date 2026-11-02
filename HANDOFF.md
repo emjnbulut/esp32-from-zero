@@ -1,3 +1,9 @@
+# Current state - 3 November 2026
+
+Episodes 5 and 6 were reviewed end to end and rebuilt (see the top of video/ep05/PROGRESS.md and video/ep06/PROGRESS.md). Nothing was uploaded in that session; whether Episode 5 or 6 is already in Studio was not verified (extension not connected, API token expired). Upload from YAYIN/epXX, with the upload_10mb copies for dubs and Shorts. Episode 5 is due 3 Nov 17:00.
+
+---
+
 # Current task state - 30 October 2026
 
 Creator confirmed: Recap 1 and the Episode 4 homework package are already published. Treat those tasks as complete and do not regenerate or republish them without a new request. Unrequested tracked Recap edits from this session were restored; backups are in build/recovery/previously-published-20261030/.
