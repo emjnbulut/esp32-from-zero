@@ -106,7 +106,7 @@ s("s21", "aw", "About one twenty-eight, on for half of every cycle. The differen
 # ---- code tour: pwm_levels (predict -> run -> inspect -> modify)
 s("s23", "tourpwm", "Here is the first sketch, PWM levels. At the top, pin twenty-three gets a name. Setup makes it an output, and starts the Serial Monitor.",
   "İşte ilk sketch: pwm_levels. En üstte 23. pine bir ad veriyoruz. setup onu çıkış yapıyor ve Seri Monitör'ü başlatıyor.",
-  "İşte ilk sketç: Pe Ve Me levıls. En üstte yirmi üçüncü pine bir ad veriyoruz. Set ap onu çıkış yapıyor ve Seri Monitörü başlatıyor.",
+  "İşte ilk skeç: Pe Ve Me levıls. En üstte yirmi üçüncü pine bir ad veriyoruz. Set ap onu çıkış yapıyor ve Seri Monitörü başlatıyor.",
   sub="Here is the first sketch, pwm_levels. At the top, pin 23 gets a name. setup() makes it an output, and starts the Serial Monitor.")
 s("s24", "tourpwm", "Then something new: our own function, show level. Think of it as a recipe with a blank: the number in the brackets fills that blank on every call.",
   "Sonra yeni bir şey: kendi fonksiyonumuz, showLevel. Bunu boşluğu olan bir tarif gibi düşünün: parantezdeki sayı her çağrıda o boşluğu dolduruyor.",
@@ -166,7 +166,7 @@ s("s41", "fade2", "At the top, we turn around and count down. At the bottom, we 
 # ---- code tour: fade_millis
 s("s43", "tourfade", "Here's the whole sketch, fade millis. Brightness is how bright the LED is right now. Step is what we add each time: plus one going up, and minus one going down.",
   "İşte sketch'in tamamı: fade_millis. brightness, LED'in şu anki parlaklığı. step, her seferinde eklediğimiz sayı: yukarı çıkarken artı bir, aşağı inerken eksi bir.",
-  "İşte sketçin tamamı: feyd milis. Braytnıs, ledin şu anki parlaklığı. Step, her seferinde eklediğimiz sayı: yukarı çıkarken artı bir, aşağı inerken eksi bir.",
+  "İşte skeçin tamamı: feyd milis. Braytnıs, ledin şu anki parlaklığı. Step, her seferinde eklediğimiz sayı: yukarı çıkarken artı bir, aşağı inerken eksi bir.",
   sub="Here's the whole sketch, fade_millis. brightness is how bright the LED is right now. step is what we add each time: +1 going up, and -1 going down.")
 s("s44", "tourfade", "Last step holds the time of the last step, and fading says whether the LED breathes or is paused. Below them sits the button's memory from episode four.",
   "lastStep son adımın zamanını tutuyor, fading de LED'in nefes mi aldığını yoksa durmuş mu olduğunu söylüyor. Altlarında dördüncü bölümden tanıdığımız buton hafızası var.",

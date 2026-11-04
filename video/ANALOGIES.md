@@ -35,3 +35,9 @@ Add a row before using a new picture; reuse the existing row (same words) when a
 | one resistor per color | one straw for three people / tek pipet | each LED needs its own current limit | — | ep05 |
 | helper `setColor()` | coffee machine button / kahve makinesi düğmesi | one call sets three analogWrites | — | ep05 |
 | mode counter + wrap-around | TV remote channel button; days of the week / kumanda, haftanın günleri | `mode++`, back to 0 after the last | — | ep05 |
+| potentiometer / voltage divider | playground slide / kaydırak | a resistor strip with a sliding contact; the middle leg gives the voltage at the contact | nothing slides down by itself: the contact stays where you leave it | ep07 |
+| `analogRead` 0-4095 | ruler with 4096 marks / cetvel | 4096 steps from 0 V to 3.3 V | the ruler flattens near the ends: you may never see exactly 0 or 4095 | ep07 |
+| knob zones | stove marks / ocak işaretleri | `if / else if` cuts one number into a few choices | the knob has no clicks; zones exist only in code | ep07 |
+| averaging | bathroom scale / banyo tartısı | measure several times, take the average to calm noise | four readings take well under a millisecond, so no time is lost | ep07 |
+| print before trusting | doctor's thermometer / doktor termometresi | print the value first to see which half is broken | printing takes time: too many prints slow a fast loop | ep07 |
+| input-only pins (34-39) | one-way door / tek yönlü kapı | these pins can only listen, never drive an LED | — | ep07 |
