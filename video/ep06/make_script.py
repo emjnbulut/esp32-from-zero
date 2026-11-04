@@ -100,7 +100,7 @@ s("s22", "color", "Magenta, a pinkish purple. And you're not limited to full val
 # ---- code tour: rgb_colors
 s("s23", "tourrgb", "Here's the whole sketch, RGB colors. Three pin names, one for each color, and a switch called common anode, which stays false for most kits.",
   "İşte sketch'in tamamı: rgb_colors. Her renk için bir tane, üç pin adı ve COMMON_ANODE adında bir anahtar; çoğu sette false kalıyor.",
-  "İşte sketçin tamamı: Ar Ce Be kalırs. Her renk için bir tane, üç pin adı ve komın anod adında bir anahtar; çoğu sette fols kalıyor.",
+  "İşte skeçin tamamı. Ar Ce Be kalırs. Her renk için bir tane, üç pin adı ve komın anod adında bir anahtar; çoğu sette fols kalıyor.",
   sub="Here's the whole sketch, rgb_colors. Three pin names, one for each color, and a switch called COMMON_ANODE, which stays false for most kits.")
 s("s24", "tourrgb", "Set color takes three numbers. If your LED is common anode, it flips each value first, because there, two fifty-five means off.",
   "setColor üç sayı alıyor. LED'iniz ortak anotluysa önce her değeri ters çeviriyor, çünkü orada 255 kapalı demek.",
@@ -142,7 +142,7 @@ s("s35", "modes", "The difference from a remote: there's no screen showing the n
 # ---- code tour: color_modes
 s("s36", "tourmodes", "Here's the whole sketch, color modes. Good news: nothing in it is really new. It's the button from episode four, set color, and the fade from episode five, put together.",
   "İşte sketch'in tamamı: color_modes. İyi haber: içinde gerçekten yeni bir şey yok. Dördüncü bölümün butonu, setColor ve beşinci bölümün geçişi bir araya gelmiş.",
-  "İşte sketçin tamamı: kalır mods. İyi haber: içinde gerçekten yeni bir şey yok. Dördüncü bölümün butonu, set kalır ve beşinci bölümün geçişi bir araya gelmiş.",
+  "İşte skeçin tamamı. Kalır mods. İyi haber: içinde gerçekten yeni bir şey yok. Dördüncü bölümün butonu, set kalır ve beşinci bölümün geçişi bir araya gelmiş.",
   sub="Here's the whole sketch, color_modes. Good news: nothing in it is really new. It's the button from episode 4, setColor(), and the fade from episode 5, put together.")
 s("s37", "tourmodes", "Part two of the loop has one if for each mode. Else if means: only check this one if everything before it was false. Zero is red, one is green, and two is blue.",
   "loop'un ikinci kısmında her mod için bir if var. else if şu demek: bunu yalnızca öncekilerin hepsi yanlışsa kontrol et. Sıfır kırmızı, bir yeşil, iki mavi.",
