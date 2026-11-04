@@ -1,9 +1,18 @@
-# Update - 4 November 2026 14:45 (read first, replaces the matching items below)
+# Update - 4 November 2026 15:50 (read first, replaces the matching items below)
 
-- Episode 6 Shorts REBUILT with the new opening (EN 34.97 s, TR 38.70 s); upload copies in YAYIN/ep06/shorts/upload_10mb are current, frames checked. Episode 6 itself is not uploaded yet.
-- Episode 5 checked: public, 4 dubs + 12 subtitles published, A/B thumbnail test running. First 21 h: 52 views, 280 impressions, CTR 2.9%, avg 2:01 (19%), retention "not enough data" yet.
-- End screens: Episode 4 saved (Episode 5 + playlist + subscribe on their slots). Recap 1 prepared the same way, needs Save (the permission system blocks that click, so the creator presses it).
-- Instagram 4 Nov 19:00 Episode 4 solution Short, then Related video on the Episode 5 Shorts: approved by the creator, not done yet.
+SCHEDULED on YouTube: Episode 6 `j0tZ9P7YrU8` 6 Nov 17:00 (12 subtitles + titles via publish.py, 4 dubs uploaded and processing at 15:45, end screen best for viewer + playlist + subscribe, playlist card 0:27, A/B thumbnail test A ANY COLOR vs B MIX LIGHT saved). Shorts: TR `IDsdn3uqmas` 7 Nov 17:00, EN `7mauqKSjls8` 8 Nov 22:00.
+
+Episode 6 TR dub: s23 and s36 re-narrated with the spelling "skeç" (the engine cannot say "İşte sketçin", every seed came out as "Disketçin"); the creator approved by ear. Episode 5 and later TR lines with "sketçin" may have the same fault. The picture proof (production_resume verify) now reports stale because source_hash covers dub/tr.json; the picture did not change, do not re-render for this.
+
+Still to do by hand (timed jobs die with the session):
+- 4 Nov after 17:00: Related video on Episode 5 TR Short `mJjP6nf-5IQ`; 5 Nov after 22:00: on EN Short `SBtl26Fyf1o`; 7 and 8 Nov: Related video on the Episode 6 Shorts.
+- Instagram: 4 Nov 19:00 Episode 4 solution Short (YAYIN/shorts_ep04c/ep04c_short_en.mp4), 7 Nov 19:00 Episode 5 EN Short. Check whether the 3 Nov Episode 4 EN Reel went out; probably missed.
+- After 6 Nov 17:00: confirm the 4 dubs, point the Episode 5 end screen at Episode 6.
+- Episode 7 not started (due 10 Nov). Episode 5 first 21 h: 52 views, 280 impressions, CTR 2.9%, avg 2:01 (19%); retention still "not enough data", bring it to the creator before the Episode 7 script.
+
+Studio automation: the permission system blocks some final clicks (Save on a public video's end screen, Planla), so the creator presses those, and the AI + paid-promotion radios. Language dialog: there are two file inputs; the first is the thumbnail, the second is the audio. Do not chain blind clicks over a failed upload.
+
+Done before this: Episode 4 and Recap 1 end screens now point at Episode 5. tools/short.py overlay cache fixed (stamp after a finished render).
 
 # Open work - 3 November 2026, session closed about 02:00
 
