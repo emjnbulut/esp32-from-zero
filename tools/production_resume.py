@@ -403,7 +403,7 @@ def review(ep):
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument('step', choices=('voice', 'schedule', 'stills', 'picture', 'package', 'verify', 'finish', 'shorts', 'review'))
-    ap.add_argument('episodes', nargs='+', choices=('ep05', 'ep06'))
+    ap.add_argument('episodes', nargs='+', choices=('ep05', 'ep06', 'ep07'))
     args = ap.parse_args()
     if args.step in ('voice', 'shorts'):
         with gpu_lock():
