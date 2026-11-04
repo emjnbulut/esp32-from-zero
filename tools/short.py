@@ -13,6 +13,7 @@ optional offset in seconds; needs "schedule" = the episode's build/schedule.json
 "loop": true makes the Short seamless: no tail, music wraps around, and the last frame is the first shot.
 """
 import asyncio
+import hashlib
 import json
 import subprocess
 import sys
@@ -145,15 +146,18 @@ def main(sdir: Path, lang: str):
             "segs": [{"id": s["id"], "chip": loc(s["chip"], lang), "headline": loc(s["headline"], lang)} for s in spec["segments"]],
             "cta": {"title": loc(spec["cta"], lang), "sub": loc(spec["cta"].get("sub", ""), lang)}}
     data_txt = json.dumps(data, ensure_ascii=False, indent=1)
-    same = (out / "data.json").exists() and (out / "data.json").read_text(encoding="utf-8") == data_txt
     (out / "data.json").write_text(data_txt, encoding="utf-8")
     print(f"{lang}: {duration:.1f}s")
 
-    # 2. overlay layer (transparent) - only re-rendered when text or timing changed
-    if not (same and (out / "overlay.mov").exists()):
+    # 2. overlay layer (transparent) - only re-rendered when text or timing changed.
+    # The stamp is written after a finished render, so an interrupted build can't leave a stale overlay marked current.
+    overlay_stamp = out / "overlay.stamp"
+    data_hash = hashlib.sha256(data_txt.encode("utf-8")).hexdigest()
+    if not ((out / "overlay.mov").exists() and overlay_stamp.exists() and overlay_stamp.read_text(encoding="utf-8") == data_hash):
         run(["node", "engine/render.mjs", "shorts/" + sdir.name, "--page", str(ROOT / "video" / "shorts" / "short.html"),
              "--data", str(out / "data.json"), "--size", "1080x1920", "--alpha", "--out", str(out / "overlay.mov")],
             cwd=ROOT / "video")
+        overlay_stamp.write_text(data_hash, encoding="utf-8")
 
     # 3. panel: shots cut from the rendered episode, fitted into the panel
     src = ROOT / spec["source"]
