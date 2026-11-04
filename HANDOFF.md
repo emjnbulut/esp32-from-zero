@@ -1,4 +1,11 @@
-# Open work - 3 November 2026, session closed about 02:00 (read first)
+# Update - 4 November 2026 14:45 (read first, replaces the matching items below)
+
+- Episode 6 Shorts REBUILT with the new opening (EN 34.97 s, TR 38.70 s); upload copies in YAYIN/ep06/shorts/upload_10mb are current, frames checked. Episode 6 itself is not uploaded yet.
+- Episode 5 checked: public, 4 dubs + 12 subtitles published, A/B thumbnail test running. First 21 h: 52 views, 280 impressions, CTR 2.9%, avg 2:01 (19%), retention "not enough data" yet.
+- End screens: Episode 4 saved (Episode 5 + playlist + subscribe on their slots). Recap 1 prepared the same way, needs Save (the permission system blocks that click, so the creator presses it).
+- Instagram 4 Nov 19:00 Episode 4 solution Short, then Related video on the Episode 5 Shorts: approved by the creator, not done yet.
+
+# Open work - 3 November 2026, session closed about 02:00
 
 Scheduled on YouTube, nothing more needed: Episode 5 `VaqdZeV5tRQ` 3 Nov 17:00, TR Short `mJjP6nf-5IQ` 4 Nov 17:00, EN Short `SBtl26Fyf1o` 5 Nov 22:00.
 
