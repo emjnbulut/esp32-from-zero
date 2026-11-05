@@ -21,7 +21,7 @@
   "s17": "Uma regra: o trilho positivo tem de ser três vírgula três volts, nunca cinco. A entrada do ESP32 só aguenta três vírgula três.",
   "s18": "Para ler essa tensão, uma função nova: analogRead(). Pense numa régua de quatro mil e noventa e seis marcas.",
   "s19": "Na prática, analogRead() mede a tensão de um pino e devolve um número. Zero é zero volt, e quatro mil e noventa e cinco são três vírgula três volts.",
-  "s20": "Diferente da régua, esta não é perfeita. Perto das pontas achata, e talvez você nunca veja zero ou quatro mil e noventa e cinco.",
+  "s20": "Diferente da régua, ela achata nas pontas: talvez nunca veja zero ou quatro mil e noventa e cinco.",
   "s21": "Este é o sketch inteiro, pot_read, bem pequeno. O pino trinta e quatro ganha nome, e setup() só liga o Serial Monitor. Um pino só de leitura não precisa de pinMode().",
   "s22": "No loop, analogRead() põe um número em value. Imprimimos e esperamos um décimo de segundo. Pause e preveja: com o seletor no meio, que número você espera?",
   "s23": "Uns dois mil, metade da escala. Girando o seletor, o número no Serial Monitor sobe junto, do começo da escala ao topo.",
@@ -36,12 +36,12 @@
   "s32": "Diferente do fogão: sem cliques. As zonas são só código.",
   "s33": "Em pot_zones, abaixo de mil trezentos e sessenta e cinco, LED vinte. Senão, abaixo de dois mil setecentos e trinta, cento e vinte. Senão, total.",
   "s34": "Pause e preveja: a leitura é exatamente mil trezentos e sessenta e cinco. Em que zona está?",
-  "s35": "Na do meio. Menor que é estrito: mil trezentos e sessenta e cinco falha no primeiro e passa no segundo.",
+  "s35": "A do meio. Menor que é estrito: mil trezentos e sessenta e cinco falha o primeiro teste.",
   "s36": "Gire devagar: fraco, médio e total.",
   "s37": "Mais uma coisa. Deixe o seletor quieto e veja o número. Ainda oscila, como uma balança que nunca assenta.",
   "s38": "Na prática, um ruído elétrico minúsculo muda cada leitura. A solução é a da balança: meça quatro vezes e tire a média.",
   "s39": "Diferente da balança: quatro leituras levam à placa bem menos de um milissegundo.",
-  "s40": "Em pot_smooth, sum começa em zero. Um laço for roda quatro vezes somando leituras. Depois, sum por quatro é a média.",
+  "s40": "Em pot_smooth, sum começa em zero. Um for soma quatro leituras, e sum por quatro é a média.",
   "s40b": "Pause e preveja: qual linha treme menos, a leitura única ou a média?",
   "s41": "A média. O Serial Plotter desenha as duas: a leitura única treme, e a média é mais calma.",
   "s42": "O problema que você vai encontrar. O LED não reage ao seletor. Pergunta rápida: é o LED, o seletor ou o código? O que fazer primeiro?",
@@ -55,7 +55,7 @@
   "s49": "Um jeito de dizer: a escala do seletor é dezesseis vezes maior que a do brilho, então dividir as faz coincidir.",
   "s50": "Sua vez: Knob Blink Speed. O LED pisca o tempo todo, e o seletor escolhe a velocidade em três zonas: a cada cem milissegundos, a cada quatrocentos e a cada segundo.",
   "s51": "A reviravolta: nada pode esperar com delay(). As zonas de hoje escolhem o intervalo, e o truque millis() do episódio quatro faz o pisca.",
-  "s52": "Hoje você aprendeu três coisas. O seletor vira tensão, analogRead() vira número, e imprimir mostra o problema.",
+  "s52": "Hoje: o seletor vira tensão, analogRead() vira número, e imprimir mostra o problema.",
   "s53": "Na próxima: uma função que divide e uma barra de LEDs que enche ao girar. Poste seu código nos comentários; há solução na pasta. Até lá!"
  }
 }

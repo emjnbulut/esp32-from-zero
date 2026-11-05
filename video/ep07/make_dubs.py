@@ -63,9 +63,9 @@ HI = [
     # s27
     "रोकिए, अंदाज़ा लगाइए: सोलह नहीं, बत्तीस से भाग दें तो?",
     # s28
-    "सबसे बड़ी संख्या लगभग एक सौ सत्ताईस होगी, तो knob जितना घुमाइए, LED आधी रहेगी।",
+    "सबसे बड़ी संख्या करीब एक सौ सत्ताईस, तो LED आधी ही जलेगी।",
     # s29
-    "अब meter बीच के पैर पर। Knob घुमाते volt शून्य से तीन दशमलव तीन चढ़ते हैं, LED साथ चलती है।",
+    "अब meter बीच के पैर पर। Volt शून्य से तीन दशमलव तीन तक, और LED साथ।",
     # s30
     "कभी सारी values नहीं चाहिए होतीं, बस कुछ विकल्प, जैसे चूल्हे पर कम, मध्यम और तेज़ के निशान।",
     # s31
@@ -101,7 +101,7 @@ HI = [
     # s44b
     "Thermometer से फ़र्क: print में समय लगता है, ज़्यादा prints loop धीमा करते हैं। काम होने पर हटाइए।",
     # s45
-    "Pin चौंतीस क्यों? सब pins बराबर नहीं। चौंतीस से उनतालीस एकतरफ़ा हैं: सिर्फ़ सुनते हैं, LED नहीं चलाते।",
+    "Pin चौंतीस क्यों? चौंतीस से उनतालीस सिर्फ़ सुनते हैं, LED नहीं चला सकते।",
     # s46
     "दूसरा नियम: पच्चीस से सत्ताईस जैसे कुछ pins Wi-Fi चालू हो तो analog नहीं पढ़ सकते। चौंतीस चलता रहता है, इसलिए हमारे sensors वहीं हैं।",
     # s47
@@ -160,7 +160,7 @@ PT = [
     # s19
     "Na prática, analogRead() mede a tensão de um pino e devolve um número. Zero é zero volt, e quatro mil e noventa e cinco são três vírgula três volts.",
     # s20
-    "Diferente da régua, esta não é perfeita. Perto das pontas achata, e talvez você nunca veja zero ou quatro mil e noventa e cinco.",
+    "Diferente da régua, ela achata nas pontas: talvez nunca veja zero ou quatro mil e noventa e cinco.",
     # s21
     "Este é o sketch inteiro, pot_read, bem pequeno. O pino trinta e quatro ganha nome, e setup() só liga o Serial Monitor. Um pino só de leitura não precisa de pinMode().",
     # s22
@@ -190,7 +190,7 @@ PT = [
     # s34
     "Pause e preveja: a leitura é exatamente mil trezentos e sessenta e cinco. Em que zona está?",
     # s35
-    "Na do meio. Menor que é estrito: mil trezentos e sessenta e cinco falha no primeiro e passa no segundo.",
+    "A do meio. Menor que é estrito: mil trezentos e sessenta e cinco falha o primeiro teste.",
     # s36
     "Gire devagar: fraco, médio e total.",
     # s37
@@ -200,7 +200,7 @@ PT = [
     # s39
     "Diferente da balança: quatro leituras levam à placa bem menos de um milissegundo.",
     # s40
-    "Em pot_smooth, sum começa em zero. Um laço for roda quatro vezes somando leituras. Depois, sum por quatro é a média.",
+    "Em pot_smooth, sum começa em zero. Um for soma quatro leituras, e sum por quatro é a média.",
     # s40b
     "Pause e preveja: qual linha treme menos, a leitura única ou a média?",
     # s41
@@ -228,7 +228,7 @@ PT = [
     # s51
     "A reviravolta: nada pode esperar com delay(). As zonas de hoje escolhem o intervalo, e o truque millis() do episódio quatro faz o pisca.",
     # s52
-    "Hoje você aprendeu três coisas. O seletor vira tensão, analogRead() vira número, e imprimir mostra o problema.",
+    "Hoje: o seletor vira tensão, analogRead() vira número, e imprimir mostra o problema.",
     # s53
     "Na próxima: uma função que divide e uma barra de LEDs que enche ao girar. Poste seu código nos comentários; há solução na pasta. Até lá!",
 ]
@@ -239,13 +239,13 @@ ES = [
     # s02
     "Al final leerás cualquier perilla con una línea. Si falla, sabrás hallar el problema.",
     # s03
-    "Dos del episodio pasado. Pregunta rápida: setColor() con doscientos cincuenta y cinco, doscientos cincuenta y cinco y cero. ¿Qué color?",
+    "Repaso: setColor() con doscientos cincuenta y cinco, doscientos cincuenta y cinco y cero. ¿Qué color sale?",
     # s04
     "Amarillo. Luz roja y verde dan amarillo: la luz suma.",
     # s05
     "Pregunta rápida: el LED RGB se apaga, los tres colores juntos. ¿Qué cable revisas primero?",
     # s06
-    "El común, en la pata larga. Todo vuelve a tierra.",
+    "El común: por él vuelve todo.",
     # s07
     "Necesitas el circuito del episodio pasado, un potenciómetro de diez kilo-ohmios, una perilla de tres patas, y unos cables.",
     # s08
@@ -253,13 +253,13 @@ ES = [
     # s09
     "Imagina un tobogán. Arriba tres coma tres voltios, abajo tierra, y la perilla decide tu altura.",
     # s10
-    "La perilla tiene una tira de resistencia con un contacto deslizante. Las patas de afuera van a tres coma tres voltios y a tierra, y la del medio da el voltaje del contacto.",
+    "La perilla es una tira resistiva con un contacto que se desliza. Las patas de afuera van a tres coma tres voltios y a tierra; la del medio da el voltaje.",
     # s11
     "Eso es un divisor de voltaje. A diferencia del tobogán, nada baja solo. El contacto queda donde lo dejes.",
     # s12
     "Pregunta: perilla en medio. ¿Cuántos voltios hay en la pata del medio?",
     # s13
-    "Unos uno coma sesenta y cinco voltios. Cada posición es un voltaje.",
+    "Uno coma sesenta y cinco. Cada posición, un voltaje.",
     # s14
     "Aquí el circuito en esquema. El zigzag es la resistencia, y la flecha, el contacto.",
     # s15
