@@ -5,7 +5,7 @@ SCHEDULED on YouTube: Episode 6 `j0tZ9P7YrU8` 6 Nov 17:00 (12 subtitles + titles
 Episode 6 TR dub: s23 and s36 re-narrated with the spelling "skeç" (the engine cannot say "İşte sketçin", every seed came out as "Disketçin"); the creator approved by ear. Episode 5 and later TR lines with "sketçin" may have the same fault. The picture proof (production_resume verify) now reports stale because source_hash covers dub/tr.json; the picture did not change, do not re-render for this.
 
 Still to do by hand (timed jobs die with the session):
-- 4 Nov after 17:00: Related video on Episode 5 TR Short `mJjP6nf-5IQ`; 5 Nov after 22:00: on EN Short `SBtl26Fyf1o`; 7 and 8 Nov: Related video on the Episode 6 Shorts.
+- Related video: Episode 5 TR Short `mJjP6nf-5IQ` is done (seen in Studio 5 Nov). 5 Nov after 22:00: on EN Short `SBtl26Fyf1o`; 7 and 8 Nov: on the Episode 6 Shorts.
 - Instagram: the 3 and 4 Nov slots were missed. 5 Nov: Episode 4 EN Short posted (video/shorts/ep04/build/en/ep04_short_en.mp4, AI label off, own-voice narration named in the caption). Still to post: Episode 4 solution Short (YAYIN/shorts_ep04c/ep04c_short_en.mp4, new date needed), 7 Nov 19:00 Episode 5 EN Short.
 - After 6 Nov 17:00: confirm the 4 dubs, point the Episode 5 end screen at Episode 6.
 - Episode 7 not started (due 10 Nov). Episode 5 first 21 h: 52 views, 280 impressions, CTR 2.9%, avg 2:01 (19%); retention still "not enough data", bring it to the creator before the Episode 7 script.
