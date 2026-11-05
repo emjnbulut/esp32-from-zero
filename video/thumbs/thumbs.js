@@ -46,6 +46,13 @@ function button(x, y, w, pressed = false) {
     <circle cx="50" cy="50" r="${pressed ? 23 : 27}" fill="${pressed ? "#ffb547" : "#4a5262"}" stroke="#11141a" stroke-width="3"/></svg>`, "",
     "filter:drop-shadow(0 20px 40px rgba(0,0,0,.6))");
 }
+/** a top view of a potentiometer knob, pointer at position 0..1 */
+function knob(x, y, w, pos = 0.5) {
+  const ticks = Array.from({ length: 11 }, (_, i) => { const a = (-225 + 27 * i) * Math.PI / 180; return `<path d="M${100 + 78 * Math.cos(a)} ${100 + 78 * Math.sin(a)} L${100 + 94 * Math.cos(a)} ${100 + 94 * Math.sin(a)}" stroke="#8fa1c0" stroke-width="6" stroke-linecap="round"/>`; }).join("");
+  put(x, y, w, w, `<svg width="${w}" height="${w}" viewBox="0 0 200 200">${ticks}<circle cx="100" cy="100" r="68" fill="#c9a24a" stroke="#8a6f2c" stroke-width="4"/>
+    <circle cx="100" cy="100" r="52" fill="#2b3140" stroke="#48526a" stroke-width="4"/><g transform="rotate(${-135 + 270 * pos} 100 100)"><rect x="93" y="52" width="14" height="44" rx="7" fill="#ffb547"/></g></svg>`, "",
+    "filter:drop-shadow(0 20px 40px rgba(0,0,0,.6))");
+}
 function resistor(x, y, w) {
   put(x, y, w, w * 0.3, `<svg width="${w}" viewBox="0 0 300 90"><path d="M0 45 H300" stroke="#b8bec6" stroke-width="10" stroke-linecap="round"/>
     <rect x="70" y="8" width="160" height="74" rx="30" fill="#dcc79f" stroke="#b49e72" stroke-width="3"/>
@@ -133,6 +140,19 @@ const V = {
     title([["MIX", "white"], ["LIGHT", "teal"]], 150, 176);
     rgbLed(890, 45, 240, [255, 230, 20]);
     pill(790, 600, "RED + GREEN = YELLOW", "rgba(255,181,71,.18)", "var(--amber)");
+  },
+  // Episode 7: the knob. A = the visible result (knob -> light), B = the number in the code.
+  ep07_A() {
+    title([["TURN", "white"], ["IT UP!", "amber"]], 150, 176);
+    knob(740, 180, 300, 0.8);
+    led(1080, 90, 170, "red");
+    pill(760, 600, "one knob · one line of code", "rgba(25,195,180,.18)", "var(--teal)");
+  },
+  ep07_B() {
+    title([["READ", "white"], ["A KNOB", "teal"]], 150, 150);
+    knob(860, 40, 270, 0.5);
+    card(700, 370, 540, 120, `<div class="code" style="font-size:44px;text-align:center"><span class="fn">analogRead</span>(<span class="num">34</span>)</div>`);
+    card(790, 520, 360, 110, `<div style="font:800 68px/110px var(--mono);text-align:center;color:var(--amber)">2048</div>`);
   },
   // channel trailer: the promise of the whole course
   trailer_A() {

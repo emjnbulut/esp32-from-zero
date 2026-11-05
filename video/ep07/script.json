@@ -9,8 +9,7 @@
  "clips": {
   "C0": "OPENING: pot_dimmer, hand turns the knob, red LED follows (footage/gelen/ep06/20261029_171053).",
   "C1": "WIRING: filmed as removal, played reversed and speed-ramped (20261029_171259).",
-  "C2": "MULTIMETER: LED follows the knob, digits sweep 0.00 -> 3.33 V; rotate so the digits read (20261029_172304).",
-  "C3": "pot_zones, 8-10 s, NOT FILMED YET: slow turn, the LED steps dim -> medium -> full and back. Slightly dim room."
+  "C2": "MULTIMETER: LED follows the knob, digits sweep 0.00 -> 3.33 V; rotate so the digits read (20261029_172304)."
  },
  "segments": [
   {
@@ -270,7 +269,6 @@
    "scene": "runzones",
    "text": "Turn it slowly: dim, medium and full, in three clear steps.",
    "tr": "Yavaşça çevirin: loş, orta ve tam; üç net adımda.",
-   "clip": "C3",
    "pad": 3.4
   },
   {

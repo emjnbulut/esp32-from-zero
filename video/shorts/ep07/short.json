@@ -1,0 +1,151 @@
+{
+ "episode": "ep07",
+ "engine": "chatterbox",
+ "source": "video/ep07/build/video.mp4",
+ "schedule": "video/ep07/build/schedule.json",
+ "note": "One question: which number does the knob give in the middle? TR 11 Nov 2026 17:00; EN 12 Nov 22:00 Europe/Istanbul. Check the crops against the final frames.",
+ "cta": {
+  "en": "Full lesson",
+  "sub": "linked: related video"
+ },
+ "segments": [
+  {
+   "id": "h0",
+   "chip": "ESP32 KNOB",
+   "headline": {
+    "en": "Which number is this?"
+   },
+   "say": {
+    "en": "Turn this knob, and your ESP32 sees a number. With the knob in the middle, which number is it?",
+    "tr": "Bu düğmeyi çevirin, E Es Pe otuz iki bir sayı görür. Düğme tam ortadayken bu sayı kaçtır?"
+   },
+   "show": {
+    "en": "Turn this knob, and your ESP32 sees a number. With the knob in the middle, which number is it?"
+   },
+   "shots": [
+    {
+     "file": "footage/ep07/C0.mp4",
+     "src": 1.0,
+     "crop": [
+      800,
+      0,
+      1080,
+      1080
+     ]
+    }
+   ]
+  },
+  {
+   "id": "h1",
+   "chip": "INSIDE THE KNOB",
+   "headline": {
+    "en": "A sliding contact"
+   },
+   "say": {
+    "en": "Inside the knob, a contact slides along a strip, so the middle leg gives any voltage from zero to three point three volts.",
+    "tr": "Düğmenin içinde bir şeritte kayan bir temas var; orta bacak sıfırdan üç virgül üç volta kadar her voltajı verir."
+   },
+   "show": {
+    "en": "Inside the knob, a contact slides along a strip, so the middle leg gives any voltage from 0 to 3.3 V."
+   },
+   "shots": [
+    {
+     "at": [
+      "s10",
+      null,
+      1.0
+     ],
+     "crop": [
+      150,
+      140,
+      900,
+      900
+     ],
+     "pan": 800
+    }
+   ]
+  },
+  {
+   "id": "h2",
+   "chip": "IN CODE",
+   "headline": {
+    "en": "analogRead()"
+   },
+   "say": {
+    "en": "Analog read turns that voltage into a number, from zero to four thousand ninety-five. So the middle is around two thousand.",
+    "tr": "Analog rid bu voltajı sıfırdan dört bin doksan beşe kadar bir sayıya çevirir. Yani orta nokta yaklaşık iki bin."
+   },
+   "show": {
+    "en": "analogRead() turns that voltage into a number, from 0 to 4095. So the middle is around 2000."
+   },
+   "shots": [
+    {
+     "at": [
+      "s23",
+      null,
+      4.0
+     ],
+     "crop": [
+      160,
+      170,
+      900,
+      900
+     ],
+     "pan": 420
+    }
+   ]
+  },
+  {
+   "id": "h3",
+   "chip": "THE RESULT",
+   "headline": {
+    "en": "Volts, then light"
+   },
+   "say": {
+    "en": "Divide that number by sixteen, and the LED follows your hand.",
+    "tr": "Bu sayıyı on altıya bölün; led elinizi takip etsin."
+   },
+   "show": {
+    "en": "Divide that number by 16, and the LED follows your hand."
+   },
+   "shots": [
+    {
+     "file": "footage/ep07/C2.mp4",
+     "src": 4.0,
+     "crop": [
+      300,
+      0,
+      1080,
+      1080
+     ]
+    }
+   ]
+  },
+  {
+   "id": "h4",
+   "chip": "YOUR TURN",
+   "headline": {
+    "en": "Print the number yourself"
+   },
+   "say": {
+    "en": "Wire it, and print the number yourself. Every step is in the linked lesson.",
+    "tr": "Devreyi kurun ve sayıyı kendiniz yazdırın. Bütün adımlar bağlantıdaki derste."
+   },
+   "show": {
+    "en": "Wire it, and print the number yourself. Every step is in the linked lesson."
+   },
+   "shots": [
+    {
+     "file": "footage/ep07/C0.mp4",
+     "src": 6.0,
+     "crop": [
+      800,
+      0,
+      1080,
+      1080
+     ]
+    }
+   ]
+  }
+ ]
+}

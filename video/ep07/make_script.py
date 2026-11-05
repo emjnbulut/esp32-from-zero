@@ -7,7 +7,7 @@ Not a mini-project: no challenge-solution Short; the solution stays in the lesso
 
 Clips (creator, footage/gelen/ep06/CLIPS.md, prepared into footage/ep07):
 C0 opening, pot_dimmer. C1 wiring, filmed as removal, played reversed. C2 multimeter: the sketch on the board in that take makes the LED
-follow the knob, so it belongs to pot_dimmer (s29), NOT to pot_read; the digits sweep 0.00 -> 3.33 V. C3 pot_zones: not filmed yet (s36).
+follow the knob, so it belongs to pot_dimmer (s29), NOT to pot_read; the digits sweep 0.00 -> 3.33 V. pot_zones (s36) was not on the shoot pack: animated LED plus knob.
 pot_read and pot_smooth results are recreated Serial Monitor / Plotter scenes.
 TR dub: lines start with native words; "sketç" after "İşte" is unreadable for the engine (comes out "Disketçin"): use "skeç" and "Şimdi".
 """
@@ -156,7 +156,7 @@ s("s35", "tourzones", "The middle one. Less than means strictly less, so thirtee
   "Ortadaki. Küçüktür işareti tam olarak küçük demek; bu yüzden bin üç yüz altmış beş ilk testten geçemez, ikinciden geçer.",
   sub="The middle one. < means strictly less, so 1365 fails the first test, and passes the second.")
 s("s36", "runzones", "Turn it slowly: dim, medium and full, in three clear steps.",
-  "Yavaşça çevirin: loş, orta ve tam; üç net adımda.", clip="C3", pad=3.0)
+  "Yavaşça çevirin: loş, orta ve tam; üç net adımda.", pad=3.0)
 # ---- practice 3: a calmer reading
 s("s37", "smooth", "One more thing. Leave the knob alone and watch the number. It still wobbles a little, like a bathroom scale that never quite settles.",
   "Bir şey daha. Düğmeye dokunmayın ve sayıyı izleyin. Yine de biraz titriyor; bir türlü sabitlenmeyen banyo tartısı gibi.")
@@ -239,7 +239,6 @@ script = {
         "C0": "OPENING: pot_dimmer, hand turns the knob, red LED follows (footage/gelen/ep06/20261029_171053).",
         "C1": "WIRING: filmed as removal, played reversed and speed-ramped (20261029_171259).",
         "C2": "MULTIMETER: LED follows the knob, digits sweep 0.00 -> 3.33 V; rotate so the digits read (20261029_172304).",
-        "C3": "pot_zones, 8-10 s, NOT FILMED YET: slow turn, the LED steps dim -> medium -> full and back. Slightly dim room.",
     },
     "segments": S,
 }
