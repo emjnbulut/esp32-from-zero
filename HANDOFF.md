@@ -6,7 +6,7 @@ Episode 6 TR dub: s23 and s36 re-narrated with the spelling "skeç" (the engine 
 
 Still to do by hand (timed jobs die with the session):
 - 4 Nov after 17:00: Related video on Episode 5 TR Short `mJjP6nf-5IQ`; 5 Nov after 22:00: on EN Short `SBtl26Fyf1o`; 7 and 8 Nov: Related video on the Episode 6 Shorts.
-- Instagram: 4 Nov 19:00 Episode 4 solution Short (YAYIN/shorts_ep04c/ep04c_short_en.mp4), 7 Nov 19:00 Episode 5 EN Short. Check whether the 3 Nov Episode 4 EN Reel went out; probably missed.
+- Instagram: the 3 and 4 Nov slots were missed. 5 Nov: Episode 4 EN Short posted (video/shorts/ep04/build/en/ep04_short_en.mp4, AI label off, own-voice narration named in the caption). Still to post: Episode 4 solution Short (YAYIN/shorts_ep04c/ep04c_short_en.mp4, new date needed), 7 Nov 19:00 Episode 5 EN Short.
 - After 6 Nov 17:00: confirm the 4 dubs, point the Episode 5 end screen at Episode 6.
 - Episode 7 not started (due 10 Nov). Episode 5 first 21 h: 52 views, 280 impressions, CTR 2.9%, avg 2:01 (19%); retention still "not enough data", bring it to the creator before the Episode 7 script.
 
