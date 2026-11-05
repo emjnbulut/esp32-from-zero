@@ -433,8 +433,9 @@ const ideaPos = (t) => {
   const wip = svgEl(sg, "g", {});
   svgEl(wip, "path", { d: `M${xS + 44} 0 H620`, stroke: "#ffb547", "stroke-width": 10 });
   svgEl(wip, "path", { d: `M${xS + 36} 0 l34 -22 v44 z`, fill: "#ffb547" });
-  txt(wip, 370, -24, "middle leg", { "font-size": 36, fill: "#ffb547" });
-  dyn((t) => wip.setAttribute("transform", `translate(0 ${yBot - (yBot - yTop) * ideaPos(t)})`));
+  const wl = txt(wip, 370, -24, "middle leg", { "font-size": 36, fill: "#ffb547" });
+  // label above the arrow, except near the top where it would sit on "outer leg: 3.3 V"
+  dyn((t) => { const p = ideaPos(t); wip.setAttribute("transform", `translate(0 ${yBot - (yBot - yTop) * p})`); wl.setAttribute("y", p > 0.8 ? 52 : -24); });
   const pk = box(idea, 1040, 520, 780, 100, "", '<div style="font:700 40px var(--ui);color:var(--amber);text-align:center">The knob picks how high up you sit.</div>'); hidden(pk); show(pk, W("s09", "knob")); hide(pk, T("s10") - 0.2, 0.25);
   const k = knobIcon(idea, 1240, 170, 300); k.drive(ideaPos); hidden(k.r); show(k.r, T("s09")); hide(k.r, T("s14") - 0.2, 0.25);
   const vb = box(idea, 1120, 510, 540, 150, "card", '<div class="v" style="font:800 84px/150px var(--mono);text-align:center;color:var(--amber)"></div>');
@@ -444,7 +445,7 @@ const ideaPos = (t) => {
   const dv = pillC(idea, 700, "voltage divider", "font-size:42px;color:var(--teal)", 1000, 780); show(dv, T("s11")); hide(dv, T("s12") - 0.2, 0.25);
   const lim = box(idea, 1040, 780, 780, 150, "", '<div style="font:600 34px/1.4 var(--ui);color:#ffe3b8;text-align:center"><b style="color:var(--amber)">The difference:</b> nothing slides by itself. The contact stays where you leave it.</div>');
   hidden(lim); show(lim, W("s11", "difference")); hide(lim, T("s12") - 0.2, 0.25);
-  ask(idea, "QUICK QUESTION", "Knob exactly in the middle: how many volts on the middle leg?", T("s12"), T("s13"), "About 1.65 V, half of 3.3.", { x: 1000, y: 700, w: 820, t1: S1("s13") });
+  ask(idea, "QUICK QUESTION", "Knob exactly in the middle: how many volts on the middle leg?", T("s12"), T("s13"), "About 1.65 V, half of 3.3.", { x: 1000, y: 700, w: 820, t1: W("s13", "Every") - 0.1 }); // gone before the knob leaves the middle
 
   // s14: the schematic
   const sc = box(idea, 300, 160, 1320, 740, ""); hidden(sc); show(sc, T("s14"));
