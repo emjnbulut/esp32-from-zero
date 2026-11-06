@@ -127,6 +127,7 @@ Kullanıcı kararı (Recap TR dublajını dinledikten sonra): "konuyu çok köt�
 - Bir cümlede en fazla bir yeni terim; terimden hemen sonra sade anlamı.
 - Konuşmada kod adları zincirlenmez: "state LOW, lastState HIGH" yerine "şu anki okuma LOW, bir önceki okuma HIGH". Kod adı ekranda yazılı kalır, anlatıcı ne anlama geldiğini söyler.
 - Telgraf cümlesi yok ("Yazdır. Bekle."): tam, konuşma dilinde cümleler; izleyiciye "siz" diye hitap, küçük geçişler ("Peki neden?", "Şimdi bir turu izleyelim").
+- **Sayı ve kısaltma yığma yok** (kullanıcı, 7 Kasım, Bölüm 07 dinlemesi): sade konuşma cümleleri (s01/s13/s35) "çok daha iyi" bulundu; okunuşu yazılmış uzun sayılar ("dört bin doksan beş bölü üç yaklaşık bin üç yüz altmış beş") ve art arda kısaltmalar ("set kalır", "Ar Ce Be", "E Es Pe", "analog rid") olan satırlar daha düz ve takılarak çıkıyor. Bölüm 08'den itibaren: cümlede en çok 1–2 söylenen sayı; tam değer ekranda kalır, anlatıcı "yaklaşık dört bin", "en üst değer" der; hesap kısa adımlara bölünür; kısaltma ve kod adı aynı cümlede yığılmaz.
 - Her dilin metni o dilde **doğal** yazılır, çeviri kokmaz. Dublaj ve altyazı aynı cümlelerdir (bölüm 6).
 - Daha fazla açıklama süre ister: kullanıcı (28 Ekim) "uzunluk sorun değil" dedi. Bölüm 8'deki ~10 dk hedefi açıklama için aşılabilir; konu bölünmez, ama gereksiz tekrar da yapılmaz (Recap ~15–16 dk).
 
