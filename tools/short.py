@@ -175,6 +175,8 @@ def main(sdir: Path, lang: str):
             # optional "footage": {"file", "src", "crop"} replaces the shot once that creator clip exists
             if "footage" in sh and (ROOT / sh["footage"]["file"]).exists():
                 sh = {**sh, **sh["footage"]}
+            # optional per-language override, e.g. "by_lang": {"tr": {"speed": 0.77}} when narration lengths differ
+            sh = {**sh, **sh.get("by_lang", {}).get(lang, {})}
             d = sh.get("dur", (b - a - fixed) / max(1, len(free)))
             sp = sh.get("speed", 1.0)
             k = len(labels)

@@ -8,11 +8,13 @@ Release target: Tuesday 10 November 2026, 17:00 Turkey time. Shorts: TR 11 Nov 1
 - [x] Sketches compile for esp32:esp32:esp32 (5 of 5); sketches.js generated.
 - [x] Clips prepared in footage/ep07 (gitignored): C0 opening, C1 wiring reversed at 2x, C2 meter turned so the digits read.
 - [x] HI/PT/ES dubs, 7 subtitle languages, metadata, lesson README (commit 82e9f2d).
-- [ ] Narration (`tools/production_resume.py voice ep07`), then schedule. Running since 5 Nov 20:14; resumable.
-- [x] Scenes: video/ep07/index.html + ep07.js (5 Nov), one still per segment reviewed. Recheck on the final schedule.
-- [x] Thumbnails ep07_A, ep07_B. Short spec + youtube.md in video/shorts/ep07; check its crops once video.mp4 exists.
-- [ ] Render, audio, compose, dubs, subtitles; thumbnails A/B; Short (question opening, section 11).
-- [ ] Creator listening approval of flagged lines before upload.
+- [x] Narration and schedule (6 Nov). First full narration ran to 760 s because HI/PT/ES takes were 63-99 s longer than EN/TR; 110 + 11 dub lines were shortened from measured take lengths and re-narrated (no speed-up). Final timeline 652.9 s body, 676.4 s with bumpers; anchors 0 problems.
+- [x] Scenes rechecked on the final schedule from video.mp4 (one frame per segment). Fixed: s12 answer card now leaves before the knob moves; wiper label no longer overlaps the 3.3 V label at the top.
+- [x] Thumbnails ep07_A, ep07_B.
+- [x] Render, audio, compose, 4 dubs, 12 subtitle languages, verification.json, review frames; packaged in YAYIN/ep07.
+- [x] Shorts EN 37.6 s / TR 35.7 s. Crops checked in frames: h1/h2 use wide crops without pan; h2 runs slower (EN 0.72, TR 0.77 via `by_lang`) so "around 2000" lands with the knob in the middle.
+- [ ] Creator listening approval before upload: YAYIN/ep07/dinleme (samples + ep07_tr_flagged.mp3: TR s03, s17, s19, s25, s31).
+- [ ] Upload: long video 10 Nov 17:00, TR Short 11 Nov 17:00, EN Short 12 Nov 22:00.
 
 ## Footage facts (checked in frames, 4 Nov)
 
