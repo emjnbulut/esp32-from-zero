@@ -6,7 +6,7 @@ Episode 7 SCHEDULED on YouTube (creator approved all listening samples + TR flag
 
 Still to do by hand:
 - 7 Nov 19:00 Instagram: Episode 5 EN Short. Episode 4 solution Short still needs a date.
-- Related video: Episode 5 EN Short `SBtl26Fyf1o`; Episode 6 TR `IDsdn3uqmas` (after 7 Nov 17:00) and EN `7mauqKSjls8` (after 8 Nov 22:00); Episode 7 Shorts after 11/12 Nov.
+- Related video: all 11 public Shorts checked 7 Nov ~01:40, all set (Episode 5 EN `SBtl26Fyf1o` fixed then). Still to do: Episode 6 TR `IDsdn3uqmas` (after 7 Nov 17:00) and EN `7mauqKSjls8` (after 8 Nov 22:00); Episode 7 Shorts after 11/12 Nov.
 - After 10 Nov 17:00: confirm the 4 Episode 7 dubs; point the Episode 6 end screen at Episode 7. Check Episode 6 dubs + Episode 5 end screen -> Episode 6 (pending since 6 Nov).
 - Narration rule from the Episode 7 listening (guidelines sec. 9): no stacked spoken numbers/acronyms from Episode 8 on.
 - API token (.secrets/token.json, 4 Nov) expires around 11 Nov: run `publish.py auth` before Episode 8 subtitles.
