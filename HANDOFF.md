@@ -1,4 +1,12 @@
-# Update - 4 November 2026 15:50 (read first, replaces the matching items below)
+# Update - 6 November 2026 03:15 (read first)
+
+Episode 7 BUILT, not uploaded: YAYIN/ep07 (ep07_final.mp4 11:16 with bumpers, 4 dubs, 12 subtitles, 12 descriptions, thumbnails A/B, shorts/ + shorts/upload_10mb, dinleme/). Details in video/ep07/PROGRESS.md. Waiting for the creator's listening approval (dinleme/ samples + ep07_tr_flagged.mp3), then upload: long video 10 Nov 17:00, TR Short 11 Nov 17:00, EN Short 12 Nov 22:00.
+
+Dub length lesson (ep07): Chatterbox HI/PT/ES takes ran far longer than their character ratio predicted (char ratio <= 1.08, audio +63-99 s per language). Fit dub texts from measured take durations against max(EN, TR) x 1.05, then re-narrate; two passes took the timeline from 760 s to 652.9 s.
+
+Not done on 5 Nov (Chrome extension was not connected): Related video on the Episode 5 EN Short `SBtl26Fyf1o`.
+
+# Update - 4 November 2026 15:50 (replaces the matching items below)
 
 SCHEDULED on YouTube: Episode 6 `j0tZ9P7YrU8` 6 Nov 17:00 (12 subtitles + titles via publish.py, 4 dubs uploaded and processing at 15:45, end screen best for viewer + playlist + subscribe, playlist card 0:27, A/B thumbnail test A ANY COLOR vs B MIX LIGHT saved). Shorts: TR `IDsdn3uqmas` 7 Nov 17:00, EN `7mauqKSjls8` 8 Nov 22:00.
 
