@@ -1,3 +1,18 @@
+# Update - 7 November 2026 ~01:20 (read first)
+
+Episode 7 SCHEDULED on YouTube (creator approved all listening samples + TR flagged lines by ear):
+- Long video `g-fnxcOIyBI` 10 Nov 17:00: title/description/chapters, playlist, not for kids, AI = No, paid = No (Claude now ticks these itself, creator's request), tags, English, Education, A/B thumbnail test A TURN IT UP vs B READ A KNOB (shows "Uygun değil" until public), end screen imported from Episode 6 (subscribe + best for viewer + playlist), 12 subtitles + 12 titles via publish.py, 4 dubs (YAYIN/ep07/dublaj_sesleri/upload_10mb, 96k mono) uploaded and processing.
+- Shorts: TR `nNUZynx55B4` 11 Nov 17:00, EN `FBHKjGb1iJg` 12 Nov 22:00 (descriptions link Episode 7).
+
+Still to do by hand:
+- 7 Nov 19:00 Instagram: Episode 5 EN Short. Episode 4 solution Short still needs a date.
+- Related video: Episode 5 EN Short `SBtl26Fyf1o`; Episode 6 TR `IDsdn3uqmas` (after 7 Nov 17:00) and EN `7mauqKSjls8` (after 8 Nov 22:00); Episode 7 Shorts after 11/12 Nov.
+- After 10 Nov 17:00: confirm the 4 Episode 7 dubs; point the Episode 6 end screen at Episode 7. Check Episode 6 dubs + Episode 5 end screen -> Episode 6 (pending since 6 Nov).
+- Narration rule from the Episode 7 listening (guidelines sec. 9): no stacked spoken numbers/acronyms from Episode 8 on.
+- API token (.secrets/token.json, 4 Nov) expires around 11 Nov: run `publish.py auth` before Episode 8 subtitles.
+
+Studio automation notes: in the Languages dialog the audio Ekle opens a sub-dialog whose file input only takes the file on the second file_upload try (check the dialog text shows the filename), then Yayınla, then Güncelle. Screenshots can time out while the tab is busy; JS reads still work.
+
 # Update - 6 November 2026 03:15 (read first)
 
 Episode 7 BUILT, not uploaded: YAYIN/ep07 (ep07_final.mp4 11:16 with bumpers, 4 dubs, 12 subtitles, 12 descriptions, thumbnails A/B, shorts/ + shorts/upload_10mb, dinleme/). Details in video/ep07/PROGRESS.md. Waiting for the creator's listening approval (dinleme/ samples + ep07_tr_flagged.mp3), then upload: long video 10 Nov 17:00, TR Short 11 Nov 17:00, EN Short 12 Nov 22:00.

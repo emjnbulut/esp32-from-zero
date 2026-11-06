@@ -13,7 +13,7 @@ Release target: Tuesday 10 November 2026, 17:00 Turkey time. Shorts: TR 11 Nov 1
 - [x] Thumbnails ep07_A, ep07_B.
 - [x] Render, audio, compose, 4 dubs, 12 subtitle languages, verification.json, review frames; packaged in YAYIN/ep07.
 - [x] Shorts EN 37.6 s / TR 35.7 s. Crops checked in frames: h1/h2 use wide crops without pan; h2 runs slower (EN 0.72, TR 0.77 via `by_lang`) so "around 2000" lands with the knob in the middle.
-- [ ] Creator listening approval before upload: YAYIN/ep07/dinleme (samples + ep07_tr_flagged.mp3: TR s03, s17, s19, s25, s31).
+- [x] Creator listening approval (2026-11-07): all 5 samples + TR flagged lines approved by ear. Future scripts: no stacked numbers/acronyms (guidelines sec. 9).
 - [ ] Upload: long video 10 Nov 17:00, TR Short 11 Nov 17:00, EN Short 12 Nov 22:00.
 
 ## Footage facts (checked in frames, 4 Nov)
