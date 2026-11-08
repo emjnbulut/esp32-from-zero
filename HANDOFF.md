@@ -1,3 +1,8 @@
+# Update - 8 November 2026 ~22:50 (read first)
+
+Episode 8 "map(), Dimmer Knobs and Level Bars" (due Fri 13 Nov 17:00) is in production: script, scenes, clips (tall knob+LED crops in footage/ep08), translations, metadata, thumbnails, Short spec and EN/TR/HI/PT narration are done. The build chain was cut at the ES narration when the session closed. Resume from "RESUME HERE" in video/ep08/PROGRESS.md.
+Still open from 7 Nov: Episode 7 goes public 10 Nov 17:00 (confirm dubs, point the Episode 6 end screen at it); Related video on the Episode 6 EN Short (after 8 Nov 22:00) and Episode 7 Shorts (11/12 Nov); Instagram Episode 5 EN Short status unknown.
+
 # Update - 7 November 2026 ~01:20 (read first)
 
 Episode 7 SCHEDULED on YouTube (creator approved all listening samples + TR flagged lines by ear):
