@@ -41,3 +41,5 @@ Add a row before using a new picture; reuse the existing row (same words) when a
 | averaging | bathroom scale / banyo tartısı | measure several times, take the average to calm noise | four readings take well under a millisecond, so no time is lost | ep07 |
 | print before trusting | doctor's thermometer / doktor termometresi | print the value first to see which half is broken | printing takes time: too many prints slow a fast loop | ep07 |
 | input-only pins (34-39) | one-way door / tek yönlü kapı | these pins can only listen, never drive an LED | — | ep07 |
+| `map()` | city map / şehir haritası | arithmetic: finds how far along the first range the number is, returns the same position in the second range (whole numbers, rounds down) | a paper map only shrinks; map() can also stretch or flip a range | ep08 |
+| level bar (cumulative LEDs) | phone battery bars / telefon pil simgesi | map() gives a level 0-3, if / else if lights that many LEDs from green up | a phone hides many small steps behind each bar; ours has only four states | ep08 |

@@ -1,0 +1,370 @@
+{
+ "episode": 8,
+ "title": "map(), Dimmer Knobs and Level Bars",
+ "voice": "en-US-EricNeural",
+ "rate": "+5%",
+ "lead_in": 0.8,
+ "sting_after": "s02",
+ "music": "results",
+ "clips": {
+  "C0": "OPENING: level_bar, hand turns the knob, green -> yellow -> red fill (footage/gelen/ep06/20261029_175029).",
+  "C1": "WIRING: yellow and green LEDs placed, knob moved to the top of the right board (20261029_175125).",
+  "C2": "MAP_DIMMER: red LED dims and brightens with the knob, yellow/green off (20261029_175720).",
+  "C3": "LEVEL_BAR RUN: same as C0, cropped closer (20261029_180038).",
+  "C4": "MISTAKE: yellow LED reversed, stays dark while red and green light (20261029_180136)."
+ },
+ "segments": [
+  {
+   "id": "s01",
+   "scene": "cold",
+   "text": "Watch this bar of lights. I turn the knob, and it fills up: green, then yellow, then red, like a volume meter.",
+   "tr": "Şu ışık çubuğuna bakın. Düğmeyi çeviriyorum ve çubuk doluyor: önce yeşil, sonra sarı, sonra kırmızı; tıpkı bir ses göstergesi gibi.",
+   "clip": "C0"
+  },
+  {
+   "id": "s02",
+   "scene": "cold",
+   "text": "By the end of this video, you'll turn one range of numbers into another with a single function, and you'll build this bar yourself.",
+   "tr": "Bu videonun sonunda tek bir fonksiyonla bir sayı aralığını başka bir aralığa çevireceksiniz ve bu çubuğu kendiniz kuracaksınız.",
+   "pad": 0.4
+  },
+  {
+   "id": "s03",
+   "scene": "retrieval",
+   "text": "First, two questions from the last episode. Quick question: the knob sits in the middle. Roughly what number does analog read give you?",
+   "sub": "First, two questions from the last episode. Quick question: the knob sits in the middle. Roughly what number does analogRead() give you?",
+   "tr": "Önce geçen bölümden iki soru. Kısa bir soru: düğme tam ortada. analogRead size yaklaşık hangi sayıyı verir?",
+   "pad": 2.6
+  },
+  {
+   "id": "s04",
+   "scene": "retrieval",
+   "text": "About two thousand, half of the ruler. The whole ruler goes up to about four thousand.",
+   "tr": "Yaklaşık iki bin, yani cetvelin yarısı. Cetvelin tamamı yaklaşık dört bine kadar gidiyor."
+  },
+  {
+   "id": "s05",
+   "scene": "retrieval",
+   "text": "Quick question: the LED ignores the knob completely. What's the very first thing you do?",
+   "tr": "Kısa bir soru: LED düğmeyi hiç umursamıyor. İlk iş ne yaparsınız?",
+   "pad": 2.6
+  },
+  {
+   "id": "s06",
+   "scene": "retrieval",
+   "text": "You print the value, like a doctor taking your temperature. The number tells you which half of the circuit to look at.",
+   "tr": "Değeri yazdırırsınız; tıpkı doktorun ateşinizi ölçmesi gibi. Sayı, devrenin hangi yarısına bakmanız gerektiğini söyler.",
+   "pad": 0.4
+  },
+  {
+   "id": "s07",
+   "scene": "parts",
+   "text": "You need last episode's circuit, with the knob and the red LED. Add a yellow LED, a green LED, a two hundred twenty ohm resistor for each, and a few wires.",
+   "sub": "You need last episode's circuit, with the knob and the red LED. Add a yellow LED, a green LED, a 220 Ω resistor for each, and a few wires.",
+   "tr": "Geçen bölümün devresi gerekiyor: düğme ve kırmızı LED. Buna bir sarı LED, bir yeşil LED, her birine bir 220 ohm direnç ve birkaç kablo ekleyin."
+  },
+  {
+   "id": "s08",
+   "scene": "idea",
+   "text": "Last time, we squeezed the knob's big scale into the LED's small one by dividing by sixteen. It worked, but anyone reading the code has to figure out where sixteen came from.",
+   "sub": "Last time, we squeezed the knob's big scale into the LED's small one by dividing by 16. It worked, but anyone reading the code has to figure out where 16 came from.",
+   "tr": "Geçen sefer düğmenin büyük ölçeğini 16'ya bölerek LED'in küçük ölçeğine sığdırdık. İşe yaradı; ama kodu okuyan herkes 16'nın nereden geldiğini kendisi çözmek zorunda.",
+   "pad": 0.4
+  },
+  {
+   "id": "s09",
+   "scene": "idea",
+   "text": "Think of a city map. Every street in the city has its matching spot on the paper, and halfway across town is halfway across the map.",
+   "tr": "Bir şehir haritası düşünün. Şehirdeki her sokağın kağıtta kendine denk gelen bir yeri var; şehrin yarısı, haritanın da yarısıdır.",
+   "pad": 0.4
+  },
+  {
+   "id": "s10",
+   "scene": "idea",
+   "text": "Arduino has a function with exactly that name: map. You give it a number, the range it comes from, and the range you want, and it gives back the matching number.",
+   "sub": "Arduino has a function with exactly that name: map(). You give it a number, the range it comes from, and the range you want, and it gives back the matching number.",
+   "tr": "Arduino'da tam da bu adı taşıyan bir fonksiyon var: map, yani İngilizcede harita. Ona bir sayı, sayının geldiği aralığı ve istediğiniz aralığı verirsiniz; o da size denk gelen sayıyı geri verir."
+  },
+  {
+   "id": "s11",
+   "scene": "idea",
+   "text": "What actually happens: map is plain arithmetic. It works out how far along the first range your number is, and returns the same position in the second range.",
+   "sub": "What actually happens: map() is plain arithmetic. It works out how far along the first range your number is, and returns the same position in the second range.",
+   "tr": "Gerçekte olan şu: map sıradan bir hesaplama. Sayınızın ilk aralıkta ne kadar ilerde olduğunu bulur ve ikinci aralıkta aynı konumu döndürür."
+  },
+  {
+   "id": "s12",
+   "scene": "idea",
+   "text": "The difference from a paper map: a paper map can only shrink things. Map can also stretch a small range, or even flip one, so the top becomes the bottom.",
+   "sub": "The difference from a paper map: a paper map can only shrink things. map() can also stretch a small range, or even flip one, so the top becomes the bottom.",
+   "tr": "Kağıt haritadan farkı şu: kağıt harita her şeyi yalnızca küçültebilir. map ise küçük bir aralığı büyütebilir, hatta ters çevirebilir; tepe dibe döner.",
+   "pad": 0.4
+  },
+  {
+   "id": "s13",
+   "scene": "mapline",
+   "text": "Here's the line. First comes the number, the knob's value. Then where the knob's range starts and ends. Then where the brightness range starts and ends.",
+   "tr": "İşte o satır. Önce sayı geliyor, yani düğmenin değeri. Sonra düğme aralığının başı ve sonu. Sonra da parlaklık aralığının başı ve sonu."
+  },
+  {
+   "id": "s14",
+   "scene": "mapline",
+   "text": "Quick question: the knob reads about two thousand, roughly the middle. What brightness does map give back?",
+   "sub": "Quick question: the knob reads about 2000, roughly the middle. What brightness does map() give back?",
+   "tr": "Kısa bir soru: düğme yaklaşık iki bin okuyor, kabaca ortası. map hangi parlaklığı geri verir?",
+   "pad": 2.6
+  },
+  {
+   "id": "s15",
+   "scene": "mapline",
+   "text": "About one twenty-seven, the middle of the brightness range. In at the middle, out at the middle.",
+   "sub": "About 127, the middle of the brightness range. In at the middle, out at the middle.",
+   "tr": "Yaklaşık 127, parlaklık aralığının ortası. Ortadan girer, ortadan çıkar.",
+   "pad": 0.4
+  },
+  {
+   "id": "s16",
+   "scene": "tourdim",
+   "text": "Here's the whole sketch, map dimmer. It's last episode's dimmer with one change: the dividing line is now a map line.",
+   "sub": "Here's the whole sketch, map_dimmer. It's last episode's dimmer with one change: the dividing line is now a map() line.",
+   "tr": "Şimdi sketch'in tamamı: map_dimmer. Geçen bölümün dimmer'ı, tek bir farkla: bölme satırı artık bir map satırı."
+  },
+  {
+   "id": "s17",
+   "scene": "tourdim",
+   "text": "In the loop, analog read puts the knob's number into value. Then map turns value into brightness, and the last line sends brightness to the red LED.",
+   "sub": "In the loop, analogRead() puts the knob's number into value. Then map() turns value into brightness, and the last line sends brightness to the red LED.",
+   "tr": "loop'ta analogRead düğmenin sayısını value'ya koyuyor. Sonra map, value'yu brightness'a çeviriyor; son satır da brightness'ı kırmızı LED'e gönderiyor."
+  },
+  {
+   "id": "s18",
+   "scene": "tourdim",
+   "text": "Pause the video and predict: will the LED look any different from last episode's version, the one that divided by sixteen?",
+   "sub": "Pause the video and predict: will the LED look any different from last episode's version, the one that divided by 16?",
+   "tr": "Videoyu durdurun ve tahmin edin: LED, geçen bölümün 16'ya bölen sürümünden farklı görünecek mi?",
+   "pad": 3.0
+  },
+  {
+   "id": "s19",
+   "scene": "rundim",
+   "text": "No. It looks the same, smooth from dark to full. The difference is in the code: anyone can read this line and see both ranges.",
+   "tr": "Hayır. Aynı görünüyor; karanlıktan tam parlaklığa pürüzsüz. Fark kodda: bu satırı okuyan herkes iki aralığı da görüyor.",
+   "clip": "C2",
+   "pad": 3.0
+  },
+  {
+   "id": "s20",
+   "scene": "flip",
+   "text": "Now let's change one thing. Pause the video and predict: what happens if we swap the last two numbers, so the brightness range runs from two fifty-five down to zero?",
+   "sub": "Now let's change one thing. Pause the video and predict: what happens if we swap the last two numbers, so the brightness range runs from 255 down to 0?",
+   "tr": "Şimdi tek bir şey değiştirelim. Videoyu durdurun ve tahmin edin: son iki sayının yerini değiştirirsek, yani parlaklık aralığı 255'ten sıfıra inerse ne olur?",
+   "pad": 3.0
+  },
+  {
+   "id": "s21",
+   "scene": "flip",
+   "text": "The knob works backwards. Turned to the left, the LED is bright, and turned to the right, it goes dark. That's the flip I mentioned.",
+   "tr": "Düğme ters çalışır. Sola çevrilince LED parlak, sağa çevrilince karanlık. Bahsettiğim ters çevirme buydu.",
+   "pad": 0.4
+  },
+  {
+   "id": "s22",
+   "scene": "bar",
+   "text": "Next, the bar of lights. Think of the battery icon on your phone: the more charge, the more bars.",
+   "tr": "Sırada ışık çubuğu var. Telefonunuzdaki pil simgesini düşünün: şarj arttıkça çubuklar da artar."
+  },
+  {
+   "id": "s23",
+   "scene": "bar",
+   "text": "What actually happens: we turn the knob's number into a small level, from zero up to three. The level says how many LEDs are on, counting from green.",
+   "tr": "Gerçekte olan şu: düğmenin sayısını sıfırdan üçe kadar küçük bir seviyeye çeviriyoruz. Seviye, yeşilden başlayarak kaç LED'in yanacağını söylüyor."
+  },
+  {
+   "id": "s24",
+   "scene": "bar",
+   "text": "The difference from a phone: your phone hides many tiny steps behind each bar. Our bar has only four states, from empty to full.",
+   "tr": "Telefondan farkı şu: telefonunuz her çubuğun arkasında birçok küçük adım saklar. Bizim çubuğumuzun ise yalnızca dört hâli var: boştan doluya."
+  },
+  {
+   "id": "s25",
+   "scene": "wire",
+   "text": "Unplug the cable. The yellow LED goes to pin eighteen, and the green one to pin seventeen. Each one gets its own resistor, just like the red one.",
+   "sub": "Unplug the cable. The yellow LED goes to pin 18, and the green one to pin 17. Each one gets its own resistor, just like the red one.",
+   "tr": "Kabloyu çıkarın. Sarı LED 18. pine, yeşil LED de 17. pine gidiyor. Her biri, tıpkı kırmızı gibi, kendi direncini alıyor.",
+   "clip": "C1",
+   "pad": 3.0
+  },
+  {
+   "id": "s26",
+   "scene": "wire",
+   "text": "Long leg toward the pin, short leg toward the minus rail. Keep that in mind, because it comes back in a minute.",
+   "tr": "Uzun bacak pine doğru, kısa bacak eksi raya doğru. Bunu aklınızda tutun; birazdan geri gelecek."
+  },
+  {
+   "id": "s27",
+   "scene": "wire",
+   "text": "If the board gets crowded, move the knob higher up, and its wires simply move with it. If your power rails are split in the middle, keep the bridge wires.",
+   "tr": "Breadboard kalabalıklaşırsa düğmeyi biraz yukarı taşıyın; kabloları da onunla birlikte taşınır. Güç raylarınız ortada kesikse köprü kablolarını yerinde bırakın.",
+   "pad": 0.4
+  },
+  {
+   "id": "s28",
+   "scene": "level",
+   "text": "Now the level. The obvious line maps the knob's range onto zero to three.",
+   "tr": "Şimdi seviye. Akla ilk gelen satır, düğmenin aralığını sıfırdan üçe eşliyor."
+  },
+  {
+   "id": "s29",
+   "scene": "level",
+   "text": "Pause the video and predict: with this line, how often will you see all three LEDs on?",
+   "tr": "Videoyu durdurun ve tahmin edin: bu satırla üç LED'in birden yandığını ne sıklıkla görürsünüz?",
+   "pad": 3.0
+  },
+  {
+   "id": "s30",
+   "scene": "level",
+   "text": "Almost never. Map works with whole numbers, and it simply drops anything after the point. So two point nine becomes two.",
+   "sub": "Almost never. map() works with whole numbers, and it simply drops anything after the point. So 2.9 becomes 2.",
+   "tr": "Neredeyse hiç. map tam sayılarla çalışır ve virgülden sonrasını basitçe atar. Yani 2,9, iki olur."
+  },
+  {
+   "id": "s31",
+   "scene": "level",
+   "text": "Level three only comes at the very last mark of the ruler. And last episode, we saw that the ruler may never reach that mark.",
+   "tr": "Üçüncü seviye yalnızca cetvelin en son çizgisinde gelir. Geçen bölümde de cetvelin o çizgiye hiç ulaşmayabileceğini gördük."
+  },
+  {
+   "id": "s32",
+   "scene": "level",
+   "text": "The fix: ask for four levels, and pretend the ruler is one mark longer. The reading never gets to four, so it stops at three, and every level gets an equal slice of the knob.",
+   "tr": "Çözüm şu: dört seviye isteyin ve cetveli bir çizgi daha uzunmuş gibi düşünün. Okuma hiçbir zaman dörde varmaz, üçte kalır; böylece her seviye düğmeden eşit bir dilim alır.",
+   "pad": 0.4
+  },
+  {
+   "id": "s33",
+   "scene": "tourbar",
+   "text": "Here's the sketch, level bar. Setup makes three pins outputs. In the loop, we read the knob, and map gives us the level.",
+   "sub": "Here's the sketch, level_bar. setup() makes three pins outputs. In the loop, we read the knob, and map() gives us the level.",
+   "tr": "İşte sketch: level_bar. setup üç pini çıkış yapıyor. loop'ta düğmeyi okuyoruz ve map bize seviyeyi veriyor.",
+   "pad": 0.4
+  },
+  {
+   "id": "s34",
+   "scene": "tourbar",
+   "text": "Then come the stove marks from last time, if and else if. Level zero turns all three off. Level one lights only green, and level two adds yellow.",
+   "tr": "Sonra geçen seferki ocak işaretleri geliyor: if ve else if. Seviye sıfır üçünü de söndürüyor. Seviye bir yalnızca yeşili yakıyor, seviye iki de sarıyı ekliyor."
+  },
+  {
+   "id": "s35",
+   "scene": "tourbar",
+   "text": "If it's none of those, it must be three, so the last else lights everything.",
+   "tr": "Hiçbiri değilse üç olmak zorunda; bu yüzden son else hepsini yakıyor."
+  },
+  {
+   "id": "s36",
+   "scene": "tourbar",
+   "text": "Pause the video and predict: the knob is just past the middle. Which LEDs are on?",
+   "tr": "Videoyu durdurun ve tahmin edin: düğme ortanın biraz ilerisinde. Hangi LED'ler yanıyor?",
+   "pad": 3.0
+  },
+  {
+   "id": "s37",
+   "scene": "tourbar",
+   "text": "Green and yellow. Just past the middle is level two.",
+   "tr": "Yeşil ve sarı. Ortanın biraz ilerisi seviye ikidir."
+  },
+  {
+   "id": "s38",
+   "scene": "runbar",
+   "text": "Here it is for real. Turn slowly, and the bar fills one light at a time, then empties again.",
+   "tr": "İşte gerçeği. Yavaşça çevirin; çubuk her seferinde bir ışık doluyor, sonra yeniden boşalıyor.",
+   "clip": "C3",
+   "pad": 3.4
+  },
+  {
+   "id": "s39",
+   "scene": "mistake",
+   "text": "Now a mistake you might make. Green and red light up, but yellow stays dark. Quick question: is it the code, or the wiring?",
+   "tr": "Şimdi sizin de yapabileceğiniz bir hata. Yeşil ve kırmızı yanıyor ama sarı karanlık kalıyor. Kısa bir soru: kod mu, bağlantı mı?",
+   "clip": "C4",
+   "pad": 2.6
+  },
+  {
+   "id": "s40",
+   "scene": "mistake",
+   "text": "Take the temperature first. The Serial Monitor says level three, so the code wants yellow on. The problem is on the wiring side.",
+   "tr": "Önce ateşi ölçün. Seri Monitör seviye üç diyor; yani kod sarının yanmasını istiyor. Sorun bağlantı tarafında."
+  },
+  {
+   "id": "s41",
+   "scene": "mistake",
+   "text": "The yellow LED is in backwards. An LED lets current through only one way, from the long leg to the short leg.",
+   "tr": "Sarı LED ters takılmış. LED akımı yalnızca tek yönde geçirir: uzun bacaktan kısa bacağa."
+  },
+  {
+   "id": "s42",
+   "scene": "mistake",
+   "text": "Turned around, it simply stays dark, and nothing is damaged. Flip it, and the bar is complete.",
+   "tr": "Ters takılınca yalnızca karanlık kalır ve hiçbir şey zarar görmez. Çevirin, çubuk tamamlansın."
+  },
+  {
+   "id": "s43",
+   "scene": "explain",
+   "text": "Now pause the video, and explain in your own words why the first level line almost never lit all three LEDs. One sentence is enough.",
+   "tr": "Şimdi videoyu durdurun ve ilk seviye satırının neden üç LED'i neredeyse hiç birden yakmadığını kendi cümlenizle açıklayın. Tek cümle yeter.",
+   "pad": 4.0
+  },
+  {
+   "id": "s44",
+   "scene": "explain",
+   "text": "One way to say it: map rounds down, so the top level only came at the very end of the ruler, and the ruler rarely gets there.",
+   "sub": "One way to say it: map() rounds down, so the top level only came at the very end of the ruler, and the ruler rarely gets there.",
+   "tr": "Şöyle söylenebilir: map aşağı yuvarlar; bu yüzden en üst seviye yalnızca cetvelin en sonunda geliyordu, cetvel de oraya nadiren ulaşıyor.",
+   "pad": 0.4
+  },
+  {
+   "id": "s45",
+   "scene": "challenge",
+   "text": "Your turn: the Rotary Safe Lock. Map the knob onto zero to ninety-nine, and print the number, so the knob becomes the dial of a safe.",
+   "sub": "Your turn: the Rotary Safe Lock. Map the knob onto 0 to 99, and print the number, so the knob becomes the dial of a safe.",
+   "tr": "Sıra sizde: döner kasa kilidi. Düğmeyi sıfırdan 99'a eşleyin ve sayıyı yazdırın; böylece düğme bir kasanın çarkı olur."
+  },
+  {
+   "id": "s46",
+   "scene": "challenge",
+   "text": "The secret code is three numbers in a row, and you press the button after each one. The numbers are on the screen.",
+   "tr": "Gizli şifre art arda üç sayı; her birinden sonra butona basıyorsunuz. Sayılar ekranda."
+  },
+  {
+   "id": "s47",
+   "scene": "challenge",
+   "text": "Get all three right, and the color LED from episode six turns green. One wrong press flashes red, and you start again from the first number.",
+   "tr": "Üçünü de doğru girerseniz altıncı bölümdeki üç renkli LED yeşil yanar. Tek bir yanlış basış kırmızı yakıp söndürür ve ilk sayıdan yeniden başlarsınız."
+  },
+  {
+   "id": "s48",
+   "scene": "challenge",
+   "text": "The twist: a knob is never exact, so accept a few numbers on either side of each target. You'll need and, written as two ampersands, which means both checks must be true.",
+   "tr": "İşin püf noktası: düğme hiçbir zaman tam değildir; bu yüzden her hedefin iki yanındaki birkaç sayıyı da kabul edin. Bunun için 've' gerekecek; iki tane ve işaretiyle yazılır ve iki kontrolün de doğru olması demektir."
+  },
+  {
+   "id": "s49",
+   "scene": "challenge",
+   "text": "One hint: a single variable called step can remember how many numbers are already right.",
+   "tr": "Bir ipucu: step adında tek bir değişken, kaç sayının doğru girildiğini hatırlayabilir."
+  },
+  {
+   "id": "s50",
+   "scene": "outro",
+   "text": "Today you learned three things. Map turns a number from one range into another. It always rounds down, so plan your ranges. And an LED in backwards simply stays dark.",
+   "sub": "Today you learned three things. map() turns a number from one range into another. It always rounds down, so plan your ranges. And an LED in backwards simply stays dark.",
+   "tr": "Bugün üç şey öğrendiniz. map bir sayıyı bir aralıktan başka bir aralığa çevirir. Her zaman aşağı yuvarlar; aralıklarınızı ona göre seçin. Ters takılan bir LED de yalnızca karanlık kalır."
+  },
+  {
+   "id": "s51",
+   "scene": "outro",
+   "text": "Next time is our first mini project: a pedestrian crossing, with car lights, a walk light, a button and today's knob. Post your safe lock code in the comments; one solution is in the lesson folder. See you there!",
+   "tr": "Gelecek sefer ilk mini projemiz var: araba ışıkları, yaya ışığı, bir buton ve bugünkü düğmeyle bir yaya geçidi. Kasa kilidi kodunuzu yorumlara yazın; bir çözüm ders klasöründe. Görüşmek üzere!"
+  }
+ ]
+}

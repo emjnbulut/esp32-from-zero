@@ -17,7 +17,8 @@ const COL = { white: "var(--text)", amber: "var(--amber)", teal: "var(--teal)", 
 /* ---- pictures ---- */
 let gid = 0;
 function led(x, y, w, color = "red", lit = true) {
-  const col = color === "red" ? ["#ff8a8f", "#d4202c", "#b51d27", "rgba(255,70,70,.95)", "#ffe3e3"] : ["#8af5b0", "#1fae55", "#178a3a", "rgba(60,240,120,.9)", "#e3ffec"];
+  const col = color === "red" ? ["#ff8a8f", "#d4202c", "#b51d27", "rgba(255,70,70,.95)", "#ffe3e3"]
+    : color === "yellow" ? ["#fff09a", "#e8b800", "#b38f00", "rgba(255,220,60,.9)", "#fff8d8"] : ["#8af5b0", "#1fae55", "#178a3a", "rgba(60,240,120,.9)", "#e3ffec"];
   const id = "g" + gid++;
   if (lit) put(x - w * 1.1, y - w * 1.0, w * 3.2, w * 3.2, "", "", `border-radius:50%;background:radial-gradient(circle, ${col[3]} 0%, rgba(0,0,0,0) 62%)`);
   put(x, y, w, w * 230 / 120, `<svg width="${w}" viewBox="0 0 120 230"><defs><radialGradient id="${id}" cx=".4" cy=".35"><stop offset="0" stop-color="${col[0]}"/><stop offset="1" stop-color="${col[1]}"/></radialGradient></defs>
@@ -153,6 +154,19 @@ const V = {
     knob(860, 40, 270, 0.5);
     card(700, 370, 540, 120, `<div class="code" style="font-size:44px;text-align:center"><span class="fn">analogRead</span>(<span class="num">34</span>)</div>`);
     card(790, 520, 360, 110, `<div style="font:800 68px/110px var(--mono);text-align:center;color:var(--amber)">2048</div>`);
+  },
+  // Episode 8: map() and the level bar. A = the visible result (knob fills the bar), B = the one function.
+  ep08_A() {
+    title([["FILL", "white"], ["THE BAR", "amber"]], 150, 168);
+    knob(720, 200, 260, 0.85);
+    led(1010, 40, 110, "red"); led(1010, 230, 110, "yellow"); led(1010, 420, 110, "green");
+    pill(560, 620, "knob → 3 LEDs · map()", "rgba(25,195,180,.18)", "var(--teal)");
+  },
+  ep08_B() {
+    title([["MAP", "white"], ["ANY RANGE", "teal", "font-size:118px"]], 150, 150);
+    card(680, 150, 580, 130, `<div class="code" style="font-size:35px;text-align:center"><span class="fn">map</span>(v, <span class="num">0</span>, <span class="num">4095</span>, <span class="num">0</span>, <span class="num">255</span>)</div>`);
+    card(760, 330, 420, 110, `<div style="font:800 60px/110px var(--mono);text-align:center"><span style="color:var(--muted)">2048 →</span> <span style="color:var(--amber)">127</span></div>`);
+    knob(780, 470, 170, 0.5); led(1030, 460, 90, "red");
   },
   // channel trailer: the promise of the whole course
   trailer_A() {
