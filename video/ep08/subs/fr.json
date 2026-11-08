@@ -26,6 +26,7 @@
   "s23": "Ce qui se passe vraiment : on transforme le nombre du bouton en un petit niveau, de 0 à 3. Le niveau dit combien de LED sont allumées, en comptant à partir du vert.",
   "s24": "La différence avec un téléphone : ton téléphone cache beaucoup de petits pas derrière chaque barre. Notre barre n'a que quatre états, de vide à plein.",
   "s25": "Débranche le câble. La LED jaune va sur la broche 18, et la verte sur la broche 17. Chacune a sa propre résistance, comme la rouge.",
+  "s25b": "Attention au dernier : sur la plupart des cartes, la broche 17 est marquée TX2, pas D17.",
   "s26": "Patte longue vers la broche, patte courte vers le rail moins. Garde ça en tête, car ça revient dans une minute.",
   "s27": "Si la carte est encombrée, monte le bouton plus haut, et ses fils suivent simplement. Si tes rails d'alimentation sont coupés au milieu, garde les fils de pont.",
   "s28": "Maintenant le niveau. La ligne évidente fait correspondre la plage du bouton à 0 à 3.",

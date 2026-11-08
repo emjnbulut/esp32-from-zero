@@ -26,6 +26,7 @@
   "s23": "Was wirklich passiert: Wir machen aus der Zahl des Reglers einen kleinen Pegel von 0 bis 3. Der Pegel sagt, wie viele LEDs leuchten, von Grün aus gezählt.",
   "s24": "Der Unterschied zum Handy: Dein Handy versteckt hinter jedem Balken viele kleine Schritte. Unsere Leiste hat nur vier Zustände, von leer bis voll.",
   "s25": "Zieh das Kabel ab. Die gelbe LED kommt an Pin 18, die grüne an Pin 17. Jede bekommt ihren eigenen Widerstand, genau wie die rote.",
+  "s25b": "Vorsicht beim letzten: Auf den meisten Boards steht an Pin 17 TX2, nicht D17.",
   "s26": "Langes Bein zum Pin, kurzes Bein zur Minusschiene. Merk dir das, denn es kommt gleich wieder.",
   "s27": "Wenn es auf dem Board eng wird, setz den Regler weiter nach oben, und seine Kabel wandern einfach mit. Wenn deine Stromschienen in der Mitte getrennt sind, behalte die Brückenkabel.",
   "s28": "Jetzt der Pegel. Die naheliegende Zeile bildet den Bereich des Reglers auf 0 bis 3 ab.",

@@ -406,10 +406,10 @@ const ml = chapter("s13", "s16"); title(ml, "The map() line", "s13");
   const lb = [["the knob's number", "#ffb547", W("s13", "First")], ["knob: start, end", "#5aa9ff", W("s13", "knobs")], ["brightness: start, end", "#ff8a8f", W("s13", "brightness")]];
   lb.forEach(([s, col, t0], i) => { const p = pill(ml, [330, 760, 1260][i], 380, s, `font-size:30px;color:${col}`); show(p, t0); });
   const mid = (t) => (t < T("s14") ? sweep(t, T("s13"), 6) : 0.49);
-  const K = rangeBar(ml, 260, 520, 1400, "0", "4095", "#5aa9ff", "knob", mid); hidden(K.r); show(K.r, T("s14"));
-  const Bv = rangeBar(ml, 260, 720, 1400, "0", "255", "#ff8a8f", "brightness", mid); hidden(Bv.r); show(Bv.r, T("s15"));
-  const v = live(ml, 1480, 380, 330, "map() gives", (t) => (t < T("s15") ? "?" : "≈ 127")); css(v, { zIndex: 30 });
-  ask(ml, "QUICK QUESTION", "The knob reads about 2000. What brightness does map() give?", T("s14"), T("s15"), "About 127: in at the middle, out at the middle.", { y: 860, w: 1500, t1: S1("s15") });
+  const K = rangeBar(ml, 210, 490, 1150, "0", "4095", "#5aa9ff", "knob", mid); hidden(K.r); show(K.r, T("s14"));
+  const Bv = rangeBar(ml, 210, 670, 1150, "0", "255", "#ff8a8f", "brightness", mid); hidden(Bv.r); show(Bv.r, T("s15"));
+  const v = live(ml, 1440, 560, 380, "map() gives", (t) => (t < T("s15") ? "?" : "≈ 127")); css(v, { zIndex: 30 });
+  ask(ml, "QUICK QUESTION", "The knob reads about 2000. What brightness does map() give?", T("s14"), T("s15"), "About 127: in at the middle, out at the middle.", { y: 870, w: 1500, t1: S1("s15") });
   show(v, T("s14") + 0.3);
 }
 tour("map_dimmer", T("s16") - 0.4, T("s19") - 0.3, [
@@ -547,6 +547,14 @@ textAt(mh, [[0, ""], [T("s41") - 0.2, "An LED is a one-way street for current"]]
   d.insertAdjacentHTML("beforeend", '<div style="position:absolute;left:120px;top:470px;width:460px;font:700 36px/1.4 var(--ui);text-align:center">long leg &rarr; short leg<br><span style="color:#4ade80">current flows</span></div>' +
     '<div style="position:absolute;left:1040px;top:470px;width:460px;font:700 36px/1.4 var(--ui);text-align:center">turned around<br><span style="color:#ff8a8f">dark, nothing damaged</span></div>');
   const fx = pillC(mk, 900, "Flip it, and the bar is complete.", "font-size:40px;color:var(--teal)"); show(fx, W("s42", "Flip"));
+}
+{ // after the clip ends (it is shorter than s39 + s40): the same fault, drawn: level 3, yellow dark
+  const end = T("s39") + EP08_CLIP_SECONDS.C4 - 1 / 30;
+  if (end < T("s41") - 0.5) {
+    const g = box(mk, 380, 170, 300, 700, ""); hidden(g); show(g, end - 0.35); hide(g, T("s41") - 0.2, 0.25);
+    const L = barLeds(g, 100, 40, 110, 210); L.drive(() => 3, 1);
+    g.insertAdjacentHTML("beforeend", '<div style="position:absolute;left:-120px;top:660px;width:540px;font:700 34px var(--ui);text-align:center;color:#ffe3b8">yellow stays dark</div>');
+  }
 }
 hero("C4", T("s39"), T("s41") - 0.35, "Mistake: the yellow LED is in backwards, red and green light, yellow stays dark.", TALL);
 

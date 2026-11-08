@@ -26,6 +26,7 @@
   "s23": "Thực ra thì ta biến số của núm thành một mức nhỏ, từ 0 đến 3. Mức cho biết bao nhiêu LED đang sáng, đếm từ đèn xanh lá.",
   "s24": "Khác với điện thoại: điện thoại giấu nhiều bước nhỏ sau mỗi vạch. Dải của ta chỉ có bốn trạng thái, từ trống đến đầy.",
   "s25": "Rút cáp ra. LED vàng nối vào chân 18, và LED xanh lá nối vào chân 17. Mỗi cái có điện trở riêng, giống LED đỏ.",
+  "s25b": "Cẩn thận với chân cuối: trên hầu hết các bo mạch, chân 17 được in là TX2, không phải D17.",
   "s26": "Chân dài hướng về chân board, chân ngắn hướng về thanh nguồn âm. Nhớ điều này, vì nó sẽ quay lại ngay.",
   "s27": "Nếu bo mạch chật, hãy dời núm lên cao hơn, và dây của nó cứ thế dời theo. Nếu thanh nguồn bị chia đôi ở giữa, hãy giữ các dây cầu nối.",
   "s28": "Giờ đến mức. Dòng lệnh dễ thấy nhất ánh xạ dải của núm sang 0 đến 3.",

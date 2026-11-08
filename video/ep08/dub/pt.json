@@ -27,6 +27,7 @@
   "s23": "Na verdade, o número do seletor vira um nível, de zero a três. O nível diz quantos LEDs acendem, a partir do verde.",
   "s24": "A diferença do celular: ele esconde muitos passinhos em cada barra. A nossa tem só quatro estados, de vazia a cheia.",
   "s25": "Tire o cabo. O LED amarelo vai no pino dezoito e o verde no dezessete. Cada um com seu resistor, como o vermelho.",
+  "s25b": "Atenção: na maioria das placas, o pino dezessete aparece como TX dois, não D dezessete.",
   "s26": "Perna longa para o pino, perna curta para o trilho de menos. Guarde isso, já volta.",
   "s27": "Se apertar, suba o seletor, e os fios vão junto. Se os trilhos forem divididos no meio, mantenha as pontes.",
   "s28": "Agora o nível. A linha óbvia leva a faixa para zero a três.",

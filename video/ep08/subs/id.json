@@ -26,6 +26,7 @@
   "s23": "Yang sebenarnya terjadi: angka knob kita ubah menjadi level kecil, dari 0 sampai 3. Level menunjukkan berapa LED yang menyala, dihitung dari hijau.",
   "s24": "Bedanya dengan ponsel: ponselmu menyembunyikan banyak langkah kecil di balik tiap batang. Deretan kita hanya punya empat keadaan, dari kosong sampai penuh.",
   "s25": "Cabut kabelnya. LED kuning ke pin 18, dan yang hijau ke pin 17. Masing-masing punya resistor sendiri, seperti yang merah.",
+  "s25b": "Hati-hati dengan yang terakhir: di kebanyakan papan, pin 17 tertulis TX2, bukan D17.",
   "s26": "Kaki panjang menghadap pin, kaki pendek menghadap rel minus. Ingat ini, karena akan muncul lagi sebentar lagi.",
   "s27": "Kalau papan terlalu penuh, pindahkan knob lebih ke atas, dan kabelnya ikut pindah. Kalau rel dayamu terbelah di tengah, biarkan kabel jembatannya.",
   "s28": "Sekarang levelnya. Baris yang paling jelas memetakan rentang knob ke 0 sampai 3.",

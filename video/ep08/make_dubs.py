@@ -7,7 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).parent
 EXTRA = {  # s25b, added after the first narration (pin 17 is printed TX2)
     "hi": "ध्यान दें: ज़्यादातर boards पर pin सत्रह पर D सत्रह नहीं, TX दो लिखा होता है।",
-    "pt": "Atenção com o último: na maioria das placas, o pino dezessete aparece como TX dois, não D dezessete.",
+    "pt": "Atenção: na maioria das placas, o pino dezessete aparece como TX dois, não D dezessete.",
     "es": "Cuidado con el último: en casi todas las placas, el pin diecisiete dice TX dos, no D diecisiete.",
 }
 IDS = [s["id"] for s in json.loads((ROOT / "script.json").read_text(encoding="utf-8"))["segments"]]

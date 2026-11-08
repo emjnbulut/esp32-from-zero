@@ -195,6 +195,13 @@
    "pad": 3.0
   },
   {
+   "id": "s25b",
+   "scene": "wire",
+   "text": "Careful with that last one: on most boards, pin seventeen is printed as T X two, not D seventeen.",
+   "sub": "Careful with that last one: on most boards, pin 17 is printed as TX2, not D17.",
+   "tr": "Sonuncusuna dikkat: çoğu kartta 17. pinin üzerinde D17 değil, TX2 yazar."
+  },
+  {
    "id": "s26",
    "scene": "wire",
    "text": "Long leg toward the pin, short leg toward the minus rail. Keep that in mind, because it comes back in a minute.",

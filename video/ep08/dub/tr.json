@@ -28,6 +28,7 @@
   "s23": "Gerçekte olan şu: düğmenin sayısını sıfırdan üçe kadar küçük bir seviyeye çeviriyoruz. Seviye, yeşilden başlayarak kaç ledin yanacağını söylüyor.",
   "s24": "Telefondan farkı şu: telefonunuz her çubuğun arkasında birçok küçük adım saklar. Bizim çubuğumuzun ise yalnızca dört hâli var: boştan doluya.",
   "s25": "Kabloyu çıkarın. Sarı led on sekizinci pine, yeşil led de on yedinci pine gidiyor. Her biri, tıpkı kırmızı gibi, kendi direncini alıyor.",
+  "s25b": "Sonuncusuna dikkat: çoğu kartta on yedinci pinin üzerinde De on yedi değil, Te İks iki yazar.",
   "s26": "Uzun bacak pine doğru, kısa bacak eksi raya doğru. Bunu aklınızda tutun; birazdan geri gelecek.",
   "s27": "Breadbord kalabalıklaşırsa düğmeyi biraz yukarı taşıyın; kabloları da onunla birlikte taşınır. Güç raylarınız ortada kesikse köprü kablolarını yerinde bırakın.",
   "s28": "Şimdi seviye. Akla ilk gelen satır, düğmenin aralığını sıfırdan üçe eşliyor.",
