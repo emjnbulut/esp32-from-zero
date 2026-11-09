@@ -6,33 +6,33 @@ from pathlib import Path
 
 ROOT = Path(__file__).parent
 EXTRA = {  # s25b, added after the first narration (pin 17 is printed TX2)
-    "hi": "ध्यान दें: ज़्यादातर boards पर pin सत्रह पर D सत्रह नहीं, TX दो लिखा होता है।",
+    "hi": "ध्यान दें: ज़्यादातर boards पर pin सत्रह को TX दो लिखते हैं।",
     "pt": "Atenção: na maioria das placas, o pino dezessete aparece como TX dois, não D dezessete.",
-    "es": "Cuidado con el último: en casi todas las placas, el pin diecisiete dice TX dos, no D diecisiete.",
+    "es": "Cuidado: en casi todas, el pin diecisiete dice TX dos, no D diecisiete.",
 }
 IDS = [s["id"] for s in json.loads((ROOT / "script.json").read_text(encoding="utf-8"))["segments"]]
 
 HI = [
     # s01
-    "देखिए ये रोशनी की पट्टी। Knob घुमाता हूँ, और ये भरती है: हरी, फिर पीली, फिर लाल, volume meter जैसी।",
+    "देखिए ये रोशनी की पट्टी। Knob घुमाता हूँ, तो हरी, पीली, लाल भरती है।",
     # s02
-    "इस video के अंत तक आप एक function से संख्याओं का एक पैमाना दूसरे में बदलेंगे, और ये पट्टी खुद बनाएँगे।",
+    "इस video के अंत तक आप एक function से संख्याओं का पैमाना बदलेंगे, और ये पट्टी बनाएँगे।",
     # s03
     "पहले, पिछले episode से दो सवाल। छोटा सवाल: knob ठीक बीच में है। analogRead() लगभग कौन सी संख्या देगा?",
     # s04
-    "करीब दो हज़ार, पैमाने का आधा। पूरा पैमाना लगभग चार हज़ार तक जाता है।",
+    "करीब दो हज़ार, यानी आधा। पूरा चार हज़ार तक है।",
     # s05
     "छोटा सवाल: LED knob की सुनती ही नहीं। सबसे पहले क्या करेंगे?",
     # s06
-    "Value print करते हैं, जैसे डॉक्टर बुखार नापता है। संख्या बताती है circuit का कौन सा हिस्सा देखना है।",
+    "Value print करते हैं, जैसे डॉक्टर बुखार नापता है। संख्या बताती है कहाँ देखना है।",
     # s07
-    "पिछले episode का circuit चाहिए, knob और लाल LED के साथ। एक पीली LED, एक हरी LED, हर एक के लिए दो सौ बीस ओम का resistor, और कुछ wires जोड़िए।",
+    "पिछला circuit चाहिए, knob और लाल LED वाला। पीली और हरी LED, दो सौ बीस ओम के resistor, और wires जोड़िए।",
     # s08
-    "पिछली बार हमने knob के बड़े पैमाने को सोलह से भाग देकर LED के छोटे पैमाने में बिठाया। चला, पर code पढ़ने वाले को सोचना पड़ता है कि सोलह कहाँ से आया।",
+    "पिछली बार हमने knob का बड़ा पैमाना सोलह से भाग देकर LED में बिठाया। चला, पर पढ़ने वाले को सोलह समझना पड़ता है।",
     # s09
-    "शहर का नक्शा सोचिए। शहर की हर सड़क की कागज़ पर अपनी जगह है, और शहर के बीच का मतलब नक्शे का बीच।",
+    "नक्शा सोचिए। हर सड़क की कागज़ पर जगह है, शहर का बीच नक्शे का बीच।",
     # s10
-    "ठीक इसी नाम का एक function Arduino में है: map()। उसे संख्या दीजिए, जिस पैमाने से आई वो, और जो चाहिए वो, तो वो मिलती-जुलती संख्या लौटाता है।",
+    "ठीक इसी नाम का function है: map()। संख्या, उसका पैमाना और चाहिए वाला पैमाना दीजिए, मेल खाती संख्या मिलेगी।",
     # s11
     "असल में map() सीधा हिसाब है। वो देखता है आपकी संख्या पहले पैमाने में कितनी आगे है, और दूसरे पैमाने में वही जगह लौटाता है।",
     # s12
@@ -42,11 +42,11 @@ HI = [
     # s14
     "छोटा सवाल: knob लगभग दो हज़ार पढ़ता है, करीब बीच में। map() कितनी चमक लौटाएगा?",
     # s15
-    "करीब एक सौ सत्ताईस, चमक के पैमाने का बीच। बीच में अंदर, बीच में बाहर।",
+    "करीब एक सौ सत्ताईस, चमक का बीच। बीच में अंदर, बीच में बाहर।",
     # s16
-    "ये रहा पूरा sketch, map_dimmer। ये पिछला dimmer ही है, बस एक बदलाव: भाग वाली line अब map() वाली है।",
+    "ये रहा पूरा sketch, map_dimmer। पिछला dimmer ही है, बस भाग वाली line map() हो गई।",
     # s17
-    "Loop में analogRead() knob की संख्या value में रखता है। फिर map() उसे brightness बनाता है, और आख़िरी line उसे लाल LED को भेजती है।",
+    "Loop में analogRead() संख्या value में रखता है। map() उसे brightness बनाता है, फिर LED को जाती है।",
     # s18
     "Video रोकिए और अंदाज़ा लगाइए: क्या सोलह से भाग वाले पिछले version से LED अलग दिखेगी?",
     # s19
@@ -56,15 +56,15 @@ HI = [
     # s21
     "Knob उल्टा चलता है। बाएँ घुमाओ तो LED तेज़, दाएँ घुमाओ तो बुझ जाती है। यही वो उलटना था।",
     # s22
-    "अब रोशनी की पट्टी। फ़ोन का battery icon सोचिए: जितना charge, उतनी पट्टियाँ।",
+    "अब पट्टी। फ़ोन की battery सोचिए: जितना charge, उतनी पट्टी।",
     # s23
     "असल में हम knob की संख्या को छोटे level में बदलते हैं, शून्य से तीन तक। Level बताता है कितनी LED जलें, हरी से गिनकर।",
     # s24
-    "फ़ोन से फ़र्क: फ़ोन हर पट्टी के पीछे कई छोटे कदम छिपाता है। हमारी पट्टी के सिर्फ़ चार हाल हैं, खाली से भरी तक।",
+    "फ़ोन हर पट्टी के पीछे कई छोटे कदम छिपाता है। हमारी पट्टी में सिर्फ़ चार हाल हैं।",
     # s25
     "Cable निकालिए। पीली LED pin अठारह पर, और हरी pin सत्रह पर। हर एक का अपना resistor, लाल की तरह।",
     # s26
-    "लंबा पैर pin की तरफ़, छोटा पैर minus rail की तरफ़। ये याद रखिए, एक मिनट में काम आएगा।",
+    "लंबा पैर pin की तरफ़, छोटा minus rail की तरफ़। याद रखिए, काम आएगा।",
     # s27
     "भीड़ लगे तो knob को ऊपर सरका दीजिए, उसके wires साथ चले जाएँगे। Rails बीच से कटी हों, तो bridge wires रखिए।",
     # s28
@@ -72,39 +72,39 @@ HI = [
     # s29
     "Video रोकिए, अंदाज़ा लगाइए: इस line से तीनों LED कितनी बार एक साथ जलेंगी?",
     # s30
-    "लगभग कभी नहीं। map() पूरी संख्याओं पर चलता है, दशमलव के बाद का हिस्सा गिरा देता है। दो दशमलव नौ, दो बनता है।",
+    "लगभग कभी नहीं। map() पूरी संख्याओं पर चलता है, दशमलव गिरा देता है।",
     # s31
     "Level तीन पैमाने के आख़िरी निशान पर ही आता है। और पिछली बार देखा, पैमाना उस निशान तक शायद पहुँचे ही नहीं।",
     # s32
-    "हल: चार level माँगिए, और मान लीजिए पैमाना एक निशान लंबा है। Reading चार तक नहीं जाती, तीन पर रुकती है, और हर level को knob का बराबर टुकड़ा मिलता है।",
+    "हल: चार level माँगिए, पैमाना एक निशान लंबा मानिए। Reading तीन पर रुकती है, हर level को बराबर हिस्सा मिलता है।",
     # s33
     "ये sketch है, level_bar। setup() तीन pins को output बनाता है। Loop में knob पढ़कर map() से level लेते हैं।",
     # s34
     "फिर चूल्हे के निशान, if और else if। Level शून्य पर तीनों बंद। Level एक पर सिर्फ़ हरी, level दो पर पीली भी।",
     # s35
-    "इनमें से कोई नहीं, तो तीन होगा, इसलिए आख़िरी else सब जला देता है।",
+    "कोई नहीं, तो तीन। आख़िरी else सब जलाता है।",
     # s36
     "Video रोकिए, अंदाज़ा लगाइए: knob बीच से थोड़ा आगे है। कौन सी LED जलेंगी?",
     # s37
-    "हरी और पीली। बीच से थोड़ा आगे level दो है।",
+    "हरी और पीली, level दो।",
     # s38
-    "असली में देखिए। धीरे घुमाइए, पट्टी एक-एक रोशनी से भरती है, फिर खाली होती है।",
+    "देखिए। धीरे घुमाइए, पट्टी एक-एक करके भरती और खाली होती है।",
     # s39
     "अब एक ग़लती जो हो सकती है। हरी और लाल जलती हैं, पर पीली बुझी है। छोटा सवाल: ग़लती code में है या wiring में?",
     # s40
-    "पहले बुखार नापिए। Serial Monitor कहता है level तीन, यानी code पीली जलाना चाहता है। गड़बड़ी wiring की तरफ़ है।",
+    "पहले बुखार नापिए। Serial Monitor कहता है level तीन, यानी code पीली चाहता है। गड़बड़ी wiring में है।",
     # s41
     "पीली LED उल्टी लगी है। LED करंट सिर्फ़ एक तरफ़ जाने देती है, लंबे पैर से छोटे पैर की ओर।",
     # s42
-    "उल्टी हो तो बस बुझी रहती है, कुछ ख़राब नहीं होता। पलट दीजिए, पट्टी पूरी हो जाएगी।",
+    "उल्टी हो तो बस बुझी रहती है, कुछ ख़राब नहीं होता। पलटिए, पट्टी पूरी।",
     # s43
     "अब video रोकिए, और अपने शब्दों में बताइए कि पहली level वाली line तीनों LED लगभग कभी क्यों नहीं जलाती थी। एक वाक्य काफ़ी।",
     # s44
-    "एक तरीका: map() नीचे गोल करता है, इसलिए सबसे ऊँचा level पैमाने के आख़िर में ही आता था, जहाँ पैमाना कम पहुँचता है।",
+    "एक तरीका: map() नीचे गोल करता है, इसलिए ऊँचा level पैमाने के आख़िर में ही आता था।",
     # s45
-    "आपकी बारी: Rotary Safe Lock। Knob को शून्य से निन्यानवे पर बिठाइए और संख्या print कीजिए, knob तिजोरी का dial बन जाए।",
+    "आपकी बारी: Rotary Safe Lock। Knob को शून्य से निन्यानवे पर बिठाइए, संख्या print कीजिए।",
     # s46
-    "गुप्त code लगातार तीन संख्याएँ हैं, और हर एक के बाद button दबाते हैं। संख्याएँ screen पर दिखती हैं।",
+    "गुप्त code तीन संख्याएँ हैं, हर एक के बाद button दबाते हैं। संख्याएँ screen पर दिखती हैं।",
     # s47
     "तीनों सही हों तो episode छह वाली colour LED हरी हो जाती है। एक ग़लत दबाव पर लाल चमकती है, और पहली संख्या से फिर शुरू।",
     # s48
@@ -121,7 +121,7 @@ PT = [
     # s01
     "Olhe esta barra de luzes. Giro o seletor e ela enche: verde, amarela, vermelha, como um medidor.",
     # s02
-    "No fim deste vídeo, você muda uma faixa de números em outra com uma só função, e monta esta barra sozinho.",
+    "No fim, você converte faixas de números com uma função e monta esta barra.",
     # s03
     "Primeiro, duas perguntas do episódio passado. Pergunta rápida: seletor no meio. Que número analogRead() dá?",
     # s04
@@ -133,21 +133,21 @@ PT = [
     # s07
     "Use o circuito passado, com o seletor e o LED vermelho. Junte um LED amarelo, um verde, um resistor de duzentos e vinte ohms para cada.",
     # s08
-    "Da outra vez, encaixamos a escala grande do seletor na do LED, dividindo por dezesseis. Funcionou, mas quem lê o código precisa adivinhar esse dezesseis.",
+    "Antes, encaixamos a escala do seletor na do LED dividindo por dezesseis. Funcionou, mas ninguém entende esse dezesseis.",
     # s09
     "Pense num mapa da cidade. Cada rua tem seu lugar no papel, e o meio da cidade é o meio do mapa.",
     # s10
     "O Arduino tem uma função com esse nome: map(). Você dá um número, a faixa de origem e a faixa que quer, e ela devolve o número equivalente.",
     # s11
-    "Na verdade, map() é só conta. Ela vê quanto o número andou na primeira faixa e devolve a mesma posição na segunda.",
+    "Na real, map() é só conta: acha a posição do número na primeira faixa e repete na outra.",
     # s12
     "A diferença do mapa de papel: ele só encolhe. A map() também estica uma faixa pequena, ou inverte, e o topo vira o fundo.",
     # s13
-    "Aqui está a linha. Primeiro o número, o valor do seletor. Depois onde a faixa do seletor começa e termina. Depois a faixa do brilho.",
+    "Aqui a linha. Primeiro o número, o valor do seletor. Depois onde a faixa dele começa e termina. Depois a do brilho.",
     # s14
     "Pergunta rápida: o seletor lê uns dois mil, quase no meio. Que brilho a map() devolve?",
     # s15
-    "Uns cento e vinte e sete, o meio do brilho. Entra no meio, sai no meio.",
+    "Uns cento e vinte e sete, o meio. Meio entra, meio sai.",
     # s16
     "Aqui o sketch inteiro, map_dimmer. É o dimmer passado com uma mudança: a linha da divisão agora é map().",
     # s17
@@ -159,17 +159,17 @@ PT = [
     # s20
     "Agora mudamos uma coisa. Pause e preveja: se trocarmos os dois últimos números, e o brilho for de duzentos e cinquenta e cinco até zero?",
     # s21
-    "O seletor funciona ao contrário. À esquerda o LED fica forte, à direita apaga. Essa é a inversão que citei.",
+    "O seletor funciona ao contrário. À esquerda o LED fica forte, à direita apaga. É a inversão.",
     # s22
-    "Agora a barra de luzes. Pense no ícone de bateria do celular: mais carga, mais barras.",
+    "Agora a barra. Pense no ícone de bateria: mais carga, mais barras.",
     # s23
     "Na verdade, o número do seletor vira um nível, de zero a três. O nível diz quantos LEDs acendem, a partir do verde.",
     # s24
-    "A diferença do celular: ele esconde muitos passinhos em cada barra. A nossa tem só quatro estados, de vazia a cheia.",
+    "O celular esconde muitos passos em cada barra. A nossa tem só quatro estados.",
     # s25
     "Tire o cabo. O LED amarelo vai no pino dezoito e o verde no dezessete. Cada um com seu resistor, como o vermelho.",
     # s26
-    "Perna longa para o pino, perna curta para o trilho de menos. Guarde isso, já volta.",
+    "Perna longa para o pino, curta para o trilho de menos. Guarde isso.",
     # s27
     "Se apertar, suba o seletor, e os fios vão junto. Se os trilhos forem divididos no meio, mantenha as pontes.",
     # s28
@@ -177,17 +177,17 @@ PT = [
     # s29
     "Pause e preveja: com essa linha, quantas vezes os três LEDs acendem?",
     # s30
-    "Quase nunca. A map() usa números inteiros e corta o que vem depois da vírgula. Dois vírgula nove vira dois.",
+    "Quase nunca. map() usa inteiros e corta depois da vírgula. Dois vírgula nove vira dois.",
     # s31
     "O nível três só vem na última marca da régua. E vimos que a régua pode nem chegar nessa marca.",
     # s32
     "A solução: peça quatro níveis e finja que a régua tem uma marca a mais. A leitura nunca chega a quatro, para em três, e cada nível ganha uma fatia igual.",
     # s33
-    "Aqui o sketch, level_bar. O setup() põe três pinos como saída. No loop, lemos o seletor e a map() dá o nível.",
+    "Aqui o level_bar. O setup() põe três pinos como saída. No loop, lemos o seletor e a map() dá o nível.",
     # s34
     "Depois, as marcas do fogão, if e else if. Nível zero apaga tudo. Nível um acende o verde, e o dois soma o amarelo.",
     # s35
-    "Se não for nenhum, só pode ser três: o último else acende tudo.",
+    "Se não for nenhum, é três: o último else acende tudo.",
     # s36
     "Pause e preveja: o seletor passou um pouco do meio. Quais LEDs acendem?",
     # s37
@@ -197,7 +197,7 @@ PT = [
     # s39
     "Agora um erro possível. Verde e vermelho acendem, o amarelo não. Pergunta rápida: é o código ou a fiação?",
     # s40
-    "Meça a febre primeiro. O Serial Monitor diz nível três, então o código quer o amarelo. O problema é a fiação.",
+    "Meça a febre. O Serial Monitor diz nível três: o código quer amarelo. É a fiação.",
     # s41
     "O LED amarelo está ao contrário. Ele só deixa a corrente passar num sentido, da perna longa à curta.",
     # s42
@@ -207,9 +207,9 @@ PT = [
     # s44
     "Um jeito: a map() arredonda para baixo, então o nível máximo só vinha no fim da régua, e ela raramente chega lá.",
     # s45
-    "Sua vez: o Rotary Safe Lock. Leve o seletor a zero até noventa e nove e imprima o número: ele vira o disco de um cofre.",
+    "Sua vez: Rotary Safe Lock. Leve o seletor de zero a noventa e nove e imprima: é disco de cofre.",
     # s46
-    "O código são três números seguidos, e você aperta o botão após cada um. Os números aparecem na tela.",
+    "O código são três números. Aperte o botão após cada um.",
     # s47
     "Acertou os três, o LED colorido do episódio seis fica verde. Um erro pisca vermelho, e você volta ao primeiro número.",
     # s48
@@ -226,37 +226,37 @@ ES = [
     # s01
     "Mira esta barra de luces. Giro la perilla y se llena: verde, amarilla, roja, como un medidor.",
     # s02
-    "Al final de este video, conviertes un rango de números en otro con una sola función, y armas esta barra tú mismo.",
+    "Al final de este video, conviertes rangos de números con una función, y armas esta barra.",
     # s03
     "Primero, dos preguntas del episodio pasado. Pregunta rápida: perilla en el medio. ¿Qué número da analogRead()?",
     # s04
-    "Unos dos mil, la mitad de la regla. La regla entera llega a unos cuatro mil.",
+    "Dos mil, la mitad. La regla entera llega a cuatro mil.",
     # s05
     "Pregunta rápida: el LED ignora la perilla. ¿Qué es lo primero que haces?",
     # s06
     "Imprimes el valor, como el doctor que mide la fiebre. El número dice qué mitad del circuito revisar.",
     # s07
-    "Usa el circuito pasado, con la perilla y el LED rojo. Suma un LED amarillo, uno verde, una resistencia de doscientos veinte ohmios para cada uno.",
+    "Usa el circuito pasado, con perilla y LED rojo. Suma LED amarillo y verde, resistencias de doscientos veinte ohmios.",
     # s08
-    "La vez pasada ajustamos la escala grande de la perilla a la del LED, dividiendo entre dieciséis. Funcionó, pero quien lee el código debe adivinar ese dieciséis.",
+    "La vez pasada ajustamos la escala de la perilla a la del LED, dividiendo entre dieciséis. Funcionó, pero nadie entiende el dieciséis.",
     # s09
     "Piensa en un mapa de la ciudad. Cada calle tiene su lugar en el papel, y la mitad de la ciudad es la mitad del mapa.",
     # s10
     "Arduino tiene una función con ese nombre: map(). Le das un número, el rango de origen y el que quieres, y devuelve el número equivalente.",
     # s11
-    "En realidad, map() es pura aritmética. Calcula cuánto avanzó tu número en el primer rango y devuelve la misma posición en el segundo.",
+    "Realmente, map() es aritmética. Ve dónde está tu número en el primer rango y da esa posición en el otro.",
     # s12
-    "La diferencia con el mapa de papel: ese solo encoge. map() también estira un rango pequeño, o lo invierte, y lo de arriba queda abajo.",
+    "Un mapa de papel solo encoge. map() también estira un rango, o lo invierte, y arriba queda abajo.",
     # s13
-    "Esta es la línea. Primero el número, el valor de la perilla. Luego dónde empieza y termina el rango de la perilla. Luego el del brillo.",
+    "Esta es la línea. Primero el número, el valor de la perilla. Luego su rango y el brillo.",
     # s14
     "Pregunta rápida: la perilla lee unos dos mil, casi en el medio. ¿Qué brillo devuelve map()?",
     # s15
-    "Unos ciento veintisiete, el medio del brillo. Entra en el medio, sale en el medio.",
+    "Unos ciento veintisiete, el medio. Medio entra, medio sale.",
     # s16
-    "Aquí el sketch completo, map_dimmer. Es el dimmer pasado con un cambio: la división ahora es map().",
+    "Aquí map_dimmer. Es el dimmer pasado, pero con map() en vez de dividir.",
     # s17
-    "En el loop, analogRead() guarda el número de la perilla en value. map() lo vuelve brightness, y la última línea lo manda al LED rojo.",
+    "En el loop, analogRead() guarda la perilla en value. map() lo vuelve brightness, y se envía al LED.",
     # s18
     "Pausa el video y predice: ¿se verá distinto el LED que en la versión pasada, la que dividía entre dieciséis?",
     # s19
@@ -264,17 +264,17 @@ ES = [
     # s20
     "Ahora cambiamos algo. Pausa y predice: si cambiamos los dos últimos números, y el brillo va de doscientos cincuenta y cinco a cero, ¿qué pasa?",
     # s21
-    "La perilla funciona al revés. A la izquierda el LED brilla, a la derecha se apaga. Esa es la inversión que mencioné.",
+    "La perilla va al revés. A la izquierda brilla, a la derecha se apaga. Es la inversión.",
     # s22
-    "Ahora la barra de luces. Piensa en el ícono de batería del celular: más carga, más barras.",
+    "Ahora la barra de luces. Piensa en el ícono de batería: más carga, más barras.",
     # s23
     "En realidad, el número de la perilla se vuelve un nivel, de cero a tres. El nivel dice cuántos LEDs encienden, desde el verde.",
     # s24
-    "La diferencia con el celular: él esconde muchos pasitos en cada barra. La nuestra tiene solo cuatro estados.",
+    "El celular esconde muchos pasitos en cada barra. La nuestra tiene cuatro estados.",
     # s25
     "Desconecta el cable. El LED amarillo va al pin dieciocho y el verde al diecisiete. Cada uno con su resistencia, como el rojo.",
     # s26
-    "Pata larga hacia el pin, pata corta hacia el riel de menos. Recuérdalo, vuelve en un momento.",
+    "Pata larga hacia el pin, corta hacia el riel de menos. Recuérdalo.",
     # s27
     "Si se aprieta, sube la perilla, y sus cables suben con ella. Si tus rieles están partidos en el medio, deja los puentes.",
     # s28
@@ -282,49 +282,49 @@ ES = [
     # s29
     "Pausa y predice: con esta línea, ¿cuántas veces encienden los tres LEDs?",
     # s30
-    "Casi nunca. map() usa enteros y corta lo que viene tras el punto. Dos coma nueve se vuelve dos.",
+    "Casi nunca. map() usa enteros y corta los decimales. Dos coma nueve es dos.",
     # s31
-    "El nivel tres solo llega en la última marca de la regla. Y vimos que la regla quizá nunca llega a esa marca.",
+    "El nivel tres solo llega en la última marca de la regla, y la regla quizá nunca llega.",
     # s32
-    "La solución: pide cuatro niveles y finge que la regla tiene una marca más. La lectura nunca llega a cuatro, se queda en tres, y cada nivel recibe una porción igual.",
+    "La solución: pide cuatro niveles y finge que la regla tiene una marca más. La lectura se queda en tres, y cada nivel recibe una porción igual.",
     # s33
     "Aquí el sketch, level_bar. setup() pone tres pines de salida. En el loop leemos la perilla y map() da el nivel.",
     # s34
-    "Luego, las marcas de la estufa, if y else if. Nivel cero apaga todo. Nivel uno enciende el verde, y el dos suma el amarillo.",
+    "Luego, if y else if, como la estufa. Nivel cero apaga todo. Nivel uno enciende el verde, el dos suma amarillo.",
     # s35
-    "Si no es ninguno, tiene que ser tres: el último else enciende todo.",
+    "Si no es ninguno, es tres: el else enciende todo.",
     # s36
     "Pausa y predice: la perilla pasó un poco el medio. ¿Qué LEDs encienden?",
     # s37
     "Verde y amarillo. Pasó el medio: nivel dos.",
     # s38
-    "Ahora de verdad. Gira despacio, y la barra se llena una luz a la vez, y luego se vacía.",
+    "Ahora de verdad. Gira despacio: la barra se llena y se vacía luz a luz.",
     # s39
-    "Ahora un error posible. El verde y el rojo encienden, pero el amarillo no. Pregunta rápida: ¿es el código o el cableado?",
+    "Un error posible. Verde y rojo encienden, pero el amarillo no. Pregunta rápida: ¿es el código o el cableado?",
     # s40
-    "Mide la fiebre primero. El Serial Monitor dice nivel tres: el código quiere el amarillo. El problema es el cableado.",
+    "Mide la fiebre. El Serial Monitor dice nivel tres: el código quiere amarillo. Falla el cableado.",
     # s41
-    "El LED amarillo está al revés. Deja pasar la corriente en un solo sentido, de la pata larga a la corta.",
+    "El amarillo está al revés. La corriente va de la pata larga a la corta.",
     # s42
-    "Al revés solo queda apagado, sin dañarse. Dale la vuelta, y la barra queda completa.",
+    "Al revés queda apagado, sin daño. Dale la vuelta.",
     # s43
     "Ahora pausa y explica con tus palabras por qué la primera línea casi nunca encendía los tres LEDs. Una frase basta.",
     # s44
-    "Una forma: map() redondea hacia abajo, así que el nivel máximo solo venía al final de la regla, y casi nunca llega.",
+    "Una forma: map() redondea hacia abajo, así que el nivel máximo solo venía al final de la regla.",
     # s45
-    "Tu turno: la Rotary Safe Lock. Lleva la perilla de cero a noventa y nueve e imprime el número: será el disco de la caja fuerte.",
+    "Tu turno: Rotary Safe Lock. Lleva la perilla de cero a noventa y nueve e imprime: será disco de caja fuerte.",
     # s46
-    "El código son tres números seguidos, y presionas el botón tras cada uno. Los números salen en pantalla.",
+    "Son tres números seguidos. Presiona el botón tras cada uno.",
     # s47
-    "Si aciertas los tres, el LED de color del episodio seis se pone verde. Un error parpadea rojo, y vuelves al primer número.",
+    "Si aciertas los tres, el LED de color se pone verde. Un error parpadea rojo, y vuelves al primero.",
     # s48
     "El truco: la perilla nunca es exacta, así que acepta unos números a cada lado del objetivo. Usa el and, dos ampersands: ambas condiciones deben cumplirse.",
     # s49
     "Una pista: una variable llamada step recuerda cuántos números ya están bien.",
     # s50
-    "Hoy aprendiste tres cosas. map() lleva un número de un rango a otro. Siempre redondea hacia abajo, así que planea. Un LED al revés solo queda apagado.",
+    "Hoy aprendiste tres cosas. map() cambia un número de rango. Siempre redondea hacia abajo. Un LED al revés no enciende.",
     # s51
-    "Lo próximo: nuestro primer mini proyecto, un cruce peatonal, con luces de auto, luz de paso, botón y la perilla. Publica tu código de la caja fuerte en los comentarios; hay solución en la carpeta.",
+    "Próximo: mini proyecto, un cruce peatonal con luces y botón. Tu código de la caja fuerte, a los comentarios; hay solución en la carpeta.",
 ]
 
 TARGET = {"hi": 1.0, "pt": 1.0, "es": 1.0}
