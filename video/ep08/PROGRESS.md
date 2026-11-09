@@ -28,9 +28,10 @@ Release target: Friday 13 November 2026, 17:00 Turkey time. Shorts: TR 14 Nov 17
 
 ## RESUME HERE
 
-1. Short EN + TR (tools/short.py video/shorts/ep08 <lang>), check frames, under-10 MB copies.
-2. Listening samples in build/dinleme for the creator (TR first), incl. ep08_<lang>_dub_270-330.mp3 (pin TX2 part).
-3. Package YAYIN/ep08 (tools/deliver.py or as YAYIN/ep07), thumbnails ep08_A/B.
+- [x] Short EN 40.9 s / TR 43.5 s built, frames checked, under-10 MB copies; Short titles/descriptions in video/shorts/ep08/youtube.md (add the Episode 8 youtu.be link after upload).
+- [x] YAYIN/ep08 packaged (production_resume.py package ep08): video, 12 descriptions, 12 SRTs, 4 dubs + upload_10mb, thumbnails A/B, shorts/, dinleme/.
+
+1. Creator listens to YAYIN/ep08/dinleme (TR first: ep08_tr_yeni_terimler, ep08_tr_dub_270-330, ep08_short_tr_son = "Devreyi kurun" check; EN: ep08_en_isaretli).
 4. Upload: long video 13 Nov 17:00, TR Short 14 Nov 17:00, EN Short 15 Nov 22:00. API token expires about 11 Nov: run `publish.py auth` before the subtitles.
 
 ## Footage facts (checked in frames, 8 Nov)
