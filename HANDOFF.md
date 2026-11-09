@@ -1,3 +1,10 @@
+# Update - 9 November 2026 ~23:00 (read first)
+
+Episode 8 BUILT and packaged in YAYIN/ep08 (final 9:53 with bumpers, 4 dubs + upload_10mb, 12 subtitles, 12 descriptions, thumbnails A/B, Shorts EN/TR + upload_10mb, dinleme/). Dub fit: 85 HI/PT/ES lines shortened in two passes, timeline stretch 107 s -> 24.5 s. Waiting for the creator's listening approval (YAYIN/ep08/dinleme), then upload: long video 13 Nov 17:00, TR Short 14 Nov 17:00, EN Short 15 Nov 22:00 (Short texts: video/shorts/ep08/youtube.md, add the Episode 8 link). API token expires about 11 Nov: `publish.py auth` first.
+Done 9 Nov: Related video set on Episode 6 TR and EN Shorts. Studio opened on the personal channel: switch account to Pin by Pin Lab first.
+Still open: Episode 7 goes public 10 Nov 17:00 (confirm dubs, point the Episode 6 end screen at it); Related video on the Episode 7 Shorts after 11/12 Nov.
+tools/dub.py now saves its narration cache every 10 lines (an interrupted run resumes).
+
 # Update - 8 November 2026 ~22:50 (read first)
 
 Episode 8 "map(), Dimmer Knobs and Level Bars" (due Fri 13 Nov 17:00) is in production: script, scenes, clips (tall knob+LED crops in footage/ep08), translations, metadata, thumbnails, Short spec and EN/TR/HI/PT narration are done. The build chain was cut at the ES narration when the session closed. Resume from "RESUME HERE" in video/ep08/PROGRESS.md.
