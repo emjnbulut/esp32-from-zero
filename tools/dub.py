@@ -51,10 +51,13 @@ def narrate_chatterbox(dub: dict, out: Path, lang: str):
     cfg = cbx.settings(dub, lang)
     keys = {sid: cbx.key(cfg, text) for sid, text in dub["segments"].items()}
     todo = [sid for sid in keys if not (cache.get(sid, {}).get("key") == keys[sid] and (out / f"{sid}.mp3").exists())]
-    cbx.say(cfg, [(dub["segments"][sid], out / f"{sid}.mp3") for sid in todo])
-    for sid in todo:
-        cache[sid] = {"key": keys[sid], "duration": probe(out / f"{sid}.mp3")}
-    cache_p.write_text(json.dumps(cache, indent=1), encoding="utf-8")
+    # batches of 10, cache saved after each, so an interrupted run resumes instead of starting over
+    for i in range(0, len(todo), 10):
+        batch = todo[i:i + 10]
+        cbx.say(cfg, [(dub["segments"][sid], out / f"{sid}.mp3") for sid in batch])
+        for sid in batch:
+            cache[sid] = {"key": keys[sid], "duration": probe(out / f"{sid}.mp3")}
+        cache_p.write_text(json.dumps(cache, indent=1), encoding="utf-8")
     return cache
 
 

@@ -7,8 +7,8 @@ from pathlib import Path
 ROOT = Path(__file__).parent
 EXTRA = {  # s25b, added after the first narration (pin 17 is printed TX2)
     "hi": "ध्यान दें: ज़्यादातर boards पर pin सत्रह को TX दो लिखते हैं।",
-    "pt": "Atenção: na maioria das placas, o pino dezessete aparece como TX dois, não D dezessete.",
-    "es": "Cuidado: en casi todas, el pin diecisiete dice TX dos, no D diecisiete.",
+    "pt": "Atenção: na maioria das placas, o pino dezessete aparece como tê xis dois, não dê dezessete.",
+    "es": "Ojo: el pin diecisiete no dice de diecisiete, dice te equis dos.",
 }
 IDS = [s["id"] for s in json.loads((ROOT / "script.json").read_text(encoding="utf-8"))["segments"]]
 
@@ -28,9 +28,9 @@ HI = [
     # s07
     "पिछला circuit चाहिए, knob और लाल LED वाला। पीली और हरी LED, दो सौ बीस ओम के resistor, और wires जोड़िए।",
     # s08
-    "पिछली बार हमने knob का बड़ा पैमाना सोलह से भाग देकर LED में बिठाया। चला, पर पढ़ने वाले को सोलह समझना पड़ता है।",
+    "पिछली बार knob का बड़ा पैमाना सोलह से भाग देकर LED में बिठाया। चला, पर सोलह समझना पड़ता है।",
     # s09
-    "नक्शा सोचिए। हर सड़क की कागज़ पर जगह है, शहर का बीच नक्शे का बीच।",
+    "नक्शा सोचिए। शहर का बीच, कागज़ पर नक्शे का बीच।",
     # s10
     "ठीक इसी नाम का function है: map()। संख्या, उसका पैमाना और चाहिए वाला पैमाना दीजिए, मेल खाती संख्या मिलेगी।",
     # s11
@@ -46,7 +46,7 @@ HI = [
     # s16
     "ये रहा पूरा sketch, map_dimmer। पिछला dimmer ही है, बस भाग वाली line map() हो गई।",
     # s17
-    "Loop में analogRead() संख्या value में रखता है। map() उसे brightness बनाता है, फिर LED को जाती है।",
+    "Loop में analogRead() संख्या value में रखता है, map() उसे brightness बनाता है।",
     # s18
     "Video रोकिए और अंदाज़ा लगाइए: क्या सोलह से भाग वाले पिछले version से LED अलग दिखेगी?",
     # s19
@@ -72,7 +72,7 @@ HI = [
     # s29
     "Video रोकिए, अंदाज़ा लगाइए: इस line से तीनों LED कितनी बार एक साथ जलेंगी?",
     # s30
-    "लगभग कभी नहीं। map() पूरी संख्याओं पर चलता है, दशमलव गिरा देता है।",
+    "लगभग कभी नहीं। map() दशमलव का हिस्सा गिरा देता है।",
     # s31
     "Level तीन पैमाने के आख़िरी निशान पर ही आता है। और पिछली बार देखा, पैमाना उस निशान तक शायद पहुँचे ही नहीं।",
     # s32
@@ -104,7 +104,7 @@ HI = [
     # s45
     "आपकी बारी: Rotary Safe Lock। Knob को शून्य से निन्यानवे पर बिठाइए, संख्या print कीजिए।",
     # s46
-    "गुप्त code तीन संख्याएँ हैं, हर एक के बाद button दबाते हैं। संख्याएँ screen पर दिखती हैं।",
+    "गुप्त code तीन संख्याएँ हैं, हर एक के बाद button दबाइए।",
     # s47
     "तीनों सही हों तो episode छह वाली colour LED हरी हो जाती है। एक ग़लत दबाव पर लाल चमकती है, और पहली संख्या से फिर शुरू।",
     # s48
@@ -139,7 +139,7 @@ PT = [
     # s10
     "O Arduino tem uma função com esse nome: map(). Você dá um número, a faixa de origem e a faixa que quer, e ela devolve o número equivalente.",
     # s11
-    "Na real, map() é só conta: acha a posição do número na primeira faixa e repete na outra.",
+    "Na real, map() é conta: acha a posição numa faixa e repete na outra.",
     # s12
     "A diferença do mapa de papel: ele só encolhe. A map() também estica uma faixa pequena, ou inverte, e o topo vira o fundo.",
     # s13
@@ -183,7 +183,7 @@ PT = [
     # s32
     "A solução: peça quatro níveis e finja que a régua tem uma marca a mais. A leitura nunca chega a quatro, para em três, e cada nível ganha uma fatia igual.",
     # s33
-    "Aqui o level_bar. O setup() põe três pinos como saída. No loop, lemos o seletor e a map() dá o nível.",
+    "Este é o level_bar. O setup() faz três saídas. No loop, a map() dá o nível.",
     # s34
     "Depois, as marcas do fogão, if e else if. Nível zero apaga tudo. Nível um acende o verde, e o dois soma o amarelo.",
     # s35
@@ -226,7 +226,7 @@ ES = [
     # s01
     "Mira esta barra de luces. Giro la perilla y se llena: verde, amarilla, roja, como un medidor.",
     # s02
-    "Al final de este video, conviertes rangos de números con una función, y armas esta barra.",
+    "Al final, cambiarás rangos de números con una función, y harás esta barra.",
     # s03
     "Primero, dos preguntas del episodio pasado. Pregunta rápida: perilla en el medio. ¿Qué número da analogRead()?",
     # s04
@@ -252,7 +252,7 @@ ES = [
     # s14
     "Pregunta rápida: la perilla lee unos dos mil, casi en el medio. ¿Qué brillo devuelve map()?",
     # s15
-    "Unos ciento veintisiete, el medio. Medio entra, medio sale.",
+    "Unos ciento veintisiete: la mitad.",
     # s16
     "Aquí map_dimmer. Es el dimmer pasado, pero con map() en vez de dividir.",
     # s17
@@ -290,7 +290,7 @@ ES = [
     # s33
     "Aquí el sketch, level_bar. setup() pone tres pines de salida. En el loop leemos la perilla y map() da el nivel.",
     # s34
-    "Luego, if y else if, como la estufa. Nivel cero apaga todo. Nivel uno enciende el verde, el dos suma amarillo.",
+    "Luego, if y else if, como la estufa. Cero apaga todo, uno enciende el verde, dos suma amarillo.",
     # s35
     "Si no es ninguno, es tres: el else enciende todo.",
     # s36
@@ -302,7 +302,7 @@ ES = [
     # s39
     "Un error posible. Verde y rojo encienden, pero el amarillo no. Pregunta rápida: ¿es el código o el cableado?",
     # s40
-    "Mide la fiebre. El Serial Monitor dice nivel tres: el código quiere amarillo. Falla el cableado.",
+    "Mide la fiebre: el Serial Monitor dice nivel tres. Falla el cable.",
     # s41
     "El amarillo está al revés. La corriente va de la pata larga a la corta.",
     # s42
@@ -312,11 +312,11 @@ ES = [
     # s44
     "Una forma: map() redondea hacia abajo, así que el nivel máximo solo venía al final de la regla.",
     # s45
-    "Tu turno: Rotary Safe Lock. Lleva la perilla de cero a noventa y nueve e imprime: será disco de caja fuerte.",
+    "Tu turno: Rotary Safe Lock. La perilla va de cero a noventa y nueve, como una caja fuerte.",
     # s46
     "Son tres números seguidos. Presiona el botón tras cada uno.",
     # s47
-    "Si aciertas los tres, el LED de color se pone verde. Un error parpadea rojo, y vuelves al primero.",
+    "Si aciertas los tres, el LED se pone verde. Si fallas, parpadea rojo y empiezas.",
     # s48
     "El truco: la perilla nunca es exacta, así que acepta unos números a cada lado del objetivo. Usa el and, dos ampersands: ambas condiciones deben cumplirse.",
     # s49
