@@ -18,12 +18,20 @@ Release target: Friday 13 November 2026, 17:00 Turkey time. Shorts: TR 14 Nov 17
 - [x] Short spec video/shorts/ep08/short.json (puzzle: why does the top LED almost never light?). Crops NOT yet checked against final frames.
 - [x] Listening samples: build/dinleme/ep08_tr_yeni_terimler.mp3 (mep, levıl bar, TX2, ve işareti) and ep08_en_isaretli.mp3 (flagged EN lines s04, s15, s25b, s28). Creator has not listened yet.
 
+## State (9 November 2026, ~22:30)
+
+- [x] Dub fit: first schedule stretched +107 s (HI +44, ES +49, PT +11, TR alone +20). Two passes shortened 71 + 14 HI/PT/ES lines (commits 7c87451, 78a395f); ES/PT s25b spell "te equis dos" / "tê xis dois". Stretch now +24.5 s, mostly TR (accepted, TR is a priority track). Body 569.2 s, final with bumpers 592.7 s.
+- [x] Render, audio, compose (clips C0-C4 in place, checked in frames), dub_tr/hi/pt/es mp4 + m4a, 12 SRTs, localize (chapters from final schedule).
+- [x] Frames checked: one per segment (scratchpad sheets) + composed clip moments; nothing to fix.
+- dub.py "sped up more than 1.03" warnings on 10 lines are exactly 1.03x (the designed DUB_FIT ceiling), not real speed-ups.
+- Known: ES s25b, Whisper hears "de quiz dos" for "te equis dos"; on-screen says TX2.
+
 ## RESUME HERE
 
-1. `bash tools/rebuild_voices.sh ep08 >> video/ep08/build/rebuild.log 2>&1` (resumable; build/rebuild.done lists the finished steps). Remaining: narrate_es, retake_es, schedule, render, audio, compose, dub_tr/hi/pt/es, subs_dubtimed, localize. Run it with the session active (the idle memory reaper kills background jobs); the GPU ran at a low clock on 8 Nov, so expect ~40 min per dub language.
-2. Check frames from build/video.mp4 against the narration (one frame per segment), especially s25-s27 wiring, s39-s42 mistake, and the challenge cards.
-3. Short: `tools/production_resume.py` does not know ep08; build with tools/short.py (EN then TR), check crops in frames, make <10 MB copies.
-4. Creator listens to the samples (TR first), then package YAYIN/ep08 and upload: long video 13 Nov 17:00, TR Short 14 Nov 17:00, EN Short 15 Nov 22:00. API token expires about 11 Nov: run `publish.py auth` before the subtitles.
+1. Short EN + TR (tools/short.py video/shorts/ep08 <lang>), check frames, under-10 MB copies.
+2. Listening samples in build/dinleme for the creator (TR first), incl. ep08_<lang>_dub_270-330.mp3 (pin TX2 part).
+3. Package YAYIN/ep08 (tools/deliver.py or as YAYIN/ep07), thumbnails ep08_A/B.
+4. Upload: long video 13 Nov 17:00, TR Short 14 Nov 17:00, EN Short 15 Nov 22:00. API token expires about 11 Nov: run `publish.py auth` before the subtitles.
 
 ## Footage facts (checked in frames, 8 Nov)
 
