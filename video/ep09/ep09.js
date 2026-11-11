@@ -82,18 +82,19 @@ function crossingIcon(parent, x, y, s = 1) {
 }
 /** the four steps as a loop of boxes; fn(t) = sim state, the current step is lit */
 const STEPS = [["0", "cars green", "#36e07a"], ["1", "cars yellow", "#ffd23a"], ["2", "walker crosses", "#5aa9ff"], ["3", "walk light blinks", "#b48cff"]];
-function stepLoop(parent, x, y, w = 820, fn = null) {
-  const g = box(parent, x, y, w, 520, "");
-  const pos = [[0, 0], [w - 360, 0], [w - 360, 330], [0, 330]];
+function stepLoop(parent, x, y, w = 820, fn = null, o = {}) {
+  const bw = o.bw || 360, bh = o.bh || 170, gy = o.gy || 330, H = gy + bh;
+  const g = box(parent, x, y, w, H, "");
+  const pos = [[0, 0], [w - bw, 0], [w - bw, gy], [0, gy]];
   const els = STEPS.map(([n, lab, col], i) => {
-    const e = box(g, pos[i][0], pos[i][1], 360, 170, "stepbox", `<div class="n" style="color:${col}">${n}</div><div class="l">${lab}</div>`);
+    const e = box(g, pos[i][0], pos[i][1], bw, bh, "stepbox", `<div class="n" style="color:${col}">${n}</div><div class="l">${lab}</div>`);
     e.style.setProperty("--c", col);
     return e;
   });
-  const sv = svgEl(g, "svg", { width: w, height: 520, viewBox: `0 0 ${w} 520` }); css(sv, { position: "absolute", left: 0, top: 0, overflow: "visible", pointerEvents: "none" });
+  const sv = svgEl(g, "svg", { width: w, height: H, viewBox: `0 0 ${w} ${H}` }); css(sv, { position: "absolute", left: 0, top: 0, overflow: "visible", pointerEvents: "none" });
   const arr = (d) => { svgEl(sv, "path", { d, fill: "none", stroke: "#5f6f8f", "stroke-width": 6, "marker-end": "url(#ah9)" }); };
   svgEl(sv, "defs").innerHTML = '<marker id="ah9" markerWidth="10" markerHeight="10" refX="6" refY="5" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#5f6f8f"/></marker>';
-  arr(`M370 85 H${w - 375}`); arr(`M${w - 180} 180 V318`); arr(`M${w - 370} 415 H375`); arr("M180 320 V182");
+  arr(`M${bw + 10} ${bh / 2} H${w - bw - 16}`); arr(`M${w - bw / 2} ${bh + 10} V${gy - 14}`); arr(`M${w - bw - 10} ${gy + bh / 2} H${bw + 16}`); arr(`M${bw / 2} ${gy - 10} V${bh + 14}`);
   if (fn) dyn((t) => { const s = fn(t).state; els.forEach((e, i) => e.classList.toggle("on", i === s)); });
   return { g, els };
 }
@@ -203,10 +204,10 @@ const pl = chapter("s08", "s12"); title(pl, "The plan", "s08"); likeTop(T("s08")
   const cx = crossingIcon(pl, 160, 220, 1.15); hidden(cx.r); show(cx.r, T("s08")); cx.drive(demo); hide(cx.r, T("s10") - 0.2, 0.25);
   const t1 = tile(pl, 820, 210, 980, 240, '<div style="font:800 40px var(--display)">Car lights &rarr; the 3 LEDs</div><div style="font:700 34px/1.6 var(--ui);margin-top:14px;color:var(--muted)">Walk light &rarr; the color LED: <b style="color:#ff5d6c">red</b> wait, <b style="color:#36e07a">green</b> walk</div>', "var(--amber)");
   hidden(t1); show(t1, T("s08") + 0.4); hide(t1, T("s10") - 0.2, 0.25);
-  const t2 = tile(pl, 820, 480, 980, 300, '<div style="display:flex;gap:40px;align-items:center"><div style="width:170px;height:170px" class="bslot"></div><div style="font:700 34px/1.5 var(--ui)">Button &rarr; <b>request to cross</b><br>Knob &rarr; cars\' green: <b style="color:var(--amber)">3 &ndash; 10 s</b></div></div>', "var(--teal)");
+  const t2 = tile(pl, 820, 480, 980, 300, '<div style="padding-left:300px;padding-top:30px"><div style="font:700 34px/1.6 var(--ui)">Button &rarr; <b>request to cross</b><br>Knob &rarr; cars\' green: <b style="color:var(--amber)">3 &ndash; 10 s</b></div></div>', "var(--teal)");
   hidden(t2); show(t2, T("s09")); hide(t2, T("s10") - 0.2, 0.25);
-  const b = btnIcon(t2, 40, 40, 110); b.press([[T("s09") + 0.6, T("s09") + 1.1]]);
-  const k = knobIcon(t2, 160, 40, 120); k.drive((t) => sweep(t, T("s09"), 4));
+  const b = btnIcon(t2, 30, 90, 110); b.press([[T("s09") + 0.6, T("s09") + 1.1]]);
+  const k = knobIcon(t2, 150, 85, 120); k.drive((t) => sweep(t, T("s09"), 4));
   const pins = tile(pl, 260, 200, 1400, 560, '<div style="font:800 46px var(--display)">No new wire: everything is already on the board</div>' +
     '<div class="pins"><div><b style="color:#ff5d6c">car red</b> D23</div><div><b style="color:#ffd23a">car yellow</b> D18</div><div><b style="color:#36e07a">car green</b> TX2 (pin 17)</div>' +
     '<div><b style="color:#ff5d6c">walk red</b> D25</div><div><b style="color:#36e07a">walk green</b> D26</div><div><b style="color:var(--amber)">button</b> D22</div><div><b style="color:var(--amber)">knob</b> D34</div></div>', "var(--teal)");
@@ -284,8 +285,8 @@ textAt(sh, [[0, "Step 0: cars green"], [T("s28") - 0.2, "Your turn first: write 
     if (t < T("s31")) return { state: 2, blinkOn: true };
     return { state: 3, blinkOn: Math.floor((t - T("s31")) / 0.25) % 2 === 1 };
   };
-  const sl = stepLoop(stp, 1080, 210, 740, fake); hidden(sl.g); show(sl.g, T("s26"));
-  const cx = crossingIcon(stp, 1250, 650, 0.62); hidden(cx.r); show(cx.r, T("s26")); cx.drive((t) => (t >= T("s28") && t < T("s29") ? { state: 0, blinkOn: true } : fake(t)));
+  const sl = stepLoop(stp, 1080, 190, 780, fake, { bw: 330, bh: 150, gy: 250 }); hidden(sl.g); show(sl.g, T("s26"));
+  const cx = crossingIcon(stp, 1320, 690, 0.6); hidden(cx.r); show(cx.r, T("s26")); cx.drive((t) => (t >= T("s28") && t < T("s29") ? { state: 0, blinkOn: true } : fake(t)));
   const s0 = bigCode(stp, 90, 200, 940, "if (state == 0) {\n  lights(LOW, LOW, HIGH, HIGH, LOW);\n  if (request && inState >= greenTime) {\n    goTo(1, now);\n  }\n}", { size: 34 });
   show(s0.c, T("s26")); s0.hl([[W("s26", "green"), 1], [W("s26", "waiting"), 2], [W("s26", "step", 2), 3], [T("s27"), 2]]); hide(s0.c, T("s28") - 0.2, 0.25);
   const amp = pill(stp, 120, 640, "<b style=\"font-family:var(--mono)\">&amp;&amp;</b> = and: both checks must be true", "font-size:34px;color:var(--teal)"); show(amp, T("s27")); hide(amp, T("s28") - 0.2, 0.25);
@@ -311,15 +312,15 @@ const er = chapter("s32", "s34"); title(er, "Pressed right after the cars got gr
   svgEl(sv, "rect", { x: 0, y: 60, width: sx(G), height: 70, rx: 12, fill: "#36e07a" });
   svgEl(sv, "rect", { x: sx(G) + 4, y: 60, width: sx(2) - 4, height: 70, rx: 12, fill: "#ffd23a" });
   svgEl(sv, "rect", { x: sx(G + 2) + 4, y: 60, width: sx(3) - 4, height: 70, rx: 12, fill: "#ff4d5a" });
-  txt(sv, 20, 108, "cars green: the knob's time", { "font-size": 34, fill: "#0b1220" });
+  txt(sv, 70, 108, "cars green: the knob's time", { "font-size": 34, fill: "#0b1220" });
   txt(sv, sx(G) + 20, 108, "yellow", { "font-size": 34, fill: "#0b1220" });
   txt(sv, sx(G + 2) + 20, 108, "walk", { "font-size": 34, fill: "#0b1220" });
-  const pr = svgEl(sv, "path", { d: `M${sx(0.4)} 10 V180`, stroke: "#ffb547", "stroke-width": 6, "stroke-dasharray": "10 8" });
-  txt(sv, sx(0.4) - 6, 220, "press! (remembered)", { "font-size": 32, fill: "#ffb547" });
+  const pr = svgEl(sv, "path", { d: `M${sx(0.2)} 10 V180`, stroke: "#ffb547", "stroke-width": 6, "stroke-dasharray": "10 8" });
+  txt(sv, sx(0.2) - 6, 220, "press! (remembered)", { "font-size": 32, fill: "#ffb547" });
   const ptr = svgEl(sv, "path", { d: "M-16 0 H16 L0 34 Z", fill: "#ffffff" });
   dyn((t) => { const s = clamp((t - T("s33")) * 1.6, 0, 11); ptr.setAttribute("transform", `translate(${sx(s)} 20)`); });
   const rq = live(er, 260, 220, 520, "request", (t) => (t >= T("s32") + 1.2 ? "true" : "false"), "#ffb547"); show(rq, T("s32") + 0.8);
-  const cx = crossingIcon(er, 1300, 120, 0.72); hidden(cx.r); show(cx.r, T("s33"));
+  const cx = crossingIcon(er, 1330, 160, 0.66); hidden(cx.r); show(cx.r, T("s33"));
   cx.drive((t) => { const s = (t - T("s33")) * 1.6; return { state: s < G ? 0 : s < G + 2 ? 1 : 2, blinkOn: true }; });
   askTop(stage, "PAUSE AND PREDICT", "Cars just turned green, you press at once. Does the walker get green at once?", T("s32"), T("s33"), "No: the cars keep green until the knob's time is up.", { x: 210, y: 820, w: 1500, t1: T("s34") - 0.3 });
 }
@@ -395,14 +396,14 @@ hero("C1", T("s44"), T("s45") - 0.35, "press_time: a quick tap, then a one-secon
 const mk = chapter("s46", "s50"); const mh = title(mk, "", "s46");
 textAt(mh, [[0, "A mistake you might make"], [T("s48") - 0.2, "Yellow for a split second"], [T("s49") - 0.2, "goTo() does both jobs"]]);
 {
-  const bad = bigCode(mk, 110, 200, 900, "if (request && inState >= greenTime) {\n  state = 1;          // no new start time!\n}", { size: 36 });
+  const bad = bigCode(mk, 90, 200, 1130, "if (request && inState >= greenTime) {\n  state = 1;          // no new start time!\n}", { size: 36 });
   css(bad.c, { borderColor: "#ff5d6c" }); show(bad.c, T("s46")); bad.hl([[W("s46", "state"), 1, "rgba(255,93,108,.25)"]]); hide(bad.c, T("s49") - 0.2, 0.25);
-  const good = bigCode(mk, 110, 200, 900, "if (request && inState >= greenTime) {\n  goTo(1, now);       // new number + the time\n}", { size: 36 });
+  const good = bigCode(mk, 90, 200, 1130, "if (request && inState >= greenTime) {\n  goTo(1, now);       // new number + the time\n}", { size: 36 });
   css(good.c, { borderColor: "#4ade80" }); show(good.c, T("s49")); good.hl([[T("s49"), 1, "rgba(74,222,128,.2)"]]);
   const flashAt = T("s48") + 0.5;
   const wrong = sim({ t0: T("s48") - 6, press: flashAt - 0.01, green: 0, mistake: true, walk: 6 });
   const right = sim({ t0: T("s49") - 6, press: T("s49") + 0.6, green: 0, walk: 6 });
-  const cx = crossingIcon(mk, 1250, 190, 0.85); hidden(cx.r); show(cx.r, T("s47"));
+  const cx = crossingIcon(mk, 1380, 190, 0.85); hidden(cx.r); show(cx.r, T("s47"));
   cx.drive((t) => (t < T("s48") ? { state: 0, blinkOn: true } : t < T("s49") ? wrong(t) : right(t)));
   const st = live(mk, 160, 560, 400, "stateStart", (t) => (t < T("s49") ? "old" : "now"), "#5aa9ff"); show(st, T("s48"));
   const ins = live(mk, 600, 560, 420, "inState", (t) => (t < T("s48") ? "" : t < T("s49") ? "≫ 2000" : ms(Math.max(0, t - T("s49") - 0.6)).toLocaleString("en-US")), "#ffb547"); show(ins, W("s48", "subtraction") - 0.3);
