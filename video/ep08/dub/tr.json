@@ -36,7 +36,7 @@
   "s30": "Neredeyse hiç. Mep tam sayılarla çalışır ve virgülden sonrasını basitçe atar. Yani iki virgül dokuz, iki olur.",
   "s31": "Üçüncü seviye yalnızca cetvelin en son çizgisinde gelir. Geçen bölümde de cetvelin o çizgiye hiç ulaşmayabileceğini gördük.",
   "s32": "Çözüm şu: dört seviye isteyin ve cetveli bir çizgi daha uzunmuş gibi düşünün. Okuma hiçbir zaman dörde varmaz, üçte kalır; böylece her seviye düğmeden eşit bir dilim alır.",
-  "s33": "İşte skeç: levıl bar. Set ap üç pini çıkış yapıyor. Lupta düğmeyi okuyoruz ve mep bize seviyeyi veriyor.",
+  "s33": "İşte, skeç: levıl bar. Setap, üç pini çıkış yapıyor. Lupta düğmeyi okuyoruz ve mep bize seviyeyi veriyor.",
   "s34": "Sonra geçen seferki ocak işaretleri geliyor: if ve els if. Seviye sıfır üçünü de söndürüyor. Seviye bir yalnızca yeşili yakıyor, seviye iki de sarıyı ekliyor.",
   "s35": "Hiçbiri değilse üç olmak zorunda; bu yüzden son els hepsini yakıyor.",
   "s36": "Videoyu durdurun ve tahmin edin: düğme ortanın biraz ilerisinde. Hangi ledler yanıyor?",
