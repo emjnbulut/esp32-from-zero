@@ -1,3 +1,17 @@
+# Update - 11 November 2026 ~22:30 (read first)
+
+Episode 8 SCHEDULED on YouTube (creator approved the TR listening after a TR term-line fix):
+- Long video `1GYzg84mmAM` 13 Nov 17:00: title/description/chapters, playlist, not for kids, AI = No, paid = No, tags, English (US), Education, A/B thumbnail test A FILL THE BAR vs B MAP ANY RANGE (starts when public), end screen imported from Episode 7, 12 subtitles + 12 titles via publish.py (token renewed 11 Nov), 4 dubs (YAYIN/ep08/dublaj_sesleri/upload_10mb) uploaded and processing.
+- Shorts: TR `8EHI3o4kzm4` 14 Nov 17:00 (now with TURKISH on-screen text, new rule), EN `_wA8rWprwOg` 15 Nov 22:00; descriptions link Episode 8.
+- TR dub fix 11 Nov: s01 s10 s16 s25b s30 s33 s34 re-narrated (creator heard bad terms at 50-55 s / 65-70 s of the sample); s16/s30/s34 sped up 1.04-1.05 to fit.
+- Done 11 Nov: Episode 7 dubs confirmed; Episode 6 end screen -> Episode 7; Related video on Episode 7 TR Short.
+
+Still to do by hand:
+- After 12 Nov 22:00: Related video on Episode 7 EN Short `FBHKjGb1iJg`.
+- After 13 Nov 17:00: confirm the 4 Episode 8 dubs; point the Episode 7 end screen at Episode 8.
+- After 14 Nov 17:00 / 15 Nov 22:00: Related video on the Episode 8 TR / EN Shorts.
+- New rule (creator 11 Nov): TR-dub Shorts get Turkish on-screen text (short.json tr values for chip/headline/show/cta).
+
 # Update - 9 November 2026 ~23:00 (read first)
 
 Episode 8 BUILT and packaged in YAYIN/ep08 (final 9:53 with bumpers, 4 dubs + upload_10mb, 12 subtitles, 12 descriptions, thumbnails A/B, Shorts EN/TR + upload_10mb, dinleme/). Dub fit: 85 HI/PT/ES lines shortened in two passes, timeline stretch 107 s -> 24.5 s. Waiting for the creator's listening approval (YAYIN/ep08/dinleme), then upload: long video 13 Nov 17:00, TR Short 14 Nov 17:00, EN Short 15 Nov 22:00 (Short texts: video/shorts/ep08/youtube.md, add the Episode 8 link). API token expires about 11 Nov: `publish.py auth` first.
