@@ -1,0 +1,750 @@
+{
+ "hi": [
+  {
+   "id": "s02",
+   "text": "ये हमारा पहला mini project है। अंत तक आप ये पार पथ बनाएँगे, एक variable के साथ जो याद रखता है कि कौन सा कदम चल रहा है।",
+   "chars": 118,
+   "max_chars": 93,
+   "english": "This is our first mini project. By the end, you'll build this crossing yourself, with one variable that remembers which step we're in."
+  },
+  {
+   "id": "s03",
+   "text": "नए हैं? पहला episode स्क्रीन पर है। अब पिछले episodes से दो सवाल।",
+   "chars": 65,
+   "max_chars": 58,
+   "english": "New here? Episode one is on the screen. Now, two questions from earlier episodes."
+  },
+  {
+   "id": "s05",
+   "text": "क्योंकि map() नीचे गोल करता है। सबसे ऊँचा level पैमाने के आख़िरी निशान पर ही आता था।",
+   "chars": 84,
+   "max_chars": 69,
+   "english": "Because map rounds down. The top level only came at the very last mark of the ruler."
+  },
+  {
+   "id": "s06",
+   "text": "छोटा सवाल: delay से program को रोके बिना, board कैसे जाने कि दो सेकंड बीत गए?",
+   "chars": 77,
+   "max_chars": 67,
+   "english": "Quick question: how can the board tell that two seconds have passed, without freezing the program with delay?"
+  },
+  {
+   "id": "s07",
+   "text": "वो दीवार घड़ी, यानी millis() देखता है। याद रखे पल को अब से घटाता है, और देखता है कि फ़र्क दो हज़ार हुआ या नहीं।",
+   "chars": 111,
+   "max_chars": 84,
+   "english": "It glances at the wall clock, millis. It subtracts the moment it remembered from now, and checks whether the difference has reached two thousand."
+  },
+  {
+   "id": "s09",
+   "text": "Button पैदल यात्री का अनुरोध button है। और knob तय करता है कि गाड़ियों की हरी कितनी देर रहे, तीन से दस सेकंड।",
+   "chars": 109,
+   "max_chars": 89,
+   "english": "The button is the walker's request button. And the knob sets how long the cars keep their green, from three to ten seconds."
+  },
+  {
+   "id": "s12",
+   "text": "पहला विचार delay() की ज़ंजीर है: हरी, रुको, पीली, रुको, लाल, रुको।",
+   "chars": 66,
+   "max_chars": 48,
+   "english": "The first idea is a chain of delays: green, wait, yellow, wait, red, wait."
+  },
+  {
+   "id": "s13",
+   "text": "Video रोकिए, अंदाज़ा लगाइए: इस ज़ंजीर में, रुकने के दौरान button दबाने का क्या होगा?",
+   "chars": 84,
+   "max_chars": 56,
+   "english": "Pause the video and predict: with that chain, what happens to a button press while the program is waiting?"
+  },
+  {
+   "id": "s14",
+   "text": "वो खो जाता है। delay() में और कुछ नहीं चलता, तो button कोई नहीं देखता। रुके बिना इंतज़ार चाहिए।",
+   "chars": 95,
+   "max_chars": 80,
+   "english": "It's lost. During a delay, nothing else runs, so nobody looks at the button. We need a way to wait without stopping."
+  },
+  {
+   "id": "s16",
+   "text": "हमारे पार पथ में चार कदम हैं, शून्य से: गाड़ियों को हरी, पीली, पैदल यात्री पार करता है, और आख़िर में बत्ती टिमटिमाती है, जल्दी कीजिए।",
+   "chars": 133,
+   "max_chars": 117,
+   "english": "Our crossing has four steps, numbered from zero: cars green, cars yellow, the walker crosses, and finally the walk light blinks, so hurry up."
+  },
+  {
+   "id": "s19",
+   "text": "मशीन से फ़र्क: मशीन सचमुच अपना कदम करती है। हमारा loop कदम के अंदर इंतज़ार नहीं करता; वो सेकंड में हज़ारों बार संख्या देखकर फ़ैसला लेता है।",
+   "chars": 139,
+   "max_chars": 127,
+   "english": "The difference from a washing machine: the machine really does its step. Our loop doesn't wait inside a step; it just looks at the number thousands of times a second, and decides."
+  },
+  {
+   "id": "s20",
+   "text": "ये रहा sketch, crossing। ऊपर pins, फिर state जो शून्य से शुरू होता है, और मौजूदा कदम शुरू होने का समय।",
+   "chars": 102,
+   "max_chars": 70,
+   "english": "Here's the sketch, crossing. At the top, the pins, then state, which starts at zero, and the time the current step began."
+  },
+  {
+   "id": "s21",
+   "text": "दो छोटे सहायक कदम छोटे रखते हैं। lights() पाँचों बत्तियाँ एक बार में तय करता है, जैसे colour LED वाले episode का coffee machine button।",
+   "chars": 135,
+   "max_chars": 98,
+   "english": "Two small helpers keep the steps short. Lights sets all five lights in one call, like the coffee machine button from the color LED episode."
+  },
+  {
+   "id": "s22",
+   "text": "दूसरा goTo() आगे बढ़ने के दो काम करता है: state में नई संख्या रखता है, और समय लिख लेता है।",
+   "chars": 90,
+   "max_chars": 71,
+   "english": "The other one, go to, does the two jobs of moving on: it puts the new number into state, and it writes down the time."
+  },
+  {
+   "id": "s23b",
+   "text": "Video रोकिए, अंदाज़ा लगाइए: पैदल यात्री पहले से पार कर रहा है और आप button दबाते हैं। क्या वो दबाव गिना जाएगा?",
+   "chars": 110,
+   "max_chars": 68,
+   "english": "Pause the video and predict: you press the button while the walker is already crossing. Does that press count?"
+  },
+  {
+   "id": "s24",
+   "text": "दूसरा हिस्सा एक घटाव से शुरू होता है: अब, घटा कदम शुरू होने का पल। यही बताता है कि इस कदम में कितनी देर हुई।",
+   "chars": 108,
+   "max_chars": 97,
+   "english": "Part two starts with one subtraction: now, minus the moment the step began. That's how long we've been in this step."
+  },
+  {
+   "id": "s25",
+   "text": "फिर map() knob को हरी के समय में बदलता है, तीन से दस सेकंड। पिछले episode का function असली काम करता हुआ।",
+   "chars": 104,
+   "max_chars": 82,
+   "english": "Next, map turns the knob into the green time, from three to ten seconds. That's last episode's function, doing a real job."
+  },
+  {
+   "id": "s26",
+   "text": "कदम शून्य: गाड़ियों को हरी, पैदल बत्ती लाल। कोई इंतज़ार में हो और हरी काफ़ी देर रह चुकी हो, तो कदम एक पर जाते हैं।",
+   "chars": 114,
+   "max_chars": 71,
+   "english": "Step zero: cars green, walk light red. If somebody is waiting, and the green has lasted long enough, we go to step one."
+  },
+  {
+   "id": "s27",
+   "text": "दो ampersand वही and हैं, पिछले episode की चुनौती वाला: दोनों जाँचें सही होनी चाहिए।",
+   "chars": 84,
+   "max_chars": 63,
+   "english": "The two ampersands are the and from last episode's challenge: both checks must be true."
+  },
+  {
+   "id": "s29",
+   "text": "एक तरीका ये। पीली जलाइए, और दो सेकंड बीतते ही अनुरोध भूलकर कदम दो पर जाइए।",
+   "chars": 74,
+   "max_chars": 65,
+   "english": "Here's one way. Yellow on, and once two seconds have passed, we forget the request and go to step two."
+  },
+  {
+   "id": "s30",
+   "text": "कदम दो: गाड़ियों को लाल, और पैदल यात्री को चार सेकंड हरी।",
+   "chars": 57,
+   "max_chars": 50,
+   "english": "Step two: the cars get red, and the walker gets green for four seconds."
+  },
+  {
+   "id": "s32",
+   "text": "Video रोकिए, अंदाज़ा लगाइए: गाड़ियों को अभी हरी मिली है, और आप तुरंत button दबाते हैं। क्या पैदल यात्री को एकदम हरी मिलेगी?",
+   "chars": 123,
+   "max_chars": 88,
+   "english": "Pause the video and predict: the cars have just turned green, and you press the button right away. Does the walker get green at once?"
+  },
+  {
+   "id": "s34",
+   "text": "ये रहा असली। पूरा चक्कर देखिए, और पैदल बत्ती को लाल से हरी होते देखिए।",
+   "chars": 70,
+   "max_chars": 50,
+   "english": "Here it is for real. Watch the whole round, and notice the walk light switching from red to green."
+  },
+  {
+   "id": "s35",
+   "text": "पास से, आख़िरी दो सेकंड: पैदल बत्ती टिमटिमाकर कहती है जल्दी, और गाड़ियों को अब भी लाल है।",
+   "chars": 89,
+   "max_chars": 58,
+   "english": "Up close, the last two seconds: the walk light blinks to say hurry, and the cars are still red."
+  },
+  {
+   "id": "s36",
+   "text": "अब एक संख्या बदलिए। रुकिए और अंदाज़ा लगाइए: चार हज़ार की जगह आठ हज़ार हो, तो क्या बदलेगा?",
+   "chars": 89,
+   "max_chars": 73,
+   "english": "Now change one number. Pause and predict: if four thousand becomes eight thousand, what changes?"
+  },
+  {
+   "id": "s38",
+   "text": "Project में एक और तरकीब है: button कितनी देर दबा रहा, ये नापना। पार्किंग टिकट सोचिए।",
+   "chars": 84,
+   "max_chars": 47,
+   "english": "The project has one more trick: measuring how long the button was held. Think of a parking ticket."
+  },
+  {
+   "id": "s41",
+   "text": "टिकट से फ़र्क: कागज़ नहीं है। pressStart याददाश्त में सिर्फ़ एक संख्या है, और अगला दबाव उसे मिटाकर लिखता है।",
+   "chars": 108,
+   "max_chars": 99,
+   "english": "The difference from a ticket: there's no paper. Press start is just one number in memory, and the next press writes over it."
+  },
+  {
+   "id": "s42",
+   "text": "ये sketch है, press_time। Button दबे रहने तक पीली LED जलती है। छोड़ने पर Serial Monitor समय छापता है, और बताता है कि छोटा था या लंबा।",
+   "chars": 133,
+   "max_chars": 119,
+   "english": "Here's the sketch, press time. The yellow LED is on while you hold the button. When you let go, the Serial Monitor prints the time, and whether it was short or long."
+  },
+  {
+   "id": "s43",
+   "text": "चौथाई सेकंड से कम छोटा गिना जाता है। रुकिए, अंदाज़ा लगाइए: आप button को जितना तेज़ हो सके थपथपाते हैं। क्या छपेगा?",
+   "chars": 114,
+   "max_chars": 95,
+   "english": "Anything under a quarter of a second counts as short. Pause and predict: you tap the button as fast as you can. What will it print?"
+  },
+  {
+   "id": "s44",
+   "text": "करीब सौ मिलीसेकंड, और छोटा। एक सेकंड दबाए रखें, तो करीब हज़ार छपता है, और लंबा।",
+   "chars": 79,
+   "max_chars": 68,
+   "english": "Something like a hundred milliseconds, and short. Hold it for a second, and it prints about a thousand, and long."
+  },
+  {
+   "id": "s45",
+   "text": "ऐसे एक button दो काम करता है। आपका फ़ोन भी: थपथपाइए तो जागता है, देर तक दबाइए तो बंद होता है।",
+   "chars": 93,
+   "max_chars": 55,
+   "english": "That's how one button can do two jobs. Your phone does the same: a tap wakes it up, and a long press turns it off."
+  },
+  {
+   "id": "s48",
+   "text": "पीली पल भर चमककर बुझ जाती है। कदम का शुरुआती समय पुराना ही है, इसलिए घटाव कहता है कि दो सेकंड कब के बीत चुके।",
+   "chars": 109,
+   "max_chars": 89,
+   "english": "The yellow flashes for a split second, and it's gone. The step's start time is still the old one, so the subtraction says two seconds have long passed."
+  },
+  {
+   "id": "s49",
+   "text": "इसीलिए goTo() हमेशा दोनों काम साथ करता है। हर कदम बदलने पर उसी को इस्तेमाल कीजिए।",
+   "chars": 81,
+   "max_chars": 68,
+   "english": "That's why go to always does both jobs together. Use it for every change of step."
+  },
+  {
+   "id": "s51",
+   "text": "एक तरीका: हर कदम अपना समय अपनी शुरुआत से नापता है। तो नए कदम को नया समय चाहिए, वरना वो सोचता है कि समय पहले ही पूरा हो चुका।",
+   "chars": 124,
+   "max_chars": 92,
+   "english": "One way to say it: every step measures its time from the moment it began. So a new step needs a new start, or it thinks its time is already up."
+  },
+  {
+   "id": "s55",
+   "text": "अगली बार, इसी circuit पर: reflex game, ऐसे high score के साथ जो board निकालने पर भी बचा रहे। Comments में बताइए आपके पार पथ की हरी कितनी देर चलती है। फिर मिलते हैं!",
+   "chars": 164,
+   "max_chars": 145,
+   "english": "Next time, on the same circuit: a reflex game, with a high score that survives even when you unplug the board. Tell me in the comments how long your crossing's green lasts. See you there!"
+  }
+ ],
+ "pt": [
+  {
+   "id": "s03",
+   "text": "Novo aqui? O episódio um está na tela. Agora, duas perguntas dos anteriores.",
+   "chars": 76,
+   "max_chars": 62,
+   "english": "New here? Episode one is on the screen. Now, two questions from earlier episodes."
+  },
+  {
+   "id": "s05",
+   "text": "Porque o map() arredonda para baixo. O nível mais alto só vinha na última marca.",
+   "chars": 80,
+   "max_chars": 72,
+   "english": "Because map rounds down. The top level only came at the very last mark of the ruler."
+  },
+  {
+   "id": "s06",
+   "text": "Pergunta rápida: como a placa sabe que passaram dois segundos, sem travar o programa com delay?",
+   "chars": 95,
+   "max_chars": 83,
+   "english": "Quick question: how can the board tell that two seconds have passed, without freezing the program with delay?"
+  },
+  {
+   "id": "s07",
+   "text": "Ela olha o relógio de parede, o millis(). Subtrai o instante guardado do agora e vê se a diferença chegou a dois mil.",
+   "chars": 117,
+   "max_chars": 107,
+   "english": "It glances at the wall clock, millis. It subtracts the moment it remembered from now, and checks whether the difference has reached two thousand."
+  },
+  {
+   "id": "s09",
+   "text": "O botão é o pedido do pedestre. E o knob define quanto tempo o verde dos carros dura, de três a dez segundos.",
+   "chars": 109,
+   "max_chars": 97,
+   "english": "The button is the walker's request button. And the knob sets how long the cars keep their green, from three to ten seconds."
+  },
+  {
+   "id": "s10",
+   "text": "Boa notícia: não precisa de nenhum fio novo. Tudo já está na placa, dos episódios passados.",
+   "chars": 91,
+   "max_chars": 68,
+   "english": "Good news: you don't need a single new wire. Everything is already on the board from the earlier episodes."
+  },
+  {
+   "id": "s11",
+   "text": "Falta uma peça? Os pinos estão na tela, e a ligação completa está na pasta da lição.",
+   "chars": 84,
+   "max_chars": 75,
+   "english": "If you're missing a part, the pins are on the screen, and the full wiring is in the lesson folder."
+  },
+  {
+   "id": "s12",
+   "text": "Primeira ideia: delays em cadeia: verde, espera, amarelo, espera, vermelho, espera.",
+   "chars": 83,
+   "max_chars": 66,
+   "english": "The first idea is a chain of delays: green, wait, yellow, wait, red, wait."
+  },
+  {
+   "id": "s13",
+   "text": "Pause o vídeo e preveja: com essa corrente, o que acontece com um aperto de botão durante a espera?",
+   "chars": 99,
+   "max_chars": 80,
+   "english": "Pause the video and predict: with that chain, what happens to a button press while the program is waiting?"
+  },
+  {
+   "id": "s18",
+   "text": "Avançar é uma atribuição: ponha o próximo número em state e anote a hora. Esse instante é o começo do novo passo.",
+   "chars": 113,
+   "max_chars": 98,
+   "english": "Moving on is one assignment: put the next number into state, and write down the time. That moment is when the new step started."
+  },
+  {
+   "id": "s19",
+   "text": "A diferença da máquina: ela realmente faz sua etapa. Nosso loop não espera dentro de um passo; olha o número milhares de vezes por segundo e decide.",
+   "chars": 148,
+   "max_chars": 130,
+   "english": "The difference from a washing machine: the machine really does its step. Our loop doesn't wait inside a step; it just looks at the number thousands of times a second, and decides."
+  },
+  {
+   "id": "s20",
+   "text": "Este é o sketch crossing. No topo, os pinos, depois state, que começa em zero, e a hora em que o passo atual começou.",
+   "chars": 117,
+   "max_chars": 99,
+   "english": "Here's the sketch, crossing. At the top, the pins, then state, which starts at zero, and the time the current step began."
+  },
+  {
+   "id": "s21",
+   "text": "Dois ajudantes encurtam os passos. lights() acerta as cinco luzes numa chamada, como o botão da cafeteira do episódio do LED colorido.",
+   "chars": 134,
+   "max_chars": 124,
+   "english": "Two small helpers keep the steps short. Lights sets all five lights in one call, like the coffee machine button from the color LED episode."
+  },
+  {
+   "id": "s23",
+   "text": "No loop, a parte um é o botão, como no episódio quatro. Um aperto novo só conta com verde para os carros, e a placa lembra que alguém espera.",
+   "chars": 141,
+   "max_chars": 111,
+   "english": "In the loop, part one is the button, just like episode four. A new press only counts while the cars have green, and then the board remembers that somebody is waiting."
+  },
+  {
+   "id": "s23b",
+   "text": "Pause e preveja: você aperta o botão com o pedestre já atravessando. Esse aperto conta?",
+   "chars": 87,
+   "max_chars": 78,
+   "english": "Pause the video and predict: you press the button while the walker is already crossing. Does that press count?"
+  },
+  {
+   "id": "s24",
+   "text": "A parte dois começa com uma subtração: agora menos a hora em que o passo começou. É há quanto tempo estamos nele.",
+   "chars": 113,
+   "max_chars": 100,
+   "english": "Part two starts with one subtraction: now, minus the moment the step began. That's how long we've been in this step."
+  },
+  {
+   "id": "s25",
+   "text": "Depois, o map() vira o knob no tempo do verde, de três a dez segundos. A função passada, num trabalho de verdade.",
+   "chars": 113,
+   "max_chars": 102,
+   "english": "Next, map turns the knob into the green time, from three to ten seconds. That's last episode's function, doing a real job."
+  },
+  {
+   "id": "s26",
+   "text": "Passo zero: carros no verde, pedestre no vermelho. Se alguém espera e o verde durou bastante, vamos ao passo um.",
+   "chars": 112,
+   "max_chars": 85,
+   "english": "Step zero: cars green, walk light red. If somebody is waiting, and the green has lasted long enough, we go to step one."
+  },
+  {
+   "id": "s27",
+   "text": "Os dois e comerciais são o and do desafio passado: as duas condições devem valer.",
+   "chars": 81,
+   "max_chars": 68,
+   "english": "The two ampersands are the and from last episode's challenge: both checks must be true."
+  },
+  {
+   "id": "s31",
+   "text": "O passo três pisca a luz com o mesmo truque do relógio, a cada quarto de segundo. Após dois segundos, voltamos ao passo zero.",
+   "chars": 125,
+   "max_chars": 99,
+   "english": "Step three blinks the walk light with the same clock trick, flipping it every quarter second. After two seconds, we're back at step zero."
+  },
+  {
+   "id": "s33",
+   "text": "Não. O pedido fica guardado, mas os carros mantêm o verde até o tempo do knob acabar. Só então vem o amarelo.",
+   "chars": 109,
+   "max_chars": 96,
+   "english": "No. The press is remembered, but the cars keep their green until the knob's time is up. Only then does yellow come."
+  },
+  {
+   "id": "s34",
+   "text": "Aqui de verdade. Veja a rodada toda e note a luz do pedestre passando de vermelho a verde.",
+   "chars": 90,
+   "max_chars": 80,
+   "english": "Here it is for real. Watch the whole round, and notice the walk light switching from red to green."
+  },
+  {
+   "id": "s35",
+   "text": "De perto, os dois últimos segundos: a luz pisca, pressa, e os carros seguem no vermelho.",
+   "chars": 88,
+   "max_chars": 73,
+   "english": "Up close, the last two seconds: the walk light blinks to say hurry, and the cars are still red."
+  },
+  {
+   "id": "s36",
+   "text": "Agora mude um número. Pause e preveja: se quatro mil virar oito mil, o que muda?",
+   "chars": 80,
+   "max_chars": 62,
+   "english": "Now change one number. Pause and predict: if four thousand becomes eight thousand, what changes?"
+  },
+  {
+   "id": "s41",
+   "text": "A diferença do ticket: não há papel. pressStart é só um número na memória, e o próximo aperto escreve por cima.",
+   "chars": 111,
+   "max_chars": 88,
+   "english": "The difference from a ticket: there's no paper. Press start is just one number in memory, and the next press writes over it."
+  },
+  {
+   "id": "s42",
+   "text": "Este é o sketch press_time. O LED amarelo acende enquanto você segura. Ao soltar, o Serial Monitor imprime o tempo e se foi curto ou longo.",
+   "chars": 139,
+   "max_chars": 113,
+   "english": "Here's the sketch, press time. The yellow LED is on while you hold the button. When you let go, the Serial Monitor prints the time, and whether it was short or long."
+  },
+  {
+   "id": "s43",
+   "text": "Menos de um quarto de segundo é curto. Pause e preveja: você toca o botão o mais rápido possível. O que imprime?",
+   "chars": 112,
+   "max_chars": 97,
+   "english": "Anything under a quarter of a second counts as short. Pause and predict: you tap the button as fast as you can. What will it print?"
+  },
+  {
+   "id": "s45",
+   "text": "Assim um botão faz dois trabalhos. Seu celular também: um toque acorda, um aperto longo desliga.",
+   "chars": 96,
+   "max_chars": 86,
+   "english": "That's how one button can do two jobs. Your phone does the same: a tap wakes it up, and a long press turns it off."
+  },
+  {
+   "id": "s46",
+   "text": "Agora um erro possível. Alguém avança escrevendo só state igual a um, e esquece de anotar a hora.",
+   "chars": 97,
+   "max_chars": 69,
+   "english": "Now a mistake you might make. Someone moves on by just writing state equals one, and forgets to write down the time."
+  },
+  {
+   "id": "s47",
+   "text": "Pergunta rápida: o que a faixa faz então?",
+   "chars": 41,
+   "max_chars": 33,
+   "english": "Quick question: what does the crossing do then?"
+  },
+  {
+   "id": "s52",
+   "text": "Sua vez: modo pedestre lento. Se o botão ficar apertado mais de um segundo, a luz do pedestre fica verde o dobro.",
+   "chars": 113,
+   "max_chars": 95,
+   "english": "Your turn: a slow walker mode. If the request button is held for more than a second, the walk light stays green twice as long."
+  },
+  {
+   "id": "s53",
+   "text": "Você já sabe as duas peças: o ticket de estacionamento e um passo com tempo próprio. Uma solução está na pasta da lição.",
+   "chars": 120,
+   "max_chars": 99,
+   "english": "You already know both pieces: the parking ticket, and a step that keeps its own time. One solution is in the lesson folder."
+  },
+  {
+   "id": "s55",
+   "text": "Na próxima, no mesmo circuito: um jogo de reflexo, com recorde que sobrevive até se você desligar a placa. Diga nos comentários quanto dura o verde da sua faixa. Até lá!",
+   "chars": 169,
+   "max_chars": 141,
+   "english": "Next time, on the same circuit: a reflex game, with a high score that survives even when you unplug the board. Tell me in the comments how long your crossing's green lasts. See you there!"
+  }
+ ],
+ "es": [
+  {
+   "id": "s01",
+   "text": "Mira este cruce. Los autos tienen verde. Pulso el botón, la luz pasa a amarillo, luego rojo, y el peatón tiene verde.",
+   "chars": 117,
+   "max_chars": 77,
+   "english": "Watch this crossing. The cars have green. I press the button, the light turns yellow, then red, and now the walker gets green."
+  },
+  {
+   "id": "s03",
+   "text": "¿Eres nuevo? El episodio uno está en pantalla. Ahora, dos preguntas.",
+   "chars": 68,
+   "max_chars": 60,
+   "english": "New here? Episode one is on the screen. Now, two questions from earlier episodes."
+  },
+  {
+   "id": "s06",
+   "text": "Pregunta rápida: ¿cómo sabe la placa que pasaron dos segundos, sin congelar el programa con delay?",
+   "chars": 98,
+   "max_chars": 77,
+   "english": "Quick question: how can the board tell that two seconds have passed, without freezing the program with delay?"
+  },
+  {
+   "id": "s09",
+   "text": "El botón es el pedido del peatón. Y la perilla fija cuánto dura el verde de los autos, de tres a diez segundos.",
+   "chars": 111,
+   "max_chars": 93,
+   "english": "The button is the walker's request button. And the knob sets how long the cars keep their green, from three to ten seconds."
+  },
+  {
+   "id": "s10",
+   "text": "Buena noticia: no necesitas ningún cable nuevo. Todo ya está en la placa, de los episodios anteriores.",
+   "chars": 102,
+   "max_chars": 66,
+   "english": "Good news: you don't need a single new wire. Everything is already on the board from the earlier episodes."
+  },
+  {
+   "id": "s11",
+   "text": "¿Falta una pieza? Los pines están en pantalla; el cableado, en la carpeta.",
+   "chars": 74,
+   "max_chars": 57,
+   "english": "If you're missing a part, the pins are on the screen, and the full wiring is in the lesson folder."
+  },
+  {
+   "id": "s13",
+   "text": "Pausa el video y predice: con esa cadena, ¿qué pasa con un pulso del botón mientras el programa espera?",
+   "chars": 103,
+   "max_chars": 79,
+   "english": "Pause the video and predict: with that chain, what happens to a button press while the program is waiting?"
+  },
+  {
+   "id": "s14",
+   "text": "Se pierde. En un delay() nada más corre, y nadie mira el botón. Hay que esperar sin detenerse.",
+   "chars": 94,
+   "max_chars": 76,
+   "english": "It's lost. During a delay, nothing else runs, so nobody looks at the button. We need a way to wait without stopping."
+  },
+  {
+   "id": "s15",
+   "text": "Piensa en una lavadora. Pasa por pasos: lavar, enjuagar, centrifugar. Siempre sabe en qué paso está, y sigue cuando el tiempo se acaba.",
+   "chars": 135,
+   "max_chars": 99,
+   "english": "Think of a washing machine. It goes through steps: wash, rinse, spin. At any moment it knows exactly which step it's in, and it moves on when that step's time is up."
+  },
+  {
+   "id": "s17",
+   "text": "Realmente, el paso es solo un número entero en una variable llamada state. En cada vuelta del loop vemos ese número y corremos solo el código de ese paso.",
+   "chars": 154,
+   "max_chars": 130,
+   "english": "What actually happens: the step is just a whole number in a variable called state. Every round of the loop checks that number, and runs only the code of that step."
+  },
+  {
+   "id": "s18",
+   "text": "Avanzar es una asignación: pon el siguiente número en state y anota la hora. Ese momento es el inicio del nuevo paso.",
+   "chars": 117,
+   "max_chars": 101,
+   "english": "Moving on is one assignment: put the next number into state, and write down the time. That moment is when the new step started."
+  },
+  {
+   "id": "s19",
+   "text": "La diferencia con la lavadora: ella sí hace su paso. Nuestro loop no espera dentro de un paso; mira el número miles de veces por segundo y decide.",
+   "chars": 146,
+   "max_chars": 132,
+   "english": "The difference from a washing machine: the machine really does its step. Our loop doesn't wait inside a step; it just looks at the number thousands of times a second, and decides."
+  },
+  {
+   "id": "s20",
+   "text": "Este es el sketch crossing. Arriba, los pines, luego state, que empieza en cero, y la hora en que empezó el paso actual.",
+   "chars": 120,
+   "max_chars": 110,
+   "english": "Here's the sketch, crossing. At the top, the pins, then state, which starts at zero, and the time the current step began."
+  },
+  {
+   "id": "s22",
+   "text": "El otro, goTo(), hace los dos trabajos de avanzar: pone el número nuevo en state y anota la hora.",
+   "chars": 97,
+   "max_chars": 72,
+   "english": "The other one, go to, does the two jobs of moving on: it puts the new number into state, and it writes down the time."
+  },
+  {
+   "id": "s23",
+   "text": "En el loop, la parte uno es el botón, como en el episodio cuatro. Un pulso nuevo solo cuenta con verde para los autos, y la placa recuerda que alguien espera.",
+   "chars": 158,
+   "max_chars": 116,
+   "english": "In the loop, part one is the button, just like episode four. A new press only counts while the cars have green, and then the board remembers that somebody is waiting."
+  },
+  {
+   "id": "s23b",
+   "text": "Pausa y predice: pulsas el botón con el peatón ya cruzando. ¿Cuenta ese pulso?",
+   "chars": 78,
+   "max_chars": 71,
+   "english": "Pause the video and predict: you press the button while the walker is already crossing. Does that press count?"
+  },
+  {
+   "id": "s25",
+   "text": "Luego, map() vuelve la perilla el tiempo del verde, de tres a diez segundos. La función pasada, en un trabajo real.",
+   "chars": 115,
+   "max_chars": 103,
+   "english": "Next, map turns the knob into the green time, from three to ten seconds. That's last episode's function, doing a real job."
+  },
+  {
+   "id": "s26",
+   "text": "Paso cero: autos en verde, peatón en rojo. Si alguien espera y el verde duró suficiente, pasamos al paso uno.",
+   "chars": 109,
+   "max_chars": 85,
+   "english": "Step zero: cars green, walk light red. If somebody is waiting, and the green has lasted long enough, we go to step one."
+  },
+  {
+   "id": "s27",
+   "text": "Los dos ampersands son el and del reto pasado: ambas condiciones deben cumplirse.",
+   "chars": 81,
+   "max_chars": 59,
+   "english": "The two ampersands are the and from last episode's challenge: both checks must be true."
+  },
+  {
+   "id": "s29",
+   "text": "Una forma: amarillo encendido y, pasados dos segundos, olvidamos el pedido y vamos al paso dos.",
+   "chars": 95,
+   "max_chars": 80,
+   "english": "Here's one way. Yellow on, and once two seconds have passed, we forget the request and go to step two."
+  },
+  {
+   "id": "s31",
+   "text": "El paso tres parpadea la luz con el mismo truco del reloj, cada cuarto de segundo. Tras dos segundos, volvemos al paso cero.",
+   "chars": 124,
+   "max_chars": 105,
+   "english": "Step three blinks the walk light with the same clock trick, flipping it every quarter second. After two seconds, we're back at step zero."
+  },
+  {
+   "id": "s32",
+   "text": "Pausa y predice: los autos acaban de ponerse en verde y pulsas ya. ¿El peatón recibe verde al instante?",
+   "chars": 103,
+   "max_chars": 94,
+   "english": "Pause the video and predict: the cars have just turned green, and you press the button right away. Does the walker get green at once?"
+  },
+  {
+   "id": "s34",
+   "text": "Aquí de verdad. Mira la ronda completa y fíjate en la luz peatonal pasando de rojo a verde.",
+   "chars": 91,
+   "max_chars": 80,
+   "english": "Here it is for real. Watch the whole round, and notice the walk light switching from red to green."
+  },
+  {
+   "id": "s35",
+   "text": "De cerca, los dos últimos segundos: la luz parpadea, apúrate, y los autos siguen en rojo.",
+   "chars": 89,
+   "max_chars": 69,
+   "english": "Up close, the last two seconds: the walk light blinks to say hurry, and the cars are still red."
+  },
+  {
+   "id": "s39",
+   "text": "Al entrar, al ticket le estampan la hora. Al salir, la máquina resta esa hora al ahora, y pagas la diferencia.",
+   "chars": 110,
+   "max_chars": 97,
+   "english": "When you drive in, the ticket gets the time stamped on it. When you leave, the machine subtracts that time from now, and you pay for the difference."
+  },
+  {
+   "id": "s41",
+   "text": "La diferencia con el ticket: no hay papel. pressStart es solo un número en memoria, y el próximo pulso lo sobrescribe.",
+   "chars": 118,
+   "max_chars": 93,
+   "english": "The difference from a ticket: there's no paper. Press start is just one number in memory, and the next press writes over it."
+  },
+  {
+   "id": "s42",
+   "text": "Este es el sketch press_time. El LED amarillo está encendido mientras mantienes el botón. Al soltar, el Serial Monitor imprime el tiempo y si fue corto o largo.",
+   "chars": 160,
+   "max_chars": 129,
+   "english": "Here's the sketch, press time. The yellow LED is on while you hold the button. When you let go, the Serial Monitor prints the time, and whether it was short or long."
+  },
+  {
+   "id": "s43",
+   "text": "Menos de un cuarto de segundo es corto. Pausa y predice: tocas el botón lo más rápido posible. ¿Qué imprime?",
+   "chars": 108,
+   "max_chars": 98,
+   "english": "Anything under a quarter of a second counts as short. Pause and predict: you tap the button as fast as you can. What will it print?"
+  },
+  {
+   "id": "s45",
+   "text": "Así un botón hace dos trabajos. Tu celular también: un toque lo despierta, una pulsación larga lo apaga.",
+   "chars": 104,
+   "max_chars": 73,
+   "english": "That's how one button can do two jobs. Your phone does the same: a tap wakes it up, and a long press turns it off."
+  },
+  {
+   "id": "s46",
+   "text": "Ahora un error posible. Alguien avanza escribiendo solo state igual a uno, y olvida anotar la hora.",
+   "chars": 99,
+   "max_chars": 69,
+   "english": "Now a mistake you might make. Someone moves on by just writing state equals one, and forgets to write down the time."
+  },
+  {
+   "id": "s47",
+   "text": "Pregunta rápida: ¿qué hace entonces el cruce?",
+   "chars": 45,
+   "max_chars": 33,
+   "english": "Quick question: what does the crossing do then?"
+  },
+  {
+   "id": "s48",
+   "text": "El amarillo parpadea un instante y desaparece. La hora de inicio del paso es la vieja, y la resta dice que dos segundos pasaron hace rato.",
+   "chars": 138,
+   "max_chars": 109,
+   "english": "The yellow flashes for a split second, and it's gone. The step's start time is still the old one, so the subtraction says two seconds have long passed."
+  },
+  {
+   "id": "s49",
+   "text": "Una pista: una variable llamada step recuerda cuántos números van bien.",
+   "chars": 71,
+   "max_chars": 59,
+   "english": "That's why go to always does both jobs together. Use it for every change of step."
+  },
+  {
+   "id": "s50",
+   "text": "Pausa el video y explica con tus palabras por qué cada paso necesita su hora de inicio. Una frase basta.",
+   "chars": 104,
+   "max_chars": 91,
+   "english": "Pause the video, and explain in your own words why each step needs its own start time. One sentence is enough."
+  },
+  {
+   "id": "s51",
+   "text": "Una forma: cada paso mide su tiempo desde que empezó. Un paso nuevo necesita un inicio nuevo, o cree que su tiempo ya se acabó.",
+   "chars": 127,
+   "max_chars": 116,
+   "english": "One way to say it: every step measures its time from the moment it began. So a new step needs a new start, or it thinks its time is already up."
+  },
+  {
+   "id": "s52",
+   "text": "Tu turno: modo peatón lento. Si mantienes el botón más de un segundo, la luz peatonal queda en verde el doble.",
+   "chars": 110,
+   "max_chars": 95,
+   "english": "Your turn: a slow walker mode. If the request button is held for more than a second, the walk light stays green twice as long."
+  },
+  {
+   "id": "s53",
+   "text": "Ya conoces las dos piezas: el ticket de estacionamiento y un paso con su propio tiempo. Hay una solución en la carpeta.",
+   "chars": 119,
+   "max_chars": 88,
+   "english": "You already know both pieces: the parking ticket, and a step that keeps its own time. One solution is in the lesson folder."
+  },
+  {
+   "id": "s55",
+   "text": "La próxima, con el mismo circuito: un juego de reflejos, con un récord que sobrevive aunque desconectes la placa. Cuéntame en los comentarios cuánto dura el verde de tu cruce. ¡Nos vemos!",
+   "chars": 187,
+   "max_chars": 146,
+   "english": "Next time, on the same circuit: a reflex game, with a high score that survives even when you unplug the board. Tell me in the comments how long your crossing's green lasts. See you there!"
+  }
+ ]
+}

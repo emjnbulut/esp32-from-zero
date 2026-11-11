@@ -1,3 +1,8 @@
+# Update - 12 November 2026 ~01:00 (read first)
+
+Episode 9 (Mini Project 1, pedestrian crossing, due Tue 17 Nov 17:00) in production: sketches, script (57 segments, lint 0), scenes, translations, Short spec and ALL narration (EN/TR/HI/PT/ES) done. Next: dub fit (+115 s stretch, targets in video/ep09/fit_targets.json) and TR term retakes. Resume from "RESUME HERE" in video/ep09/PROGRESS.md. Creator clips C0-C2 due Sun 15 Nov.
+Still open from 11 Nov: Related video on the Episode 7 EN Short (after 12 Nov 22:00); after 13 Nov 17:00 Episode 8 dubs check + Episode 7 end screen -> Episode 8; Episode 8 Shorts Related video (14/15 Nov).
+
 # Update - 11 November 2026 ~22:30 (read first)
 
 Episode 8 SCHEDULED on YouTube (creator approved the TR listening after a TR term-line fix):
