@@ -1,0 +1,181 @@
+{
+ "episode": "ep09",
+ "engine": "chatterbox",
+ "source": "video/ep09/build/video.mp4",
+ "schedule": "video/ep09/build/schedule.json",
+ "note": "One puzzle: I pressed the button, why is the walk light still red? TR 18 Nov 2026 17:00; EN 19 Nov 22:00 Europe/Istanbul. TR Short: Turkish on-screen text (creator rule 2026-11-11). Footage crops (C0) to be set once footage/ep09 exists; check every crop against the final frames.",
+ "cta": {
+  "en": "Full lesson",
+  "tr": "Dersin tamamı",
+  "sub": {
+   "en": "linked: related video",
+   "tr": "bağlantı: ilgili video"
+  }
+ },
+ "segments": [
+  {
+   "id": "h0",
+   "chip": {
+    "en": "ESP32 CROSSING",
+    "tr": "ESP32 YAYA GEÇİDİ"
+   },
+   "headline": {
+    "en": "Is it broken?",
+    "tr": "Bozuk mu?"
+   },
+   "say": {
+    "en": "I press the button, but the walk light stays red. Is the crossing broken?",
+    "tr": "Butona basıyorum ama yaya ışığı kırmızı kalıyor. Geçit bozuk mu?"
+   },
+   "show": {
+    "en": "I press the button, but the walk light stays red. Is the crossing broken?",
+    "tr": "Butona basıyorum ama yaya ışığı kırmızı kalıyor. Geçit bozuk mu?"
+   },
+   "shots": [
+    {
+     "file": "footage/ep09/C0.mp4",
+     "src": 1.0,
+     "crop": [
+      0,
+      0,
+      1080,
+      1080
+     ]
+    }
+   ]
+  },
+  {
+   "id": "h1",
+   "chip": {
+    "en": "THE TRICK",
+    "tr": "HİLE"
+   },
+   "headline": {
+    "en": "One variable: state",
+    "tr": "Tek değişken: state"
+   },
+   "say": {
+    "en": "No. One variable remembers which step the crossing is in: cars green, yellow, walk, then a blink.",
+    "tr": "Hayır. Tek bir değişken geçidin hangi adımda olduğunu hatırlıyor: arabalara yeşil, sarı, yaya, sonra yanıp sönme."
+   },
+   "show": {
+    "en": "No. One variable remembers which step the crossing is in: cars green, yellow, walk, then a blink.",
+    "tr": "Hayır. Tek bir değişken geçidin hangi adımda olduğunu hatırlıyor: arabalara yeşil, sarı, yaya, sonra yanıp sönme."
+   },
+   "shots": [
+    {
+     "at": [
+      "s16",
+      null,
+      1.0
+     ],
+     "crop": [
+      120,
+      180,
+      1060,
+      740
+     ]
+    }
+   ]
+  },
+  {
+   "id": "h2",
+   "chip": {
+    "en": "THE ANSWER",
+    "tr": "CEVAP"
+   },
+   "headline": {
+    "en": "Fair to the cars",
+    "tr": "Arabalara da adil"
+   },
+   "say": {
+    "en": "Your press is remembered, but the cars keep their green until the knob's time is up.",
+    "tr": "Basışınız hatırlanıyor ama arabalar düğmenin süresi dolana kadar yeşilde kalıyor."
+   },
+   "show": {
+    "en": "Your press is remembered, but the cars keep their green until the knob's time is up.",
+    "tr": "Basışınız hatırlanıyor ama arabalar düğmenin süresi dolana kadar yeşilde kalıyor."
+   },
+   "shots": [
+    {
+     "at": [
+      "s33",
+      null,
+      0.5
+     ],
+     "crop": [
+      140,
+      200,
+      1780,
+      800
+     ]
+    }
+   ]
+  },
+  {
+   "id": "h3",
+   "chip": {
+    "en": "THE CODE",
+    "tr": "KOD"
+   },
+   "headline": {
+    "en": "No delay() at all",
+    "tr": "Hiç delay() yok"
+   },
+   "say": {
+    "en": "Every step checks its own clock with millis, so nothing ever has to wait.",
+    "tr": "Her adım kendi saatine milis ile bakıyor; böylece hiçbir şey beklemek zorunda kalmıyor."
+   },
+   "show": {
+    "en": "Every step checks its own clock with millis(), so nothing ever has to wait.",
+    "tr": "Her adım kendi saatine millis() ile bakıyor; böylece hiçbir şey beklemek zorunda kalmıyor."
+   },
+   "shots": [
+    {
+     "at": [
+      "s26",
+      null,
+      0.5
+     ],
+     "crop": [
+      80,
+      190,
+      1040,
+      720
+     ]
+    }
+   ]
+  },
+  {
+   "id": "h4",
+   "chip": {
+    "en": "YOUR TURN",
+    "tr": "SIRA SİZDE"
+   },
+   "headline": {
+    "en": "Build the crossing",
+    "tr": "Geçidi siz kurun"
+   },
+   "say": {
+    "en": "Build the whole crossing, step by step, in the linked lesson.",
+    "tr": "Geçidin tamamını bağlantıdaki derste adım adım kurun."
+   },
+   "show": {
+    "en": "Build the whole crossing, step by step, in the linked lesson.",
+    "tr": "Geçidin tamamını bağlantıdaki derste adım adım kurun."
+   },
+   "shots": [
+    {
+     "file": "footage/ep09/C0.mp4",
+     "src": 8.0,
+     "crop": [
+      0,
+      0,
+      1080,
+      1080
+     ]
+    }
+   ]
+  }
+ ]
+}

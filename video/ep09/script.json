@@ -1,0 +1,400 @@
+{
+ "episode": 9,
+ "title": "Mini Project 1: a Smart Pedestrian Crossing",
+ "voice": "en-US-EricNeural",
+ "rate": "+5%",
+ "lead_in": 0.8,
+ "sting_after": "s02",
+ "music": "results",
+ "clips": {
+  "C0": "OPENING + RUN: crossing, cars green, button pressed, a full round: yellow -> red + walk green -> walk blinks -> green.",
+  "C1": "PRESS_TIME: a short tap, then a ~1 s hold; the yellow LED is on while the button is held.",
+  "C2": "BLINK: close-up of the RGB walk light blinking in the last 2 s, car red on."
+ },
+ "segments": [
+  {
+   "id": "s01",
+   "scene": "cold",
+   "text": "Watch this crossing. The cars have green. I press the button, the light turns yellow, then red, and now the walker gets green.",
+   "tr": "Şu yaya geçidine bakın. Arabalara yeşil yanıyor. Butona basıyorum; ışık sarıya, sonra kırmızıya dönüyor ve şimdi yayaya yeşil yanıyor.",
+   "clip": "C0"
+  },
+  {
+   "id": "s02",
+   "scene": "cold",
+   "text": "This is our first mini project. By the end, you'll build this crossing yourself, with one variable that remembers which step we're in.",
+   "tr": "Bu bizim ilk mini projemiz. Sonunda bu geçidi kendiniz kuracaksınız; hangi adımda olduğumuzu hatırlayan tek bir değişkenle.",
+   "pad": 0.4
+  },
+  {
+   "id": "s03",
+   "scene": "retrieval",
+   "text": "New here? Episode one is on the screen. Now, two questions from earlier episodes.",
+   "tr": "Yeni misiniz? Birinci bölüm ekranda. Şimdi önceki bölümlerden iki soru."
+  },
+  {
+   "id": "s04",
+   "scene": "retrieval",
+   "text": "Quick question: last time, the obvious level line almost never lit all three LEDs. Why?",
+   "tr": "Kısa bir soru: geçen sefer akla ilk gelen seviye satırı üç LED'i neredeyse hiç birden yakmıyordu. Neden?",
+   "pad": 2.6
+  },
+  {
+   "id": "s05",
+   "scene": "retrieval",
+   "text": "Because map rounds down. The top level only came at the very last mark of the ruler.",
+   "sub": "Because map() rounds down. The top level only came at the very last mark of the ruler.",
+   "tr": "Çünkü map aşağı yuvarlar. En üst seviye yalnızca cetvelin en son çizgisinde geliyordu."
+  },
+  {
+   "id": "s06",
+   "scene": "retrieval",
+   "text": "Quick question: how can the board tell that two seconds have passed, without freezing the program with delay?",
+   "sub": "Quick question: how can the board tell that two seconds have passed, without freezing the program with delay()?",
+   "tr": "Kısa bir soru: kart, programı delay ile dondurmadan iki saniyenin geçtiğini nasıl anlar?",
+   "pad": 2.6
+  },
+  {
+   "id": "s07",
+   "scene": "retrieval",
+   "text": "It glances at the wall clock, millis. It subtracts the moment it remembered from now, and checks whether the difference has reached two thousand.",
+   "sub": "It glances at the wall clock, millis(). It subtracts the moment it remembered from now, and checks whether the difference has reached 2000.",
+   "tr": "Duvar saatine, yani millis'e göz atar. Hatırladığı anı şimdiki zamandan çıkarır ve farkın iki bine ulaşıp ulaşmadığına bakar.",
+   "pad": 0.4
+  },
+  {
+   "id": "s08",
+   "scene": "plan",
+   "text": "Here's the plan. Three LEDs are the car lights. The color LED is the walk light: red means wait, and green means walk.",
+   "tr": "Plan şu. Üç LED arabaların ışığı. Üç renkli LED de yaya ışığı: kırmızı bekle, yeşil geç demek."
+  },
+  {
+   "id": "s09",
+   "scene": "plan",
+   "text": "The button is the walker's request button. And the knob sets how long the cars keep their green, from three to ten seconds.",
+   "tr": "Buton, yayanın istek butonu. Düğme de arabaların yeşilinin ne kadar süreceğini ayarlıyor: üç ile on saniye arası."
+  },
+  {
+   "id": "s10",
+   "scene": "plan",
+   "text": "Good news: you don't need a single new wire. Everything is already on the board from the earlier episodes.",
+   "tr": "İyi haber: tek bir yeni kabloya gerek yok. Her şey önceki bölümlerden zaten breadboard'da."
+  },
+  {
+   "id": "s11",
+   "scene": "plan",
+   "text": "If you're missing a part, the pins are on the screen, and the full wiring is in the lesson folder.",
+   "tr": "Eksik parçanız varsa pinler ekranda; bağlantının tamamı ders klasöründe.",
+   "pad": 0.4
+  },
+  {
+   "id": "s12",
+   "scene": "delay",
+   "text": "The first idea is a chain of delays: green, wait, yellow, wait, red, wait.",
+   "sub": "The first idea is a chain of delay() calls: green, wait, yellow, wait, red, wait.",
+   "tr": "Akla gelen ilk fikir bir delay zinciri: yeşil, bekle, sarı, bekle, kırmızı, bekle."
+  },
+  {
+   "id": "s13",
+   "scene": "delay",
+   "text": "Pause the video and predict: with that chain, what happens to a button press while the program is waiting?",
+   "tr": "Videoyu durdurun ve tahmin edin: bu zincirde program beklerken butona basılırsa ne olur?",
+   "pad": 3.0
+  },
+  {
+   "id": "s14",
+   "scene": "delay",
+   "text": "It's lost. During a delay, nothing else runs, so nobody looks at the button. We need a way to wait without stopping.",
+   "sub": "It's lost. During a delay(), nothing else runs, so nobody looks at the button. We need a way to wait without stopping.",
+   "tr": "Kaybolur. delay sırasında başka hiçbir satır çalışmaz; butona bakan kimse yok. Durmadan beklemenin bir yolu lazım.",
+   "pad": 0.4
+  },
+  {
+   "id": "s15",
+   "scene": "idea",
+   "text": "Think of a washing machine. It goes through steps: wash, rinse, spin. At any moment it knows exactly which step it's in, and it moves on when that step's time is up.",
+   "tr": "Bir çamaşır makinesi düşünün. Adım adım ilerler: yıkama, durulama, sıkma. Her an hangi adımda olduğunu bilir ve o adımın süresi dolunca bir sonrakine geçer."
+  },
+  {
+   "id": "s16",
+   "scene": "idea",
+   "text": "Our crossing has four steps, numbered from zero: cars green, cars yellow, the walker crosses, and finally the walk light blinks, so hurry up.",
+   "tr": "Bizim geçidimizin sıfırdan başlayarak numaralanmış dört adımı var: arabalara yeşil, arabalara sarı, yaya geçiyor ve son olarak yaya ışığı yanıp sönüyor; yani acele edin.",
+   "pad": 0.4
+  },
+  {
+   "id": "s17",
+   "scene": "idea",
+   "text": "What actually happens: the step is just a whole number in a variable called state. Every round of the loop checks that number, and runs only the code of that step.",
+   "tr": "Gerçekte olan şu: adım, state adlı bir değişkende duran bir tam sayıdan ibaret. loop her turda bu sayıya bakar ve yalnızca o adımın kodunu çalıştırır."
+  },
+  {
+   "id": "s18",
+   "scene": "idea",
+   "text": "Moving on is one assignment: put the next number into state, and write down the time. That moment is when the new step started.",
+   "tr": "Bir sonraki adıma geçmek tek bir atama: state'e yeni sayıyı koyun ve saati not edin. O an, yeni adımın başladığı andır."
+  },
+  {
+   "id": "s19",
+   "scene": "idea",
+   "text": "The difference from a washing machine: the machine really does its step. Our loop doesn't wait inside a step; it just looks at the number thousands of times a second, and decides.",
+   "tr": "Çamaşır makinesinden farkı şu: makine o adımı gerçekten yapar. Bizim loop'umuz bir adımın içinde beklemez; sayıya saniyede binlerce kez bakar ve karar verir.",
+   "pad": 0.4
+  },
+  {
+   "id": "s20",
+   "scene": "tour",
+   "text": "Here's the sketch, crossing. At the top, the pins, then state, which starts at zero, and the time the current step began.",
+   "tr": "İşte sketch: crossing. En üstte pinler, sonra sıfırdan başlayan state ve şu anki adımın başladığı zaman."
+  },
+  {
+   "id": "s21",
+   "scene": "tour",
+   "text": "Two small helpers keep the steps short. Lights sets all five lights in one call, like the coffee machine button from the color LED episode.",
+   "sub": "Two small helpers keep the steps short. lights() sets all five lights in one call, like the coffee machine button from the color LED episode.",
+   "tr": "İki küçük yardımcı adımları kısa tutuyor. lights, beş ışığın hepsini tek çağrıda ayarlıyor; üç renkli LED bölümündeki kahve makinesi düğmesi gibi."
+  },
+  {
+   "id": "s22",
+   "scene": "tour",
+   "text": "The other one, go to, does the two jobs of moving on: it puts the new number into state, and it writes down the time.",
+   "sub": "The other one, goTo(), does the two jobs of moving on: it puts the new number into state, and it writes down the time.",
+   "tr": "Diğeri, goTo, ilerlemenin iki işini yapıyor: state'e yeni sayıyı koyuyor ve saati not ediyor."
+  },
+  {
+   "id": "s23",
+   "scene": "tour",
+   "text": "In the loop, part one is the button, just like episode four. A new press only counts while the cars have green, and then the board remembers that somebody is waiting.",
+   "tr": "loop'ta birinci kısım buton; tıpkı dördüncü bölümdeki gibi. Yeni bir basış yalnızca arabalara yeşil yanarken sayılır; o zaman kart birinin beklediğini hatırlar."
+  },
+  {
+   "id": "s23b",
+   "scene": "tour",
+   "text": "Pause the video and predict: you press the button while the walker is already crossing. Does that press count?",
+   "tr": "Videoyu durdurun ve tahmin edin: yaya zaten geçerken butona basıyorsunuz. Bu basış sayılır mı?",
+   "pad": 3.0
+  },
+  {
+   "id": "s23c",
+   "scene": "tour",
+   "text": "No. Presses only count in step zero, so the crossing never starts over by accident.",
+   "tr": "Hayır. Basışlar yalnızca sıfırıncı adımda sayılır; böylece geçit hiçbir zaman yanlışlıkla baştan başlamaz.",
+   "pad": 0.4
+  },
+  {
+   "id": "s24",
+   "scene": "clock",
+   "text": "Part two starts with one subtraction: now, minus the moment the step began. That's how long we've been in this step.",
+   "tr": "İkinci kısım tek bir çıkarmayla başlıyor: şimdiki zaman eksi adımın başladığı an. Bu adımda ne kadar süredir olduğumuz bu."
+  },
+  {
+   "id": "s25",
+   "scene": "clock",
+   "text": "Next, map turns the knob into the green time, from three to ten seconds. That's last episode's function, doing a real job.",
+   "sub": "Next, map() turns the knob into the green time, from three to ten seconds. That's last episode's function, doing a real job.",
+   "tr": "Sonra map, düğmeyi yeşil süresine çeviriyor: üç ile on saniye arası. Geçen bölümün fonksiyonu burada gerçek bir iş yapıyor."
+  },
+  {
+   "id": "s26",
+   "scene": "step0",
+   "text": "Step zero: cars green, walk light red. If somebody is waiting, and the green has lasted long enough, we go to step one.",
+   "tr": "Sıfırıncı adım: arabalara yeşil, yayaya kırmızı. Biri bekliyorsa ve yeşil yeterince sürdüyse birinci adıma geçiyoruz."
+  },
+  {
+   "id": "s27",
+   "scene": "step0",
+   "text": "The two ampersands are the and from last episode's challenge: both checks must be true.",
+   "tr": "İki ve işareti, geçen bölümün görevindeki 've': iki kontrolün de doğru olması gerekiyor."
+  },
+  {
+   "id": "s28",
+   "scene": "step1",
+   "text": "Now pause the video and try it yourself: write step one. The cars get yellow for two seconds, then we move to step two.",
+   "tr": "Şimdi videoyu durdurun ve kendiniz deneyin: birinci adımı yazın. Arabalara iki saniye sarı yanıyor, sonra ikinci adıma geçiyoruz.",
+   "pad": 4.0
+  },
+  {
+   "id": "s29",
+   "scene": "step1",
+   "text": "Here's one way. Yellow on, and once two seconds have passed, we forget the request and go to step two.",
+   "tr": "İşte bir yolu. Sarı yanıyor; iki saniye geçince isteği unutuyoruz ve ikinci adıma geçiyoruz."
+  },
+  {
+   "id": "s30",
+   "scene": "step2",
+   "text": "Step two: the cars get red, and the walker gets green for four seconds.",
+   "tr": "İkinci adım: arabalara kırmızı, yayaya dört saniye yeşil."
+  },
+  {
+   "id": "s31",
+   "scene": "step3",
+   "text": "Step three blinks the walk light with the same clock trick, flipping it every quarter second. After two seconds, we're back at step zero.",
+   "tr": "Üçüncü adım aynı saat hilesiyle yaya ışığını yakıp söndürüyor; her çeyrek saniyede bir çeviriyor. İki saniye sonra yeniden sıfırıncı adımdayız."
+  },
+  {
+   "id": "s32",
+   "scene": "early",
+   "text": "Pause the video and predict: the cars have just turned green, and you press the button right away. Does the walker get green at once?",
+   "tr": "Videoyu durdurun ve tahmin edin: arabalara yeni yeşil yandı ve hemen butona bastınız. Yayaya hemen yeşil yanar mı?",
+   "pad": 3.0
+  },
+  {
+   "id": "s33",
+   "scene": "early",
+   "text": "No. The press is remembered, but the cars keep their green until the knob's time is up. Only then does yellow come.",
+   "tr": "Hayır. Basış hatırlanır ama arabalar düğmenin süresi dolana kadar yeşilde kalır. Sarı ancak o zaman gelir."
+  },
+  {
+   "id": "s34",
+   "scene": "run",
+   "text": "Here it is for real. Watch the whole round, and notice the walk light switching from red to green.",
+   "tr": "İşte gerçeği. Bütün turu izleyin; yaya ışığının kırmızıdan yeşile geçişine dikkat edin.",
+   "clip": "C0",
+   "pad": 3.0
+  },
+  {
+   "id": "s35",
+   "scene": "run",
+   "text": "Up close, the last two seconds: the walk light blinks to say hurry, and the cars are still red.",
+   "tr": "Yakından son iki saniye: yaya ışığı acele edin diye yanıp sönüyor; arabalar hâlâ kırmızı.",
+   "clip": "C2",
+   "pad": 2.0
+  },
+  {
+   "id": "s36",
+   "scene": "modify",
+   "text": "Now change one number. Pause and predict: if four thousand becomes eight thousand, what changes?",
+   "sub": "Now change one number. Pause and predict: if 4000 becomes 8000, what changes?",
+   "tr": "Şimdi tek bir sayıyı değiştirin. Durdurun ve tahmin edin: dört bin sekiz bin olursa ne değişir?",
+   "pad": 3.0
+  },
+  {
+   "id": "s37",
+   "scene": "modify",
+   "text": "The walker gets twice as long to cross. Nothing else changes, because every step keeps its own time.",
+   "tr": "Yaya karşıya geçmek için iki kat süre alır. Başka hiçbir şey değişmez; çünkü her adım kendi süresini tutar.",
+   "pad": 0.4
+  },
+  {
+   "id": "s38",
+   "scene": "ticket",
+   "text": "The project has one more trick: measuring how long the button was held. Think of a parking ticket.",
+   "tr": "Projenin bir hilesi daha var: butonun ne kadar basılı tutulduğunu ölçmek. Bir otopark bileti düşünün."
+  },
+  {
+   "id": "s39",
+   "scene": "ticket",
+   "text": "When you drive in, the ticket gets the time stamped on it. When you leave, the machine subtracts that time from now, and you pay for the difference.",
+   "tr": "Girerken bilete saat basılır. Çıkarken makine o saati şimdiki zamandan çıkarır ve aradaki fark kadar ödersiniz.",
+   "pad": 0.4
+  },
+  {
+   "id": "s40",
+   "scene": "ticket",
+   "text": "What actually happens: at the press, we save now in a variable called press start. At the release, now minus press start is how long it was held.",
+   "sub": "What actually happens: at the press, we save now in a variable called pressStart. At the release, now minus pressStart is how long it was held.",
+   "tr": "Gerçekte olan şu: basıldığı an şimdiki zamanı pressStart adlı bir değişkene kaydediyoruz. Bırakıldığında şimdiki zaman eksi pressStart, basılı tutulan süredir."
+  },
+  {
+   "id": "s41",
+   "scene": "ticket",
+   "text": "The difference from a ticket: there's no paper. Press start is just one number in memory, and the next press writes over it.",
+   "sub": "The difference from a ticket: there's no paper. pressStart is just one number in memory, and the next press writes over it.",
+   "tr": "Biletten farkı şu: ortada kağıt yok. pressStart bellekte tek bir sayı ve bir sonraki basış onun üzerine yazar.",
+   "pad": 0.4
+  },
+  {
+   "id": "s42",
+   "scene": "tourpress",
+   "text": "Here's the sketch, press time. The yellow LED is on while you hold the button. When you let go, the Serial Monitor prints the time, and whether it was short or long.",
+   "sub": "Here's the sketch, press_time. The yellow LED is on while you hold the button. When you let go, the Serial Monitor prints the time, and whether it was short or long.",
+   "tr": "İşte sketch: press_time. Butonu basılı tuttuğunuz sürece sarı LED yanıyor. Bıraktığınızda Seri Monitör süreyi ve basışın kısa mı uzun mu olduğunu yazıyor."
+  },
+  {
+   "id": "s43",
+   "scene": "tourpress",
+   "text": "Anything under a quarter of a second counts as short. Pause and predict: you tap the button as fast as you can. What will it print?",
+   "tr": "Çeyrek saniyenin altı kısa sayılıyor. Durdurun ve tahmin edin: butona olabildiğince hızlı dokunuyorsunuz. Ne yazar?",
+   "pad": 3.0
+  },
+  {
+   "id": "s44",
+   "scene": "runpress",
+   "text": "Something like a hundred milliseconds, and short. Hold it for a second, and it prints about a thousand, and long.",
+   "tr": "Yüz milisaniye civarı bir şey ve kısa. Bir saniye basılı tutun; yaklaşık bin ve uzun yazar.",
+   "clip": "C1",
+   "pad": 3.0
+  },
+  {
+   "id": "s45",
+   "scene": "runpress",
+   "text": "That's how one button can do two jobs. Your phone does the same: a tap wakes it up, and a long press turns it off.",
+   "tr": "Tek buton iki işi böyle yapar. Telefonunuz da aynısını yapar: kısa dokunuş ekranı açar, uzun basış kapatır.",
+   "pad": 0.4
+  },
+  {
+   "id": "s46",
+   "scene": "mistake",
+   "text": "Now a mistake you might make. Someone moves on by just writing state equals one, and forgets to write down the time.",
+   "tr": "Şimdi sizin de yapabileceğiniz bir hata. Biri bir sonraki adıma yalnızca state eşittir bir yazarak geçiyor ve saati not etmeyi unutuyor."
+  },
+  {
+   "id": "s47",
+   "scene": "mistake",
+   "text": "Quick question: what does the crossing do then?",
+   "tr": "Kısa bir soru: geçit o zaman ne yapar?",
+   "pad": 2.6
+  },
+  {
+   "id": "s48",
+   "scene": "mistake",
+   "text": "The yellow flashes for a split second, and it's gone. The step's start time is still the old one, so the subtraction says two seconds have long passed.",
+   "tr": "Sarı bir an yanıp kayboluyor. Adımın başlangıç zamanı hâlâ eskisi; bu yüzden çıkarma, iki saniyenin çoktan geçtiğini söylüyor."
+  },
+  {
+   "id": "s49",
+   "scene": "mistake",
+   "text": "That's why go to always does both jobs together. Use it for every change of step.",
+   "sub": "That's why goTo() always does both jobs together. Use it for every change of step.",
+   "tr": "goTo bu yüzden iki işi her zaman birlikte yapıyor. Her adım değişikliğinde onu kullanın."
+  },
+  {
+   "id": "s50",
+   "scene": "explain",
+   "text": "Pause the video, and explain in your own words why each step needs its own start time. One sentence is enough.",
+   "tr": "Videoyu durdurun ve her adımın neden kendi başlangıç zamanına ihtiyaç duyduğunu kendi cümlenizle açıklayın. Tek cümle yeter.",
+   "pad": 4.0
+  },
+  {
+   "id": "s51",
+   "scene": "explain",
+   "text": "One way to say it: every step measures its time from the moment it began. So a new step needs a new start, or it thinks its time is already up.",
+   "tr": "Şöyle söylenebilir: her adım süresini başladığı andan ölçer. Bu yüzden yeni adım yeni bir başlangıç ister, yoksa süresinin çoktan dolduğunu sanır.",
+   "pad": 0.4
+  },
+  {
+   "id": "s52",
+   "scene": "yourturn",
+   "text": "Your turn: a slow walker mode. If the request button is held for more than a second, the walk light stays green twice as long.",
+   "tr": "Sıra sizde: yavaş yürüyen modu. İstek butonu bir saniyeden uzun basılı tutulursa yaya ışığı iki kat uzun yeşil kalır."
+  },
+  {
+   "id": "s53",
+   "scene": "yourturn",
+   "text": "You already know both pieces: the parking ticket, and a step that keeps its own time. One solution is in the lesson folder.",
+   "tr": "İki parçayı da zaten biliyorsunuz: otopark bileti ve kendi süresini tutan bir adım. Bir çözüm ders klasöründe."
+  },
+  {
+   "id": "s54",
+   "scene": "outro",
+   "text": "Today you built three things. A state variable that remembers the step. A start time for every step, so nothing has to wait. And a parking ticket for button presses.",
+   "tr": "Bugün üç şey kurdunuz. Adımı hatırlayan bir state değişkeni. Her adım için bir başlangıç zamanı; böylece hiçbir şey beklemek zorunda kalmıyor. Ve buton basışları için bir otopark bileti."
+  },
+  {
+   "id": "s55",
+   "scene": "outro",
+   "text": "Next time, on the same circuit: a reflex game, with a high score that survives even when you unplug the board. Tell me in the comments how long your crossing's green lasts. See you there!",
+   "tr": "Gelecek sefer aynı devrede: kartı fişten çekseniz bile silinmeyen bir rekorla bir refleks oyunu. Geçidinizin yeşili kaç saniye sürüyor, yorumlarda yazın. Görüşmek üzere!"
+  }
+ ]
+}
