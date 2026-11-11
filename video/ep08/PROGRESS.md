@@ -41,3 +41,7 @@ Release target: Friday 13 November 2026, 17:00 Turkey time. Shorts: TR 14 Nov 17
 - C4: yellow reversed; red + green lit while yellow stays dark at about 4.4-10.2 s.
 - Pin 17 is printed TX2 on the creator's board (right header, 9th pin); yellow is on D18.
 - Real layout used in the drawing: knob rows 22-26 right board, wiper -> D34 with the long red wire; yellow resistor D18 row -> LED, green resistor TX2 row -> LED, short legs -> minus rail.
+
+## 11 November 2026
+- Creator heard problems in ep08_tr_yeni_terimler (50-55 s = s30/s33, 65-70 s = s34, small ones elsewhere). New TR takes (seeds 41-46, text variants) in build/dub_tr/retakes; picks: s01 v0_43, s10 v0_41, s16 v0_43, s25b v0_43, s30 v0_41, s33 v1_42 (text "İşte, skeç: levıl bar. Setap, üç pini..."), s34 v0_43. Listening file YAYIN/ep08/dinleme/ep08_tr_yeni_terimler_v2.mp3. NOT yet copied into dub_tr: waiting for the creator's OK (then copy picks, update dub/tr.json s33 + cache keys/durations, rerun dub.py ep08 tr, repackage).
+- New rule (creator): TR-dub Shorts get Turkish on-screen text. Ep8 TR Short rebuilt with Turkish chip/headline/captions/CTA (short.json), frames checked, copied to YAYIN/ep08/shorts (+ upload_10mb).

@@ -3,66 +3,179 @@
  "engine": "chatterbox",
  "source": "video/ep08/build/video.mp4",
  "schedule": "video/ep08/build/schedule.json",
- "note": "One puzzle: why does the obvious map() line almost never light the top LED? TR 14 Nov 2026 17:00; EN 15 Nov 22:00 Europe/Istanbul. Clips are tall 1080x1200 crops; check every crop against the final frames.",
+ "note": "One puzzle: why does the obvious map() line almost never light the top LED? TR 14 Nov 2026 17:00; EN 15 Nov 22:00 Europe/Istanbul. Clips are tall 1080x1200 crops; check every crop against the final frames. TR Short: Turkish on-screen text (user 2026-11-11).",
  "cta": {
   "en": "Full lesson",
-  "sub": "linked: related video"
+  "tr": "Dersin tamamı",
+  "sub": {
+   "en": "linked: related video",
+   "tr": "bağlantı: ilgili video"
+  }
  },
  "segments": [
   {
    "id": "h0",
-   "chip": "ESP32 LEVEL BAR",
-   "headline": {"en": "Why won't red light up?"},
+   "chip": {
+    "en": "ESP32 LEVEL BAR",
+    "tr": "ESP32 IŞIK ÇUBUĞU"
+   },
+   "headline": {
+    "en": "Why won't red light up?",
+    "tr": "Kırmızı neden yanmıyor?"
+   },
    "say": {
     "en": "Turn the knob, and this bar fills up. But with the obvious line of code, the red one almost never lights. Can you see why?",
     "tr": "Düğmeyi çevirin, bu çubuk dolsun. Ama akla ilk gelen kod satırıyla kırmızı neredeyse hiç yanmıyor. Nedenini görebiliyor musunuz?"
    },
-   "show": {"en": "Turn the knob, and this bar fills up. But with the obvious line of code, the red one almost never lights. Can you see why?"},
-   "shots": [{"file": "footage/ep08/C0.mp4", "src": 3.0, "crop": [0, 60, 1080, 1080]}]
+   "show": {
+    "en": "Turn the knob, and this bar fills up. But with the obvious line of code, the red one almost never lights. Can you see why?",
+    "tr": "Düğmeyi çevirin, bu çubuk dolsun. Ama akla ilk gelen kod satırıyla kırmızı neredeyse hiç yanmıyor. Nedenini görebiliyor musunuz?"
+   },
+   "shots": [
+    {
+     "file": "footage/ep08/C0.mp4",
+     "src": 3.0,
+     "crop": [
+      0,
+      60,
+      1080,
+      1080
+     ]
+    }
+   ]
   },
   {
    "id": "h1",
-   "chip": "THE OBVIOUS LINE",
-   "headline": {"en": "map() to 0 .. 3"},
+   "chip": {
+    "en": "THE OBVIOUS LINE",
+    "tr": "İLK AKLA GELEN SATIR"
+   },
+   "headline": {
+    "en": "map() to 0 .. 3",
+    "tr": "map() ile 0 .. 3"
+   },
    "say": {
     "en": "Map turns the knob's number into a level from zero to three. But map works with whole numbers, so two point nine becomes two.",
     "tr": "Mep, düğmenin sayısını sıfırdan üçe bir seviyeye çevirir. Ama mep tam sayılarla çalışır; yani iki virgül dokuz, iki olur."
    },
-   "show": {"en": "map() turns the knob's number into a level from 0 to 3. But map() works with whole numbers, so 2.9 becomes 2."},
-   "shots": [{"at": ["s30", null, 0.5], "crop": [300, 180, 1320, 760]}]
+   "show": {
+    "en": "map() turns the knob's number into a level from 0 to 3. But map() works with whole numbers, so 2.9 becomes 2.",
+    "tr": "map(), düğmenin sayısını 0'dan 3'e bir seviyeye çevirir. Ama map() tam sayılarla çalışır; yani 2,9, 2 olur."
+   },
+   "shots": [
+    {
+     "at": [
+      "s30",
+      null,
+      0.5
+     ],
+     "crop": [
+      300,
+      180,
+      1320,
+      760
+     ]
+    }
+   ]
   },
   {
    "id": "h2",
-   "chip": "THE TRAP",
-   "headline": {"en": "Level 3 hides at the end"},
+   "chip": {
+    "en": "THE TRAP",
+    "tr": "TUZAK"
+   },
+   "headline": {
+    "en": "Level 3 hides at the end",
+    "tr": "Seviye 3 en sonda saklı"
+   },
    "say": {
     "en": "So level three only comes at the very last mark, and a real knob may never reach it.",
     "tr": "Bu yüzden üçüncü seviye yalnızca en son çizgide gelir; gerçek bir düğme oraya hiç ulaşmayabilir."
    },
-   "show": {"en": "So level 3 only comes at the very last mark, and a real knob may never reach it."},
-   "shots": [{"at": ["s31", null, 1.5], "crop": [600, 180, 1300, 840]}]
+   "show": {
+    "en": "So level 3 only comes at the very last mark, and a real knob may never reach it.",
+    "tr": "Bu yüzden 3. seviye yalnızca en son çizgide gelir; gerçek bir düğme oraya hiç ulaşmayabilir."
+   },
+   "shots": [
+    {
+     "at": [
+      "s31",
+      null,
+      1.5
+     ],
+     "crop": [
+      600,
+      180,
+      1300,
+      840
+     ]
+    }
+   ]
   },
   {
    "id": "h3",
-   "chip": "THE FIX",
-   "headline": {"en": "Four equal slices"},
+   "chip": {
+    "en": "THE FIX",
+    "tr": "ÇÖZÜM"
+   },
+   "headline": {
+    "en": "Four equal slices",
+    "tr": "Dört eşit dilim"
+   },
    "say": {
     "en": "The fix: ask for four levels, and make the range one mark longer. Now every level gets an equal slice of the knob.",
     "tr": "Çözüm şu: dört seviye isteyin ve aralığı bir çizgi uzatın. Artık her seviye düğmeden eşit bir dilim alır."
    },
-   "show": {"en": "The fix: ask for four levels, and make the range one mark longer. Now every level gets an equal slice of the knob."},
-   "shots": [{"at": ["s32", "equal", 0.5], "crop": [300, 180, 1320, 760]}]
+   "show": {
+    "en": "The fix: ask for four levels, and make the range one mark longer. Now every level gets an equal slice of the knob.",
+    "tr": "Çözüm şu: dört seviye isteyin ve aralığı bir çizgi uzatın. Artık her seviye düğmeden eşit bir dilim alır."
+   },
+   "shots": [
+    {
+     "at": [
+      "s32",
+      "equal",
+      0.5
+     ],
+     "crop": [
+      300,
+      180,
+      1320,
+      760
+     ]
+    }
+   ]
   },
   {
    "id": "h4",
-   "chip": "YOUR TURN",
-   "headline": {"en": "Build the bar yourself"},
+   "chip": {
+    "en": "YOUR TURN",
+    "tr": "SIRA SİZDE"
+   },
+   "headline": {
+    "en": "Build the bar yourself",
+    "tr": "Çubuğu kendiniz kurun"
+   },
    "say": {
     "en": "Build it, and watch the bar fill all the way. Every step is in the linked lesson.",
     "tr": "Devreyi kurun ve çubuğun sonuna kadar dolmasını izleyin. Bütün adımlar bağlantıdaki derste."
    },
-   "show": {"en": "Build it, and watch the bar fill all the way. Every step is in the linked lesson."},
-   "shots": [{"file": "footage/ep08/C3.mp4", "src": 3.0, "crop": [0, 60, 1080, 1080]}]
+   "show": {
+    "en": "Build it, and watch the bar fill all the way. Every step is in the linked lesson.",
+    "tr": "Devreyi kurun ve çubuğun sonuna kadar dolmasını izleyin. Bütün adımlar bağlantıdaki derste."
+   },
+   "shots": [
+    {
+     "file": "footage/ep08/C3.mp4",
+     "src": 3.0,
+     "crop": [
+      0,
+      60,
+      1080,
+      1080
+     ]
+    }
+   ]
   }
  ]
 }
