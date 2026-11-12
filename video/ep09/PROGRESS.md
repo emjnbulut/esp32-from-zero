@@ -20,6 +20,11 @@ Creator clips due Sun 15 Nov (shoot pack p07-1: C0 full round, C1 press_time sho
 - [ ] DUB FIT: schedule with dubs stretches +115.5 s (overrun beyond max(EN,TR) x 1.05: HI 62 s, ES 55 s, PT 32 s; TR alone 31.6 s = accepted, priority track). Targets per line in video/ep09/fit_targets.json (hi 35, pt 33, es 38 lines; max_chars = chars x slot/dur x 0.95). The shortening agent was stopped before it wrote anything: make_dubs.py is unchanged.
 - [ ] TR term check: tools/tr_lowprob_scan.py video/ep09 tr (Whisper small, words with probability < 0.5). Suspicious lines to retake with more seeds (6 seeds 41-46, pick best, like ep08 11 Nov): s18 ("steyte" -> "Tt"), s20 + s42 ("İşte, skeç" -> "de sketch"), s21 ("beş ışığın"), s23, s27 ("İki ve işareti" -> "tibe"), s31 ("çeyrek", "hilesiyle"), s38, s41 ("Biletten"), s43. The retake run was stopped before it finished.
 
+## State (12 November 2026, afternoon)
+
+- [x] Dub fit pass 1: 106 HI/PT/ES lines shortened to fit_targets.json max_chars (hi 35, pt 33, es 38), make_dubs.py + make_subs.py rerun. hi s14 and pt s53 kept their key clause ("wait without stopping", "solution in the folder").
+- [ ] TR retakes running: `tools/cbx_fixline.py video/ep09 tr s18,s20,s21,s23,s27,s31,s38,s41,s42,s43 41,...,46` (log build/tr_fixline.log), then dub.py tr, then voices_all.sh re-narrates HI/PT/ES (narrate/retake hi/pt/es removed from rebuild.done).
+
 ## RESUME HERE
 
 1. Shorten the HI/PT/ES lines in make_dubs.py to their max_chars (fit_targets.json), run make_dubs.py + make_subs.py, then `bash video/ep09/build/voices_all.sh` after removing narrate_hi/pt/es + retake_hi/pt/es from build/rebuild.done (dub.py only re-narrates changed lines). Re-measure; second pass if stretch is still > ~30 s.
