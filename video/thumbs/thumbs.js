@@ -70,6 +70,7 @@ function wave(x, y, w, h) {
   put(x, y, w, h, `<svg width="${w}" height="${h + 10}" viewBox="-5 -5 ${w + 10} ${h + 10}"><path d="${d}" fill="none" stroke="#ffb547" stroke-width="12" stroke-linejoin="round"/></svg>`);
 }
 const title = (lines, top = 130, size = 132) => {
+  size = L.size ?? size;  // a localized title may need a smaller base size (taller scripts)
   if (L.title) lines = lines.map((ln, i) => [L.title[i] ?? ln[0], ln[1], ln[2]]);
   const t = put(40, top, 720, 0, lines.map(([s, c, extra]) => `<div style="color:${COL[c]};font-size:${size}px;${extra || ""}">${s}</div>`).join(""), "title");
   t.style.top = top + "px";
@@ -81,7 +82,56 @@ const tx = (s) => L.words?.[s] ?? s;  // other words inside cards
 
 /* ---- localized hooks ---- */
 const EP = { en: "EP", tr: "BÖLÜM", hi: "भाग", pt: "EP", es: "EP" };
+const RECAP = { en: "RECAP", tr: "TEKRAR", hi: "रीकैप", pt: "REVISÃO", es: "REPASO" };
 const LOC = {
+  ep01_C: {
+    tr: { title: ["BURADAN", "BAŞLA"], pills: ["C bilenler için ESP32"], maxW: 780 },
+    hi: { title: ["यहाँ से", "शुरू करें"], pills: ["C जानने वालों के लिए ESP32"], maxW: 470, size: 100 },
+    pt: { title: ["COMECE", "AQUI"], pills: ["ESP32 para quem sabe C"], maxW: 780 },
+    es: { title: ["EMPIEZA", "AQUÍ"], pills: ["ESP32 para quien sabe C"], maxW: 780 },
+  },
+  ep02_A: {
+    tr: { title: ["SAKIN", "YAKMA!"], maxW: 470 },
+    hi: { title: ["इसे", "जलाना मत!"], maxW: 470 },
+    pt: { title: ["NÃO", "QUEIME!"], maxW: 470 },
+    es: { title: ["¡NO LA", "QUEMES!"], maxW: 470 },
+  },
+  ep03_A: {
+    tr: { title: ["GÖZ KIRP!"], maxW: 900 },
+    hi: { title: ["टिमटिमाओ!"], maxW: 900 },
+    pt: { title: ["PISQUE!"], maxW: 900 },
+    es: { title: ["¡PARPADEA!"], maxW: 900 },
+  },
+  ep04_D: {
+    tr: { title: ["İKİSİ", "BİRDEN!"], pills: ["LED + düğme, delay() yok"], maxW: 740 },
+    hi: { title: ["दोनों", "साथ में!"], pills: ["blink + button, delay() नहीं"], maxW: 740 },
+    pt: { title: ["FAÇA", "OS DOIS!"], pills: ["pisca + botão, sem delay()"], maxW: 740 },
+    es: { title: ["¡HAZ", "LOS DOS!"], pills: ["parpadeo + botón, sin delay()"], maxW: 740 },
+  },
+  ep05_A: {
+    tr: { title: ["NEFES", "ALDIR"], maxW: 700 },
+    hi: { title: ["LED को", "साँस दो"], maxW: 700 },
+    pt: { title: ["FAÇA-O", "RESPIRAR"], maxW: 700 },
+    es: { title: ["HAZLO", "RESPIRAR"], maxW: 700 },
+  },
+  ep06_A: {
+    tr: { title: ["HER", "RENK!"], pills: ["kırmızı + yeşil + mavi"], maxW: 790 },
+    hi: { title: ["कोई भी", "रंग!"], pills: ["लाल + हरा + नीला"], maxW: 790 },
+    pt: { title: ["QUALQUER", "COR!"], pills: ["vermelho + verde + azul"], maxW: 690 },
+    es: { title: ["¡CUALQUIER", "COLOR!"], pills: ["rojo + verde + azul"], maxW: 690 },
+  },
+  ep07_A: {
+    tr: { title: ["SONUNA", "KADAR!"], pills: ["bir pot · tek satır kod"], maxW: 610 },
+    hi: { title: ["घुमाओ", "और जलाओ!"], pills: ["एक knob · कोड की एक line"], maxW: 610 },
+    pt: { title: ["AUMENTE", "A LUZ!"], pills: ["um knob · uma linha de código"], maxW: 610 },
+    es: { title: ["¡SÚBELE", "AL MÁXIMO!"], pills: ["una perilla · una línea de código"], maxW: 610 },
+  },
+  recap_A: {
+    tr: { title: ["HER SKETCH'İ", "OKU"], pills: ["5 sketch · 1 fikir"], words: { MEMORY: "HAFIZA" }, maxW: 590 },
+    hi: { title: ["कोई भी sketch", "पढ़ें"], pills: ["5 sketch · एक विचार"], words: { MEMORY: "मेमोरी" }, maxW: 590 },
+    pt: { title: ["LEIA QUALQUER", "SKETCH"], pills: ["5 sketches · 1 ideia"], words: { MEMORY: "MEMÓRIA" }, maxW: 590 },
+    es: { title: ["LEE CUALQUIER", "SKETCH"], pills: ["5 sketches · 1 idea"], words: { MEMORY: "MEMORIA" }, maxW: 590 },
+  },
   ep08_A: {
     tr: { title: ["ÇUBUĞU", "DOLDUR!"], pills: ["pot → 3 LED · map()"], maxW: 650 },
     hi: { title: ["बार", "भर दो!"], pills: ["knob → 3 LED · map()"], maxW: 650 },
@@ -95,12 +145,14 @@ const LOC = {
     es: { title: ["MAPEA", "CUALQUIER RANGO"], maxW: 620 },
   },
   ep09_A: {
+    enMaxW: 800,
     tr: { title: ["AKILLI", "YAYA GEÇİDİ"], pills: ["düğme · 4 adım · delay() yok"], maxW: 800 },
     hi: { title: ["स्मार्ट", "पार पथ"], pills: ["button · 4 कदम · delay() नहीं"], maxW: 800 },
     pt: { title: ["FAIXA", "INTELIGENTE"], pills: ["botão · 4 passos · sem delay()"], maxW: 800 },
     es: { title: ["CRUCE", "INTELIGENTE"], pills: ["botón · 4 pasos · sin delay()"], maxW: 800 },
   },
   ep09_B: {
+    enMaxW: 630,
     tr: { title: ["DURUM", "MAKİNESİ"], words: { GREEN: "YEŞİL", YELLOW: "SARI", WALK: "GEÇ", BLINK: "ACELE ET" }, maxW: 630 },
     hi: { title: ["स्टेट", "मशीन"], words: { GREEN: "हरी", YELLOW: "पीली", WALK: "चलिए", BLINK: "जल्दी!" }, maxW: 630 },
     pt: { title: ["MÁQUINA DE", "ESTADOS"], words: { GREEN: "VERDE", YELLOW: "AMARELO", WALK: "ATRAVESSE", BLINK: "PISCA" }, maxW: 630 },
@@ -236,7 +288,7 @@ const V = {
     card(690, 110, 560, 250, `<div class="code" style="font-size:34px;line-height:1.55"><span class="kw">int</span> seconds = <span class="num">0</span>;
 <span style="background:rgba(255,181,71,.25);border-radius:8px;padding:0 8px;margin:0 -8px;display:inline-block">seconds = seconds + <span class="num">1</span>;</span>
 <span class="fn">delay</span>(<span class="num">1000</span>);</div>`);
-    card(770, 400, 400, 170, `<div style="padding:22px 30px;text-align:center;border:3px solid var(--amber);border-radius:22px;height:100%"><div style="font:700 26px var(--ui);letter-spacing:.14em;color:var(--muted)">MEMORY</div>
+    card(770, 400, 400, 170, `<div style="padding:22px 30px;text-align:center;border:3px solid var(--amber);border-radius:22px;height:100%"><div style="font:700 26px var(--ui);letter-spacing:.14em;color:var(--muted)">${tx("MEMORY")}</div>
       <div style="font:800 56px var(--mono);margin-top:6px">seconds <span style="color:var(--amber)">5</span></div></div>`);
     pill(760, 612, "5 sketches · 1 idea", "rgba(25,195,180,.18)", "var(--teal)");
   },
@@ -257,10 +309,10 @@ const V = {
 };
 
 put(null, null, 0, 0, `${LOGOS.A().replace("<svg ", '<svg width="46" height="46" ')}<span>ESP32 From Zero</span>`, "brand", "width:auto;height:auto");
-put(null, null, 0, 0, key.startsWith("recap") ? "RECAP" : key.startsWith("trailer") ? "FREE COURSE" : `${EP[lang]} ${Number(key.slice(2, 4))}`, "ep", "width:auto;height:auto");
+put(null, null, 0, 0, key.startsWith("recap") ? RECAP[lang] : key.startsWith("trailer") ? "FREE COURSE" : `${EP[lang]} ${Number(key.slice(2, 4))}`, "ep", "width:auto;height:auto");
 V[key]();
-if (LOC[key]) {  // shrink any title line (any language) that runs into the picture
-  const maxW = L.maxW ?? LOC[key].tr?.maxW ?? 640;
+if (LOC[key] && (lang !== "en" || LOC[key].enMaxW)) {  // shrink title lines that run into the picture
+  const maxW = (lang === "en" ? LOC[key].enMaxW : L.maxW) ?? 640;
   for (const d of T.querySelectorAll(".title div")) {
     d.style.width = "max-content";
     let f = parseFloat(getComputedStyle(d).fontSize);
