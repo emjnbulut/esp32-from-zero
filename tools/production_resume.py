@@ -335,8 +335,10 @@ def finish(ep):
     shutil.copytree(samples, target / 'dinleme', dirs_exist_ok=True)
     thumbs = target / 'kucuk_resimler'
     thumbs.mkdir(exist_ok=True)
-    for variant in ('A', 'B'):
-        shutil.copy2(ROOT / 'video/thumbs/build' / f'{ep}_{variant}.png', thumbs)
+    for variant in ('A', 'B'):  # + per-dub-language versions (thumbs.js LOC), e.g. ep09_A_tr.png
+        for png in [ROOT / 'video/thumbs/build' / f'{ep}_{variant}.png'] + [ROOT / 'video/thumbs/build' / f'{ep}_{variant}_{l}.png' for l in ('tr', 'hi', 'pt', 'es')]:
+            if png.exists():
+                shutil.copy2(png, thumbs)
     shutil.copy2(b / 'production/verification.json', target)
 
 

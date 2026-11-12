@@ -12,6 +12,10 @@ const put = (x, y, w, h, html, cls = "", style = "") => {
   T.appendChild(e);
   return e;
 };
+/* Per-language versions (2026-11-12): thumbs.html?ep08_A_tr. Only the words change, never the picture;
+ * hooks are rewritten natively in LOC (not word for word). Dub languages: tr hi pt es. */
+const LANGS = ["tr", "hi", "pt", "es"];
+const [key, lang] = (() => { const k = location.search.slice(1), m = k.match(/^(.*)_(tr|hi|pt|es)$/); return m ? [m[1], m[2]] : [k, "en"]; })();
 const COL = { white: "var(--text)", amber: "var(--amber)", teal: "var(--teal)", red: "var(--red)", green: "var(--green)" };
 
 /* ---- pictures ---- */
@@ -66,11 +70,45 @@ function wave(x, y, w, h) {
   put(x, y, w, h, `<svg width="${w}" height="${h + 10}" viewBox="-5 -5 ${w + 10} ${h + 10}"><path d="${d}" fill="none" stroke="#ffb547" stroke-width="12" stroke-linejoin="round"/></svg>`);
 }
 const title = (lines, top = 130, size = 132) => {
+  if (L.title) lines = lines.map((ln, i) => [L.title[i] ?? ln[0], ln[1], ln[2]]);
   const t = put(40, top, 720, 0, lines.map(([s, c, extra]) => `<div style="color:${COL[c]};font-size:${size}px;${extra || ""}">${s}</div>`).join(""), "title");
   t.style.top = top + "px";
 };
 const card = (x, y, w, h, html, extra = "") => put(x, y, w, h, html, "card", extra);
-const pill = (x, y, html, bg, fg) => put(x, y, 0, 0, `<span class="pill" style="background:${bg};color:${fg}">${html}</span>`, "", "width:auto;height:auto");
+let pillN = 0;
+const pill = (x, y, html, bg, fg) => (html = L.pills?.[pillN++] ?? html, put(x, y, 0, 0, `<span class="pill" style="background:${bg};color:${fg}">${html}</span>`, "", "width:auto;height:auto"));
+const tx = (s) => L.words?.[s] ?? s;  // other words inside cards
+
+/* ---- localized hooks ---- */
+const EP = { en: "EP", tr: "BÖLÜM", hi: "भाग", pt: "EP", es: "EP" };
+const LOC = {
+  ep08_A: {
+    tr: { title: ["ÇUBUĞU", "DOLDUR!"], pills: ["pot → 3 LED · map()"], maxW: 650 },
+    hi: { title: ["बार", "भर दो!"], pills: ["knob → 3 LED · map()"], maxW: 650 },
+    pt: { title: ["ENCHA", "A BARRA"], pills: ["knob → 3 LEDs · map()"], maxW: 650 },
+    es: { title: ["LLENA", "LA BARRA"], pills: ["perilla → 3 LEDs · map()"], maxW: 650 },
+  },
+  ep08_B: {
+    tr: { title: ["SAYIYI", "ÇEVİR!"], maxW: 620 },
+    hi: { title: ["रेंज", "बदलो!"], maxW: 620 },
+    pt: { title: ["MAPEIE", "QUALQUER FAIXA"], maxW: 620 },
+    es: { title: ["MAPEA", "CUALQUIER RANGO"], maxW: 620 },
+  },
+  ep09_A: {
+    tr: { title: ["AKILLI", "YAYA GEÇİDİ"], pills: ["düğme · 4 adım · delay() yok"], maxW: 800 },
+    hi: { title: ["स्मार्ट", "पार पथ"], pills: ["button · 4 कदम · delay() नहीं"], maxW: 800 },
+    pt: { title: ["FAIXA", "INTELIGENTE"], pills: ["botão · 4 passos · sem delay()"], maxW: 800 },
+    es: { title: ["CRUCE", "INTELIGENTE"], pills: ["botón · 4 pasos · sin delay()"], maxW: 800 },
+  },
+  ep09_B: {
+    tr: { title: ["DURUM", "MAKİNESİ"], words: { GREEN: "YEŞİL", YELLOW: "SARI", WALK: "GEÇ", BLINK: "ACELE ET" }, maxW: 630 },
+    hi: { title: ["स्टेट", "मशीन"], words: { GREEN: "हरी", YELLOW: "पीली", WALK: "चलिए", BLINK: "जल्दी!" }, maxW: 630 },
+    pt: { title: ["MÁQUINA DE", "ESTADOS"], words: { GREEN: "VERDE", YELLOW: "AMARELO", WALK: "ATRAVESSE", BLINK: "PISCA" }, maxW: 630 },
+    es: { title: ["MÁQUINA DE", "ESTADOS"], words: { GREEN: "VERDE", YELLOW: "ÁMBAR", WALK: "CRUZA", BLINK: "PARPADEA" }, maxW: 630 },
+  },
+};
+const L = (LOC[key] || {})[lang] || {};
+if (lang === "hi") document.documentElement.classList.add("hi");
 
 /* ---- the variants ---- */
 const V = {
@@ -168,6 +206,24 @@ const V = {
     card(760, 330, 420, 110, `<div style="font:800 60px/110px var(--mono);text-align:center"><span style="color:var(--muted)">2048 →</span> <span style="color:var(--amber)">127</span></div>`);
     knob(780, 470, 170, 0.5); led(1030, 460, 90, "red");
   },
+  // Episode 9: mini project 1, the pedestrian crossing. A = the working crossing, B = the idea (one variable holds the step).
+  ep09_A() {
+    title([["SMART", "white"], ["CROSSING", "amber", "font-size:128px"]], 150, 160);
+    led(1150, 40, 95, "red", false); led(1150, 200, 95, "yellow", false); led(1150, 360, 95, "green", false);
+    led(1150, 40, 95, "red");
+    rgbLed(900, 70, 190, [40, 255, 120]);
+    button(870, 400, 190, true);
+    pill(560, 620, "button · 4 steps · no delay()", "rgba(25,195,180,.18)", "var(--teal)");
+  },
+  ep09_B() {
+    title([["STATE", "white"], ["MACHINE", "teal"]], 150, 150);
+    card(700, 120, 520, 130, `<div class="code" style="font-size:52px;text-align:center;line-height:126px">state = <span class="num">2</span>;</div>`);
+    const steps = [["GREEN", "var(--green)"], ["YELLOW", "var(--amber)"], ["WALK", "var(--teal)"], ["BLINK", "var(--red)"]];
+    card(700, 290, 520, 300, `<div style="padding:18px 26px;display:grid;gap:12px">${steps.map(([w, c], i) =>
+      `<div style="display:flex;align-items:center;gap:18px;padding:4px 14px;border-radius:14px;${i === 2 ? "background:rgba(25,195,180,.22);outline:3px solid var(--teal)" : "opacity:.55"}">
+        <span style="font:800 40px var(--mono);color:var(--amber);width:34px">${i}</span><span style="width:26px;height:26px;border-radius:50%;background:${c}"></span>
+        <span style="font:800 34px var(--display);white-space:nowrap">${tx(w)}</span></div>`).join("")}</div>`);
+  },
   // channel trailer: the promise of the whole course
   trailer_A() {
     title([["LEARN", "white", "font-size:128px"], ["ESP32", "amber", "font-size:176px"], ["FROM ZERO", "white", "font-size:92px"]], 130, 150);
@@ -200,9 +256,16 @@ const V = {
   },
 };
 
-const key = location.search.slice(1);
 put(null, null, 0, 0, `${LOGOS.A().replace("<svg ", '<svg width="46" height="46" ')}<span>ESP32 From Zero</span>`, "brand", "width:auto;height:auto");
-put(null, null, 0, 0, key.startsWith("recap") ? "RECAP" : key.startsWith("trailer") ? "FREE COURSE" : `EP ${Number(key.slice(2, 4))}`, "ep", "width:auto;height:auto");
+put(null, null, 0, 0, key.startsWith("recap") ? "RECAP" : key.startsWith("trailer") ? "FREE COURSE" : `${EP[lang]} ${Number(key.slice(2, 4))}`, "ep", "width:auto;height:auto");
 V[key]();
-window.__keys = Object.keys(V);
+if (LOC[key]) {  // shrink any title line (any language) that runs into the picture
+  const maxW = L.maxW ?? LOC[key].tr?.maxW ?? 640;
+  for (const d of T.querySelectorAll(".title div")) {
+    d.style.width = "max-content";
+    let f = parseFloat(getComputedStyle(d).fontSize);
+    while (d.offsetWidth > maxW && f > 40) d.style.fontSize = (f -= 3) + "px";
+  }
+}
+window.__keys = Object.keys(V).flatMap((k) => (LOC[k] ? [k, ...LANGS.filter((l) => LOC[k][l]).map((l) => `${k}_${l}`)] : [k]));
 window.__ready = true;
