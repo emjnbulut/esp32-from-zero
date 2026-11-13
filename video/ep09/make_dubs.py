@@ -22,7 +22,7 @@ HI = [
     # s06
     "छोटा सवाल: delay के बिना board कैसे जाने कि दो सेकंड बीत गए?",
     # s07
-    "वो दीवार घड़ी millis() देखता है, याद रखा पल अब से घटाता है, फ़र्क दो हज़ार हुआ?",
+    "वो दीवार घड़ी millis() देखता है, याद पल घटाता है: फ़र्क दो हज़ार?",
     # s08
     "योजना ये है। तीन LED गाड़ियों की बत्तियाँ हैं। रंगीन LED पैदल बत्ती: लाल रुकिए, हरी चलिए।",
     # s09
@@ -40,7 +40,7 @@ HI = [
     # s15
     "कपड़े धोने की मशीन सोचिए। वो कदमों से गुज़रती है: धोना, खंगालना, सुखाना। हर पल उसे पता है कि वो किस कदम में है, और समय पूरा होते ही आगे बढ़ती है।",
     # s16
-    "पार पथ में चार कदम हैं, शून्य से: गाड़ियों को हरी, पीली, पैदल यात्री पार करता है, और आख़िर में बत्ती टिमटिमाती है।",
+    "चार कदम हैं, शून्य से: गाड़ियों को हरी, पीली, पैदल यात्री पार करता है, फिर बत्ती टिमटिमाती है।",
     # s17
     "असल में कदम बस एक पूर्ण संख्या है, state नाम के variable में। Loop का हर चक्कर वो संख्या देखता है, और सिर्फ़ उसी कदम का code चलाता है।",
     # s18
@@ -48,11 +48,11 @@ HI = [
     # s19
     "मशीन से फ़र्क: मशीन सचमुच कदम करती है। हमारा loop कदम में इंतज़ार नहीं करता; सेकंड में हज़ारों बार संख्या देखकर फ़ैसला लेता है।",
     # s20
-    "ये sketch है। ऊपर pins, फिर state शून्य से, और कदम शुरू होने का समय।",
+    "ये sketch: ऊपर pins, फिर state शून्य से, और कदम का समय।",
     # s21
     "दो सहायक। lights() पाँचों बत्तियाँ एक बार में तय करता है, जैसे coffee machine button।",
     # s22
-    "दूसरा goTo() दो काम करता है: state में संख्या रखता है, और समय लिखता है।",
+    "दूसरा goTo(): state में संख्या रखता है, और समय लिखता है।",
     # s23
     "Loop में पहला हिस्सा button है, episode चार जैसा। नया दबाव तभी गिना जाता है जब गाड़ियों को हरी हो, और board याद रखता है कि कोई इंतज़ार में है।",
     # s23b
@@ -66,7 +66,7 @@ HI = [
     # s26
     "कदम शून्य: गाड़ियों को हरी। इंतज़ार हो और हरी रह चुकी, तो कदम एक।",
     # s27
-    "दो ampersand वही and हैं: दोनों जाँचें सही होनी चाहिए।",
+    "दो ampersand यानी and: दोनों जाँचें सही हों।",
     # s28
     "अब video रोकिए और ख़ुद कोशिश कीजिए: कदम एक लिखिए। गाड़ियों को दो सेकंड पीली, फिर कदम दो पर जाइए।",
     # s29
@@ -88,15 +88,15 @@ HI = [
     # s37
     "पैदल यात्री को पार करने का दुगुना समय मिलता है। बाकी कुछ नहीं बदलता, हर कदम का अपना समय है।",
     # s38
-    "एक और तरकीब: button कितनी देर दबा, ये नापना।",
+    "एक तरकीब: button कितनी देर दबा?",
     # s39
     "अंदर जाते समय टिकट पर समय की मुहर लगती है। निकलते समय मशीन उस समय को अब से घटाती है, और आप फ़र्क का दाम देते हैं।",
     # s40
     "असल में दबाते ही हम अब को pressStart variable में रखते हैं। छोड़ते समय now घटा pressStart बताता है कि कितनी देर दबा रहा।",
     # s41
-    "टिकट से फ़र्क: कागज़ नहीं। pressStart याददाश्त में बस एक संख्या है, अगला दबाव उसे मिटाकर लिखता है।",
+    "टिकट से फ़र्क: कागज़ नहीं। pressStart बस एक संख्या है, अगला दबाव उसे मिटा देता है।",
     # s42
-    "ये sketch है, press_time। दबे रहने तक पीली LED जलती है। छोड़ने पर Serial Monitor समय छापता है, छोटा या लंबा।",
+    "press_time: दबे रहने तक पीली LED जलती है। छोड़ने पर Serial Monitor समय छापता, छोटा या लंबा।",
     # s43
     "चौथाई सेकंड से कम छोटा गिना जाता है। अंदाज़ा लगाइए: button को तेज़ थपथपाएँ, तो क्या छपेगा?",
     # s44
@@ -108,7 +108,7 @@ HI = [
     # s47
     "छोटा सवाल: तब पार पथ क्या करेगा?",
     # s48
-    "पीली पल भर चमककर बुझती है। समय पुराना है, इसलिए घटाव कहता है दो सेकंड बीत गए।",
+    "पीली पल भर चमकी, बुझी। समय पुराना, तो घटाव: दो सेकंड बीते।",
     # s49
     "इसीलिए goTo() दोनों काम साथ करता है। कदम बदलते समय उसी को लीजिए।",
     # s50
@@ -213,7 +213,7 @@ PT = [
     # s41
     "Sem papel. pressStart é só um número na memória; o próximo aperto sobrescreve.",
     # s42
-    "Este é o press_time. LED amarelo aceso ao segurar. Ao soltar, o Serial Monitor imprime o tempo, curto ou longo.",
+    "press_time: amarelo aceso ao segurar. Soltou, o Serial Monitor mostra o tempo, curto ou longo.",
     # s43
     "Menos de um quarto de segundo é curto. Pause e preveja: toca o botão bem rápido. O que imprime?",
     # s44
@@ -225,9 +225,9 @@ PT = [
     # s47
     "Então, o que a faixa faz?",
     # s48
-    "O amarelo pisca por um instante e some. A hora de início do passo é a antiga, e a subtração diz que dois segundos já passaram faz tempo.",
+    "O amarelo pisca por um instante e some. O início do passo é o antigo, e a subtração diz que dois segundos já passaram.",
     # s49
-    "Uma dica: uma variável chamada step lembra quantos já estão certos.",
+    "Por isso goTo() faz as duas coisas. Use sempre.",
     # s50
     "Pause o vídeo e explique com suas palavras por que cada passo precisa da sua hora de início. Uma frase basta.",
     # s51
@@ -239,7 +239,7 @@ PT = [
     # s54
     "Hoje você fez três coisas. Uma variável state que lembra o passo. Uma hora de início por passo, sem esperar. E um ticket para os apertos do botão.",
     # s55
-    "Na próxima, no mesmo circuito: jogo de reflexo, com recorde que sobrevive sem energia. Diga nos comentários quanto dura o verde da sua faixa.",
+    "Na próxima: jogo de reflexo com recorde que sobrevive sem energia. Diga nos comentários quanto dura o verde da sua faixa.",
 ]
 
 ES = [
@@ -262,11 +262,11 @@ ES = [
     # s09
     "El botón es la petición del peatón. La perilla fija el verde de autos: tres a diez segundos.",
     # s10
-    "Buena noticia: ningún cable nuevo. Todo ya está en la placa.",
+    "Buena noticia: ningún cable nuevo. Ya está todo.",
     # s11
     "¿Falta algo? Pines en pantalla; cableado, en la carpeta.",
     # s12
-    "Primera idea: delays en cadena: verde, espera, amarillo, espera, rojo, espera.",
+    "Primera idea, delays en cadena: verde, espera, amarillo, espera, rojo.",
     # s13
     "Pausa el video y predice: con esa cadena, ¿qué pasa con un pulso en la espera?",
     # s14
@@ -274,7 +274,7 @@ ES = [
     # s15
     "Piensa en una lavadora: lavar, enjuagar, centrifugar. Sabe en qué paso está, y sigue al acabar.",
     # s16
-    "Nuestro cruce tiene cuatro pasos, desde cero: autos en verde, autos en amarillo, el peatón cruza, y al final la luz parpadea, apúrate.",
+    "Nuestro cruce tiene cuatro pasos, desde cero: autos en verde, en amarillo, el peatón cruza, y la luz parpadea, apúrate.",
     # s17
     "El paso es solo un número entero en una variable llamada state. En cada vuelta del loop vemos ese número y corremos solo ese paso.",
     # s18
@@ -284,7 +284,7 @@ ES = [
     # s20
     "Este es el sketch crossing. Arriba, los pines, luego state, que empieza en cero, y la hora del paso actual.",
     # s21
-    "Dos ayudantes acortan los pasos. lights() fija las cinco luces en una llamada, como el botón de la cafetera del episodio del LED de color.",
+    "Dos ayudantes acortan los pasos. lights() fija las cinco luces de una vez, como el botón de la cafetera del LED de color.",
     # s22
     "El otro, goTo(), pone el número en state y anota la hora.",
     # s23
@@ -308,7 +308,7 @@ ES = [
     # s30
     "Paso dos: autos en rojo y peatón en verde por cuatro segundos.",
     # s31
-    "El paso tres parpadea la luz con el truco del reloj, cada cuarto de segundo. Tras dos, paso cero.",
+    "Paso tres: parpadea cada cuarto de segundo; a los dos, paso cero.",
     # s32
     "Pausa y predice: autos recién en verde y pulsas ya. ¿El peatón recibe verde al instante?",
     # s33
@@ -324,13 +324,13 @@ ES = [
     # s38
     "El proyecto tiene un truco más: medir cuánto se mantuvo el botón. Piensa en un ticket.",
     # s39
-    "Al entrar, el ticket lleva la hora. Al salir, se resta esa hora al ahora, y pagas la diferencia.",
+    "Al entrar, el ticket marca la hora. Al salir, restas y pagas la diferencia.",
     # s40
     "Realmente, al pulsar guardamos el ahora en una variable, pressStart. Al soltar, now menos pressStart es el tiempo pulsado.",
     # s41
     "Sin papel. pressStart es un número en memoria, y el próximo pulso lo sobrescribe.",
     # s42
-    "Este es press_time. El LED amarillo enciende al mantener el botón. Al soltar, el Serial Monitor imprime el tiempo, corto o largo.",
+    "press_time: amarillo encendido al sostener. Al soltar, el Serial Monitor da el tiempo, corto o largo.",
     # s43
     "Menos de un cuarto de segundo es corto. Pausa y predice: tocas el botón rapidísimo. ¿Qué imprime?",
     # s44
@@ -344,19 +344,19 @@ ES = [
     # s48
     "El amarillo parpadea y desaparece. La hora de inicio es la vieja, y la resta dice que pasaron dos segundos.",
     # s49
-    "Pista: una variable llamada step recuerda cuántos van bien.",
+    "Por eso goTo() hace ambas cosas. Úsalo siempre.",
     # s50
     "Pausa el video y explica por qué cada paso necesita su hora de inicio. Una frase basta.",
     # s51
-    "Una forma: cada paso mide su tiempo desde que empezó. Un paso nuevo necesita un inicio nuevo, o cree que ya acabó.",
+    "Cada paso mide su tiempo desde que empezó. Un paso nuevo necesita inicio nuevo, o cree que ya acabó.",
     # s52
-    "Tu turno: modo lento. Si mantienes el botón más de un segundo, el verde peatonal dura el doble.",
+    "Tu turno: modo lento. Botón más de un segundo y el verde dura el doble.",
     # s53
     "Ya conoces las dos piezas: el ticket y un paso con su tiempo. Solución en la carpeta.",
     # s54
     "Hoy hiciste tres cosas. Una variable state que recuerda el paso. Una hora de inicio por paso, sin esperar. Y un ticket para los pulsos del botón.",
     # s55
-    "La próxima, mismo circuito: juego de reflejos, con récord que sobrevive sin corriente. Cuéntame en los comentarios cuánto dura el verde del cruce.",
+    "La próxima: juego de reflejos con récord que sobrevive sin corriente. Comenta cuánto dura el verde de tu cruce.",
 ]
 
 TARGET = {"hi": 1.0, "pt": 1.0, "es": 1.0}

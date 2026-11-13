@@ -45,19 +45,19 @@
   "s39": "Ao entrar, o ticket recebe a hora carimbada. Ao sair, a máquina subtrai essa hora do agora, e você paga a diferença.",
   "s40": "Na real, ao apertar guardamos o agora numa variável, pressStart. Ao soltar, now menos pressStart é o tempo apertado.",
   "s41": "Sem papel. pressStart é só um número na memória; o próximo aperto sobrescreve.",
-  "s42": "Este é o press_time. LED amarelo aceso ao segurar. Ao soltar, o Serial Monitor imprime o tempo, curto ou longo.",
+  "s42": "press_time: amarelo aceso ao segurar. Soltou, o Serial Monitor mostra o tempo, curto ou longo.",
   "s43": "Menos de um quarto de segundo é curto. Pause e preveja: toca o botão bem rápido. O que imprime?",
   "s44": "Uns cem milissegundos, e curto. Segure por um segundo e imprime uns mil, e longo.",
   "s45": "Um botão faz dois trabalhos. Seu celular também: toque acorda, aperto longo desliga.",
   "s46": "Erro possível: alguém escreve só state igual a um, sem anotar a hora.",
   "s47": "Então, o que a faixa faz?",
-  "s48": "O amarelo pisca por um instante e some. A hora de início do passo é a antiga, e a subtração diz que dois segundos já passaram faz tempo.",
-  "s49": "Uma dica: uma variável chamada step lembra quantos já estão certos.",
+  "s48": "O amarelo pisca por um instante e some. O início do passo é o antigo, e a subtração diz que dois segundos já passaram.",
+  "s49": "Por isso goTo() faz as duas coisas. Use sempre.",
   "s50": "Pause o vídeo e explique com suas palavras por que cada passo precisa da sua hora de início. Uma frase basta.",
   "s51": "Um jeito: cada passo mede o tempo desde que começou. Passo novo precisa de início novo, ou acha que seu tempo já acabou.",
   "s52": "Sua vez: modo pedestre lento. Botão apertado mais de um segundo, verde do pedestre dobra.",
   "s53": "Você já sabe as duas peças: o ticket e um passo com tempo próprio. A solução está na pasta.",
   "s54": "Hoje você fez três coisas. Uma variável state que lembra o passo. Uma hora de início por passo, sem esperar. E um ticket para os apertos do botão.",
-  "s55": "Na próxima, no mesmo circuito: jogo de reflexo, com recorde que sobrevive sem energia. Diga nos comentários quanto dura o verde da sua faixa."
+  "s55": "Na próxima: jogo de reflexo com recorde que sobrevive sem energia. Diga nos comentários quanto dura o verde da sua faixa."
  }
 }

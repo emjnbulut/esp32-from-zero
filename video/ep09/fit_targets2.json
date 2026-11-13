@@ -1,0 +1,140 @@
+{
+ "hi": {
+  "s07": {
+   "text": "वो दीवार घड़ी millis() देखता है, याद रखा पल अब से घटाता है, फ़र्क दो हज़ार हुआ?",
+   "chars": 79,
+   "max_chars": 66,
+   "over_s": 1.2
+  },
+  "s16": {
+   "text": "पार पथ में चार कदम हैं, शून्य से: गाड़ियों को हरी, पीली, पैदल यात्री पार करता है, और आख़िर में बत्ती टिमटिमाती है।",
+   "chars": 114,
+   "max_chars": 95,
+   "over_s": 1.9
+  },
+  "s20": {
+   "text": "ये sketch है। ऊपर pins, फिर state शून्य से, और कदम शुरू होने का समय।",
+   "chars": 68,
+   "max_chars": 57,
+   "over_s": 1.1
+  },
+  "s22": {
+   "text": "दूसरा goTo() दो काम करता है: state में संख्या रखता है, और समय लिखता है।",
+   "chars": 71,
+   "max_chars": 56,
+   "over_s": 1.7
+  },
+  "s27": {
+   "text": "दो ampersand वही and हैं: दोनों जाँचें सही होनी चाहिए।",
+   "chars": 54,
+   "max_chars": 46,
+   "over_s": 0.7
+  },
+  "s38": {
+   "text": "एक और तरकीब: button कितनी देर दबा, ये नापना।",
+   "chars": 44,
+   "max_chars": 38,
+   "over_s": 0.6
+  },
+  "s41": {
+   "text": "टिकट से फ़र्क: कागज़ नहीं। pressStart याददाश्त में बस एक संख्या है, अगला दबाव उसे मिटाकर लिखता है।",
+   "chars": 98,
+   "max_chars": 87,
+   "over_s": 0.6
+  },
+  "s42": {
+   "text": "ये sketch है, press_time। दबे रहने तक पीली LED जलती है। छोड़ने पर Serial Monitor समय छापता है, छोटा या लंबा।",
+   "chars": 108,
+   "max_chars": 93,
+   "over_s": 1.1
+  },
+  "s48": {
+   "text": "पीली पल भर चमककर बुझती है। समय पुराना है, इसलिए घटाव कहता है दो सेकंड बीत गए।",
+   "chars": 77,
+   "max_chars": 58,
+   "over_s": 2.5
+  }
+ },
+ "es": {
+  "s10": {
+   "text": "Buena noticia: ningún cable nuevo. Todo ya está en la placa.",
+   "chars": 60,
+   "max_chars": 51,
+   "over_s": 0.7
+  },
+  "s16": {
+   "text": "Nuestro cruce tiene cuatro pasos, desde cero: autos en verde, autos en amarillo, el peatón cruza, y al final la luz parpadea, apúrate.",
+   "chars": 134,
+   "max_chars": 123,
+   "over_s": 0.5
+  },
+  "s21": {
+   "text": "Dos ayudantes acortan los pasos. lights() fija las cinco luces en una llamada, como el botón de la cafetera del episodio del LED de color.",
+   "chars": 138,
+   "max_chars": 121,
+   "over_s": 0.7
+  },
+  "s31": {
+   "text": "El paso tres parpadea la luz con el truco del reloj, cada cuarto de segundo. Tras dos, paso cero.",
+   "chars": 97,
+   "max_chars": 70,
+   "over_s": 3.1
+  },
+  "s39": {
+   "text": "Al entrar, el ticket lleva la hora. Al salir, se resta esa hora al ahora, y pagas la diferencia.",
+   "chars": 96,
+   "max_chars": 75,
+   "over_s": 2.2
+  },
+  "s42": {
+   "text": "Este es press_time. El LED amarillo enciende al mantener el botón. Al soltar, el Serial Monitor imprime el tiempo, corto o largo.",
+   "chars": 129,
+   "max_chars": 105,
+   "over_s": 1.8
+  },
+  "s49": {
+   "text": "Pista: una variable llamada step recuerda cuántos van bien.",
+   "chars": 59,
+   "max_chars": 50,
+   "over_s": 0.6
+  },
+  "s51": {
+   "text": "Una forma: cada paso mide su tiempo desde que empezó. Un paso nuevo necesita un inicio nuevo, o cree que ya acabó.",
+   "chars": 114,
+   "max_chars": 102,
+   "over_s": 0.6
+  },
+  "s52": {
+   "text": "Tu turno: modo lento. Si mantienes el botón más de un segundo, el verde peatonal dura el doble.",
+   "chars": 95,
+   "max_chars": 71,
+   "over_s": 2.4
+  },
+  "s55": {
+   "text": "La próxima, mismo circuito: juego de reflejos, con récord que sobrevive sin corriente. Cuéntame en los comentarios cuánto dura el verde del cruce.",
+   "chars": 146,
+   "max_chars": 123,
+   "over_s": 1.5
+  }
+ },
+ "pt": {
+  "s42": {
+   "text": "Este é o press_time. LED amarelo aceso ao segurar. Ao soltar, o Serial Monitor imprime o tempo, curto ou longo.",
+   "chars": 111,
+   "max_chars": 95,
+   "over_s": 1.1
+  },
+  "s48": {
+   "text": "O amarelo pisca por um instante e some. A hora de início do passo é a antiga, e a subtração diz que dois segundos já passaram faz tempo.",
+   "chars": 136,
+   "max_chars": 124,
+   "over_s": 0.4
+  },
+  "s55": {
+   "text": "Na próxima, no mesmo circuito: jogo de reflexo, com recorde que sobrevive sem energia. Diga nos comentários quanto dura o verde da sua faixa.",
+   "chars": 141,
+   "max_chars": 121,
+   "over_s": 1.2
+  }
+ }
+}
