@@ -32,10 +32,16 @@ Creator clips due Sun 15 Nov (shoot pack p07-1: C0 full round, C1 press_time sho
 - [ ] ES re-narration: killed by the Claude Code memory reaper at s32 (00:52). Resume with `bash video/ep09/build/voices_all.sh` (skips finished steps; dub.py cache skips finished lines). Then schedule + measure stretch (RESUME step 1 tail).
 - [x] Thumbnails ep09_A / ep09_B rendered in EN + tr/hi/pt/es (video/thumbs/thumbs.js LOC table). All published episodes got per-language thumbnails in Studio (commits 4603979, 814be8c).
 
+## State (14 November 2026, ~02:45)
+
+- [x] ES re-narration finished; dub-fit pass 2 (22 HI/PT/ES lines, targets in fit_targets2.json = slot widened by TR's own stretch) + pt/es s49 fixed (they carried another line's text; a Sonnet scan found no other mismatch). HI/PT/ES re-narrated.
+- [x] Schedule: +26.7 s dub stretch (TR alone 22.6 s, accepted), 593.6 s = 9:53. audio done. 19 review stills on the final schedule look clean (build/stills/sheet_*.png).
+- [ ] Full render waits for the clips (EP09_CLIP_SECONDS + WIN change the hero windows).
+
 ## RESUME HERE
 
-1. (Shortening + HI/PT done, see 13 Nov.) Finish ES: shorten the HI/PT/ES lines in make_dubs.py to their max_chars (fit_targets.json), run make_dubs.py + make_subs.py, then `bash video/ep09/build/voices_all.sh` after removing narrate_hi/pt/es + retake_hi/pt/es from build/rebuild.done (dub.py only re-narrates changed lines). Re-measure; second pass if stretch is still > ~30 s.
+1. DONE 14 Nov (see above). Was: (Shortening + HI/PT done, see 13 Nov.) Finish ES: shorten the HI/PT/ES lines in make_dubs.py to their max_chars (fit_targets.json), run make_dubs.py + make_subs.py, then `bash video/ep09/build/voices_all.sh` after removing narrate_hi/pt/es + retake_hi/pt/es from build/rebuild.done (dub.py only re-narrates changed lines). Re-measure; second pass if stretch is still > ~30 s.
 2. (TR retakes done.) Run `tools/tr_lowprob_scan.py` again; listening file YAYIN/ep09/dinleme/ep09_tr_yeni_terimler.mp3 for the creator (steyt, go tu, layts, krosing, pres start, pres taym, dilay, milis).
-3. `tools/build.py video/ep09 schedule`, full render, audio, stills review on the final schedule.
+3. (schedule + audio + stills DONE 14 Nov) full render, audio, stills review on the final schedule.
 4. When clips arrive (due Sun 15 Nov): prepare footage/ep09/C0-C2 (16:9, set EP09_CLIP_SECONDS + WIN in ep09.js, Short crops in video/shorts/ep09/short.json), compose, dubs, subs, localize, thumbnails A/B, Shorts EN/TR (Turkish on-screen text), package YAYIN/ep09, listening samples.
 5. Upload: 17 Nov 17:00 video, 18 Nov TR Short 17:00, 19 Nov EN Short 22:00.
