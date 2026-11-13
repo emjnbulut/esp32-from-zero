@@ -25,10 +25,17 @@ Creator clips due Sun 15 Nov (shoot pack p07-1: C0 full round, C1 press_time sho
 - [x] Dub fit pass 1: 106 HI/PT/ES lines shortened to fit_targets.json max_chars (hi 35, pt 33, es 38), make_dubs.py + make_subs.py rerun. hi s14 and pt s53 kept their key clause ("wait without stopping", "solution in the folder").
 - [ ] TR retakes running: `tools/cbx_fixline.py video/ep09 tr s18,s20,s21,s23,s27,s31,s38,s41,s42,s43 41,...,46` (log build/tr_fixline.log), then dub.py tr, then voices_all.sh re-narrates HI/PT/ES (narrate/retake hi/pt/es removed from rebuild.done).
 
+## State (13 November 2026, session closed by the creator)
+
+- [x] TR retakes done (picks in build/tr_fixline.summary: s18 kept, s20 x42, s21 x45, s23 x46, s27 x41, s31 x46, s38 x44, s41 x46, s42 x41, s43 x44), dub.py tr rebuilt.
+- [x] HI + PT re-narrated after the dub-fit pass (narrate_hi/retake_hi/narrate_pt/retake_pt in build/rebuild.done).
+- [ ] ES re-narration: killed by the Claude Code memory reaper at s32 (00:52). Resume with `bash video/ep09/build/voices_all.sh` (skips finished steps; dub.py cache skips finished lines). Then schedule + measure stretch (RESUME step 1 tail).
+- [x] Thumbnails ep09_A / ep09_B rendered in EN + tr/hi/pt/es (video/thumbs/thumbs.js LOC table). All published episodes got per-language thumbnails in Studio (commits 4603979, 814be8c).
+
 ## RESUME HERE
 
-1. Shorten the HI/PT/ES lines in make_dubs.py to their max_chars (fit_targets.json), run make_dubs.py + make_subs.py, then `bash video/ep09/build/voices_all.sh` after removing narrate_hi/pt/es + retake_hi/pt/es from build/rebuild.done (dub.py only re-narrates changed lines). Re-measure; second pass if stretch is still > ~30 s.
-2. TR retakes for the lines above (6 seeds each, pick by match + word probability), then `tools/tr_lowprob_scan.py` again; listening file YAYIN/ep09/dinleme/ep09_tr_yeni_terimler.mp3 for the creator (steyt, go tu, layts, krosing, pres start, pres taym, dilay, milis).
+1. (Shortening + HI/PT done, see 13 Nov.) Finish ES: shorten the HI/PT/ES lines in make_dubs.py to their max_chars (fit_targets.json), run make_dubs.py + make_subs.py, then `bash video/ep09/build/voices_all.sh` after removing narrate_hi/pt/es + retake_hi/pt/es from build/rebuild.done (dub.py only re-narrates changed lines). Re-measure; second pass if stretch is still > ~30 s.
+2. (TR retakes done.) Run `tools/tr_lowprob_scan.py` again; listening file YAYIN/ep09/dinleme/ep09_tr_yeni_terimler.mp3 for the creator (steyt, go tu, layts, krosing, pres start, pres taym, dilay, milis).
 3. `tools/build.py video/ep09 schedule`, full render, audio, stills review on the final schedule.
 4. When clips arrive (due Sun 15 Nov): prepare footage/ep09/C0-C2 (16:9, set EP09_CLIP_SECONDS + WIN in ep09.js, Short crops in video/shorts/ep09/short.json), compose, dubs, subs, localize, thumbnails A/B, Shorts EN/TR (Turkish on-screen text), package YAYIN/ep09, listening samples.
 5. Upload: 17 Nov 17:00 video, 18 Nov TR Short 17:00, 19 Nov EN Short 22:00.
