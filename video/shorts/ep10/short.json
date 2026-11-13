@@ -1,0 +1,87 @@
+{
+ "episode": "ep10",
+ "engine": "chatterbox",
+ "source": "video/ep10/build/video.mp4",
+ "schedule": "video/ep10/build/schedule.json",
+ "note": "One challenge + one puzzle: can you beat 200 ms, and where does the record go when you unplug the board? TR 21 Nov 2026 17:00; EN 22 Nov 22:00 Europe/Istanbul. TR Short: Turkish on-screen text (creator rule 2026-11-11). Footage crops (C0, C2) to be set once footage/ep10 exists; check every crop against the final frames.",
+ "cta": {
+  "en": "Full lesson",
+  "tr": "Dersin tamamı",
+  "sub": {
+   "en": "linked: related video",
+   "tr": "bağlantı: ilgili video"
+  }
+ },
+ "segments": [
+  {
+   "id": "h0",
+   "chip": {"en": "ESP32 REFLEX GAME", "tr": "ESP32 REFLEKS OYUNU"},
+   "headline": {"en": "Beat 200 ms?", "tr": "200 ms'yi geçebilir misin?"},
+   "say": {
+    "en": "Red, yellow, green, press! Can you beat two hundred milliseconds?",
+    "tr": "Kırmızı, sarı, yeşil, bas! İki yüz milisaniyenin altına inebilir misin?"
+   },
+   "show": {
+    "en": "Red, yellow, green, press! Can you beat 200 milliseconds?",
+    "tr": "Kırmızı, sarı, yeşil, bas! 200 milisaniyenin altına inebilir misin?"
+   },
+   "shots": [{"file": "footage/ep10/C0.mp4", "src": 1.0, "crop": [0, 0, 1080, 1080]}]
+  },
+  {
+   "id": "h1",
+   "chip": {"en": "THE TRICK", "tr": "HİLE"},
+   "headline": {"en": "A parking ticket", "tr": "Bir otopark bileti"},
+   "say": {
+    "en": "The board stamps the time when green comes on. Your press minus that stamp is your reaction.",
+    "tr": "Kart, yeşil yandığı anın saatini not ediyor. Basışınız eksi o an, sizin tepki süreniz."
+   },
+   "show": {
+    "en": "The board stamps the time when green comes on. Your press minus that stamp is your reaction.",
+    "tr": "Kart, yeşil yandığı anın saatini not ediyor. Basışınız eksi o an, sizin tepki süreniz."
+   },
+   "shots": [{"at": ["s13", null, 0.5], "crop": [600, 200, 1100, 720]}]
+  },
+  {
+   "id": "h2",
+   "chip": {"en": "THE PUZZLE", "tr": "BİLMECE"},
+   "headline": {"en": "Unplug it...", "tr": "Fişten çek..."},
+   "say": {
+    "en": "But unplug the board, and a normal variable forgets your record. So where can it hide?",
+    "tr": "Ama kartı fişten çekin, sıradan bir değişken rekorunuzu unutur. Peki rekor nerede saklanabilir?"
+   },
+   "show": {
+    "en": "But unplug the board, and a normal variable forgets your record. So where can it hide?",
+    "tr": "Ama kartı fişten çekin, sıradan bir değişken rekorunuzu unutur. Peki rekor nerede saklanabilir?"
+   },
+   "shots": [{"file": "footage/ep10/C2.mp4", "src": 0.5, "crop": [0, 0, 1080, 1080]}]
+  },
+  {
+   "id": "h3",
+   "chip": {"en": "THE ANSWER", "tr": "CEVAP"},
+   "headline": {"en": "In the drawer", "tr": "Çekmecede"},
+   "say": {
+    "en": "In the ESP32's flash memory. Preferences writes the record there, and it stays even without power.",
+    "tr": "ESP otuz ikinin flaş belleğinde. Prefırınsız rekoru oraya yazıyor; elektrik olmadan da duruyor."
+   },
+   "show": {
+    "en": "In the ESP32's flash memory. Preferences writes the record there, and it stays even without power.",
+    "tr": "ESP32'nin flash belleğinde. Preferences rekoru oraya yazıyor; elektrik olmadan da duruyor."
+   },
+   "shots": [{"at": ["s42", null, 0.4], "crop": [100, 190, 1120, 600]}]
+  },
+  {
+   "id": "h4",
+   "chip": {"en": "YOUR TURN", "tr": "SIRA SİZDE"},
+   "headline": {"en": "Post your time", "tr": "Süreni yaz"},
+   "say": {
+    "en": "Build the game in the linked lesson, and post your best time in the comments.",
+    "tr": "Oyunu bağlantıdaki derste kurun ve en iyi sürenizi yorumlara yazın."
+   },
+   "show": {
+    "en": "Build the game in the linked lesson, and post your best time in the comments.",
+    "tr": "Oyunu bağlantıdaki derste kurun ve en iyi sürenizi yorumlara yazın."
+   },
+   "shots": [{"file": "footage/ep10/C0.mp4", "src": 6.0, "crop": [0, 0, 1080, 1080]}]
+  }
+ ]
+}

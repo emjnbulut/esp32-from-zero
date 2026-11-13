@@ -1,0 +1,87 @@
+{
+ "episode": "ep10_challenge",
+ "engine": "chatterbox",
+ "source": "video/ep10/build/video.mp4",
+ "schedule": "video/ep10/build/schedule.json",
+ "note": "Project 1 homework solution Short (false start / anti-cheat), TR 23 Nov 2026 17:00, EN 24 Nov 22:00 Europe/Istanbul. Tight crops, fast cuts (creator rule from ep04c). Footage: footage/ep10/C3.mp4 (creator: challenge_false_start, a press during yellow -> red flash, then a normal round). Code cards: render with the engine's fullCode()/bigCode on the challenge_false_start sketch (video/ep10/sketches.js) and crop like ep04c. Related video = episode 10. TR on-screen text.",
+ "cta": {
+  "en": "Full lesson",
+  "tr": "Dersin tamamı",
+  "sub": {
+   "en": "linked: related video",
+   "tr": "bağlantı: ilgili video"
+  }
+ },
+ "segments": [
+  {
+   "id": "c0",
+   "chip": {"en": "HOMEWORK SOLVED", "tr": "ÖDEV ÇÖZÜLDÜ"},
+   "headline": {"en": "Caught cheating!", "tr": "Hile yakalandı!"},
+   "say": {
+    "en": "Press too early, and the reflex game catches you: false start!",
+    "tr": "Erken basın, refleks oyunu sizi yakalıyor: erken başlama!"
+   },
+   "show": {
+    "en": "Press too early, and the reflex game catches you: FALSE START!",
+    "tr": "Erken basın, refleks oyunu sizi yakalıyor: ERKEN BAŞLAMA!"
+   },
+   "shots": [{"file": "footage/ep10/C3.mp4", "src": 1.0, "crop": [0, 0, 1080, 1080]}]
+  },
+  {
+   "id": "c1",
+   "chip": {"en": "THE TRICK", "tr": "HİLE"},
+   "headline": {"en": "One more step: 5", "tr": "Bir adım daha: 5"},
+   "say": {
+    "en": "One more step number: five means false start.",
+    "tr": "Bir adım numarası daha: beş, erken başlama demek."
+   },
+   "show": {
+    "en": "One more step number: 5 means false start.",
+    "tr": "Bir adım numarası daha: 5, erken başlama demek."
+   },
+   "shots": [{"file": "footage/ep10/C3_code1.mp4", "src": 0, "crop": [0, 0, 1080, 1080]}]
+  },
+  {
+   "id": "c2",
+   "chip": {"en": "THE CHECK", "tr": "KONTROL"},
+   "headline": {"en": "Pressed in red or yellow?", "tr": "Kırmızıda ya da sarıda mı?"},
+   "say": {
+    "en": "And one more check: if pressed comes in step one or two, go to step five.",
+    "tr": "Bir kontrol daha: basış birinci ya da ikinci adımda gelirse beşinci adıma git."
+   },
+   "show": {
+    "en": "And one more check: a press in step 1 or 2 -> goTo(5).",
+    "tr": "Bir kontrol daha: 1. ya da 2. adımda basış -> goTo(5)."
+   },
+   "shots": [{"file": "footage/ep10/C3_code2.mp4", "src": 0, "crop": [0, 0, 1080, 1080]}]
+  },
+  {
+   "id": "c3",
+   "chip": {"en": "STEP 5", "tr": "5. ADIM"},
+   "headline": {"en": "Flash red, no record", "tr": "Kırmızı yan-sön, rekor yok"},
+   "say": {
+    "en": "Step five flashes the color LED red for two seconds, saves nothing, and starts over.",
+    "tr": "Beşinci adım üç renkli ledi iki saniye kırmızı yakıp söndürüyor, hiçbir şey kaydetmiyor ve baştan başlıyor."
+   },
+   "show": {
+    "en": "Step 5 flashes the color LED red for 2 s, saves nothing, and starts over.",
+    "tr": "5. adım üç renkli LED'i 2 sn kırmızı yakıp söndürüyor, hiçbir şey kaydetmiyor ve baştan başlıyor."
+   },
+   "shots": [{"file": "footage/ep10/C3_code3.mp4", "src": 0, "crop": [0, 0, 1080, 1080]}]
+  },
+  {
+   "id": "c4",
+   "chip": {"en": "EPISODE 10", "tr": "BÖLÜM 10"},
+   "headline": {"en": "How did YOU solve it?", "tr": "Siz nasıl çözdünüz?"},
+   "say": {
+    "en": "Full code is in the lesson folder. How did you solve it? Tell me in the comments.",
+    "tr": "Kodun tamamı ders klasöründe. Siz nasıl çözdünüz? Yorumlarda yazın."
+   },
+   "show": {
+    "en": "Full code is in the lesson folder. How did you solve it? Tell me in the comments.",
+    "tr": "Kodun tamamı ders klasöründe. Siz nasıl çözdünüz? Yorumlarda yazın."
+   },
+   "shots": [{"file": "footage/ep10/C3.mp4", "src": 9.0, "crop": [0, 0, 1080, 1080]}]
+  }
+ ]
+}
