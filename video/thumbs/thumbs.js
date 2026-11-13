@@ -158,6 +158,20 @@ const LOC = {
     pt: { title: ["MÁQUINA DE", "ESTADOS"], words: { GREEN: "VERDE", YELLOW: "AMARELO", WALK: "ATRAVESSE", BLINK: "PISCA" }, maxW: 630 },
     es: { title: ["MÁQUINA DE", "ESTADOS"], words: { GREEN: "VERDE", YELLOW: "ÁMBAR", WALK: "CRUZA", BLINK: "PARPADEA" }, maxW: 630 },
   },
+  ep10_A: {
+    enMaxW: 640,
+    tr: { title: ["SÜREMİ", "GEÇ!"], pills: ["3 LED · 1 buton · rekor"], maxW: 640 },
+    hi: { title: ["मेरा टाइम", "हराओ!"], pills: ["3 LED · 1 button · रिकॉर्ड"], maxW: 640 },
+    pt: { title: ["BATA MEU", "TEMPO!"], pills: ["3 LEDs · 1 botão · recorde"], maxW: 640 },
+    es: { title: ["¡SUPERA MI", "TIEMPO!"], pills: ["3 LEDs · 1 botón · récord"], maxW: 640 },
+  },
+  ep10_B: {
+    enMaxW: 640,
+    tr: { title: ["FİŞİ ÇEK,", "REKOR KALIR"], words: { RECORD: "REKOR" }, maxW: 640 },
+    hi: { title: ["प्लग निकालो,", "रिकॉर्ड बचा"], words: { RECORD: "रिकॉर्ड" }, maxW: 640 },
+    pt: { title: ["DESLIGUE,", "O RECORDE FICA"], words: { RECORD: "RECORDE" }, maxW: 640 },
+    es: { title: ["DESCONECTA,", "EL RÉCORD QUEDA"], words: { RECORD: "RÉCORD" }, maxW: 640 },
+  },
 };
 const L = (LOC[key] || {})[lang] || {};
 if (lang === "hi") document.documentElement.classList.add("hi");
@@ -275,6 +289,20 @@ const V = {
       `<div style="display:flex;align-items:center;gap:18px;padding:4px 14px;border-radius:14px;${i === 2 ? "background:rgba(25,195,180,.22);outline:3px solid var(--teal)" : "opacity:.55"}">
         <span style="font:800 40px var(--mono);color:var(--amber);width:34px">${i}</span><span style="width:26px;height:26px;border-radius:50%;background:${c}"></span>
         <span style="font:800 34px var(--display);white-space:nowrap">${tx(w)}</span></div>`).join("")}</div>`);
+  },
+  // Episode 10: mini project 1, the reflex game. A = the challenge (beat my time), B = the record that survives unplugging.
+  ep10_A() {
+    title([["BEAT MY", "white"], ["TIME!", "amber"]], 150, 176);
+    led(1150, 40, 95, "red", false); led(1150, 200, 95, "yellow", false); led(1150, 360, 95, "green");
+    rgbLed(900, 60, 170, [40, 255, 120]);
+    card(780, 330, 380, 130, `<div style="font:800 76px/130px var(--mono);text-align:center;color:var(--amber)">213 ms</div>`);
+    pill(560, 620, "3 LEDs · 1 button · a record", "rgba(25,195,180,.18)", "var(--teal)");
+  },
+  ep10_B() {
+    title([["UNPLUG IT.", "white", "font-size:112px"], ["RECORD STAYS", "teal", "font-size:104px"]], 150, 150);
+    card(720, 110, 500, 170, `<div style="font:800 46px/1.2 var(--display);text-align:center;padding-top:18px">🏆 ${tx("RECORD")}</div><div style="font:800 66px var(--mono);text-align:center;color:var(--amber)">213 ms</div>`);
+    card(690, 330, 590, 110, `<div class="code" style="font-size:28px;text-align:center;line-height:106px">prefs.<span class="fn">putULong</span>(<span class="num">"best"</span>, best);</div>`);
+    card(820, 480, 300, 140, `<div style="font-size:110px;line-height:140px;text-align:center">🔌</div>`);
   },
   // channel trailer: the promise of the whole course
   trailer_A() {
