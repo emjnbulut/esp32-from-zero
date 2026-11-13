@@ -103,11 +103,12 @@ PARTS = [
     {"id": "p07-2", "tag": "Bölüm 10 · Proje 1", "title": "Refleks oyunu ve kalıcı rekor", "date": "Cum 20 Kas",
      "pics": [("07", "Devre aynı")],
      "steps": ["Kablolamaya dokunmayın. Düğme: sarı ışığın bekleme süresi (1–4 sn)."],
-     "code": [code(L7, "reflex_game")],
+     "code": [code(L7, "reflex_game"), code(L7, "challenge_false_start")],
      "clips": [
          ("C0", "Açılış: reflex_game yüklü. Butona basıp başlatın: kırmızı → sarı → YEŞİL. Yeşil yanınca hemen basın: RGB yeşil (hızlı).", "10–12", "Üç LED, RGB ve buton aynı kadrajda.", "Işık sırası ve sonuç rengi görünüyor."),
          ("C1", "Yavaş tepki: aynı oyun, yeşilden yaklaşık 1 sn sonra basın: RGB kırmızı.", "10", "C0 ile aynı kadraj.", "Sonuç kırmızı."),
          ("C2", "Rekor kalıcı: USB kablosunu çıkarıp 2 sn sonra geri takın.", "5", "USB fişi ve kart yakın plan.", "Çıkarma ve takma anı net."),
+         ("C3", "Ödev çözümü Short'u için: challenge_false_start yükleyin. Başlatın, SARI yanarken butona basın: RGB 2 sn kırmızı yanıp söner (erken başlama). Sonra bir tur normal oynayın: yeşilde basın.", "15", "C0 ile aynı kadraj.", "Kırmızı yanıp sönme ve ardından normal tur görünüyor."),
      ]},
 ]
 
