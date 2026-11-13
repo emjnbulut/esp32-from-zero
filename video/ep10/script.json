@@ -1,0 +1,373 @@
+{
+ "episode": 10,
+ "title": "Mini Project 1: a Reflex Game with a Record that Survives Power Off",
+ "voice": "en-US-EricNeural",
+ "rate": "+5%",
+ "lead_in": 0.8,
+ "sting_after": "s02",
+ "music": "results",
+ "clips": {
+  "C0": "OPENING + RUN: reflex_game, start press, red -> yellow -> GREEN, quick press, RGB turns green.",
+  "C1": "SLOW: same game, press ~1 s after green, RGB turns red.",
+  "C2": "UNPLUG: USB cable pulled out and plugged back in after ~2 s (close-up of plug and board)."
+ },
+ "segments": [
+  {
+   "id": "s01",
+   "scene": "cold",
+   "text": "Red, yellow, and green! I press as fast as I can, and the color LED turns green: that was a fast one.",
+   "tr": "Kırmızı, sarı ve yeşil! Olabildiğince hızlı basıyorum ve üç renkli LED yeşile dönüyor: bu hızlı bir tepkiydi.",
+   "clip": "C0"
+  },
+  {
+   "id": "s02",
+   "scene": "cold",
+   "text": "Today you'll build this reflex game, on the same circuit. And your best time stays saved, even when you unplug the board.",
+   "tr": "Bugün aynı devrede bu refleks oyununu kuracaksınız. Üstelik en iyi süreniz kartı fişten çekseniz bile kayıtlı kalıyor.",
+   "pad": 0.4
+  },
+  {
+   "id": "s03",
+   "scene": "retrieval",
+   "text": "New here? Episode one is on the screen. Now, two questions from earlier episodes.",
+   "tr": "Yeni misiniz? Birinci bölüm ekranda. Şimdi önceki bölümlerden iki soru."
+  },
+  {
+   "id": "s04",
+   "scene": "retrieval",
+   "text": "Quick question: in the crossing, the helper go to always did two jobs. Which two?",
+   "sub": "Quick question: in the crossing, the helper goTo() always did two jobs. Which two?",
+   "tr": "Kısa bir soru: geçitte goTo yardımcısı her zaman iki iş yapıyordu. Hangi ikisi?",
+   "pad": 2.6
+  },
+  {
+   "id": "s05",
+   "scene": "retrieval",
+   "text": "It put the new step number into state, and it wrote down the time. Without the time, the new step thinks it's already over.",
+   "tr": "Yeni adım numarasını state'e koyuyordu ve saati not ediyordu. Saat olmadan yeni adım, süresinin çoktan bittiğini sanıyor."
+  },
+  {
+   "id": "s06",
+   "scene": "retrieval",
+   "text": "Quick question: how do you make orange with the color LED?",
+   "tr": "Kısa bir soru: üç renkli LED ile turuncuyu nasıl elde edersiniz?",
+   "pad": 2.6
+  },
+  {
+   "id": "s07",
+   "scene": "retrieval",
+   "text": "Red fully on, just a little green, and blue off. Light adds up, so red with a touch of green looks orange.",
+   "tr": "Kırmızı tam açık, yeşil çok az, mavi kapalı. Işık toplanır; kırmızıya biraz yeşil katınca turuncu görünür.",
+   "pad": 0.4
+  },
+  {
+   "id": "s08",
+   "scene": "plan",
+   "text": "Here are the rules. Press the button to start. The red light comes on, then the yellow, and then green. The moment you see green, press.",
+   "tr": "Kurallar şöyle. Başlamak için butona basın. Önce kırmızı yanar, sonra sarı, sonra yeşil. Yeşili gördüğünüz an basın."
+  },
+  {
+   "id": "s09",
+   "scene": "plan",
+   "text": "The color LED shows how you did: green for fast, yellow for okay, and red for slow. And the knob sets how long the yellow waits, so you can't just count.",
+   "tr": "Üç renkli LED nasıl yaptığınızı gösterir: hızlıysa yeşil, idare ederse sarı, yavaşsa kırmızı. Düğme de sarının ne kadar bekleyeceğini ayarlar; böylece sayarak tahmin edemezsiniz."
+  },
+  {
+   "id": "s10",
+   "scene": "plan",
+   "text": "And again, not a single new wire. It's exactly the circuit from the crossing.",
+   "tr": "Ve yine tek bir yeni kablo yok. Devre, geçitteki devrenin aynısı.",
+   "pad": 0.4
+  },
+  {
+   "id": "s11",
+   "scene": "idea",
+   "text": "The game is our washing machine again, this time with five steps: waiting for a start, red, yellow, green, and showing the result.",
+   "tr": "Oyun yine bizim çamaşır makinemiz; bu sefer beş adımlı: başlamayı bekleme, kırmızı, sarı, yeşil ve sonucu gösterme."
+  },
+  {
+   "id": "s12",
+   "scene": "idea",
+   "text": "Pause the video and predict: how can the board measure your reaction time? You already know the trick.",
+   "tr": "Videoyu durdurun ve tahmin edin: kart tepki sürenizi nasıl ölçebilir? Hileyi zaten biliyorsunuz.",
+   "pad": 3.0
+  },
+  {
+   "id": "s13",
+   "scene": "idea",
+   "text": "It's the parking ticket. When green comes on, go to writes down the time. When you press, now minus that moment is your reaction.",
+   "tr": "Otopark bileti. Yeşil yanınca goTo saati not ediyor. Bastığınızda şimdiki zaman eksi o an, sizin tepki süreniz."
+  },
+  {
+   "id": "s14",
+   "scene": "idea",
+   "text": "So the time you spent in the green step is your reaction time. No new code needed for that.",
+   "tr": "Yani yeşil adımda geçirdiğiniz süre, sizin tepki süreniz. Bunun için yeni bir koda gerek yok.",
+   "pad": 0.4
+  },
+  {
+   "id": "s15",
+   "scene": "tour",
+   "text": "Here's the sketch, reflex game. At the top, the same pins and the same state and start time as the crossing, plus a variable called best for the record.",
+   "sub": "Here's the sketch, reflex_game. At the top, the same pins and the same state and start time as the crossing, plus a variable called best for the record.",
+   "tr": "İşte skeç: reflex_game. En üstte aynı pinler, geçitteki aynı state ve başlangıç zamanı; bir de rekor için best adlı bir değişken."
+  },
+  {
+   "id": "s16",
+   "scene": "tour",
+   "text": "The helpers are old friends too: set color for the result light, lights for the three LEDs, and go to for moving on.",
+   "sub": "The helpers are old friends too: setColor() for the result light, lights() for the three LEDs, and goTo() for moving on.",
+   "tr": "Yardımcılar da eski dostlar: sonuç ışığı için setColor, üç LED için lights ve ilerlemek için goTo.",
+   "pad": 0.4
+  },
+  {
+   "id": "s17",
+   "scene": "tour",
+   "text": "Part one is the button. One new detail: a true or false variable called pressed. It's true only in the one loop round where a new press happens.",
+   "sub": "Part one is the button. One new detail: a true or false variable called pressed. It's true only in the one loop round where a new press happens.",
+   "tr": "Birinci kısım buton. Tek yeni ayrıntı: pressed adlı, doğru ya da yanlış tutan bir değişken. Yalnızca yeni bir basışın olduğu o tek turda doğru oluyor."
+  },
+  {
+   "id": "s18",
+   "scene": "tour",
+   "text": "Pause and predict: you hold the button down for a whole second. In how many rounds is pressed true?",
+   "tr": "Durdurun ve tahmin edin: butonu tam bir saniye basılı tutuyorsunuz. pressed kaç turda doğru olur?",
+   "pad": 3.0
+  },
+  {
+   "id": "s19",
+   "scene": "tour",
+   "text": "Just one. Holding doesn't count again, so every step can simply ask: was there a press just now?",
+   "tr": "Yalnızca birinde. Basılı tutmak yeniden sayılmaz; böylece her adım kısaca şunu sorabilir: az önce basıldı mı?"
+  },
+  {
+   "id": "s20",
+   "scene": "steps",
+   "text": "Step zero waits for that press. Then red comes on, and we go to step one.",
+   "tr": "Sıfırıncı adım o basışı bekliyor. Sonra kırmızı yanıyor ve birinci adıma geçiyoruz."
+  },
+  {
+   "id": "s21",
+   "scene": "steps",
+   "text": "Step one keeps the red for one second. Then yellow comes on, and map turns the knob into the yellow time, from one to four seconds.",
+   "sub": "Step one keeps the red for one second. Then yellow comes on, and map() turns the knob into the yellow time, from one to four seconds.",
+   "tr": "Birinci adım kırmızıyı bir saniye tutuyor. Sonra sarı yanıyor ve map, düğmeyi sarının süresine çeviriyor: bir ile dört saniye arası."
+  },
+  {
+   "id": "s22",
+   "scene": "steps",
+   "text": "Now pause the video and try it yourself: write step two. When the yellow time is up, green comes on, and we go to step three.",
+   "tr": "Şimdi videoyu durdurun ve kendiniz deneyin: ikinci adımı yazın. Sarının süresi dolunca yeşil yanıyor ve üçüncü adıma geçiyoruz.",
+   "pad": 4.0
+  },
+  {
+   "id": "s23",
+   "scene": "steps",
+   "text": "Here's one way. It looks just like the crossing: one check of the time, the lights, and go to.",
+   "tr": "İşte bir yolu. Tıpkı geçitteki gibi: zamana tek bir bakış, ışıklar ve goTo."
+  },
+  {
+   "id": "s24",
+   "scene": "step3",
+   "text": "Step three is the heart of the game. When pressed comes, the time in this step is the reaction, and the Serial Monitor prints it.",
+   "tr": "Üçüncü adım oyunun kalbi. pressed geldiğinde bu adımdaki süre tepki süresidir ve Seri Monitör onu yazar.",
+   "pad": 0.4
+  },
+  {
+   "id": "s25",
+   "scene": "step3",
+   "text": "Then if and else if pick the color: under a quarter second is green, under half a second is yellow, and anything slower is red.",
+   "tr": "Sonra if ve else if rengi seçiyor: çeyrek saniyenin altı yeşil, yarım saniyenin altı sarı, daha yavaşı kırmızı."
+  },
+  {
+   "id": "s26",
+   "scene": "step3",
+   "text": "Step four shows that color for three seconds, then goes back to step zero for the next round.",
+   "tr": "Dördüncü adım o rengi üç saniye gösteriyor, sonra bir sonraki tur için sıfırıncı adıma dönüyor."
+  },
+  {
+   "id": "s27",
+   "scene": "run",
+   "text": "Here it is for real. Watch the lights, and the color at the end.",
+   "tr": "İşte gerçeği. Işıkları ve sondaki rengi izleyin.",
+   "clip": "C0",
+   "pad": 3.0
+  },
+  {
+   "id": "s28",
+   "scene": "run",
+   "text": "And now a slow press, about a second after green. The color LED says red.",
+   "tr": "Şimdi de yavaş bir basış; yeşilden yaklaşık bir saniye sonra. Üç renkli LED kırmızı diyor.",
+   "clip": "C1",
+   "pad": 2.0
+  },
+  {
+   "id": "s29",
+   "scene": "modify",
+   "text": "Change one number. Pause and predict: if two hundred fifty becomes two hundred, what happens to your green results?",
+   "sub": "Change one number. Pause and predict: if 250 becomes 200, what happens to your green results?",
+   "tr": "Tek bir sayıyı değiştirin. Durdurun ve tahmin edin: iki yüz elli, iki yüz olursa yeşil sonuçlarınıza ne olur?",
+   "pad": 3.0
+  },
+  {
+   "id": "s30",
+   "scene": "modify",
+   "text": "Green gets harder to earn. Only really fast presses count now, and more of your rounds end yellow.",
+   "tr": "Yeşil almak zorlaşır. Artık yalnızca gerçekten hızlı basışlar sayılır; turlarınızın çoğu sarıyla biter.",
+   "pad": 0.4
+  },
+  {
+   "id": "s31",
+   "scene": "lost",
+   "text": "Now the record. Pause and predict: you set a great time, then unplug the board and plug it back in. Is the record still there?",
+   "tr": "Şimdi rekor. Durdurun ve tahmin edin: harika bir süre yaptınız, sonra kartı fişten çekip geri taktınız. Rekor hâlâ orada mı?",
+   "pad": 3.0
+  },
+  {
+   "id": "s32",
+   "scene": "lost",
+   "text": "With an ordinary variable, no. Every variable lives in memory that's wiped when the power goes. After a restart, best starts over.",
+   "tr": "Sıradan bir değişkenle hayır. Her değişken, elektrik gidince silinen bir bellekte yaşar. Yeniden başlayınca best en baştan başlar.",
+   "pad": 0.4
+  },
+  {
+   "id": "s33",
+   "scene": "drawer",
+   "text": "Think of your desk. Variables are labeled boxes on the desk, and a power cut clears the whole desk. But a notebook in the drawer stays.",
+   "tr": "Masanızı düşünün. Değişkenler masanın üstündeki etiketli kutular; elektrik kesilince bütün masa temizleniyor. Ama çekmecedeki defter yerinde kalıyor.",
+   "pad": 0.4
+  },
+  {
+   "id": "s34",
+   "scene": "drawer",
+   "text": "What actually happens: the ESP32 keeps a small corner of its flash memory, the same memory that holds your program. A library called Preferences lets you write numbers there.",
+   "tr": "Gerçekte olan şu: ESP32, flash belleğinin küçük bir köşesini ayırıyor; programınızı tutan belleğin ta kendisi. Preferences adlı bir kütüphane oraya sayı yazmanızı sağlıyor."
+  },
+  {
+   "id": "s35",
+   "scene": "drawer",
+   "text": "The difference from a real notebook: this drawer is small, and every write wears it a little. So we write only when something worth keeping happens.",
+   "tr": "Gerçek defterden farkı şu: bu çekmece küçük ve her yazış onu biraz yıpratıyor. Bu yüzden yalnızca saklamaya değer bir şey olduğunda yazıyoruz.",
+   "pad": 0.4
+  },
+  {
+   "id": "s36",
+   "scene": "prefs",
+   "text": "In the sketch, three lines. In setup, begin opens a drawer we call reflex.",
+   "sub": "In the sketch, three lines. In setup(), begin() opens a drawer we call reflex.",
+   "tr": "Skeçte üç satır var. setup'ta begin, adını reflex koyduğumuz bir çekmeceyi açıyor."
+  },
+  {
+   "id": "s37",
+   "scene": "prefs",
+   "text": "Then get reads the page called best. If the page is still empty, it gives back the number in the second slot, here nine nine nine nine.",
+   "sub": "Then getULong() reads the page called best. If the page is still empty, it gives back the number in the second slot, here 9999.",
+   "tr": "Sonra get, best adlı sayfayı okuyor. Sayfa daha boşsa ikinci yerdeki sayıyı veriyor; burada dokuz bin dokuz yüz doksan dokuz."
+  },
+  {
+   "id": "s38",
+   "scene": "prefs",
+   "text": "Quick question: why such a big number as the starting record?",
+   "tr": "Kısa bir soru: başlangıç rekoru neden bu kadar büyük bir sayı?",
+   "pad": 2.6
+  },
+  {
+   "id": "s39",
+   "scene": "prefs",
+   "text": "Because any real reaction is smaller. So your very first round always becomes the record.",
+   "tr": "Çünkü gerçek bir tepki her zaman ondan küçüktür. Böylece ilk turunuz her zaman rekor olur."
+  },
+  {
+   "id": "s40",
+   "scene": "prefs",
+   "text": "And in step three: if the reaction beats best, we put the new record into best, and put writes it into the drawer.",
+   "sub": "And in step three: if the reaction beats best, we put the new record into best, and putULong() writes it into the drawer.",
+   "tr": "Üçüncü adımda da: tepki best'ten iyiyse yeni rekoru best'e koyuyoruz ve put onu çekmeceye yazıyor."
+  },
+  {
+   "id": "s41",
+   "scene": "unplug",
+   "text": "Here's the test. Unplug the cable, wait a moment, plug it back in.",
+   "tr": "İşte deneme. Kabloyu çekin, biraz bekleyin, geri takın.",
+   "clip": "C2",
+   "pad": 1.0
+  },
+  {
+   "id": "s42",
+   "scene": "unplug",
+   "text": "The Serial Monitor starts again, and the first line shows the old record. The drawer kept it.",
+   "tr": "Seri Monitör yeniden başlıyor ve ilk satır eski rekoru gösteriyor. Çekmece onu saklamış.",
+   "pad": 0.4
+  },
+  {
+   "id": "s43",
+   "scene": "mistake",
+   "text": "Now a mistake you might make. Someone wants to save the result, so they write put after every round, without the if.",
+   "tr": "Şimdi sizin de yapabileceğiniz bir hata. Biri sonucu kaydetmek istiyor ve if'i atlayıp her turdan sonra put yazıyor."
+  },
+  {
+   "id": "s44",
+   "scene": "mistake",
+   "text": "Quick question: what happens to a great record after one slow round?",
+   "tr": "Kısa bir soru: tek bir yavaş turdan sonra harika bir rekora ne olur?",
+   "pad": 2.6
+  },
+  {
+   "id": "s45",
+   "scene": "mistake",
+   "text": "It's gone. The slow time is written over it. The if is what makes it a record: only a better time goes into the drawer.",
+   "tr": "Gider. Yavaş süre onun üzerine yazılır. Onu rekor yapan if'tir: çekmeceye yalnızca daha iyi bir süre girer."
+  },
+  {
+   "id": "s46",
+   "scene": "explain",
+   "text": "Pause the video, and explain in your own words why best alone forgets the record, but the drawer keeps it. One sentence is enough.",
+   "tr": "Videoyu durdurun ve best'in tek başına rekoru neden unuttuğunu ama çekmecenin neden sakladığını kendi cümlenizle açıklayın. Tek cümle yeter.",
+   "pad": 4.0
+  },
+  {
+   "id": "s47",
+   "scene": "explain",
+   "text": "One way to say it: variables live in memory that needs power. The drawer is flash memory, which keeps its contents without power.",
+   "tr": "Şöyle söylenebilir: değişkenler elektriğe muhtaç bir bellekte yaşar. Çekmece ise flash bellek; elektrik olmadan da içindekini saklar.",
+   "pad": 0.4
+  },
+  {
+   "id": "s48",
+   "scene": "yourturn",
+   "text": "Pause and predict: what does the game do now if you press during the yellow?",
+   "tr": "Durdurun ve tahmin edin: sarı yanarken basarsanız oyun şu an ne yapar?",
+   "pad": 3.0
+  },
+  {
+   "id": "s49",
+   "scene": "yourturn",
+   "text": "Nothing at all. So a cheater can tap the button again and again, and catch the green by luck.",
+   "tr": "Hiçbir şey. Yani hile yapan biri butona durmadan basıp yeşili şansla yakalayabilir."
+  },
+  {
+   "id": "s50",
+   "scene": "yourturn",
+   "text": "Your turn, the project homework: a false start. A press during red or yellow flashes the color LED red, and no time counts.",
+   "tr": "Sıra sizde, projenin ödevi: erken başlama. Kırmızı ya da sarı yanarken basılırsa üç renkli LED kırmızı yanıp söner ve süre sayılmaz."
+  },
+  {
+   "id": "s51",
+   "scene": "yourturn",
+   "text": "You need one more step number and one more check. The solution is in the lesson folder, and I'll show it in a Short.",
+   "tr": "Bir adım numarası ve bir kontrol daha lazım. Çözüm ders klasöründe; bir Short'ta da göstereceğim."
+  },
+  {
+   "id": "s52",
+   "scene": "outro",
+   "text": "Today you finished your first project. A game built from steps. A reaction time that's just the time in one step. And a record kept in the drawer.",
+   "tr": "Bugün ilk projenizi bitirdiniz. Adımlardan kurulmuş bir oyun. Tek bir adımdaki süreden ibaret bir tepki süresi. Ve çekmecede saklanan bir rekor."
+  },
+  {
+   "id": "s53",
+   "scene": "outro",
+   "text": "Next time, a recap of everything since episode five, with a quiz. Tell me your best reaction time in the comments. See you there!",
+   "tr": "Gelecek sefer beşinci bölümden bu yana her şeyin bir tekrarı var, içinde bir de quiz. En iyi tepki sürenizi yorumlarda yazın. Görüşmek üzere!"
+  }
+ ]
+}
