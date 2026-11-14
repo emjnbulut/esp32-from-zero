@@ -271,7 +271,7 @@ textAt(sh, [[0, "Step 0: wait for a start"], [T("s21") - 0.2, "Step 1: red, then
   const s2 = bigCode(stp, 90, 200, 1200, "} else if (state == 2) {\n  if (inState >= waitTime) {\n    lights(LOW, LOW, HIGH);   // GO!\n    goTo(3, now);\n  }", { size: 36 });
   show(s2.c, T("s23")); s2.hl([[W("s23", "time"), 1], [W("s23", "lights"), 2], [W("s23", "and"), 3]]); hide(s2.c, T("s24") - 0.2, 0.25);
   const s3 = bigCode(stp, 90, 200, 1200, "} else if (state == 3) {\n  if (pressed) {\n    unsigned long reaction = inState;\n    Serial.println(reaction);\n    if (reaction < 250) {\n      setColor(0, 255, 0);\n    } else if (reaction < 500) {\n      setColor(255, 160, 0);\n    } else {\n      setColor(255, 0, 0);\n    }", { size: 28 });
-  show(s3.c, T("s24")); s3.hl([[W("s24", "pressed"), 1], [W("s24", "reaction"), 2], [W("s24", "prints"), 3], [W("s25", "green"), 4], [W("s25", "yellow"), 6], [W("s25", "red"), 8]]); hide(s3.c, T("s26") - 0.2, 0.25);
+  show(s3.c, T("s24")); s3.hl([[W("s24", "pressed"), 1], [W("s24", "reaction"), 2], [W("s24", "prints"), 3], [W("s25", "pick"), 4], [W("s25", "green"), 4], [W("s25", "yellow"), 6], [W("s25", "red"), 8]]); hide(s3.c, T("s26") - 0.2, 0.25);
   const s4 = bigCode(stp, 90, 200, 1200, "} else {                 // step 4\n  if (inState >= 3000) {\n    setColor(0, 0, 40);    // dim blue: press to start\n    goTo(0, now);\n  }\n}", { size: 36 });
   show(s4.c, T("s26")); s4.hl([[W("s26", "three"), 1], [W("s26", "back"), 3]]);
 }
@@ -339,7 +339,7 @@ textAt(ph, [[0, "Three lines: open the drawer"], [T("s37") - 0.2, "Read a page (
 {
   const c = bigCode(pf, 110, 200, 1700, '#include <Preferences.h>\nPreferences prefs;\n\nprefs.begin("reflex", false);           // in setup()\nbest = prefs.getULong("best", 9999);', { size: 40 });
   show(c.c, T("s36")); c.hl([[T("s36"), 3], [T("s37"), 4], [W("s37", "second"), 4]]); hide(c.c, T("s40") - 0.2, 0.25);
-  const dflt = pill(pf, 1060, 560, "empty page &rarr; <b style=\"font-family:var(--mono)\">9999</b>", "font-size:34px;color:var(--amber)"); show(dflt, W("s37", "empty")); hide(dflt, T("s40") - 0.2, 0.25);
+  const dflt = pill(pf, 1060, 560, "empty page &rarr; <b style=\"font-family:var(--mono)\">9999</b>", "font-size:34px;color:var(--amber)"); show(dflt, W("s37", "empty")); hide(dflt, T("s38") - 0.2, 0.25);
   const sc = box(pf, 160, 580, 840, 130, "", '<div style="font:700 34px/1.5 var(--ui)">&#128452;&#65039; drawer <b style="font-family:var(--mono);color:var(--teal)">"reflex"</b> &rarr; page <b style="font-family:var(--mono);color:var(--teal)">"best"</b></div>');
   hidden(sc); show(sc, T("s37")); hide(sc, T("s38") - 0.2, 0.2);
   ask(pf, "QUICK QUESTION", "Why such a big number as the starting record?", T("s38"), T("s39"), "Any real reaction is smaller: the first round is always a record.", { x: 160, y: 600, w: 1600, t1: T("s40") - 0.2 });
@@ -392,7 +392,7 @@ textAt(yh, [[0, "A press during the yellow?"], [T("s50") - 0.2, "Your turn: a fa
   const cheat = (t) => (t < goOn ? { state: 2, color: "off" } : t < lucky ? { state: 3, color: "off" } : { state: 4, color: "green" });
   const flash = (t) => ({ state: 0, color: Math.floor((t - T("s50")) / 0.15) % 2 ? "red" : "off" });
   const ri = reflexIcon(yt, 160, 230, 0.9); hidden(ri.r); show(ri.r, T("s48")); ri.drive((t) => (t < T("s49") ? { state: 2, color: "off" } : t < T("s50") ? cheat(t) : flash(t)));
-  const luck = pill(yt, 160, 800, "&#127922; green caught by luck: 50 ms", "font-size:30px;color:#ff8a8f"); show(luck, lucky + 0.2); hide(luck, T("s50") - 0.2, 0.2);
+  const luck = pill(yt, 880, 300, "&#127922; green caught by luck: 50 ms", "font-size:30px;color:#ff8a8f"); show(luck, lucky + 0.2); hide(luck, T("s50") - 0.2, 0.2);
   const b = btnIcon(yt, 600, 560, 170); hidden(b.r); show(b.r, T("s48")); b.press(mash.concat([[W("s50", "press"), W("s50", "press") + 0.3]]));
   askTop(stage, "PAUSE AND PREDICT", "You press during the yellow. What does the game do now?", T("s48"), T("s49"), "Nothing: a cheater can tap again and again.", { x: 210, y: 820, w: 1500, t1: T("s50") - 0.3 });
   const hw = tile(yt, 880, 220, 940, 360, '<div class="kicker">PROJECT HOMEWORK</div><div style="font:800 48px var(--display);margin-top:16px">FALSE START!</div><div style="font:700 34px/1.6 var(--ui);margin-top:16px">Press during ' + dot("#ff4d5a") + ' or ' + dot("#ffd23a") + '<br>&rarr; the color LED flashes red, no time counts</div>', "#ff5d6c");
