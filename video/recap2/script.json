@@ -1,0 +1,293 @@
+{
+ "episode": "recap2",
+ "title": "Recap 2: episodes 5-10",
+ "voice": "en-US-EricNeural",
+ "rate": "+5%",
+ "lead_in": 0.8,
+ "sting_after": "s02",
+ "music": "results",
+ "clips": {
+  "M": "MONTAGE: existing creator clips, about 2 s each: ep05 breathing LED, ep06 colors, ep07 knob dimmer, ep08 level bar, ep09 crossing C0, ep10 reflex C0."
+ },
+ "segments": [
+  {
+   "id": "s01",
+   "scene": "cold",
+   "text": "A breathing LED. Any color you like. A knob that dims the light, a level bar, a crossing, and a reflex game.",
+   "tr": "Nefes alan bir LED. İstediğiniz her renk. Işığı kısan bir düğme, bir seviye çubuğu, bir yaya geçidi ve bir refleks oyunu.",
+   "clip": "M"
+  },
+  {
+   "id": "s02",
+   "scene": "cold",
+   "text": "Today, nothing new. We'll read these sketches again, watch their numbers change, and you'll test yourself with seven questions.",
+   "tr": "Bugün yeni bir şey yok. Bu skeçleri yeniden okuyacağız, sayılarının değişmesini izleyeceğiz ve yedi soruyla kendinizi sınayacaksınız.",
+   "pad": 0.4
+  },
+  {
+   "id": "s03",
+   "scene": "retrieval",
+   "text": "Grab a piece of paper. After every question, pause the video, answer, and then give yourself a point if you were right.",
+   "tr": "Bir kağıt alın. Her sorudan sonra videoyu durdurun, cevap verin; doğruysa kendinize bir puan yazın."
+  },
+  {
+   "id": "s04",
+   "scene": "retrieval",
+   "text": "Three parts: making light, reading a knob, and remembering steps. New here? Episode one is on the screen.",
+   "tr": "Üç kısım var: ışık yapmak, düğme okumak ve adımları hatırlamak. Yeni misiniz? Birinci bölüm ekranda.",
+   "pad": 0.4
+  },
+  {
+   "id": "s05",
+   "scene": "pwm",
+   "text": "Part one. Remember the ceiling fan? It spins so fast that your eye sees a blur, not the blades.",
+   "tr": "Birinci kısım. Tavan vantilatörünü hatırlıyor musunuz? O kadar hızlı döner ki gözünüz kanatları değil, bir bulanıklık görür."
+  },
+  {
+   "id": "s06",
+   "scene": "pwm",
+   "text": "What actually happens: the pin switches fully on and off about a thousand times a second. The longer it stays on in each cycle, the brighter the LED looks.",
+   "tr": "Gerçekte olan şu: pin saniyede yaklaşık bin kez tamamen açılıp kapanıyor. Her turda ne kadar uzun açık kalırsa LED o kadar parlak görünür."
+  },
+  {
+   "id": "s07",
+   "scene": "pwm",
+   "text": "The difference from a fan: the fan really moves, but the LED is never half on. It's only ever on or off.",
+   "tr": "Vantilatörden farkı şu: vantilatör gerçekten dönüyor ama LED asla yarı yanık değil. Ya açık ya kapalı.",
+   "pad": 0.4
+  },
+  {
+   "id": "s08",
+   "scene": "trace",
+   "text": "Let's trace the breathing LED. Every four milliseconds, brightness gets one step. At the top, the step turns negative, like a swing turning around.",
+   "tr": "Nefes alan LED'in izini sürelim. Her dört milisaniyede parlaklık bir adım değişiyor. En üstte adım eksiye dönüyor; tıpkı geri dönen bir salıncak gibi."
+  },
+  {
+   "id": "s09",
+   "scene": "trace",
+   "text": "Pause and predict: brightness has just reached the top. What is the step now? Watch the memory panel: it flips from plus one to minus one.",
+   "tr": "Durdurun ve tahmin edin: parlaklık en üste yeni ulaştı. Adım şimdi kaç? Hafıza paneline bakın: artı birden eksi bire dönüyor.",
+   "pad": 1.0
+  },
+  {
+   "id": "s10",
+   "scene": "q1",
+   "text": "Question one, pause the video to answer: with analog write sixty-four, how much of each cycle is the pin on?",
+   "sub": "Question one, pause the video to answer: with analogWrite(pin, 64), how much of each cycle is the pin on?",
+   "tr": "Birinci soru, cevap için videoyu durdurun: anılog rayt altmış dört ile pin her turun ne kadarında açık?",
+   "pad": 3.2
+  },
+  {
+   "id": "s11",
+   "scene": "q1",
+   "text": "About a quarter. Two fifty-five is always on, so sixty-four is roughly one quarter of the time.",
+   "sub": "About a quarter. 255 is always on, so 64 is roughly one quarter of the time.",
+   "tr": "Yaklaşık dörtte biri. İki yüz elli beş hep açık demek; altmış dört de zamanın kabaca dörtte biri.",
+   "pad": 0.4
+  },
+  {
+   "id": "s12",
+   "scene": "rgb",
+   "text": "Then the color LED. Like the dots on your phone screen, it's three small lights in one package: red, green and blue.",
+   "tr": "Sonra üç renkli LED. Telefon ekranınızdaki noktalar gibi, tek pakette üç küçük ışık: kırmızı, yeşil ve mavi."
+  },
+  {
+   "id": "s13",
+   "scene": "rgb",
+   "text": "The difference from paint: light adds up. Red and green together make yellow, not brown. And set color is the coffee machine button: one call, three values.",
+   "sub": "The difference from paint: light adds up. Red and green together make yellow, not brown. And setColor() is the coffee machine button: one call, three values.",
+   "tr": "Boyadan farkı şu: ışık toplanır. Kırmızıyla yeşil birlikte kahverengi değil, sarı yapar. setColor da kahve makinesi düğmesi: tek çağrı, üç değer."
+  },
+  {
+   "id": "s14",
+   "scene": "q2",
+   "text": "Here's question two, so pause the video: which color do you get from set color with two fifty-five, zero, two fifty-five?",
+   "sub": "Here's question two, so pause the video: which color do you get from setColor(255, 0, 255)?",
+   "tr": "İkinci soru geliyor, videoyu durdurun: setColor iki yüz elli beş, sıfır, iki yüz elli beş ile hangi rengi elde edersiniz?",
+   "pad": 3.2
+  },
+  {
+   "id": "s15",
+   "scene": "q2",
+   "text": "Magenta, a pinkish purple. Full red plus full blue, and no green.",
+   "tr": "Eflatun, pembemsi bir mor. Tam kırmızı artı tam mavi, hiç yeşil yok.",
+   "pad": 0.4
+  },
+  {
+   "id": "s16",
+   "scene": "pot",
+   "text": "Part two. The knob is a playground slide: a strip of resistance with a contact that slides along it. The middle leg gives the voltage where the contact sits.",
+   "tr": "İkinci kısım. Düğme bir kaydırak: üzerinde bir kontağın kaydığı direnç şeridi. Orta bacak, kontağın durduğu yerdeki voltajı verir.",
+   "pad": 0.4
+  },
+  {
+   "id": "s17",
+   "scene": "pot",
+   "text": "Analog read measures that voltage like a ruler with four thousand ninety-six marks: zero at zero volts, and the top mark at three point three volts.",
+   "sub": "analogRead() measures that voltage like a ruler with 4096 marks: 0 at zero volts, and the top mark at 3.3 volts.",
+   "tr": "anılog rid bu voltajı dört bin doksan altı çizgili bir cetvel gibi ölçer: sıfır voltta sıfır, üç virgül üç voltta en üst çizgi.",
+   "pad": 0.4
+  },
+  {
+   "id": "s18",
+   "scene": "map",
+   "text": "And map is the city map: it finds how far along the first range a number is, and returns the same spot in the second range.",
+   "sub": "And map() is the city map: it finds how far along the first range a number is, and returns the same spot in the second range.",
+   "tr": "map de şehir haritası: bir sayının ilk aralığın neresinde olduğunu bulur ve ikinci aralıkta aynı yeri verir."
+  },
+  {
+   "id": "s19",
+   "scene": "map",
+   "text": "The difference from a paper map: it works with whole numbers, and it always rounds down.",
+   "tr": "Kağıt haritadan farkı şu: tam sayılarla çalışır ve her zaman aşağı yuvarlar.",
+   "pad": 0.4
+  },
+  {
+   "id": "s20",
+   "scene": "trace2",
+   "text": "Let's trace the dimmer. The knob sits at the middle, the reading is about two thousand, and map turns it into a brightness of one hundred twenty-seven.",
+   "tr": "Dimmer'ın izini sürelim. Düğme ortada, okuma yaklaşık iki bin; map bunu yüz yirmi yedi parlaklığa çeviriyor."
+  },
+  {
+   "id": "s21",
+   "scene": "trace2",
+   "text": "Pause and predict: the knob goes all the way up. What does the brightness become? Two fifty-five, the top: every number in the panel follows the knob.",
+   "tr": "Durdurun ve tahmin edin: düğme sonuna kadar çevriliyor. Parlaklık kaç olur? İki yüz elli beş, en üst: paneldeki her sayı düğmeyi takip ediyor.",
+   "pad": 0.6
+  },
+  {
+   "id": "s22",
+   "scene": "q3",
+   "text": "Question three, pause the video when you need to. The yellow time in the reflex game is map from zero to four thousand ninety-five, onto one thousand to four thousand. The knob is at the middle. About how long is the yellow?",
+   "sub": "Question three, pause the video when you need to. The reflex game's yellow time is map(value, 0, 4095, 1000, 4000). The knob is at the middle. About how long is the yellow?",
+   "tr": "Üçüncü soru; gerekirse videoyu durdurun. Refleks oyununda sarının süresi, sıfır ile dört bin doksan beş arasını bin ile dört bin arasına çeviren map. Düğme ortada. Sarı yaklaşık ne kadar sürer?",
+   "pad": 3.2
+  },
+  {
+   "id": "s23",
+   "scene": "q3",
+   "text": "About two and a half seconds. Halfway along the knob is halfway between one and four seconds.",
+   "tr": "Yaklaşık iki buçuk saniye. Düğmenin yarısı, bir ile dört saniyenin tam ortası."
+  },
+  {
+   "id": "s24",
+   "scene": "q4",
+   "text": "Question four, and pause the video again: someone moves an LED to pin thirty-four, and it stays dark, although the wiring is fine. Why?",
+   "tr": "Dördüncü soru, yine videoyu durdurun: biri bir LED'i otuz dört numaralı pine taşıyor ve bağlantı doğru olduğu halde LED yanmıyor. Neden?",
+   "pad": 3.2
+  },
+  {
+   "id": "s25",
+   "scene": "q4",
+   "text": "Pins thirty-four to thirty-nine are one-way doors: they can only listen. They're perfect for a knob, but they can't drive an LED.",
+   "tr": "Otuz dört ile otuz dokuz arası pinler tek yönlü kapılar: yalnızca dinleyebilirler. Düğme için harikalar ama bir LED'i süremezler.",
+   "pad": 0.4
+  },
+  {
+   "id": "s26",
+   "scene": "state",
+   "text": "Part three. The washing machine: wash, rinse, spin. At any moment it knows which step it's in, and it moves on when that step's time is up.",
+   "tr": "Üçüncü kısım. Çamaşır makinesi: yıkama, durulama, sıkma. Her an hangi adımda olduğunu bilir ve o adımın süresi dolunca bir sonrakine geçer."
+  },
+  {
+   "id": "s27",
+   "scene": "state",
+   "text": "What actually happens: the step is one whole number called state. Moving on means two jobs, a new number and the time, and go to does both.",
+   "sub": "What actually happens: the step is one whole number called state. Moving on means two jobs, a new number and the time, and goTo() does both.",
+   "tr": "Gerçekte olan şu: adım, state adlı tek bir tam sayı. İlerlemek iki iş demek: yeni sayı ve saat; goTo ikisini birden yapar."
+  },
+  {
+   "id": "s28",
+   "scene": "state",
+   "text": "The difference from a machine: our loop never waits inside a step. It looks at the number thousands of times a second, and decides.",
+   "tr": "Makineden farkı şu: lup bir adımın içinde asla beklemez. Sayıya saniyede binlerce kez bakar ve karar verir.",
+   "pad": 0.4
+  },
+  {
+   "id": "s29",
+   "scene": "trace3",
+   "text": "Let's trace the reflex game. Red, yellow, and green: go to writes down the time. Now in step three, time in step counts up, like a parking ticket that's been stamped.",
+   "tr": "Refleks oyununun izini sürelim. Kırmızı, sarı ve yeşil: goTo saati not ediyor. Şimdi üçüncü adımda adımdaki süre artıyor; damgası basılmış bir otopark bileti gibi."
+  },
+  {
+   "id": "s30",
+   "scene": "trace3",
+   "text": "Pause and predict which number becomes the reaction. The press comes, and that time is the reaction. If it beats the record, it goes into the drawer, the flash memory that keeps it without power.",
+   "tr": "Durdurun ve hangi sayının tepki süresi olacağını tahmin edin. Basış geliyor ve o süre tepki süresi oluyor. Rekoru geçerse çekmeceye, yani elektrik olmadan da saklayan flash belleğe gidiyor."
+  },
+  {
+   "id": "s31",
+   "scene": "mistake",
+   "text": "Question five, pause the video. Someone moves on with just state equals one, and forgets the time. What happens to the next step?",
+   "tr": "Beşinci soru, videoyu durdurun. Biri yalnızca state eşittir bir yazarak ilerliyor ve saati unutuyor. Bir sonraki adıma ne olur?",
+   "pad": 3.2
+  },
+  {
+   "id": "s32",
+   "scene": "mistake",
+   "text": "It ends almost at once. Its start time is the old one, so the subtraction says its time is long gone.",
+   "tr": "Neredeyse hemen biter. Başlangıç zamanı eskisi; bu yüzden çıkarma, süresinin çoktan dolduğunu söyler."
+  },
+  {
+   "id": "s33",
+   "scene": "q6",
+   "text": "Question six, pause the video. In the crossing, you press the button while the walker is already crossing. Does that press count?",
+   "tr": "Altıncı soru, videoyu durdurun. Geçitte yaya zaten geçerken butona basıyorsunuz. Bu basış sayılır mı?",
+   "pad": 3.2
+  },
+  {
+   "id": "s34",
+   "scene": "q6",
+   "text": "No. Presses only count in step zero, when the cars have green, so the crossing never starts over by accident.",
+   "tr": "Hayır. Basışlar yalnızca sıfırıncı adımda, arabalara yeşil yanarken sayılır; böylece geçit yanlışlıkla baştan başlamaz."
+  },
+  {
+   "id": "s35",
+   "scene": "q7",
+   "text": "Last question, pause the video one more time. The record is in the drawer, and you unplug the board. After the restart, what does get give back?",
+   "sub": "Last question, pause the video one more time. The record is in the drawer, and you unplug the board. After the restart, what does getULong() give back?",
+   "tr": "Son soru, videoyu son kez durdurun. Rekor çekmecede ve kartı fişten çekiyorsunuz. Yeniden başlayınca get ne verir?",
+   "pad": 3.2
+  },
+  {
+   "id": "s36",
+   "scene": "q7",
+   "text": "The old record. Only an empty page gives back the default, nine nine nine nine.",
+   "sub": "The old record. Only an empty page gives back the default, 9999.",
+   "tr": "Eski rekoru. Varsayılan sayıyı, dokuz bin dokuz yüz doksan dokuzu yalnızca boş bir sayfa verir.",
+   "pad": 0.4
+  },
+  {
+   "id": "s36b",
+   "scene": "explain",
+   "text": "Before you count: pause the video, and explain in your own words what map does. One sentence is enough.",
+   "tr": "Saymadan önce videoyu durdurun ve map'in ne yaptığını kendi cümlenizle açıklayın. Tek cümle yeter.",
+   "pad": 4.0
+  },
+  {
+   "id": "s36c",
+   "scene": "explain",
+   "text": "One way to say it: it finds where a number sits in one range, and gives back the same spot in another range.",
+   "tr": "Şöyle söylenebilir: bir sayının bir aralıkta nerede durduğunu bulur ve başka bir aralıkta aynı yeri geri verir.",
+   "pad": 0.4
+  },
+  {
+   "id": "s37",
+   "scene": "score",
+   "text": "Count your points. Six or seven: you're ready for the next part of the course.",
+   "tr": "Puanlarınızı sayın. Altı ya da yedi: kursun bir sonraki kısmına hazırsınız."
+  },
+  {
+   "id": "s38",
+   "scene": "score",
+   "text": "Fewer? Each question on the screen shows its episode. Rewatch that one, it's short, and come back.",
+   "tr": "Daha az mı? Ekrandaki her sorunun yanında bölümü yazıyor. O bölümü yeniden izleyin, kısa zaten, sonra geri gelin."
+  },
+  {
+   "id": "s39",
+   "scene": "outro",
+   "text": "Next time: a light sensor, and a lamp that turns itself on when the room gets dark. Tell me your score in the comments. See you there!",
+   "tr": "Gelecek sefer: bir ışık sensörü ve oda kararınca kendiliğinden yanan bir lamba. Puanınızı yorumlarda yazın. Görüşmek üzere!"
+  }
+ ]
+}
