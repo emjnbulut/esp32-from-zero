@@ -270,10 +270,14 @@ const rg = chapter("s12", "s14"); const rgh = title(rg, "", "s12");
 textAt(rgh, [[0, "The color LED: three lights in one"], [T("s13") - 0.2, "Light adds up"]]);
 {
   exCard("&#128241;", "Dots on a phone screen", "Three small lights in one package: red, green and blue.", T("s12") + 0.4, T("s13") - 0.25);
-  const mix = box(rg, 160, 220, 900, 460, "", `<svg width="900" height="460" viewBox="0 0 900 460" style="position:absolute;left:0;top:0;mix-blend-mode:normal">
-    <g style="mix-blend-mode:screen"><circle cx="330" cy="220" r="170" fill="#ff2a2a"/><circle cx="560" cy="220" r="170" fill="#2aff4a"/></g>
-    <text x="445" y="236" text-anchor="middle" font-family="Segoe UI" font-weight="800" font-size="40" fill="#1b1600">yellow</text></svg>`);
-  css($("svg", mix), { isolation: "isolate" }); hidden(mix); show(mix, T("s13"));
+  const mix = box(rg, 160, 220, 900, 460, "", `<svg width="900" height="460" viewBox="0 0 900 460" style="position:absolute;left:0;top:0">
+    <defs><clipPath id="rc2red"><circle cx="330" cy="220" r="170"/></clipPath></defs>
+    <circle cx="330" cy="220" r="170" fill="#ff2a2a"/><circle cx="560" cy="220" r="170" fill="#2aff4a"/>
+    <circle cx="560" cy="220" r="170" fill="#ffee33" clip-path="url(#rc2red)"/>
+    <text x="445" y="236" text-anchor="middle" font-family="Segoe UI" font-weight="800" font-size="26" fill="#1b1600">yellow</text>
+    <text x="230" y="236" text-anchor="middle" font-family="Segoe UI" font-weight="800" font-size="34" fill="#2a0000">red</text>
+    <text x="665" y="236" text-anchor="middle" font-family="Segoe UI" font-weight="800" font-size="34" fill="#002a08">green</text></svg>`);
+  hidden(mix); show(mix, T("s13"));
   const pt = tile(rg, 160, 720, 900, 170, '<div style="font:700 32px/1.5 var(--ui);color:#ffe3b8"><b style="color:var(--amber)">The difference:</b> paint subtracts (red + green = brown), light adds (red + green = yellow).</div>', "var(--amber)");
   hidden(pt); show(pt, T("s13") + 0.3);
   const c = bigCode(rg, 1140, 260, 680, "setColor(255, 255, 0);", { size: 42 }); show(c.c, W("s13", "coffee") - 0.3);
