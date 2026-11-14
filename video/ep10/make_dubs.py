@@ -27,7 +27,7 @@ HI = [
     # s08
     "नियम: शुरू करने को button दबाइए। लाल, फिर पीली, फिर हरी जलती है। हरी दिखते ही दबाइए।",
     # s09
-    "Color LED नतीजा दिखाती है: तेज़ तो हरी, ठीक तो पीली, धीमा तो लाल। knob पीली का इंतज़ार बदलता है, गिनती काम नहीं करेगी।",
+    "Color LED नतीजा दिखाती है: तेज़ हरी, ठीक पीली, धीमा लाल। knob पीली का समय बदलता है, गिनती बेकार।",
     # s10
     "फिर से, एक भी नया तार नहीं। वही circuit जो crossing का था।",
     # s11
@@ -35,13 +35,13 @@ HI = [
     # s12
     "वीडियो रोकिए, अंदाज़ा लगाइए: board reaction time कैसे नापे? तरकीब आप जानते हैं।",
     # s13
-    "पार्किंग टिकट। हरी जलते ही goTo() समय लिखता है। दबाने पर अभी का समय घटाइए: वही reaction है।",
+    "टिकट: हरी पर goTo() समय लिखता है। press पर अभी घटा वो पल: reaction।",
     # s14
     "यानी हरी कदम में बीता समय ही reaction time है। इसके लिए नया code नहीं चाहिए।",
     # s15
     "ये sketch है, reflex_game। ऊपर वही pins, state और शुरुआती समय, और रिकॉर्ड के लिए best variable।",
     # s16
-    "Helpers पुराने दोस्त हैं: setColor() नतीजे की बत्ती, lights() तीन LED, goTo() आगे बढ़ने को।",
+    "पुराने helpers: setColor() नतीजा, lights() तीन LED, goTo() आगे बढ़ना।",
     # s17
     "पहला हिस्सा button। नया: pressed, सही या ग़लत वाला variable। नई press वाले एक ही round में सही।",
     # s18
@@ -49,7 +49,7 @@ HI = [
     # s19
     "सिर्फ़ एक में। दबाए रखना दोबारा नहीं गिना जाता, तो हर कदम पूछ सकता है: अभी press हुई?",
     # s20
-    "कदम शून्य उस press का इंतज़ार करता है। फिर लाल जलती है, और कदम एक।",
+    "कदम शून्य press का इंतज़ार करता है। फिर लाल, और कदम एक।",
     # s21
     "कदम एक लाल को एक सेकंड रखता है। फिर पीली, और map() knob को एक से चार सेकंड में बदलता है।",
     # s22
@@ -61,7 +61,7 @@ HI = [
     # s25
     "फिर if और else if रंग चुनते हैं: चौथाई सेकंड से कम हरी, आधे से कम पीली, बाक़ी लाल।",
     # s26
-    "कदम चार वो रंग तीन सेकंड दिखाता है, फिर अगले round के लिए कदम शून्य।",
+    "कदम चार: रंग तीन सेकंड, फिर कदम शून्य।",
     # s27
     "असली में देखिए। बत्तियाँ देखिए, और आख़िर का रंग।",
     # s28
@@ -69,7 +69,7 @@ HI = [
     # s29
     "एक संख्या बदलिए। रोकिए, अंदाज़ा लगाइए: दो सौ पचास की जगह दो सौ हो, तो हरी नतीजों का क्या होगा?",
     # s30
-    "हरी पाना कठिन हो जाता है। सिर्फ़ बहुत तेज़ press चलती है, ज़्यादा round पीले पर ख़त्म।",
+    "हरी पाना कठिन। सिर्फ़ बहुत तेज़ press चलेगी, ज़्यादा round पीले।",
     # s31
     "अब रिकॉर्ड। रोकिए, अंदाज़ा लगाइए: शानदार समय बनाया, फिर board निकालकर लगाया। रिकॉर्ड बचा है?",
     # s32
@@ -87,42 +87,42 @@ HI = [
     # s38
     "छोटा सवाल: शुरुआती रिकॉर्ड इतना बड़ा क्यों?",
     # s39
-    "क्योंकि असली reaction उससे छोटा होता है। पहला round हमेशा रिकॉर्ड बनता है।",
+    "असली reaction छोटा होता है, तो पहला round हमेशा रिकॉर्ड।",
     # s40
-    "कदम तीन में: reaction best से बेहतर हो तो best में डालते हैं, और putULong() दराज़ में लिखता है।",
+    "कदम तीन: बेहतर reaction best में, और putULong() दराज़ में।",
     # s41
     "ये परीक्षा। cable निकालिए, थोड़ा रुकिए, फिर लगाइए।",
     # s42
     "Serial Monitor फिर शुरू होता है, पहली पंक्ति में पुराना रिकॉर्ड। दराज़ ने रखा।",
     # s43
-    "अब एक आम ग़लती। कोई नतीजा सहेजना चाहता है, तो हर round के बाद put लिखता है, if के बिना।",
+    "अब एक आम ग़लती: कोई if के बिना हर round के बाद put लिखता है।",
     # s44
     "छोटा सवाल: एक धीमे round के बाद शानदार रिकॉर्ड का क्या होगा?",
     # s45
-    "मिट गया। धीमा समय उस पर लिख गया। if ही उसे रिकॉर्ड बनाता है: दराज़ में सिर्फ़ बेहतर समय जाता है।",
+    "मिट गया, धीमा समय ऊपर लिखा। if से रिकॉर्ड बनता है: सिर्फ़ बेहतर समय।",
     # s46
     "रोकिए, अपने शब्दों में बताइए कि best अकेला रिकॉर्ड क्यों भूलता है, पर दराज़ क्यों रखती है। एक वाक्य काफ़ी है।",
     # s47
-    "ऐसे कह सकते हैं: variables को बिजली वाली memory चाहिए। दराज़ flash memory है, जो बिना बिजली रखती है।",
+    "यानी: variables को बिजली चाहिए। दराज़ flash memory है, बिना बिजली भी रखती है।",
     # s48
     "रोकिए, अंदाज़ा लगाइए: पीली के दौरान दबाएँ तो खेल क्या करता है?",
     # s49
     "कुछ नहीं। तो चीटर button दबाता रहे, और हरी को किस्मत से पकड़ ले।",
     # s50
-    "आपकी बारी, ग़लत शुरुआत: लाल या पीली में press हो तो color LED लाल चमके, और समय न गिना जाए।",
+    "आपकी बारी: ग़लत शुरुआत। लाल या पीली में press पर LED लाल चमके, समय न गिने।",
     # s51
-    "एक और कदम नंबर और एक और जाँच चाहिए। हल lesson folder में है, और Short में दिखाऊँगा।",
+    "एक कदम और एक जाँच और। हल folder में, और Short में।",
     # s52
     "आज पहला project पूरा हुआ। कदमों से बना खेल। reaction time यानी एक कदम का समय। और दराज़ में रिकॉर्ड।",
     # s53
-    "अगली बार: पाँचवें episode से अब तक का recap, quiz के साथ। अपना बेस्ट reaction time comments में बताइए। मिलते हैं!",
+    "अगली बार: episode पाँच से अब तक का recap, quiz के साथ। अपना बेस्ट time comments में!",
 ]
 
 PT = [
     # s01
     "Vermelho, amarelo, verde! Aperto rápido e o LED colorido fica verde.",
     # s02
-    "Hoje você monta este jogo no mesmo circuito. E seu melhor tempo fica salvo, mesmo sem energia.",
+    "Hoje, este jogo no mesmo circuito. Seu recorde fica salvo, mesmo sem energia.",
     # s03
     "Novo aqui? O episódio um está na tela. Duas perguntas antigas.",
     # s04
@@ -144,7 +144,7 @@ PT = [
     # s12
     "Pause e preveja: como a placa mede seu tempo de reação? Você já sabe o truque.",
     # s13
-    "É o ticket de estacionamento. No verde, goTo() anota a hora. Ao apertar, agora menos essa hora é a reação.",
+    "O ticket: no verde, goTo() anota a hora. Apertou: agora menos ela é a reação.",
     # s14
     "Então o tempo no passo verde é seu tempo de reação. Sem código novo.",
     # s15
@@ -184,7 +184,7 @@ PT = [
     # s32
     "Com variável comum, não. Toda variável vive numa memória apagada sem energia. Depois, best recomeça.",
     # s33
-    "Pense na sua mesa. Variáveis são caixas nela, e sem energia a mesa é limpa. Mas o caderno na gaveta fica.",
+    "Pense na mesa. Variáveis são caixas nela; sem energia, tudo some. O caderno na gaveta fica.",
     # s34
     "Na prática: o ESP32 reserva um cantinho da memória flash, a mesma do programa. A biblioteca Preferences grava números ali.",
     # s35
@@ -198,7 +198,7 @@ PT = [
     # s39
     "Porque toda reação real é menor. A primeira rodada vira recorde.",
     # s40
-    "No passo três: se a reação vence best, guardamos em best, e putULong() grava na gaveta.",
+    "No passo três: se a reação vence best, vira best, e putULong() grava.",
     # s41
     "O teste. Tire o cabo, espere e ligue de novo.",
     # s42
@@ -212,7 +212,7 @@ PT = [
     # s46
     "Pause e explique com suas palavras por que best sozinho esquece o recorde e a gaveta guarda.",
     # s47
-    "Uma forma: variáveis vivem em memória que precisa de energia. A gaveta é flash, que não precisa.",
+    "Ou seja: variáveis precisam de energia. A gaveta é flash, guarda sem energia.",
     # s48
     "Pause e preveja: o que o jogo faz se apertar no amarelo?",
     # s49
@@ -220,7 +220,7 @@ PT = [
     # s50
     "Sua vez, a largada falsa: apertar no vermelho ou amarelo faz o LED piscar vermelho, sem tempo.",
     # s51
-    "Precisa de mais um passo e mais uma checagem. A solução está na pasta, e mostro num Short.",
+    "Mais um passo e mais uma checagem. A solução está na pasta, e mostro num Short.",
     # s52
     "Hoje você terminou seu primeiro projeto. Um jogo de passos. Reação é o tempo de um passo. E um recorde na gaveta.",
     # s53
@@ -247,7 +247,7 @@ ES = [
     # s09
     "El LED muestra: verde rápido, amarillo regular, rojo lento. La perilla cambia la espera del amarillo: no sirve contar.",
     # s10
-    "Otra vez, ningún cable nuevo. Es el circuito del cruce.",
+    "Ningún cable nuevo: es el circuito del cruce.",
     # s11
     "El juego es otra vez la lavadora, con cinco pasos: espera, rojo, amarillo, verde y resultado.",
     # s12
@@ -255,11 +255,11 @@ ES = [
     # s13
     "Es el ticket. Con el verde, goTo() anota la hora. Al pulsar, ahora menos esa hora es la reacción.",
     # s14
-    "Así, el tiempo en el paso verde es tu reacción. Sin código nuevo.",
+    "El tiempo del paso verde es tu reacción. Nada de código.",
     # s15
     "Este es el sketch reflex_game. Arriba, los mismos pines, state y hora de inicio, más best para el récord.",
     # s16
-    "Helpers conocidos: setColor() para el resultado, lights() para los LEDs, goTo() para avanzar.",
+    "Helpers conocidos: setColor() el resultado, lights() los LEDs, goTo() avanzar.",
     # s17
     "Parte uno, el botón. Novedad: pressed, verdadero o falso. Solo es verdadero en la vuelta de una pulsación nueva.",
     # s18
@@ -275,7 +275,7 @@ ES = [
     # s23
     "Una forma. Igual que el cruce: revisar el tiempo, las luces y goTo().",
     # s24
-    "El paso tres es el corazón. Con pressed, el tiempo del paso es la reacción, y el Monitor la muestra.",
+    "Paso tres, el corazón: con pressed, el tiempo del paso es tu reacción.",
     # s25
     "Luego if y else if eligen: menos de un cuarto de segundo verde, menos de medio amarillo, si no rojo.",
     # s26
@@ -293,15 +293,15 @@ ES = [
     # s32
     "Con una variable normal, no. Toda variable vive en memoria que se borra sin energía. best reinicia.",
     # s33
-    "Piensa en tu escritorio. Las variables son cajas encima, y sin energía se limpia. El cuaderno del cajón queda.",
+    "Variables: cajas sobre el escritorio; sin energía se limpia. El cuaderno del cajón queda.",
     # s34
     "En realidad: el ESP32 reserva un rincón de su memoria flash, la del programa. La biblioteca Preferences guarda números ahí.",
     # s35
-    "La diferencia: el cajón es pequeño y cada escritura lo desgasta un poco. Solo escribimos lo que vale la pena.",
+    "La diferencia: el cajón es chico y se desgasta. Escribimos solo lo que vale.",
     # s36
     "En el sketch, tres líneas. En setup(), begin() abre el cajón.",
     # s37
-    "Luego getULong() lee la página best. Si está vacía, devuelve el segundo número: nueve nueve nueve nueve.",
+    "getULong() lee la página best; si está vacía, da nueve nueve nueve nueve.",
     # s38
     "Rápido: ¿por qué un número tan grande?",
     # s39
@@ -329,7 +329,7 @@ ES = [
     # s50
     "Tu turno, la salida falsa: pulsar en rojo o amarillo hace parpadear el LED rojo, sin tiempo.",
     # s51
-    "Necesitas un paso más y una revisión más. La solución está en la carpeta, y en un Short.",
+    "Un paso y una revisión más. Solución: en la carpeta y en un Short.",
     # s52
     "Hoy terminaste tu primer proyecto. Un juego de pasos. La reacción es el tiempo de un paso. Y un récord en el cajón.",
     # s53

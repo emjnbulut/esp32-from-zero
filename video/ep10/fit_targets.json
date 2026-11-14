@@ -1,0 +1,204 @@
+{
+ "pt": {
+  "s02": {
+   "text": "Hoje você monta este jogo no mesmo circuito. E seu melhor tempo fica salvo, mesmo sem energia.",
+   "chars": 94,
+   "max_chars": 79,
+   "over_s": 1.0,
+   "en": "Today you'll build this reflex game, on the same circuit. And your best time stays saved, even when you unplug the board."
+  },
+  "s13": {
+   "text": "É o ticket de estacionamento. No verde, goTo() anota a hora. Ao apertar, agora menos essa hora é a reação.",
+   "chars": 106,
+   "max_chars": 79,
+   "over_s": 2.6,
+   "en": "It's the parking ticket. When green comes on, go to writes down the time. When you press, now minus that moment is your reaction."
+  },
+  "s33": {
+   "text": "Pense na sua mesa. Variáveis são caixas nela, e sem energia a mesa é limpa. Mas o caderno na gaveta fica.",
+   "chars": 105,
+   "max_chars": 95,
+   "over_s": 0.4,
+   "en": "Think of your desk. Variables are labeled boxes on the desk, and a power cut clears the whole desk. But a notebook in the drawer stays."
+  },
+  "s40": {
+   "text": "No passo três: se a reação vence best, guardamos em best, e putULong() grava na gaveta.",
+   "chars": 87,
+   "max_chars": 71,
+   "over_s": 1.2,
+   "en": "And in step three: if the reaction beats best, we put the new record into best, and put writes it into the drawer."
+  },
+  "s47": {
+   "text": "Uma forma: variáveis vivem em memória que precisa de energia. A gaveta é flash, que não precisa.",
+   "chars": 96,
+   "max_chars": 85,
+   "over_s": 0.6,
+   "en": "One way to say it: variables live in memory that needs power. The drawer is flash memory, which keeps its contents without power."
+  },
+  "s51": {
+   "text": "Precisa de mais um passo e mais uma checagem. A solução está na pasta, e mostro num Short.",
+   "chars": 90,
+   "max_chars": 79,
+   "over_s": 0.5,
+   "en": "You need one more step number and one more check. The solution is in the lesson folder, and I'll show it in a Short."
+  }
+ },
+ "hi": {
+  "s09": {
+   "text": "Color LED नतीजा दिखाती है: तेज़ तो हरी, ठीक तो पीली, धीमा तो लाल। knob पीली का इंतज़ार बदलता है, गिनती काम नहीं करेगी।",
+   "chars": 118,
+   "max_chars": 99,
+   "over_s": 1.7,
+   "en": "The color LED shows how you did: green for fast, yellow for okay, and red for slow. And the knob sets how long the yellow waits, so you can't just count."
+  },
+  "s13": {
+   "text": "पार्किंग टिकट। हरी जलते ही goTo() समय लिखता है। दबाने पर अभी का समय घटाइए: वही reaction है।",
+   "chars": 91,
+   "max_chars": 73,
+   "over_s": 1.8,
+   "en": "It's the parking ticket. When green comes on, go to writes down the time. When you press, now minus that moment is your reaction."
+  },
+  "s16": {
+   "text": "Helpers पुराने दोस्त हैं: setColor() नतीजे की बत्ती, lights() तीन LED, goTo() आगे बढ़ने को।",
+   "chars": 91,
+   "max_chars": 71,
+   "over_s": 2.2,
+   "en": "The helpers are old friends too: set color for the result light, lights for the three LEDs, and go to for moving on."
+  },
+  "s20": {
+   "text": "कदम शून्य उस press का इंतज़ार करता है। फिर लाल जलती है, और कदम एक।",
+   "chars": 66,
+   "max_chars": 56,
+   "over_s": 0.6,
+   "en": "Step zero waits for that press. Then red comes on, and we go to step one."
+  },
+  "s26": {
+   "text": "कदम चार वो रंग तीन सेकंड दिखाता है, फिर अगले round के लिए कदम शून्य।",
+   "chars": 68,
+   "max_chars": 42,
+   "over_s": 3.4,
+   "en": "Step four shows that color for three seconds, then goes back to step zero for the next round."
+  },
+  "s30": {
+   "text": "हरी पाना कठिन हो जाता है। सिर्फ़ बहुत तेज़ press चलती है, ज़्यादा round पीले पर ख़त्म।",
+   "chars": 86,
+   "max_chars": 64,
+   "over_s": 2.1,
+   "en": "Green gets harder to earn. Only really fast presses count now, and more of your rounds end yellow."
+  },
+  "s39": {
+   "text": "क्योंकि असली reaction उससे छोटा होता है। पहला round हमेशा रिकॉर्ड बनता है।",
+   "chars": 74,
+   "max_chars": 59,
+   "over_s": 1.2,
+   "en": "Because any real reaction is smaller. So your very first round always becomes the record."
+  },
+  "s40": {
+   "text": "कदम तीन में: reaction best से बेहतर हो तो best में डालते हैं, और putULong() दराज़ में लिखता है।",
+   "chars": 95,
+   "max_chars": 64,
+   "over_s": 3.2,
+   "en": "And in step three: if the reaction beats best, we put the new record into best, and put writes it into the drawer."
+  },
+  "s43": {
+   "text": "अब एक आम ग़लती। कोई नतीजा सहेजना चाहता है, तो हर round के बाद put लिखता है, if के बिना।",
+   "chars": 87,
+   "max_chars": 73,
+   "over_s": 1.0,
+   "en": "Now a mistake you might make. Someone wants to save the result, so they write put after every round, without the if."
+  },
+  "s45": {
+   "text": "मिट गया। धीमा समय उस पर लिख गया। if ही उसे रिकॉर्ड बनाता है: दराज़ में सिर्फ़ बेहतर समय जाता है।",
+   "chars": 96,
+   "max_chars": 68,
+   "over_s": 3.2,
+   "en": "It's gone. The slow time is written over it. The if is what makes it a record: only a better time goes into the drawer."
+  },
+  "s47": {
+   "text": "ऐसे कह सकते हैं: variables को बिजली वाली memory चाहिए। दराज़ flash memory है, जो बिना बिजली रखती है।",
+   "chars": 100,
+   "max_chars": 79,
+   "over_s": 1.9,
+   "en": "One way to say it: variables live in memory that needs power. The drawer is flash memory, which keeps its contents without power."
+  },
+  "s50": {
+   "text": "आपकी बारी, ग़लत शुरुआत: लाल या पीली में press हो तो color LED लाल चमके, और समय न गिना जाए।",
+   "chars": 90,
+   "max_chars": 75,
+   "over_s": 1.3,
+   "en": "Your turn, the project homework: a false start. A press during red or yellow flashes the color LED red, and no time counts."
+  },
+  "s51": {
+   "text": "एक और कदम नंबर और एक और जाँच चाहिए। हल lesson folder में है, और Short में दिखाऊँगा।",
+   "chars": 83,
+   "max_chars": 51,
+   "over_s": 3.9,
+   "en": "You need one more step number and one more check. The solution is in the lesson folder, and I'll show it in a Short."
+  },
+  "s53": {
+   "text": "अगली बार: पाँचवें episode से अब तक का recap, quiz के साथ। अपना बेस्ट reaction time comments में बताइए। मिलते हैं!",
+   "chars": 113,
+   "max_chars": 91,
+   "over_s": 1.6,
+   "en": "Next time, a recap of everything since episode five, with a quiz. Tell me your best reaction time in the comments. See you there!"
+  }
+ },
+ "es": {
+  "s10": {
+   "text": "Otra vez, ningún cable nuevo. Es el circuito del cruce.",
+   "chars": 55,
+   "max_chars": 47,
+   "over_s": 0.7,
+   "en": "And again, not a single new wire. It's exactly the circuit from the crossing."
+  },
+  "s14": {
+   "text": "Así, el tiempo en el paso verde es tu reacción. Sin código nuevo.",
+   "chars": 65,
+   "max_chars": 57,
+   "over_s": 0.6,
+   "en": "So the time you spent in the green step is your reaction time. No new code needed for that."
+  },
+  "s16": {
+   "text": "Helpers conocidos: setColor() para el resultado, lights() para los LEDs, goTo() para avanzar.",
+   "chars": 93,
+   "max_chars": 83,
+   "over_s": 0.6,
+   "en": "The helpers are old friends too: set color for the result light, lights for the three LEDs, and go to for moving on."
+  },
+  "s24": {
+   "text": "El paso tres es el corazón. Con pressed, el tiempo del paso es la reacción, y el Monitor la muestra.",
+   "chars": 100,
+   "max_chars": 79,
+   "over_s": 1.9,
+   "en": "Step three is the heart of the game. When pressed comes, the time in this step is the reaction, and the Serial Monitor prints it."
+  },
+  "s33": {
+   "text": "Piensa en tu escritorio. Las variables son cajas encima, y sin energía se limpia. El cuaderno del cajón queda.",
+   "chars": 110,
+   "max_chars": 96,
+   "over_s": 0.8,
+   "en": "Think of your desk. Variables are labeled boxes on the desk, and a power cut clears the whole desk. But a notebook in the drawer stays."
+  },
+  "s35": {
+   "text": "La diferencia: el cajón es pequeño y cada escritura lo desgasta un poco. Solo escribimos lo que vale la pena.",
+   "chars": 109,
+   "max_chars": 83,
+   "over_s": 2.4,
+   "en": "The difference from a real notebook: this drawer is small, and every write wears it a little. So we write only when something worth keeping happens."
+  },
+  "s37": {
+   "text": "Luego getULong() lee la página best. Si está vacía, devuelve el segundo número: nueve nueve nueve nueve.",
+   "chars": 104,
+   "max_chars": 82,
+   "over_s": 2.0,
+   "en": "Then get reads the page called best. If the page is still empty, it gives back the number in the second slot, here nine nine nine nine."
+  },
+  "s51": {
+   "text": "Necesitas un paso más y una revisión más. La solución está en la carpeta, y en un Short.",
+   "chars": 88,
+   "max_chars": 69,
+   "over_s": 1.5,
+   "en": "You need one more step number and one more check. The solution is in the lesson folder, and I'll show it in a Short."
+  }
+ }
+}
