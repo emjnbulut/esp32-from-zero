@@ -172,6 +172,13 @@ const LOC = {
     pt: { title: ["DESLIGUE,", "O RECORDE FICA"], words: { RECORD: "RECORDE" }, maxW: 640 },
     es: { title: ["DESCONECTA,", "EL RÉCORD QUEDA"], words: { RECORD: "RÉCORD" }, maxW: 640 },
   },
+  recap2_A: {
+    enMaxW: 600,
+    tr: { title: ["7/7 YAP", "BAKALIM!"], pills: ["PWM · map() · state"], words: { SCORE: "PUAN" }, maxW: 600 },
+    hi: { title: ["7/7", "कर पाओगे?"], pills: ["PWM · map() · state"], words: { SCORE: "स्कोर" }, maxW: 600 },
+    pt: { title: ["7/7", "VOCÊ CONSEGUE?"], pills: ["PWM · map() · estados"], words: { SCORE: "PONTOS" }, maxW: 600 },
+    es: { title: ["¿7/7?", "¡INTÉNTALO!"], pills: ["PWM · map() · estados"], words: { SCORE: "PUNTOS" }, maxW: 600 },
+  },
 };
 const L = (LOC[key] || {})[lang] || {};
 if (lang === "hi") document.documentElement.classList.add("hi");
@@ -309,6 +316,15 @@ const V = {
     title([["LEARN", "white", "font-size:128px"], ["ESP32", "amber", "font-size:176px"], ["FROM ZERO", "white", "font-size:92px"]], 130, 150);
     board(880, 50, 300, -6);
     rgbLed(690, 300, 150, [40, 200, 255]);
+  },
+  // Recap 2 (episodes 5-10): the challenge = a score out of 7.
+  recap2_A() {
+    title([["CAN YOU", "white", "font-size:120px"], ["SCORE 7/7?", "amber", "font-size:128px"]], 150, 150);
+    rgbLed(1120, 40, 150, [255, 60, 240]);
+    knob(880, 70, 200, 0.5);
+    card(760, 330, 460, 170, `<div style="padding:18px 30px;text-align:center;border:3px solid var(--amber);border-radius:22px;height:100%"><div style="font:700 26px var(--ui);letter-spacing:.14em;color:var(--muted)">${tx("SCORE")}</div>
+      <div style="font:800 76px var(--mono);margin-top:4px;color:var(--amber)">7 / 7</div></div>`);
+    pill(760, 612, "PWM · map() · state", "rgba(25,195,180,.18)", "var(--teal)");
   },
   // recap (numberless special, 2026-10-27): one focus = a line of code and the box that remembers (MEMORY)
   recap_A() {
