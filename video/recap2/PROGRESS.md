@@ -11,6 +11,9 @@ Work order (creator, 14 Nov): Ep9 -> Ep9 Shorts -> Ep10 -> Recap 2. Started 14 N
 - [x] Scenes recap2.js + index.html (helpers copied from ep10.js). NOT rendered yet (needs build/schedule.json).
 - [x] Montage footage/recap2/M.mp4 (8.8 s: ep05 C0, ep06 C2, ep07 C0, ep08 C0_wide). ADD ep09 C0 + ep10 C0 when they
   exist (then set CLIP_SECONDS.M in recap2.js).
-- [ ] Narration EN + TR running: `bash video/recap2/build/voice_en_tr.sh`, then `bash video/recap2/build/voices_all.sh`.
-- [ ] HI/PT/ES dub texts, subs, localize, youtube.md: given to a Sonnet subagent (check: ratio, no shifted lines).
-- [ ] Stills review, dub fit, TR term scan, thumbnails (recap2_A/B), render, compose, package YAYIN/recap2.
+- [x] Narration in all 5 languages; stretch +30.3 s (TR alone 16.1 s), accepted without a fit pass. Schedule 7:48, audio.
+- [x] HI/PT/ES dub texts (mean ~0.70x EN), 7 subtitle languages, localize, youtube.md (commit after 52d9eee line).
+- [x] Stills reviewed (RGB overlap fix). TR term scan + 8 retakes (build/tr_fixline.summary); listening file
+  YAYIN/recap2/dinleme/recap2_tr_terimler.mp3 (+ .txt) for the creator. Thumbnail recap2_A in 5 languages.
+- [ ] Add ep09/ep10 C0 to the montage when they exist, full render, compose, dubs, subs, rerun make_localize.py,
+  package YAYIN/recap2, listening samples. Upload Tue 24 Nov 17:00.
