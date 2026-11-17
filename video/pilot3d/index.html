@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ESP32 From Zero - 3D pilot: PWM</title>
+<link rel="stylesheet" href="../engine/stage.css">
+<style>
+  #c3d { position: absolute; inset: 0; width: 1920px; height: 1080px; }
+  #ui { pointer-events: none; }
+  /* soft vignette over the 3D canvas, same mood as the 2D scenes */
+  .vig { position: absolute; inset: 0; background: radial-gradient(1500px 900px at 55% 50%, transparent 55%, rgba(5,9,18,.55) 100%); }
+  .card { position: absolute; left: 90px; top: 250px; width: 640px; padding: 30px 36px 32px; border-radius: 24px;
+    background: rgba(18,27,46,.92); border: 2px solid #22304d; box-shadow: 0 30px 80px rgba(0,0,0,.5); opacity: 0; }
+  .card .k { font: 800 20px var(--ui); letter-spacing: .14em; color: var(--muted); }
+  .card .code { margin-top: 14px; font: 700 40px/1.4 var(--mono); color: var(--text); white-space: nowrap; }
+  .card .code .fn { color: var(--teal); }
+  .card .code .num { color: var(--amber); display: inline-block; min-width: 2.2ch; text-align: right; }
+  .card .cm { font: 600 26px var(--mono); color: #5f7192; }
+  .wave { margin-top: 24px; padding: 16px 18px 12px; border-radius: 16px; background: #0d1528; border: 2px solid #1f2c48; }
+  .wave svg { display: block; }
+  .wave .lab { display: flex; justify-content: space-between; margin-top: 8px; font: 700 22px var(--ui); color: var(--muted); }
+  .wave .lab b { color: var(--amber); }
+  .tag { position: absolute; padding: 8px 16px; border-radius: 10px; background: #ff8a2a; color: #1a1206;
+    font: 800 24px var(--ui); white-space: nowrap; opacity: 0; transform: translate(-50%, -100%); }
+  .tag::after { content: ""; position: absolute; left: 50%; bottom: -10px; margin-left: -9px; border: 9px solid transparent; border-bottom: 0; border-top-color: #ff8a2a; }
+  .banner { position: absolute; left: 50%; top: 70px; transform: translateX(-50%); padding: 14px 34px; border-radius: 14px;
+    background: rgba(11,18,32,.9); border: 2px solid var(--amber); color: #ffd48a; font: 800 34px var(--ui); letter-spacing: .08em;
+    white-space: nowrap; opacity: 0; }
+  .note { position: absolute; left: 50%; bottom: 80px; transform: translateX(-50%); padding: 16px 34px; border-radius: 16px;
+    background: rgba(18,27,46,.92); border: 2px solid var(--teal); font: 700 34px var(--ui); color: var(--text); white-space: nowrap; opacity: 0; }
+  .note b { color: var(--teal); }
+  .title { position: absolute; left: 100px; top: 96px; opacity: 0; }
+  .title .s { font: 800 24px var(--ui); letter-spacing: .16em; color: var(--teal); }
+  .title .h { margin-top: 6px; font: 800 84px/1.05 var(--display); color: var(--text); text-shadow: 0 6px 30px rgba(0,0,0,.6); }
+  .title .h b { color: var(--amber); }
+</style>
+<script type="importmap">
+{ "imports": { "three": "../node_modules/three/build/three.module.js", "three/addons/": "../node_modules/three/examples/jsm/" } }
+</script>
+</head>
+<body>
+<div id="stage">
+  <canvas id="c3d" width="1920" height="1080"></canvas>
+  <div class="vig"></div>
+  <div id="ui" class="layer"></div>
+</div>
+<script src="../node_modules/gsap/dist/gsap.min.js"></script>
+<script src="../engine/lib.js"></script>
+<script type="module" src="scene3d.js"></script>
+</body>
+</html>

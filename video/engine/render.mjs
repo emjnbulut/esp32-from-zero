@@ -64,7 +64,10 @@ function ffmpegWriter(out) {
 const write = (stream, buf) => new Promise((res) => (stream.write(buf) ? res() : stream.once("drain", res)));
 const shot = (page) => alpha ? page.screenshot({ type: "png", omitBackground: true }) : page.screenshot({ type: "jpeg", quality: 92 });
 
-const browser = await chromium.launch({ args: ["--font-render-hinting=none", "--disable-gpu-vsync"] });
+// --allow-file-access-from-files lets 3D pages load ES modules (three.js) from file:// URLs.
+// --gpu renders WebGL on the graphics card instead of the software rasterizer (much faster for 3D scenes).
+const gpuArgs = flag("gpu") ? ["--enable-gpu", "--ignore-gpu-blocklist", "--use-angle=d3d11"] : [];
+const browser = await chromium.launch({ args: ["--font-render-hinting=none", "--disable-gpu-vsync", "--allow-file-access-from-files", ...gpuArgs] });
 const stills = opt("stills");
 if (stills) {
   const page = await openPage(browser);
