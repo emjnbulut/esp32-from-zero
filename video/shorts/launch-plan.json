@@ -16,16 +16,17 @@
   {
     "episode": "ep01",
     "language": "tr",
-    "date": "2026-10-22",
+    "date": "2026-11-17",
     "time_tr": "17:00",
-    "publish_at": "2026-10-22T14:00:00Z",
+    "publish_at": "2026-11-17T14:00:00Z",
     "title": "İlk ESP32 programın: kurulumdan ilk yüklemeye #ESP32 #Arduino",
     "description": "Arduino IDE, ESP32 kart paketi, USB sürücüsü ve ilk programını karta yükleme. Adım adım kurulumun kısa özeti.\n\nBölümün tamamı: https://youtu.be/RyR4OEA7ESA\n\nMusic: \"Lobby Time\" by Kevin MacLeod (incompetech.com), CC BY 4.0: https://creativecommons.org/licenses/by/4.0/\nNarration: Chatterbox TTS (Resemble AI, MIT). Voice references: LibriVox (public domain) and FLEURS by Google (CC BY 4.0): https://creativecommons.org/licenses/by/4.0/\n\n🧪 Ek alıştırmalar ve ödevler (ücretsiz, tarayıcıda):\nhttps://emjnbulut.github.io/esp32-learning-lab/\n\n#ESP32 #Arduino #Electronics #Shorts",
     "parent_video_id": "RyR4OEA7ESA",
-    "video_id": "XrDz-M0jYT0",
+    "video_id": "AzBsQiWwJZ0",
     "file": "C:\\Users\\emin\\esp32-from-zero\\YAYIN\\ep01\\shorts\\ep01_short_tr.mp4",
     "status": "scheduled",
-    "related_video_status": "blocked: YouTube video verification under review (usually 24 hours)"
+    "related_video_status": "set to ep01 at upload",
+    "note": "Re-upload 2026-11-16: original XrDz-M0jYT0 deleted by the user (low views); same file+title+description, tags added"
   },
   {
     "episode": "ep02",
