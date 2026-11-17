@@ -1,3 +1,22 @@
+# Update - 18 November 2026 ~01:15 (read first)
+
+Channel analysis + new direction (17 Nov, creator approved): PRODUCTION_GUIDELINES.md section 12 = growth layout for all
+new videos (result-first titles/thumbnails, standalone episodes, no long recaps, hybrid 2D code + 3D). Applies fully
+from Episode 11's script; Ep9/Ep10/Recap 2 only get the title/thumbnail/description/Short rules.
+
+3D work:
+- `video/pilot3d/` (README): pilot PWM scene, A = three.js stylized (engine-rendered, `render.mjs --gpu`), B = Blender
+  (EEVEE animation + Cycles hero frame). Shared Blender setup `pilot3d/b3d_scene.py`, red-only glow `pilot3d/glow.py`.
+- `video/short3d/treasure/` (README): first 3D project Short, "I turned my ESP32 into a treasure detector"
+  (`projects/05-treasure-detector`, eps 1-8 only): hook -> 10.5 s build montage -> game -> how it works -> CTA, 64.5 s.
+  SCHEDULED `uIGK1rqc2gQ` 18 Nov 2026 19:00 TR (EN, thumbnail build/thumbs/thumb_A_coin.jpg).
+
+Still to do:
+- After 18 Nov 19:00: Related video on `uIGK1rqc2gQ` = Episode 8 (`1GYzg84mmAM`).
+- Creator's open decision: replace the creator's C clips with 3D? (my advice: all C shots 3D, keep one 5-10 s
+  handheld "proof" clip per episode). Do not change the guidelines until the creator decides.
+- Creator still to pick the 3D look for episodes (A stylized / B cinematic / both: B for hero+thumbnail, A inside).
+
 # Update - 12 November 2026 ~01:00 (read first)
 
 Episode 9 (Mini Project 1, pedestrian crossing, due Tue 17 Nov 17:00) in production: sketches, script (57 segments, lint 0), scenes, translations, Short spec and ALL narration (EN/TR/HI/PT/ES) done. Next: dub fit (+115 s stretch, targets in video/ep09/fit_targets.json) and TR term retakes. Resume from "RESUME HERE" in video/ep09/PROGRESS.md. Creator clips C0-C2 due Sun 15 Nov.
