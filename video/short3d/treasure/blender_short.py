@@ -58,6 +58,22 @@ for o in scene.objects:
             m = pbr("w_" + n[5:], n[4:], 0.35, coat=0.35)
             slot.material = m
 
+# ---------- smooth round parts, keep box edges crisp (auto smooth by angle) ----------
+meshes = [o for o in scene.objects if o.type == "MESH"]
+for o in meshes:
+    o.data.polygons.foreach_set("use_smooth", [True] * len(o.data.polygons))
+    o.select_set(True)
+bpy.context.view_layer.objects.active = meshes[0]
+try:
+    bpy.ops.object.shade_auto_smooth(angle=math.radians(35))
+except Exception as e:  # older API
+    print("auto smooth fallback:", e)
+    for o in meshes:
+        if hasattr(o.data, "use_auto_smooth"):
+            o.data.use_auto_smooth, o.data.auto_smooth_angle = True, math.radians(35)
+for o in meshes:
+    o.select_set(False)
+
 # ---------- animated groups ----------
 groups = {}
 for g, piv in info["pivots"].items():
@@ -218,7 +234,7 @@ for f, s in enumerate(track):
     cam_d.lens = 12 / math.tan(math.radians(cm["fov"]) / 2)
     dist = (tgt - pos).length
     cam_d.dof.focus_distance = dist
-    cam_d.dof.aperture_fstop = max(4.0, min(11.0, dist / MM / 9))
+    cam_d.dof.aperture_fstop = min(90.0, 11 * 135 / (dist / MM))  # same relative blur as the pilot hero (f/11 at 135 mm)
     for path in ("lens",):
         K(cam_d, path, f)
     K(cam_d.dof, "focus_distance", f)
@@ -265,7 +281,7 @@ for attr in ("use_raytracing", "use_shadows"):
 color_management(scene)
 scene.render.image_settings.file_format = "PNG"
 scene.render.fps = FPS
-out = os.path.join(B, "frames")
+out = os.path.join(B, os.environ.get("FRAMES_DIR", "frames"))
 os.makedirs(out, exist_ok=True)
 if ONLY:
     for f in ONLY:

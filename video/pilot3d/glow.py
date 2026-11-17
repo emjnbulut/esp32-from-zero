@@ -6,11 +6,13 @@ import sys
 
 from PIL import Image, ImageChops, ImageFilter
 
+GMAX = int(sys.argv[3]) if len(sys.argv) > 3 else 185  # max green of a glowing pixel (lower = only pure reds)
+
 
 def glow(src_path, out_path):
     im = Image.open(src_path).convert("RGB")
     r, g, _ = im.split()
-    mask = ImageChops.multiply(r.point(lambda v: 255 if v > 205 else 0), g.point(lambda v: 255 if v < 185 else 0))
+    mask = ImageChops.multiply(r.point(lambda v: 255 if v > 205 else 0), g.point(lambda v: 255 if v < GMAX else 0))
     src = Image.composite(im, Image.new("RGB", im.size), mask)
     out = ImageChops.screen(im, src.filter(ImageFilter.GaussianBlur(30)))
     out = ImageChops.screen(out, src.filter(ImageFilter.GaussianBlur(9)))

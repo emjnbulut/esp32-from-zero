@@ -9,7 +9,7 @@
   html, body { width: 1080px; height: 1920px; overflow: hidden; background: transparent; }
   #stage { position: absolute; inset: 0; font-family: var(--ui); color: var(--text); }
   .cap { position: absolute; left: 60px; right: 60px; top: 1290px; text-align: center; font: 800 78px/1.12 var(--ui);
-    letter-spacing: -0.01em; text-shadow: 0 4px 18px rgba(0,0,0,.75), 0 0 3px rgba(0,0,0,.9); }
+    letter-spacing: -0.01em; -webkit-text-stroke: 10px rgba(6,10,20,.92); paint-order: stroke fill; text-shadow: 0 6px 24px rgba(0,0,0,.8); }
   .cap span { opacity: .5; }
   .cap span.done { opacity: 1; }
   .cap span.now { opacity: 1; color: var(--amber); }
