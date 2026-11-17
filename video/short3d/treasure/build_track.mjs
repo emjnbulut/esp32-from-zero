@@ -68,7 +68,7 @@ for (const n of Object.keys(GPIO)) { const p = info.wires[n][0]; anchors3d["pin_
 const anchorKeys = ["espTop", "knobTop", "btnTop", "rgbTop", "rledTop", ...Object.keys(GPIO).map((n) => "pin_" + n)];
 const labelAnchor = { ESP32: "espTop", knob: "knobTop", button: "btnTop", "color LED": "rgbTop", "red LED": "rledTop" };
 const events = {
-  labels: [...drops.map(([, t, text]) => ({ text, key: labelAnchor[text], t0: t - 0.05, t1: t + 0.85, kind: "part" })),
+  labels: [...drops.filter(([, , text]) => text !== "ESP32").map(([, t, text]) => ({ text, key: labelAnchor[text], t0: t - 0.05, t1: t + 0.85, kind: "part" })),
     ...Object.entries(GPIO).map(([n, text]) => ({ text, key: "pin_" + n, t0: wireAt[n] + 0.1, t1: wireAt[n] + 0.95, kind: "pin" }))],
   clicks: Object.values(landAt).sort((a, b) => a - b),
   zips: order.map((n) => wireAt[n]),

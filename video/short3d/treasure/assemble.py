@@ -6,6 +6,7 @@ build/voice.wav + build/track.json, build/build_voice.wav + build/build_events.j
 Writes build/audio_final.wav and build/treasure_short_en.mp4. Music runs once over the whole cut (no jump at the joins).
 """
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -93,7 +94,7 @@ fc = ("[0:v][1:v]overlay=format=auto[m];[2:v][3:v]overlay=format=auto[b];[m]spli
       f"[m1]trim=end_frame={S_FRAME},setpts=PTS-STARTPTS[a];[m2]trim=start_frame={S_FRAME},setpts=PTS-STARTPTS[c];"
       "[a][b][c]concat=n=3:v=1:a=0,format=yuv420p[v]")
 subprocess.run(["ffmpeg", "-v", "error", "-y", "-framerate", str(FPS), "-i", str(B / "glow_frames_v2" / "f_%04d.png"), "-i", str(B / "overlay.mov"),
-                "-framerate", str(FPS), "-i", str(B / "glow_frames_build" / "f_%04d.png"), "-i", str(B / "build_overlay.mov"),
+                "-framerate", str(FPS), "-i", str(B / os.environ.get("BUILD_GLOW", "glow_frames_build") / "f_%04d.png"), "-i", str(B / "build_overlay.mov"),
                 "-i", str(B / "audio_final.wav"), "-filter_complex", fc, "-map", "[v]", "-map", "4:a",
                 "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-r", str(FPS), "-c:a", "aac", "-b:a", "192k", "-shortest",
                 str(B / "treasure_short_en.mp4")], check=True)

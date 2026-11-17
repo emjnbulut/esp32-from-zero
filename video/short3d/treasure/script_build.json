@@ -1,11 +1,12 @@
 {
  "title": "Treasure detector - quick build montage (insert after l01)",
  "engine": "chatterbox",
- "lead": 0.35,
- "tail": 0.55,
- "before": {"b02": 0.2},
+ "lead": 0.25,
+ "tail": 0.35,
+ "before": {"b02": 0.05},
+ "cbx": {"pauses": {"sentence": 0.3, "question": 0.4, "colon": 0.18, "comma": 0.1}},
  "lines": [
-  {"id": "b01", "text": "Inside: a knob, a button, a color LED, and a red LED."},
+  {"id": "b01", "text": "Inside: a knob, a button, a color LED and a red LED."},
   {"id": "b02", "text": "A few wires, and it's ready."}
  ]
 }

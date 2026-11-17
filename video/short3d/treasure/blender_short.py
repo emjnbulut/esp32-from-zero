@@ -206,7 +206,7 @@ for f, s in enumerate(track):
         K(cu, "bevel_factor_end", f)
     groups["knob"].rotation_euler = (0, 0, math.radians(-s["knobDeg"]))  # three.js +y rotation -> Blender -z
     K(groups["knob"], "rotation_euler", f, 2)
-    groups["btncap"].location.z = bl_mm(info["pivots"]["btncap"]).z - 1.3 * s["cap"]
+    groups["btncap"].location.z = REST["btncap"].z + (parts.get("btncap", 0) if parts is not None else 0) - 1.3 * s["cap"]
     K(groups["btncap"], "location", f, 2)
 
     col = s["rgb"]
