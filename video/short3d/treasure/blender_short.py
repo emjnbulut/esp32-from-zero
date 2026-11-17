@@ -21,7 +21,7 @@ from b3d_scene import MM, build, color_management, gl, hexrgb, pbr  # noqa: E402
 argv = sys.argv[sys.argv.index("--") + 1:]
 B, SAMPLES = argv[0], int(argv[1])
 ONLY = [int(x) for x in argv[2].split(",")] if len(argv) > 2 else None
-T = json.load(open(os.path.join(B, "track.json")))
+T = json.load(open(os.path.join(B, os.environ.get("TRACK", "track.json"))))
 info, track, FPS, N = T["info"], T["track"], T["fps"], T["frames"]
 
 scene, root, lib, ledlight = build(os.path.join(B, "scene.glb"))
@@ -76,7 +76,9 @@ for o in meshes:
 
 # ---------- animated groups ----------
 groups = {}
-for g, piv in info["pivots"].items():
+prefixes = sorted({o.name.split("|")[0] for o in scene.objects if o.type == "MESH" and "|" in o.name} - {"wire"})
+for g in prefixes:
+    piv = info["pivots"].get(g, [0, 0, 0])
     e = bpy.data.objects.new("grp_" + g, None)
     scene.collection.objects.link(e)
     e.parent = root
@@ -91,7 +93,32 @@ for o in list(scene.objects):
             o.parent = groups[g]
             o.matrix_world = mw
 
-A = info["anchors"]
+# wires as curves, so the build part can draw them hole to hole
+WIREMAT = {}
+for o in list(scene.objects):
+    if o.type == "MESH" and o.name.startswith("wire|"):
+        WIREMAT[o.name.split("|")[1].split(".")[0]] = o.material_slots[0].material
+        bpy.data.objects.remove(o, do_unlink=True)
+wires = {}
+for name, pts in info["wires"].items():
+    cu = bpy.data.curves.new("wire_" + name, "CURVE")
+    cu.dimensions = "3D"
+    cu.bevel_depth, cu.bevel_resolution, cu.use_fill_caps = 0.6, 4, True
+    cu.bevel_factor_mapping_end = "SPLINE"
+    sp = cu.splines.new("POLY")
+    sp.points.add(len(pts) - 1)
+    for i, p in enumerate(pts):
+        v = bl_mm(p)
+        sp.points[i].co = (v.x, v.y, v.z, 1.0)
+    sp.use_smooth = True
+    ob = bpy.data.objects.new("wire_" + name, cu)
+    scene.collection.objects.link(ob)
+    ob.parent = root
+    cu.materials.append(WIREMAT[name])
+    wires[name] = cu
+REST = {g: e.location.copy() for g, e in groups.items()}
+
+A = dict(info["anchors"], **T.get("anchors3d", {}))
 ledlight.location = gl(A["rledTop"][0], A["rledTop"][1] + 1.5, A["rledTop"][2])
 rgb_light_d = bpy.data.lights.new("rgblight", "POINT")
 rgb_light_d.shadow_soft_size = 0.003
@@ -167,6 +194,16 @@ def K(obj, path, f, index=-1):
 prev = None
 for f, s in enumerate(track):
     t = f / FPS
+    parts = s.get("parts")
+    if parts is not None:  # build: parts drop in from above (mm), 9999 = not there yet
+        for g, e in groups.items():
+            dz = parts.get(g, 0)
+            e.location = REST[g] + Vector((0, 0, dz))
+            K(e, "location", f)
+    wp = s.get("wires")
+    for name, cu in wires.items():
+        cu.bevel_factor_end = max(0.0005, wp.get(name, 1.0) if wp is not None else 1.0)
+        K(cu, "bevel_factor_end", f)
     groups["knob"].rotation_euler = (0, 0, math.radians(-s["knobDeg"]))  # three.js +y rotation -> Blender -z
     K(groups["knob"], "rotation_euler", f, 2)
     groups["btncap"].location.z = bl_mm(info["pivots"]["btncap"]).z - 1.3 * s["cap"]
@@ -258,13 +295,13 @@ for idb in list(bpy.data.objects) + list(bpy.data.lights) + list(bpy.data.camera
 # ---------- 2D anchors for the overlay ----------
 scene.render.resolution_x, scene.render.resolution_y = 1080, 1920
 scene.render.resolution_percentage = 100
-anchors = {k: [] for k in ("knobTop", "rgbTop", "rledTop", "btnTop")}
+anchors = {k: [] for k in T.get("anchorKeys", ["knobTop", "rgbTop", "rledTop", "btnTop"])}
 for f in range(N):
     scene.frame_set(f)
     for k in anchors:
         c = world_to_camera_view(scene, cam, gl(*A[k]))
         anchors[k].append([round(c.x * 1080, 1), round((1 - c.y) * 1920, 1), 1 if c.z > 0 else 0])
-with open(os.path.join(B, "anchors.json"), "w") as fh:
+with open(os.path.join(B, os.environ.get("ANCHORS", "anchors.json")), "w") as fh:
     json.dump({"fps": FPS, **anchors}, fh)
 
 # ---------- render ----------
