@@ -315,6 +315,14 @@ function ledAt(t) {
 }
 
 /* ---------------- 2D overlay (same engine as the 2D episodes) ---------------- */
+// Overlay-only mode (for the Blender version): no 3D canvas, transparent page, tags placed from __DATA.overlay.
+const OVERLAY = (window.__DATA && window.__DATA.overlay) || null;
+if (OVERLAY) {
+  canvas.style.display = "none";
+  document.querySelector(".vig").style.display = "none";
+  document.documentElement.style.background = document.body.style.background = "transparent";
+  document.getElementById("stage").style.background = "transparent";
+}
 const ui = document.getElementById("ui");
 const card = el("div", "card", `<div class="k">YOUR CODE</div>
   <div class="code"><span class="fn">analogWrite</span>(23, <span class="num">0</span>);</div>
@@ -398,12 +406,19 @@ function apply(t) {
   numEl.textContent = Math.round(valueAt(t));
   pctEl.textContent = Math.round((valueAt(t) / 255) * 100) + "%";
   path.setAttribute("d", wavePath(t));
-  const a = toScreen(V(PIN0X, pcbTop + 3.2 + esp.position.y, ROW.i));
+  let a, b;
+  if (OVERLAY) { // 3D anchors projected by the Blender camera (blender_anim.py writes them per frame)
+    const f = Math.min(OVERLAY.gpio23.length - 1, Math.max(0, Math.round(t * OVERLAY.fps)));
+    a = { x: OVERLAY.gpio23[f][0], y: OVERLAY.gpio23[f][1] };
+    b = { x: OVERLAY.ledTop[f][0], y: OVERLAY.ledTop[f][1] };
+  } else {
+    a = toScreen(V(PIN0X, pcbTop + 3.2 + esp.position.y, ROW.i));
+    b = toScreen(V(LED.x, LED.y0 + 8.5, LED.z));
+  }
   css(tag, { left: a.x + "px", top: a.y - 14 + "px" });
-  const b = toScreen(V(LED.x, LED.y0 + 8.5, LED.z));
   css(ledTag, { left: b.x + "px", top: b.y - 22 + "px" });
 
-  composer.render();
+  if (!OVERLAY) composer.render();
 }
 dyn(apply);
 
@@ -428,7 +443,10 @@ window.__exportGLB = async (t) => {
     }
     const m = o.material.clone();
     const mesh = new THREE.Mesh(geo, m);
-    mesh.name = o.name || m.name;
+    // group prefix ("esp32|pcb") lets Blender re-parent the parts that animate together
+    let grp = "";
+    o.traverseAncestors((p) => { if (!grp && ["esp32", "led", "resistor"].includes(p.name)) grp = p.name; });
+    mesh.name = (grp ? grp + "|" : "") + (o.name || m.name);
     o.matrixWorld.decompose(mesh.position, mesh.quaternion, mesh.scale);
     out.add(mesh);
   });
@@ -437,7 +455,13 @@ window.__exportGLB = async (t) => {
   let s = "";
   for (let i = 0; i < bytes.length; i += 0x8000) s += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
   const c = camAt(t);
-  return { glb: btoa(s), cam: c, led: [LED.x, LED.y0 + 5.2, LED.z] };
+  const wirePts = (w) => w.geometry.parameters.path.getSpacedPoints(120).map((p) => [p.x, p.y, p.z]);
+  return {
+    glb: btoa(s), cam: c, led: [LED.x, LED.y0 + 5.2, LED.z],
+    groups: { esp32: [0, 0, 0], led: [LED.x, 0, LED.z], resistor: [40.64, 0, RZC] },
+    wires: { wire_gpio23: wirePts(sigWire), wire_gnd: wirePts(gndWire) },
+    anchors: { gpio23: [PIN0X, pcbTop + 3.2, ROW.i], ledTop: [LED.x, LED.y0 + 8.5, LED.z] },
+  };
 };
 
 window.__seek(0);

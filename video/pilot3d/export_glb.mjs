@@ -15,6 +15,6 @@ await page.waitForFunction(() => window.__ready === true, null, { timeout: 60000
 const r = await page.evaluate((x) => window.__exportGLB(x), t);
 fs.mkdirSync(path.join(here, "build"), { recursive: true });
 fs.writeFileSync(path.join(here, "build", "scene.glb"), Buffer.from(r.glb, "base64"));
-fs.writeFileSync(path.join(here, "build", "scene.json"), JSON.stringify({ t, cam: r.cam, led: r.led }, null, 1));
+fs.writeFileSync(path.join(here, "build", "scene.json"), JSON.stringify({ t, cam: r.cam, led: r.led, groups: r.groups, wires: r.wires, anchors: r.anchors }));
 console.log("scene.glb", fs.statSync(path.join(here, "build", "scene.glb")).size, "bytes");
 await browser.close();
