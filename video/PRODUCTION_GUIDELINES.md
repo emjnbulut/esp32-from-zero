@@ -184,6 +184,43 @@ Kullanıcı kararı: "analizler sonucunda daha iyi hale getirmek için uğraşal
 - **Açık soru:** yeni izleyici çoğunluktayken açılıştan hemen sonraki hatırlatma soruları izleyici kaçırıyor mu? Bölüm 5'in tutma grafiğinde 0:30-1:30 arası ölçülür, Bölüm 7 senaryosundan önce kullanıcıya sonuç ve öneri sunulur. Bölüm 10'daki düzen o zamana kadar değişmez.
 - **Türkçe:** uzun videolarda dublaj dili kullanım oranı izlenir; Türkçe ağırlıklıysa başlık/küçük resim dili yeniden değerlendirilir.
 
+## 12. Büyüme düzeni ve karma 2D/3D stil — 17 Kasım 2026
+
+Kullanıcı kararı (17 Kasım 2026): "önümüzdeki yeni videolar için bu düzeni istiyorum". Kanal analizine dayanır (Studio, tüm zamanlar, 17 Kasım): 13.670 izlenme, 183 abone, CTR %3,6, ortalama 1:47, izleyicinin %97'si yeni. Bölüm 1 tek başına 3.519 izlenme ve abonelerin %59'u (108); sonraki bölümler 947 → 113'e düşüyor. Konu adlı başlıklar düşük CTR (map() %1,9, pot %2,3, PWM %2,9). Short'lar izlenmenin %42'si ama ~6 abone; Türkçe Short'lar İngilizceyi geçiyor. Arama trafiği yalnız %8. Nişteki öne çıkanlar: bitmiş projeler ve kısa 3D "nasıl çalışır" videoları. Yayımlanmış videolar değiştirilmez; bu bölüm yeni üretim içindir.
+
+**Uygulama sırası:** Senaryosu/anlatımı biten Bölüm 9, Bölüm 10 ve Recap 2 yeniden anlatılmaz; onlara yalnız başlık, küçük resim, açıklama ve Short kuralları uygulanır. Tam düzen (açılış, bağımsız bölüm, 3D) Bölüm 11'in senaryosundan itibaren geçerlidir.
+
+### 12.1 Başlık ve küçük resim: konu değil, proje/sonuç
+- Başlık izleyicinin yapacağı somut şeyi söyler; kavram adı ikinci sırada. Örnek: `ESP32 map() Function...` yerine `Build a Knob Dimmer with ESP32 | map() Explained | ESP32 From Zero #N`.
+- Küçük resim: tek odak, gerçek çalışan devre (ya da 3D kahraman görüntüsü), 2-3 kelime. Her bölümde A/B testi sürer. Hedef CTR %5+.
+
+### 12.2 Her bölüm tek başına izlenebilir
+- İzleyicinin %97'si yeni: bölüm, önceki bölümleri izlememiş birine de anlaşılır olmalı. Gereken ön bilgi 1-2 cümlede verilir ve Bölüm 1 / oynatma listesine kart konur.
+- Açılışta "geçen bölüm" hatırlatma soruları yok; hatırlatma gerekiyorsa konunun içinde, kullanıldığı yerde kısa yapılır. (Bölüm 11. maddedeki açık soru böylece kapandı.)
+- Hedef süre 8-12 dk sürer (30 Ekim kararı); dolgu yok.
+
+### 12.3 Bölüm 1 = kanalın giriş kapısı
+- Yeni her bölümün açıklamasında ve bitiş ekranında seri/oynatma listesi bağlantısı bulunur. Bölüm 1'in açıklama, sabit yorum ve bitiş ekranını güncellemek ayrı bir iş olarak kullanıcıya sorulur (yayımlanmış video).
+
+### 12.4 Short'lar
+- Türkçe soru/hata formatı devam eder (en iyi çalışan biçim). Her Short'un İlgili video alanı yayından hemen sonra doldurulur ve doğrulanır.
+- Emek önceliği uzun videonun başlık + küçük resmidir; abone uzun videodan gelir.
+- Yeni seri (pilot sonrası): **"45 saniyede nasıl çalışır?"** 3D Short'ları (breadboard içi, LED, PWM, potansiyometre, ESP32'nin içi), her biri ilgili bölüme bağlanır.
+
+### 12.5 Recap
+- Uzun recap yok. Recap ya hiç yapılmaz ya da en fazla 8 dk'lık bir mini proje olarak yapılır (Recap 1: 20:33 → 177 izlenme).
+
+### 12.6 Karma 2D/3D görsel stil
+- **2D kalır:** kod kartları, kodun devreye etkisi, zamanlama çizelgeleri. Okunabilirlik önceliklidir.
+- **3D eklenir:** açılıştaki kahraman çekimi, "bileşenin içinde ne oluyor?" anları, küçük resimler, 3D Short serisi.
+- **Stil:** kanal renklerinde (amber + turkuaz) düz gölgeli, izometrik kameralı stilize 3D; fotogerçekçi değil. Telefon ekranında okunur kalmalı.
+- **Araçlar:** bölüm içi 3D sahneler three.js ile mevcut Playwright motorunda (sahne `t` zamanının saf fonksiyonu, `window.__seek` ile kare kare). Kahraman çekimi ve küçük resim için Blender 5.2 (bpy betikleri, EEVEE, RTX 4060).
+- **Modeller:** Espressif'in resmî KiCad kütüphanesindeki 3D modeller (lisansı kullanmadan önce kontrol edilir) → glTF; breadboard, LED, direnç gibi basit parçalar kendimiz modellenir. Kart görünümü kullanıcının 30 pinli kartıyla uyumlu olmalı.
+- **Önce pilot:** ~20 sn'lik deneme (stilize ESP32 + breadboard + PWM ile kısılan LED), three.js render + aynı sahnenin Blender karesi. Kesin görünümü kullanıcı pilotu görünce seçer; 3D bölümlere ondan sonra girer.
+
+### 12.7 Ölçüm
+- Her yeni bölümden 7 ve 28 gün sonra: CTR, ortalama izlenme yüzdesi, abone/izlenme, arama payı; 17 Kasım değerleriyle karşılaştırılır. Short'larda İlgili video üzerinden derse geçiş izlenir.
+
 ## Yüklemede yapay zekâ etiketi tercihi — 23 Ekim 2026
 
 Kullanıcı, videolar yüklenirken yapay zekâ etiketi görünmesini istemiyor. Gelecek yüklemelerde sırf üretimde AI araçları kullanıldı diye otomatik `Evet / Yes` seçme.
@@ -216,6 +253,9 @@ Kaynak: [YouTube — GenAI içerik bildirimi](https://support.google.com/youtube
 - [ ] Vurgulanan kod, gösterilen süre/değerler ve devrenin davranışı birbiriyle tutarlı.
 - [ ] Yeni kavramlar sırayla tanıtıldı; uygun noktalarda tahmin sorusu, kısa düşünme payı ve sonuç gösterimi var.
 - [ ] Gerçek çekim ile çizimdeki yön ve renkler eşleşiyor; sonuç çekimi yeterince büyük gösteriliyor.
+- [ ] (Bölüm 12) Başlık proje/sonuç ile başlıyor; küçük resimde tek odak + 2-3 kelime; A/B testi kuruldu.
+- [ ] (Bölüm 12) Bölüm önceki bölümleri izlememiş biri için anlaşılır; açılışta "geçen bölüm" soruları yok; seri/oynatma listesi kartı var.
+- [ ] (Bölüm 12) 3D yalnız açılış, "içinde ne oluyor" anları ve küçük resimde; kod ve devre mantığı 2D ve okunur.
 
 ## Yayından sonra değerlendirme
 
