@@ -9,6 +9,7 @@ parts from the episodes it lists — no surprise functions or libraries. Each on
 | 02 | Pomodoro focus light | 1–4 | red LED 23, green LED 25, button 22 | [`pomodoro_light`](02-pomodoro-light/pomodoro_light/pomodoro_light.ino) |
 | 03 | Sunrise light | 1–5 | RGB LED 25/26/27, button 22 | [`sunrise_light`](03-sunrise-light/sunrise_light/sunrise_light.ino) |
 | 04 | Electric candle | 1–5 | RGB LED 25/26/27, button 22 | [`candle_light`](04-candle-light/candle_light/candle_light.ino) |
+| 05 | Treasure detector | 1–8 | knob 34, button 22, RGB LED 25/26/27, red LED 23 | [`treasure_detector`](05-treasure-detector/treasure_detector/treasure_detector.ino) |
 
 The wiring is always the circuit from the episodes: see `lessons/03-blink-an-led`, `lessons/04-buttons-and-millis`
 (two breadboards) and `lessons/05-pwm-and-rgb` (RGB LED).
@@ -34,3 +35,10 @@ a tiny number generator, `seed = seed * 109 + 89`, gives a new brightness (150�
 every flicker. Try: a blue "magic" flame, or a calmer candle with a longer wait.
 
 If your RGB LED is common anode, set `COMMON_ANODE = true` and move its long leg to 3V3 (episode 5).
+
+## 05 · Treasure detector
+A treasure is hidden somewhere on the knob (0 .. 99). Far away the RGB LED glows cold blue and the red LED "beeps"
+slowly; closer, the colour warms up to red and the beeps get faster, like a metal detector. Press the button on the
+spot: a rainbow party, and the treasure hides somewhere new. `distance = number - secret` (flipped if negative),
+`heat = map(distance, 0, 50, 255, 0)`, `beepEvery = map(distance, 0, 50, 40, 700)`.
+Try: make the "on it" zone smaller (`distance <= 1`) for a harder game. Made as a 3D Short (`video/short3d/treasure`).

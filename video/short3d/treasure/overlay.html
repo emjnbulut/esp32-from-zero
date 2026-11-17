@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Treasure detector - overlay</title>
+<style>
+  :root { --amber: #ffb547; --teal: #19c3b4; --text: #f4f7fc; --ui: "Segoe UI Variable Display", "Segoe UI", sans-serif; --mono: "Cascadia Mono", Consolas, monospace; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 1080px; height: 1920px; overflow: hidden; background: transparent; }
+  #stage { position: absolute; inset: 0; font-family: var(--ui); color: var(--text); }
+  .cap { position: absolute; left: 60px; right: 60px; top: 1290px; text-align: center; font: 800 78px/1.12 var(--ui);
+    letter-spacing: -0.01em; text-shadow: 0 4px 18px rgba(0,0,0,.75), 0 0 3px rgba(0,0,0,.9); }
+  .cap span { opacity: .5; }
+  .cap span.done { opacity: 1; }
+  .cap span.now { opacity: 1; color: var(--amber); }
+  .found { position: absolute; left: 0; right: 0; top: 760px; text-align: center; font: 900 128px/1 var(--ui); color: #ffd25e;
+    text-shadow: 0 8px 40px rgba(0,0,0,.6), 0 0 30px rgba(255,190,60,.55); opacity: 0; }
+  .ruler { position: absolute; left: 80px; width: 920px; top: 210px; height: 150px; opacity: 0; }
+  .ruler .bar { position: absolute; left: 0; right: 0; top: 64px; height: 26px; border-radius: 13px; background: #16223a;
+    box-shadow: inset 0 0 0 3px rgba(255,255,255,.12), 0 8px 30px rgba(0,0,0,.45); overflow: hidden; }
+  .ruler .fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 13px; }
+  .ruler .lab { position: absolute; top: 100px; font: 700 30px var(--mono); color: rgba(255,255,255,.75); transform: translateX(-50%); text-shadow: 0 2px 8px rgba(0,0,0,.8); }
+  .ruler .ptr { position: absolute; top: 0; transform: translateX(-50%); padding: 6px 18px; border-radius: 14px; font: 800 38px var(--mono); color: #10131a; }
+  .ruler .ptr::after { content: ""; position: absolute; left: 50%; bottom: -12px; margin-left: -12px; border: 12px solid transparent; border-bottom: 0; border-top-color: inherit; }
+  .ruler .chest { position: absolute; top: 18px; font-size: 64px; transform: translate(-50%, 0); filter: drop-shadow(0 4px 12px rgba(0,0,0,.6)); }
+  .ruler .tag { position: absolute; top: -50px; left: 0; font: 800 26px var(--ui); letter-spacing: .14em; color: rgba(255,255,255,.8); text-shadow: 0 2px 8px rgba(0,0,0,.8); }
+  .code { position: absolute; left: 40px; right: 40px; top: 170px; padding: 26px 30px 24px; border-radius: 26px; background: rgba(13,19,34,.9);
+    border: 2px solid #26365a; box-shadow: 0 30px 80px rgba(0,0,0,.5); opacity: 0; }
+  .code .k { font: 800 22px var(--ui); letter-spacing: .14em; color: #8fa1c0; margin-bottom: 10px; }
+  .code .ln { font: 600 29px/1.62 var(--mono); white-space: nowrap; color: #c9d4e8; border-radius: 10px; padding: 0 10px; margin: 0 -10px; }
+  .code .ln.on { background: rgba(255,181,71,.16); color: #fff; }
+  .code .fn { color: var(--teal); }
+  .code .num { color: var(--amber); }
+  .code .val { color: var(--amber); font-weight: 800; }
+  .cta { position: absolute; left: 50%; top: 420px; transform: translateX(-50%); padding: 16px 30px; border-radius: 18px; background: rgba(13,19,34,.9);
+    border: 2px solid var(--teal); font: 800 38px var(--ui); white-space: nowrap; opacity: 0; }
+  .cta b { color: var(--amber); }
+  .conf { position: absolute; width: 18px; height: 30px; border-radius: 4px; }
+</style>
+<script type="importmap">{ "imports": {} }</script>
+</head>
+<body>
+<div id="stage">
+  <div class="ruler" id="ruler">
+    <div class="tag">TREASURE DETECTOR</div>
+    <div class="bar"><div class="fill" id="fill"></div></div>
+    <div class="lab" style="left:0">0</div><div class="lab" style="left:50.5%">50</div><div class="lab" style="left:100%">99</div>
+    <div class="chest" id="chest">💰</div>
+    <div class="ptr" id="ptr">0</div>
+  </div>
+  <div class="code" id="code">
+    <div class="k">THE CODE · LIVE</div>
+    <div class="ln" id="c1">int number = <span class="fn">map</span>(<span class="fn">analogRead</span>(<span class="num">34</span>), <span class="num">0</span>, <span class="num">4095</span>, <span class="num">0</span>, <span class="num">99</span>);</div>
+    <div class="ln" id="c2">int distance = number - secret;&nbsp;&nbsp;<span class="val" id="vd"></span></div>
+    <div class="ln" id="c3">int heat = <span class="fn">map</span>(distance, <span class="num">0</span>, <span class="num">50</span>, <span class="num">255</span>, <span class="num">0</span>);&nbsp;&nbsp;<span class="val" id="vh"></span></div>
+    <div class="ln" id="c4"><span class="fn">setColor</span>(heat, <span class="num">0</span>, <span class="num">255</span> - heat);</div>
+    <div class="ln" id="c5">int beepEvery = <span class="fn">map</span>(distance, <span class="num">0</span>, <span class="num">50</span>, <span class="num">40</span>, <span class="num">700</span>);</div>
+  </div>
+  <div class="cta" id="cta">Build it: <b>ESP32 From Zero</b>, episodes 1–8</div>
+  <div class="found" id="found">TREASURE<br>FOUND!</div>
+  <div id="confetti"></div>
+  <div class="cap" id="cap"></div>
+</div>
+<script type="module" src="overlay.js"></script>
+</body>
+</html>

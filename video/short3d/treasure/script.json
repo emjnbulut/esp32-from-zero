@@ -1,0 +1,20 @@
+{
+ "title": "I turned my ESP32 into a treasure detector",
+ "project": "projects/05-treasure-detector",
+ "engine": "chatterbox",
+ "lines": [
+  {"id": "l01", "text": "I turned my ESP32 into a treasure detector."},
+  {"id": "l02", "text": "Somewhere on this knob, a treasure is hidden."},
+  {"id": "l03", "text": "Far away, the light stays cold and blue."},
+  {"id": "l04", "text": "Turn closer, and it starts to warm up."},
+  {"id": "l05", "text": "And this little red LED beeps faster and faster, just like a metal detector."},
+  {"id": "l06", "text": "Warmer... hotter..."},
+  {"id": "l07", "text": "Right here, it goes crazy. Press the button!"},
+  {"id": "l08", "text": "Treasure found!"},
+  {"id": "l09", "text": "So how does it work? The knob gives the ESP32 a number, from zero to ninety-nine."},
+  {"id": "l10", "text": "The code checks how far that number is from the secret one."},
+  {"id": "l11", "text": "Then map() turns the distance into a color, and into a beep speed."},
+  {"id": "l12", "text": "After every find, the treasure hides somewhere new."},
+  {"id": "l13", "text": "You can build this with episodes one to eight. Can you find it faster than me?"}
+ ]
+}
