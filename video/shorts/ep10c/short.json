@@ -67,7 +67,7 @@
      "file": "footage/ep10/C3_code1.mp4",
      "src": 0,
      "crop": [
-      0,
+      420,
       0,
       1080,
       1080
@@ -98,7 +98,7 @@
      "file": "footage/ep10/C3_code2.mp4",
      "src": 0,
      "crop": [
-      0,
+      420,
       0,
       1080,
       1080
@@ -129,7 +129,7 @@
      "file": "footage/ep10/C3_code3.mp4",
      "src": 0,
      "crop": [
-      0,
+      420,
       0,
       1080,
       1080
