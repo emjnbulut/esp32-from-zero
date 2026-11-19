@@ -1,0 +1,25 @@
+/* 3D clip pages: canvas + crisp 2D tags that follow 3D points */
+#c3d { position: absolute; inset: 0; width: 1920px; height: 1080px; }
+#ui { pointer-events: none; }
+.vig { position: absolute; inset: 0; background: radial-gradient(1500px 900px at 50% 50%, transparent 58%, rgba(5,9,18,.5) 100%); }
+
+/* a tag: title line + coordinate line; .up sits above its point, .right / .left beside it */
+.tag3d { position: absolute; padding: 10px 18px 11px; border-radius: 14px; background: rgba(11,18,32,.93);
+  border: 3px solid var(--amber); color: #fff; white-space: nowrap; font: 800 34px/1.1 var(--ui);
+  transform: translate(-50%, calc(-100% - 22px)); box-shadow: 0 10px 30px rgba(0,0,0,.45); }
+.tag3d::after { content: ""; position: absolute; left: 50%; bottom: -15px; margin-left: -12px;
+  border: 12px solid transparent; border-bottom: 0; border-top-color: var(--amber); }
+.tag3d .c { display: block; margin-top: 4px; font: 800 30px/1.1 var(--mono); color: var(--amber); }
+.tag3d.right { transform: translate(26px, -50%); }
+.tag3d.right::after { left: -15px; top: 50%; bottom: auto; margin: -12px 0 0; border: 12px solid transparent; border-left: 0; border-right-color: var(--amber); }
+.tag3d.left { transform: translate(calc(-100% - 26px), -50%); }
+.tag3d.left::after { left: auto; right: -15px; top: 50%; bottom: auto; margin: -12px 0 0; border: 12px solid transparent; border-right: 0; border-left-color: var(--amber); }
+.tag3d.teal { border-color: var(--teal); } .tag3d.teal::after { border-top-color: var(--teal); }
+.tag3d.teal.right::after { border-top-color: transparent; border-right-color: var(--teal); }
+.tag3d.teal.left::after { border-top-color: transparent; border-left-color: var(--teal); }
+.tag3d.teal .c { color: var(--teal); }
+.tag3d.act { background: var(--amber); color: #1a1206; font-size: 40px; padding: 10px 22px; }
+.tag3d.act::after { border-top-color: var(--amber); }
+.badge3d { position: absolute; left: 36px; top: 30px; padding: 10px 20px; border-radius: 12px; background: rgba(11,18,32,.88);
+  border: 2px solid #2b3a5c; color: #c9d4e8; font: 800 30px var(--ui); letter-spacing: .06em; }
+.badge3d b { color: var(--amber); }

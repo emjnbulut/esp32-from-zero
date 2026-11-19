@@ -3,7 +3,8 @@
  * the right; the window size and EP10_CLIP_SECONDS get their final values once footage/ep10 is prepared.
  * A small simulator (game) drives every drawn reflex game, so the drawings follow the same rules as reflex_game.ino. */
 const stage = $("#stage");
-const EP10_CLIP_SECONDS = { C0: 12, C1: 10, C2: 6 }; // placeholders until footage/ep10 exists
+// 3D clips (ep10/3d, creator 19 Nov: no more filming); durations = ep10/3d/build/events.json "dur"
+const EP10_CLIP_SECONDS = { C0: 19.583, C4: 7.72, C1: 8.56, C2: 6.18 };
 function hero(id, t0, requestedEnd, description, opts = {}) {
   const lead = opts.full ? Math.min(0.3, t0) : 0;
   const tail = opts.full ? 0.35 : 0;
@@ -11,7 +12,7 @@ function hero(id, t0, requestedEnd, description, opts = {}) {
   if (!(t1 > t0)) throw new Error("No usable episode 10 footage: " + id);
   return heroClip(stage, id, t0, t1, description, opts);
 }
-const WIN = { x: 60, y: 170, w: 1200, h: 675 };
+const WIN = { x: 60, y: 170, w: 1200, h: 675, label: "3D VIEW", sketch: "reflex_game.ino" };
 const SC = (cls = "") => el("div", "scene " + cls, '<div class="grid"></div>', stage);
 const T = (id) => S0(id);
 const hidden = (e) => { gsap.set(e, { opacity: 0 }); return e; };
@@ -177,7 +178,7 @@ const cold = SC(); SET(cold, 0, { opacity: 1 }); SET(cold, CUT, { opacity: 0 });
   const rec = tile(cold, 1310, 400, 560, 330, '<div class="kicker">MINI PROJECT 1 &middot; PART 2</div><div style="font:800 44px/1.3 var(--display);margin-top:20px">Your best time stays saved</div><div style="font:800 54px var(--mono);margin-top:26px;color:var(--amber)">&#127942; record</div><div style="font:700 30px var(--ui);margin-top:10px;color:var(--muted)">even after unplugging &#128268;</div>', "var(--amber)");
   hidden(rec); hide(seq, T("s02") - 0.2, 0.25); show(rec, T("s02"));
 }
-hero("C0", 0, CUT, "reflex_game: start, red, yellow, green, a quick press, the color LED turns green.", WIN);
+hero("C0", 0, CUT, "reflex_game: start, red, yellow, green, a quick press, the color LED turns green.", Object.assign({}, WIN));
 
 /* ======================================================================
  * RETRIEVAL (episodes 9 and 6) + the way in for new viewers
@@ -279,14 +280,14 @@ textAt(sh, [[0, "Step 0: wait for a start"], [T("s21") - 0.2, "Step 1: red, then
 /* s27 - s28: the real game: a fast press, then a slow one */
 const rn = chapter("s27", "s29");
 {
-  const r1 = tile(rn, 1310, 200, 560, 560, '<div class="kicker">ON THE REAL BOARD</div><div style="font:700 36px/1.6 var(--ui);margin-top:24px">Watch the lights,<br>and the color at the end.</div>', "var(--teal)");
+  const r1 = tile(rn, 1310, 200, 560, 560, '<div class="kicker">THE WHOLE GAME</div><div style="font:700 36px/1.6 var(--ui);margin-top:24px">Watch the lights,<br>and the color at the end.</div>', "var(--teal)");
   hidden(r1); show(r1, T("s27")); hide(r1, T("s28") - 0.2, 0.25);
   const sm = serialAt(rn, 1310, 200, 560, 420, [[T("s27") + 2.5, "reaction: 213 ms"], [T("s28") + 2.5, "reaction: 1046 ms"]], 34);
   hidden(sm); show(sm, T("s28"));
   const r2 = box(rn, 1310, 650, 560, 120, "", `<div style="font:700 36px var(--ui)">${dot(RGB.red)} &nbsp;slow: red</div>`); hidden(r2); show(r2, T("s28") + 1.0);
 }
-hero("C0", T("s27"), T("s28") - 0.35, "reflex_game on the real board: a fast press, the color LED turns green.", WIN);
-hero("C1", T("s28"), T("s29") - 0.35, "A slow press, about a second after green: the color LED turns red.", WIN);
+hero("C4", T("s27"), T("s28") - 0.35, "reflex_game in 3D: a fast press, the color LED turns green; every part labelled.", Object.assign({}, WIN));
+hero("C1", T("s28"), T("s29") - 0.35, "A slow press, about a second after green: the color LED turns red.", Object.assign({}, WIN));
 
 /* s29 - s30: modify: 250 -> 200 */
 const md = chapter("s29", "s31"); title(md, "Change one number", "s29"); likeTop(T("s30") + 1.2);
@@ -357,7 +358,7 @@ const up = chapter("s41", "s43");
   const big = serialAt(up, 110, 200, 1100, 560, [[T("s42") + 0.3, "record: 213"]], 60); hidden(big); show(big, T("s42"));
   const ok = pill(up, 140, 800, "&#128452;&#65039; the drawer kept it", "font-size:36px;color:var(--teal)"); show(ok, W("s42", "kept"));
 }
-hero("C2", T("s41"), T("s42") - 0.35, "The USB cable unplugged and plugged back in.", WIN);
+hero("C2", T("s41"), T("s42") - 0.35, "The USB cable unplugged and plugged back in.", Object.assign({}, WIN));
 
 /* ======================================================================
  * THE COMMON MISTAKE: saving every result without the if

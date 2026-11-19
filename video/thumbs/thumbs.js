@@ -30,6 +30,16 @@ function led(x, y, w, color = "red", lit = true) {
     <path d="M28 96 V52 a32 32 0 0 1 64 0 V96 z" fill="url(#${id})"/>${lit ? `<path d="M28 96 V52 a32 32 0 0 1 64 0 V96 z" fill="${col[4]}" opacity=".75"/>` : ""}
     <path d="M22 92 h70 v14 h-70 z" fill="${col[2]}"/></svg>`);
 }
+/** a full-bleed 3D render behind everything, darkened on the left so the title reads */
+function hero3d(src, pos = "50% 50%") {
+  const e = document.createElement("div");
+  e.className = "abs";
+  Object.assign(e.style, { left: 0, top: 0, width: "1280px", height: "720px" });
+  e.innerHTML = `<img src="${src}" style="width:1280px;height:720px;object-fit:cover;object-position:${pos};display:block">
+    <div style="position:absolute;inset:0;background:linear-gradient(90deg, rgba(11,18,32,.96) 0%, rgba(11,18,32,.82) 34%, rgba(11,18,32,.15) 62%, rgba(11,18,32,0) 80%)"></div>`;
+  T.insertBefore(e, T.firstChild);
+  const g = T.querySelector(".grid"); if (g) g.style.display = "none";
+}
 /** an RGB LED lit in color c = [r, g, b] */
 function rgbLed(x, y, w, c) {
   const [r, g, b] = c;
@@ -150,6 +160,13 @@ const LOC = {
     hi: { title: ["स्मार्ट", "पार पथ"], pills: ["button · 4 कदम · delay() नहीं"], maxW: 800 },
     pt: { title: ["FAIXA", "INTELIGENTE"], pills: ["botão · 4 passos · sem delay()"], maxW: 800 },
     es: { title: ["CRUCE", "INTELIGENTE"], pills: ["botón · 4 pasos · sin delay()"], maxW: 800 },
+  },
+  ep09_C: {
+    enMaxW: 640,
+    tr: { title: ["AKILLI", "YAYA GEÇİDİ"], maxW: 640 },
+    hi: { title: ["स्मार्ट", "पार पथ"], maxW: 640 },
+    pt: { title: ["FAIXA", "INTELIGENTE"], maxW: 640 },
+    es: { title: ["CRUCE", "INTELIGENTE"], maxW: 640 },
   },
   ep09_B: {
     enMaxW: 630,
@@ -287,6 +304,11 @@ const V = {
     rgbLed(900, 70, 190, [40, 255, 120]);
     button(870, 400, 190, true);
     pill(560, 620, "button · 4 steps · no delay()", "rgba(25,195,180,.18)", "var(--teal)");
+  },
+  // C = the same words as A on the 3D hero frame (ep09/3d scene "TH"): A/B tests flat drawing vs 3D
+  ep09_C() {
+    hero3d("build/ep09_hero.png", "62% 50%");
+    title([["SMART", "white"], ["CROSSING", "amber", "font-size:118px"]], 150, 160);
   },
   ep09_B() {
     title([["STATE", "white"], ["MACHINE", "teal"]], 150, 150);

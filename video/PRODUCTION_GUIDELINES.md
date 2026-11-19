@@ -218,6 +218,15 @@ Kullanıcı kararı (17 Kasım 2026): "önümüzdeki yeni videolar için bu düz
 - **Modeller:** Espressif'in resmî KiCad kütüphanesindeki 3D modeller (lisansı kullanmadan önce kontrol edilir) → glTF; breadboard, LED, direnç gibi basit parçalar kendimiz modellenir. Kart görünümü kullanıcının 30 pinli kartıyla uyumlu olmalı.
 - **Önce pilot:** ~20 sn'lik deneme (stilize ESP32 + breadboard + PWM ile kısılan LED), three.js render + aynı sahnenin Blender karesi. Kesin görünümü kullanıcı pilotu görünce seçer; 3D bölümlere ondan sonra girer.
 
+### 12.8 Telefon çekimi yok: sonuç klipleri 3D — 19 Kasım 2026
+Kullanıcı kararı (19 Kasım 2026): "artık C çekimleri olmayacak". Bölüm 9'dan itibaren bütün C klipleri (açılış, "çalıştır" anları, yakın planlar) three.js ile çizilen 3D kliplerdir; Blender yalnız küçük resim / tek kare kahraman görüntüsü içindir (kullanıcı three.js'i seçti: hız + anlatımla kelime kelime senkron).
+- **Ortak kit:** `video/engine3d/kit.js` (breadboard, ESP32, LED, RGB, direnç, kablo, buton, pot, kamera yolu, 2D etiketler) + `kit.css`. Her bölüm: `video/epXX/3d/` (`scene.js` devre + klipler, `make.mjs` olay zamanlarını `build/schedule.json` kelimelerinden çıkarır, `footage/epXX/<id>.mp4` yazar; compose bunları değişmeden yerleştirir). Dublaj kayınca `make.mjs` yeniden çalıştırılır.
+- **Takip edilebilirlik (kullanıcı isteği):** breadboard'da gerçekteki gibi satır numaraları 1–63 ve sütun harfleri a–j basılı; ESP32'nin üstünde pin adları (kullanılanlar amber). En az bir klipte her parçanın etiketi pin + koordinatla görünür ("RED LED · D23 · 21h 22h"). Devre kullanıcının gerçek düzenidir: iki dikey breadboard, ESP32 ortada, USB aşağıda.
+- **Kalite:** 2x çözünürlükte çizilip küçültülür (pürüzsüz kenar), yumuşak LED parlaması kartı yakmaz, kamera her anda hareket eder ama sakin (eased anahtarlar), olay anında konuya yaklaşır. Her klibin kareleri anlatımla birlikte kontrol edilir.
+- **Dürüstlük:** ekranda "ON MY DESK", "real board" yazmaz; klip çubuğu "3D VIEW" + çizim adı (`crossing.ino`). AI sorusu `Hayır` kalır (stilize animasyon, gerçek kişi/olay taklidi değil).
+- **Short'lar:** kare panele göre ayrı 3D klipler (`S0`, `S4` …) ortalanarak çizilir, 16:9 klipten kırpılmaz.
+- **Eğlenceli projeler (kullanıcı, 19 Kasım):** müfredat bundan sonra eğlenceli projelerle ilerler; 3D kurulum montajı (parçaların koordinatlarıyla tek tek yerine oturması) her proje bölümünün ve Short'unun standart parçasıdır.
+
 ### 12.7 Ölçüm
 - Her yeni bölümden 7 ve 28 gün sonra: CTR, ortalama izlenme yüzdesi, abone/izlenme, arama payı; 17 Kasım değerleriyle karşılaştırılır. Short'larda İlgili video üzerinden derse geçiş izlenir.
 

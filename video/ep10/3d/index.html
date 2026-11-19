@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ESP32 From Zero - Episode 10 3D clips</title>
+<link rel="stylesheet" href="../../engine/stage.css">
+<link rel="stylesheet" href="../../engine3d/kit.css">
+<script type="importmap">
+{ "imports": { "three": "../../node_modules/three/build/three.module.js", "three/addons/": "../../node_modules/three/examples/jsm/" } }
+</script>
+</head>
+<body>
+<div id="stage">
+  <canvas id="c3d" width="1920" height="1080"></canvas>
+  <div class="vig"></div>
+  <div id="ui" class="layer"></div>
+</div>
+<script src="../../node_modules/gsap/dist/gsap.min.js"></script>
+<script src="../../engine/lib.js"></script>
+<script type="module" src="scene.js"></script>
+</body>
+</html>

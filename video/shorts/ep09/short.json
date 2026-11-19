@@ -3,7 +3,7 @@
  "engine": "chatterbox",
  "source": "video/ep09/build/video.mp4",
  "schedule": "video/ep09/build/schedule.json",
- "note": "One puzzle: I pressed the button, why is the walk light still red? TR 18 Nov 2026 17:00; EN 19 Nov 22:00 Europe/Istanbul. TR Short: Turkish on-screen text (creator rule 2026-11-11). Footage crops (C0) to be set once footage/ep09 exists; check every crop against the final frames.",
+ "note": "One puzzle: I pressed the button, why is the walk light still red? TR Short: Turkish on-screen text (creator rule 2026-11-11). Footage = 3D clips S0 (press, walk stays red) and S4 (build montage) from video/ep09/3d/make.mjs --shorts, centred for the square crop [420,0,1080,1080].",
  "cta": {
   "en": "Full lesson",
   "tr": "Dersin tamamı",
@@ -33,10 +33,10 @@
    },
    "shots": [
     {
-     "file": "footage/ep09/C0.mp4",
-     "src": 1.0,
+     "file": "footage/ep09/S0.mp4",
+     "src": 0.5,
      "crop": [
-      0,
+      420,
       0,
       1080,
       1080
@@ -166,10 +166,10 @@
    },
    "shots": [
     {
-     "file": "footage/ep09/C0.mp4",
-     "src": 8.0,
+     "file": "footage/ep09/S4.mp4",
+     "src": 0.0,
      "crop": [
-      0,
+      420,
       0,
       1080,
       1080

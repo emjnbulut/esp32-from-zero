@@ -1,9 +1,10 @@
 /* Episode 9 Mini Project 1, a Smart Pedestrian Crossing: segment-anchored scenes, creator footage C0-C2, code tours.
  * Clips are 16:9 (the shoot pack asks for landscape): a 1200x675 window on the left, the drawing on the right; the
- * window size and EP09_CLIP_SECONDS get their final values once the creator's clips are prepared in footage/ep09.
+ * the clips are 3D renders now (ep09/3d/make.mjs writes footage/ep09/C0-C3.mp4 from the schedule).
  * A small simulator (sim) drives every drawn crossing, so the drawings follow the same rules as crossing.ino. */
 const stage = $("#stage");
-const EP09_CLIP_SECONDS = { C0: 25, C1: 10, C2: 8 }; // placeholders until footage/ep09 exists
+// 3D clips (ep09/3d, creator 19 Nov: no more filming); durations = ep09/3d/build/events.json "dur"
+const EP09_CLIP_SECONDS = { C0: 21.86, C3: 10.36, C2: 9.09, C1: 10.95 };
 function hero(id, t0, requestedEnd, description, opts = {}) {
   const lead = opts.full ? Math.min(0.3, t0) : 0;
   const tail = opts.full ? 0.35 : 0;
@@ -11,7 +12,8 @@ function hero(id, t0, requestedEnd, description, opts = {}) {
   if (!(t1 > t0)) throw new Error("No usable episode 9 footage: " + id);
   return heroClip(stage, id, t0, t1, description, opts);
 }
-const WIN = { x: 60, y: 170, w: 1200, h: 675 };
+const WIN = { x: 60, y: 170, w: 1200, h: 675, label: "3D VIEW", sketch: "crossing.ino" };
+const WIN_PT = Object.assign({}, WIN, { sketch: "press_time.ino" });
 const SC = (cls = "") => el("div", "scene " + cls, '<div class="grid"></div>', stage);
 const T = (id) => S0(id);
 const hidden = (e) => { gsap.set(e, { opacity: 0 }); return e; };
@@ -178,7 +180,7 @@ const cold = SC(); SET(cold, 0, { opacity: 1 }); SET(cold, CUT, { opacity: 0 });
   const one = tile(cold, 1310, 400, 560, 330, '<div class="kicker">MINI PROJECT 1</div><div style="font:800 46px/1.3 var(--display);margin-top:20px">One variable remembers the step</div><div style="font:700 44px var(--mono);margin-top:24px;color:var(--amber)">int state = 0;</div>', "var(--amber)");
   hidden(one); hide(steps, T("s02") - 0.2, 0.25); show(one, T("s02"));
 }
-hero("C0", 0, CUT, "crossing: cars green, a press, yellow, red + walk green.", WIN);
+hero("C0", 0, CUT, "crossing: cars green, a press, yellow, red + walk green.", Object.assign({}, WIN));
 
 /* ======================================================================
  * RETRIEVAL (episodes 8 and 4) + the way in for new viewers
@@ -328,13 +330,13 @@ const er = chapter("s32", "s34"); title(er, "Pressed right after the cars got gr
 /* s34 - s35: the real crossing, then the blink up close */
 const rn = chapter("s34", "s36");
 {
-  const r1 = tile(rn, 1310, 200, 560, 560, '<div class="kicker">ON THE REAL BOARD</div><div style="font:700 36px/1.6 var(--ui);margin-top:24px">A whole round.<br><span style="color:var(--muted)">Watch the walk light:</span><br><b style="color:#ff5d6c">red</b> &rarr; <b style="color:#36e07a">green</b></div>', "var(--teal)");
+  const r1 = tile(rn, 1310, 200, 560, 560, '<div class="kicker">THE WHOLE ROUND</div><div style="font:700 36px/1.6 var(--ui);margin-top:24px">A whole round.<br><span style="color:var(--muted)">Watch the walk light:</span><br><b style="color:#ff5d6c">red</b> &rarr; <b style="color:#36e07a">green</b></div>', "var(--teal)");
   hidden(r1); show(r1, T("s34")); hide(r1, T("s35") - 0.2, 0.25);
   const r2 = tile(rn, 1310, 200, 560, 560, '<div class="kicker">THE LAST 2 SECONDS</div><div style="font:700 36px/1.6 var(--ui);margin-top:24px">The walk light blinks: <b style="color:var(--amber)">hurry!</b><br><span style="color:var(--muted)">Cars: still</span> <b style="color:#ff5d6c">red</b></div><div style="font:700 40px var(--mono);margin-top:30px;color:#b48cff">state = 3</div>', "#b48cff");
   hidden(r2); show(r2, T("s35"));
 }
-hero("C0", T("s34"), T("s35") - 0.35, "crossing on the real board: a whole round.", WIN);
-hero("C2", T("s35"), T("s36") - 0.35, "Close-up: the walk light blinking in the last 2 s, car red on.", WIN);
+hero("C3", T("s34"), T("s35") - 0.35, "crossing in 3D: a whole round, every part labelled.", Object.assign({}, WIN));
+hero("C2", T("s35"), T("s36") - 0.35, "Close-up: the walk light blinking in the last 2 s, car red on.", Object.assign({}, WIN));
 
 /* s36 - s37: modify: 4000 -> 8000 */
 const md = chapter("s36", "s38"); title(md, "Change one number", "s36"); likeTop(T("s37") + 1.2);
@@ -381,14 +383,14 @@ askTop(stage, "PAUSE AND PREDICT", "You tap the button as fast as you can. What 
 /* s44 - s45: the real presses + the phone */
 const rp = chapter("s44", "s46");
 {
-  const sm = serialAt(rp, 1310, 200, 560, 420, [[T("s44") + 0.4, "112 ms: short"], [W("s44", "Hold") + 1.2, "1034 ms: long"]], 40);
+  const sm = serialAt(rp, 1310, 200, 560, 420, [[T("s44") + 0.85, "112 ms: short"], [W("s44", "Hold") + 1.2, "1034 ms: long"]], 40);
   hidden(sm); show(sm, T("s44")); hide(sm, T("s45") - 0.2, 0.25);
   const ph = tile(rp, 1310, 200, 560, 560, '<div style="font-size:110px;line-height:1">📱</div><div style="font:700 36px/1.6 var(--ui);margin-top:24px">One button, two jobs:<br><b style="color:var(--teal)">tap</b> &rarr; wake up<br><b style="color:var(--amber)">long press</b> &rarr; power off</div>', "var(--teal)");
   hidden(ph); show(ph, T("s45"));
   const sm2 = serialAt(rp, 110, 200, 1100, 560, [[T("s45"), "112 ms: short"], [T("s45"), "1034 ms: long"]], 46);
   hidden(sm2); show(sm2, T("s45")); // after the clip window closes, the same two lines stay on the left
 }
-hero("C1", T("s44"), T("s45") - 0.35, "press_time: a quick tap, then a one-second hold; yellow is on while held.", WIN);
+hero("C1", T("s44"), T("s45") - 0.35, "press_time: a quick tap, then a one-second hold; yellow is on while held.", WIN_PT);
 
 /* ======================================================================
  * THE COMMON MISTAKE: a new step without a new start time

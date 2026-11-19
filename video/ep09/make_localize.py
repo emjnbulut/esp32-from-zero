@@ -29,19 +29,37 @@ times=['%d:%02d'%divmod(v,60) for v in starts]
 # Titles lead with the search term (channel analytics, 3 Nov 2026); every title ends with the series tag.
 TAG=' | ESP32 From Zero #9'
 TITLES={
- "en":"ESP32 State Machine: Build a Smart Pedestrian Crossing",
- "tr":"ESP32 State Machine: Akıllı Yaya Geçidi Projesi",
- "hi":"ESP32 State Machine: स्मार्ट पैदल पार पथ बनाएँ",
- "pt":"ESP32 Máquina de Estados: Faixa de Pedestres Inteligente",
- "es":"ESP32 Máquina de Estados: Cruce Peatonal Inteligente",
- "de":"ESP32 Zustandsautomat: Intelligenter Fußgängerüberweg",
- "fr":"ESP32 Machine à états : passage piéton intelligent",
- "ar":"ESP32 آلة الحالات: معبر مشاة ذكي",
- "id":"ESP32 State Machine: Membuat Penyeberangan Pintar",
- "ja":"ESP32 ステートマシン：スマート横断歩道を作る",
- "ru":"ESP32 конечный автомат: умный пешеходный переход",
- "vi":"ESP32 máy trạng thái: làm vạch qua đường thông minh",
+ "en":"Build a Smart Pedestrian Crossing with ESP32 | State Machine",
+ "tr":"ESP32 ile Akıllı Yaya Geçidi Yap | State Machine",
+ "hi":"ESP32 से स्मार्ट पैदल पार पथ बनाएँ | State Machine",
+ "pt":"Faça uma Faixa de Pedestres Inteligente com ESP32 | State Machine",
+ "es":"Crea un Cruce Peatonal Inteligente con ESP32 | State Machine",
+ "de":"Intelligenter Fußgängerüberweg mit ESP32 bauen | State Machine",
+ "fr":"Construis un passage piéton intelligent avec ESP32 | State Machine",
+ "ar":"اصنع معبر مشاة ذكيًا بـ ESP32 | State Machine",
+ "id":"Buat Penyeberangan Pintar dengan ESP32 | State Machine",
+ "ja":"ESP32でスマート横断歩道を作る | State Machine",
+ "ru":"Умный пешеходный переход на ESP32 | State Machine",
+ "vi":"Làm vạch qua đường thông minh với ESP32 | State Machine",
 }
+START={
+ "en":"New here? Start with Episode 1:",
+ "tr":"Yeni misin? Bölüm 1'den başla:",
+ "hi":"नए हैं? एपिसोड 1 से शुरू करें:",
+ "pt":"Novo por aqui? Comece pelo Episódio 1:",
+ "es":"¿Eres nuevo? Empieza por el Episodio 1:",
+ "de":"Neu hier? Starte mit Folge 1:",
+ "fr":"Nouveau ici ? Commence par l'épisode 1 :",
+ "ar":"جديد هنا؟ ابدأ من الحلقة 1:",
+ "id":"Baru di sini? Mulai dari Episode 1:",
+ "ja":"初めての方は第1回から：",
+ "ru":"Вы здесь впервые? Начните с эпизода 1:",
+ "vi":"Bạn mới đến? Hãy bắt đầu từ tập 1:",
+}
+PL={
+ "en":"Full course playlist:","tr":"Tüm kurs oynatma listesi:","hi":"पूरे कोर्स की प्लेलिस्ट:","pt":"Playlist do curso completo:","es":"Lista de reproducción del curso completo:","de":"Playlist zum ganzen Kurs:","fr":"Playlist du cours complet :","ar":"قائمة تشغيل الدورة كاملة:","id":"Playlist kursus lengkap:","ja":"コース全体の再生リスト：","ru":"Плейлист всего курса:","vi":"Danh sách phát toàn khóa:",
+}
+PLID='PLEhjjsUBtWDk'
 T={
  "en": [
   "Our first mini project: a pedestrian crossing with car lights, a walk light, a request button and a knob. One variable, state, remembers which step we're in, and millis() times every step without delay(). Plus: measuring how long a button was held, the common start-time mistake, and your turn: a slow walker mode.",
@@ -100,7 +118,8 @@ for lang,(intro,names) in T.items():
     title=TITLES[lang]+TAG
     assert len(names)==len(times)==len(chapters),(lang,len(names))
     assert len(title)<=100,(lang,len(title))
-    loc[lang]={'title':title,'description':intro+links+'\n\n'+'\n'.join(t+' '+n for t,n in zip(times,names))+credit}
+    NL='\n'
+    loc[lang]={'title':title,'description':intro+NL+NL+START[lang]+' https://youtu.be/RyR4OEA7ESA'+links+NL+PL[lang]+' https://www.youtube.com/playlist?list='+PLID+NL+NL+NL.join(t+' '+n for t,n in zip(times,names))+credit}
 assert set(loc)==set(TITLES)==set("en tr hi pt es de fr ar id ja ru vi".split())
 (here/'localize.json').write_text(json.dumps(loc,ensure_ascii=False,indent=1)+'\n',encoding='utf-8')
 md='# Episode 9 - Mini Project 1: a Smart Pedestrian Crossing\n\nChapter times: '+('PROVISIONAL; regenerate after final schedule.' if provisional else 'generated from final schedule with the channel bumper offset.')+'\n\n'
