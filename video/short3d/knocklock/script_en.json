@@ -1,0 +1,64 @@
+{
+ "project": "projects/06-secret-knock-lock",
+ "engine": "chatterbox",
+ "before": {
+  "l03": 0.3,
+  "l04": 0.5,
+  "l05": 0.6,
+  "l06": 0.3,
+  "l07": 0.5,
+  "l08": 0.4,
+  "l11": 0.3,
+  "l10": 1.5
+ },
+ "lead": 0.3,
+ "tail": 1.6,
+ "title": "I turned my ESP32 into a secret knock lock",
+ "lang": "en",
+ "lines": [
+  {
+   "id": "l01",
+   "text": "I turned my ESP32 into a secret knock lock."
+  },
+  {
+   "id": "l02",
+   "text": "Red means locked. Only one rhythm opens it."
+  },
+  {
+   "id": "l03",
+   "text": "Short. Short. Long."
+  },
+  {
+   "id": "l04",
+   "text": "Unlocked!"
+  },
+  {
+   "id": "l05",
+   "text": "Now a stranger tries."
+  },
+  {
+   "id": "l06",
+   "text": "Long... wrong! It flashes red and forgets everything."
+  },
+  {
+   "id": "l07",
+   "text": "Same parts as episode nine. No new wires, just new code."
+  },
+  {
+   "id": "l08",
+   "text": "Every press is timed, like a parking ticket. Under a quarter second is short. Longer is long."
+  },
+  {
+   "id": "l09",
+   "text": "And one variable counts how many beats were right."
+  },
+  {
+   "id": "l10",
+   "text": "Stop for three seconds, and it forgets you."
+  },
+  {
+   "id": "l11",
+   "text": "Build it with episode nine. Which rhythm would you pick?"
+  }
+ ]
+}

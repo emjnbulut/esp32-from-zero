@@ -10,6 +10,7 @@ parts from the episodes it lists — no surprise functions or libraries. Each on
 | 03 | Sunrise light | 1–5 | RGB LED 25/26/27, button 22 | [`sunrise_light`](03-sunrise-light/sunrise_light/sunrise_light.ino) |
 | 04 | Electric candle | 1–5 | RGB LED 25/26/27, button 22 | [`candle_light`](04-candle-light/candle_light/candle_light.ino) |
 | 05 | Treasure detector | 1–8 | knob 34, button 22, RGB LED 25/26/27, red LED 23 | [`treasure_detector`](05-treasure-detector/treasure_detector/treasure_detector.ino) |
+| 06 | Secret knock lock | 1–9 | the episode 9 circuit: LEDs 23/18/17, RGB 25/26/27, button 22 (no new wire) | [`secret_knock_lock`](06-secret-knock-lock/secret_knock_lock/secret_knock_lock.ino) |
 
 The wiring is always the circuit from the episodes: see `lessons/03-blink-an-led`, `lessons/04-buttons-and-millis`
 (two breadboards) and `lessons/05-pwm-and-rgb` (RGB LED).
@@ -42,3 +43,10 @@ slowly; closer, the colour warms up to red and the beeps get faster, like a meta
 spot: a rainbow party, and the treasure hides somewhere new. `distance = number - secret` (flipped if negative),
 `heat = map(distance, 0, 50, 255, 0)`, `beepEvery = map(distance, 0, 50, 40, 700)`.
 Try: make the "on it" zone smaller (`distance <= 1`) for a harder game. Made as a 3D Short (`video/short3d/treasure`).
+
+## 06 · Secret knock lock
+Only one rhythm opens it: **short, short, long**. Every press is timed like the parking ticket in episode 9
+(`held = now - pressStart`, under 250 ms = short). One variable, `step`, counts the right beats (the `state` idea).
+Red LED = locked, yellow = lit while you hold, RGB = progress (dim blue, blue, cyan). A wrong beat flashes red and
+the lock forgets; 3 s of quiet forgets too. The whole rhythm: rainbow, green LED, open for 2.5 s, then locked again.
+Same circuit as episodes 8-10, no new wire. Try: change the rhythm (the `want` lines), or make it four beats long.

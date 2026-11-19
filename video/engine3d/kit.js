@@ -46,11 +46,12 @@ const railHole = (n) => n % 6 !== 0; // rail holes come in groups of five
 
 export function makeKit(opts = {}) {
   const pr = opts.pixelRatio || 2;
+  const W = opts.w || 1920, H = opts.h || 1080; // 1080x1920 for vertical Shorts
   const canvas = document.getElementById("c3d");
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, preserveDrawingBuffer: true, powerPreference: "high-performance" });
   renderer.setPixelRatio(pr); // drawn at 2x, the page shows it at 1x: supersampled, clean edges
-  renderer.setSize(1920, 1080, false);
-  canvas.style.width = "1920px"; canvas.style.height = "1080px";
+  renderer.setSize(W, H, false);
+  canvas.style.width = W + "px"; canvas.style.height = H + "px";
   renderer.shadowMap.enabled = true;
   renderer.shadowMap.type = THREE.PCFShadowMap;
   renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -468,26 +469,31 @@ export function makeKit(opts = {}) {
   }
 
   /* ---------------- post + camera ---------------- */
-  const rt = new THREE.WebGLRenderTarget(1920 * pr, 1080 * pr, { type: THREE.HalfFloatType, samples: 4 });
+  const rt = new THREE.WebGLRenderTarget(W * pr, H * pr, { type: THREE.HalfFloatType, samples: 4 });
   const composer = new EffectComposer(renderer, rt);
   composer.setPixelRatio(pr);
-  composer.setSize(1920, 1080);
-  const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 1, 4000);
+  composer.setSize(W, H);
+  // ortho = the episodes' isometric look; persp (opts.persp) = depth for Shorts / macro shots. Same camera keys:
+  // hh = half the picture height (mm) at the target point, so a key frames the same area in both modes.
+  const camera = opts.persp ? new THREE.PerspectiveCamera(opts.fov || 28, W / H, 1, 4000) : new THREE.OrthographicCamera(-1, 1, 1, -1, 1, 4000);
   composer.addPass(new RenderPass(scene, camera));
-  const bloom = new UnrealBloomPass(new THREE.Vector2(1920, 1080), 0.42, 0.4, 1.05);
+  const bloom = new UnrealBloomPass(new THREE.Vector2(W, H), 0.42, 0.4, 1.05);
   composer.addPass(bloom);
   composer.addPass(new OutputPass());
 
   /** camera state: th = turn around y (deg, 0 = from the USB end / row 1 side), el = height (deg), hh = half
    *  height of the picture in mm (zoom), tx/ty/tz = the point in the middle of the picture */
   function placeCamera(c) {
-    const th = (c.th * Math.PI) / 180, el = (c.el * Math.PI) / 180, R = 1200;
+    const th = (c.th * Math.PI) / 180, el = (c.el * Math.PI) / 180;
+    const R = camera.isPerspectiveCamera ? c.hh / Math.tan(((c.fov || camera.fov) * Math.PI) / 360) : 1200;
+    if (camera.isPerspectiveCamera && c.fov) camera.fov = c.fov;
     const tg = V(c.tx, c.ty, c.tz);
     camera.position.set(tg.x + R * Math.cos(el) * Math.sin(th), tg.y + R * Math.sin(el), tg.z + R * Math.cos(el) * Math.cos(th));
     camera.up.set(0, 1, 0);
     camera.lookAt(tg);
-    const a = 1920 / 1080;
-    Object.assign(camera, { left: -c.hh * a, right: c.hh * a, top: c.hh, bottom: -c.hh });
+    const a = W / H;
+    if (!camera.isPerspectiveCamera) Object.assign(camera, { left: -c.hh * a, right: c.hh * a, top: c.hh, bottom: -c.hh });
+    else { camera.near = Math.max(1, R * 0.2); camera.far = R * 6; }
     camera.updateProjectionMatrix();
     camera.updateMatrixWorld(true); // tags project with this frame's camera, not the last one
   }
@@ -508,7 +514,7 @@ export function makeKit(opts = {}) {
   const centre = (...ps) => ps.reduce((s, p) => [s[0] + p[0] / ps.length, s[1] + p[1] / ps.length, s[2] + p[2] / ps.length], [0, 0, 0]);
   function toScreen(p) {
     const v = V(p[0], p[1], p[2]).project(camera);
-    return { x: (v.x * 0.5 + 0.5) * 1920, y: (-v.y * 0.5 + 0.5) * 1080, behind: v.z > 1 };
+    return { x: (v.x * 0.5 + 0.5) * W, y: (-v.y * 0.5 + 0.5) * H, behind: v.z > 1 };
   }
   const render = () => composer.render();
   return { parts, usbCable, THREE, scene, renderer, mat, add, canvasTex, breadboard, esp32, led, rgbLed, resistor, wire, button, pot, placeCamera, camPath, centre, toScreen, render, TOP };

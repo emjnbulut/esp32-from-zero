@@ -21,10 +21,11 @@ Pin planı: `PINMAP.md` · müfredat: `CURRICULUM.md` · gerçek çekimler her v
 | Cum 13 Kas | 🎬 Video 17:00 | **Bölüm 8**: map(), dimmer ve seviye çubuğu |
 | Cmt 14 Kas | 📱 Short TR 17:00 | Bölüm 8 |
 | Paz 15 Kas | 📱 Short EN 22:00 | Bölüm 8 |
-| Sal 17 Kas | 🎬 Video 17:00 | **Bölüm 9**: 🏆 Proje 1: akıllı yaya geçidi |
-| Çar 18 Kas | 📱 Short TR 17:00 | Bölüm 9 |
-| Per 19 Kas | 📱 Short EN 22:00 | Bölüm 9 |
-| Cum 20 Kas | 🎬 Video 17:00 | **Bölüm 10**: 🏆 Proje 1: refleks oyunu ve kalıcı rekor |
+| ~~Sal 17 Kas~~ | | Bölüm 9 kaydı (çekim yerine 3D, 19 Kas kararı) |
+| Cum 20 Kas | 🎬 Video 17:00 | **Bölüm 9**: 🏆 Proje 1: akıllı yaya geçidi (kullanıcı 19 Kas: "yarın atalım") |
+| Cmt 21 Kas | 📱 Short TR 17:00 | Bölüm 9 |
+| Paz 22 Kas | 📱 Short EN 22:00 | Bölüm 9 |
+| ? | 🎬 Video 17:00 | **Bölüm 10**: 🏆 Proje 1: refleks oyunu ve kalıcı rekor (tarih: kullanıcı sonra karar verecek; aşağıdaki B10/Recap 2 satırları eski plan) |
 | Cmt 21 Kas | 📱 Short TR 17:00 | Bölüm 10 |
 | Paz 22 Kas | 📱 Short EN 22:00 | Bölüm 10 |
 | Pzt 23 Kas | 📱 Short TR 17:00 | Proje 1 ödev çözümü |

@@ -2,7 +2,7 @@
  * the episode's own picture -> what actually happens -> a live trace with a memory panel -> scored quiz questions.
  * Helpers are shared with episode 10 (copied, so each episode page stays self-contained). */
 const stage = $("#stage");
-const CLIP_SECONDS = { M: 8.8 }; // footage/recap2/M.mp4 (grows to ~13 s when the ep09/ep10 clips are added)
+const CLIP_SECONDS = { M: 12.4 }; // footage/recap2/M.mp4: ep05-ep08 real clips (0-7.6 s) + ep09 3D crossing + ep10 3D reflex game
 function hero(id, t0, requestedEnd, description, opts = {}) {
   const lead = opts.full ? Math.min(0.3, t0) : 0;
   const tail = opts.full ? 0.35 : 0;
@@ -10,7 +10,7 @@ function hero(id, t0, requestedEnd, description, opts = {}) {
   if (!(t1 > t0)) throw new Error("No usable recap 2 footage: " + id);
   return heroClip(stage, id, t0, t1, description, opts);
 }
-const WIN = { x: 60, y: 170, w: 1200, h: 675 };
+const WIN = { x: 60, y: 170, w: 1200, h: 675, label: "EPISODES 5–10" };
 const SC = (cls = "") => el("div", "scene " + cls, '<div class="grid"></div>', stage);
 const T = (id) => S0(id);
 const hidden = (e) => { gsap.set(e, { opacity: 0 }); return e; };

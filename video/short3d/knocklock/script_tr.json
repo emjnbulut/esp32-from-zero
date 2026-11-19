@@ -1,0 +1,68 @@
+{
+ "project": "projects/06-secret-knock-lock",
+ "engine": "chatterbox",
+ "before": {
+  "l03": 0.3,
+  "l04": 0.5,
+  "l05": 0.6,
+  "l06": 0.3,
+  "l07": 0.5,
+  "l08": 0.4,
+  "l11": 0.3,
+  "l10": 1.5
+ },
+ "lead": 0.3,
+ "tail": 1.6,
+ "title": "ESP32'mi gizli bir ritim kilidine çevirdim",
+ "lang": "tr",
+ "lines": [
+  {
+   "id": "l01",
+   "text": "E Se Pe otuz ikimi gizli bir ritim kilidine çevirdim.",
+   "show": "ESP32'mi gizli bir ritim kilidine çevirdim."
+  },
+  {
+   "id": "l02",
+   "text": "Kırmızı, kilitli demek. Onu tek bir ritim açıyor."
+  },
+  {
+   "id": "l03",
+   "text": "Kısa. Kısa. Uzun."
+  },
+  {
+   "id": "l04",
+   "text": "Kilit açıldı!"
+  },
+  {
+   "id": "l05",
+   "text": "Şimdi bir yabancı deniyor."
+  },
+  {
+   "id": "l06",
+   "text": "Uzun... yanlış! Kırmızı yanıp sönüyor ve her şeyi unutuyor."
+  },
+  {
+   "id": "l07",
+   "text": "Parçalar dokuzuncu bölümle aynı. Yeni kablo yok, sadece yeni kod.",
+   "show": "Parçalar 9. bölümle aynı. Yeni kablo yok, sadece yeni kod."
+  },
+  {
+   "id": "l08",
+   "text": "Her basışın süresi ölçülüyor, tıpkı bir otopark bileti gibi. Çeyrek saniyenin altı kısa, üstü uzun."
+  },
+  {
+   "id": "l09",
+   "text": "Ve tek bir değişken, kaç vuruşun doğru olduğunu sayıyor."
+  },
+  {
+   "id": "l10",
+   "text": "Üç saniye durursanız, sizi unutuyor.",
+   "show": "3 saniye durursanız, sizi unutuyor."
+  },
+  {
+   "id": "l11",
+   "text": "Dokuzuncu bölümle kendiniz kurun. Siz hangi ritmi seçerdiniz?",
+   "show": "9. bölümle kendiniz kurun. Siz hangi ritmi seçerdiniz?"
+  }
+ ]
+}

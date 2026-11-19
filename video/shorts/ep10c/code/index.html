@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>ESP32 From Zero - Ep10 challenge code cards</title>
+<link rel="stylesheet" href="../../../engine/stage.css">
+<style>
+  .bg { position: absolute; inset: 0;
+    background:
+      radial-gradient(1200px 700px at 75% 20%, rgba(25,195,180,.10), transparent 60%),
+      radial-gradient(900px 600px at 10% 90%, rgba(255,181,71,.07), transparent 60%), var(--bg); }
+  .bg .grid { position: absolute; inset: 0; opacity: .35;
+    background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size: 64px 64px; mask-image: radial-gradient(circle at 50% 50%, #000 30%, transparent 85%); }
+  .kick { position: absolute; left: 460px; width: 1000px; top: 96px; text-align: center; opacity: 0;
+    font: 800 46px var(--ui); letter-spacing: .16em; color: var(--teal); text-shadow: 0 4px 24px rgba(0,0,0,.6); }
+  .kick b { color: var(--amber); }
+  .bigcode .bc-hl { display: none; }
+  .hlbar { position: absolute; border-radius: 10px; border: 2px solid rgba(255,181,71,.85); background: rgba(255,181,71,.2); opacity: 0; }
+  .bigcode { border: 2px solid #2a3c60; background: #0f1830; }
+  .bigcode .tk-com { color: #7f8fb0; }
+  .bigcode .tk-kw { color: #19c3b4; }
+  .bigcode .tk-num { color: #ffb547; }
+  .bigcode .tk-id { color: #eef3fb; }
+  .bigcode .hotc .tk-com { color: #ffd48a; font-weight: 700; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <div class="bg"><div class="grid"></div></div>
+  <div id="ui" class="layer"></div>
+</div>
+<script src="../../../node_modules/gsap/dist/gsap.min.js"></script>
+<script src="../../../engine/lib.js"></script>
+<script src="code.js"></script>
+</body>
+</html>
