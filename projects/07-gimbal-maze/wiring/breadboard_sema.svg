@@ -1,0 +1,279 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 760" width="1120" height="760" font-family="'Segoe UI', Inter, Arial, sans-serif">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0b1020"/>
+      <stop offset="100%" stop-color="#131c31"/>
+    </linearGradient>
+    <filter id="glowRed" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowSoft" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Arka Plan -->
+  <rect width="1120" height="760" rx="20" fill="url(#bgGrad)"/>
+
+  <!-- Başlık -->
+  <text x="48" y="54" fill="#f8fafc" font-size="28" font-weight="800">ESP32 Gimbal Labirent — Breadboard Bağlantı Haritası</text>
+  <text x="48" y="82" fill="#94a3b8" font-size="15">Kod yok, karmaşa yok: Giriş (Joystick 3.3V) → Beyin (ESP32 DevKit V1) → Çıkış (2× MG90S Servo 5V)</text>
+
+  <!-- Üst Bilgi Rozetleri -->
+  <g transform="translate(765, 30)">
+    <rect width="310" height="58" rx="12" fill="#1e293b" stroke="#334155" stroke-width="1.5"/>
+    <text x="16" y="25" fill="#fbbf24" font-size="13" font-weight="700">ALTIN KURAL (VİDEODA VURGULA!)</text>
+    <text x="16" y="45" fill="#cbd5e1" font-size="12.5">Joystick → 3.3V | Servolar → 5V | Hepsi → Ortak GND</text>
+  </g>
+
+  <!-- ==================== 1. ÜST BÖLÜM: 2x MG90S SERVO (ÇIKIŞ) ==================== -->
+  <!-- SERVO X (Sol Üst) -->
+  <g transform="translate(115, 118)">
+    <rect width="230" height="106" rx="14" fill="#172554" stroke="#f97316" stroke-width="2.5"/>
+    <text x="18" y="29" fill="#fb923c" font-size="15" font-weight="800">SERVO X (Dış Halka)</text>
+    <text x="18" y="49" fill="#cbd5e1" font-size="12.5">MG90S / SG90 • Sağ–Sol Eğim</text>
+    <!-- Servo Dişli İkonu -->
+    <circle cx="196" cy="40" r="18" fill="#0f172a" stroke="#f97316" stroke-width="2"/>
+    <rect x="192" y="18" width="8" height="24" rx="4" fill="#f8fafc"/>
+    <circle cx="196" cy="40" r="5" fill="#eab308"/>
+    <!-- Pin Çıkış Kutuları -->
+    <rect x="18" y="68" width="58" height="24" rx="6" fill="#0f172a" stroke="#475569"/>
+    <text x="47" y="84" text-anchor="middle" fill="#94a3b8" font-size="11.5" font-weight="700">GND</text>
+    <rect x="86" y="68" width="58" height="24" rx="6" fill="#450a0a" stroke="#ef4444"/>
+    <text x="115" y="84" text-anchor="middle" fill="#fca5a5" font-size="11.5" font-weight="700">5V</text>
+    <rect x="154" y="68" width="58" height="24" rx="6" fill="#431407" stroke="#f97316"/>
+    <text x="183" y="84" text-anchor="middle" fill="#fdba74" font-size="11.5" font-weight="700">SIG</text>
+  </g>
+
+  <!-- SERVO Y (Sağ Üst) -->
+  <g transform="translate(465, 118)">
+    <rect width="230" height="106" rx="14" fill="#172554" stroke="#eab308" stroke-width="2.5"/>
+    <text x="18" y="29" fill="#fde047" font-size="15" font-weight="800">SERVO Y (İç Labirent)</text>
+    <text x="18" y="49" fill="#cbd5e1" font-size="12.5">MG90S / SG90 • İleri–Geri Eğim</text>
+    <circle cx="196" cy="40" r="18" fill="#0f172a" stroke="#eab308" stroke-width="2"/>
+    <rect x="184" y="36" width="24" height="8" rx="4" fill="#f8fafc"/>
+    <circle cx="196" cy="40" r="5" fill="#eab308"/>
+    <rect x="18" y="68" width="58" height="24" rx="6" fill="#422006" stroke="#eab308"/>
+    <text x="47" y="84" text-anchor="middle" fill="#fef08a" font-size="11.5" font-weight="700">SIG</text>
+    <rect x="86" y="68" width="58" height="24" rx="6" fill="#450a0a" stroke="#ef4444"/>
+    <text x="115" y="84" text-anchor="middle" fill="#fca5a5" font-size="11.5" font-weight="700">5V</text>
+    <rect x="154" y="68" width="58" height="24" rx="6" fill="#0f172a" stroke="#475569"/>
+    <text x="183" y="84" text-anchor="middle" fill="#94a3b8" font-size="11.5" font-weight="700">GND</text>
+  </g>
+
+  <!-- ==================== 2. ORTA BÖLÜM: X-RAY BREADBOARD + ESP32 ==================== -->
+  <g transform="translate(48, 270)">
+    <!-- Breadboard Ana Gövdesi -->
+    <rect width="735" height="260" rx="16" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2.5"/>
+    <!-- Orta DIP Kanalı -->
+    <rect x="16" y="120" width="703" height="20" rx="4" fill="#cbd5e1"/>
+    <text x="530" y="134" fill="#64748b" font-size="11" font-weight="700">ORTA KANAL (Üst ve Alt Birbirinden Yalıtımlı)</text>
+
+    <!-- ÜST GÜÇ RAYLARI (Yatay Otoyollar!) -->
+    <rect x="26" y="18" width="683" height="10" rx="5" fill="#38bdf8" opacity="0.35"/>
+    <line x1="26" y1="23" x2="709" y2="23" stroke="#0284c7" stroke-width="3" stroke-dasharray="10,4"/>
+    <text x="12" y="27" fill="#0284c7" font-size="14" font-weight="900">−</text>
+
+    <rect x="26" y="38" width="683" height="10" rx="5" fill="#f87171" opacity="0.35"/>
+    <line x1="26" y1="43" x2="709" y2="43" stroke="#dc2626" stroke-width="3" stroke-dasharray="10,4"/>
+    <text x="10" y="47" fill="#dc2626" font-size="14" font-weight="900">+</text>
+    <text x="530" y="37" fill="#475569" font-size="10.5" font-weight="700">ÜST RAY: 5V &amp; GND (Yatay Bağlı)</text>
+
+    <!-- ALT GÜÇ RAYLARI (Yatay Otoyollar!) -->
+    <rect x="26" y="212" width="683" height="10" rx="5" fill="#f87171" opacity="0.35"/>
+    <line x1="26" y1="217" x2="709" y2="217" stroke="#dc2626" stroke-width="3" stroke-dasharray="10,4"/>
+    <text x="10" y="221" fill="#dc2626" font-size="14" font-weight="900">+</text>
+
+    <rect x="26" y="232" width="683" height="10" rx="5" fill="#38bdf8" opacity="0.35"/>
+    <line x1="26" y1="237" x2="709" y2="237" stroke="#0284c7" stroke-width="3" stroke-dasharray="10,4"/>
+    <text x="12" y="241" fill="#0284c7" font-size="14" font-weight="900">−</text>
+    <text x="515" y="207" fill="#475569" font-size="10.5" font-weight="700">ALT RAY: 5V &amp; GND (Yatay Bağlı)</text>
+
+    <!-- Aktif Dikey 5-Delikli Gizli Metal Köprüler (X-Ray vurgusu) -->
+    <!-- GPIO 18 (Turuncu) -->
+    <rect x="264" y="56" width="14" height="58" rx="4" fill="#fb923c" opacity="0.45" stroke="#ea580c" stroke-width="1.5"/>
+    <!-- GPIO 19 (Sarı) -->
+    <rect x="294" y="56" width="14" height="58" rx="4" fill="#fde047" opacity="0.5" stroke="#ca8a04" stroke-width="1.5"/>
+    <!-- 3V3 (Mor) -->
+    <rect x="444" y="56" width="14" height="58" rx="4" fill="#c084fc" opacity="0.45" stroke="#9333ea" stroke-width="1.5"/>
+    <!-- GPIO 34 (Yeşil) -->
+    <rect x="174" y="146" width="14" height="58" rx="4" fill="#4ade80" opacity="0.45" stroke="#16a34a" stroke-width="1.5"/>
+    <!-- GPIO 35 (Mavi) -->
+    <rect x="204" y="146" width="14" height="58" rx="4" fill="#60a5fa" opacity="0.45" stroke="#2563eb" stroke-width="1.5"/>
+    <!-- GND (Siyah/Cyan) -->
+    <rect x="414" y="146" width="14" height="58" rx="4" fill="#38bdf8" opacity="0.45" stroke="#0284c7" stroke-width="1.5"/>
+    <!-- VIN 5V (Kırmızı) -->
+    <rect x="444" y="146" width="14" height="58" rx="4" fill="#f87171" opacity="0.45" stroke="#dc2626" stroke-width="1.5"/>
+
+    <!-- Örnek pasif dikey 5'li şeritler -->
+    <g fill="#94a3b8" opacity="0.28">
+      <rect x="520" y="56" width="10" height="58" rx="3"/><rect x="542" y="56" width="10" height="58" rx="3"/>
+      <rect x="564" y="56" width="10" height="58" rx="3"/><rect x="586" y="56" width="10" height="58" rx="3"/>
+      <rect x="520" y="146" width="10" height="58" rx="3"/><rect x="542" y="146" width="10" height="58" rx="3"/>
+      <rect x="564" y="146" width="10" height="58" rx="3"/><rect x="586" y="146" width="10" height="58" rx="3"/>
+    </g>
+
+    <!-- ESP32 DEVKIT V1 KARTI (Breadboard Üzerinde Ortalanmış) -->
+    <g transform="translate(88, 72)">
+      <rect width="390" height="116" rx="10" fill="#0f172a" stroke="#334155" stroke-width="2.5"/>
+      <!-- Metal RF Kalkanı (Sol) -->
+      <rect x="26" y="18" width="96" height="80" rx="6" fill="#cbd5e1" stroke="#64748b" stroke-width="1.5"/>
+      <text x="74" y="54" text-anchor="middle" fill="#1e293b" font-size="11.5" font-weight="800">ESP-WROOM-32</text>
+      <text x="74" y="70" text-anchor="middle" fill="#475569" font-size="9.5" font-weight="700">BEYİN (Wi-Fi/BLE)</text>
+      <!-- Anten Çizgisi -->
+      <path d="M 8 28 L 18 28 L 18 44 L 8 44 L 8 60 L 18 60 L 18 76 L 8 76 L 8 88" fill="none" stroke="#eab308" stroke-width="2"/>
+      <!-- USB Port (Sağ) -->
+      <rect x="366" y="38" width="28" height="40" rx="4" fill="#94a3b8" stroke="#475569" stroke-width="1.5"/>
+      <text x="380" y="62" text-anchor="middle" fill="#0f172a" font-size="10" font-weight="800">USB</text>
+      <!-- Mavi LED -->
+      <circle cx="348" cy="30" r="4.5" fill="#38bdf8" filter="url(#glowSoft)"/>
+      <circle cx="348" cy="86" r="4.5" fill="#ef4444" filter="url(#glowRed)"/>
+
+      <!-- ÜST PİN ETİKETLERİ -->
+      <g font-size="10.5" font-weight="800">
+        <rect x="167" y="2" width="32" height="18" rx="4" fill="#ea580c"/><text x="183" y="15" text-anchor="middle" fill="#fff">D18</text>
+        <rect x="202" y="2" width="32" height="18" rx="4" fill="#ca8a04"/><text x="218" y="15" text-anchor="middle" fill="#fff">D19</text>
+        <rect x="347" y="2" width="32" height="18" rx="4" fill="#9333ea"/><text x="363" y="15" text-anchor="middle" fill="#fff">3V3</text>
+      </g>
+      <!-- ALT PİN ETİKETLERİ -->
+      <g font-size="10.5" font-weight="800">
+        <rect x="77"  y="96" width="32" height="18" rx="4" fill="#16a34a"/><text x="93"  y="109" text-anchor="middle" fill="#fff">D34</text>
+        <rect x="107" y="96" width="32" height="18" rx="4" fill="#2563eb"/><text x="123" y="109" text-anchor="middle" fill="#fff">D35</text>
+        <rect x="317" y="96" width="32" height="18" rx="4" fill="#0284c7"/><text x="333" y="109" text-anchor="middle" fill="#fff">GND</text>
+        <rect x="347" y="96" width="32" height="18" rx="4" fill="#dc2626"/><text x="363" y="109" text-anchor="middle" fill="#fff">VIN</text>
+      </g>
+    </g>
+
+    <!-- 470uF KONDANSATÖR (Sağ Alt Güç Rayında) -->
+    <g transform="translate(612, 198)">
+      <circle cx="24" cy="28" r="18" fill="#0f172a" stroke="#64748b" stroke-width="2"/>
+      <path d="M 24 10 A 18 18 0 0 1 24 46" fill="#334155"/>
+      <text x="24" y="26" text-anchor="middle" fill="#f8fafc" font-size="10" font-weight="800">470µF</text>
+      <text x="24" y="38" text-anchor="middle" fill="#38bdf8" font-size="9" font-weight="700">+ / −</text>
+    </g>
+
+    <!-- Üst <-> Alt Güç Rayı Köprü Kabloları (Sağ Kenarda) -->
+    <path d="M 672 43 C 702 43, 702 217, 672 217" fill="none" stroke="#ef4444" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M 692 23 C 724 23, 724 237, 692 237" fill="none" stroke="#0f172a" stroke-width="4.5" stroke-linecap="round"/>
+    <path d="M 692 23 C 724 23, 724 237, 692 237" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="5,5"/>
+  </g>
+
+  <!-- ==================== 3. ALT BÖLÜM: KY-023 JOYSTICK (GİRİŞ) ==================== -->
+  <g transform="translate(180, 588)">
+    <rect width="340" height="122" rx="14" fill="#1e293b" stroke="#22c55e" stroke-width="2.5"/>
+    <!-- Başparmak Çubuğu İkonu -->
+    <circle cx="66" cy="61" r="36" fill="#0f172a" stroke="#475569" stroke-width="2.5"/>
+    <circle cx="66" cy="61" r="22" fill="#334155" stroke="#94a3b8" stroke-width="1.5"/>
+    <text x="66" y="65" text-anchor="middle" fill="#e2e8f0" font-size="11" font-weight="800">JOY</text>
+    <text x="118" y="34" fill="#4ade80" font-size="16" font-weight="800">KY-023 JOYSTICK (Giriş)</text>
+    <text x="118" y="54" fill="#cbd5e1" font-size="12.5">İki gizli potansiyometre — Nazik 3.3V ile beslenir!</text>
+    <!-- Pin Çıkış Kutuları -->
+    <g transform="translate(118, 72)" font-size="11" font-weight="800">
+      <rect x="0"   y="0" width="46" height="28" rx="6" fill="#0f172a" stroke="#38bdf8"/><text x="23"  y="18" text-anchor="middle" fill="#7dd3fc">GND</text>
+      <rect x="54"  y="0" width="46" height="28" rx="6" fill="#3b0764" stroke="#a855f7"/><text x="77"  y="18" text-anchor="middle" fill="#d8b4fe">+3.3V</text>
+      <rect x="108" y="0" width="46" height="28" rx="6" fill="#052e16" stroke="#22c55e"/><text x="131" y="18" text-anchor="middle" fill="#86efac">VRx</text>
+      <rect x="162" y="0" width="46" height="28" rx="6" fill="#172554" stroke="#3b82f6"/><text x="185" y="18" text-anchor="middle" fill="#93c5fd">VRy</text>
+    </g>
+  </g>
+
+  <!-- ==================== 4. BAĞLANTI KABLOLARI ==================== -->
+  <g fill="none" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round">
+    <!-- ESP32 VIN (5V) -> Alt Kırmızı Ray -->
+    <path d="M 499 456 L 499 487" stroke="#ef4444"/>
+    <!-- ESP32 GND -> Alt Mavi Ray -->
+    <path d="M 469 456 L 469 507" stroke="#0f172a" stroke-width="5.2"/>
+    <path d="M 469 456 L 469 507" stroke="#38bdf8" stroke-width="2"/>
+
+    <!-- SERVO X Kabloları -->
+    <path d="M 162 210 C 162 250, 140 260, 140 293" stroke="#0f172a" stroke-width="5.2"/>
+    <path d="M 162 210 C 162 250, 140 260, 140 293" stroke="#38bdf8" stroke-width="2"/>
+    <path d="M 230 210 C 230 250, 210 260, 210 313" stroke="#ef4444"/>
+    <path d="M 298 210 C 298 250, 319 258, 319 334" stroke="#f97316"/>
+
+    <!-- SERVO Y Kabloları -->
+    <path d="M 512 210 C 512 255, 349 250, 349 334" stroke="#eab308"/>
+    <path d="M 580 210 C 580 255, 580 270, 580 313" stroke="#ef4444"/>
+    <path d="M 648 210 C 648 250, 648 265, 648 293" stroke="#0f172a" stroke-width="5.2"/>
+    <path d="M 648 210 C 648 250, 648 265, 648 293" stroke="#38bdf8" stroke-width="2"/>
+
+    <!-- JOYSTICK Kabloları -->
+    <!-- GND -> Alt Mavi Ray -->
+    <path d="M 321 660 L 321 562 L 170 562 L 170 507" stroke="#0f172a" stroke-width="5.2"/>
+    <path d="M 321 660 L 321 562 L 170 562 L 170 507" stroke="#38bdf8" stroke-width="2"/>
+    <!-- 3.3V (Mor) -> ESP32 3V3 pini -->
+    <path d="M 375 660 L 375 574 L 548 574 L 548 334 L 499 334" stroke="#a855f7"/>
+    <!-- VRx (Yeşil) -> ESP32 GPIO 34 -->
+    <path d="M 429 660 L 429 552 L 229 552 L 229 456" stroke="#22c55e"/>
+    <!-- VRy (Mavi) -> ESP32 GPIO 35 -->
+    <path d="M 483 660 L 483 542 L 259 542 L 259 456" stroke="#3b82f6"/>
+  </g>
+
+  <!-- Bağlantı Noktası Yuvarlakları -->
+  <g stroke="#0f172a" stroke-width="1.5">
+    <circle cx="499" cy="487" r="5" fill="#ef4444"/>
+    <circle cx="469" cy="507" r="5" fill="#38bdf8"/>
+    <circle cx="170" cy="507" r="5" fill="#38bdf8"/>
+    <circle cx="229" cy="456" r="5" fill="#22c55e"/>
+    <circle cx="259" cy="456" r="5" fill="#3b82f6"/>
+    <circle cx="319" cy="334" r="5" fill="#f97316"/>
+    <circle cx="349" cy="334" r="5" fill="#eab308"/>
+    <circle cx="499" cy="334" r="5" fill="#a855f7"/>
+    <circle cx="140" cy="293" r="5" fill="#38bdf8"/>
+    <circle cx="210" cy="313" r="5" fill="#ef4444"/>
+    <circle cx="580" cy="313" r="5" fill="#ef4444"/>
+    <circle cx="648" cy="293" r="5" fill="#38bdf8"/>
+  </g>
+
+  <!-- ==================== 5. SAĞ PANEL: RENK REHBERİ & BREADBOARD SIRRI ==================== -->
+  <g transform="translate(815, 118)">
+    <rect width="265" height="592" rx="16" fill="#0f172a" stroke="#334155" stroke-width="1.8"/>
+    <text x="20" y="34" fill="#f8fafc" font-size="17" font-weight="800">Kablo Renk Sözlüğü</text>
+    <line x1="20" y1="46" x2="245" y2="46" stroke="#1e293b" stroke-width="2"/>
+
+    <!-- Renk Satırları -->
+    <g transform="translate(20, 64)" font-size="12.5">
+      <rect y="0" width="18" height="18" rx="5" fill="#ef4444"/>
+      <text x="28" y="14" fill="#f8fafc" font-weight="700">Kırmızı — 5V Güç Otoyolu</text>
+      <text x="28" y="31" fill="#94a3b8" font-size="11.5">ESP32 VIN → (+) Ray → Servolar</text>
+
+      <rect y="48" width="18" height="18" rx="5" fill="#0284c7"/>
+      <text x="28" y="62" fill="#f8fafc" font-weight="700">Siyah/Mavi — Ortak GND</text>
+      <text x="28" y="79" fill="#94a3b8" font-size="11.5">Tüm parçaların ortak dönüş zemini</text>
+
+      <rect y="96" width="18" height="18" rx="5" fill="#a855f7"/>
+      <text x="28" y="110" fill="#f8fafc" font-weight="700">Mor — Nazik 3.3V Sensör</text>
+      <text x="28" y="127" fill="#94a3b8" font-size="11.5">ESP32 3V3 → Joystick (+5V pini)</text>
+
+      <rect y="144" width="18" height="18" rx="5" fill="#22c55e"/>
+      <text x="28" y="158" fill="#f8fafc" font-weight="700">Yeşil — Giriş X (VRx)</text>
+      <text x="28" y="175" fill="#94a3b8" font-size="11.5">Joystick VRx → ESP32 GPIO 34</text>
+
+      <rect y="192" width="18" height="18" rx="5" fill="#3b82f6"/>
+      <text x="28" y="206" fill="#f8fafc" font-weight="700">Mavi — Giriş Y (VRy)</text>
+      <text x="28" y="223" fill="#94a3b8" font-size="11.5">Joystick VRy → ESP32 GPIO 35</text>
+
+      <rect y="240" width="18" height="18" rx="5" fill="#f97316"/>
+      <text x="28" y="254" fill="#f8fafc" font-weight="700">Turuncu — Emir X (PWM)</text>
+      <text x="28" y="271" fill="#94a3b8" font-size="11.5">ESP32 GPIO 18 → Servo X (Dış)</text>
+
+      <rect y="288" width="18" height="18" rx="5" fill="#eab308"/>
+      <text x="28" y="302" fill="#f8fafc" font-weight="700">Sarı — Emir Y (PWM)</text>
+      <text x="28" y="319" fill="#94a3b8" font-size="11.5">ESP32 GPIO 19 → Servo Y (İç)</text>
+    </g>
+
+    <!-- Breadboard Sırrı Kutusu -->
+    <g transform="translate(18, 412)">
+      <rect width="229" height="162" rx="12" fill="#1e293b" stroke="#475569" stroke-width="1.2"/>
+      <text x="14" y="26" fill="#38bdf8" font-size="13.5" font-weight="800">Breadboard'un 2 Gizli Kuralı</text>
+      <text x="14" y="50" fill="#e2e8f0" font-size="12" font-weight="700">1. Kenar Raylar (+ / −):</text>
+      <text x="14" y="68" fill="#cbd5e1" font-size="11.5">Soldan sağa YATAY olarak</text>
+      <text x="14" y="84" fill="#cbd5e1" font-size="11.5">bağlıdır (enerji dağıtır).</text>
+      <text x="14" y="108" fill="#e2e8f0" font-size="12" font-weight="700">2. Orta 5'li Delikler:</text>
+      <text x="14" y="126" fill="#cbd5e1" font-size="11.5">Yukarıdan aşağı DİKEY olarak</text>
+      <text x="14" y="142" fill="#cbd5e1" font-size="11.5">bağlıdır (ESP32 pinini dışa taşır).</text>
+    </g>
+  </g>
+
+  <!-- Alt İmza -->
+  <text x="48" y="742" fill="#64748b" font-size="12.5" font-weight="600">github.com/esp32fromzero • Shorts Serisi #1 — 2 Eksenli Gimbal Labirent (MG90S / SG90 + ESP32 DevKit V1)</text>
+</svg>

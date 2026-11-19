@@ -8,6 +8,7 @@ footage/
 build/
 media/
 *.mp4
+!projects/07-gimbal-maze/previews/*.mp4
 *.mov
 *.wav
 *.mp3

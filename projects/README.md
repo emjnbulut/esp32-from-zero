@@ -11,6 +11,7 @@ parts from the episodes it lists — no surprise functions or libraries. Each on
 | 04 | Electric candle | 1–5 | RGB LED 25/26/27, button 22 | [`candle_light`](04-candle-light/candle_light/candle_light.ino) |
 | 05 | Treasure detector | 1–8 | knob 34, button 22, RGB LED 25/26/27, red LED 23 | [`treasure_detector`](05-treasure-detector/treasure_detector/treasure_detector.ino) |
 | 06 | Secret knock lock | 1–9 | the episode 9 circuit: LEDs 23/18/17, RGB 25/26/27, button 22 (no new wire) | [`secret_knock_lock`](06-secret-knock-lock/secret_knock_lock/secret_knock_lock.ino) |
+| 07 | 2-Axis 3D Gimbal Maze (Blender + X-Ray Breadboard) | Standalone Short | ESP32 DevKit V1, KY-023 joystick (`3.3V`, `D34`, `D35`), 2× MG90S/SG90 servos (`5V`, `D18`, `D19`), 470µF capacitor, 3D-printed gimbal (`stl/`) | [`esp32_gimbal_maze`](07-gimbal-maze/esp32_gimbal_maze/esp32_gimbal_maze.ino) · [Full guide & 3D files](07-gimbal-maze/README.md) |
 
 The wiring is always the circuit from the episodes: see `lessons/03-blink-an-led`, `lessons/04-buttons-and-millis`
 (two breadboards) and `lessons/05-pwm-and-rgb` (RGB LED).
@@ -50,3 +51,10 @@ Only one rhythm opens it: **short, short, long**. Every press is timed like the 
 Red LED = locked, yellow = lit while you hold, RGB = progress (dim blue, blue, cyan). A wrong beat flashes red and
 the lock forgets; 3 s of quiet forgets too. The whole rhythm: rainbow, green LED, open for 2.5 s, then locked again.
 Same circuit as episodes 8-10, no new wire. Try: change the rhythm (the `want` lines), or make it four beats long.
+
+## 07 · 2-Axis 3D Gimbal Maze (Blender + X-Ray Breadboard Short)
+A curriculum-independent 3D-printed 2-axis marble maze controlled by an analog joystick (`GPIO 34`/`35` on `3.3V`) and
+two MG90S/SG90 micro servos (`GPIO 18`/`19` on `5V`), designed to teach **how breadboard rails, vertical 5-hole spring
+clips, common GND, and signal wires work** without diving into code. Includes parametric Blender 5.2 scripts, support-free
+3D printable STLs, an interactive X-Ray HTML simulator, and a 360-frame `1080×1920` step-by-step breadboard assembly
+animation: see [`07-gimbal-maze/README.md`](07-gimbal-maze/README.md).

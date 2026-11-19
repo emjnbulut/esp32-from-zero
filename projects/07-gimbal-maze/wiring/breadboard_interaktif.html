@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ESP32 Gimbal Labirent — İnteraktif Breadboard X-Ray Rehberi</title>
+<style>
+  :root {
+    --bg: #0b1020;
+    --panel: #11182c;
+    --border: #253252;
+    --text: #f1f5f9;
+    --muted: #94a3b8;
+    --red: #ef4444;
+    --cyan: #38bdf8;
+    --purple: #a855f7;
+    --green: #22c55e;
+    --blue: #3b82f6;
+    --orange: #f97316;
+    --yellow: #eab308;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Inter, system-ui, sans-serif;
+    background: radial-gradient(circle at top, #15213d 0%, var(--bg) 65%);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 20px;
+  }
+  .wrap { max-width: 1220px; margin: 0 auto; }
+  header {
+    display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center;
+    gap: 12px; margin-bottom: 18px;
+  }
+  h1 { font-size: 1.55rem; font-weight: 800; letter-spacing: -0.02em; }
+  .subtitle { color: var(--muted); font-size: 0.92rem; margin-top: 3px; }
+  .controls {
+    display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px;
+  }
+  button {
+    border: 1px solid var(--border); background: var(--panel); color: var(--text);
+    padding: 9px 14px; border-radius: 10px; font-weight: 700; font-size: 0.86rem;
+    cursor: pointer; transition: all 0.18s ease;
+  }
+  button:hover { border-color: #60a5fa; transform: translateY(-1px); }
+  button.active { background: #1d4ed8; border-color: #60a5fa; box-shadow: 0 0 18px rgba(59,130,246,0.35); }
+  button.xray-on { background: #0e7490; border-color: #22d3ee; box-shadow: 0 0 18px rgba(34,211,238,0.4); }
+
+  .grid {
+    display: grid; grid-template-columns: 1.45fr 0.85fr; gap: 18px; align-items: start;
+  }
+  @media (max-width: 960px) { .grid { grid-template-columns: 1fr; } }
+
+  .card {
+    background: var(--panel); border: 1px solid var(--border);
+    border-radius: 16px; padding: 16px; box-shadow: 0 12px 35px rgba(0,0,0,0.35);
+  }
+  .card h2 { font-size: 1rem; margin-bottom: 10px; color: #e2e8f0; display: flex; justify-content: space-between; }
+
+  /* Breadboard SVG animasyonları */
+  #bbSvg { width: 100%; height: auto; display: block; border-radius: 12px; }
+  .bb-shell { transition: opacity 0.45s ease; }
+  .xray-active .bb-shell { opacity: 0.22; }
+  .copper-strip { transition: opacity 0.45s ease; opacity: 0.12; }
+  .xray-active .copper-strip { opacity: 0.92; }
+
+  .flow-line {
+    stroke-dasharray: 10 10;
+    animation: dashFlow 0.9s linear infinite;
+    opacity: 0.2;
+    transition: opacity 0.25s ease, stroke-width 0.25s ease;
+  }
+  .flow-line.lit { opacity: 1; filter: drop-shadow(0 0 6px currentColor); }
+  @keyframes dashFlow {
+    from { stroke-dashoffset: 40; }
+    to   { stroke-dashoffset: 0; }
+  }
+
+  /* İnteraktif Joystick & 3D Gimbal Önizleme */
+  .sim-box { display: flex; flex-direction: column; gap: 14px; }
+  .joy-stage {
+    display: flex; align-items: center; justify-content: space-around; gap: 14px;
+    background: #090e1b; border: 1px solid #1e293b; border-radius: 14px; padding: 16px;
+  }
+  .joy-pad {
+    width: 132px; height: 132px; border-radius: 50%;
+    background: radial-gradient(circle, #1e293b 0%, #0f172a 75%);
+    border: 2px solid #334155; position: relative; touch-action: none; cursor: grab;
+  }
+  .joy-pad:active { cursor: grabbing; border-color: #22c55e; }
+  .joy-knob {
+    width: 52px; height: 52px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #64748b, #1e293b);
+    border: 2px solid #94a3b8; position: absolute;
+    left: 50%; top: 50%; transform: translate(-50%, -50%);
+    box-shadow: 0 6px 14px rgba(0,0,0,0.6); pointer-events: none;
+  }
+  .gimbal-scene {
+    width: 150px; height: 150px; perspective: 420px; display: flex; align-items: center; justify-content: center;
+  }
+  .gimbal-ring {
+    width: 126px; height: 126px; border: 7px solid #f97316; border-radius: 14px;
+    display: flex; align-items: center; justify-content: center;
+    transform-style: preserve-3d; transition: transform 0.06s linear;
+    box-shadow: 0 10px 24px rgba(249,115,22,0.22);
+  }
+  .gimbal-maze {
+    width: 96px; height: 96px; background: #e2e8f0; border: 4px solid #cbd5e1; border-radius: 8px;
+    position: relative; transform-style: preserve-3d; transition: transform 0.06s linear;
+    background-image:
+      linear-gradient(90deg, transparent 22%, #64748b 22%, #64748b 27%, transparent 27%),
+      linear-gradient(0deg, transparent 48%, #64748b 48%, #64748b 53%, transparent 53%);
+  }
+  .ball {
+    width: 16px; height: 16px; border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, #fff, #94a3b8 55%, #334155);
+    position: absolute; left: 40px; top: 40px;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.45);
+  }
+
+  .readout {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 8px; font-size: 0.82rem;
+  }
+  .pill {
+    background: #0b1224; border: 1px solid #1f2d4d; border-radius: 10px; padding: 8px 10px;
+  }
+  .pill span { display: block; color: var(--muted); font-size: 0.74rem; }
+  .pill strong { font-size: 0.96rem; }
+
+  .explain {
+    background: #0d162b; border-left: 4px solid #38bdf8; border-radius: 8px;
+    padding: 12px 14px; font-size: 0.88rem; line-height: 1.5; color: #cbd5e1;
+  }
+  .explain strong { color: #f8fafc; }
+
+  .legend { display: grid; gap: 7px; margin-top: 10px; font-size: 0.83rem; }
+  .leg-item {
+    display: flex; align-items: center; gap: 10px; padding: 6px 8px;
+    border-radius: 8px; background: #0c1326; border: 1px solid transparent; cursor: pointer;
+  }
+  .leg-item:hover { border-color: #334155; }
+  .dot { width: 13px; height: 13px; border-radius: 4px; flex-shrink: 0; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div>
+      <h1>ESP32 Gimbal Labirent — İnteraktif Breadboard X-Ray</h1>
+      <div class="subtitle">Kod yok! Kabloların neyi neye bağladığını ve breadboard'un altındaki gizli bakır yolları canlı keşfet.</div>
+    </div>
+    <button id="btnXray" class="xray-on">🔍 X-Ray Modu: AÇIK</button>
+  </header>
+
+  <div class="controls">
+    <button data-mode="all" class="active">⚡ Hepsi (Canlı Akış)</button>
+    <button data-mode="power">🔋 1. Güç Otoyolu (5V &amp; 3.3V &amp; GND)</button>
+    <button data-mode="input">🕹️ 2. Giriş (Joystick → ESP32)</button>
+    <button data-mode="output">⚙️ 3. Çıkış (ESP32 → 2× Servo)</button>
+  </div>
+
+  <div class="grid">
+    <!-- SOL: BREADBOARD X-RAY ŞEMASI -->
+    <div class="card">
+      <h2><span>Breadboard &amp; Kablo Akışı</span><span id="modeBadge" style="color:#38bdf8;font-size:0.85rem;">Tüm Hatlar Aktif</span></h2>
+      <svg id="bbSvg" class="xray-active" viewBox="0 0 740 540" xmlns="http://www.w3.org/2000/svg">
+        <rect width="740" height="540" rx="14" fill="#090e1b"/>
+
+        <!-- ÜST: SERVO X & SERVO Y -->
+        <g transform="translate(80, 18)">
+          <rect width="210" height="72" rx="12" fill="#172554" stroke="#f97316" stroke-width="2"/>
+          <text x="14" y="25" fill="#fb923c" font-size="13" font-weight="800">SERVO X (Dış Halka)</text>
+          <text x="14" y="42" fill="#cbd5e1" font-size="11">GPIO 18 • Sağ–Sol</text>
+          <g id="svgHornX" transform="translate(178, 36)">
+            <circle r="16" fill="#0f172a" stroke="#f97316" stroke-width="2"/>
+            <rect x="-4" y="-14" width="8" height="20" rx="4" fill="#f8fafc"/>
+          </g>
+        </g>
+
+        <g transform="translate(450, 18)">
+          <rect width="210" height="72" rx="12" fill="#172554" stroke="#eab308" stroke-width="2"/>
+          <text x="14" y="25" fill="#fde047" font-size="13" font-weight="800">SERVO Y (İç Labirent)</text>
+          <text x="14" y="42" fill="#cbd5e1" font-size="11">GPIO 19 • İleri–Geri</text>
+          <g id="svgHornY" transform="translate(178, 36)">
+            <circle r="16" fill="#0f172a" stroke="#eab308" stroke-width="2"/>
+            <rect x="-4" y="-14" width="8" height="20" rx="4" fill="#f8fafc"/>
+          </g>
+        </g>
+
+        <!-- BREADBOARD KATMANI -->
+        <g transform="translate(40, 140)">
+          <!-- Dış Plastik Gövde (X-Ray'de şeffaflaşır) -->
+          <rect class="bb-shell" width="660" height="240" rx="14" fill="#f1f5f9" stroke="#64748b" stroke-width="2"/>
+          <rect class="bb-shell" x="14" y="112" width="632" height="16" rx="4" fill="#cbd5e1"/>
+
+          <!-- GİZLİ İÇ BAKIR YOLLAR -->
+          <g class="copper-strip">
+            <!-- Yatay Güç Otoyolları -->
+            <rect x="24" y="16" width="612" height="10" rx="4" fill="#0284c7"/>
+            <rect x="24" y="34" width="612" height="10" rx="4" fill="#dc2626"/>
+            <rect x="24" y="196" width="612" height="10" rx="4" fill="#dc2626"/>
+            <rect x="24" y="214" width="612" height="10" rx="4" fill="#0284c7"/>
+            <!-- Pasif Dikey 5'li Şeritler -->
+            <g fill="#b47b44" opacity="0.5">
+              <rect x="60" y="54" width="9" height="52" rx="3"/><rect x="82" y="54" width="9" height="52" rx="3"/>
+              <rect x="460" y="54" width="9" height="52" rx="3"/><rect x="482" y="54" width="9" height="52" rx="3"/>
+              <rect x="504" y="54" width="9" height="52" rx="3"/><rect x="526" y="54" width="9" height="52" rx="3"/>
+              <rect x="60" y="134" width="9" height="52" rx="3"/><rect x="82" y="134" width="9" height="52" rx="3"/>
+              <rect x="460" y="134" width="9" height="52" rx="3"/><rect x="482" y="134" width="9" height="52" rx="3"/>
+              <rect x="504" y="134" width="9" height="52" rx="3"/><rect x="526" y="134" width="9" height="52" rx="3"/>
+            </g>
+            <!-- Aktif Dikey 5'li Şeritler -->
+            <rect x="235" y="54" width="12" height="52" rx="3" fill="#f97316"/>
+            <rect x="268" y="54" width="12" height="52" rx="3" fill="#eab308"/>
+            <rect x="396" y="54" width="12" height="52" rx="3" fill="#a855f7"/>
+            <rect x="160" y="134" width="12" height="52" rx="3" fill="#22c55e"/>
+            <rect x="192" y="134" width="12" height="52" rx="3" fill="#3b82f6"/>
+            <rect x="364" y="134" width="12" height="52" rx="3" fill="#38bdf8"/>
+            <rect x="396" y="134" width="12" height="52" rx="3" fill="#ef4444"/>
+          </g>
+
+          <!-- ESP32 KARTI -->
+          <g transform="translate(88, 66)">
+            <rect width="340" height="108" rx="10" fill="#0f172a" stroke="#475569" stroke-width="2"/>
+            <rect x="20" y="18" width="84" height="72" rx="6" fill="#cbd5e1"/>
+            <text x="62" y="52" text-anchor="middle" fill="#0f172a" font-size="11" font-weight="800">ESP32</text>
+            <text x="62" y="66" text-anchor="middle" fill="#334155" font-size="9" font-weight="700">BEYİN</text>
+            <rect x="318" y="34" width="24" height="40" rx="4" fill="#94a3b8"/>
+            <circle cx="304" cy="28" r="4" fill="#38bdf8"/>
+            <circle cx="304" cy="80" r="4" fill="#ef4444"/>
+            <!-- Pin Etiketleri -->
+            <g font-size="9.5" font-weight="800" fill="#fff" text-anchor="middle">
+              <rect x="139" y="2" width="28" height="16" rx="3" fill="#ea580c"/><text x="153" y="13">D18</text>
+              <rect x="172" y="2" width="28" height="16" rx="3" fill="#ca8a04"/><text x="186" y="13">D19</text>
+              <rect x="300" y="2" width="28" height="16" rx="3" fill="#9333ea"/><text x="314" y="13">3V3</text>
+              <rect x="64"  y="90" width="28" height="16" rx="3" fill="#16a34a"/><text x="78"  y="101">D34</text>
+              <rect x="96"  y="90" width="28" height="16" rx="3" fill="#2563eb"/><text x="110" y="101">D35</text>
+              <rect x="268" y="90" width="28" height="16" rx="3" fill="#0284c7"/><text x="282" y="101">GND</text>
+              <rect x="300" y="90" width="28" height="16" rx="3" fill="#dc2626"/><text x="314" y="101">VIN</text>
+            </g>
+          </g>
+
+          <!-- 470uF Kondansatör -->
+          <g transform="translate(544, 186)">
+            <circle cx="22" cy="24" r="16" fill="#0f172a" stroke="#64748b" stroke-width="2"/>
+            <text x="22" y="27" text-anchor="middle" fill="#e2e8f0" font-size="8.5" font-weight="800">470µF</text>
+          </g>
+        </g>
+
+        <!-- ALT: JOYSTICK MODÜLÜ -->
+        <g transform="translate(215, 434)">
+          <rect width="310" height="86" rx="12" fill="#1e293b" stroke="#22c55e" stroke-width="2"/>
+          <circle cx="52" cy="43" r="24" fill="#0f172a" stroke="#64748b" stroke-width="2"/>
+          <circle id="svgJoyDot" cx="52" cy="43" r="11" fill="#475569"/>
+          <text x="92" y="30" fill="#4ade80" font-size="14" font-weight="800">KY-023 JOYSTICK (Giriş)</text>
+          <text x="92" y="50" fill="#cbd5e1" font-size="11">3.3V Besleme • VRx (D34) • VRy (D35)</text>
+          <text x="92" y="68" fill="#94a3b8" font-size="10.5">Sağdaki joystick'i sürükle ve sinyalleri izle!</text>
+        </g>
+
+        <!-- ANİMASYONLU KABLO AKIŞ YOLLARI -->
+        <g fill="none" stroke-width="4" stroke-linecap="round">
+          <!-- GÜÇ (5V Kırmızı) -->
+          <path class="flow-line grp-power lit" color="#ef4444" stroke="#ef4444" d="M 442 320 L 442 341 L 660 341 L 660 179 L 540 179 L 540 90"/>
+          <path class="flow-line grp-power lit" color="#ef4444" stroke="#ef4444" d="M 540 179 L 175 179 L 175 90"/>
+          <!-- GÜÇ (3.3V Mor) -->
+          <path class="flow-line grp-power lit" color="#a855f7" stroke="#a855f7" d="M 442 200 L 496 200 L 496 410 L 340 410 L 340 434"/>
+          <!-- ORTAK ZEMİN (GND Mavi) -->
+          <path class="flow-line grp-power lit" color="#38bdf8" stroke="#38bdf8" d="M 410 320 L 410 359 L 676 359 L 676 161 L 605 161 L 605 90"/>
+          <path class="flow-line grp-power lit" color="#38bdf8" stroke="#38bdf8" d="M 410 359 L 125 359 L 125 410 L 295 410 L 295 434"/>
+          <path class="flow-line grp-power lit" color="#38bdf8" stroke="#38bdf8" d="M 605 161 L 125 161 L 125 90"/>
+
+          <!-- GİRİŞ: Joystick VRx (Yeşil) & VRy (Mavi) -->
+          <path class="flow-line grp-input lit" color="#22c55e" stroke="#22c55e" d="M 385 434 L 385 398 L 206 398 L 206 320"/>
+          <path class="flow-line grp-input lit" color="#3b82f6" stroke="#3b82f6" d="M 425 434 L 425 388 L 238 388 L 238 320"/>
+
+          <!-- ÇIKIŞ: Servo X (Turuncu) & Servo Y (Sarı) -->
+          <path class="flow-line grp-output lit" color="#f97316" stroke="#f97316" d="M 281 200 L 281 122 L 225 122 L 225 90"/>
+          <path class="flow-line grp-output lit" color="#eab308" stroke="#eab308" d="M 314 200 L 314 114 L 485 114 L 485 90"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- SAĞ: CANLI JOYSTICK + GİMBAL SİMÜLATÖRÜ + AÇIKLAMA -->
+    <div class="sim-box">
+      <div class="card">
+        <h2><span>🕹️ Canlı Test Et (Sürükle!)</span><span style="color:#4ade80;font-size:0.8rem;">Gerçek Zamanlı</span></h2>
+        <div class="joy-stage">
+          <div class="joy-pad" id="joyPad">
+            <div class="joy-knob" id="joyKnob"></div>
+          </div>
+          <div class="gimbal-scene">
+            <div class="gimbal-ring" id="gimbalRing">
+              <div class="gimbal-maze" id="gimbalMaze">
+                <div class="ball" id="mazeBall"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="readout" style="margin-top:12px;">
+          <div class="pill"><span>Joystick VRx → GPIO 34</span><strong id="outVRx" style="color:#4ade80;">1.65 V (2048)</strong></div>
+          <div class="pill"><span>Joystick VRy → GPIO 35</span><strong id="outVRy" style="color:#60a5fa;">1.65 V (2048)</strong></div>
+          <div class="pill"><span>Servo X → GPIO 18</span><strong id="outSX" style="color:#fb923c;">90° (Düz)</strong></div>
+          <div class="pill"><span>Servo Y → GPIO 19</span><strong id="outSY" style="color:#fde047;">90° (Düz)</strong></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>💡 Bu Aşamada Ne Oluyor?</h2>
+        <div class="explain" id="explainBox">
+          <strong>Tüm Sistem Çalışıyor:</strong> Breadboard'un kenar rayları yatay güç otoyoludur; ortadaki 5'li delikler ise dikey köprü kurarak ESP32 pinlerini dışarı taşır. Joystick'i oynat, hem voltajın hem servo açılarının canlı değiştiğini gör!
+        </div>
+        <div class="legend">
+          <div class="leg-item" onclick="setMode('power')"><span class="dot" style="background:#ef4444"></span><span><b>Kırmızı (5V) &amp; Mavi (GND):</b> Yatay raylardan motorlara güç taşır</span></div>
+          <div class="leg-item" onclick="setMode('power')"><span class="dot" style="background:#a855f7"></span><span><b>Mor (3.3V):</b> ESP32 ADC pinini korumak için Joystick'e nazik voltaj</span></div>
+          <div class="leg-item" onclick="setMode('input')"><span class="dot" style="background:#22c55e"></span><span><b>Yeşil &amp; Mavi (D34/D35):</b> Joystick'ten ESP32'ye voltaj sinyali</span></div>
+          <div class="leg-item" onclick="setMode('output')"><span class="dot" style="background:#f97316"></span><span><b>Turuncu &amp; Sarı (D18/D19):</b> ESP32'den servolara açı (PWM) emri</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const bbSvg = document.getElementById('bbSvg');
+  const btnXray = document.getElementById('btnXray');
+  const explainBox = document.getElementById('explainBox');
+  const modeBadge = document.getElementById('modeBadge');
+  let xray = true;
+
+  btnXray.addEventListener('click', () => {
+    xray = !xray;
+    bbSvg.classList.toggle('xray-active', xray);
+    btnXray.classList.toggle('xray-on', xray);
+    btnXray.textContent = xray ? '🔍 X-Ray Modu: AÇIK' : '🔍 X-Ray Modu: KAPALI';
+  });
+
+  const explanations = {
+    all: '<strong>Tüm Sistem Çalışıyor:</strong> Breadboard\'un kenar rayları yatay güç otoyoludur; ortadaki 5\'li delikler ise dikey köprü kurarak ESP32 pinlerini dışarı taşır. Joystick\'i oynat, hem voltajın hem servo açılarının canlı değiştiğini gör!',
+    power: '<strong>1. Güç Otoyolu &amp; Ortak Zemin:</strong> Servolar güçlü <b>5V</b> ister (Kırmızı ray), Joystick ise ESP32\'nin ADC pinlerini yakmamak için nazik <b>3.3V</b> alır (Mor). Ama tüm parçalar aynı <b>Mavi (-) GND</b> rayında buluşur!',
+    input: '<strong>2. Giriş (Joystick → ESP32):</strong> Joystick\'in içinde 2 adet potansiyometre (ses açma düğmesi gibi) vardır. Kolu ittikçe 0V ile 3.3V arasında voltaj değişir; <b>Yeşil (D34)</b> ve <b>Mavi (D35)</b> kablolar bunu dikey şeritlerden ESP32\'ye taşır.',
+    output: '<strong>3. Çıkış (ESP32 → Servolar):</strong> ESP32 aldığı komutu PWM sinyaline çevirir. <b>Turuncu (D18)</b> dış halkayı sağa-sola, <b>Sarı (D19)</b> iç labirenti ileri-geri yatırır!'
+  };
+  const badges = {
+    all: 'Tüm Hatlar Aktif',
+    power: '5V / 3.3V / GND Otoyolu',
+    input: 'Joystick → ESP32 (D34/D35)',
+    output: 'ESP32 → Servolar (D18/D19)'
+  };
+
+  function setMode(mode) {
+    document.querySelectorAll('.controls button').forEach(b => b.classList.toggle('active', b.dataset.mode === mode));
+    document.querySelectorAll('.flow-line').forEach(el => {
+      const lit = (mode === 'all') || el.classList.contains('grp-' + mode);
+      el.classList.toggle('lit', lit);
+    });
+    explainBox.innerHTML = explanations[mode];
+    modeBadge.textContent = badges[mode];
+  }
+  document.querySelectorAll('.controls button').forEach(b => b.addEventListener('click', () => setMode(b.dataset.mode)));
+
+  // İnteraktif Joystick & 3D Gimbal Simülatörü
+  const joyPad = document.getElementById('joyPad');
+  const joyKnob = document.getElementById('joyKnob');
+  const gimbalRing = document.getElementById('gimbalRing');
+  const gimbalMaze = document.getElementById('gimbalMaze');
+  const mazeBall = document.getElementById('mazeBall');
+  const svgJoyDot = document.getElementById('svgJoyDot');
+  const svgHornX = document.getElementById('svgHornX');
+  const svgHornY = document.getElementById('svgHornY');
+
+  let dragging = false;
+  let nx = 0, ny = 0; // -1..1
+  let bx = 40, by = 40, vx = 0, vy = 0;
+
+  function updateJoy(clientX, clientY) {
+    const r = joyPad.getBoundingClientRect();
+    const cx = r.left + r.width / 2;
+    const cy = r.top + r.height / 2;
+    const maxR = r.width * 0.36;
+    let dx = clientX - cx, dy = clientY - cy;
+    const dist = Math.hypot(dx, dy);
+    if (dist > maxR) { dx = dx / dist * maxR; dy = dy / dist * maxR; }
+    nx = dx / maxR;
+    ny = dy / maxR;
+    joyKnob.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px))`;
+    svgJoyDot.setAttribute('cx', 52 + nx * 10);
+    svgJoyDot.setAttribute('cy', 43 + ny * 10);
+    renderTelemetry();
+  }
+
+  function resetJoy() {
+    dragging = false; nx = 0; ny = 0;
+    joyKnob.style.transform = 'translate(-50%, -50%)';
+    svgJoyDot.setAttribute('cx', 52); svgJoyDot.setAttribute('cy', 43);
+    renderTelemetry();
+  }
+
+  function renderTelemetry() {
+    const vX = ((nx + 1) * 1.65).toFixed(2);
+    const vY = ((ny + 1) * 1.65).toFixed(2);
+    const adcX = Math.round((nx + 1) * 2047.5);
+    const adcY = Math.round((ny + 1) * 2047.5);
+    const degX = Math.round(90 + nx * 24);
+    const degY = Math.round(90 + ny * 24);
+
+    document.getElementById('outVRx').textContent = `${vX} V (${adcX})`;
+    document.getElementById('outVRy').textContent = `${vY} V (${adcY})`;
+    document.getElementById('outSX').textContent = `${degX}°`;
+    document.getElementById('outSY').textContent = `${degY}°`;
+
+    gimbalRing.style.transform = `rotateX(${-ny * 24}deg)`;
+    gimbalMaze.style.transform = `rotateY(${nx * 24}deg)`;
+    svgHornX.setAttribute('transform', `translate(178, 36) rotate(${nx * 35})`);
+    svgHornY.setAttribute('transform', `translate(178, 36) rotate(${ny * 35})`);
+  }
+
+  joyPad.addEventListener('pointerdown', e => { dragging = true; joyPad.setPointerCapture(e.pointerId); updateJoy(e.clientX, e.clientY); });
+  joyPad.addEventListener('pointermove', e => { if (dragging) updateJoy(e.clientX, e.clientY); });
+  joyPad.addEventListener('pointerup', resetJoy);
+  joyPad.addEventListener('pointercancel', resetJoy);
+
+  // Basit bilye yuvarlanma fiziği
+  function tick() {
+    vx = (vx + nx * 0.45) * 0.92;
+    vy = (vy + ny * 0.45) * 0.92;
+    bx = Math.max(4, Math.min(72, bx + vx));
+    by = Math.max(4, Math.min(72, by + vy));
+    mazeBall.style.left = bx + 'px';
+    mazeBall.style.top  = by + 'px';
+    requestAnimationFrame(tick);
+  }
+  tick();
+</script>
+</body>
+</html>
