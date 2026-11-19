@@ -38,7 +38,16 @@ Creator clips due Sun 15 Nov (shoot pack p07-1: C0 full round, C1 press_time sho
 - [x] Schedule: +26.7 s dub stretch (TR alone 22.6 s, accepted), 593.6 s = 9:53. audio done. 19 review stills on the final schedule look clean (build/stills/sheet_*.png).
 - [ ] Full render waits for the clips (EP09_CLIP_SECONDS + WIN change the hero windows).
 
-## RESUME HERE
+## State (19 November 2026, night): DONE, packaged in YAYIN/ep09
+
+- Creator stopped filming (19 Nov): C0-C2 are 3D clips (video/ep09/3d, make.mjs from the schedule; C3 = labelled round at s34).
+- Rendered, composed, 4 dubs (TR x1.03 on 6 lines), 12 SRT, localize (titles lead with the project, Ep1 + playlist links).
+- Thumbnails A / B / C (C = 3D hero, A/B test A vs C). Short = 3D project "secret knock lock" (video/short3d/knocklock,
+  projects/06), EN 47 s / TR 59.6 s, in YAYIN/ep09/shorts (+ upload_10mb). Old informational Short spec not used.
+- Release: Fri 20 Nov 17:00 (creator: "yarın atalım"); Shorts TR Sat 21 Nov 17:00, EN Sun 22 Nov 22:00; Related video = Ep9.
+- Ep9 video ID goes into video/short3d/knocklock/youtube.md (EPISODE9_VIDEO_ID placeholder) after upload.
+
+## RESUME HERE (old, before 19 Nov)
 
 1. DONE 14 Nov (see above). Was: (Shortening + HI/PT done, see 13 Nov.) Finish ES: shorten the HI/PT/ES lines in make_dubs.py to their max_chars (fit_targets.json), run make_dubs.py + make_subs.py, then `bash video/ep09/build/voices_all.sh` after removing narrate_hi/pt/es + retake_hi/pt/es from build/rebuild.done (dub.py only re-narrates changed lines). Re-measure; second pass if stretch is still > ~30 s.
 2. (TR retakes done.) Run `tools/tr_lowprob_scan.py` again; listening file YAYIN/ep09/dinleme/ep09_tr_yeni_terimler.mp3 for the creator (steyt, go tu, layts, krosing, pres start, pres taym, dilay, milis).
