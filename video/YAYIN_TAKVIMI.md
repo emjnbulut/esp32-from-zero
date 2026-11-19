@@ -23,14 +23,14 @@ Pin planı: `PINMAP.md` · müfredat: `CURRICULUM.md` · gerçek çekimler her v
 | Paz 15 Kas | 📱 Short EN 22:00 | Bölüm 8 |
 | ~~Sal 17 Kas~~ | | Bölüm 9 kaydı (çekim yerine 3D, 19 Kas kararı) |
 | Cum 20 Kas | 🎬 Video 17:00 | **Bölüm 9**: 🏆 Proje 1: akıllı yaya geçidi (kullanıcı 19 Kas: "yarın atalım") |
-| Cmt 21 Kas | 📱 Short TR 17:00 | Bölüm 9 |
-| Paz 22 Kas | 📱 Short EN 22:00 | Bölüm 9 |
+| Cmt 21 Kas | 📱 Short TR 17:00 | Bölüm 9 proje Short'u: gizli ritim kilidi (3D, `YAYIN/ep09/shorts/ep09_short_tr.mp4`, İlgili video = Bölüm 9) |
+| Paz 22 Kas | 📱 Short EN 22:00 | Bölüm 9 proje Short'u: secret knock lock (3D, `YAYIN/ep09/shorts/ep09_short_en.mp4`, Related video = Episode 9) |
 | ? | 🎬 Video 17:00 | **Bölüm 10**: 🏆 Proje 1: refleks oyunu ve kalıcı rekor (tarih: kullanıcı sonra karar verecek; aşağıdaki B10/Recap 2 satırları eski plan) |
-| Cmt 21 Kas | 📱 Short TR 17:00 | Bölüm 10 |
-| Paz 22 Kas | 📱 Short EN 22:00 | Bölüm 10 |
-| Pzt 23 Kas | 📱 Short TR 17:00 | Proje 1 ödev çözümü |
-| Sal 24 Kas | 🎬 Video 17:00 | **Recap 2**: Bölüm 5–10 tekrarı |
-| Sal 24 Kas | 📱 Short EN 22:00 | Proje 1 ödev çözümü |
+| ? | 📱 Short TR 17:00 | Bölüm 10 (tarih bekliyor) |
+| ? | 📱 Short EN 22:00 | Bölüm 10 (tarih bekliyor) |
+| ? | 📱 Short TR 17:00 | Proje 1 ödev çözümü (Bölüm 10'dan sonra) |
+| ? | 🎬 Video 17:00 | **Recap 2**: Bölüm 5–10 tekrarı (tarih bekliyor) |
+| ? | 📱 Short EN 22:00 | Proje 1 ödev çözümü (Bölüm 10'dan sonra) |
 | Cum 27 Kas | 🎬 Video 17:00 | **Bölüm 11**: Işık sensörü (LDR) ve histerezis |
 | Cmt 28 Kas | 📱 Short TR 17:00 | Bölüm 11 |
 | Paz 29 Kas | 📱 Short EN 22:00 | Bölüm 11 |
