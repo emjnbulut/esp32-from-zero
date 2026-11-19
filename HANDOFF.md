@@ -1,3 +1,21 @@
+# Update - 19 November 2026 ~24:00 (read first)
+
+Creator stopped filming: all result clips are three.js 3D (video/engine3d kit, guidelines 12.8). Episode Shorts are now small
+fun PROJECTS tied to the episode (Ep9: secret knock lock, video/short3d/knocklock + projects/06).
+
+SCHEDULED on YouTube (19 Nov night, by Claude):
+- Episode 9 `9B71hQRCbsM` Fri 20 Nov 17:00: title/description (Ep1 + playlist links), chapters, playlist, not for kids,
+  AI = No, paid = No, 20 tags, English (US), Education, end screen imported from Episode 8, card at 0:26 -> Episode 1,
+  12 subtitles + 12 titles via publish.py, 4 dubs (upload_10mb) uploaded and processing, per-language thumbnails A
+  (tr/hi/pt/es), thumbnail A/B test A (flat) vs C (3D hero) - starts when public.
+- Shorts (knock lock): TR `jYWJ3JvVxPg` Sat 21 Nov 17:00, EN `Owjk4KsU9c0` Sun 22 Nov 22:00 (TR language/tags, EN US).
+
+Still to do by hand:
+- After 21 Nov 17:00 / 22 Nov 22:00: Related video = Episode 9 on both Shorts (picker is empty before they are public).
+- After 20 Nov 17:00: confirm the 4 Episode 9 dubs; point the Episode 8 end screen at Episode 9.
+- Episode 10: 3D clips + Short clips done (video/ep10/3d); TR term retakes s11,s17,s18,s28,s32,s36,s44, then
+  `bash tools/rebuild_voices.sh ep10`, an Ep10 project Short, dates from the creator. Recap 2 montage has the 3D clips.
+
 # Update - 18 November 2026 ~01:15 (read first)
 
 Channel analysis + new direction (17 Nov, creator approved): PRODUCTION_GUIDELINES.md section 12 = growth layout for all
