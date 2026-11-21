@@ -1,0 +1,23 @@
+{
+  "name": "pinbypin-mc",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "vite",
+    "serve": "vite --port 9000 --strictPort"
+  },
+  "dependencies": {
+    "@motion-canvas/2d": "3.17.2",
+    "@motion-canvas/core": "3.17.2",
+    "@motion-canvas/ffmpeg": "3.17.2"
+  },
+  "devDependencies": {
+    "@motion-canvas/ui": "3.17.2",
+    "@motion-canvas/vite-plugin": "3.17.2",
+    "typescript": "5.6.3",
+    "vite": "4.5.5"
+  },
+  "allowScripts": {
+    "esbuild@0.18.20": true
+  }
+}

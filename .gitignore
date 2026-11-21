@@ -29,3 +29,9 @@ build_picture.log
 build_*.log
 video/voices_ep05_06.log
 video/recap1/dub_report.log
+
+# Blender kit + Motion Canvas (21 Nov 2026)
+video/b3d/build/
+video/ep*/b3d/build/
+video/mc/node_modules/
+video/mc/output/
