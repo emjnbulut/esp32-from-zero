@@ -11,6 +11,7 @@ lights live in metres.
 """
 import math
 import os
+import sys
 
 import bmesh
 import bpy
@@ -82,7 +83,7 @@ class Kit:
         else:
             sc.render.engine = "BLENDER_EEVEE" if "BLENDER_EEVEE" in ids else "BLENDER_EEVEE_NEXT"
             ee = sc.eevee
-            for attr, val in (("taa_render_samples", 64), ("use_raytracing", True), ("use_shadows", True),
+            for attr, val in (("taa_render_samples", int(os.environ.get("PBL_SAMPLES", "64"))), ("use_raytracing", True), ("use_shadows", True),
                               ("shadow_ray_count", 2), ("shadow_step_count", 8), ("use_gtao", True),
                               ("fast_gi_method", "GLOBAL_ILLUMINATION")):
                 if hasattr(ee, attr):
@@ -379,15 +380,21 @@ class Kit:
 
     # ------------------------------------------------------------------ parts
     def wire(self, a, b, color, h=None, name="wire", via=None):
+        """solid-core jumper from hole a to hole b. Returns {group, curve, a, b}; draw(k) grows it from a (0..1)."""
         a, b = Vector(a), Vector(b)
         d = (b - a).length
         if h is None:
             h = max(3.0, min(13.0, 0.16 * d + 2.0))
+        g = self.empty("wg_" + name)
         cu = bpy.data.curves.new(name, "CURVE")
         cu.dimensions = "3D"
         cu.bevel_depth = 0.62
         cu.bevel_resolution = 3
         cu.use_fill_caps = True
+        try:
+            cu.bevel_factor_mapping_end = "SPLINE"
+        except (TypeError, AttributeError):
+            pass
         sp = cu.splines.new("BEZIER")
         lift = Vector((0, 0, 2.4))
         mids = [Vector((p[0], p[1], TOP + h)) for p in via] if via else [a.lerp(b, 0.12) + Vector((0, 0, h)), a.lerp(b, 0.88) + Vector((0, 0, h))]
@@ -407,11 +414,19 @@ class Kit:
                 bp.handle_right = bp.co - up
         ob = bpy.data.objects.new(name, cu)
         cu.materials.append(self.mat("wire_" + color, COL.get(color, color), 0.38, coat=0.35))
-        self._link(ob)
+        self._link(ob, g)
         tip = self.mat("tip", "#c8ced6", 0.25, metal=1.0)
-        for p in (a, b):
-            self.cyl(name + "_tip", 0.33, 3.6, (p.x, p.y, TOP + 0.6), tip, segs=12)
-        return ob
+        ta = self.cyl(name + "_tipA", 0.33, 3.6, (a.x, a.y, TOP + 0.6), tip, g, segs=12)
+        tb = self.cyl(name + "_tipB", 0.33, 3.6, (b.x, b.y, TOP + 0.6), tip, g, segs=12)
+
+        def draw(k):
+            k = max(0.0, min(1.0, k))
+            cu.bevel_factor_end = max(0.001, k)
+            ob.hide_render = k <= 0.0
+            ta.hide_render = k <= 0.0
+            tb.hide_render = k < 0.98
+
+        return {"group": g, "curve": ob, "a": a, "b": b, "draw": draw, "color": color}
 
     def oled(self, board, rows, col="f", frames_dir=None, nframes=1):
         """0.96" I2C OLED lying on its header (GND VCC SCL SDA on rows[0..3], column col), screen toward the front"""
@@ -542,6 +557,132 @@ class Kit:
             sk.use_relative_offset = False
             rings.append((ob, val))
         return rings
+
+    # ------------------------------------------------------------------ screen images (Blender-side, numpy)
+    def screen_image(self, scr, on=(232, 246, 255), scale=8):
+        """bpy image for an oledfont.Screen (cached by content); None -> black (power off)"""
+        import numpy as np
+        if not hasattr(self, "_scr_cache"):
+            self._scr_cache = {}
+        k = b"off" if scr is None else scr.key()
+        if k in self._scr_cache:
+            return self._scr_cache[k]
+        W, H = 128, 64
+        px = np.zeros((H, W), dtype=np.float32) if scr is None else np.frombuffer(scr.key(), dtype=np.uint8).reshape(H, W).astype(np.float32)
+        big = np.kron(px, np.ones((scale, scale), dtype=np.float32))
+        mask = np.ones((scale, scale), dtype=np.float32)
+        mask[-1, :] = 0
+        mask[:, -1] = 0
+        big *= np.tile(mask, (H, W))
+        col = np.array([lin("#%02x%02x%02x" % on)], dtype=np.float32).reshape(1, 1, 3)
+        rgba = np.ones((H * scale, W * scale, 4), dtype=np.float32)
+        rgba[..., :3] = big[..., None] * col
+        rgba = rgba[::-1]  # Blender images start at the bottom row
+        img = bpy.data.images.new("scr%d" % len(self._scr_cache), W * scale, H * scale, alpha=False, float_buffer=False)
+        img.colorspace_settings.name = "Linear Rec.709" if "Linear Rec.709" in [i.name for i in img.colorspace_settings.bl_rna.properties["name"].enum_items] else "Non-Color"
+        img.pixels.foreach_set(rgba.ravel())
+        img.pack()
+        self._scr_cache[k] = img
+        return img
+
+    def set_screen(self, scr):
+        nt = self.oled_info["screen_mat"].node_tree
+        node = [n for n in nt.nodes if n.type == "TEX_IMAGE"][0]
+        node.image = self.screen_image(scr)
+
+    # ------------------------------------------------------------------ callout tags
+    def tag(self, text, at, color="#ffb547", lift=9.0, size=2.2):
+        """a label for a hole/pin: in 3D only a glowing ring on the hole; the text box + leader line are drawn
+        crisp in 2D afterwards (overlay.py) from the projected points. Returns {set(on, scale), at, top, text, color}"""
+        at = Vector(at)
+        g = self.empty("tag_" + text, at)
+        ring = bpy.data.objects.new("tag_ring", bpy.data.meshes.new("tag_ring"))
+        bm = bmesh.new()
+        bmesh.ops.create_circle(bm, cap_ends=False, segments=32, radius=1.25)
+        bm.to_mesh(ring.data)
+        bm.free()
+        ring.data.materials.append(self._emit_mat("tagring_" + color, color, 6.0))
+        self._link(ring, g)
+        ring.location = (0, 0, 0.15)
+        wf = ring.modifiers.new("w", "WIREFRAME")
+        wf.thickness = 0.28
+        wf.use_relative_offset = False
+        info = {"group": g, "at": at, "top": at + Vector((0, 0, lift)), "text": text, "color": color, "on": 0.0, "scale": 1.0}
+
+        def set(on, scale=1.0):
+            info["on"], info["scale"] = on, scale
+            ring.hide_render = on <= 0.02
+            ring.scale = (0.6 + 0.4 * min(1.0, on),) * 3
+
+        info["set"] = set
+        set(0.0)
+        return info
+
+    def _emit_mat(self, name, color, strength):
+        if name in self.mats:
+            return self.mats[name]
+        m = bpy.data.materials.new(name)
+        m.use_nodes = True
+        nt = m.node_tree
+        for nd in list(nt.nodes):
+            nt.nodes.remove(nd)
+        out = nt.nodes.new("ShaderNodeOutputMaterial")
+        em = nt.nodes.new("ShaderNodeEmission")
+        em.inputs["Color"].default_value = (*lin(color), 1)
+        em.inputs["Strength"].default_value = strength
+        nt.links.new(em.outputs[0], out.inputs["Surface"])
+        self.mats[name] = m
+        return m
+
+    # ------------------------------------------------------------------ buzzer x-ray
+    def buzzer_xray(self):
+        """x-ray look: the shell turns into glowing teal glass, a brass disk shows inside; set(xray 0..1, bend -1..1)"""
+        bz = self.buzz
+        c = bz["top"] - Vector((0, 0, 9.2 - 0.6))
+        kids = list(bz["group"].children)
+        body = [o for o in kids if o.name.startswith("buzz_body")][0]
+        caps = [o for o in kids if o.name.startswith(("buzz_hole", "buzz_ring", "buzz_plus"))]
+        solid = body.data.materials[0]
+        m = bpy.data.materials.new("xray")
+        m.use_nodes = True
+        nt = m.node_tree
+        for nd in list(nt.nodes):
+            nt.nodes.remove(nd)
+        out = nt.nodes.new("ShaderNodeOutputMaterial")
+        fr = nt.nodes.new("ShaderNodeLayerWeight")
+        fr.inputs["Blend"].default_value = 0.35
+        em = nt.nodes.new("ShaderNodeEmission")
+        em.inputs["Color"].default_value = (*lin("#2dd4bf"), 1)
+        em.inputs["Strength"].default_value = 2.5
+        tr = nt.nodes.new("ShaderNodeBsdfTransparent")
+        mix = nt.nodes.new("ShaderNodeMixShader")
+        pw = nt.nodes.new("ShaderNodeMath")
+        pw.operation = "ADD"
+        pw.inputs[1].default_value = 0.08
+        nt.links.new(fr.outputs["Facing"], pw.inputs[0])
+        nt.links.new(pw.outputs[0], mix.inputs["Fac"])
+        nt.links.new(tr.outputs[0], mix.inputs[1])
+        nt.links.new(em.outputs[0], mix.inputs[2])
+        nt.links.new(mix.outputs[0], out.inputs["Surface"])
+        if hasattr(m, "surface_render_method"):
+            m.surface_render_method = "BLENDED"
+        disk = self.cyl("buzz_disk", 4.6, 0.25, (c.x, c.y, c.z + 6.0), self.mat("brass", "#c8a24a", 0.3, metal=1.0), bz["group"], segs=48)
+        cer = self.cyl("buzz_ceramic", 3.0, 0.3, (c.x, c.y, c.z + 6.25), self.mat("ceramic", "#e8e4da", 0.5), bz["group"], segs=48)
+        z0 = c.z + 6.0
+
+        def set(xray, bend=0.0):
+            on = xray > 0.5
+            body.data.materials[0] = m if on else solid
+            for o in caps:
+                o.hide_render = on or o.hide_render and False
+            for o in (disk, cer):
+                o.hide_render = not on
+            disk.location.z = z0 + 0.45 * bend
+            cer.location.z = z0 + 0.25 + 0.45 * bend
+            disk.scale = (1, 1, 1 + 2.5 * abs(bend))
+
+        set(0.0)
+        return set
 
     # ------------------------------------------------------------------ camera
     def camera(self, lens=50, fstop=2.2):

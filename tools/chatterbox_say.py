@@ -99,11 +99,55 @@ def patch_analyzer():
     asa.AlignmentStreamAnalyzer.step = safe_step
 
 
+def load_mtl(cfg, device):
+    """multilingual model; cfg "mtl": "v2" (pip default) | "v3" (t3_mtl23ls_v3) | "hi" (Chatterbox-Multilingual-hi pack).
+    Same architecture, only the T3 (and for "hi" the S3Gen) weights change (2026-11-21 bake-off)."""
+    from pathlib import Path
+    from huggingface_hub import snapshot_download
+    from safetensors.torch import load_file as load_safetensors
+    from chatterbox.mtl_tts import ChatterboxMultilingualTTS, Conditionals
+    from chatterbox.models.t3 import T3
+    from chatterbox.models.t3.modules.t3_config import T3Config
+    from chatterbox.models.s3gen import S3Gen
+    from chatterbox.models.voice_encoder import VoiceEncoder
+    from chatterbox.models.tokenizers import MTLTokenizer
+    kind = cfg.get("mtl", "v2")
+    if kind == "v2":
+        return ChatterboxMultilingualTTS.from_pretrained(device=device)
+    base = Path(snapshot_download("ResembleAI/chatterbox", allow_patterns=[
+        "ve.pt", "t3_mtl23ls_v3.safetensors", "s3gen.pt", "grapheme_mtl_merged_expanded_v1.json", "conds.pt"]))
+    ve = VoiceEncoder()
+    ve.load_state_dict(torch.load(base / "ve.pt", weights_only=True))
+    ve.to(device).eval()
+    if kind == "hi":
+        hi = Path(snapshot_download("ResembleAI/Chatterbox-Multilingual-hi"))
+        t3_path = next(hi.glob("t3*.safetensors"))
+        s3_path = next(iter(sorted(hi.glob("s3gen*.safetensors"))), None)
+        tok = next(iter(sorted(hi.glob("*.json"))), base / "grapheme_mtl_merged_expanded_v1.json")
+        tok = tok if "grapheme" in tok.name or "tokenizer" in tok.name else base / "grapheme_mtl_merged_expanded_v1.json"
+    else:
+        t3_path, s3_path, tok = base / "t3_mtl23ls_v3.safetensors", None, base / "grapheme_mtl_merged_expanded_v1.json"
+    t3 = T3(T3Config.multilingual())
+    st = load_safetensors(str(t3_path))
+    if "model" in st.keys():
+        st = st["model"][0]
+    missing, unexpected = t3.load_state_dict(st, strict=False)
+    print("t3", t3_path.name, "missing", len(missing), "unexpected", len(unexpected), flush=True)
+    t3.to(device).eval()
+    s3 = S3Gen()
+    if s3_path:
+        s3.load_state_dict(load_safetensors(str(s3_path)), strict=False)
+    else:
+        s3.load_state_dict(torch.load(base / "s3gen.pt", weights_only=True))
+    s3.to(device).eval()
+    conds = Conditionals.load(base / "conds.pt").to(device) if (base / "conds.pt").exists() else None
+    return ChatterboxMultilingualTTS(t3, s3, ve, MTLTokenizer(str(tok)), device, conds=conds)
+
+
 def load(cfg, device):
     patch_analyzer()
     if cfg["model"] == "multilingual":
-        from chatterbox.mtl_tts import ChatterboxMultilingualTTS
-        return ChatterboxMultilingualTTS.from_pretrained(device=device)
+        return load_mtl(cfg, device)
     from chatterbox.tts import ChatterboxTTS
     return ChatterboxTTS.from_pretrained(device=device)
 
