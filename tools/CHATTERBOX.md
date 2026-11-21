@@ -71,3 +71,11 @@ A file whose `cbx` sets its own `prompt` drops the accent split. Published episo
 Every take is then cleaned with DeepFilterNet (`cbx.py` "denoise": "deepfilternet", after the POLISH chain, as the
 user approved on 2026-10-25). Install in .venv-tts: `uv pip install --python .venv-tts/Scripts/python.exe --no-deps
 deepfilternet deepfilterlib` and `uv pip install --python .venv-tts/Scripts/python.exe loguru appdirs`.
+
+## TTS upgrade trial setup (2026-11-21, user approved downloads; LOCAL ONLY, no cloud)
+Research: tools/TTS_UPGRADE_RESEARCH.md. Downloaded to the HF cache by tools/tts_trial_download.py (resumable):
+Chatterbox Multilingual V3 (`t3_mtl23ls_v3`), `ResembleAI/Chatterbox-Multilingual-hi`, `openbmb/VoxCPM2`,
+faster-whisper `large-v3-turbo`. chatterbox_say.py job key `"mtl": "v3" | "hi"` picks the new weights (untested yet).
+VoxCPM2: own venv `.venv-vox` (torch 2.6 cu124 + voxcpm; run with enable_denoiser=False, we denoise ourselves).
+Scorers: `.venv-score` (speechbrain ECAPA -> tools/models/ecapa, UTMOSv2 weights in ~/.cache/utmosv2 fetched with curl
+because its downloader calls wget, DNSMOS onnx in tools/models/dnsmos). Setup check: `.venv-score/Scripts/python tools/score_setup.py`.

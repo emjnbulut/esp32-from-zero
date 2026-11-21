@@ -35,3 +35,8 @@ video/b3d/build/
 video/ep*/b3d/build/
 video/mc/node_modules/
 video/mc/output/
+
+# local TTS scorer models + extra venvs (21 Nov 2026)
+tools/models/
+.venv-vox/
+.venv-score/
