@@ -1,3 +1,29 @@
+# Update - 24 November 2026 night (read first)
+
+Creator direction (21-24 Nov): Ep10 onward = Blender 3D (video/b3d kit, >= half the runtime) + Motion Canvas (video/mc)
+for the few code lines; many kit parts; fast tempo; buzzer beeps = shrill piezo sound + sound-wave rings; short
+full-code glimpses. Voices FINAL (tools/CHATTERBOX.md): EN option B (creator_en_long + mark accent), TR current V2,
+HI VoxCPM2 (cbx routes "vox" configs to tools/vox_say.py).
+Creator's standing orders: restart jobs the low-memory reaper kills; overnight, keep doing curriculum work that needs
+no review; anything public stays private/scheduled until the creator has seen it.
+
+Episode 10 v2 "I Built a Reflex Game That Remembers Your Record (ESP32 + OLED)":
+- Draft 2 = video/ep10/build/TASLAK/ep10_taslak_v2.mp4 (6:21, cold open s01-s03 then sting). Waiting for creator.
+- Pipeline: make_script.py -> tts.py -> cbx_retake.py en -> build.py schedule -> Blender
+  (one process per shot: `blender -b -P video/ep10/b3d/ep10_3d.py -- --shots <id>`, PBL_SAMPLES=16; resumable, a
+  re-run with frames on disk only re-poses and rewrites overlay/anchors/shots.json) -> node video/mc/tools/ep10_timing.mjs
+  + node video/mc/render.mjs <scene> -> video/b3d/assemble.py video/ep10 (--sfx = sounds only) -> build.py audio/subs/compose.
+- Translations done (make_dubs/make_subs/make_localize, chapters.json, youtube.md). Dubs TR/HI/PT/ES being narrated
+  (build/ep10_dubs.log, `tools/dub.py video/ep10 <lang> --report`). Dubs must fit the EN slots: shorten text instead of
+  letting build.py schedule stretch the picture (that would mean re-rendering the 3D).
+- Open: s40 says "Subscribe" (lesson_lint rule: icons only) - ask creator; date not set.
+
+Treasure Detector 2.0 TR Short (creator asked 24 Nov, wants it shared in Turkish, more kit parts, follow-CTA):
+agent build in video/short3d/treasure_tr + projects/08-treasure-detector-2. Upload as TR Short, scheduled, after a check.
+
+Episode 11 DRAFT (motion alarm, PIR on GPIO 33): lessons/11-motion-alarm (sketch + challenge compile, README),
+video/ep11/make_script.py (36 segments, lint clean). Not reviewed by the creator; CURRICULUM_v7_DRAFT still unapproved.
+
 # Update - 19 November 2026 ~24:00 (read first)
 
 Creator stopped filming: all result clips are three.js 3D (video/engine3d kit, guidelines 12.8). Episode Shorts are now small
