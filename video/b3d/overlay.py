@@ -21,12 +21,34 @@ def rgb(h):
     return tuple(int(h[i:i + 2], 16) for i in (0, 2, 4))
 
 
-def draw(img, tags):
-    if not tags:
+WAVE = {"hi": ("#ffd166", 0.50, 150, 0.08), "lo": ("#ff8a5b", 0.80, 210, 0.16)}  # colour, life s, radius px, stagger s
+
+
+def waves(g, W, H, items):
+    """sound-wave bursts around the buzzer (creator 2026-11-24: beeps must be visible, not only heard).
+    items: [{"x", "y" (0..1), "age" (s since the beep), "kind": hi|lo}] -> 3 expanding glowing rings each."""
+    for it in items:
+        col, life, rad, stag = WAVE.get(it["kind"], WAVE["hi"])
+        c = rgb(col)
+        cx, cy = it["x"] * W * SS, it["y"] * H * SS
+        for i in range(3):
+            u = (it["age"] - i * stag) / life
+            if not 0 <= u <= 1:
+                continue
+            r = (18 + rad * u ** 0.7) * SS
+            a = (1 - u) ** 1.4
+            for wdt, al in ((14, 0.22), (5, 0.95)):  # soft glow, then the bright ring
+                g.ellipse([cx - r, cy - r * 0.8, cx + r, cy + r * 0.8], outline=c + (int(255 * a * al),),
+                          width=int(wdt * SS * (1 - 0.5 * u)))
+
+
+def draw(img, tags, wav=()):
+    if not tags and not wav:
         return img
     W, H = img.size
     layer = Image.new("RGBA", (W * SS, H * SS), (0, 0, 0, 0))
     g = ImageDraw.Draw(layer)
+    waves(g, W, H, wav)
     boxes = []
     for tg in sorted(tags, key=lambda x: x["b"][1]):
         on = max(0.0, min(1.0, tg["on"]))
@@ -58,8 +80,8 @@ def draw(img, tags):
 
 
 def one(job):
-    src, dst, tags = job
-    draw(Image.open(src), tags).save(dst)
+    src, dst, tags, wav = (*job, ())[:4]
+    draw(Image.open(src), tags, wav).save(dst)
     return dst
 
 
@@ -79,9 +101,12 @@ def main():
         frames, ovp, out = sys.argv[1:4]
         os.makedirs(out, exist_ok=True)
         ov = json.load(open(ovp))
-        jobs = [(os.path.join(frames, fn), os.path.join(out, fn), ov.get(str(int(fn[2:6])), []))
+        wp = os.path.join(os.path.dirname(ovp), "waves.json")  # optional, written by assemble.py
+        wv = json.load(open(wp)) if os.path.exists(wp) else {}
+        jobs = [(os.path.join(frames, fn), os.path.join(out, fn), ov.get(str(int(fn[2:6])), []),
+                 wv.get(str(int(fn[2:6])), []))
                 for fn in sorted(os.listdir(frames)) if fn.startswith("f_") and fn.endswith(".png")]
-    with ProcessPoolExecutor(6) as ex:
+    with ProcessPoolExecutor(4) as ex:  # 4, not 6: the 16 GB PC ran out of memory with other jobs (2026-11-24)
         n = sum(1 for _ in ex.map(one, jobs, chunksize=8))
     print(n, "frames")
 

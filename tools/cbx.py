@@ -22,7 +22,8 @@ _S = "tools/voice_samples/"
 VOICES = {
     "en": {"prompt": _S + "creator_en_long.wav", "accent_prompt": _S + "mark.wav"},   # user pick 2026-11-23: B (23 s ref)
     "tr": {"prompt": _S + "creator_tr.wav", "accent_prompt": _S + "tr_fleurs3.wav"},  # user pick TR_2
-    "hi": {"prompt": _S + "creator_en.wav", "accent_prompt": _S + "hi_fleurs5.wav"},
+    # Hindi: VoxCPM2 (bake-off 2026-11-24, tools/CHATTERBOX.md): most like the creator, clear, shortest -> fits EN slots
+    "hi": {"vox": True, "reference": _S + "creator_en_long.wav", "cfg_value": 2.0, "steps": 10},
     "pt": {"prompt": _S + "creator_en.wav", "accent_prompt": _S + "pt_fleurs2.wav"},
     "es": {"prompt": _S + "creator_en.wav", "accent_prompt": _S + "es_fleurs2.wav"},
 }
@@ -89,7 +90,10 @@ def settings(spec: dict, lang: str) -> dict:
         cfg.pop("accent_prompt", None)
         cfg.pop("accent_speaker", None)
     cfg.update(over)
-    for k in ("prompt", "accent_prompt"):
+    if cfg.get("vox"):  # VoxCPM2 clones from one reference; the Chatterbox-only keys do not apply
+        for k in ("prompt", "accent_prompt", "accent_speaker", "model", "exaggeration", "cfg_weight", "pauses", "denoise"):
+            cfg.pop(k, None)
+    for k in ("prompt", "accent_prompt", "reference"):
         if cfg.get(k):
             cfg[k] = str((ROOT / cfg[k]).resolve())
     return cfg
@@ -115,4 +119,8 @@ def say(cfg: dict, items: list):
         # The models are cached locally; offline mode keeps a slow or dropped connection from hanging the load
         # (2026-10-26: from_pretrained waited 5 hours on the Hugging Face hub).
         env = {**os.environ, "HF_HUB_OFFLINE": "1", "TRANSFORMERS_OFFLINE": "1"}
+        if cfg.get("vox"):  # VoxCPM2 lives in its own venv (.venv-vox, tools/CHATTERBOX.md)
+            vox = ROOT / ".venv-vox" / "Scripts" / "python.exe"
+            subprocess.run([str(vox), str(ROOT / "tools" / "vox_say.py"), str(jobs)], check=True, env=env)
+            return
         subprocess.run([str(PY), str(ROOT / "tools" / "chatterbox_say.py"), str(jobs)], check=True, env=env)

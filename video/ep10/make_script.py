@@ -146,7 +146,7 @@ s("s37", "mc:mistake", "One tip: save only when there's a new record. Saving eve
 s("s38", "b3d:challenge", "Your turn. Make the button erase the record when you hold it for three seconds on the ready screen. "
   "You already know how to measure a long press.",
   "Sıra sizde. Hazır ekranındayken butonu üç saniye basılı tutunca rekor silinsin. Uzun basışı ölçmeyi zaten biliyorsunuz.")
-s("s39", "b3d:challenge", "The full code and the solution are in the lesson folder, linked below. Post your best time in the comments.",
+s("s39", "mc:code_full", "The full code and the solution are in the lesson folder, linked below. Post your best time in the comments.",
   "Tam kod ve çözüm, aşağıdaki bağlantıdaki ders klasöründe. En iyi sürenizi yorumlara yazın.")
 s("s40", "b3d:outro", "Next time, the board gets eyes: a motion sensor that turns this setup into an alarm. "
   "Subscribe, so you don't miss it. See you there.",

@@ -52,13 +52,36 @@ def source(ep: Path, r):
     return None
 
 
+def write_waves(ep: Path, d: Path):
+    """waves.json for overlay.py: per frame, the beeps still ringing at the buzzer's screen position.
+    Beep times come from shots.json ("beeps", shot-relative), positions from the shot's anchors.json."""
+    idx, anc = ep / "b3d" / "build" / "shots.json", d / "anchors.json"
+    if not (idx.exists() and anc.exists()):
+        return
+    sh = next((x for x in json.loads(idx.read_text()) if x["id"] == d.name), None)
+    beeps = sh.get("beeps", []) if sh else []
+    anchors = json.loads(anc.read_text())
+    out = {}
+    for f, pos in anchors.items():
+        t = (int(f) - 1) / FPS
+        items = [{"x": pos[0], "y": pos[1], "age": round(t - b["t"], 3), "kind": b["kind"]}
+                 for b in beeps if pos and 0 <= t - b["t"] <= 1.2]
+        if items:
+            out[f] = items
+    p = d / "waves.json"
+    if json.loads(p.read_text()) != out if p.exists() else True:
+        p.write_text(json.dumps(out))
+
+
 def overlaid(ep: Path, d: Path) -> Path:
-    """labels on top of the Blender frames (overlay.py), redone only when frames or labels are newer"""
+    """labels + buzzer sound waves on top of the Blender frames (overlay.py), redone only when something is newer"""
     ovj = d / "overlay.json"
     if not ovj.exists():
         return d
+    write_waves(ep, d)
     out = ep / "b3d" / "build" / "shots_ov" / d.name
-    newest = max(p.stat().st_mtime for p in [ovj, *d.glob("f_*.png")])
+    extra = [p for p in (d / "waves.json",) if p.exists()]
+    newest = max(p.stat().st_mtime for p in [ovj, *extra, *d.glob("f_*.png")])
     done = sorted(out.glob("f_*.png")) if out.exists() else []
     if len(done) != len(list(d.glob("f_*.png"))) or min(p.stat().st_mtime for p in done) < newest:
         out.mkdir(parents=True, exist_ok=True)
@@ -101,6 +124,39 @@ def tone(f, d, vol, f2=None):
     return (w * env * vol).astype(np.float32)
 
 
+def resonate(x, f0=4000.0, q=2.5):
+    """2-pole band-pass (RBJ biquad) - the piezo disc's resonance that makes a buzzer sound shrill"""
+    w = 2 * np.pi * f0 / SR
+    alpha = np.sin(w) / (2 * q)
+    b0, b2 = alpha, -alpha
+    a0, a1, a2 = 1 + alpha, -2 * np.cos(w), 1 - alpha
+    b0, b2, a1, a2 = b0 / a0, b2 / a0, a1 / a0, a2 / a0
+    y = np.zeros_like(x)
+    x1 = x2 = y1 = y2 = 0.0
+    for i, v in enumerate(x):  # short sounds only, a python loop is fine
+        o = b0 * v + b2 * x2 - a1 * y1 - a2 * y2
+        x2, x1, y2, y1 = x1, v, y1, o
+        y[i] = o
+    return y
+
+
+def piezo(f, d, vol):
+    """passive buzzer driven by tone(): square wave at f, through the disc resonance (~4 kHz) + a bit of dry"""
+    t = np.arange(int(d * SR)) / SR
+    sq = np.sign(np.sin(2 * np.pi * f * t)).astype(np.float32)
+    w = 0.75 * resonate(sq) + 0.25 * sq
+    a = np.exp(-2 * np.pi * 6500 / SR)  # two one-pole low-passes: keeps the bite, drops the fizz/aliasing
+    for _ in range(2):
+        y, prev = np.empty_like(w), 0.0
+        for i, v in enumerate(w):
+            prev = (1 - a) * v + a * prev
+            y[i] = prev
+        w = y
+    env = np.minimum(1, np.minimum(t / 0.002, (d - t) / 0.008).clip(0))
+    w = w * env
+    return (w / (np.max(np.abs(w)) or 1) * vol).astype(np.float32)
+
+
 def noise(d, vol, hp=True, seed=0):
     rng = np.random.default_rng(seed)
     x = rng.standard_normal(int(d * SR)).astype(np.float32)
@@ -119,20 +175,22 @@ def seq(*parts):
     return out
 
 
+# Buzzer sounds follow the sketch (lessons/10-reflex-oled): GO tone(1500, 150), false start tone(200, 400),
+# new record tone(2000, 300). Creator 2026-11-24: the old soft sine beeps were not recognisable as a buzzer.
 SFX = {
-    "beep_hi": lambda: tone(1568, 0.20, 0.30),
-    "beep_lo": lambda: tone(220, 0.45, 0.30),
-    "tone_hi_long": lambda: tone(1760, 0.70, 0.25),
-    "tone_lo_long": lambda: tone(196, 0.70, 0.28),
+    "beep_hi": lambda: piezo(1500, 0.15, 0.55),
+    "beep_lo": lambda: piezo(200, 0.40, 0.50),
+    "tone_hi_long": lambda: piezo(2500, 0.70, 0.45),
+    "tone_lo_long": lambda: piezo(200, 0.70, 0.50),
     "click": lambda: noise(0.03, 0.35, seed=1),
     "snap": lambda: noise(0.025, 0.22, seed=2),
     "pop": lambda: seq((0, tone(660, 0.05, 0.12, 990)),),
-    "record": lambda: seq((0, tone(1047, 0.14, 0.25)), (0.22, tone(1319, 0.14, 0.25)), (0.44, tone(1568, 0.26, 0.25))),
+    "record": lambda: piezo(2000, 0.30, 0.55),
     "unplug": lambda: noise(0.05, 0.30, seed=3),
     "plug": lambda: noise(0.05, 0.30, seed=4),
-    "boot": lambda: tone(2093, 0.08, 0.18),
-    "blip": lambda: tone(1319, 0.06, 0.18),
-    "tone_erase": lambda: tone(880, 0.35, 0.25, 330),  # falling sweep: record wiped
+    "boot": lambda: piezo(2000, 0.06, 0.35),
+    "blip": lambda: piezo(1500, 0.05, 0.35),
+    "tone_erase": lambda: seq((0, piezo(800, 0.15, 0.5)), (0.2, piezo(400, 0.25, 0.5))),  # record wiped
 }
 
 

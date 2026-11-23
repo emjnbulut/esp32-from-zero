@@ -282,6 +282,8 @@ def shot_spec(sh):
     wt = lambda w, n=0: word_t(sh, w, n)  # noqa: E731
     sfx = []
     beeps = []
+    global LAST_BEEPS
+    LAST_BEEPS = beeps  # filled below; exported to shots.json for the 2D sound-wave overlay
 
     def base_state(t, scr, parts=ALL_P, wires=ALL_W, pr=0.0, pull=0.0, pwr=True, drop=None):
         show_parts(parts, wires, drop, t)
@@ -580,13 +582,16 @@ os.makedirs(OUT, exist_ok=True)
 sc.render.image_settings.file_format = "PNG"
 index = []
 OVL = {}
+ANCH = {}
+LAST_BEEPS = []
 for sh in SHOTS:
     if ONLY and sh["id"] not in ONLY:
         continue
     camf, st, sfx = shot_spec(sh)
     n = max(1, round((sh["end"] - sh["start"]) * FPS))
     index.append({"id": sh["id"], "segs": sh["segs"], "start": sh["start"], "frames": n,
-                  "sfx": [{"t": round(sh["start"] + t, 3), "kind": kd} for t, kd in sfx]})
+                  "sfx": [{"t": round(sh["start"] + t, 3), "kind": kd} for t, kd in sfx],
+                  "beeps": [{"t": round(t, 3), "kind": kd} for t, kd in LAST_BEEPS]})  # shot-relative
     if STILLS:
         frames = sorted({1, n // 2 + 1, n})
         outdir = os.path.join(OUT, "stills")
@@ -613,6 +618,8 @@ for sh in SHOTS:
                     ov.append({"text": tg["text"], "color": tg["color"], "on": round(tg["on"], 3), "scale": tg["scale"],
                                "a": [round(a2.x, 4), round(1 - a2.y, 4)], "b": [round(b2.x, 4), round(1 - b2.y, 4)]})
         OVL.setdefault(sh["id"], {})[str(f)] = ov
+        bp = world_to_camera_view(sc, cam, bz["top"] * MM)  # buzzer on screen, for the 2D sound waves
+        ANCH.setdefault(sh["id"], {})[str(f)] = [round(bp.x, 4), round(1 - bp.y, 4)] if bp.z > 0 else None
         if skip:
             continue
         sc.render.filepath = path
@@ -621,6 +628,7 @@ for sh in SHOTS:
 if not STILLS and not FRAMES:
     for sid, frames_ov in OVL.items():
         json.dump(frames_ov, open(os.path.join(OUT, "shots", sid, "overlay.json"), "w"))
+        json.dump(ANCH.get(sid, {}), open(os.path.join(OUT, "shots", sid, "anchors.json"), "w"))
 elif STILLS:
     for sid, frames_ov in OVL.items():
         json.dump(frames_ov, open(os.path.join(OUT, "stills", sid + "_overlay.json"), "w"))
