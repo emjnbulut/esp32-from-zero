@@ -1,0 +1,126 @@
+// ESP32 From Zero - Episode 12 challenge solution: a PARTY button (red, green, blue, three times)  [DRAFT 2026-11-24]
+// New: one more link in the page (/party) and one more server.on(). Everything else is phone_remote.
+//
+// Original description:
+// ESP32 From Zero - Episode 12: Control your ESP32 from your phone (no app, no router)
+// The board opens its OWN Wi-Fi network and serves a tiny web page. Each button on the page is a link,
+// and each link is a command: color buttons for the RGB LED, a "ring" button for the buzzer.
+// The OLED shows the last command, so you can see the phone talking to the board.
+//
+// Parts (all from earlier episodes):
+//   RGB LED red / green / blue -> GPIO 25 / 26 / 27 (220 ohm each, common cathode to GND)   (Episode 6)
+//   OLED SDA -> GPIO 21, SCL -> GPIO 22, VCC -> 3V3                                          (Episode 10)
+//   passive buzzer + -> GPIO 32                                                              (Episode 10)
+// How to use: upload, then on your phone open Wi-Fi settings, join "PinByPin-ESP32" (password below),
+// and open http://192.168.4.1 in the browser.
+// Libraries: "Adafruit SSD1306" + "Adafruit GFX" (WiFi and WebServer come with the ESP32 core).
+
+#include <WiFi.h>
+#include <WebServer.h>
+#include <Wire.h>
+#include <Adafruit_GFX.h>
+#include <Adafruit_SSD1306.h>
+
+const char* WIFI_NAME = "PinByPin-ESP32";
+const char* WIFI_PASSWORD = "esp32lab";   // at least 8 characters, change it to your own
+
+const int RED_PIN = 25;
+const int GREEN_PIN = 26;
+const int BLUE_PIN = 27;
+const int BUZZER_PIN = 32;
+
+WebServer server(80);                     // port 80 = the normal web port
+Adafruit_SSD1306 screen(128, 64, &Wire, -1);
+int commands = 0;                         // how many commands arrived
+
+// the whole web page: a ready template, you only change the labels and colors
+const char PAGE[] PROGMEM = R"HTML(
+<!doctype html><html><head><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ESP32 remote</title><style>
+body{font-family:sans-serif;background:#0b1220;color:#fff;text-align:center;margin:0;padding:24px}
+a{display:block;margin:14px auto;max-width:320px;padding:22px;border-radius:18px;font-size:26px;
+  font-weight:bold;color:#fff;text-decoration:none}
+</style></head><body><h1>ESP32 remote</h1>
+<a href="/color?c=red" style="background:#e5484d">RED</a>
+<a href="/color?c=green" style="background:#2fbf71">GREEN</a>
+<a href="/color?c=blue" style="background:#3b82f6">BLUE</a>
+<a href="/color?c=off" style="background:#334155">OFF</a>
+<a href="/ring" style="background:#f59e0b">RING</a>
+<a href="/party" style="background:linear-gradient(90deg,#e5484d,#2fbf71,#3b82f6)">PARTY</a>
+</body></html>
+)HTML";
+
+void show(const char* top, String big) {  // same helper as Episode 10
+  screen.clearDisplay();
+  screen.setTextColor(SSD1306_WHITE);
+  screen.setTextSize(1);
+  screen.setCursor(0, 0);
+  screen.print(top);
+  screen.setTextSize(2);
+  screen.setCursor(0, 28);
+  screen.print(big);
+  screen.display();
+}
+
+void setColor(int r, int g, int b) {      // Episode 6
+  analogWrite(RED_PIN, r);
+  analogWrite(GREEN_PIN, g);
+  analogWrite(BLUE_PIN, b);
+}
+
+void sendPage() {                          // answer every command with the page again
+  server.send(200, "text/html", PAGE);
+}
+
+void handleColor() {                       // a link like /color?c=red
+  String c = server.arg("c");
+  if (c == "red") setColor(255, 0, 0);
+  else if (c == "green") setColor(0, 255, 0);
+  else if (c == "blue") setColor(0, 0, 255);
+  else setColor(0, 0, 0);
+  commands++;
+  show(("command #" + String(commands)).c_str(), c);
+  sendPage();
+}
+
+void handleRing() {                        // a short doorbell melody on the buzzer
+  commands++;
+  show(("command #" + String(commands)).c_str(), "RING!");
+  tone(BUZZER_PIN, 1319, 180);
+  delay(200);
+  tone(BUZZER_PIN, 1047, 300);
+  sendPage();
+}
+
+void handleParty() {                       // red, green, blue, three times (blocks ~1.8 s, fine for a party)
+  commands++;
+  show(("command #" + String(commands)).c_str(), "PARTY!");
+  for (int round = 0; round < 3; round++) {
+    setColor(255, 0, 0); delay(200);
+    setColor(0, 255, 0); delay(200);
+    setColor(0, 0, 255); delay(200);
+  }
+  setColor(0, 0, 0);
+  sendPage();
+}
+
+void setup() {
+  Serial.begin(115200);
+  screen.begin(SSD1306_SWITCHCAPVCC, 0x3C);
+  setColor(0, 0, 0);
+
+  WiFi.softAP(WIFI_NAME, WIFI_PASSWORD);   // the board becomes a tiny Wi-Fi network of its own
+  IPAddress ip = WiFi.softAPIP();          // its address, like a house number: 192.168.4.1
+  Serial.println(ip);
+  show(("open " + ip.toString()).c_str(), "READY");   // the address to type on the phone
+
+  server.on("/", sendPage);                // the page itself
+  server.on("/color", handleColor);        // each link = one command
+  server.on("/ring", handleRing);
+  server.on("/party", handleParty);      // the new link
+  server.begin();
+}
+
+void loop() {
+  server.handleClient();                   // look for a phone knocking, many times a second
+}
