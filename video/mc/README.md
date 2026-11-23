@@ -119,7 +119,11 @@ The editor's own Render button also works (Video Settings tab, exporter
 
 Ep10 ("Reflex Game 2.0") scenes: `i2c_chat`, `code_screen`, `buffer`,
 `code_show`, `steps`, `code_tone`, `prefs_ram`, `prefs_drawer`, `prefs_put`,
-`prefs_get`, `mistake` (one per `mc:<id>` run in `video/ep10/script.json`).
+`prefs_get`, `mistake`, `code_full` (one per `mc:<id>` run in
+`video/ep10/script.json`; s39 is forced to `mc:code_full` by the timing tool).
+`code_show`, `code_tone`, `prefs_put` and `prefs_get` open with a ~1.1 s
+full-sketch glimpse (`lib/glimpse.tsx`) that zooms into the scene's code line.
+The timing tool also copies the real sketch text to `src/timing/ep10_sketch.json`.
 
 ```
 node video/mc/tools/ep10_timing.mjs     # rerun after every narration change

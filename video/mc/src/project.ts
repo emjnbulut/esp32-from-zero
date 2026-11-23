@@ -13,6 +13,7 @@ import prefs_drawer from './scenes/prefs_drawer?scene';
 import prefs_put from './scenes/prefs_put?scene';
 import prefs_get from './scenes/prefs_get?scene';
 import mistake from './scenes/mistake?scene';
+import code_full from './scenes/code_full?scene';
 
 /**
  * All scenes of the course live in this one project so the editor
@@ -33,5 +34,6 @@ export default makeProject({
     prefs_put,
     prefs_get,
     mistake,
+    code_full,
   ],
 });

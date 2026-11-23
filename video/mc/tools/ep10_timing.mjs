@@ -21,6 +21,10 @@ import {fileURLToPath} from 'node:url';
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const EP = path.join(HERE, '..', '..', 'ep10');
 const OUT = path.join(HERE, '..', 'src', 'timing', 'ep10.json');
+const SKETCH = path.join(HERE, '..', '..', '..', 'lessons', '10-reflex-oled', 'code', 'reflex_oled', 'reflex_oled.ino');
+const SKETCH_OUT = path.join(HERE, '..', 'src', 'timing', 'ep10_sketch.json');
+// segments that are Motion Canvas scenes even if script.json still says otherwise
+const FORCE_VIS = {s39: 'mc:code_full'};
 
 const script = JSON.parse(fs.readFileSync(path.join(EP, 'script.json'), 'utf8'));
 const schedPath = path.join(EP, 'build', 'schedule.json');
@@ -52,7 +56,7 @@ const order = script.segments.map(d => d.id);
 const scenes = {};
 let prev = null;
 order.forEach((sid, i) => {
-  const v = segs[sid].vis;
+  const v = FORCE_VIS[sid] ?? segs[sid].vis;
   if (!v.startsWith('mc:')) {
     prev = null;
     return;
@@ -83,7 +87,11 @@ for (const [name, sc] of Object.entries(scenes)) {
   out[name] = {total, estimated, segments};
 }
 
+// the real sketch text, for the full-code glimpses (scenes import it as JSON)
+const sketchLines = fs.readFileSync(SKETCH, 'utf8').split(/\r?\n/);
+while (sketchLines.length && sketchLines[sketchLines.length - 1] === '') sketchLines.pop();
 fs.mkdirSync(path.dirname(OUT), {recursive: true});
+fs.writeFileSync(SKETCH_OUT, JSON.stringify({file: 'reflex_oled.ino', lines: sketchLines}, null, 1) + String.fromCharCode(10));
 fs.writeFileSync(OUT, JSON.stringify(out, null, 1) + '\n');
 console.log(`${estimated ? 'ESTIMATED (no schedule.json yet)' : 'from schedule.json'} -> ${OUT}`);
 for (const [k, v] of Object.entries(out)) {

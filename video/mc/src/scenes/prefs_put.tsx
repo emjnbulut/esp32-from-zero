@@ -20,6 +20,7 @@ import {addBackdrop, drift} from '../lib/backdrop';
 import {Headline} from '../lib/kinetic';
 import {Oled} from '../lib/oled';
 import {burst, CodePanel, Drawer, flyArc, lit, Pill, popIn, timing, toView, until, ValueCard, exact} from '../lib/ep10';
+import {SketchGlimpse} from '../lib/glimpse';
 import {C} from '../style';
 
 const T = timing('prefs_put');
@@ -48,6 +49,13 @@ export default makeScene2D(exact(T.total, function* (view) {
     return toView(view, new Vector2(v.width() / 2, 0).transformAsPoint(v.localToWorld()));
   };
 
+  // full-code glimpse on top: the record block, putULong flies into the code panel
+  const glimpse = new SketchGlimpse({from: 91, to: 97, match: 'prefs.putULong("best", best);'});
+  view.add(glimpse.node());
+  code.code().code('prefs.putULong("best", best);');
+  const ZOOM_AT = 1.2;
+  yield glimpse.play(view, () => toView(view, code.code().absolutePosition()), 54 / SketchGlimpse.FONT, ZOOM_AT, 0.5);
+
   // ------------------------------------------------------------ beats
   oled.root().scale(0.4).opacity(0);
   drawer.root().scale(0.5).opacity(0);
@@ -58,21 +66,21 @@ export default makeScene2D(exact(T.total, function* (view) {
     delay(0.1, h1.in()),
   );
 
-  // you beat the record
+  // you beat the record (happens under the glimpse; the burst plays when it clears)
   yield* until(Math.max(useTime(), T.word('record', 1.4) - 0.3));
   yield* oled.powerOff();
   oled.label().text('NEW RECORD!');
   oled.value().text('214');
   yield* oled.powerOn();
+  yield* until(Math.max(useTime(), ZOOM_AT + 0.3));
   yield* all(
+    code.panel().opacity(1, 0.2),
     oled.value().scale(1.25, 0.1).to(1, 0.3, easeOutBack),
     burst(view, valueCenter(), [C.amber, C.teal, C.text], 170),
   );
 
   // one line
-  yield* until(Math.max(useTime(), T.word('line', 2.6) - 0.4));
-  yield* code.show();
-  yield* code.code().code('prefs.putULong("best", best);', 0.55);
+  yield* until(Math.max(useTime(), T.word('line', 2.6) - 0.2));
   yield* code.code().selection(code.code().findFirstRange('putULong'), 0.25);
 
   // it goes into the drawer

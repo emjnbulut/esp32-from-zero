@@ -23,6 +23,7 @@ import {
 import {addBackdrop, drift} from '../lib/backdrop';
 import {arduino} from '../lib/arduinoHighlighter';
 import {Headline} from '../lib/kinetic';
+import {SketchGlimpse} from '../lib/glimpse';
 import {lit, timing, toView, until, exact} from '../lib/ep10';
 import {C, FONT} from '../style';
 
@@ -131,11 +132,19 @@ export default makeScene2D(exact(T.total, function* (view) {
     }
   }
 
+  // full-code glimpse on top: the whole sketch, the GO beep line flies into place
+  const glimpse = new SketchGlimpse({from: 84, to: 84, match: 'tone(BUZZER_PIN, 1500, 150);'});
+  view.add(glimpse.node());
+  code().code('tone(BUZZER_PIN, 1500, 150);');
+  code().opacity(0);
+  const ZOOM_AT = Math.min(1.1, Math.max(0.9, T.word('line', 1.1) - 0.1));
+  yield glimpse.play(view, () => code().position(), 84 / SketchGlimpse.FONT, ZOOM_AT, 0.5);
+
   // ------------------------------------------------------------ beats
   yield loop(Infinity, () => phase(phase() + 1, 0.5, linear));
   yield* all(buzzer().scale(1, 0.45, easeOutBack), delay(0.1, h1.in()));
-  yield* until(Math.max(useTime(), T.word('line', 1.2) - 0.3));
-  yield* code().code('tone(BUZZER_PIN, 1500, 150);', 0.6);
+  yield* until(ZOOM_AT + 0.3);
+  yield* code().opacity(1, 0.2);
   // the beep: a calm wave appears and keeps pulsing until "pin"
   yield* all(code().selection(code().findFirstRange('tone'), 0.25), h1.pulse(), beep(), amp(28, 0.4), wave().opacity(1, 0.3));
   const idle = yield loop(Infinity, function* () {

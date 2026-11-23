@@ -19,6 +19,7 @@ import {addBackdrop, drift} from '../lib/backdrop';
 import {Headline} from '../lib/kinetic';
 import {Oled} from '../lib/oled';
 import {burst, CodePanel, Drawer, flyArc, lit, Pill, popIn, timing, toView, until, ValueCard, exact} from '../lib/ep10';
+import {SketchGlimpse} from '../lib/glimpse';
 import {C, FONT} from '../style';
 
 const T = timing('prefs_get');
@@ -69,6 +70,13 @@ export default makeScene2D(exact(T.total, function* (view) {
     return toView(view, new Vector2(v.width() / 2, 0).transformAsPoint(v.localToWorld()));
   };
 
+  // full-code glimpse on top: setup() opens the drawer, getULong flies into the code panel
+  const glimpse = new SketchGlimpse({from: 51, to: 52, match: 'best = prefs.getULong("best", 9999);'});
+  view.add(glimpse.node());
+  code.code().code('best = prefs.getULong("best", 9999);');
+  const ZOOM_AT = 1.15;
+  yield glimpse.play(view, () => toView(view, code.code().absolutePosition()), 54 / SketchGlimpse.FONT, ZOOM_AT, 0.5);
+
   // ------------------------------------------------------------ boot
   drawer.root().scale(0.5).opacity(0);
   drawer.card().opacity(1);
@@ -77,12 +85,12 @@ export default makeScene2D(exact(T.total, function* (view) {
     drawer.root().scale(1, 0.4, easeOutBack),
     drawer.root().opacity(1, 0.25),
     delay(0.1, h1.in()),
-    delay(0.2, oled.powerOn()),
   );
+  // the board starts as the glimpse clears
+  yield* until(ZOOM_AT + 0.3);
+  yield* all(code.panel().opacity(1, 0.2), oled.powerOn());
 
-  yield* until(Math.max(useTime(), T.word('line', 1.8) - 0.4));
-  yield* code.show();
-  yield* code.code().code('best = prefs.getULong("best", 9999);', 0.55);
+  yield* until(Math.max(useTime(), T.word('line', 1.8) - 0.1));
   yield* code.code().selection(code.code().findFirstRange('getULong'), 0.25);
 
   // takes it back out

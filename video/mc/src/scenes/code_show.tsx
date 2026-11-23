@@ -23,7 +23,8 @@ import {
 import {addBackdrop, drift} from '../lib/backdrop';
 import {Headline} from '../lib/kinetic';
 import {Oled} from '../lib/oled';
-import {burst, CodePanel, lit, timing, until, exact} from '../lib/ep10';
+import {burst, CodePanel, lit, timing, toView, until, exact} from '../lib/ep10';
+import {SketchGlimpse} from '../lib/glimpse';
 import {C, FONT} from '../style';
 
 const T = timing('code_show');
@@ -109,6 +110,12 @@ export default makeScene2D(exact(T.total, function* (view) {
   at[3] = Math.min(at[3], T.total - 1.5);
   for (let i = 2; i >= 0; i--) at[i] = Math.min(at[i], at[i + 1] - 0.55);
 
+  // full-code glimpse on top: the whole show() function, its header flies into the code panel
+  const glimpse = new SketchGlimpse({from: 29, to: 40, match: 'show(const char* top, String big)'});
+  view.add(glimpse.node());
+  const ZOOM_AT = 1.1;
+  yield glimpse.play(view, () => toView(view, code.code().absolutePosition()), 60 / SketchGlimpse.FONT, ZOOM_AT, 0.5);
+
   // intro: OLED + the four (dim) steps, then they get wrapped into show()
   oled.root().scale(0.6).opacity(0);
   steps.forEach(s => s().x(-520));
@@ -119,10 +126,12 @@ export default makeScene2D(exact(T.total, function* (view) {
     oled.root().opacity(1, 0.3),
     sequence(0.1, ...steps.map(s => all(s().opacity(0.45, 0.25), s().x(-480, 0.3, easeOutCubic)))),
   );
-  yield* until(Math.max(useTime(), T.word('wrap', 0.4) + 0.3));
-  yield* all(wrap().end(1, 0.6, easeInOutCubic), ...steps.map(s => s().scale(0.96, 0.6)));
+  // the glimpse clears: the helper's code panel is already in place, then the wrap
+  yield* until(ZOOM_AT + 0.3);
+  yield* code.panel().opacity(1, 0.2);
+  yield* all(wrap().end(1, 0.5, easeInOutCubic), ...steps.map(s => s().scale(0.96, 0.5)));
   yield* until(Math.max(useTime(), T.word('helper', 1.6) - 0.2));
-  yield* all(code.show(0.4), wrap().stroke(C.teal, 0.3), h1.pulse());
+  yield* all(wrap().stroke(C.teal, 0.3), h1.pulse());
   yield* until(Math.max(useTime(), T.word('show', 2.6) - 0.1));
   yield* code.code().selection(code.code().findFirstRange('show'), 0.25);
 

@@ -21,7 +21,7 @@ def rgb(h):
     return tuple(int(h[i:i + 2], 16) for i in (0, 2, 4))
 
 
-WAVE = {"hi": ("#ffd166", 0.50, 150, 0.08), "lo": ("#ff8a5b", 0.80, 210, 0.16)}  # colour, life s, radius px, stagger s
+WAVE = {"hi": ("#ffd166", 0.60, 260, 0.09), "lo": ("#ff8a5b", 0.90, 340, 0.17)}  # colour, life s, radius px, stagger s
 
 
 def waves(g, W, H, items):
@@ -30,14 +30,19 @@ def waves(g, W, H, items):
     for it in items:
         col, life, rad, stag = WAVE.get(it["kind"], WAVE["hi"])
         c = rgb(col)
-        cx, cy = it["x"] * W * SS, it["y"] * H * SS
+        # a buzzer at the frame edge still gets visible waves: keep the centre a little inside the picture
+        cx = min(0.92, max(0.08, it["x"])) * W * SS
+        cy = min(0.86, max(0.10, it["y"])) * H * SS
+        if it["age"] < 0.12:  # short flash at the moment of the beep
+            fr = (30 + 260 * it["age"]) * SS
+            g.ellipse([cx - fr, cy - fr * 0.8, cx + fr, cy + fr * 0.8], fill=c + (int(90 * (1 - it["age"] / 0.12)),))
         for i in range(3):
             u = (it["age"] - i * stag) / life
             if not 0 <= u <= 1:
                 continue
-            r = (18 + rad * u ** 0.7) * SS
-            a = (1 - u) ** 1.4
-            for wdt, al in ((14, 0.22), (5, 0.95)):  # soft glow, then the bright ring
+            r = (24 + rad * u ** 0.7) * SS
+            a = (1 - u) ** 1.2
+            for wdt, al in ((22, 0.25), (8, 1.0)):  # soft glow, then the bright ring
                 g.ellipse([cx - r, cy - r * 0.8, cx + r, cy + r * 0.8], outline=c + (int(255 * a * al),),
                           width=int(wdt * SS * (1 - 0.5 * u)))
 
