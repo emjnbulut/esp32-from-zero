@@ -153,6 +153,40 @@ s("s40", "b3d:outro", "Next time, the board gets eyes: a motion sensor that turn
   "Bir dahaki sefere kart göz sahibi oluyor: bu düzeneği bir alarma çeviren bir hareket sensörü. "
   "Kaçırmamak için abone olun. Orada görüşürüz.", pad=0.8)
 
+# TR lines shortened to fit the English slots (2026-11-24, dub.py --report: 20 lines were x1.04-1.35 too long;
+# the picture must not stretch, that would mean re-rendering the 3D). Subtitle and dub stay the same text.
+TR_FIT = {
+    "s02": "Şimdi bakın. Kabloyu çekiyorum. Ekran karardı, kart tamamen kapalı.",
+    "s05": "İlk yeni parça: parmak boğumu kadar küçük bir ekran.",
+    "s06": "Üzerinde sekiz bine yakın nokta var, her biri kendi ışığını üretiyor. Bu yüzden siyah gerçekten siyah: "
+           "o noktalar kapalı.",
+    "s07": "Sadece dört kablo yetiyor. İkisi güç, ikisi bütün görüntüyü taşıyor.",
+    "s08": "Bu iki kablo bir grup sohbeti gibi. Biri mesajı parça parça taşır. Diğeri ritim tutar, iki taraf da aynı "
+           "anda okur.",
+    "s09": "Sohbetteki her cihazın kısa bir adresi var. Ekran kendi adresine cevap verir, böylece aynı kablolara başka "
+           "parçalar da ekleyebiliriz.",
+    "s10": "İkinci yeni parça bu küçük buzzer. Pasif bir buzzer: biz nota verene kadar susar.",
+    "s13": "Hadi bağlayalım. Her deliğin numarası ve harfi ekranda, her adımı kopyalayabilirsiniz.",
+    "s16": "İki sohbet kablosu: yeşil, yirmi iki numaralı pinden saat bacağına; mavi, yirmi birden veri bacağına.",
+    "s17": "Buton ortadaki boşluğa oturuyor. Sarı kablo on dokuz numaralı pinden bir tarafına, diğer taraf toprağa.",
+    "s18": "Son olarak buzzer öndeki breadboarda. Turuncu kablo otuz ikiden artı bacağına, diğer bacak toprağa.",
+    "s19": "Bütün devre bu: bir ekran, bir buton, bir buzzer. Karşılaştırmak isterseniz burada durdurun.",
+    "s20": "Ekranla konuşmak için ücretsiz bir kütüphane kullanıyoruz. Kütüphane Yöneticisi'nden bir kez kurulur.",
+    "s21": "Bu ekranın bir püf noktası var. Yazınca hiçbir şey görünmez. Kart, perde arkasındaki bir tahtaya çizer.",
+    "s26": "Butona basınca rastgele bir bekleme süresi seçiyoruz, bir buçuk ile dört saniye arası; kimse anı tahmin "
+           "edemiyor.",
+    "s28": "Bip tek satır: ton; içinde pin, notanın inceliği ve süresi var.",
+    "s30": "Erken basarsanız? Hatalı çıkış. Kalın bir vızıltı ve yeniden deniyorsunuz.",
+    "s32": "Şimdi en güzel kısım. Normalde her değişken, elektrik gidince her şeyi unutan bir bellekte yaşar. "
+           "Masadan süpürülen yapışkan notlar gibi.",
+    "s37": "Bir ipucu: sadece yeni rekorda kaydedin. Her turu kaydederseniz rekorun üzerine yavaş bir süre yazılır, "
+           "çekmece de yıpranır.",
+    "s39": "Tam kod ve çözüm aşağıdaki linkte, ders klasöründe. En iyi sürenizi yorumlara yazın.",
+}
+for _d in S:
+    if _d["id"] in TR_FIT:
+        _d["tr"] = _d["dub"] = TR_FIT[_d["id"]]
+
 SCRIPT = {
     "episode": "ep10",
     "title": "I Built a Reflex Game That Remembers Your Record (ESP32 + OLED)",

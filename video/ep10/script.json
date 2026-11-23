@@ -18,8 +18,8 @@
    "id": "s02",
    "vis": "b3d:open_unplug",
    "text": "Now watch this. I pull the cable. The screen goes dark, the board is completely off.",
-   "tr": "Şimdi şuna bakın. Kabloyu çekiyorum. Ekran kararıyor, kart tamamen kapandı.",
-   "dub": "Şimdi şuna bakın. Kabloyu çekiyorum. Ekran kararıyor, kart tamamen kapandı."
+   "tr": "Şimdi bakın. Kabloyu çekiyorum. Ekran karardı, kart tamamen kapalı.",
+   "dub": "Şimdi bakın. Kabloyu çekiyorum. Ekran karardı, kart tamamen kapalı."
   },
   {
    "id": "s03",
@@ -40,43 +40,43 @@
    "id": "s05",
    "vis": "b3d:oled_hero",
    "text": "Meet the first new part: a tiny screen, under one inch wide.",
-   "tr": "İlk yeni parçayla tanışın: bir parmak boğumundan küçük bir ekran.",
-   "dub": "İlk yeni parçayla tanışın: bir parmak boğumundan küçük bir ekran."
+   "tr": "İlk yeni parça: parmak boğumu kadar küçük bir ekran.",
+   "dub": "İlk yeni parça: parmak boğumu kadar küçük bir ekran."
   },
   {
    "id": "s06",
    "vis": "b3d:oled_macro",
    "text": "It has eight thousand little dots, and every dot makes its own light. That's why black on this screen is truly black: those dots are simply off.",
-   "tr": "Üzerinde sekiz bine yakın küçük nokta var ve her nokta kendi ışığını üretiyor. Bu yüzden bu ekranda siyah gerçekten siyah: o noktalar sadece kapalı.",
-   "dub": "Üzerinde sekiz bine yakın küçük nokta var ve her nokta kendi ışığını üretiyor. Bu yüzden bu ekranda siyah gerçekten siyah: o noktalar sadece kapalı."
+   "tr": "Üzerinde sekiz bine yakın nokta var, her biri kendi ışığını üretiyor. Bu yüzden siyah gerçekten siyah: o noktalar kapalı.",
+   "dub": "Üzerinde sekiz bine yakın nokta var, her biri kendi ışığını üretiyor. Bu yüzden siyah gerçekten siyah: o noktalar kapalı."
   },
   {
    "id": "s07",
    "vis": "b3d:oled_pins",
    "text": "And it needs only four wires. Two are power. The other two carry all the pictures.",
-   "tr": "Üstelik yalnızca dört kabloya ihtiyacı var. İkisi güç. Diğer ikisi bütün görüntüyü taşıyor.",
-   "dub": "Üstelik yalnızca dört kabloya ihtiyacı var. İkisi güç. Diğer ikisi bütün görüntüyü taşıyor."
+   "tr": "Sadece dört kablo yetiyor. İkisi güç, ikisi bütün görüntüyü taşıyor.",
+   "dub": "Sadece dört kablo yetiyor. İkisi güç, ikisi bütün görüntüyü taşıyor."
   },
   {
    "id": "s08",
    "vis": "mc:i2c_chat",
    "text": "Those two wires work like a group chat. One wire carries the message, bit by bit. The other one is the beat, so both sides read each bit at the same moment.",
-   "tr": "Bu iki kablo bir grup sohbeti gibi çalışır. Kablolardan biri mesajı parça parça taşır. Diğeri ritim tutar, böylece iki taraf da her parçayı aynı anda okur.",
-   "dub": "Bu iki kablo bir grup sohbeti gibi çalışır. Kablolardan biri mesajı parça parça taşır. Diğeri ritim tutar, böylece iki taraf da her parçayı aynı anda okur."
+   "tr": "Bu iki kablo bir grup sohbeti gibi. Biri mesajı parça parça taşır. Diğeri ritim tutar, iki taraf da aynı anda okur.",
+   "dub": "Bu iki kablo bir grup sohbeti gibi. Biri mesajı parça parça taşır. Diğeri ritim tutar, iki taraf da aynı anda okur."
   },
   {
    "id": "s09",
    "vis": "mc:i2c_chat",
    "text": "Every device in the chat has its own name, a short address. Our screen answers to its address, so later we can add more parts on the very same two wires.",
-   "tr": "Sohbetteki her cihazın kendi adı, yani kısa bir adresi vardır. Ekranımız kendi adresine cevap verir, böylece ileride aynı iki kabloya başka parçalar da ekleyebiliriz.",
-   "dub": "Sohbetteki her cihazın kendi adı, yani kısa bir adresi vardır. Ekranımız kendi adresine cevap verir, böylece ileride aynı iki kabloya başka parçalar da ekleyebiliriz."
+   "tr": "Sohbetteki her cihazın kısa bir adresi var. Ekran kendi adresine cevap verir, böylece aynı kablolara başka parçalar da ekleyebiliriz.",
+   "dub": "Sohbetteki her cihazın kısa bir adresi var. Ekran kendi adresine cevap verir, böylece aynı kablolara başka parçalar da ekleyebiliriz."
   },
   {
    "id": "s10",
    "vis": "b3d:buzzer_hero",
    "text": "The second new part is this little buzzer. It's a passive one: it stays quiet until we give it a note.",
-   "tr": "İkinci yeni parça bu küçük buzzer. Bu pasif bir buzzer: biz ona bir nota verene kadar sessiz kalır.",
-   "dub": "İkinci yeni parça bu küçük buzzer. Bu pasif bir buzzer: biz ona bir nota verene kadar sessiz kalır."
+   "tr": "İkinci yeni parça bu küçük buzzer. Pasif bir buzzer: biz nota verene kadar susar.",
+   "dub": "İkinci yeni parça bu küçük buzzer. Pasif bir buzzer: biz nota verene kadar susar."
   },
   {
    "id": "s11",
@@ -96,8 +96,8 @@
    "id": "s13",
    "vis": "b3d:wire_overview",
    "text": "Let's wire it. Every hole has a printed number and letter, and you'll see them on the screen, so you can copy each step.",
-   "tr": "Hadi bağlayalım. Her deliğin üzerinde basılı bir numara ve harf var, hepsini ekranda göreceksiniz; her adımı birebir kopyalayabilirsiniz.",
-   "dub": "Hadi bağlayalım. Her deliğin üzerinde basılı bir numara ve harf var, hepsini ekranda göreceksiniz; her adımı birebir kopyalayabilirsiniz."
+   "tr": "Hadi bağlayalım. Her deliğin numarası ve harfi ekranda, her adımı kopyalayabilirsiniz.",
+   "dub": "Hadi bağlayalım. Her deliğin numarası ve harfi ekranda, her adımı kopyalayabilirsiniz."
   },
   {
    "id": "s14",
@@ -117,44 +117,44 @@
    "id": "s16",
    "vis": "b3d:wire_i2c",
    "text": "The two chat wires: green from pin twenty-two to the clock leg, and blue from pin twenty-one to the data leg.",
-   "tr": "İki sohbet kablosu: yeşil kablo yirmi iki numaralı pinden saat bacağına, mavi kablo da yirmi bir numaralı pinden veri bacağına.",
-   "dub": "İki sohbet kablosu: yeşil kablo yirmi iki numaralı pinden saat bacağına, mavi kablo da yirmi bir numaralı pinden veri bacağına."
+   "tr": "İki sohbet kablosu: yeşil, yirmi iki numaralı pinden saat bacağına; mavi, yirmi birden veri bacağına.",
+   "dub": "İki sohbet kablosu: yeşil, yirmi iki numaralı pinden saat bacağına; mavi, yirmi birden veri bacağına."
   },
   {
    "id": "s17",
    "vis": "b3d:wire_button",
    "text": "The button sits across the middle gap. Yellow goes from pin nineteen to one side, and the other side goes to ground.",
-   "tr": "Buton ortadaki boşluğun üzerine oturuyor. Sarı kablo on dokuz numaralı pinden bir tarafına gidiyor, diğer taraf da toprağa.",
-   "dub": "Buton ortadaki boşluğun üzerine oturuyor. Sarı kablo on dokuz numaralı pinden bir tarafına gidiyor, diğer taraf da toprağa."
+   "tr": "Buton ortadaki boşluğa oturuyor. Sarı kablo on dokuz numaralı pinden bir tarafına, diğer taraf toprağa.",
+   "dub": "Buton ortadaki boşluğa oturuyor. Sarı kablo on dokuz numaralı pinden bir tarafına, diğer taraf toprağa."
   },
   {
    "id": "s18",
    "vis": "b3d:wire_buzzer",
    "text": "Last, the buzzer on the front board. Orange from pin thirty-two to its plus leg, and its other leg to ground.",
-   "tr": "Son olarak öndeki breadboarda buzzer. Turuncu kablo otuz iki numaralı pinden artı bacağına, diğer bacağı da toprağa.",
-   "dub": "Son olarak öndeki breadboarda buzzer. Turuncu kablo otuz iki numaralı pinden artı bacağına, diğer bacağı da toprağa."
+   "tr": "Son olarak buzzer öndeki breadboarda. Turuncu kablo otuz ikiden artı bacağına, diğer bacak toprağa.",
+   "dub": "Son olarak buzzer öndeki breadboarda. Turuncu kablo otuz ikiden artı bacağına, diğer bacak toprağa."
   },
   {
    "id": "s19",
    "vis": "b3d:wire_done",
    "text": "That's the whole circuit: one screen, one button, one buzzer. Pause here if you want to compare it with yours.",
-   "tr": "Bütün devre bu kadar: bir ekran, bir buton, bir buzzer. Kendi devrenizle karşılaştırmak isterseniz burada durdurun.",
-   "dub": "Bütün devre bu kadar: bir ekran, bir buton, bir buzzer. Kendi devrenizle karşılaştırmak isterseniz burada durdurun.",
+   "tr": "Bütün devre bu: bir ekran, bir buton, bir buzzer. Karşılaştırmak isterseniz burada durdurun.",
+   "dub": "Bütün devre bu: bir ekran, bir buton, bir buzzer. Karşılaştırmak isterseniz burada durdurun.",
    "pad": 0.6
   },
   {
    "id": "s20",
    "vis": "mc:code_screen",
    "text": "To talk to the screen we use a free library. You install it once, from the Library Manager.",
-   "tr": "Ekranla konuşmak için ücretsiz bir kütüphane kullanıyoruz. Kütüphane Yöneticisi'nden bir kez kuruyorsunuz.",
-   "dub": "Ekranla konuşmak için ücretsiz bir kütüphane kullanıyoruz. Kütüphane Yöneticisi'nden bir kez kuruyorsunuz."
+   "tr": "Ekranla konuşmak için ücretsiz bir kütüphane kullanıyoruz. Kütüphane Yöneticisi'nden bir kez kurulur.",
+   "dub": "Ekranla konuşmak için ücretsiz bir kütüphane kullanıyoruz. Kütüphane Yöneticisi'nden bir kez kurulur."
   },
   {
    "id": "s21",
    "vis": "mc:buffer",
    "text": "Here's the trick of this screen. When we print, nothing appears yet. The board draws on a whiteboard behind a curtain.",
-   "tr": "Bu ekranın bir püf noktası var. Yazdığımızda henüz hiçbir şey görünmez. Kart, perdenin arkasındaki bir beyaz tahtaya çizer.",
-   "dub": "Bu ekranın bir püf noktası var. Yazdığımızda henüz hiçbir şey görünmez. Kart, perdenin arkasındaki bir beyaz tahtaya çizer."
+   "tr": "Bu ekranın bir püf noktası var. Yazınca hiçbir şey görünmez. Kart, perde arkasındaki bir tahtaya çizer.",
+   "dub": "Bu ekranın bir püf noktası var. Yazınca hiçbir şey görünmez. Kart, perde arkasındaki bir tahtaya çizer."
   },
   {
    "id": "s22",
@@ -188,8 +188,8 @@
    "id": "s26",
    "vis": "mc:steps",
    "text": "When you press, we pick a random waiting time, somewhere between one and a half and four seconds, so nobody can guess the moment.",
-   "tr": "Butona bastığınızda rastgele bir bekleme süresi seçiyoruz, bir buçuk ile dört saniye arasında bir yerde; böylece kimse o anı tahmin edemiyor.",
-   "dub": "Butona bastığınızda rastgele bir bekleme süresi seçiyoruz, bir buçuk ile dört saniye arasında bir yerde; böylece kimse o anı tahmin edemiyor."
+   "tr": "Butona basınca rastgele bir bekleme süresi seçiyoruz, bir buçuk ile dört saniye arası; kimse anı tahmin edemiyor.",
+   "dub": "Butona basınca rastgele bir bekleme süresi seçiyoruz, bir buçuk ile dört saniye arası; kimse anı tahmin edemiyor."
   },
   {
    "id": "s27",
@@ -202,8 +202,8 @@
    "id": "s28",
    "vis": "mc:code_tone",
    "text": "The beep is one line: tone, with the pin, how high the note is, and how long it lasts.",
-   "tr": "Bip sesi tek satır: tone; içinde pin, notanın ne kadar ince olduğu ve ne kadar süreceği var.",
-   "dub": "Bip sesi tek satır: ton; içinde pin, notanın ne kadar ince olduğu ve ne kadar süreceği var."
+   "tr": "Bip tek satır: ton; içinde pin, notanın inceliği ve süresi var.",
+   "dub": "Bip tek satır: ton; içinde pin, notanın inceliği ve süresi var."
   },
   {
    "id": "s29",
@@ -216,8 +216,8 @@
    "id": "s30",
    "vis": "b3d:play_false",
    "text": "And if you press too early? That's a false start. A low buzz, and you try again.",
-   "tr": "Peki erken basarsanız? Bu bir hatalı çıkış. Kalın bir vızıltı ve yeniden deniyorsunuz.",
-   "dub": "Peki erken basarsanız? Bu bir hatalı çıkış. Kalın bir vızıltı ve yeniden deniyorsunuz."
+   "tr": "Erken basarsanız? Hatalı çıkış. Kalın bir vızıltı ve yeniden deniyorsunuz.",
+   "dub": "Erken basarsanız? Hatalı çıkış. Kalın bir vızıltı ve yeniden deniyorsunuz."
   },
   {
    "id": "s31",
@@ -230,8 +230,8 @@
    "id": "s32",
    "vis": "mc:prefs_ram",
    "text": "Now the best part. Normally, every variable lives in memory that forgets everything when the power goes. Like sticky notes on a desk that get swept off every night.",
-   "tr": "Şimdi en güzel kısım. Normalde her değişken, elektrik gidince her şeyi unutan bir bellekte yaşar. Her gece masadan süpürülen yapışkan notlar gibi.",
-   "dub": "Şimdi en güzel kısım. Normalde her değişken, elektrik gidince her şeyi unutan bir bellekte yaşar. Her gece masadan süpürülen yapışkan notlar gibi."
+   "tr": "Şimdi en güzel kısım. Normalde her değişken, elektrik gidince her şeyi unutan bir bellekte yaşar. Masadan süpürülen yapışkan notlar gibi.",
+   "dub": "Şimdi en güzel kısım. Normalde her değişken, elektrik gidince her şeyi unutan bir bellekte yaşar. Masadan süpürülen yapışkan notlar gibi."
   },
   {
    "id": "s33",
@@ -265,8 +265,8 @@
    "id": "s37",
    "vis": "mc:mistake",
    "text": "One tip: save only when there's a new record. Saving every round would overwrite your best time with a slow one, and the drawer would wear out faster.",
-   "tr": "Bir ipucu: sadece yeni rekor olduğunda kaydedin. Her turu kaydetmek, en iyi sürenizin üzerine yavaş bir süre yazar ve çekmece de daha çabuk yıpranır.",
-   "dub": "Bir ipucu: sadece yeni rekor olduğunda kaydedin. Her turu kaydetmek, en iyi sürenizin üzerine yavaş bir süre yazar ve çekmece de daha çabuk yıpranır."
+   "tr": "Bir ipucu: sadece yeni rekorda kaydedin. Her turu kaydederseniz rekorun üzerine yavaş bir süre yazılır, çekmece de yıpranır.",
+   "dub": "Bir ipucu: sadece yeni rekorda kaydedin. Her turu kaydederseniz rekorun üzerine yavaş bir süre yazılır, çekmece de yıpranır."
   },
   {
    "id": "s38",
@@ -279,8 +279,8 @@
    "id": "s39",
    "vis": "mc:code_full",
    "text": "The full code and the solution are in the lesson folder, linked below. Post your best time in the comments.",
-   "tr": "Tam kod ve çözüm, aşağıdaki bağlantıdaki ders klasöründe. En iyi sürenizi yorumlara yazın.",
-   "dub": "Tam kod ve çözüm, aşağıdaki bağlantıdaki ders klasöründe. En iyi sürenizi yorumlara yazın."
+   "tr": "Tam kod ve çözüm aşağıdaki linkte, ders klasöründe. En iyi sürenizi yorumlara yazın.",
+   "dub": "Tam kod ve çözüm aşağıdaki linkte, ders klasöründe. En iyi sürenizi yorumlara yazın."
   },
   {
    "id": "s40",
