@@ -62,7 +62,7 @@ def estimate(sc, lead_in=0.8):
     t, out = lead_in, {}
     for s in sc:
         dur = len(s["text"].split()) / EST_WPM * 60
-        out[s["id"]] = {"start": t, "dur": dur, "end": t + dur, "scene": s["scene"]}
+        out[s["id"]] = {"start": t, "dur": dur, "end": t + dur, "scene": s.get("scene") or s.get("vis", "")}
         t += dur + EST_GAP + s.get("pad", 0)
     return out, t
 
@@ -93,12 +93,12 @@ def section10(sc, sch, ids, total, sting):
     for a, b in zip(pts, pts[1:]):
         if b - a > QGAP_MAX:
             warns.append(("-", "QGAP", f"{b-a:.0f} s without a question moment ({a:.0f}-{b:.0f} s)"))
-    if not any(s["scene"] == "retrieval" and s["id"] in sch and 0 <= sch[s["id"]]["start"] - end <= RETR_MAX for s in sc):
+    if not any(s.get("scene") or s.get("vis", "") == "retrieval" and s["id"] in sch and 0 <= sch[s["id"]]["start"] - end <= RETR_MAX for s in sc):
         warns.append(("-", "RETRIEVAL", f"no retrieval scene within {RETR_MAX} s after the sting"))
     scenes = {}
     for s in sc:
         if s["id"] in sch:
-            scenes.setdefault(s["scene"], []).append(s)
+            scenes.setdefault(s.get("scene") or s.get("vis", ""), []).append(s)
     for name, segs in scenes.items():
         t = " ".join(x["text"] for x in segs)
         if EX_RX.search(t) and not LIMIT_RX.search(t):
@@ -152,7 +152,7 @@ def main():
                     warns.append((i, "QUESTION", f"thinking pause {g:.2f} s (want {Q_MIN}-{Q_MAX})"))
         # episode-level rules
         first = " ".join(text[i] for i in ids[:3]).lower()
-        if sc[0]["scene"] != "cold":
+        if (sc[0].get("scene") or ("cold" if meta.get("sting_after") else "")) != "cold":  # v2: cold open = before sting_after
             warns.append(("-", "RULES", "episode does not open with a cold-open result scene"))
         if re.search(r"\b(subscribe|like and)\b", " ".join(text.values()), re.I):
             warns.append(("-", "RULES", "narration says 'subscribe'/'like and' (icons only)"))
