@@ -42,7 +42,9 @@ The same index belongs to the same key in every list: `KEY_PIN[1]` is pad 2, and
 
 ## Your turn
 
-Add a fourth key on GPIO 4 (touch T0) that plays a high DO (1047 Hz). Three lists get one more value each.
+Touch the banana and the orange **at the same time** to play a high DO (1047 Hz) — a fourth note without a new pin.
+(Every other touch pin is already taken this season: 4 = DHT11, 13 = IR sensor, 27 = RGB blue, 32/33 = buzzer/PIR, and 12
+must stay free or the board won't boot.)
 
 ## Code
 
