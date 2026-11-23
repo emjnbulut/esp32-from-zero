@@ -79,7 +79,12 @@ def piece(ep: Path, r, i, tmp: Path) -> Path:
                       f"fontsize=64:x=(w-tw)/2:y=(h-th)/2,format=yuv420p"]
     elif src[0] == "frames":
         d = overlaid(ep, src[1])
-        cmd = ["-framerate", str(FPS), "-i", str(d / "f_%04d.png"), "-vf", fit]
+        # a shot starts with its first segment; the first run starts at 0 -> hold the first frame until then
+        idx = ep / "b3d" / "build" / "shots.json"
+        sh = next((x for x in json.loads(idx.read_text()) if x["id"] == src[1].name), None) if idx.exists() else None
+        lead = max(0.0, sh["start"] - r["start"]) if sh else 0.0
+        hold = f"tpad=start_mode=clone:start_duration={lead:.3f}," if lead > 0.01 else ""
+        cmd = ["-framerate", str(FPS), "-i", str(d / "f_%04d.png"), "-vf", hold + fit]
     else:
         cmd = ["-i", str(src[1]), "-an", "-vf", fit]
     subprocess.run(["ffmpeg", "-v", "error", "-y", *cmd, *ENC, "-t", f"{dur:.3f}", str(out)], check=True)
@@ -126,6 +131,8 @@ SFX = {
     "unplug": lambda: noise(0.05, 0.30, seed=3),
     "plug": lambda: noise(0.05, 0.30, seed=4),
     "boot": lambda: tone(2093, 0.08, 0.18),
+    "blip": lambda: tone(1319, 0.06, 0.18),
+    "tone_erase": lambda: tone(880, 0.35, 0.25, 330),  # falling sweep: record wiped
 }
 
 
@@ -163,6 +170,9 @@ def main():
         print(f"{r['start']:7.2f}-{r['end']:7.2f}  {r['vis']:<22} {','.join(r['segs']):<14} {note}")
     print(f"{len(rs)} runs, {duration:.1f} s, {missing} missing")
     if "--check" in sys.argv:
+        return
+    if "--sfx" in sys.argv:  # only the sound effects (picture unchanged)
+        sfx(ep, duration)
         return
     tmp = ep / "build" / "runs"
     tmp.mkdir(parents=True, exist_ok=True)

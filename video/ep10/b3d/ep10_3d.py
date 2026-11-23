@@ -532,7 +532,7 @@ def shot_spec(sh):
 
     if sid == "prefs_proof":
         t14 = wt("fourteen")
-        tu, tpl = wt("Unplug"), wt("plug", 1)
+        tu, tpl = wt("Unplug"), wt("plug")  # "Unplug" is not a "plug" match, so the replug is #0
         hit = t14 - 0.6
         beeps += [(hit + 0.2, "hi")]
         sfx += [(hit, "click"), (hit + 0.2, "record"), (tu, "unplug"), (tpl + 0.2, "plug"), (tpl + 0.4, "boot")]

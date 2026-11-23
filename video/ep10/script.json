@@ -3,6 +3,7 @@
  "title": "I Built a Reflex Game That Remembers Your Record (ESP32 + OLED)",
  "version": 2,
  "lead_in": 0.8,
+ "sting_after": "s03",
  "scene_gap": 0.7,
  "segments": [
   {
