@@ -115,7 +115,29 @@ The editor's own Render button also works (Video Settings tab, exporter
   `p.transformAsPoint(view.worldToLocal())` before using them as a view-child
   position (see `toView` in `scenes/prefsRecord.tsx`).
 
+## Ep10 scenes and narration timing
+
+Ep10 ("Reflex Game 2.0") scenes: `i2c_chat`, `code_screen`, `buffer`,
+`code_show`, `steps`, `code_tone`, `prefs_ram`, `prefs_drawer`, `prefs_put`,
+`prefs_get`, `mistake` (one per `mc:<id>` run in `video/ep10/script.json`).
+
+```
+node video/mc/tools/ep10_timing.mjs     # rerun after every narration change
+```
+
+reads `video/ep10/build/schedule.json` (falls back to a 2.45 words/s
+estimate if it does not exist yet) and writes `src/timing/ep10.json`:
+`{scene: {total, estimated, segments: [{id, start, dur, words}]}}`. A scene
+lasts from its first segment's start to the next segment's start (same rule
+as the Blender shots). Scenes use `lib/ep10.tsx`: `timing(id)` (segment
+starts + spoken-word times), `until(t)` to place beats on words, and
+`exact(T.total, ...)` so the rendered length always equals `total`.
+Re-render the scenes after rerunning the timing script.
+
 ## Notes
+
+- Do not put JSX fragments (`<>...</>`) inside `.map()` children: they are
+  silently not rendered. Use `.flatMap(x => [<A/>, <B/>])` instead.
 
 - The FFmpeg exporter uses the ffmpeg binary bundled in
   `node_modules/@ffmpeg-installer` (libx264, yuv420p, +faststart).
