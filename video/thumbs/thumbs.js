@@ -189,6 +189,20 @@ const LOC = {
     pt: { title: ["DESLIGUE,", "O RECORDE FICA"], words: { RECORD: "RECORDE" }, maxW: 640 },
     es: { title: ["DESCONECTA,", "EL RÉCORD QUEDA"], words: { RECORD: "RÉCORD" }, maxW: 640 },
   },
+  ep10_C: {
+    enMaxW: 600,
+    tr: { title: ["SÜREMİ", "GEÇ!"], maxW: 600 },
+    hi: { title: ["मेरा टाइम", "हराओ!"], maxW: 600 },
+    pt: { title: ["BATA MEU", "TEMPO!"], maxW: 600 },
+    es: { title: ["¡SUPERA MI", "TIEMPO!"], maxW: 600 },
+  },
+  ep10_D: {
+    enMaxW: 600,
+    tr: { title: ["FİŞİ ÇEK,", "REKOR KALIR!"], maxW: 600 },
+    hi: { title: ["प्लग निकालो,", "रिकॉर्ड बचा!"], maxW: 600 },
+    pt: { title: ["DESLIGUE,", "O RECORDE FICA!"], maxW: 600 },
+    es: { title: ["DESCONECTA,", "¡EL RÉCORD QUEDA!"], maxW: 600 },
+  },
   recap2_A: {
     enMaxW: 600,
     tr: { title: ["7/7 YAP", "BAKALIM!"], pills: ["PWM · map() · state"], words: { SCORE: "PUAN" }, maxW: 600 },
@@ -326,6 +340,16 @@ const V = {
     rgbLed(900, 60, 170, [40, 255, 120]);
     card(780, 330, 380, 130, `<div style="font:800 76px/130px var(--mono);text-align:center;color:var(--amber)">213 ms</div>`);
     pill(560, 620, "3 LEDs · 1 button · a record", "rgba(25,195,180,.18)", "var(--teal)");
+  },
+  // Episode 10 v2 (OLED + buzzer, 24 Nov): both on the Blender hero frame (open_replug, OLED "214ms").
+  // C = the challenge, D = the record that survives unplugging.
+  ep10_C() {
+    hero3d("build/ep10_hero.png", "70% 50%");
+    title([["BEAT MY", "white"], ["TIME!", "amber"]], 150, 176);
+  },
+  ep10_D() {
+    hero3d("build/ep10_hero.png", "70% 50%");
+    title([["UNPLUG IT.", "white", "font-size:96px"], ["STILL THERE!", "teal", "font-size:96px"]], 150, 176);
   },
   ep10_B() {
     title([["UNPLUG IT.", "white", "font-size:112px"], ["RECORD STAYS", "teal", "font-size:104px"]], 150, 150);
