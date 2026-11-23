@@ -27,7 +27,7 @@ GPIO 32 ────► passive buzzer + ── - ──► GND
 
 The PIR is the only part on 5 V. Its **output** is 3.3 V, so it can go straight into GPIO 33. The OLED still runs on **3.3 V**.
 
-## 1. A guard who only says yes or no
+## 1. Thumbs up or thumbs down
 
 Everything warm glows in infrared: your hand, a cat, a cup of tea. We can't see that glow; the PIR can. Its white dome is a lens made
 of many small windows, each one looking at its own slice of the room, like a row of flashlights. When something warm moves from one
@@ -60,9 +60,9 @@ The siren is one `tone()` whose note switches every quarter second:
 tone(BUZZER_PIN, (inState / 250) % 2 ? 2600 : 1800);
 ```
 
-## 3. Remembering *when* (a guest book at the door)
+## 3. Remembering *when* (the parking ticket again)
 
-At the moment of motion we write down the time, like a guest signing a book at the door:
+At the moment of motion we stamp the time, like the parking ticket from Episode 9 (`pressStart`):
 
 ```cpp
 lastMotion = now;            // now = millis(), the board's stopwatch since power-on

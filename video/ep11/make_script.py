@@ -9,9 +9,9 @@ New ideas, kept light: the sensor does the hard work and only answers yes/no (di
 Rules as Ep 10 v2: PRODUCTION_GUIDELINES section 9 + 12, at least half the runtime on the Blender model (b3d:*),
 Motion Canvas (mc:*) only for the few code lines / abstract ideas, short full-code glimpses (creator 24 Nov),
 buzzer beeps = shrill piezo sound + sound-wave rings (creator 24 Nov), fast tempo.
-Analogies: NEW guard who only says yes/no (PIR output), NEW row of windows / flashlight beams (Fresnel lens zones),
-NEW guest book at the door (lastMotion = millis()), NEW doorbell vs little speaker (active vs passive buzzer).
-Reused: washing machine (state), stopwatch (millis).
+Analogies: NEW thumbs up / thumbs down (PIR output), NEW row of windows / flashlight beams (Fresnel lens zones),
+NEW doorbell vs little speaker (active vs passive buzzer).
+Reused: washing machine (state), parking ticket stamped at the entry (lastMotion = millis(), as pressStart in Ep 9).
 Segment keys: id, vis, text (EN narration), tr (TR subtitle), dub (TR spoken, if different), sub, pad.
 """
 import json
@@ -54,9 +54,9 @@ s("s07", "b3d:pir_lens", "The dome is a lens made of many little windows. Each o
 s("s08", "b3d:pir_zones", "When something warm moves from one window to the next, the sensor notices the change, "
   "and its answer pin turns on.",
   "Sıcak bir şey bir pencereden diğerine geçince sensör bu değişimi fark ediyor ve cevap pini açılıyor.")
-s("s09", "b3d:pir_answer", "So for our code, the whole sensor is just a guard who answers yes when something moved, and no "
+s("s09", "b3d:pir_answer", "So for our code, the whole sensor is just a thumbs up when something moved, and a thumbs down "
   "when nothing did.",
-  "Yani kodumuz için bütün sensör, bir şey kıpırdayınca evet, kıpırdamayınca hayır diyen bir bekçi.")
+  "Yani kodumuz için bütün sensör, bir şey kıpırdayınca başparmak yukarı, kıpırdamayınca başparmak aşağı.")
 s("s10", "b3d:pir_knobs", "On the side there are two orange knobs. One sets how long the yes lasts, the other how far "
   "it can see.",
   "Yanında iki turuncu düğme var. Biri evetin ne kadar süreceğini, diğeri ne kadar uzağı göreceğini ayarlıyor.")
@@ -99,9 +99,9 @@ s("s21", "b3d:demo_stop", "Press the button to stop it. Or it stops by itself af
   "Durdurmak için düğmeye basın. Ya da on beş saniye sonra kendiliğinden susuyor, komşular dost kalsın diye.")
 
 # ---- remembering WHEN
-s("s22", "mc:guest_book", "Now the clever part. At the moment of motion, we write down the time, like a guest book at "
-  "the door.",
-  "Şimdi işin akıllıca kısmı. Hareket anında saati not ediyoruz, kapıdaki bir ziyaretçi defteri gibi.", pad=0.5)
+s("s22", "mc:parking_ticket", "Now the clever part. At the moment of motion, we stamp the time, like the parking ticket from "
+  "episode nine.",
+  "Şimdi işin akıllıca kısmı. Hareket anında saati damgalıyoruz, dokuzuncu bölümdeki otopark bileti gibi.", pad=0.5)
 s("s23", "mc:code_last", "It's one line: last motion equals millis. Millis is the board's stopwatch since power-on.",
   "Tek satır: lastMotion eşittir millis. Millis, kartın güç verildiğinden beri çalışan kronometresi.",
   "Tek satır: last moşın eşittir milis. Milis, kartın güç verildiğinden beri çalışan kronometresi.")

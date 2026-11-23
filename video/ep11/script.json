@@ -66,9 +66,9 @@
   {
    "id": "s09",
    "vis": "b3d:pir_answer",
-   "text": "So for our code, the whole sensor is just a guard who answers yes when something moved, and no when nothing did.",
-   "tr": "Yani kodumuz için bütün sensör, bir şey kıpırdayınca evet, kıpırdamayınca hayır diyen bir bekçi.",
-   "dub": "Yani kodumuz için bütün sensör, bir şey kıpırdayınca evet, kıpırdamayınca hayır diyen bir bekçi."
+   "text": "So for our code, the whole sensor is just a thumbs up when something moved, and a thumbs down when nothing did.",
+   "tr": "Yani kodumuz için bütün sensör, bir şey kıpırdayınca başparmak yukarı, kıpırdamayınca başparmak aşağı.",
+   "dub": "Yani kodumuz için bütün sensör, bir şey kıpırdayınca başparmak yukarı, kıpırdamayınca başparmak aşağı."
   },
   {
    "id": "s10",
@@ -156,10 +156,10 @@
   },
   {
    "id": "s22",
-   "vis": "mc:guest_book",
-   "text": "Now the clever part. At the moment of motion, we write down the time, like a guest book at the door.",
-   "tr": "Şimdi işin akıllıca kısmı. Hareket anında saati not ediyoruz, kapıdaki bir ziyaretçi defteri gibi.",
-   "dub": "Şimdi işin akıllıca kısmı. Hareket anında saati not ediyoruz, kapıdaki bir ziyaretçi defteri gibi.",
+   "vis": "mc:parking_ticket",
+   "text": "Now the clever part. At the moment of motion, we stamp the time, like the parking ticket from episode nine.",
+   "tr": "Şimdi işin akıllıca kısmı. Hareket anında saati damgalıyoruz, dokuzuncu bölümdeki otopark bileti gibi.",
+   "dub": "Şimdi işin akıllıca kısmı. Hareket anında saati damgalıyoruz, dokuzuncu bölümdeki otopark bileti gibi.",
    "pad": 0.5
   },
   {
