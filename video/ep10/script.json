@@ -2,6 +2,8 @@
  "episode": "ep10",
  "title": "I Built a Reflex Game That Remembers Your Record (ESP32 + OLED)",
  "version": 2,
+ "lead_in": 0.8,
+ "scene_gap": 0.7,
  "segments": [
   {
    "id": "s01",

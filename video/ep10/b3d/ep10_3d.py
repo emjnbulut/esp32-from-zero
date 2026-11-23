@@ -596,8 +596,8 @@ for sh in SHOTS:
     os.makedirs(outdir, exist_ok=True)
     for f in frames:
         path = os.path.join(outdir, (sh["id"] + "_" if STILLS else "") + f"f_{f:04d}.png")
-        if os.path.exists(path) and not (STILLS or FRAMES):
-            continue
+        # a resumed render skips frames already on disk, but still poses the scene so overlay.json stays complete
+        skip = os.path.exists(path) and not (STILLS or FRAMES)
         t = (f - 1) / FPS
         p, q = camf(t)
         cam.location = p * MM
@@ -613,6 +613,8 @@ for sh in SHOTS:
                     ov.append({"text": tg["text"], "color": tg["color"], "on": round(tg["on"], 3), "scale": tg["scale"],
                                "a": [round(a2.x, 4), round(1 - a2.y, 4)], "b": [round(b2.x, 4), round(1 - b2.y, 4)]})
         OVL.setdefault(sh["id"], {})[str(f)] = ov
+        if skip:
+            continue
         sc.render.filepath = path
         bpy.ops.render.render(write_still=True)
         print("frame", sh["id"], f, "/", n, flush=True)

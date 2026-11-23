@@ -54,17 +54,22 @@ def load(ep: Path):
     return script, timings
 
 
+def scene_of(s: dict) -> str:
+    """v1 scripts name a "scene"; v2 (Blender/Motion Canvas) scripts only have "vis"."""
+    return s.get("scene") or s.get("vis", "")
+
+
 def schedule(ep: Path):
     script, timings = load(ep)
     dubs = dub_durations(ep)
     t, prev_scene, segs, stretched = script.get("lead_in", LEAD_IN), None, {}, 0.0
     for s in script["segments"]:
-        if prev_scene and s["scene"] != prev_scene:
-            t += SCENE_GAP - GAP
+        if prev_scene and scene_of(s) != prev_scene:
+            t += script.get("scene_gap", SCENE_GAP) - GAP
         t += s.get("pre", 0)
         dur = timings[s["id"]]["duration"]
         segs[s["id"]] = {
-            "start": round(t, 3), "dur": dur, "end": round(t + dur, 3), "scene": s["scene"],
+            "start": round(t, 3), "dur": dur, "end": round(t + dur, 3), "scene": scene_of(s),
             "words": [{"w": w["w"], "t": round(w["t"], 3)} for w in timings[s["id"]]["words"]],
         }
         start = t
@@ -72,7 +77,7 @@ def schedule(ep: Path):
         extra = max(0.0, dubs.get(s["id"], 0) / DUB_FIT + DUB_BREATH - (t - start))
         t += extra  # the picture waits until the longest dub has finished too
         stretched += extra
-        prev_scene = s["scene"]
+        prev_scene = scene_of(s)
     duration = round(t - GAP + TAIL, 3)
     if stretched:
         print(f"stretched for dubs: +{stretched:.1f}s")
@@ -95,6 +100,10 @@ def audio(ep: Path):
         a = decode(ep / "build" / "audio" / f"{sid}.mp3")
         i = int(s["start"] * SR)
         buf[i:i + len(a)] += a
+    fx = ep / "build" / "sfx.wav"  # v2 episodes: buzzer/click sounds of the 3D shots (video/b3d/assemble.py)
+    if fx.exists():
+        a = decode(fx)[:len(buf)]
+        buf[:len(a)] += a
     buf = music.mix(buf, SR, decode, level=0.08, fade_in=1.0, win=music.windows(ep, sched))
     peak = np.max(np.abs(buf)) or 1
     buf = buf / peak * 0.89

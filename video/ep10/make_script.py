@@ -157,6 +157,8 @@ SCRIPT = {
     "episode": "ep10",
     "title": "I Built a Reflex Game That Remembers Your Record (ESP32 + OLED)",
     "version": 2,
+    "lead_in": 0.8,     # cold open starts on the game, no title card
+    "scene_gap": 0.7,   # fast tempo (creator 2026-11-21): shorter pause when the visual changes
     "segments": S,
 }
 

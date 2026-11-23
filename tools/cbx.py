@@ -20,7 +20,7 @@ PY = ROOT / ".venv-tts" / "Scripts" / "python.exe"
 # Sources: tools/voice_samples/README.md. Before: en mark, tr/pt pt_fleurs2, hi hi_fleurs5, es es_fleurs2 alone.
 _S = "tools/voice_samples/"
 VOICES = {
-    "en": {"prompt": _S + "creator_en.wav", "accent_prompt": _S + "mark.wav"},        # user pick EN_3
+    "en": {"prompt": _S + "creator_en_long.wav", "accent_prompt": _S + "mark.wav"},   # user pick 2026-11-23: B (23 s ref)
     "tr": {"prompt": _S + "creator_tr.wav", "accent_prompt": _S + "tr_fleurs3.wav"},  # user pick TR_2
     "hi": {"prompt": _S + "creator_en.wav", "accent_prompt": _S + "hi_fleurs5.wav"},
     "pt": {"prompt": _S + "creator_en.wav", "accent_prompt": _S + "pt_fleurs2.wav"},
