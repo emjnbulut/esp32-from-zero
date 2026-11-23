@@ -79,3 +79,16 @@ faster-whisper `large-v3-turbo`. chatterbox_say.py job key `"mtl": "v3" | "hi"` 
 VoxCPM2: own venv `.venv-vox` (torch 2.6 cu124 + voxcpm; run with enable_denoiser=False, we denoise ourselves).
 Scorers: `.venv-score` (speechbrain ECAPA -> tools/models/ecapa, UTMOSv2 weights in ~/.cache/utmosv2 fetched with curl
 because its downloader calls wget, DNSMOS onnx in tools/models/dnsmos). Setup check: `.venv-score/Scripts/python tools/score_setup.py`.
+
+## Bake-off result (2026-11-24)
+EN: creator picked option B = Chatterbox EN, 23 s creator reference (`creator_en_long.wav`) + mark accent (cbx.py VOICES).
+TR: creator picked the current voice (Chatterbox multilingual V2, creator_tr + tr_fleurs3) - no change.
+HI: creator delegated; picked by scores on the 3 bake-off lines (tools/bakeoff.py, build/hi_score/*.py):
+| engine | Whisper large-v3-turbo CER | ECAPA sim. to creator | length |
+|---|---|---|---|
+| VoxCPM2 (creator_en_long ref) | 0.165 | 0.649 | 31.3 s |
+| Chatterbox V3 | 0.163 | 0.618 | 38.9 s |
+| Chatterbox V2 (old) | 0.199 | 0.606 | 43.6 s |
+| Chatterbox-Multilingual-hi | 0.193 | 0.581 | 34.7 s |
+-> HI dubs move to VoxCPM2 (tools/vox_say.py, .venv-vox): most like the creator, as clear as the best, shortest
+(HI dubs used to overrun the EN slots). Wire it into dub.py via cbx before the next HI dub.
