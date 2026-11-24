@@ -9,10 +9,9 @@ TASLAK). Creator feedback 25 Nov applied: the full-code scene now pages through 
 (~24 lines, ~4 s each, page indicator) after a silent pad (Ep11 +24 s, Ep12 +20 s); both episodes rebuilt with it
 (check video/ep1x/build/ep1x_final.mp4 length = old + pad and YAYIN copies, see "Next" below). Proposed dates: Ep11
 Tue 1 Dec 17:00, Ep12 Fri 4 Dec 17:00 (creator to confirm). Episode length question open (4-5 min vs plan 6-8).
-Ep11 cookie-jar Shorts EN/TR built (video/short3d/cookie/build, youtube.md has EP11_URL). Ep12 doorbell Shorts: pipeline
-copied (video/short3d/doorbell), render NOT finished (agent hit the usage limit in the CTA shot) - resume with
-`.venv/Scripts/python video/short3d/doorbell/make.py --lang en` then `--lang tr` (renders skip existing frames), check
-contact sheets + Whisper on the ending.
+Ep11 cookie-jar Shorts EN/TR built (video/short3d/cookie/build, youtube.md has EP11_URL). Ep12 doorbell Shorts EN 46.7 s /
+TR 45.4 s built and checked (video/short3d/doorbell/build: *_final.mp4, *_upload.mp4 < 10 MB, thumb_en/tr.jpg; youtube.md
+has EP12_URL). Upload each pair after its episode: TR next day 17:00, EN the day after 22:00, Related video = episode.
 Ep13 (weather station, DHT11 on GPIO 4): ONLY the library is installed (arduino-cli "DHT sensor library" 1.4.7, Adafruit
 Unified Sensor present) - creator said to do just the download this session. Sketch/script not started.
 After Ep11 gets an ID: re-run video/ep12/make_localize.py (PREVURL/EP11_URL) and put the link in the cookie Shorts.
