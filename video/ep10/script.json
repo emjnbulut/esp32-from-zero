@@ -75,8 +75,8 @@
    "id": "s10",
    "vis": "b3d:buzzer_hero",
    "text": "The second new part is this little buzzer. It's a passive one: it stays quiet until we give it a note.",
-   "tr": "İkinci yeni parça bu küçük buzzer. Pasif bir buzzer: biz nota verene kadar susar.",
-   "dub": "İkinci yeni parça bu küçük buzzer. Pasif bir buzzer: biz nota verene kadar susar."
+   "tr": "İkinci yeni parça bu küçük pasif buzzer, biz nota verene kadar susar.",
+   "dub": "İkinci yeni parça bu küçük pasif buzzer, biz nota verene kadar susar."
   },
   {
    "id": "s11",
@@ -124,15 +124,15 @@
    "id": "s17",
    "vis": "b3d:wire_button",
    "text": "The button sits across the middle gap. Yellow goes from pin nineteen to one side, and the other side goes to ground.",
-   "tr": "Buton ortadaki boşluğa oturuyor. Sarı kablo on dokuz numaralı pinden bir tarafına, diğer taraf toprağa.",
-   "dub": "Buton ortadaki boşluğa oturuyor. Sarı kablo on dokuz numaralı pinden bir tarafına, diğer taraf toprağa."
+   "tr": "Buton ortadaki boşluğa oturuyor: sarı kablo on dokuzdan bir tarafına, diğer taraf toprağa.",
+   "dub": "Buton ortadaki boşluğa oturuyor: sarı kablo on dokuzdan bir tarafına, diğer taraf toprağa."
   },
   {
    "id": "s18",
    "vis": "b3d:wire_buzzer",
    "text": "Last, the buzzer on the front board. Orange from pin thirty-two to its plus leg, and its other leg to ground.",
-   "tr": "Son olarak buzzer öndeki breadboarda. Turuncu kablo otuz ikiden artı bacağına, diğer bacak toprağa.",
-   "dub": "Son olarak buzzer öndeki breadboarda. Turuncu kablo otuz ikiden artı bacağına, diğer bacak toprağa."
+   "tr": "Son olarak buzzer öndeki breadboarda: turuncu kablo otuz ikiden artı bacağına, diğeri toprağa.",
+   "dub": "Son olarak buzzer öndeki breadboarda: turuncu kablo otuz ikiden artı bacağına, diğeri toprağa."
   },
   {
    "id": "s19",
@@ -146,15 +146,15 @@
    "id": "s20",
    "vis": "mc:code_screen",
    "text": "To talk to the screen we use a free library. You install it once, from the Library Manager.",
-   "tr": "Ekranla konuşmak için ücretsiz bir kütüphane kullanıyoruz. Kütüphane Yöneticisi'nden bir kez kurulur.",
-   "dub": "Ekranla konuşmak için ücretsiz bir kütüphane kullanıyoruz. Kütüphane Yöneticisi'nden bir kez kurulur."
+   "tr": "Ekran için ücretsiz bir kütüphane kullanıyoruz, bir kez kurulması yeter.",
+   "dub": "Ekran için ücretsiz bir kütüphane kullanıyoruz, bir kez kurulması yeter."
   },
   {
    "id": "s21",
    "vis": "mc:buffer",
    "text": "Here's the trick of this screen. When we print, nothing appears yet. The board draws on a whiteboard behind a curtain.",
-   "tr": "Bu ekranın bir püf noktası var. Yazınca hiçbir şey görünmez. Kart, perde arkasındaki bir tahtaya çizer.",
-   "dub": "Bu ekranın bir püf noktası var. Yazınca hiçbir şey görünmez. Kart, perde arkasındaki bir tahtaya çizer."
+   "tr": "Bu ekranın bir püf noktası var: yazınca hiçbir şey görünmez, kart perde arkasında çizer.",
+   "dub": "Bu ekranın bir püf noktası var: yazınca hiçbir şey görünmez, kart perde arkasında çizer."
   },
   {
    "id": "s22",
