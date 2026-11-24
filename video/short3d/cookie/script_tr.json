@@ -1,0 +1,21 @@
+{
+ "project": "lessons/11-motion-alarm",
+ "engine": "chatterbox",
+ "draft": "2026-11-24: render with the reflex/treasure_tr vertical pipeline + Ep11 parts (video/b3d/parts_pir.py, parts_ep11.py)",
+ "before": {"l03": 0.4, "l05": 0.3, "l07": 0.4, "l09": 0.4},
+ "lead": 0.3,
+ "tail": 1.6,
+ "title": "ESP32'm kurabiye kavanozunu koruyor",
+ "lang": "tr",
+ "lines": [
+  {"id": "l01", "text": "Birisi kurabiyelerimi çalıyor. Ben de bir bekçi yaptım.", "show": "Kurabiyelerimi kim çalıyor?"},
+  {"id": "l02", "text": "Kuruyorum ve çıkmak için on saniyem var."},
+  {"id": "l03", "text": "Bir el sinsice uzanıyor... ve siren çalıyor.", "show": "YAKALANDIN!"},
+  {"id": "l04", "text": "Geri döndüğümde ne zaman olduğunu bile söylüyor: iki dakika önce."},
+  {"id": "l05", "text": "Bu beyaz kubbe bir hareket sensörü. Sıcaklığı birçok küçük pencereden görüyor."},
+  {"id": "l06", "text": "Sıcak bir şey bir pencereden diğerine geçince evet diyor."},
+  {"id": "l07", "text": "E Se Pe otuz iki saati otopark bileti gibi damgalıyor ve iki tonlu siren çalıyor.", "show": "ESP32 saati otopark bileti gibi damgalıyor ve iki tonlu siren çalıyor."},
+  {"id": "l08", "text": "Bir sensör, bir ekran, bir buzzer. Bütün bekçi bu.", "show": "Bir sensör, bir ekran, bir buzzer. Bütün bekçi bu."},
+  {"id": "l09", "text": "Böyle şeyler yapmayı öğrenmek istiyorsan kanalımı takip et, sen neyi korurdun yorumlara yaz.", "show": "Daha fazlası için takip et!"}
+ ]
+}

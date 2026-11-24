@@ -1,0 +1,21 @@
+{
+ "project": "lessons/11-motion-alarm",
+ "engine": "chatterbox",
+ "draft": "2026-11-24: render with the reflex/treasure_tr vertical pipeline + Ep11 parts (video/b3d/parts_pir.py, parts_ep11.py)",
+ "before": {"l03": 0.4, "l05": 0.3, "l07": 0.4, "l09": 0.4},
+ "lead": 0.3,
+ "tail": 1.6,
+ "title": "My ESP32 guards the cookie jar",
+ "lang": "en",
+ "lines": [
+  {"id": "l01", "text": "Someone keeps stealing my cookies. So I built a guard.", "show": "Who's stealing my cookies?"},
+  {"id": "l02", "text": "I arm it, and I have ten seconds to leave."},
+  {"id": "l03", "text": "A hand sneaks in... and the siren goes off.", "show": "CAUGHT!"},
+  {"id": "l04", "text": "When I come back, it even tells me when: two minutes ago."},
+  {"id": "l05", "text": "The white dome is a motion sensor. It sees warmth, through many little windows."},
+  {"id": "l06", "text": "Something warm moves from one window to the next, and it says yes."},
+  {"id": "l07", "text": "The ESP32 stamps the time, like a parking ticket, and plays a two-tone siren."},
+  {"id": "l08", "text": "One sensor, one screen, one buzzer. That's the whole guard."},
+  {"id": "l09", "text": "Want to build things like this? Follow the channel, and tell me what you would guard.", "show": "Follow for more builds!"}
+ ]
+}
