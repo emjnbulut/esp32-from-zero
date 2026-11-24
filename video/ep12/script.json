@@ -11,8 +11,8 @@
    "id": "s01",
    "vis": "b3d:open_tap",
    "text": "I tap red on my phone... and the light on my desk turns red.",
-   "tr": "Telefonda kırmızıya dokunuyorum... ve masamdaki ışık kırmızı oluyor.",
-   "dub": "Telefonda kırmızıya dokunuyorum... ve masamdaki ışık kırmızı oluyor."
+   "tr": "Telefonda kırmızıya dokunuyorum... ışık kırmızı.",
+   "dub": "Telefonda kırmızıya dokunuyorum... ışık kırmızı."
   },
   {
    "id": "s02",
@@ -32,8 +32,8 @@
    "id": "s04",
    "vis": "b3d:open_orbit",
    "text": "Today the board gets a remote control: your phone. And you don't add a single new part.",
-   "tr": "Bugün kartın bir uzaktan kumandası oluyor: telefonunuz. Üstelik tek bir yeni parça bile eklemiyorsunuz.",
-   "dub": "Bugün kartın bir uzaktan kumandası oluyor: telefonunuz. Üstelik tek bir yeni parça bile eklemiyorsunuz."
+   "tr": "Bugün kartın kumandası telefonunuz oluyor, tek yeni parça yok.",
+   "dub": "Bugün kartın kumandası telefonunuz oluyor, tek yeni parça yok."
   },
   {
    "id": "s05",
@@ -60,15 +60,15 @@
    "id": "s08",
    "vis": "mc:code_softap",
    "text": "In code, opening the network is one line: soft A P, with a name and a password.",
-   "tr": "Kodda ağı açmak tek satır: softAP, bir isim ve bir şifreyle.",
-   "dub": "Kodda ağı açmak tek satır: soft Ey Pi, bir isim ve bir şifreyle."
+   "tr": "Kodda ağı açmak tek satır: soft Ey Pi, isim ve şifreyle.",
+   "dub": "Kodda ağı açmak tek satır: soft Ey Pi, isim ve şifreyle."
   },
   {
    "id": "s09",
    "vis": "mc:page_menu",
    "text": "Then the board serves a tiny web page. Think of a restaurant menu where every dish has a number: tap a button, and the phone calls out that number.",
-   "tr": "Sonra kart küçük bir web sayfası sunuyor. Her yemeğin bir numarası olan bir restoran menüsü düşünün: bir düğmeye dokunursunuz, telefon o numarayı söyler.",
-   "dub": "Sonra kart küçük bir web sayfası sunuyor. Her yemeğin bir numarası olan bir restoran menüsü düşünün: bir düğmeye dokunursunuz, telefon o numarayı söyler."
+   "tr": "Sonra kart küçük bir web sayfası sunuyor, numaralı bir restoran menüsü gibi: düğmeye dokunun, telefon numarayı söyler.",
+   "dub": "Sonra kart küçük bir web sayfası sunuyor, numaralı bir restoran menüsü gibi: düğmeye dokunun, telefon numarayı söyler."
   },
   {
    "id": "s10",
@@ -81,22 +81,22 @@
    "id": "s11",
    "vis": "mc:code_on",
    "text": "And one line per link tells the board which helper answers it. Server on: this link, this helper.",
-   "tr": "Her bağlantı için tek satır, karta hangi yardımcının cevap vereceğini söylüyor. server.on: bu bağlantı, bu yardımcı.",
-   "dub": "Her bağlantı için tek satır, karta hangi yardımcının cevap vereceğini söylüyor. Server on: bu bağlantı, bu yardımcı."
+   "tr": "Her bağlantı için tek satır, cevap verecek yardımcıyı söylüyor: Server on, bu bağlantı, bu yardımcı.",
+   "dub": "Her bağlantı için tek satır, cevap verecek yardımcıyı söylüyor: Server on, bu bağlantı, bu yardımcı."
   },
   {
    "id": "s12",
    "vis": "mc:code_loop",
    "text": "The loop has one job now: like our night guard doing rounds, it checks again and again whether a phone is knocking.",
-   "tr": "Döngünün artık tek işi var: tur atan bekçimiz gibi, bir telefonun kapıyı çalıp çalmadığına tekrar tekrar bakıyor.",
-   "dub": "Döngünün artık tek işi var: tur atan bekçimiz gibi, bir telefonun kapıyı çalıp çalmadığına tekrar tekrar bakıyor."
+   "tr": "Döngünün tek işi var: tur atan bekçimiz gibi, kapıyı çalan telefon var mı diye bakıyor.",
+   "dub": "Döngünün tek işi var: tur atan bekçimiz gibi, kapıyı çalan telefon var mı diye bakıyor."
   },
   {
    "id": "s12b",
    "vis": "mc:order_slip",
    "text": "Some links carry a detail, like a note on an order slip. In slash color question mark c equals red, the note says which color.",
-   "tr": "Bazı bağlantılar bir ayrıntı taşır, sipariş fişindeki bir not gibi. color soru işareti c eşittir red bağlantısında not, hangi renk olduğunu söylüyor.",
-   "dub": "Bazı bağlantılar bir ayrıntı taşır, sipariş fişindeki bir not gibi. Kalır soru işareti si eşittir red bağlantısında not, hangi renk olduğunu söylüyor."
+   "tr": "Bazı bağlantılar, sipariş fişindeki not gibi bir ayrıntı taşır: Kalır soru işareti si eşittir red, hangi renk olduğunu söylüyor.",
+   "dub": "Bazı bağlantılar, sipariş fişindeki not gibi bir ayrıntı taşır: Kalır soru işareti si eşittir red, hangi renk olduğunu söylüyor."
   },
   {
    "id": "s12c",
@@ -116,8 +116,8 @@
    "id": "s13",
    "vis": "mc:page_template",
    "text": "The page itself is a ready template in the sketch. You only change the labels and the colors.",
-   "tr": "Sayfanın kendisi koddaki hazır bir şablon. Sadece yazıları ve renkleri değiştiriyorsunuz.",
-   "dub": "Sayfanın kendisi koddaki hazır bir şablon. Sadece yazıları ve renkleri değiştiriyorsunuz."
+   "tr": "Sayfa koddaki hazır bir şablon, sadece yazıları ve renkleri değiştirin.",
+   "dub": "Sayfa koddaki hazır bir şablon, sadece yazıları ve renkleri değiştirin."
   },
   {
    "id": "s14",
@@ -130,8 +130,8 @@
    "id": "s15",
    "vis": "b3d:wire_rgb",
    "text": "Red, green and blue legs on pins twenty-five, twenty-six and twenty-seven, each through its resistor.",
-   "tr": "Kırmızı, yeşil ve mavi bacaklar yirmi beş, yirmi altı ve yirmi yedi numaralı pinlerde, her biri kendi direncinden geçerek.",
-   "dub": "Kırmızı, yeşil ve mavi bacaklar yirmi beş, yirmi altı ve yirmi yedi numaralı pinlerde, her biri kendi direncinden geçerek."
+   "tr": "Kırmızı, yeşil, mavi bacaklar yirmi beş, yirmi altı ve yirmi yedide, her biri direnciyle.",
+   "dub": "Kırmızı, yeşil, mavi bacaklar yirmi beş, yirmi altı ve yirmi yedide, her biri direnciyle."
   },
   {
    "id": "s16",
@@ -151,15 +151,15 @@
    "id": "s18",
    "vis": "b3d:try_page",
    "text": "Type the address in the browser, and there's your remote: four colors and a ring button.",
-   "tr": "Adresi tarayıcıya yazın, işte kumandanız: dört renk ve bir zil düğmesi.",
-   "dub": "Adresi tarayıcıya yazın, işte kumandanız: dört renk ve bir zil düğmesi."
+   "tr": "Adresi tarayıcıya yazın, işte kumanda: dört renk ve bir zil.",
+   "dub": "Adresi tarayıcıya yazın, işte kumanda: dört renk ve bir zil."
   },
   {
    "id": "s19",
    "vis": "b3d:try_red",
    "text": "Tap red: the link travels through the air, the helper sets the color, and the screen counts command number one.",
-   "tr": "Kırmızıya dokunun: bağlantı havadan gidiyor, yardımcı rengi ayarlıyor, ekran bir numaralı komutu sayıyor.",
-   "dub": "Kırmızıya dokunun: bağlantı havadan gidiyor, yardımcı rengi ayarlıyor, ekran bir numaralı komutu sayıyor."
+   "tr": "Kırmızıya dokunun: bağlantı havadan gidiyor, renk değişiyor, ekran bir numaralı komutu sayıyor.",
+   "dub": "Kırmızıya dokunun: bağlantı havadan gidiyor, renk değişiyor, ekran bir numaralı komutu sayıyor."
   },
   {
    "id": "s19b",
@@ -207,8 +207,8 @@
    "id": "s23",
    "vis": "b3d:challenge",
    "text": "Your turn: add a party button that flashes red, green and blue three times. One new link, one new helper.",
-   "tr": "Sıra sizde: kırmızı, yeşil ve maviyi üç kez yakıp söndüren bir parti düğmesi ekleyin. Bir yeni bağlantı, bir yeni yardımcı.",
-   "dub": "Sıra sizde: kırmızı, yeşil ve maviyi üç kez yakıp söndüren bir parti düğmesi ekleyin. Bir yeni bağlantı, bir yeni yardımcı."
+   "tr": "Sıra sizde: kırmızı, yeşil, maviyi üç kez yakan bir parti düğmesi ekleyin, yeni bir bağlantı ve yardımcıyla.",
+   "dub": "Sıra sizde: kırmızı, yeşil, maviyi üç kez yakan bir parti düğmesi ekleyin, yeni bir bağlantı ve yardımcıyla."
   },
   {
    "id": "s24",

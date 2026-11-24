@@ -143,6 +143,28 @@ s("s25", "b3d:outro", "Next time, a weather station: temperature and humidity on
   "Bir dahaki sefere hava istasyonu: sıcaklık ve nem hem ekranda hem bu telefon sayfasında. Orada görüşürüz.",
   pad=0.8)
 
+# TR lines shortened to fit the English slots after the narrated fit report (2026-11-24, as Ep 10/11).
+TR_FIT = {
+    "s01": "Telefonda kırmızıya dokunuyorum... ışık kırmızı.",
+    "s04": "Bugün kartın kumandası telefonunuz oluyor, tek yeni parça yok.",
+    "s08": "Kodda ağı açmak tek satır: soft Ey Pi, isim ve şifreyle.",
+    "s09": "Sonra kart küçük bir web sayfası sunuyor, numaralı bir restoran menüsü gibi: düğmeye dokunun, "
+           "telefon numarayı söyler.",
+    "s11": "Her bağlantı için tek satır, cevap verecek yardımcıyı söylüyor: Server on, bu bağlantı, bu yardımcı.",
+    "s12": "Döngünün tek işi var: tur atan bekçimiz gibi, kapıyı çalan telefon var mı diye bakıyor.",
+    "s12b": "Bazı bağlantılar, sipariş fişindeki not gibi bir ayrıntı taşır: Kalır soru işareti si eşittir red, "
+            "hangi renk olduğunu söylüyor.",
+    "s13": "Sayfa koddaki hazır bir şablon, sadece yazıları ve renkleri değiştirin.",
+    "s15": "Kırmızı, yeşil, mavi bacaklar yirmi beş, yirmi altı ve yirmi yedide, her biri direnciyle.",
+    "s18": "Adresi tarayıcıya yazın, işte kumanda: dört renk ve bir zil.",
+    "s19": "Kırmızıya dokunun: bağlantı havadan gidiyor, renk değişiyor, ekran bir numaralı komutu sayıyor.",
+    "s23": "Sıra sizde: kırmızı, yeşil, maviyi üç kez yakan bir parti düğmesi ekleyin, yeni bir bağlantı ve "
+           "yardımcıyla.",
+}
+for _d in S:
+    if _d["id"] in TR_FIT:
+        _d["tr"] = _d["dub"] = TR_FIT[_d["id"]]
+
 SCRIPT = {
     "episode": "ep12",
     "title": "Control Your ESP32 from Your Phone - No App, No Router",
