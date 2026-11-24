@@ -239,7 +239,10 @@ ES = [
 
 # Lines shortened after the narrated fit report (dub.py --report): the voice reads slower than the char ratio suggests
 # (pauses at punctuation), and the picture must not stretch (3D is rendered). Empty until ep11 is narrated.
-PT_FIT = {}
+PT_FIT = {
+    "s25": "Na tela: visto duas vezes, há três minutos.",
+    "s34": "Sua vez: guarde as capturas com Preferences.",
+}
 ES_FIT = {}
 HI_FIT = {}
 FIT = {"hi": HI_FIT, "pt": PT_FIT, "es": ES_FIT}
