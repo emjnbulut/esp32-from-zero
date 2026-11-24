@@ -209,7 +209,12 @@ ES = [
 
 # Lines shortened after the narrated fit report (dub.py --report): the voice reads slower than the char ratio suggests
 # (pauses at punctuation), and the picture must not stretch (3D is rendered). Empty until ep12 is narrated.
-PT_FIT = {}
+PT_FIT = {
+    "s01": "Toco no vermelho, a luz fica vermelha.",
+    "s02": "Toco ring, toca a campainha. Sem app, sem cabo.",
+    "s04": "Hoje o celular vira controle, sem peça nova.",
+    "s06": "Normalmente ela entra no roteador. Hoje a placa abre sua rede, como um hotspot.",
+}
 ES_FIT = {}
 HI_FIT = {}
 FIT = {"hi": HI_FIT, "pt": PT_FIT, "es": ES_FIT}
