@@ -124,8 +124,8 @@
    "id": "s17",
    "vis": "b3d:wire_button",
    "text": "The button sits across the middle gap. Yellow goes from pin nineteen to one side, and the other side goes to ground.",
-   "tr": "Buton ortadaki boşluğa oturuyor: sarı kablo on dokuzdan bir tarafına, diğer taraf toprağa.",
-   "dub": "Buton ortadaki boşluğa oturuyor: sarı kablo on dokuzdan bir tarafına, diğer taraf toprağa."
+   "tr": "Buton boşluğun üstünde: sarı kablo on dokuzdan bir yanına, öbür yanı toprağa.",
+   "dub": "Buton boşluğun üstünde: sarı kablo on dokuzdan bir yanına, öbür yanı toprağa."
   },
   {
    "id": "s18",

@@ -168,7 +168,7 @@ TR_FIT = {
     "s10": "İkinci yeni parça bu küçük pasif buzzer, biz nota verene kadar susar.",
     "s13": "Hadi bağlayalım. Her deliğin numarası ve harfi ekranda, her adımı kopyalayabilirsiniz.",
     "s16": "İki sohbet kablosu: yeşil, yirmi iki numaralı pinden saat bacağına; mavi, yirmi birden veri bacağına.",
-    "s17": "Buton ortadaki boşluğa oturuyor: sarı kablo on dokuzdan bir tarafına, diğer taraf toprağa.",
+    "s17": "Buton boşluğun üstünde: sarı kablo on dokuzdan bir yanına, öbür yanı toprağa.",
     "s18": "Son olarak buzzer öndeki breadboarda: turuncu kablo otuz ikiden artı bacağına, diğeri toprağa.",
     "s19": "Bütün devre bu: bir ekran, bir buton, bir buzzer. Karşılaştırmak isterseniz burada durdurun.",
     "s20": "Ekran için ücretsiz bir kütüphane kullanıyoruz, bir kez kurulması yeter.",
