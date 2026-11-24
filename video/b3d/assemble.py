@@ -191,6 +191,15 @@ SFX = {
     "boot": lambda: piezo(2000, 0.06, 0.35),
     "blip": lambda: piezo(1500, 0.05, 0.35),
     "tone_erase": lambda: seq((0, piezo(800, 0.15, 0.5)), (0.2, piezo(400, 0.25, 0.5))),  # record wiped
+    # Episode 11 (lessons/11-motion-alarm): countdown tone(2000, 30); siren = 1800/2600 Hz flipping every 250 ms
+    # (one event per quarter second, so a siren of any length is a run of siren_lo/siren_hi events)
+    "tick": lambda: piezo(2000, 0.03, 0.45),
+    "siren_lo": lambda: piezo(1800, 0.25, 0.42),
+    "siren_hi": lambda: piezo(2600, 0.25, 0.42),
+    "beep_active": lambda: piezo(2300, 0.45, 0.45),  # active buzzer: its one fixed note
+    "note_1": lambda: piezo(1319, 0.2, 0.42),  # passive buzzer playing "any note"
+    "note_2": lambda: piezo(1568, 0.2, 0.42),
+    "note_3": lambda: piezo(2093, 0.25, 0.42),
 }
 
 
