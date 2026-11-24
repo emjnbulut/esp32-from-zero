@@ -47,8 +47,10 @@ def source(ep: Path, r):
         frames = sorted(d.glob("f_*.png")) if d.exists() else []
         return ("frames", d, len(frames)) if frames else None
     if kind == "mc":
-        f = ROOT / "video" / "mc" / "output" / f"{name}.mp4"
-        return ("mp4", f, 0) if f.exists() else None
+        out = ROOT / "video" / "mc" / "output"
+        # Ep11+ scenes carry an episode prefix (ep11_code_read.mp4); Ep10's do not (code_read.mp4)
+        f = next((x for x in (out / f"{ep.name}_{name}.mp4", out / f"{name}.mp4") if x.exists()), None)
+        return ("mp4", f, 0) if f else None
     return None
 
 
@@ -177,6 +179,9 @@ def seq(*parts):
 
 # Buzzer sounds follow the sketch (lessons/10-reflex-oled): GO tone(1500, 150), false start tone(200, 400),
 # new record tone(2000, 300). Creator 2026-11-24: the old soft sine beeps were not recognisable as a buzzer.
+# Overall level of the effects track. Creator 2026-11-25 (Ep10 draft 2): the beeps sat on top of the voice -> -5 dB.
+SFX_GAIN = 0.55
+
 SFX = {
     "beep_hi": lambda: piezo(1500, 0.15, 0.55),
     "beep_lo": lambda: piezo(200, 0.40, 0.50),
@@ -218,6 +223,7 @@ def sfx(ep: Path, duration: float):
         buf[i:i + len(w)] += w[:len(buf) - i]
     if unknown:
         print("sfx: no sound for", sorted(unknown))
+    buf *= SFX_GAIN
     pcm = (np.clip(buf, -1, 1) * 32767).astype(np.int16)
     out = ep / "build" / "sfx.wav"
     subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "s16le", "-ar", str(SR), "-ac", "1", "-i", "-", str(out)],

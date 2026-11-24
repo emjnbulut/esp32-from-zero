@@ -294,7 +294,14 @@ def compose(ep: Path):
     norm = "fps=30,scale=1920:1080:out_range=tv,setsar=1,format=yuv420p"
     filters += [f"{last}{norm}[body]", f"[2:v]{norm}[in]", f"[3:v]{norm}[out]"]
     tc = bumpers.cut(ep)
-    if tc > 0:  # cold open: episode up to tc, sting, rest of the episode
+    if tc > 0 and not clips:
+        # cold open without overlay clips (v2 episodes): read the picture a second time for the part after the
+        # sting. split + concat had to queue every frame of that part in memory while the cold open and sting
+        # played, and ffmpeg silently dropped about a minute of a 6-min episode (Ep10 draft 2, 2026-11-25)
+        inputs += ["-i", str(b / "video.mp4")]
+        filters += [f"[body]trim=0:{tc:.3f},setpts=PTS-STARTPTS[p0]",
+                    f"[{k}:v]trim=start={tc:.3f},setpts=PTS-STARTPTS,{norm}[p1]", "[p0][in][p1][out]concat=n=4:v=1:a=0[vid]"]
+    elif tc > 0:  # cold open: episode up to tc, sting, rest of the episode
         filters += ["[body]split[b0][b1]", f"[b0]trim=0:{tc:.3f},setpts=PTS-STARTPTS[p0]",
                     f"[b1]trim=start={tc:.3f},setpts=PTS-STARTPTS[p1]", "[p0][in][p1][out]concat=n=4:v=1:a=0[vid]"]
     else:
