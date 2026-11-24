@@ -158,7 +158,7 @@ s("s36", "b3d:outro", "Next time, you control this board from your phone, with n
 
 # TR lines shortened to fit the English slots after the narrated fit report (2026-11-24, as Ep 10's TR_FIT).
 TR_FIT = {
-    "s03": "Döndüğümde ne zaman olduğunu da söylüyor: iki dakika önce.",
+    "s03": "Döndüğümde ne zaman olduğunu söylüyor: iki dakika önce.",
     "s05": "Bu beyaz kubbe bir hareket sensörü, hiçbir şey göndermiyor, sadece sıcaklığı izliyor.",
     "s06": "Sıcak her şey kızılötesinde parlar, eliniz, bir kedi, bir çay. Biz göremeyiz, bu sensör görür.",
     "s07": "Kubbe, küçük pencerelerden oluşan bir mercek, her biri odanın bir dilimine bakıyor.",
@@ -171,9 +171,9 @@ TR_FIT = {
     "s21": "Durdurmak için düğmeye basın, ya da on beş saniye sonra kendisi susar.",
     "s22": "Şimdi akıllıca kısım: hareket anında saati damgalıyoruz, otopark bileti gibi.",
     "s24": "Şimdiden last moşını çıkarınca ne kadar önce olduğunu buluyoruz, altmış bine bölünce dakika.",
-    "s25": "Ekran şöyle diyebiliyor: iki kez görüldü, sonuncusu üç dakika önce.",
+    "s25": "Ekranda: iki kez görüldü, üç dakika önce.",
     "s29": "Hadi deneyelim: kuruyorum, geri sayım işliyor, odadan çıkıyorum.",
-    "s31": "Dönüp düğmeye basıyorum: bir kez görüldü, on iki saniye önce.",
+    "s31": "Basıyorum: bir kez görüldü, on iki saniye önce.",
     "s32": "Sık bir sorun: alarm kurar kurmaz çalıyor. Ya sensör hâlâ ısınıyor, ya süre düğmesi eveti uzun tutuyor.",
     "s33": "O yüzden otuz saniye bekleyin ve süre düğmesini sonuna kadar kısın, gerisi kodda.",
     "s34": "Sıra sizde: yakalama sayısını Preferıns ile fiş çekilince bile saklayın.",

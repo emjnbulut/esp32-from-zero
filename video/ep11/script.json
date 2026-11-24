@@ -25,8 +25,8 @@
    "id": "s03",
    "vis": "b3d:open_ago",
    "text": "And when I come back, it even tells me when it happened: two minutes ago.",
-   "tr": "Döndüğümde ne zaman olduğunu da söylüyor: iki dakika önce.",
-   "dub": "Döndüğümde ne zaman olduğunu da söylüyor: iki dakika önce."
+   "tr": "Döndüğümde ne zaman olduğunu söylüyor: iki dakika önce.",
+   "dub": "Döndüğümde ne zaman olduğunu söylüyor: iki dakika önce."
   },
   {
    "id": "s04",
@@ -180,8 +180,8 @@
    "id": "s25",
    "vis": "b3d:screen_ago",
    "text": "So the screen can say: seen twice, last time three minutes ago.",
-   "tr": "Ekran şöyle diyebiliyor: iki kez görüldü, sonuncusu üç dakika önce.",
-   "dub": "Ekran şöyle diyebiliyor: iki kez görüldü, sonuncusu üç dakika önce."
+   "tr": "Ekranda: iki kez görüldü, üç dakika önce.",
+   "dub": "Ekranda: iki kez görüldü, üç dakika önce."
   },
   {
    "id": "s26",
@@ -223,8 +223,8 @@
    "id": "s31",
    "vis": "b3d:demo_back",
    "text": "I come back and press the button: seen once, last time twelve seconds ago.",
-   "tr": "Dönüp düğmeye basıyorum: bir kez görüldü, on iki saniye önce.",
-   "dub": "Dönüp düğmeye basıyorum: bir kez görüldü, on iki saniye önce."
+   "tr": "Basıyorum: bir kez görüldü, on iki saniye önce.",
+   "dub": "Basıyorum: bir kez görüldü, on iki saniye önce."
   },
   {
    "id": "s32",
