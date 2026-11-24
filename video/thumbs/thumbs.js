@@ -217,6 +217,20 @@ const LOC = {
     pt: { title: ["TIRE A", "MÃO!"], maxW: 560 },
     es: { title: ["¡QUITA", "LA MANO!"], maxW: 560 },
   },
+  ep12_C: {
+    enMaxW: 600,
+    tr: { title: ["UYGULAMA", "YOK!"], maxW: 600 },
+    hi: { title: ["कोई ऐप", "नहीं!"], maxW: 600 },
+    pt: { title: ["SEM", "APP!"], maxW: 600 },
+    es: { title: ["¡SIN", "APP!"], maxW: 600 },
+  },
+  ep12_D: {
+    enMaxW: 600,
+    tr: { title: ["TELEFON", "= KUMANDA"], maxW: 600 },
+    hi: { title: ["फ़ोन", "= रिमोट"], maxW: 600 },
+    pt: { title: ["CELULAR", "= CONTROLE"], maxW: 600 },
+    es: { title: ["CELULAR", "= CONTROL"], maxW: 600 },
+  },
   recap2_A: {
     enMaxW: 600,
     tr: { title: ["7/7 YAP", "BAKALIM!"], pills: ["PWM · map() · state"], words: { SCORE: "PUAN" }, maxW: 600 },
@@ -358,6 +372,15 @@ const V = {
   // Episode 10 v2 (OLED + buzzer, 24 Nov): both on the Blender hero frame (open_replug, OLED "214ms").
   // C = the challenge, D = the record that survives unplugging.
   // Episode 11 draft (PIR motion alarm): both on the Blender hero frame (open_catch: warm hand at the cookie jar).
+  // Episode 12 draft (phone remote): Blender hero frame open_tap (phone page + red LED).
+  ep12_C() {
+    hero3d("build/ep12_hero.png", "50% 50%");
+    title([["NO APP", "white"], ["NEEDED!", "teal"]], 150, 176);
+  },
+  ep12_D() {
+    hero3d("build/ep12_hero.png", "50% 50%");
+    title([["PHONE", "white"], ["= REMOTE", "amber"]], 150, 176);
+  },
   ep11_C() {
     hero3d("build/ep11_hero.png", "50% 50%");
     title([["CAUGHT", "white"], ["YOU!", "red"]], 150, 176);
