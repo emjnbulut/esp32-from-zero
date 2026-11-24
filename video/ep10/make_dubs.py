@@ -267,7 +267,7 @@ PT_FIT = {
     "s13": "Vamos ligar. Cada furo tem número e letra na tela. É só copiar.",
     "s14": "Primeiro, energia. Vermelho: três vírgula três volts no positivo. Preto: terra.",
     "s15": "Agora a tela: quatro pernas numa coluna, e dois fios curtos de energia.",
-    "s17": "O botão cruza o vão: amarelo do dezenove a um lado, o outro no terra.",
+    "s17": "O botão no vão: amarelo do dezenove a um lado, o outro no terra.",
     "s18": "Por fim, o buzzer. Laranja do pino trinta e dois ao positivo, a outra perna no terra.",
     "s23": "Então criamos o ajudante show: limpa, escreve uma linha pequena e uma grande, e abre a cortina.",
     "s37": "Dica: salve só com recorde novo. Salvar toda rodada estraga o recorde e gasta a gaveta.",

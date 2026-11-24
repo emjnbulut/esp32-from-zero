@@ -18,7 +18,7 @@
   "s14": "Primeiro, energia. Vermelho: três vírgula três volts no positivo. Preto: terra.",
   "s15": "Agora a tela: quatro pernas numa coluna, e dois fios curtos de energia.",
   "s16": "Verde: pino vinte e dois, ao relógio. Azul: pino vinte e um, aos dados.",
-  "s17": "O botão cruza o vão: amarelo do dezenove a um lado, o outro no terra.",
+  "s17": "O botão no vão: amarelo do dezenove a um lado, o outro no terra.",
   "s18": "Por fim, o buzzer. Laranja do pino trinta e dois ao positivo, a outra perna no terra.",
   "s19": "Esse é o circuito todo: tela, botão e buzzer. Pause e compare com o seu.",
   "s20": "Para falar com a tela, uma biblioteca grátis. Instale pelo Gerenciador.",
