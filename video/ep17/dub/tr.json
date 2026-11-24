@@ -1,0 +1,30 @@
+{
+ "lang": "tr",
+ "segments": {
+  "s01": "Telefona dokunuyorum... klik. Ve gerçek bir vantilatör esmeye başlıyor.",
+  "s02": "On dakika açık düğmesine dokunun, sonra kendi kendine kapanıyor.",
+  "s03": "ESP otuz iki bir vantilatörü çalıştıramaz. Ama onu çalıştıran bir anahtarı çevirebilir.",
+  "s04": "Bugün: bir röle, bir USB vantilatör ve on ikinci bölümdeki telefon sayfası.",
+  "s05": "Önce bir kural. Bu kursta sadece beş voltluk USB cihazlar: bir USB vantilatör ya da USB lamba. Asla prizden gelen bir şey değil.",
+  "s06": "Bu mavi kutu bir röle. Minicik bir mıknatısın çevirdiği bir ışık anahtarı düşünün.",
+  "s07": "İçinde bir bobin var. İçinden akım geçince metal bir kolu çekiyor: klik, kontak kapanıyor.",
+  "s08": "Pin sadece kolu hareket ettiriyor. Vantilatörün kendi gücü kontaktan, ayrı bir devreden akıyor.",
+  "s09": "Birbirine hiç değmeyen iki devre: bir tarafta zayıf üç virgül üç voltluk pin, diğer tarafta vantilatör.",
+  "s10": "Röle modülü: güç V I N'e, yani beş volta, toprak toprağa, IN bir on altı numaralı pine.",
+  "s11": "Vantilatörün artı kablosu röleden geçiyor: COM'a giriyor, N O'dan çıkıyor, yani normalde açık. Röle kliklenene kadar kapalı.",
+  "s12": "Ekran önceki gibi yirmi bir ve yirmi ikide kalıyor.",
+  "s13": "Şimdi sürpriz: bu röle pin lov olunca açılıyor, hay olunca kapanıyor. Lov açık demek.",
+  "s14": "Bu yüzden kart açılırken bir anlığına kendi kendine kliklenebiliyor.",
+  "s15": "Çözüm sıralamada: önce hay yazın, yani kapalı, ancak ondan sonra pini çıkış yapın.",
+  "s16": "Telefon tarafı yine on ikinci bölüm: kartın kendi Wi-Fi ağı ve üç düğmeli bir sayfa.",
+  "s17": "Üç bağlantı: açık, kapalı ve zamanlayıcı. Her biri röleyi çeviren küçük bir yardımcıyı çağırıyor.",
+  "s18": "Zamanlayıcı yine otopark bileti: ne zaman kapanacağını not edin ve milis ile karşılaştırmaya devam edin.",
+  "s19": "Wi-Fi'a bağlanın, sayfayı açın, açık düğmesine dokunun. Klik, vantilatör esiyor.",
+  "s20": "On dakika açık düğmesine dokunun, ekran dakikaları geri sayıyor.",
+  "s21": "Sıfıra gelince... klik. Kendi kendine kapandı.",
+  "s22": "Sık bir sorun: her şey ters çalışıyor, açık kapalı demek. Vantilatörünüz N O yerine N C'de. Kabloyu bir delik kaydırın.",
+  "s23": "Sıra sizde: modülde ikinci bir röle var. On yedi numaralı pinle ona bir USB lamba bağlayın, kendi düğmeleriyle.",
+  "s24": "Tam kod ve çözüm aşağıdaki bağlantıdaki ders klasöründe. Siz telefondan neyi açıp kapatırdınız? Yorumlarda yazın.",
+  "s25": "Bir sonraki bölümde görüşürüz."
+ }
+}

@@ -15,6 +15,10 @@ has EP12_URL). Upload each pair after its episode: TR next day 17:00, EN the day
 Ep13 (weather station, DHT11 on GPIO 4): ONLY the library is installed (arduino-cli "DHT sensor library" 1.4.7, Adafruit
 Unified Sensor present) - creator said to do just the download this session. Sketch/script not started.
 After Ep11 gets an ID: re-run video/ep12/make_localize.py (PREVURL/EP11_URL) and put the link in the cookie Shorts.
+Script DRAFTS (25 Nov, not reviewed, no narration/render yet): video/ep14 (fruit piano, + SHOTS.md), ep15 (drawer
+spy), ep16 (basket scoreboard), ep17 (phone fan, relay) - 25 segments each, ~3-3.3 min narration + 20 s readable code
+pages; new analogies in video/ANALOGIES.md (touch bucket, array boxes, relay magnet switch) need the creator's OK.
+Ep13 (DHT11 weather station) still needs its sketch + script; Ep17's sketch has a TODO "auto above 28 C" using Ep13.
 Next: creator reviews Ep11/Ep12 -> upload + schedule (same Studio recipe as Ep10, memory youtube-upload-progress.md).
 
 # Update - 24 November 2026 afternoon (read first)

@@ -1,0 +1,190 @@
+{
+ "episode": "ep17",
+ "title": "My Phone Switches a Real Fan with an ESP32 (Relay)",
+ "version": 2,
+ "draft": true,
+ "lead_in": 0.8,
+ "sting_after": "s03",
+ "scene_gap": 0.7,
+ "dub_stretch": false,
+ "segments": [
+  {
+   "id": "s01",
+   "vis": "b3d:open_click",
+   "text": "I tap my phone... click. And a real fan starts blowing.",
+   "tr": "Telefona dokunuyorum... klik. Ve gerçek bir vantilatör esmeye başlıyor.",
+   "dub": "Telefona dokunuyorum... klik. Ve gerçek bir vantilatör esmeye başlıyor."
+  },
+  {
+   "id": "s02",
+   "vis": "b3d:open_timer",
+   "text": "Tap ON for ten minutes, and later it switches itself off.",
+   "tr": "On dakika açık düğmesine dokunun, sonra kendi kendine kapanıyor.",
+   "dub": "On dakika açık düğmesine dokunun, sonra kendi kendine kapanıyor."
+  },
+  {
+   "id": "s03",
+   "vis": "b3d:open_orbit",
+   "text": "The ESP32 can't power a fan. But it can flip a switch that does.",
+   "tr": "ESP otuz iki bir vantilatörü çalıştıramaz. Ama onu çalıştıran bir anahtarı çevirebilir.",
+   "dub": "ESP otuz iki bir vantilatörü çalıştıramaz. Ama onu çalıştıran bir anahtarı çevirebilir."
+  },
+  {
+   "id": "s04",
+   "vis": "b3d:open_title",
+   "text": "Today: a relay, a USB fan, and the phone page from episode twelve.",
+   "tr": "Bugün: bir röle, bir USB vantilatör ve on ikinci bölümdeki telefon sayfası.",
+   "dub": "Bugün: bir röle, bir USB vantilatör ve on ikinci bölümdeki telefon sayfası.",
+   "pad": 0.4
+  },
+  {
+   "id": "s05",
+   "vis": "b3d:safety",
+   "text": "One rule first. Only five volt USB things in this course: a USB fan or a USB lamp. Never anything from a wall socket.",
+   "tr": "Önce bir kural. Bu kursta sadece beş voltluk USB cihazlar: bir USB vantilatör ya da USB lamba. Asla prizden gelen bir şey değil.",
+   "dub": "Önce bir kural. Bu kursta sadece beş voltluk USB cihazlar: bir USB vantilatör ya da USB lamba. Asla prizden gelen bir şey değil."
+  },
+  {
+   "id": "s06",
+   "vis": "b3d:relay_module",
+   "text": "This blue box is a relay. Think of a light switch, flipped by a tiny magnet.",
+   "tr": "Bu mavi kutu bir röle. Minicik bir mıknatısın çevirdiği bir ışık anahtarı düşünün.",
+   "dub": "Bu mavi kutu bir röle. Minicik bir mıknatısın çevirdiği bir ışık anahtarı düşünün."
+  },
+  {
+   "id": "s07",
+   "vis": "b3d:relay_inside",
+   "text": "Inside is a coil. Current through it pulls a metal arm over: click, the contact closes.",
+   "tr": "İçinde bir bobin var. İçinden akım geçince metal bir kolu çekiyor: klik, kontak kapanıyor.",
+   "dub": "İçinde bir bobin var. İçinden akım geçince metal bir kolu çekiyor: klik, kontak kapanıyor."
+  },
+  {
+   "id": "s08",
+   "vis": "b3d:relay_two",
+   "text": "The pin only moves the arm. The fan's own power flows through the contact, in a separate circuit.",
+   "tr": "Pin sadece kolu hareket ettiriyor. Vantilatörün kendi gücü kontaktan, ayrı bir devreden akıyor.",
+   "dub": "Pin sadece kolu hareket ettiriyor. Vantilatörün kendi gücü kontaktan, ayrı bir devreden akıyor."
+  },
+  {
+   "id": "s09",
+   "vis": "mc:two_circuits",
+   "text": "Two circuits that never touch: the weak three point three volt pin on one side, the fan on the other.",
+   "tr": "Birbirine hiç değmeyen iki devre: bir tarafta zayıf üç virgül üç voltluk pin, diğer tarafta vantilatör.",
+   "dub": "Birbirine hiç değmeyen iki devre: bir tarafta zayıf üç virgül üç voltluk pin, diğer tarafta vantilatör."
+  },
+  {
+   "id": "s10",
+   "vis": "b3d:wire_relay",
+   "text": "The relay module: power to V I N, that's five volts, ground to ground, and IN one to pin sixteen.",
+   "tr": "Röle modülü: güç V I N'e, yani beş volta, toprak toprağa, IN bir on altı numaralı pine.",
+   "dub": "Röle modülü: güç V I N'e, yani beş volta, toprak toprağa, IN bir on altı numaralı pine."
+  },
+  {
+   "id": "s11",
+   "vis": "b3d:wire_fan",
+   "text": "The fan's plus wire goes through the relay: into COM, and out of N O, normally open. Off until the relay clicks.",
+   "tr": "Vantilatörün artı kablosu röleden geçiyor: COM'a giriyor, N O'dan çıkıyor, yani normalde açık. Röle kliklenene kadar kapalı.",
+   "dub": "Vantilatörün artı kablosu röleden geçiyor: COM'a giriyor, N O'dan çıkıyor, yani normalde açık. Röle kliklenene kadar kapalı."
+  },
+  {
+   "id": "s12",
+   "vis": "b3d:wire_screen",
+   "text": "The screen stays on twenty-one and twenty-two, like before.",
+   "tr": "Ekran önceki gibi yirmi bir ve yirmi ikide kalıyor.",
+   "dub": "Ekran önceki gibi yirmi bir ve yirmi ikide kalıyor."
+  },
+  {
+   "id": "s13",
+   "vis": "mc:active_low",
+   "text": "Now the surprise: this relay turns on when the pin is low, and off when it's high. Low means on.",
+   "tr": "Şimdi sürpriz: bu röle pin LOW olunca açılıyor, HIGH olunca kapanıyor. LOW açık demek.",
+   "dub": "Şimdi sürpriz: bu röle pin lov olunca açılıyor, hay olunca kapanıyor. Lov açık demek."
+  },
+  {
+   "id": "s14",
+   "vis": "b3d:boot_click",
+   "text": "That's why it can click on by itself for a moment when the board starts.",
+   "tr": "Bu yüzden kart açılırken bir anlığına kendi kendine kliklenebiliyor.",
+   "dub": "Bu yüzden kart açılırken bir anlığına kendi kendine kliklenebiliyor."
+  },
+  {
+   "id": "s15",
+   "vis": "mc:code_boot",
+   "text": "The fix is the order: first write high, so it's off, and only then make the pin an output.",
+   "tr": "Çözüm sıralamada: önce HIGH yazın, yani kapalı, ancak ondan sonra pini çıkış yapın.",
+   "dub": "Çözüm sıralamada: önce hay yazın, yani kapalı, ancak ondan sonra pini çıkış yapın."
+  },
+  {
+   "id": "s16",
+   "vis": "mc:page_again",
+   "text": "The phone side is episode twelve again: the board's own Wi-Fi, and a page with three buttons.",
+   "tr": "Telefon tarafı yine on ikinci bölüm: kartın kendi Wi-Fi ağı ve üç düğmeli bir sayfa.",
+   "dub": "Telefon tarafı yine on ikinci bölüm: kartın kendi Wi-Fi ağı ve üç düğmeli bir sayfa."
+  },
+  {
+   "id": "s17",
+   "vis": "mc:code_links",
+   "text": "Three links: on, off, and timer. Each one calls a tiny helper that flips the relay.",
+   "tr": "Üç bağlantı: açık, kapalı ve zamanlayıcı. Her biri röleyi çeviren küçük bir yardımcıyı çağırıyor.",
+   "dub": "Üç bağlantı: açık, kapalı ve zamanlayıcı. Her biri röleyi çeviren küçük bir yardımcıyı çağırıyor."
+  },
+  {
+   "id": "s18",
+   "vis": "mc:code_timer",
+   "text": "The timer is the parking ticket again: write down when it should switch off, and keep comparing with millis.",
+   "tr": "Zamanlayıcı yine otopark bileti: ne zaman kapanacağını not edin ve millis ile karşılaştırmaya devam edin.",
+   "dub": "Zamanlayıcı yine otopark bileti: ne zaman kapanacağını not edin ve milis ile karşılaştırmaya devam edin."
+  },
+  {
+   "id": "s19",
+   "vis": "b3d:try_on",
+   "text": "Join the Wi-Fi, open the page, tap ON. Click, and the fan blows.",
+   "tr": "Wi-Fi'a bağlanın, sayfayı açın, açık düğmesine dokunun. Klik, vantilatör esiyor.",
+   "dub": "Wi-Fi'a bağlanın, sayfayı açın, açık düğmesine dokunun. Klik, vantilatör esiyor."
+  },
+  {
+   "id": "s20",
+   "vis": "b3d:try_timer",
+   "text": "Tap ON for ten minutes, and the screen counts down the minutes.",
+   "tr": "On dakika açık düğmesine dokunun, ekran dakikaları geri sayıyor.",
+   "dub": "On dakika açık düğmesine dokunun, ekran dakikaları geri sayıyor."
+  },
+  {
+   "id": "s21",
+   "vis": "b3d:try_off",
+   "text": "When it reaches zero... click. Off, all by itself.",
+   "tr": "Sıfıra gelince... klik. Kendi kendine kapandı.",
+   "dub": "Sıfıra gelince... klik. Kendi kendine kapandı."
+  },
+  {
+   "id": "s22",
+   "vis": "b3d:trouble_reverse",
+   "text": "A common problem: everything works backwards, on means off. Your fan is on N C instead of N O. Move the wire one hole over.",
+   "tr": "Sık bir sorun: her şey ters çalışıyor, açık kapalı demek. Vantilatörünüz N O yerine N C'de. Kabloyu bir delik kaydırın.",
+   "dub": "Sık bir sorun: her şey ters çalışıyor, açık kapalı demek. Vantilatörünüz N O yerine N C'de. Kabloyu bir delik kaydırın."
+  },
+  {
+   "id": "s23",
+   "vis": "b3d:challenge",
+   "text": "Your turn: the module has a second relay. Put a USB lamp on it, on pin seventeen, with its own buttons.",
+   "tr": "Sıra sizde: modülde ikinci bir röle var. On yedi numaralı pinle ona bir USB lamba bağlayın, kendi düğmeleriyle.",
+   "dub": "Sıra sizde: modülde ikinci bir röle var. On yedi numaralı pinle ona bir USB lamba bağlayın, kendi düğmeleriyle."
+  },
+  {
+   "id": "s24",
+   "vis": "mc:code_full",
+   "text": "The full code and the solution are in the lesson folder, linked below. What would you switch from your phone? Tell me in the comments.",
+   "tr": "Tam kod ve çözüm aşağıdaki bağlantıdaki ders klasöründe. Siz telefondan neyi açıp kapatırdınız? Yorumlarda yazın.",
+   "dub": "Tam kod ve çözüm aşağıdaki bağlantıdaki ders klasöründe. Siz telefondan neyi açıp kapatırdınız? Yorumlarda yazın.",
+   "pad": 20.0
+  },
+  {
+   "id": "s25",
+   "vis": "b3d:outro",
+   "text": "See you in the next episode.",
+   "tr": "Bir sonraki bölümde görüşürüz.",
+   "dub": "Bir sonraki bölümde görüşürüz.",
+   "pad": 0.8
+  }
+ ]
+}
