@@ -518,6 +518,146 @@ class Kit:
         self.btn = {"group": g, "press": press, "top": Vector((c.x, c.y, TOP + 8))}
         return self.btn
 
+    # ---- parts added for the treasure-detector Short (2026-11-24); additive, nothing above uses them
+    def _leg(self, name, h, top_z, g, w=0.5):
+        """a straight metal leg standing in hole h, from the board up to top_z"""
+        steel = self.mat("legsteel", "#c8ced6", 0.3, metal=1.0)
+        return self.box(name, (w, w, top_z - TOP + 1.0), (h.x, h.y, (TOP - 1.0 + top_z) / 2), steel, g)
+
+    def pot(self, legs, dy=6.0, knob="#2b3140", scale=True):
+        """10k rotary potentiometer, shaft up: legs = three hole Vectors (left, wiper, right) in one strip row line;
+        the body sits dy mm behind the legs (+Y). Returns {group, knob (empty, rotate .rotation_euler.z), center,
+        top, set(pos 0..99), angle(pos), mark (treasure marker object), set_mark(pos or None)}.
+        pos 0 points front-left, 99 front-right (300 degree travel, clockwise = higher, like a real pot)."""
+        legs = [Vector(h) for h in legs]
+        g = self.empty("pot")
+        c = sum(legs, Vector()) / 3 + Vector((0, dy, 0))
+        for i, h in enumerate(legs):
+            self._leg("pot_leg%d" % i, h, TOP + 2.2, g, 0.7)
+            self.box("pot_foot%d" % i, (0.9, abs(dy) + 0.6, 0.5), (h.x, (h.y + c.y) / 2, TOP + 2.2), self.mats["legsteel"], g)
+        base = self.mat("potbase", "#1e4fa3", 0.45, coat=0.2)
+        self.box("pot_base", (12.5, 12.5, 3.2), (c.x, c.y, TOP + 2.0 + 1.6), base, g, bevel=0.5)
+        can = self.mat("potcan", "#b9c0c9", 0.3, metal=1.0)
+        z = TOP + 5.2
+        self.cyl("pot_can", 6.4, 1.6, (c.x, c.y, z + 0.8), can, g, segs=48, bevel=0.3)
+        z += 1.6
+        dial = None
+        if scale:  # printed dial ring 0..99 around the knob
+            dial = self.cyl("pot_dial", 11.0, 0.5, (c.x, c.y, z + 0.25), self.mat("potdial", "#eef0f2", 0.55), g, segs=64)
+            ink = self.mat("potink", "#2a2f3a", 0.6)
+            for p in range(0, 100, 5):
+                a = self._pot_angle(p)
+                big = p % 25 == 0 or p == 0
+                ln = 2.2 if big else 1.2
+                r = 10.6 - ln / 2
+                tk = self.box("pot_tick", (0.45 if big else 0.3, ln, 0.06), (c.x - r * math.sin(a), c.y + r * math.cos(a), z + 0.53), ink, g)
+                tk.rotation_euler.z = a
+            for p, txt in ((0, "0"), (50, "50"), (99, "99")):
+                a = self._pot_angle(p)
+                self.text("pot_num" + txt, txt, 2.1, (c.x - 7.2 * math.sin(a) * 1.0, c.y + 7.2 * math.cos(a), z + 0.53), ink, g)
+            z += 0.5
+        self.cyl("pot_shaft", 2.0, 2.0, (c.x, c.y, z + 1.0), can, g, segs=24)
+        kn = self.empty("pot_knob", (c.x, c.y, z + 1.0), g)
+        km = self.mat("potknob", knob, 0.35, coat=0.3)
+        self.cyl("pot_knobbody", 5.6, 7.0, (0, 0, 3.5), km, kn, segs=48, bevel=0.6)
+        for i in range(24):  # grip ribs
+            a = 2 * math.pi * i / 24
+            rb = self.box("pot_rib", (0.7, 0.9, 6.0), (5.55 * math.cos(a), 5.55 * math.sin(a), 3.3), km, kn)
+            rb.rotation_euler.z = a
+        self.box("pot_pointer", (0.9, 4.0, 0.12), (0, 3.0, 7.02), self.mat("potpointer", "#ffffff", 0.4, emit="#ffffff", strength=0.6), kn)
+        self.cyl("pot_knobtop", 5.0, 0.1, (0, 0, 7.0), km, kn, segs=48)
+        mark = self.cyl("pot_mark", 1.3, 0.5, (c.x, c.y, z + 0.6), self._emit_mat("potmark", "#ffc531", 3.0), g, segs=5)
+        info = {"group": g, "knob": kn, "center": c, "top": Vector((c.x, c.y, z + 8.0)), "mark": mark, "dial": dial}
+
+        def set(pos):
+            kn.rotation_euler.z = self._pot_angle(pos)
+
+        def set_mark(pos):
+            mark.hide_render = pos is None
+            if pos is not None:
+                a = self._pot_angle(pos)
+                mark.location = (c.x - 9.2 * math.sin(a), c.y + 9.2 * math.cos(a), z + 0.3)
+
+        info["set"], info["set_mark"], info["angle"] = set, set_mark, self._pot_angle
+        set(50)
+        set_mark(None)
+        self.potinfo = info
+        return info
+
+    @staticmethod
+    def _pot_angle(pos):
+        """knob angle (radians, CCW from +Y) for a reading 0..99: 0 -> +150 deg (front-left), 99 -> -150 deg"""
+        return math.radians(150.0 - 300.0 * max(0.0, min(99.0, pos)) / 99.0)
+
+    def rgb_led(self, legs, name="rgb", lift=7.0):
+        """5 mm diffused RGB LED (common cathode); legs = four hole Vectors in leg order R, K(-), G, B.
+        Returns {group, top, set(rgb (0..1 each), level)}: the dome glows in that colour, a small light tints the board."""
+        legs = [Vector(h) for h in legs]
+        g = self.empty(name)
+        c = sum(legs, Vector()) / 4
+        z0 = TOP + lift
+        for i, h in enumerate(legs):
+            self._leg(f"{name}_leg{i}", h, z0, g, 0.45)
+        m = bpy.data.materials.new(name + "_dome")
+        m.use_nodes = True
+        b = m.node_tree.nodes["Principled BSDF"]
+        b.inputs["Base Color"].default_value = (0.85, 0.86, 0.88, 1)
+        b.inputs["Roughness"].default_value = 0.3
+        b.inputs["Coat Weight"].default_value = 0.6
+        if "Subsurface Weight" in b.inputs:
+            b.inputs["Subsurface Weight"].default_value = 0.2
+        b.inputs["Emission Color"].default_value = (0, 0, 0, 1)
+        b.inputs["Emission Strength"].default_value = 0.0
+        self.cyl(name + "_flange", 2.95, 1.0, (c.x, c.y, z0 + 0.5), m, g, segs=40)
+        self.cyl(name + "_body", 2.5, 4.4, (c.x, c.y, z0 + 1.0 + 2.2), m, g, segs=40)
+        bm = bmesh.new()
+        bmesh.ops.create_uvsphere(bm, u_segments=40, v_segments=20, radius=2.5)
+        bmesh.ops.delete(bm, geom=[v for v in bm.verts if v.co.z < -1e-4], context="VERTS")
+        dome = self.mesh(name + "_dome", bm, m, (c.x, c.y, z0 + 5.4), g, smooth_shade=True)
+        ld = bpy.data.lights.new(name + "_light", "POINT")
+        ld.energy = 0.0
+        ld.shadow_soft_size = 0.004
+        lo = bpy.data.objects.new(name + "_light", ld)
+        self._link(lo, g)
+        lo.location = (c.x, c.y, z0 + 4.0)
+        info = {"group": g, "top": Vector((c.x, c.y, z0 + 8.0)), "center": Vector((c.x, c.y, z0 + 4.0)), "dome": dome}
+
+        def set(rgb, level=1.0):
+            col = [max(0.0, min(1.0, x)) for x in rgb]
+            peak = max(col) or 1.0
+            b.inputs["Emission Color"].default_value = (*[x / peak for x in col], 1)
+            tint = [0.85 * (1 - level * peak) + level * x / peak * 0.9 for x in col]
+            b.inputs["Base Color"].default_value = (*tint, 1)
+            b.inputs["Emission Strength"].default_value = 1.8 * level * peak
+            ld.color = [x / peak for x in col]
+            ld.energy = 0.25 * level * peak
+
+        info["set"] = set
+        set((0, 0, 0), 0.0)
+        return info
+
+    def resistor(self, a, b, bands=("#d9342b", "#d9342b", "#6b3a1e", "#c9a227"), name="res"):
+        """axial resistor from hole a to hole b (default 220 ohm: red red brown gold), body raised 3 mm"""
+        a, b = Vector(a), Vector(b)
+        g = self.empty(name)
+        z = TOP + 3.2
+        d = b - a
+        mid = (a + b) / 2
+        ang = math.atan2(d.y, d.x)
+        for h in (a, b):
+            self._leg(name + "_leg", h, z, g, 0.42)
+        lead = self.box(name + "_lead", (d.length, 0.42, 0.42), (mid.x, mid.y, z), self.mats["legsteel"], g)
+        lead.rotation_euler.z = ang
+        body = self.mat("resbody", "#d8c39a", 0.45, coat=0.2)
+        bo = self.cyl(name + "_body", 1.15, 6.0, (mid.x, mid.y, z), body, g, segs=24, bevel=0.35)
+        bo.rotation_euler = (0, math.pi / 2, ang)
+        for i, col in enumerate(bands):
+            off = (-1.9 + i * 1.15) if i < 3 else 2.0
+            bd = self.cyl(name + "_band", 1.2, 0.55, (mid.x + off * math.cos(ang), mid.y + off * math.sin(ang), z),
+                          self.mat("band_" + col, col, 0.5), g, segs=24)
+            bd.rotation_euler = (0, math.pi / 2, ang)
+        return {"group": g}
+
     def sound_rings(self, center, n=3, color="#7fe8de"):
         """expanding rings above a buzzer; returns list of (object, value node) to key"""
         rings = []

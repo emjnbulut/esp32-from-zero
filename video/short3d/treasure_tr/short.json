@@ -1,0 +1,112 @@
+{
+ "title": "Hazine Dedektörü 2.0",
+ "project": "projects/08-treasure-detector-2",
+ "engine": "chatterbox",
+ "lang": "tr",
+ "lead": 0.15,
+ "gap": 0.22,
+ "tail": 1.4,
+ "segments": [
+  {
+   "id": "l01",
+   "vis": "hook",
+   "say": {
+    "tr": "E Se Pe otuz ikimi bir hazine dedektörüne çevirdim!"
+   },
+   "show": "ESP32'mi bir hazine dedektörüne çevirdim!"
+  },
+  {
+   "id": "l02",
+   "vis": "build",
+   "before": 0.1,
+   "say": {
+    "tr": "Ekran, buzzer, buton, potansiyometre ve bir Ar Ce Be led."
+   },
+   "show": "Ekran, buzzer, buton, potansiyometre ve bir RGB LED."
+  },
+  {
+   "id": "l03",
+   "vis": "hunt",
+   "before": 0.3,
+   "say": {
+    "tr": "Hazine, bu düğmenin bir yerinde saklı."
+   }
+  },
+  {
+   "id": "l04",
+   "vis": "hunt",
+   "say": {
+    "tr": "Uzaktaysan ışık buz mavisi, tıklar yavaş."
+   }
+  },
+  {
+   "id": "l05",
+   "vis": "hunt",
+   "say": {
+    "tr": "Yaklaştıkça renk ısınıyor, tıklar hızlanıyor."
+   }
+  },
+  {
+   "id": "l06",
+   "vis": "hunt",
+   "say": {
+    "tr": "Ilık... sıcak... yanıyor! Kaz!"
+   }
+  },
+  {
+   "id": "l07",
+   "vis": "found",
+   "before": 0.5,
+   "say": {
+    "tr": "Hazine bulundu! On iki saniye, yeni rekor!"
+   },
+   "show": "Hazine bulundu! 12 saniye, yeni rekor!"
+  },
+  {
+   "id": "l08",
+   "vis": "how_knob",
+   "before": 0.4,
+   "say": {
+    "tr": "Nasıl mı çalışıyor? Düğme, E Se Pe'ye sıfırdan doksan dokuza bir sayı veriyor."
+   },
+   "show": "Nasıl mı çalışıyor? Düğme, ESP32'ye 0'dan 99'a bir sayı veriyor."
+  },
+  {
+   "id": "l09",
+   "vis": "how_dist",
+   "say": {
+    "tr": "Kod, bu sayının hazineye uzaklığını ölçüyor. Uzaklık, rengi ve tık hızını belirliyor."
+   }
+  },
+  {
+   "id": "l10",
+   "vis": "how_dig",
+   "say": {
+    "tr": "Butona basınca yeri kontrol ediyor. Yanlış yer: boş!"
+   }
+  },
+  {
+   "id": "l11",
+   "vis": "how_save",
+   "say": {
+    "tr": "Rekor, fişi çeksen bile silinmiyor."
+   }
+  },
+  {
+   "id": "l12",
+   "vis": "cta",
+   "before": 0.3,
+   "say": {
+    "tr": "Böyle projeler yapmayı öğrenmek istiyorsan kanalımı takip et!"
+   }
+  },
+  {
+   "id": "l13",
+   "vis": "cta",
+   "before": 0.05,
+   "say": {
+    "tr": "Kodun tamamı açıklamada."
+   }
+  }
+ ]
+}
