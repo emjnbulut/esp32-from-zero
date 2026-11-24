@@ -22,6 +22,17 @@ import ep11_parking_ticket from './scenes/ep11_parking_ticket?scene';
 import ep11_code_last from './scenes/ep11_code_last?scene';
 import ep11_ago_calc from './scenes/ep11_ago_calc?scene';
 import ep11_code_full from './scenes/ep11_code_full?scene';
+// Ep12 "Phone remote" (timing: src/timing/ep12.json <- node video/mc/tools/timing.mjs ep12)
+import ep12_code_softap from './scenes/ep12_code_softap?scene';
+import ep12_page_menu from './scenes/ep12_page_menu?scene';
+import ep12_page_links from './scenes/ep12_page_links?scene';
+import ep12_code_on from './scenes/ep12_code_on?scene';
+import ep12_code_loop from './scenes/ep12_code_loop?scene';
+import ep12_order_slip from './scenes/ep12_order_slip?scene';
+import ep12_code_arg from './scenes/ep12_code_arg?scene';
+import ep12_code_answer from './scenes/ep12_code_answer?scene';
+import ep12_page_template from './scenes/ep12_page_template?scene';
+import ep12_code_full from './scenes/ep12_code_full?scene';
 
 /**
  * All scenes of the course live in this one project so the editor
@@ -50,5 +61,15 @@ export default makeProject({
     ep11_code_last,
     ep11_ago_calc,
     ep11_code_full,
+    ep12_code_softap,
+    ep12_page_menu,
+    ep12_page_links,
+    ep12_code_on,
+    ep12_code_loop,
+    ep12_order_slip,
+    ep12_code_arg,
+    ep12_code_answer,
+    ep12_page_template,
+    ep12_code_full,
   ],
 });

@@ -109,6 +109,7 @@ fs.writeFileSync(OUT, JSON.stringify(out, null, 1) + '\n');
 const SKETCH = {
   ep10: 'lessons/10-reflex-oled/code/reflex_oled/reflex_oled.ino',
   ep11: 'lessons/11-motion-alarm/code/motion_alarm/motion_alarm.ino',
+  ep12: 'lessons/12-phone-control/code/phone_remote/phone_remote.ino',
 };
 function findSketch() {
   if (SKETCH[ep]) return SKETCH[ep];
