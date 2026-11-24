@@ -4,6 +4,8 @@ PUBLISHED/SCHEDULED: Episode 10 v2 `0tr5Sf8dJDY` 24 Nov 17:00 (4 dubs, 12 subs/t
 from Ep9, per-language thumbs). TR Short Hazine Dedektörü 2.0 `2NONXytC0g0` 25 Nov 17:00. After 17:00 today: Ep9 end
 screen -> Ep10 DONE, Related video of 2NONXytC0g0 + both Ep10 Shorts -> Ep10 DONE (24 Nov 17:10).
 SCHEDULED Shorts: Ep10 reflex TR `ml8rEv9Q45Q` 26 Nov 17:00, EN `0L8TzOpinz4` 27 Nov 22:00.
+Episode 12 (phone remote) is ALSO complete as a draft package: YAYIN/ep12 + video/ep12/build/TASLAK/ep12_taslak_v1.mp4
+(descriptions have EP11_URL: re-run video/ep12/make_localize.py once Ep11 has an ID). Ep11 cookie Shorts built.
 Episode 11 (motion alarm) is complete as a draft package: YAYIN/ep11 + video/ep11/build/TASLAK/ep11_taslak_v1.mp4,
 waiting for the creator's OK and a date (v7 plan: Tue 1 Dec). Cookie-jar Short scripts: video/short3d/cookie.
 Pipeline notes learned today: build.py compose (v2, no clips) encodes the parts one by one + concat copy (the old
