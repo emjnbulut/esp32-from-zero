@@ -61,7 +61,8 @@ def scene_of(s: dict) -> str:
 
 def schedule(ep: Path):
     script, timings = load(ep)
-    dubs = dub_durations(ep)
+    # v2 episodes fit every dub by its text (*_FIT dicts) instead: "dub_stretch": false keeps the rendered timing
+    dubs = dub_durations(ep) if script.get("dub_stretch", True) else {}
     t, prev_scene, segs, stretched = script.get("lead_in", LEAD_IN), None, {}, 0.0
     for s in script["segments"]:
         if prev_scene and scene_of(s) != prev_scene:

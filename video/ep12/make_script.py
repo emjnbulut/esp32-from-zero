@@ -143,6 +143,12 @@ s("s25", "b3d:outro", "Next time, a weather station: temperature and humidity on
   "Bir dahaki sefere hava istasyonu: sıcaklık ve nem hem ekranda hem bu telefon sayfasında. Orada görüşürüz.",
   pad=0.8)
 
+# Creator 2026-11-25: the full code must stay on screen long enough to read/copy -> the code_full scene pages through
+# the sketch (about 24 lines a page, 4 s each) after the narration; this silent pad (music only) is that time.
+for _d in S:
+    if _d["id"] == "s24":
+        _d["pad"] = 20.0
+
 # TR lines shortened to fit the English slots after the narrated fit report (2026-11-24, as Ep 10/11).
 TR_FIT = {
     "s01": "Telefonda kırmızıya dokunuyorum... ışık kırmızı.",
@@ -173,6 +179,7 @@ SCRIPT = {
     "lead_in": 0.8,
     "sting_after": "s03",
     "scene_gap": 0.7,
+    "dub_stretch": False,  # dubs are fitted by text (TR_FIT / *_FIT), never by stretching the rendered picture
     "segments": S,
 }
 

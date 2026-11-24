@@ -2,20 +2,57 @@
  "project": "lessons/12-phone-control",
  "engine": "chatterbox",
  "draft": "2026-11-25: render with the cookie/reflex vertical pipeline + Ep12 parts (video/b3d/parts_ep12.py, phone screens)",
- "before": {"l03": 0.4, "l05": 0.3, "l07": 0.4, "l09": 0.4},
+ "before": {
+  "l03": 0.4,
+  "l05": 0.3,
+  "l07": 0.4,
+  "l09": 0.4
+ },
  "lead": 0.3,
  "tail": 1.6,
  "title": "Telefonumla ESP32 üzerinden kapı zili çalıyorum",
  "lang": "tr",
  "lines": [
-  {"id": "l01", "text": "Telefona dokunuyorum, masamda kapı zili çalıyor.", "show": "Telefondan kapı zili?"},
-  {"id": "l02", "text": "Uygulama yok. Modem yok. İnternet yok."},
-  {"id": "l03", "text": "E Se Pe otuz iki kendi küçük Wi-Fi ağını açıyor, telefon erişim noktası gibi.", "show": "ESP32 kendi küçük Wi-Fi ağını açıyor, telefon erişim noktası gibi."},
-  {"id": "l04", "text": "Telefonum ona bağlanıp kartın kendi web sayfasını açıyor."},
-  {"id": "l05", "text": "Her düğme bir bağlantı. Zile dokununca bağlantı havadan gidiyor..."},
-  {"id": "l06", "text": "...ve kart buzzer'da iki nota çalıyor, ding dong.", "show": "...ve kart buzzer'da iki nota çalıyor, ding dong."},
-  {"id": "l07", "text": "Renk düğmeleri ışığı değiştiriyor, küçük ekran da her komutu sayıyor."},
-  {"id": "l08", "text": "Yeni parça yok: renkli ışık, bir ekran ve bir buzzer."},
-  {"id": "l09", "text": "Böyle şeyler yapmayı öğrenmek istiyorsan kanalımı takip et, telefonunla neyi kontrol ederdin yorumlara yaz.", "show": "Daha fazlası için takip et!"}
- ]
+  {
+   "id": "l01",
+   "text": "Telefona dokunuyorum, masamda kapı zili çalıyor.",
+   "show": "Telefondan kapı zili?"
+  },
+  {
+   "id": "l02",
+   "text": "Uygulama yok. Modem yok. İnternet yok."
+  },
+  {
+   "id": "l03",
+   "text": "E Se Pe otuz iki kendi küçük Wi-Fi ağını açıyor, telefon erişim noktası gibi.",
+   "show": "ESP32 kendi küçük Wi-Fi ağını açıyor, telefon erişim noktası gibi."
+  },
+  {
+   "id": "l04",
+   "text": "Telefonum ona bağlanıp kartın kendi web sayfasını açıyor."
+  },
+  {
+   "id": "l05",
+   "text": "Her düğme bir bağlantı. Zile dokununca bağlantı havadan gidiyor..."
+  },
+  {
+   "id": "l06",
+   "text": "Ve kart, buzzer'da iki nota çalıyor: ding dong.",
+   "show": "...ve kart buzzer'da iki nota çalıyor, ding dong."
+  },
+  {
+   "id": "l07",
+   "text": "Renk düğmeleri ışığı değiştiriyor, küçük ekran da her komutu sayıyor."
+  },
+  {
+   "id": "l08",
+   "text": "Yeni parça yok: renkli ışık, bir ekran ve bir buzzer."
+  },
+  {
+   "id": "l09",
+   "text": "Böyle şeyler yapmayı öğrenmek istiyorsan kanalımı takip et, telefonunla neyi kontrol ederdin yorumlara yaz.",
+   "show": "Daha fazlası için takip et!"
+  }
+ ],
+ "note_l06": "l06 is spoken without the leading '...' and with a comma after 'kart' (Chatterbox said 'Carp buzzer'da'); the caption keeps the original"
 }

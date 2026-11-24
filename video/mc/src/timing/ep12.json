@@ -857,13 +857,13 @@
   ]
  },
  "code_full": {
-  "total": 10,
+  "total": 30,
   "estimated": false,
   "segments": [
    {
     "id": "s24",
     "start": 0,
-    "dur": 10,
+    "dur": 30,
     "words": [
      {
       "w": "The",

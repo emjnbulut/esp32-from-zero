@@ -6,6 +6,7 @@
  "lead_in": 0.8,
  "sting_after": "s03",
  "scene_gap": 0.7,
+ "dub_stretch": false,
  "segments": [
   {
    "id": "s01",
@@ -215,7 +216,8 @@
    "vis": "mc:code_full",
    "text": "The full code and the solution are in the lesson folder, linked below. What would you control with your phone? Tell me in the comments.",
    "tr": "Tam kod ve çözüm aşağıdaki bağlantıdaki ders klasöründe. Siz telefonunuzla neyi kontrol ederdiniz? Yorumlarda yazın.",
-   "dub": "Tam kod ve çözüm aşağıdaki bağlantıdaki ders klasöründe. Siz telefonunuzla neyi kontrol ederdiniz? Yorumlarda yazın."
+   "dub": "Tam kod ve çözüm aşağıdaki bağlantıdaki ders klasöründe. Siz telefonunuzla neyi kontrol ederdiniz? Yorumlarda yazın.",
+   "pad": 20.0
   },
   {
    "id": "s25",
