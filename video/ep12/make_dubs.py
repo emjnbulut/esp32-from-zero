@@ -216,7 +216,7 @@ PT_FIT = {
     "s06": "Normalmente ela entra no roteador. Hoje a placa abre sua rede, como um hotspot.",
 }
 ES_FIT = {
-    "s01": "Toco rojo, y la luz se pone roja.",
+    "s01": "Toco rojo y la luz se pone roja.",
     "s03": "La pantalla cuenta los comandos.",
     "s12b": "Un enlace lleva una nota, como un pedido: color, interrogación, c igual red.",
     "s12d": "Luego devuelve la página, y el control sigue ahí.",
