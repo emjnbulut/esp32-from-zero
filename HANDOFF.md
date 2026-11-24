@@ -1,3 +1,23 @@
+# Update - 25 November 2026 ~03:00, SESSION CLOSED (read first)
+
+Published / scheduled (YouTube): Ep10 `0tr5Sf8dJDY` LIVE since 24 Nov 17:00 (4 dubs + 12 subs + per-language thumbs +
+A/B C/D, end screen; Ep9 end screen -> Ep10). Shorts: TR Hazine Dedektörü 2.0 `2NONXytC0g0` 25 Nov 17:00, Ep10 reflex
+TR `ml8rEv9Q45Q` 26 Nov 17:00, EN `0L8TzOpinz4` 27 Nov 22:00 - all three have Related video = Ep10.
+
+Waiting for the creator: Ep11 and Ep12 are finished packages (YAYIN/ep11, YAYIN/ep12; drafts in video/ep1x/build/
+TASLAK). Creator feedback 25 Nov applied: the full-code scene now pages through the whole sketch in big readable pages
+(~24 lines, ~4 s each, page indicator) after a silent pad (Ep11 +24 s, Ep12 +20 s); both episodes rebuilt with it
+(check video/ep1x/build/ep1x_final.mp4 length = old + pad and YAYIN copies, see "Next" below). Proposed dates: Ep11
+Tue 1 Dec 17:00, Ep12 Fri 4 Dec 17:00 (creator to confirm). Episode length question open (4-5 min vs plan 6-8).
+Ep11 cookie-jar Shorts EN/TR built (video/short3d/cookie/build, youtube.md has EP11_URL). Ep12 doorbell Shorts: pipeline
+copied (video/short3d/doorbell), render NOT finished (agent hit the usage limit in the CTA shot) - resume with
+`.venv/Scripts/python video/short3d/doorbell/make.py --lang en` then `--lang tr` (renders skip existing frames), check
+contact sheets + Whisper on the ending.
+Ep13 (weather station, DHT11 on GPIO 4): ONLY the library is installed (arduino-cli "DHT sensor library" 1.4.7, Adafruit
+Unified Sensor present) - creator said to do just the download this session. Sketch/script not started.
+After Ep11 gets an ID: re-run video/ep12/make_localize.py (PREVURL/EP11_URL) and put the link in the cookie Shorts.
+Next: creator reviews Ep11/Ep12 -> upload + schedule (same Studio recipe as Ep10, memory youtube-upload-progress.md).
+
 # Update - 24 November 2026 afternoon (read first)
 
 PUBLISHED/SCHEDULED: Episode 10 v2 `0tr5Sf8dJDY` 24 Nov 17:00 (4 dubs, 12 subs/titles, A/B thumbs C/D, end screen
