@@ -294,14 +294,30 @@ def compose(ep: Path):
     norm = "fps=30,scale=1920:1080:out_range=tv,setsar=1,format=yuv420p"
     filters += [f"{last}{norm}[body]", f"[2:v]{norm}[in]", f"[3:v]{norm}[out]"]
     tc = bumpers.cut(ep)
-    if tc > 0 and not clips:
-        # cold open without overlay clips (v2 episodes): read the picture a second time for the part after the
-        # sting. split + concat had to queue every frame of that part in memory while the cold open and sting
-        # played, and ffmpeg silently dropped about a minute of a 6-min episode (Ep10 draft 2, 2026-11-25)
-        inputs += ["-i", str(b / "video.mp4")]
-        filters += [f"[body]trim=0:{tc:.3f},setpts=PTS-STARTPTS[p0]",
-                    f"[{k}:v]trim=start={tc:.3f},setpts=PTS-STARTPTS,{norm}[p1]", "[p0][in][p1][out]concat=n=4:v=1:a=0[vid]"]
-    elif tc > 0:  # cold open: episode up to tc, sting, rest of the episode
+    if not clips:
+        # v2 episodes (no overlay clips): encode the parts one by one and join them without re-encoding.
+        # One filter graph with split/concat (or a second input) queued minutes of 1080p frames in memory:
+        # ffmpeg silently dropped ~1 min of Ep10 draft 2, and the low-memory reaper killed the retry (2026-11-25).
+        parts_dir = b / "compose_parts"
+        parts_dir.mkdir(exist_ok=True)
+        enc = ["-an", "-vf", norm, "-c:v", "libx264", "-preset", "medium", "-crf", "18", "-pix_fmt", "yuv420p",
+               "-color_range", "tv", "-video_track_timescale", "15360"]
+        body_len = bumpers.body_seconds(ep)
+        jobs = [("intro", ["-i", str(intro)])] if tc <= 0 else [
+            ("p0", ["-i", str(b / "video.mp4"), "-t", f"{tc:.3f}"]), ("intro", ["-i", str(intro)])]
+        jobs += [("p1", ["-ss", f"{max(0.0, tc):.3f}", "-i", str(b / "video.mp4"), "-t", f"{body_len - max(0.0, tc):.3f}"]),
+                 ("outro", ["-i", str(outro)])]
+        for name, src in jobs:
+            subprocess.run(["ffmpeg", "-v", "error", "-y", *src, *enc, str(parts_dir / f"{name}.mp4")], check=True)
+        lst = parts_dir / "list.txt"
+        names = [n for n, _ in jobs]
+        lst.write_text("".join("file '" + (parts_dir / (n + ".mp4")).as_posix() + "'\n" for n in names), encoding="utf-8")
+        subprocess.run(["ffmpeg", "-v", "error", "-y", "-f", "concat", "-safe", "0", "-i", str(lst), "-i", str(full),
+                        "-map", "0:v", "-map", "1:a", "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-shortest",
+                        "-movflags", "+faststart", str(out)], check=True)
+        print("final:", out)
+        return
+    if tc > 0:  # cold open: episode up to tc, sting, rest of the episode
         filters += ["[body]split[b0][b1]", f"[b0]trim=0:{tc:.3f},setpts=PTS-STARTPTS[p0]",
                     f"[b1]trim=start={tc:.3f},setpts=PTS-STARTPTS[p1]", "[p0][in][p1][out]concat=n=4:v=1:a=0[vid]"]
     else:
