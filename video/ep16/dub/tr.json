@@ -1,0 +1,30 @@
+{
+ "lang": "tr",
+ "segments": {
+  "s01": "Kâğıt top... şak. Bir sayı.",
+  "s02": "Saatte otuz saniye, her basket için bir bip ve sonunda bir korna.",
+  "s03": "Yeni rekor! Üstelik kartı çıkarsam bile kalıyor.",
+  "s04": "Bugün bir basketbol skorbordu yapıyoruz. Bir kâğıt bardak, yeni bir sensör ve onuncu bölümün devresi.",
+  "s05": "Bu, setteki kızılötesi engel sensörü. Bir tarafı görünmez ışık gönderiyor, diğer tarafı geri yansımasını bekliyor.",
+  "s06": "Önünde bir şey olunca OUT pini LOW oluyor ve küçük LED'i yanıyor.",
+  "s07": "Küçük vidayı LED sadece top geçerken yanana kadar çevirin.",
+  "s08": "Hadi bağlayalım. Ekran, düğme ve bazır yerinde kalıyor.",
+  "s09": "Güç üç virgül üç volta, toprak toprağa, OUT on üç numaralı pine.",
+  "s10": "Sonra sensörü bardağın açık tabanının altına, deliğe bakacak şekilde bantlayın.",
+  "s11": "Sorun şu: düşen top ışını sadece birkaç milisaniyede geçiyor.",
+  "s12": "O anda luup ekranı çizmekle meşgulse basit bir dijital rid başka yere bakıyor ve basket kayboluyor.",
+  "s13": "Bir kapı düşünün. Sürekli gidip kontrol edebilirsiniz, ya da bir kapı zili takabilirsiniz.",
+  "s14": "Bu kapı ziline interrupt, yani kesme deniyor. Işın kesildiği an çip duruyor, küçük fonksiyonumuzu çalıştırıyor ve devam ediyor.",
+  "s15": "Tek satır zili kuruyor: on üç numaralı pinde ataç interapt, pin hay'dan lov'a düşünce bol siin çağrılıyor.",
+  "s16": "Birinci kural: o fonksiyonu küçücük tutun. Say, zamanı not et, bitti. Ekran yok, dilay yok.",
+  "s17": "İkinci kural: sayaç volatayl kelimesini alıyor. Derleyiciye bu değerin luup'un arkasından değişebileceğini söylüyor.",
+  "s18": "Bir top sensörü birkaç kez titretebilir, bu yüzden ancak üç yüz milisaniye geçtiyse sayıyoruz. Tıpkı dördüncü bölümdeki düğme gibi.",
+  "s19": "Düğmeye basın: bir düdük ve otuz saniye geri saymaya başlıyor.",
+  "s20": "Her basket: kısa bir bip ve skor artıyor.",
+  "s21": "Süre bitti: korna. En iyi skorunuzu geçtiyseniz onuncu bölümdeki deftere kaydediliyor.",
+  "s22": "Sık bir sorun: kendi kendine sayıyor. Güneş ışığında da kızılötesi var, pencereden uzaklaşın ya da küçük vidayı biraz geri çevirin.",
+  "s23": "Sıra sizde: üç sayılık bölge. Atarken düğmeyi basılı tutun, o basket üç sayılsın.",
+  "s24": "Tam kod ve çözüm aşağıdaki bağlantıdaki ders klasöründe. Otuz saniyede en iyi skorunuz ne? Yorumlarda yazın.",
+  "s25": "Bir dahaki sefere, telefondan kontrol ettiğiniz bir vantilatör. Orada görüşürüz."
+ }
+}
