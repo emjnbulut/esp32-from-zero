@@ -1,3 +1,15 @@
+# Update - 24 November 2026 afternoon (read first)
+
+PUBLISHED/SCHEDULED: Episode 10 v2 `0tr5Sf8dJDY` 24 Nov 17:00 (4 dubs, 12 subs/titles, A/B thumbs C/D, end screen
+from Ep9, per-language thumbs). TR Short Hazine Dedektörü 2.0 `2NONXytC0g0` 25 Nov 17:00. After 17:00 today: Ep9 end
+screen -> Ep10, Related video of 2NONXytC0g0 -> Ep10.
+Next Shorts: Ep10 reflex Short TR 26 Nov 17:00, EN 27 Nov 22:00 (video/short3d/reflex, being rendered).
+Episode 11 (motion alarm) is complete as a draft package: YAYIN/ep11 + video/ep11/build/TASLAK/ep11_taslak_v1.mp4,
+waiting for the creator's OK and a date (v7 plan: Tue 1 Dec). Cookie-jar Short scripts: video/short3d/cookie.
+Pipeline notes learned today: build.py compose (v2, no clips) encodes the parts one by one + concat copy (the old
+split/concat dropped a minute); ALWAYS ffprobe the final length. assemble.py SFX_GAIN 0.55 (beeps were too loud).
+Dubs: write HI/PT/ES at mean <= 0.68 char ratio; after narration fix overruns with *_FIT dicts / cbx_fixline seeds.
+
 # Update - 24 November 2026 night (read first)
 
 Creator direction (21-24 Nov): Ep10 onward = Blender 3D (video/b3d kit, >= half the runtime) + Motion Canvas (video/mc)
