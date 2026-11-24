@@ -1,0 +1,30 @@
+{
+ "lang": "tr",
+ "segments": {
+  "s01": "Muza dokunuyorum... do. Elmaya... mi. Portakala... sol.",
+  "s02": "Düğmeyi basılı tutun, meyvelerde küçük bir melodi çalın, kart onu geri çalıyor.",
+  "s03": "Düğme yok, tuş yok. Sadece meyve, üç kablo ve ESP otuz ikinin içinde saklı dokunma pinleri.",
+  "s04": "Bugün bunu bir meyve piyanosuna çeviriyoruz. Gerisi onuncu bölümün devresi.",
+  "s05": "ESP otuz ikinin bazı pinleri dokunuşu hissedebilir. Üçünü kullanacağız: on dört, iki ve on beş.",
+  "s06": "İşin sırrı şu: pin küçük bir yük kovasını tekrar tekrar dolduruyor ve ne kadar hızlı dolduğunu sayıyor.",
+  "s07": "Parmağınız kabloya dokununca vücudunuz kovayı büyütüyor. Daha yavaş doluyor ve sayı düşüyor.",
+  "s08": "Muzun içi su dolu, o yüzden dokunuşu iletiyor. Meyvenin tuş gibi çalışmasının sebebi bu.",
+  "s09": "Kodda tek satırla okuyoruz: on dört numaralı pinde taç rid. Dokunuldu demek, sayı sakin değerinin epey altına düştü demek.",
+  "s10": "Bu yüzden kart açılışta, kimse dokunmazken her meyveyi bir kez ölçüyor ve o sakin sayıyı hatırlıyor.",
+  "s11": "Hadi bağlayalım. Ekran, düğme ve bazır yerinde kalıyor.",
+  "s12": "Üç kablo: on dört numaralı pin muza, iki numaralı pin elmaya, on beş numaralı pin portakala. Kabloyu meyveye batırmanız yeterli.",
+  "s13": "İki numaralı pin birçok kartta küçük mavi LED'i de yakıyor, biraz parlarsa endişelenmeyin.",
+  "s14": "Şimdi notalar. Üç tuş, üç nota. Üç ayrı değişken yerine, aynı isimli ve numaralı kutulardan oluşan tek bir sıra kullanıyoruz: bir dizi.",
+  "s15": "Sıfır numaralı kutuda do, bir numarada mi, iki numarada sol var. Pinlerin de aynı sırada kendi dizisi var.",
+  "s16": "Küçük bir döngü üç meyveye sırayla bakıyor. İlk dokunulan kendi notasını çalıyor.",
+  "s17": "Kaydetmek için düğmeyi bir saniye basılı tutun. Ekranda REC yazıyor.",
+  "s18": "Çaldığınız her nota başka bir dizinin bir sonraki kutusuna giriyor: sekiz kutuluk şarkı.",
+  "s19": "Do, mi, sol, sol, mi, do, mi, sol. Sekiz kutu doldu.",
+  "s20": "Kısa bir basış, kart kutuların üzerinden geçip hepsini geri çalıyor.",
+  "s21": "Sık bir sorun: bir tuş kendi kendine çalıyor. Genelde kart ölçerken biri meyveye dokunmuştur, ellerinizi çekip kartı yeniden başlatın.",
+  "s22": "Bir tuş hiç çalmıyorsa koddaki düşüş değerini biraz değiştirin, böylece daha küçük bir değişim de dokunuş sayılsın.",
+  "s23": "Sıra sizde: muza ve portakala aynı anda dokunun ve ince bir do çalın. Yeni pin olmadan dördüncü nota.",
+  "s24": "Tam kod ve çözüm aşağıdaki bağlantıdaki ders klasöründe. Siz hangi meyveyi kullanırdınız? Yorumlarda yazın.",
+  "s25": "Bir dahaki sefere, biri açınca çığlık atan bir çekmece. Orada görüşürüz."
+ }
+}
