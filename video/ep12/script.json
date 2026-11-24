@@ -81,8 +81,8 @@
    "id": "s11",
    "vis": "mc:code_on",
    "text": "And one line per link tells the board which helper answers it. Server on: this link, this helper.",
-   "tr": "Her bağlantı için tek satır, cevap verecek yardımcıyı söylüyor: Server on, bu bağlantı, bu yardımcı.",
-   "dub": "Her bağlantı için tek satır, cevap verecek yardımcıyı söylüyor: Server on, bu bağlantı, bu yardımcı."
+   "tr": "Her bağlantı için tek satır: Server on, bu bağlantı, bu yardımcı.",
+   "dub": "Her bağlantı için tek satır: Server on, bu bağlantı, bu yardımcı."
   },
   {
    "id": "s12",
@@ -116,8 +116,8 @@
    "id": "s13",
    "vis": "mc:page_template",
    "text": "The page itself is a ready template in the sketch. You only change the labels and the colors.",
-   "tr": "Sayfa koddaki hazır bir şablon, sadece yazıları ve renkleri değiştirin.",
-   "dub": "Sayfa koddaki hazır bir şablon, sadece yazıları ve renkleri değiştirin."
+   "tr": "Sayfa hazır bir şablon, sadece yazıları ve renkleri değiştirin.",
+   "dub": "Sayfa hazır bir şablon, sadece yazıları ve renkleri değiştirin."
   },
   {
    "id": "s14",
@@ -130,8 +130,8 @@
    "id": "s15",
    "vis": "b3d:wire_rgb",
    "text": "Red, green and blue legs on pins twenty-five, twenty-six and twenty-seven, each through its resistor.",
-   "tr": "Kırmızı, yeşil, mavi bacaklar yirmi beş, yirmi altı ve yirmi yedide, her biri direnciyle.",
-   "dub": "Kırmızı, yeşil, mavi bacaklar yirmi beş, yirmi altı ve yirmi yedide, her biri direnciyle."
+   "tr": "Kırmızı, yeşil, mavi bacaklar yirmi beş, yirmi altı, yirmi yedide, dirençleriyle.",
+   "dub": "Kırmızı, yeşil, mavi bacaklar yirmi beş, yirmi altı, yirmi yedide, dirençleriyle."
   },
   {
    "id": "s16",
@@ -151,15 +151,15 @@
    "id": "s18",
    "vis": "b3d:try_page",
    "text": "Type the address in the browser, and there's your remote: four colors and a ring button.",
-   "tr": "Adresi tarayıcıya yazın, işte kumanda: dört renk ve bir zil.",
-   "dub": "Adresi tarayıcıya yazın, işte kumanda: dört renk ve bir zil."
+   "tr": "Adresi yazın, işte kumanda: dört renk ve zil.",
+   "dub": "Adresi yazın, işte kumanda: dört renk ve zil."
   },
   {
    "id": "s19",
    "vis": "b3d:try_red",
    "text": "Tap red: the link travels through the air, the helper sets the color, and the screen counts command number one.",
-   "tr": "Kırmızıya dokunun: bağlantı havadan gidiyor, renk değişiyor, ekran bir numaralı komutu sayıyor.",
-   "dub": "Kırmızıya dokunun: bağlantı havadan gidiyor, renk değişiyor, ekran bir numaralı komutu sayıyor."
+   "tr": "Kırmızıya dokunun: mesaj havadan gidiyor, renk değişiyor, ekran sayıyor.",
+   "dub": "Kırmızıya dokunun: mesaj havadan gidiyor, renk değişiyor, ekran sayıyor."
   },
   {
    "id": "s19b",

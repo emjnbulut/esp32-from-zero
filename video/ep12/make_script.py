@@ -150,14 +150,14 @@ TR_FIT = {
     "s08": "Kodda ağı açmak tek satır: soft Ey Pi, isim ve şifreyle.",
     "s09": "Sonra kart küçük bir web sayfası sunuyor, numaralı bir restoran menüsü gibi: düğmeye dokunun, "
            "telefon numarayı söyler.",
-    "s11": "Her bağlantı için tek satır, cevap verecek yardımcıyı söylüyor: Server on, bu bağlantı, bu yardımcı.",
+    "s11": "Her bağlantı için tek satır: Server on, bu bağlantı, bu yardımcı.",
     "s12": "Döngünün tek işi var: tur atan bekçimiz gibi, kapıyı çalan telefon var mı diye bakıyor.",
     "s12b": "Bazı bağlantılar, sipariş fişindeki not gibi bir ayrıntı taşır: Kalır soru işareti si eşittir red, "
             "hangi renk olduğunu söylüyor.",
-    "s13": "Sayfa koddaki hazır bir şablon, sadece yazıları ve renkleri değiştirin.",
-    "s15": "Kırmızı, yeşil, mavi bacaklar yirmi beş, yirmi altı ve yirmi yedide, her biri direnciyle.",
-    "s18": "Adresi tarayıcıya yazın, işte kumanda: dört renk ve bir zil.",
-    "s19": "Kırmızıya dokunun: bağlantı havadan gidiyor, renk değişiyor, ekran bir numaralı komutu sayıyor.",
+    "s13": "Sayfa hazır bir şablon, sadece yazıları ve renkleri değiştirin.",
+    "s15": "Kırmızı, yeşil, mavi bacaklar yirmi beş, yirmi altı, yirmi yedide, dirençleriyle.",
+    "s18": "Adresi yazın, işte kumanda: dört renk ve zil.",
+    "s19": "Kırmızıya dokunun: mesaj havadan gidiyor, renk değişiyor, ekran sayıyor.",
     "s23": "Sıra sizde: kırmızı, yeşil, maviyi üç kez yakan bir parti düğmesi ekleyin, yeni bir bağlantı ve "
            "yardımcıyla.",
 }
