@@ -273,7 +273,26 @@ PT_FIT = {
     "s37": "Dica: salve só com recorde novo. Salvar toda rodada estraga o recorde e gasta a gaveta.",
     "s39": "Código e solução na pasta da lição, abaixo. Poste seu tempo nos comentários.",
 }
-ES_FIT = {}
+ES_FIT = {
+    "s05": "La primera pieza, una pantallita diminuta.",
+    "s07": "Solo cuatro cables, dos de energía y dos para las imágenes.",
+    "s12": "Vuelve el botón, en otro pin, porque la pantalla usa el suyo.",
+    "s14": "Primero, energía: rojo con tres coma tres voltios al positivo, negro a tierra.",
+    "s15": "Ahora la pantalla, sus cuatro patas en una columna y dos cables cortos de energía.",
+    "s16": "Los cables del chat: verde del pin veintidós al reloj, azul del veintiuno a los datos.",
+    "s17": "El botón cruza el hueco: amarillo del pin diecinueve a un lado, el otro a tierra.",
+    "s18": "Al final, el zumbador: naranja del pin treinta y dos al positivo, la otra pata a tierra.",
+    "s19": "Ese es todo el circuito. Pausa y compáralo con el tuyo.",
+    "s20": "Para hablar con la pantalla usamos una biblioteca gratis del Gestor.",
+    "s21": "El truco: al imprimir no aparece nada, la placa dibuja tras una cortina.",
+    "s23": "Por eso hacemos un ayudante, show: borra, escribe una línea chica y una grande, y abre la cortina.",
+    "s25": "Cuatro pasos, como una lavadora: listo, espera, ya y resultado.",
+    "s27": "Se acaba la espera, la pantalla dice GO y suena el zumbador. El reloj corre.",
+    "s28": "El pitido es una línea: tone con el pin, la nota y la duración.",
+    "s37": "Consejo: guarda solo con récord nuevo. Guardar cada ronda estropea tu récord y gasta el cajón.",
+    "s38": "Tu turno: mantén el botón tres segundos en la pantalla inicial para borrar el récord.",
+    "s39": "Código y solución en la carpeta de la lección, abajo. Tu mejor tiempo, en los comentarios.",
+}
 FIT = {"pt": PT_FIT, "es": ES_FIT}
 
 TARGET = {"hi": 0.95, "pt": 0.95, "es": 0.95}
