@@ -43,9 +43,18 @@ interface SceneTiming {
 const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
 
 /** Timing accessor for one scene id. */
+/** Ep10 timing accessor (src/timing/ep10.json). */
 export function timing(scene: string) {
-  const t = (timingData as Record<string, SceneTiming>)[scene];
-  if (!t) throw new Error(`no timing for scene ${scene} - run tools/ep10_timing.mjs`);
+  return makeTiming(timingData, 'ep10')(scene);
+}
+
+/**
+ * Timing accessor for any episode's src/timing/<ep>.json (from
+ * tools/timing.mjs <ep>):  const T = makeTiming(ep11, 'ep11')('code_read');
+ */
+export const makeTiming = (data: unknown, ep: string) => (scene: string) => {
+  const t = (data as Record<string, SceneTiming>)[scene];
+  if (!t) throw new Error(`no timing for scene ${scene} - run node video/mc/tools/timing.mjs ${ep}`);
   const seg = (id?: string) => {
     const s = id ? t.segments.find(x => x.id === id) : t.segments[0];
     if (!s) throw new Error(`${scene}: no segment ${id}`);
@@ -70,7 +79,7 @@ export function timing(scene: string) {
     return fallback;
   };
   return {total: t.total, segments: t.segments, seg, word};
-}
+};
 
 /**
  * Wrap a scene body so the scene lasts exactly `total` seconds: the body runs

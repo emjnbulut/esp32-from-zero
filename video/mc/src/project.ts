@@ -1,7 +1,7 @@
 import {makeProject} from '@motion-canvas/core';
 
 import prefsRecord from './scenes/prefsRecord?scene';
-// Ep10 "Reflex Game 2.0" (timing: src/timing/ep10.json <- tools/ep10_timing.mjs)
+// Ep10 "Reflex Game 2.0" (timing: src/timing/ep10.json <- node video/mc/tools/timing.mjs ep10)
 import i2c_chat from './scenes/i2c_chat?scene';
 import code_screen from './scenes/code_screen?scene';
 import buffer from './scenes/buffer?scene';
@@ -14,6 +14,14 @@ import prefs_put from './scenes/prefs_put?scene';
 import prefs_get from './scenes/prefs_get?scene';
 import mistake from './scenes/mistake?scene';
 import code_full from './scenes/code_full?scene';
+// Ep11 "Motion Alarm" (timing: src/timing/ep11.json <- node video/mc/tools/timing.mjs ep11)
+import ep11_code_read from './scenes/ep11_code_read?scene';
+import ep11_alarm_steps from './scenes/ep11_alarm_steps?scene';
+import ep11_code_siren from './scenes/ep11_code_siren?scene';
+import ep11_parking_ticket from './scenes/ep11_parking_ticket?scene';
+import ep11_code_last from './scenes/ep11_code_last?scene';
+import ep11_ago_calc from './scenes/ep11_ago_calc?scene';
+import ep11_code_full from './scenes/ep11_code_full?scene';
 
 /**
  * All scenes of the course live in this one project so the editor
@@ -35,5 +43,12 @@ export default makeProject({
     prefs_get,
     mistake,
     code_full,
+    ep11_code_read,
+    ep11_alarm_steps,
+    ep11_code_siren,
+    ep11_parking_ticket,
+    ep11_code_last,
+    ep11_ago_calc,
+    ep11_code_full,
   ],
 });

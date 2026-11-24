@@ -126,7 +126,8 @@ full-sketch glimpse (`lib/glimpse.tsx`) that zooms into the scene's code line.
 The timing tool also copies the real sketch text to `src/timing/ep10_sketch.json`.
 
 ```
-node video/mc/tools/ep10_timing.mjs     # rerun after every narration change
+node video/mc/tools/timing.mjs ep10     # any episode; rerun after every narration change
+node video/mc/tools/timing.mjs ep11     # (ep10_timing.mjs = old alias for ep10)
 ```
 
 reads `video/ep10/build/schedule.json` (falls back to a 2.45 words/s

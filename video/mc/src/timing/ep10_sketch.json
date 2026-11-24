@@ -1,5 +1,6 @@
 {
  "file": "reflex_oled.ino",
+ "folder": "lessons/10-reflex-oled",
  "lines": [
   "// ESP32 From Zero - Episode 10: Reflex Game 2.0 (OLED screen + buzzer, the record survives unplugging)",
   "// Parts: 0.96\" I2C OLED (SSD1306, address 0x3C): SDA -> GPIO 21, SCL -> GPIO 22, VCC -> 3V3, GND -> GND",

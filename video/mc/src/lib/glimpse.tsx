@@ -42,20 +42,33 @@ export class SketchGlimpse {
   private readonly cols = [createRef<Code>(), createRef<Code>()];
   private readonly bar = createRef<Rect>();
   private readonly split: number;
+  private readonly lines: string[];
+  private readonly file: string;
+  /** font size / line height of the sketch (two columns fit ~825 px of height) */
+  public readonly font: number;
+  public readonly lineH: number;
 
-  /** from/to/focus are 1-based line numbers of the sketch (as in an editor). */
+  /**
+   * from/to are 1-based line numbers of the sketch (as in an editor).
+   * sketch defaults to Ep10's; pass another src/timing/<ep>_sketch.json.
+   */
   public constructor(
-    private readonly o: {from: number; to: number; match: string},
+    private readonly o: {from: number; to: number; match: string; sketch?: {file: string; lines: string[]}},
   ) {
-    this.split = Math.ceil(SKETCH_LINES.length / 2);
+    this.lines = o.sketch?.lines ?? SKETCH_LINES;
+    this.file = o.sketch?.file ?? SKETCH_FILE;
+    this.split = Math.ceil(this.lines.length / 2);
+    this.lineH = Math.min(SketchGlimpse.LINE_H, 825 / this.split);
+    this.font = Math.round(this.lineH * 0.867 * 10) / 10;
   }
 
   public node() {
-    const colW = 760;
+    const maxLen = Math.max(...this.lines.map(l => l.length));
+    const colW = Math.min(840, Math.max(400, maxLen * this.font * 0.55 + 16));
     const gap = 70;
     const left = -(colW * 2 + gap) / 2;
-    const top = -410;
-    const texts = [SKETCH_LINES.slice(0, this.split), SKETCH_LINES.slice(this.split)];
+    const top = this.lineH < SketchGlimpse.LINE_H ? -425 : -410;
+    const texts = [this.lines.slice(0, this.split), this.lines.slice(this.split)];
     return (
       <Node ref={this.root}>
         <Rect ref={this.bg} width={W} height={H} fill={C.bg} />
@@ -72,8 +85,8 @@ export class SketchGlimpse {
             radius={[10, 10, 0, 0]}
             fill={'#15223a'}
           >
-            <Txt text={SKETCH_FILE} fontFamily={FONT.code} fontWeight={700} fontSize={22} fill={C.amber} />
-            <Txt text={`${SKETCH_LINES.length} lines`} fontFamily={FONT.ui} fontSize={20} fill={C.dim} />
+            <Txt text={this.file} fontFamily={FONT.code} fontWeight={700} fontSize={22} fill={C.amber} />
+            <Txt text={`${this.lines.length} lines`} fontFamily={FONT.ui} fontSize={20} fill={C.dim} />
           </Rect>
           <Rect ref={this.bar} fill={'rgba(255,181,71,0.16)'} radius={6} opacity={0} />
           {texts.map((t, i) => (
@@ -84,8 +97,8 @@ export class SketchGlimpse {
               offset={[-1, -1]}
               highlighter={arduino}
               fontFamily={FONT.code}
-              fontSize={SketchGlimpse.FONT}
-              lineHeight={SketchGlimpse.LINE_H}
+              fontSize={this.font}
+              lineHeight={this.lineH}
               code={t.join('\n')}
             />
           ))}
