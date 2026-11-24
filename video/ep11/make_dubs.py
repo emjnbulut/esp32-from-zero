@@ -243,7 +243,9 @@ PT_FIT = {
     "s25": "Na tela: visto duas vezes, há três minutos.",
     "s34": "Sua vez: guarde as capturas com Preferences.",
 }
-ES_FIT = {}
+ES_FIT = {
+    "s31": "Pulso: visto una vez, hace doce segundos.",
+}
 HI_FIT = {}
 FIT = {"hi": HI_FIT, "pt": PT_FIT, "es": ES_FIT}
 
