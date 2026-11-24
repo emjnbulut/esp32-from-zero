@@ -37,7 +37,7 @@ s("s03", "b3d:open_record", "New record! And it stays, even after I unplug the b
   "Yeni rekor! Üstelik kartı çıkarsam bile kalıyor.")
 s("s04", "b3d:open_title", "Today we build a basketball scoreboard. A paper cup, one new sensor, and the circuit "
   "from episode ten.",
-  "Bugün bir basketbol skorbordu yapıyoruz. Bir kâğıt bardak, yeni bir sensör ve onuncu bölümün devresi.")
+  "Bugün bir basketbol skorbordu yapıyoruz. Bir kâğıt bardak, yeni bir sensör ve onuncu bölümün devresi.", pad=0.4)
 
 # ---- the sensor
 s("s05", "b3d:ir_module", "This is the infrared obstacle sensor from the kit. One side sends invisible light, the other "
@@ -66,7 +66,7 @@ s("s12", "mc:loop_miss", "If loop is busy drawing the screen at that moment, a s
   "O anda loop ekranı çizmekle meşgulse basit bir digitalRead başka yere bakıyor ve basket kayboluyor.",
   "O anda luup ekranı çizmekle meşgulse basit bir dijital rid başka yere bakıyor ve basket kayboluyor.")
 s("s13", "mc:doorbell", "Think of a door. You could keep walking over to check it, or you could install a doorbell.",
-  "Bir kapı düşünün. Sürekli gidip kontrol edebilirsiniz, ya da bir kapı zili takabilirsiniz.")
+  "Bir kapı düşünün. Sürekli gidip kontrol edebilirsiniz, ya da bir kapı zili takabilirsiniz.", pad=0.4)
 s("s14", "mc:interrupt", "That doorbell is called an interrupt. The moment the beam is blocked, the chip stops, runs "
   "our tiny function, and carries on.",
   "Bu kapı ziline interrupt, yani kesme deniyor. Işın kesildiği an çip duruyor, küçük fonksiyonumuzu çalıştırıyor "

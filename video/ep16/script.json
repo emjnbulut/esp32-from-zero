@@ -34,7 +34,8 @@
    "vis": "b3d:open_title",
    "text": "Today we build a basketball scoreboard. A paper cup, one new sensor, and the circuit from episode ten.",
    "tr": "Bugün bir basketbol skorbordu yapıyoruz. Bir kâğıt bardak, yeni bir sensör ve onuncu bölümün devresi.",
-   "dub": "Bugün bir basketbol skorbordu yapıyoruz. Bir kâğıt bardak, yeni bir sensör ve onuncu bölümün devresi."
+   "dub": "Bugün bir basketbol skorbordu yapıyoruz. Bir kâğıt bardak, yeni bir sensör ve onuncu bölümün devresi.",
+   "pad": 0.4
   },
   {
    "id": "s05",
@@ -97,7 +98,8 @@
    "vis": "mc:doorbell",
    "text": "Think of a door. You could keep walking over to check it, or you could install a doorbell.",
    "tr": "Bir kapı düşünün. Sürekli gidip kontrol edebilirsiniz, ya da bir kapı zili takabilirsiniz.",
-   "dub": "Bir kapı düşünün. Sürekli gidip kontrol edebilirsiniz, ya da bir kapı zili takabilirsiniz."
+   "dub": "Bir kapı düşünün. Sürekli gidip kontrol edebilirsiniz, ya da bir kapı zili takabilirsiniz.",
+   "pad": 0.4
   },
   {
    "id": "s14",
