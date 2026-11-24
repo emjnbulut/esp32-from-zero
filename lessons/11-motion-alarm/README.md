@@ -74,7 +74,7 @@ Later, `now - lastMotion` is how long ago it happened, in milliseconds. The help
 ## 4. Active or passive buzzer?
 
 Your kit has two buzzers that look almost the same. Ours is **passive**: a tiny speaker that plays whatever note `tone()` sends, so it
-can make a siren. The **active** one has its own beeper inside, like a doorbell: give it power and it beeps, always the same note.
+can make a siren. The **active** one has its own beeper inside, like a music box with one tune: give it power and it beeps, always the same note.
 Easier, but no siren. (Tell them apart: the passive one usually shows a green circuit board underneath; the active one is sealed and
 often has a sticker on top.)
 

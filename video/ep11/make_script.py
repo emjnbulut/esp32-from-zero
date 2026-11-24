@@ -10,7 +10,7 @@ Rules as Ep 10 v2: PRODUCTION_GUIDELINES section 9 + 12, at least half the runti
 Motion Canvas (mc:*) only for the few code lines / abstract ideas, short full-code glimpses (creator 24 Nov),
 buzzer beeps = shrill piezo sound + sound-wave rings (creator 24 Nov), fast tempo.
 Analogies: NEW thumbs up / thumbs down (PIR output), NEW row of windows / flashlight beams (Fresnel lens zones),
-NEW doorbell vs little speaker (active vs passive buzzer).
+NEW music box vs little speaker (active vs passive buzzer; doorbell is kept for interrupts, Ep 16).
 Reused: washing machine (state), parking ticket stamped at the entry (lastMotion = millis(), as pressStart in Ep 9).
 Segment keys: id, vis, text (EN narration), tr (TR subtitle), dub (TR spoken, if different), sub, pad.
 """
@@ -120,9 +120,9 @@ s("s26", "b3d:buzzers_two", "Quick question: your kit has a second buzzer that l
   "Kısa bir soru: kitinizde neredeyse aynı görünen ikinci bir buzzer var. Farkı ne?",
   "Kısa bir soru: kitinizde neredeyse aynı görünen ikinci bir bazır var. Farkı ne?", pad=2.6)
 s("s27", "b3d:buzzers_xray", "Ours is passive: a little speaker that plays any note we send. The active one is a "
-  "doorbell with its own beeper inside: power on, one fixed beep.",
+  "music box with its own beeper inside: power on, and it plays its one fixed beep.",
   "Bizimki pasif: gönderdiğimiz her notayı çalan küçük bir hoparlör. Aktif olan ise içinde kendi biperi olan bir "
-  "kapı zili: güç verince hep aynı bip.")
+  "müzik kutusu: güç verince hep aynı bipi çalıyor.")
 s("s28", "b3d:buzzers_siren", "Easier, but no siren. That's why the alarm uses the passive one.",
   "Daha kolay ama siren yok. O yüzden alarm pasif olanı kullanıyor.")
 

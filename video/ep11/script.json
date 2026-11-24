@@ -194,9 +194,9 @@
   {
    "id": "s27",
    "vis": "b3d:buzzers_xray",
-   "text": "Ours is passive: a little speaker that plays any note we send. The active one is a doorbell with its own beeper inside: power on, one fixed beep.",
-   "tr": "Bizimki pasif: gönderdiğimiz her notayı çalan küçük bir hoparlör. Aktif olan ise içinde kendi biperi olan bir kapı zili: güç verince hep aynı bip.",
-   "dub": "Bizimki pasif: gönderdiğimiz her notayı çalan küçük bir hoparlör. Aktif olan ise içinde kendi biperi olan bir kapı zili: güç verince hep aynı bip."
+   "text": "Ours is passive: a little speaker that plays any note we send. The active one is a music box with its own beeper inside: power on, and it plays its one fixed beep.",
+   "tr": "Bizimki pasif: gönderdiğimiz her notayı çalan küçük bir hoparlör. Aktif olan ise içinde kendi biperi olan bir müzik kutusu: güç verince hep aynı bipi çalıyor.",
+   "dub": "Bizimki pasif: gönderdiğimiz her notayı çalan küçük bir hoparlör. Aktif olan ise içinde kendi biperi olan bir müzik kutusu: güç verince hep aynı bipi çalıyor."
   },
   {
    "id": "s28",
