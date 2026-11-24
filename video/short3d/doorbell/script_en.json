@@ -1,0 +1,21 @@
+{
+ "project": "lessons/12-phone-control",
+ "engine": "chatterbox",
+ "draft": "2026-11-25: render with the cookie/reflex vertical pipeline + Ep12 parts (video/b3d/parts_ep12.py, phone screens)",
+ "before": {"l03": 0.4, "l05": 0.3, "l07": 0.4, "l09": 0.4},
+ "lead": 0.3,
+ "tail": 1.6,
+ "title": "My phone rings a doorbell through my ESP32",
+ "lang": "en",
+ "lines": [
+  {"id": "l01", "text": "I tap my phone, and a doorbell rings on my desk.", "show": "Doorbell from my phone?"},
+  {"id": "l02", "text": "No app. No router. No internet."},
+  {"id": "l03", "text": "The ESP32 opens its own little Wi-Fi, like a phone hotspot."},
+  {"id": "l04", "text": "My phone joins it, and opens the board's own web page."},
+  {"id": "l05", "text": "Every button is a link. Tap ring, the link flies through the air..."},
+  {"id": "l06", "text": "...and the board plays two notes on the buzzer, ding dong."},
+  {"id": "l07", "text": "The color buttons change the light, and the little screen counts every command."},
+  {"id": "l08", "text": "No new parts: the color light, a screen and a buzzer."},
+  {"id": "l09", "text": "Want to build things like this? Follow the channel, and tell me what you'd control with your phone.", "show": "Follow for more builds!"}
+ ]
+}
