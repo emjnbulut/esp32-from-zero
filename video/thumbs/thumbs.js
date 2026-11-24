@@ -203,6 +203,20 @@ const LOC = {
     pt: { title: ["DESLIGUE,", "O RECORDE FICA!"], maxW: 600 },
     es: { title: ["DESCONECTA,", "¡EL RÉCORD QUEDA!"], maxW: 600 },
   },
+  ep11_C: {
+    enMaxW: 560,
+    tr: { title: ["SENİ", "YAKALADIM!"], maxW: 560 },
+    hi: { title: ["पकड़े", "गए!"], maxW: 560 },
+    pt: { title: ["PEGUEI", "VOCÊ!"], maxW: 560 },
+    es: { title: ["¡TE", "PILLÉ!"], maxW: 560 },
+  },
+  ep11_D: {
+    enMaxW: 560,
+    tr: { title: ["ELİNİ", "ÇEK!"], maxW: 560 },
+    hi: { title: ["हाथ", "हटाओ!"], maxW: 560 },
+    pt: { title: ["TIRE A", "MÃO!"], maxW: 560 },
+    es: { title: ["¡QUITA", "LA MANO!"], maxW: 560 },
+  },
   recap2_A: {
     enMaxW: 600,
     tr: { title: ["7/7 YAP", "BAKALIM!"], pills: ["PWM · map() · state"], words: { SCORE: "PUAN" }, maxW: 600 },
@@ -343,6 +357,15 @@ const V = {
   },
   // Episode 10 v2 (OLED + buzzer, 24 Nov): both on the Blender hero frame (open_replug, OLED "214ms").
   // C = the challenge, D = the record that survives unplugging.
+  // Episode 11 draft (PIR motion alarm): both on the Blender hero frame (open_catch: warm hand at the cookie jar).
+  ep11_C() {
+    hero3d("build/ep11_hero.png", "50% 50%");
+    title([["CAUGHT", "white"], ["YOU!", "red"]], 150, 176);
+  },
+  ep11_D() {
+    hero3d("build/ep11_hero.png", "50% 50%");
+    title([["HANDS", "white"], ["OFF!", "amber"]], 150, 176);
+  },
   ep10_C() {
     hero3d("build/ep10_hero.png", "70% 50%");
     title([["BEAT MY", "white"], ["TIME!", "amber"]], 150, 176);
