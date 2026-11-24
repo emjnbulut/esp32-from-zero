@@ -1,0 +1,21 @@
+{
+ "project": "lessons/10-reflex-oled",
+ "engine": "chatterbox",
+ "draft": "2026-11-24, not rendered yet: needs the vertical Blender Short pipeline (video/short3d/treasure_tr) + Ep10 scene parts",
+ "before": {"l03": 0.4, "l05": 0.3, "l07": 0.5, "l09": 0.4},
+ "lead": 0.3,
+ "tail": 1.6,
+ "title": "Can you beat 214 milliseconds?",
+ "lang": "en",
+ "lines": [
+  {"id": "l01", "text": "Can you beat two hundred and fourteen milliseconds?", "show": "Can you beat 214 ms?"},
+  {"id": "l02", "text": "Wait for the beep... GO!"},
+  {"id": "l03", "text": "Two hundred and fourteen. A new record.", "show": "214 ms - NEW RECORD!"},
+  {"id": "l04", "text": "Now I pull the plug. Everything goes dark."},
+  {"id": "l05", "text": "Plug it back in... and the record is still there."},
+  {"id": "l06", "text": "The ESP32 times your press with its own stopwatch,"},
+  {"id": "l07", "text": "and keeps the best time in a little drawer that survives without power."},
+  {"id": "l08", "text": "A tiny screen, a buzzer, one button. That's the whole game."},
+  {"id": "l09", "text": "Want to build things like this? Follow the channel, and post your best time in the comments.", "show": "Follow for more builds!"}
+ ]
+}

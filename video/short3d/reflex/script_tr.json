@@ -1,0 +1,21 @@
+{
+ "project": "lessons/10-reflex-oled",
+ "engine": "chatterbox",
+ "draft": "2026-11-24, not rendered yet: needs the vertical Blender Short pipeline (video/short3d/treasure_tr) + Ep10 scene parts",
+ "before": {"l03": 0.4, "l05": 0.3, "l07": 0.5, "l09": 0.4},
+ "lead": 0.3,
+ "tail": 1.6,
+ "title": "214 milisaniyeyi geçebilir misin?",
+ "lang": "tr",
+ "lines": [
+  {"id": "l01", "text": "İki yüz on dört milisaniyeyi geçebilir misin?", "show": "214 ms'yi geçebilir misin?"},
+  {"id": "l02", "text": "Bipi bekle... BAŞLA!", "show": "Bipi bekle... BAŞLA!"},
+  {"id": "l03", "text": "İki yüz on dört. Yeni rekor.", "show": "214 ms - YENİ REKOR!"},
+  {"id": "l04", "text": "Şimdi fişi çekiyorum. Her şey kararıyor."},
+  {"id": "l05", "text": "Tekrar takıyorum... ve rekor hâlâ orada."},
+  {"id": "l06", "text": "E Se Pe otuz iki, basışını kendi kronometresiyle ölçüyor,", "show": "ESP32, basışını kendi kronometresiyle ölçüyor,"},
+  {"id": "l07", "text": "en iyi süreyi de elektrik gitse bile kaybolmayan küçük bir çekmecede saklıyor."},
+  {"id": "l08", "text": "Küçük bir ekran, bir buzzer, tek bir düğme. Bütün oyun bu.", "show": "Küçük bir ekran, bir buzzer, tek bir düğme. Bütün oyun bu."},
+  {"id": "l09", "text": "Böyle şeyler yapmayı öğrenmek istiyorsan kanalımı takip et, en iyi süreni de yorumlara yaz.", "show": "Daha fazlası için takip et!"}
+ ]
+}
