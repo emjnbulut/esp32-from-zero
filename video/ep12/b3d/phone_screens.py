@@ -46,7 +46,8 @@ def _center(r):
     return ((r[0] + r[2]) / 2 / W, (r[1] + r[3]) / 2 / H)
 
 
-TAPS = {n: _center(r) for n, r in page_buttons(True).items()}
+TAPS = {n: _center(r) for n, r in page_buttons(False).items()}
+TAPS["party"] = _center(page_buttons(True)["party"])
 TAPS["wifi_net"] = _center(wifi_row_rect(1))
 TAPS["stay"] = _center(DIALOG_STAY)
 TAPS["addr"] = _center((24, 70, 516, 130))

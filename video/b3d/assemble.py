@@ -168,6 +168,17 @@ def noise(d, vol, hp=True, seed=0):
     return (x * env * vol).astype(np.float32)
 
 
+def whoosh(d, vol, seed=6):
+    """soft air swish for a radio 'packet': noise through a moving box filter, swelling in and out"""
+    rng = np.random.default_rng(seed)
+    x = rng.standard_normal(int(d * SR)).astype(np.float32)
+    x = np.convolve(x, np.ones(24, np.float32) / 24, mode="same")  # drop the hiss, keep the air
+    x = np.diff(x, prepend=0) * 6  # and the rumble
+    t = np.arange(len(x)) / SR
+    env = np.sin(np.pi * t / d) ** 2
+    return (x / (np.max(np.abs(x)) or 1) * env * vol).astype(np.float32)
+
+
 def seq(*parts):
     """[(offset_s, wave)] -> one wave"""
     n = max(int(o * SR) + len(w) for o, w in parts)
@@ -205,6 +216,11 @@ SFX = {
     "note_1": lambda: piezo(1319, 0.2, 0.42),  # passive buzzer playing "any note"
     "note_2": lambda: piezo(1568, 0.2, 0.42),
     "note_3": lambda: piezo(2093, 0.25, 0.42),
+    # Episode 12 (lessons/12-phone-control): ring = tone(1319, 180), delay(200), tone(1047, 300); phone taps; packets
+    "ring_1": lambda: piezo(1319, 0.18, 0.5),
+    "ring_2": lambda: piezo(1047, 0.30, 0.5),
+    "tap": lambda: noise(0.018, 0.16, hp=False, seed=5),
+    "whoosh": lambda: whoosh(0.32, 0.10),
 }
 
 
