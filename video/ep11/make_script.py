@@ -156,6 +156,32 @@ s("s36", "b3d:outro", "Next time, you control this board from your phone, with n
   "Bir dahaki sefere bu kartı telefonunuzdan kontrol ediyorsunuz, uygulama ve modem olmadan. Orada görüşürüz.",
   pad=0.8)
 
+# TR lines shortened to fit the English slots after the narrated fit report (2026-11-24, as Ep 10's TR_FIT).
+TR_FIT = {
+    "s03": "Döndüğümde ne zaman olduğunu da söylüyor: iki dakika önce.",
+    "s05": "Bu beyaz kubbe bir hareket sensörü, hiçbir şey göndermiyor, sadece sıcaklığı izliyor.",
+    "s06": "Sıcak her şey kızılötesinde parlar, eliniz, bir kedi, bir çay. Biz göremeyiz, bu sensör görür.",
+    "s07": "Kubbe, küçük pencerelerden oluşan bir mercek, her biri odanın bir dilimine bakıyor.",
+    "s09": "Yani kod için bütün sensör, kıpırdayınca başparmak yukarı, yoksa aşağı.",
+    "s10": "Yanında iki turuncu düğme var, biri evetin süresini, diğeri menzili ayarlıyor.",
+    "s13": "Sensörün üç bacağı var: kırmızı kablo Vi-in pininden beş volt getiriyor, siyah toprağa.",
+    "s17": "Alarmın bir planı olmalı, yine çamaşır makinesi gibi adımlar: kapalı, çıkış, kurulu, alarm.",
+    "s19": "Sıfırda bekçi kuruluyor ve sadece sensörün evet demesini bekliyor.",
+    "s20": "Evet deyince siren başlıyor, saniyede dört kez değişen iki nota.",
+    "s21": "Durdurmak için düğmeye basın, ya da on beş saniye sonra kendisi susar.",
+    "s22": "Şimdi akıllıca kısım: hareket anında saati damgalıyoruz, otopark bileti gibi.",
+    "s24": "Şimdiden last moşını çıkarınca ne kadar önce olduğunu buluyoruz, altmış bine bölünce dakika.",
+    "s25": "Ekran şöyle diyebiliyor: iki kez görüldü, sonuncusu üç dakika önce.",
+    "s29": "Hadi deneyelim: kuruyorum, geri sayım işliyor, odadan çıkıyorum.",
+    "s31": "Dönüp düğmeye basıyorum: bir kez görüldü, on iki saniye önce.",
+    "s32": "Sık bir sorun: alarm kurar kurmaz çalıyor. Ya sensör hâlâ ısınıyor, ya süre düğmesi eveti uzun tutuyor.",
+    "s33": "O yüzden otuz saniye bekleyin ve süre düğmesini sonuna kadar kısın, gerisi kodda.",
+    "s34": "Sıra sizde: yakalama sayısını Preferıns ile fiş çekilince bile saklayın.",
+}
+for _d in S:
+    if _d["id"] in TR_FIT:
+        _d["tr"] = _d["dub"] = TR_FIT[_d["id"]]
+
 SCRIPT = {
     "episode": "ep11",
     "title": "I Built a Motion Alarm That Catches Anyone Sneaking In (ESP32 + PIR)",

@@ -25,8 +25,8 @@
    "id": "s03",
    "vis": "b3d:open_ago",
    "text": "And when I come back, it even tells me when it happened: two minutes ago.",
-   "tr": "Geri döndüğümde bunun ne zaman olduğunu bile söylüyor: iki dakika önce.",
-   "dub": "Geri döndüğümde bunun ne zaman olduğunu bile söylüyor: iki dakika önce."
+   "tr": "Döndüğümde ne zaman olduğunu da söylüyor: iki dakika önce.",
+   "dub": "Döndüğümde ne zaman olduğunu da söylüyor: iki dakika önce."
   },
   {
    "id": "s04",
@@ -39,22 +39,22 @@
    "id": "s05",
    "vis": "b3d:pir_hero",
    "text": "This white dome is a motion sensor. It doesn't send anything out. It just watches for warmth.",
-   "tr": "Bu beyaz kubbe bir hareket sensörü. Dışarı hiçbir şey göndermiyor. Sadece sıcaklığı izliyor.",
-   "dub": "Bu beyaz kubbe bir hareket sensörü. Dışarı hiçbir şey göndermiyor. Sadece sıcaklığı izliyor."
+   "tr": "Bu beyaz kubbe bir hareket sensörü, hiçbir şey göndermiyor, sadece sıcaklığı izliyor.",
+   "dub": "Bu beyaz kubbe bir hareket sensörü, hiçbir şey göndermiyor, sadece sıcaklığı izliyor."
   },
   {
    "id": "s06",
    "vis": "b3d:pir_glow",
    "text": "Everything warm glows in infrared: your hand, a cat, a cup of tea. We can't see that glow, but this sensor can.",
-   "tr": "Sıcak olan her şey kızılötesinde parlar: eliniz, bir kedi, bir fincan çay. Biz bu parıltıyı göremeyiz, ama bu sensör görebilir.",
-   "dub": "Sıcak olan her şey kızılötesinde parlar: eliniz, bir kedi, bir fincan çay. Biz bu parıltıyı göremeyiz, ama bu sensör görebilir."
+   "tr": "Sıcak her şey kızılötesinde parlar, eliniz, bir kedi, bir çay. Biz göremeyiz, bu sensör görür.",
+   "dub": "Sıcak her şey kızılötesinde parlar, eliniz, bir kedi, bir çay. Biz göremeyiz, bu sensör görür."
   },
   {
    "id": "s07",
    "vis": "b3d:pir_lens",
    "text": "The dome is a lens made of many little windows. Each one looks at a different slice of the room, like a row of flashlights.",
-   "tr": "Kubbe, birçok küçük pencereden oluşan bir mercek. Her biri odanın farklı bir dilimine bakıyor, yan yana dizilmiş el fenerleri gibi.",
-   "dub": "Kubbe, birçok küçük pencereden oluşan bir mercek. Her biri odanın farklı bir dilimine bakıyor, yan yana dizilmiş el fenerleri gibi."
+   "tr": "Kubbe, küçük pencerelerden oluşan bir mercek, her biri odanın bir dilimine bakıyor.",
+   "dub": "Kubbe, küçük pencerelerden oluşan bir mercek, her biri odanın bir dilimine bakıyor."
   },
   {
    "id": "s08",
@@ -67,15 +67,15 @@
    "id": "s09",
    "vis": "b3d:pir_answer",
    "text": "So for our code, the whole sensor is just a thumbs up when something moved, and a thumbs down when nothing did.",
-   "tr": "Yani kodumuz için bütün sensör, bir şey kıpırdayınca başparmak yukarı, kıpırdamayınca başparmak aşağı.",
-   "dub": "Yani kodumuz için bütün sensör, bir şey kıpırdayınca başparmak yukarı, kıpırdamayınca başparmak aşağı."
+   "tr": "Yani kod için bütün sensör, kıpırdayınca başparmak yukarı, yoksa aşağı.",
+   "dub": "Yani kod için bütün sensör, kıpırdayınca başparmak yukarı, yoksa aşağı."
   },
   {
    "id": "s10",
    "vis": "b3d:pir_knobs",
    "text": "On the side there are two orange knobs. One sets how long the yes lasts, the other how far it can see.",
-   "tr": "Yanında iki turuncu düğme var. Biri evetin ne kadar süreceğini, diğeri ne kadar uzağı göreceğini ayarlıyor.",
-   "dub": "Yanında iki turuncu düğme var. Biri evetin ne kadar süreceğini, diğeri ne kadar uzağı göreceğini ayarlıyor."
+   "tr": "Yanında iki turuncu düğme var, biri evetin süresini, diğeri menzili ayarlıyor.",
+   "dub": "Yanında iki turuncu düğme var, biri evetin süresini, diğeri menzili ayarlıyor."
   },
   {
    "id": "s11",
@@ -95,8 +95,8 @@
    "id": "s13",
    "vis": "b3d:wire_pir_power",
    "text": "The sensor has three legs. A red wire brings five volts from the board's V-in pin, and a black wire goes to ground.",
-   "tr": "Sensörün üç bacağı var. Kırmızı kablo kartın VIN pininden beş volt getiriyor, siyah kablo toprağa gidiyor.",
-   "dub": "Sensörün üç bacağı var. Kırmızı kablo kartın Vi-in pininden beş volt getiriyor, siyah kablo toprağa gidiyor."
+   "tr": "Sensörün üç bacağı var: kırmızı kablo Vi-in pininden beş volt getiriyor, siyah toprağa.",
+   "dub": "Sensörün üç bacağı var: kırmızı kablo Vi-in pininden beş volt getiriyor, siyah toprağa."
   },
   {
    "id": "s14",
@@ -123,8 +123,8 @@
    "id": "s17",
    "vis": "mc:alarm_steps",
    "text": "But an alarm needs a plan, so again we use steps, like our washing machine: off, leaving, armed, and alarm.",
-   "tr": "Ama bir alarmın bir plana ihtiyacı var, o yüzden yine adımlar kullanıyoruz, çamaşır makinemiz gibi: kapalı, çıkış, kurulu ve alarm.",
-   "dub": "Ama bir alarmın bir plana ihtiyacı var, o yüzden yine adımlar kullanıyoruz, çamaşır makinemiz gibi: kapalı, çıkış, kurulu ve alarm."
+   "tr": "Alarmın bir planı olmalı, yine çamaşır makinesi gibi adımlar: kapalı, çıkış, kurulu, alarm.",
+   "dub": "Alarmın bir planı olmalı, yine çamaşır makinesi gibi adımlar: kapalı, çıkış, kurulu, alarm."
   },
   {
    "id": "s18",
@@ -137,29 +137,29 @@
    "id": "s19",
    "vis": "b3d:demo_armed",
    "text": "At zero, the guard is armed. Now it waits for only one thing: the sensor saying yes.",
-   "tr": "Sıfırda bekçi kuruluyor. Artık tek bir şeyi bekliyor: sensörün evet demesini.",
-   "dub": "Sıfırda bekçi kuruluyor. Artık tek bir şeyi bekliyor: sensörün evet demesini."
+   "tr": "Sıfırda bekçi kuruluyor ve sadece sensörün evet demesini bekliyor.",
+   "dub": "Sıfırda bekçi kuruluyor ve sadece sensörün evet demesini bekliyor."
   },
   {
    "id": "s20",
    "vis": "mc:code_siren",
    "text": "When it does, the siren starts: two notes, switching four times a second, so it really sounds like an alarm.",
-   "tr": "Evet dediğinde siren başlıyor: saniyede dört kez değişen iki nota, gerçekten alarm gibi duyulsun diye.",
-   "dub": "Evet dediğinde siren başlıyor: saniyede dört kez değişen iki nota, gerçekten alarm gibi duyulsun diye."
+   "tr": "Evet deyince siren başlıyor, saniyede dört kez değişen iki nota.",
+   "dub": "Evet deyince siren başlıyor, saniyede dört kez değişen iki nota."
   },
   {
    "id": "s21",
    "vis": "b3d:demo_stop",
    "text": "Press the button to stop it. Or it stops by itself after fifteen seconds, so the neighbors stay friendly.",
-   "tr": "Durdurmak için düğmeye basın. Ya da on beş saniye sonra kendiliğinden susuyor, komşular dost kalsın diye.",
-   "dub": "Durdurmak için düğmeye basın. Ya da on beş saniye sonra kendiliğinden susuyor, komşular dost kalsın diye."
+   "tr": "Durdurmak için düğmeye basın, ya da on beş saniye sonra kendisi susar.",
+   "dub": "Durdurmak için düğmeye basın, ya da on beş saniye sonra kendisi susar."
   },
   {
    "id": "s22",
    "vis": "mc:parking_ticket",
    "text": "Now the clever part. At the moment of motion, we stamp the time, like the parking ticket from episode nine.",
-   "tr": "Şimdi işin akıllıca kısmı. Hareket anında saati damgalıyoruz, dokuzuncu bölümdeki otopark bileti gibi.",
-   "dub": "Şimdi işin akıllıca kısmı. Hareket anında saati damgalıyoruz, dokuzuncu bölümdeki otopark bileti gibi.",
+   "tr": "Şimdi akıllıca kısım: hareket anında saati damgalıyoruz, otopark bileti gibi.",
+   "dub": "Şimdi akıllıca kısım: hareket anında saati damgalıyoruz, otopark bileti gibi.",
    "pad": 0.5
   },
   {
@@ -173,15 +173,15 @@
    "id": "s24",
    "vis": "mc:ago_calc",
    "text": "Later, now minus last motion tells us how long ago it was. Divide by sixty thousand, and you have minutes.",
-   "tr": "Sonra, şimdiki zamandan lastMotion'ı çıkarınca ne kadar önce olduğunu buluyoruz. Altmış bine bölün, dakikayı bulun.",
-   "dub": "Sonra, şimdiki zamandan last moşını çıkarınca ne kadar önce olduğunu buluyoruz. Altmış bine bölün, dakikayı bulun."
+   "tr": "Şimdiden last moşını çıkarınca ne kadar önce olduğunu buluyoruz, altmış bine bölünce dakika.",
+   "dub": "Şimdiden last moşını çıkarınca ne kadar önce olduğunu buluyoruz, altmış bine bölünce dakika."
   },
   {
    "id": "s25",
    "vis": "b3d:screen_ago",
    "text": "So the screen can say: seen twice, last time three minutes ago.",
-   "tr": "Böylece ekran şunu söyleyebiliyor: iki kez görüldü, sonuncusu üç dakika önce.",
-   "dub": "Böylece ekran şunu söyleyebiliyor: iki kez görüldü, sonuncusu üç dakika önce."
+   "tr": "Ekran şöyle diyebiliyor: iki kez görüldü, sonuncusu üç dakika önce.",
+   "dub": "Ekran şöyle diyebiliyor: iki kez görüldü, sonuncusu üç dakika önce."
   },
   {
    "id": "s26",
@@ -209,8 +209,8 @@
    "id": "s29",
    "vis": "b3d:demo_walkout",
    "text": "Let's test it. I arm it, the countdown runs, and I walk out of the room.",
-   "tr": "Hadi deneyelim. Kuruyorum, geri sayım işliyor ve odadan çıkıyorum.",
-   "dub": "Hadi deneyelim. Kuruyorum, geri sayım işliyor ve odadan çıkıyorum."
+   "tr": "Hadi deneyelim: kuruyorum, geri sayım işliyor, odadan çıkıyorum.",
+   "dub": "Hadi deneyelim: kuruyorum, geri sayım işliyor, odadan çıkıyorum."
   },
   {
    "id": "s30",
@@ -223,29 +223,29 @@
    "id": "s31",
    "vis": "b3d:demo_back",
    "text": "I come back and press the button: seen once, last time twelve seconds ago.",
-   "tr": "Geri dönüp düğmeye basıyorum: bir kez görüldü, sonuncusu on iki saniye önce.",
-   "dub": "Geri dönüp düğmeye basıyorum: bir kez görüldü, sonuncusu on iki saniye önce."
+   "tr": "Dönüp düğmeye basıyorum: bir kez görüldü, on iki saniye önce.",
+   "dub": "Dönüp düğmeye basıyorum: bir kez görüldü, on iki saniye önce."
   },
   {
    "id": "s32",
    "vis": "b3d:mistake_false",
    "text": "A common problem: the alarm goes off right after you arm it. Usually the sensor is still warming up, or the time knob keeps the yes on too long.",
-   "tr": "Sık görülen bir sorun: alarm siz kurar kurmaz çalıyor. Genelde sensör hâlâ ısınıyordur ya da süre düğmesi eveti çok uzun tutuyordur.",
-   "dub": "Sık görülen bir sorun: alarm siz kurar kurmaz çalıyor. Genelde sensör hâlâ ısınıyordur ya da süre düğmesi eveti çok uzun tutuyordur."
+   "tr": "Sık bir sorun: alarm kurar kurmaz çalıyor. Ya sensör hâlâ ısınıyor, ya süre düğmesi eveti uzun tutuyor.",
+   "dub": "Sık bir sorun: alarm kurar kurmaz çalıyor. Ya sensör hâlâ ısınıyor, ya süre düğmesi eveti uzun tutuyor."
   },
   {
    "id": "s33",
    "vis": "b3d:mistake_fix",
    "text": "So wait thirty seconds after power-on, and turn the time knob all the way down. Our code does the rest.",
-   "tr": "O yüzden güç verdikten sonra otuz saniye bekleyin ve süre düğmesini sonuna kadar kısın. Gerisini kodumuz hallediyor.",
-   "dub": "O yüzden güç verdikten sonra otuz saniye bekleyin ve süre düğmesini sonuna kadar kısın. Gerisini kodumuz hallediyor."
+   "tr": "O yüzden otuz saniye bekleyin ve süre düğmesini sonuna kadar kısın, gerisi kodda.",
+   "dub": "O yüzden otuz saniye bekleyin ve süre düğmesini sonuna kadar kısın, gerisi kodda."
   },
   {
    "id": "s34",
    "vis": "b3d:challenge",
    "text": "Your turn. Keep the number of catches even after unplugging, with Preferences, like last episode.",
-   "tr": "Sıra sizde. Yakalama sayısını, geçen bölümdeki gibi Preferences ile, fiş çekilince bile saklayın.",
-   "dub": "Sıra sizde. Yakalama sayısını, geçen bölümdeki gibi Preferıns ile, fiş çekilince bile saklayın."
+   "tr": "Sıra sizde: yakalama sayısını Preferıns ile fiş çekilince bile saklayın.",
+   "dub": "Sıra sizde: yakalama sayısını Preferıns ile fiş çekilince bile saklayın."
   },
   {
    "id": "s35",
