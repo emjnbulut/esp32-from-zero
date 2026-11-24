@@ -1,0 +1,30 @@
+{
+ "lang": "tr",
+ "segments": {
+  "s01": "Biri çekmecemi açıyor... ve çekmece çığlık atıyor.",
+  "s02": "Geri geldiğimde küçük ekran söylüyor: üç kez açıldı.",
+  "s03": "Arada elektrik kesilse bile. Hepsini küçücük bir ışık sensörü yapıyor.",
+  "s04": "Bugün bir çekmece casusu yapıyoruz. Gerisi onuncu bölümün devresi.",
+  "s05": "Bu, setteki ışık sensörü modülü. Dört pin: A O, D O, toprak ve güç.",
+  "s06": "Küçük yuvarlak parça ışıkla değişiyor. Kart onu sıfırdan dört bin doksan beşe kadar bir sayı olarak okuyor.",
+  "s07": "Kapalı çekmece karanlık, yani ışık sayısı düşük. Açınca sayı fırlıyor.",
+  "s08": "Dikkat: bu modüllerin çoğu karanlıkta daha yüksek sayı veriyor. Koddaki bir satır bunu çeviriyor, böylece bizim için sıfır her zaman karanlık demek.",
+  "s09": "Hadi bağlayalım. Ekran, düğme ve bazır yerinde kalıyor.",
+  "s10": "Güç üç virgül üç volta, toprak toprağa, A O otuz beş numaralı pine. D O boş kalıyor.",
+  "s11": "Sonra sensör çekmecenin içine giriyor, yukarı bakıyor, kablolar arkadan çıkıyor.",
+  "s12": "İlk fikir: tek bir çizgi. Üstündeyse çekmece açık. Altındaysa kapalı.",
+  "s13": "Ama çekmeceyi biraz aralayınca sayı tam o çizginin üstünde titriyor. Alarm açık, kapalı, açık, kapalı.",
+  "s14": "Termostatın da aynı sorunu var, geri dönmeden önce biraz bekleyerek çözüyor.",
+  "s15": "Bu yüzden iki çizgi kullanıyoruz. Bin sekiz yüzün üstünde açık, ancak bin iki yüzün altında tekrar kapalı. Arada hiçbir şey değişmiyor.",
+  "s16": "Kodda bu iki if: kapalıysa ve ışık üst çizgiyi geçerse açıldı. Açıksa ve ışık alt çizginin altına düşerse kapandı.",
+  "s17": "Açılınca bazır beş saniye boyunca çığlık atıyor, hızlı inip çıkan bir siren.",
+  "s18": "Sayaç da bir artıyor ve onuncu bölümdeki deftere yazılıyor. Sadece çekmece açılınca, asla her döngüde değil.",
+  "s19": "Kabloyu çekin, geri takın, ekran hâlâ diyor ki: üç kez açıldı.",
+  "s20": "Sıfırdan başlamak için düğmeyi iki saniye basılı tutun. Sayaç sıfıra dönüyor.",
+  "s21": "Sizin çekmeceniz benimkinden farklı. Kart ışık sayısını saniyede iki kez yazdırıyor: çekmece kapalıyken ve açıkken okuyun, iki çizgiyi ona göre kaydırın.",
+  "s22": "Sık bir sorun: çekmece kapalıyken çığlık atıyor. Bir aralıktan ışık giriyordur, orayı bantlayın ya da üst çizgiyi yükseltin.",
+  "s23": "Sıra sizde: ekran çekmecenin son seferde ne kadar açık kaldığını da göstersin. İpucu: yine otopark bileti.",
+  "s24": "Tam kod ve çözüm aşağıdaki bağlantıdaki ders klasöründe. Siz ışık sensörüyle neyi korurdunuz? Yorumlarda yazın.",
+  "s25": "Bir dahaki sefere, kâğıt top için bir basketbol skorbordu. Orada görüşürüz."
+ }
+}

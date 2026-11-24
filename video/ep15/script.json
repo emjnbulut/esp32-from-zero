@@ -1,0 +1,189 @@
+{
+ "episode": "ep15",
+ "title": "My Drawer Screams When Someone Opens It (ESP32 Light Sensor)",
+ "version": 2,
+ "draft": true,
+ "lead_in": 0.8,
+ "sting_after": "s03",
+ "scene_gap": 0.7,
+ "dub_stretch": false,
+ "segments": [
+  {
+   "id": "s01",
+   "vis": "b3d:open_scream",
+   "text": "Somebody opens my drawer... and it screams.",
+   "tr": "Biri çekmecemi açıyor... ve çekmece çığlık atıyor.",
+   "dub": "Biri çekmecemi açıyor... ve çekmece çığlık atıyor."
+  },
+  {
+   "id": "s02",
+   "vis": "b3d:open_count",
+   "text": "And when I come back, the little screen tells me: opened three times.",
+   "tr": "Geri geldiğimde küçük ekran söylüyor: üç kez açıldı.",
+   "dub": "Geri geldiğimde küçük ekran söylüyor: üç kez açıldı."
+  },
+  {
+   "id": "s03",
+   "vis": "b3d:open_orbit",
+   "text": "Even if the power went out in between. One tiny light sensor does it all.",
+   "tr": "Arada elektrik kesilse bile. Hepsini küçücük bir ışık sensörü yapıyor.",
+   "dub": "Arada elektrik kesilse bile. Hepsini küçücük bir ışık sensörü yapıyor."
+  },
+  {
+   "id": "s04",
+   "vis": "b3d:open_title",
+   "text": "Today we build a drawer spy. The rest is the circuit from episode ten.",
+   "tr": "Bugün bir çekmece casusu yapıyoruz. Gerisi onuncu bölümün devresi.",
+   "dub": "Bugün bir çekmece casusu yapıyoruz. Gerisi onuncu bölümün devresi."
+  },
+  {
+   "id": "s05",
+   "vis": "b3d:ldr_module",
+   "text": "This is the light sensor module from the kit. Four pins: A O, D O, ground and power.",
+   "tr": "Bu, setteki ışık sensörü modülü. Dört pin: A O, D O, toprak ve güç.",
+   "dub": "Bu, setteki ışık sensörü modülü. Dört pin: A O, D O, toprak ve güç."
+  },
+  {
+   "id": "s06",
+   "vis": "b3d:ldr_macro",
+   "text": "The little round part changes with light. The board reads it as a number, from zero to four thousand ninety-five.",
+   "tr": "Küçük yuvarlak parça ışıkla değişiyor. Kart onu sıfırdan dört bin doksan beşe kadar bir sayı olarak okuyor.",
+   "dub": "Küçük yuvarlak parça ışıkla değişiyor. Kart onu sıfırdan dört bin doksan beşe kadar bir sayı olarak okuyor."
+  },
+  {
+   "id": "s07",
+   "vis": "mc:light_number",
+   "text": "In a closed drawer it's dark, so the light number is low. Open it, and the number jumps.",
+   "tr": "Kapalı çekmece karanlık, yani ışık sayısı düşük. Açınca sayı fırlıyor.",
+   "dub": "Kapalı çekmece karanlık, yani ışık sayısı düşük. Açınca sayı fırlıyor."
+  },
+  {
+   "id": "s08",
+   "vis": "mc:code_read",
+   "text": "Careful: many of these modules give a higher number in the dark. One line in the code flips it, so for us zero always means dark.",
+   "tr": "Dikkat: bu modüllerin çoğu karanlıkta daha yüksek sayı veriyor. Koddaki bir satır bunu çeviriyor, böylece bizim için sıfır her zaman karanlık demek.",
+   "dub": "Dikkat: bu modüllerin çoğu karanlıkta daha yüksek sayı veriyor. Koddaki bir satır bunu çeviriyor, böylece bizim için sıfır her zaman karanlık demek."
+  },
+  {
+   "id": "s09",
+   "vis": "b3d:wire_keep",
+   "text": "Let's wire it. The screen, the button and the buzzer stay where they were.",
+   "tr": "Hadi bağlayalım. Ekran, düğme ve buzzer yerinde kalıyor.",
+   "dub": "Hadi bağlayalım. Ekran, düğme ve bazır yerinde kalıyor."
+  },
+  {
+   "id": "s10",
+   "vis": "b3d:wire_ldr",
+   "text": "Power to three point three volts, ground to ground, and A O to pin thirty-five. D O stays empty.",
+   "tr": "Güç üç virgül üç volta, toprak toprağa, A O otuz beş numaralı pine. D O boş kalıyor.",
+   "dub": "Güç üç virgül üç volta, toprak toprağa, A O otuz beş numaralı pine. D O boş kalıyor."
+  },
+  {
+   "id": "s11",
+   "vis": "b3d:wire_drawer",
+   "text": "Then the sensor goes inside the drawer, facing up, with the wires coming out at the back.",
+   "tr": "Sonra sensör çekmecenin içine giriyor, yukarı bakıyor, kablolar arkadan çıkıyor.",
+   "dub": "Sonra sensör çekmecenin içine giriyor, yukarı bakıyor, kablolar arkadan çıkıyor."
+  },
+  {
+   "id": "s12",
+   "vis": "mc:one_line",
+   "text": "First idea: one line. Above it, the drawer is open. Below it, closed.",
+   "tr": "İlk fikir: tek bir çizgi. Üstündeyse çekmece açık. Altındaysa kapalı.",
+   "dub": "İlk fikir: tek bir çizgi. Üstündeyse çekmece açık. Altındaysa kapalı."
+  },
+  {
+   "id": "s13",
+   "vis": "b3d:flicker",
+   "text": "But open the drawer just a crack, and the number wobbles right on that line. Alarm on, off, on, off.",
+   "tr": "Ama çekmeceyi biraz aralayınca sayı tam o çizginin üstünde titriyor. Alarm açık, kapalı, açık, kapalı.",
+   "dub": "Ama çekmeceyi biraz aralayınca sayı tam o çizginin üstünde titriyor. Alarm açık, kapalı, açık, kapalı."
+  },
+  {
+   "id": "s14",
+   "vis": "mc:thermostat",
+   "text": "A thermostat has the same problem, and solves it by waiting a little before switching back.",
+   "tr": "Termostatın da aynı sorunu var, geri dönmeden önce biraz bekleyerek çözüyor.",
+   "dub": "Termostatın da aynı sorunu var, geri dönmeden önce biraz bekleyerek çözüyor."
+  },
+  {
+   "id": "s15",
+   "vis": "mc:two_lines",
+   "text": "So we use two lines. Open above eighteen hundred, closed again only below twelve hundred. In between, nothing changes.",
+   "tr": "Bu yüzden iki çizgi kullanıyoruz. Bin sekiz yüzün üstünde açık, ancak bin iki yüzün altında tekrar kapalı. Arada hiçbir şey değişmiyor.",
+   "dub": "Bu yüzden iki çizgi kullanıyoruz. Bin sekiz yüzün üstünde açık, ancak bin iki yüzün altında tekrar kapalı. Arada hiçbir şey değişmiyor."
+  },
+  {
+   "id": "s16",
+   "vis": "mc:code_hyst",
+   "text": "In code, that's two ifs: if it's closed and the light goes above the top line, it opened. If it's open and the light falls below the bottom line, it closed.",
+   "tr": "Kodda bu iki if: kapalıysa ve ışık üst çizgiyi geçerse açıldı. Açıksa ve ışık alt çizginin altına düşerse kapandı.",
+   "dub": "Kodda bu iki if: kapalıysa ve ışık üst çizgiyi geçerse açıldı. Açıksa ve ışık alt çizginin altına düşerse kapandı."
+  },
+  {
+   "id": "s17",
+   "vis": "b3d:scream",
+   "text": "When it opens, the buzzer screams for five seconds, a fast up and down whoop.",
+   "tr": "Açılınca buzzer beş saniye boyunca çığlık atıyor, hızlı inip çıkan bir siren.",
+   "dub": "Açılınca bazır beş saniye boyunca çığlık atıyor, hızlı inip çıkan bir siren."
+  },
+  {
+   "id": "s18",
+   "vis": "mc:code_counter",
+   "text": "And the counter goes up by one, written into the notebook from episode ten. Only when the drawer opens, never every loop.",
+   "tr": "Sayaç da bir artıyor ve onuncu bölümdeki deftere yazılıyor. Sadece çekmece açılınca, asla her döngüde değil.",
+   "dub": "Sayaç da bir artıyor ve onuncu bölümdeki deftere yazılıyor. Sadece çekmece açılınca, asla her döngüde değil."
+  },
+  {
+   "id": "s19",
+   "vis": "b3d:power_cut",
+   "text": "Pull the cable, plug it back in, and the screen still says: opened three times.",
+   "tr": "Kabloyu çekin, geri takın, ekran hâlâ diyor ki: üç kez açıldı.",
+   "dub": "Kabloyu çekin, geri takın, ekran hâlâ diyor ki: üç kez açıldı."
+  },
+  {
+   "id": "s20",
+   "vis": "b3d:reset_hold",
+   "text": "To start fresh, hold the button for two seconds. The counter goes back to zero.",
+   "tr": "Sıfırdan başlamak için düğmeyi iki saniye basılı tutun. Sayaç sıfıra dönüyor.",
+   "dub": "Sıfırdan başlamak için düğmeyi iki saniye basılı tutun. Sayaç sıfıra dönüyor."
+  },
+  {
+   "id": "s21",
+   "vis": "b3d:tune_serial",
+   "text": "Your drawer is different from mine. The board prints the light number twice a second: read it with the drawer shut and open, and move the two lines to fit.",
+   "tr": "Sizin çekmeceniz benimkinden farklı. Kart ışık sayısını saniyede iki kez yazdırıyor: çekmece kapalıyken ve açıkken okuyun, iki çizgiyi ona göre kaydırın.",
+   "dub": "Sizin çekmeceniz benimkinden farklı. Kart ışık sayısını saniyede iki kez yazdırıyor: çekmece kapalıyken ve açıkken okuyun, iki çizgiyi ona göre kaydırın."
+  },
+  {
+   "id": "s22",
+   "vis": "b3d:trouble_day",
+   "text": "A common problem: it screams while the drawer is closed. Light is getting in through a gap, so tape over it, or raise the top line.",
+   "tr": "Sık bir sorun: çekmece kapalıyken çığlık atıyor. Bir aralıktan ışık giriyordur, orayı bantlayın ya da üst çizgiyi yükseltin.",
+   "dub": "Sık bir sorun: çekmece kapalıyken çığlık atıyor. Bir aralıktan ışık giriyordur, orayı bantlayın ya da üst çizgiyi yükseltin."
+  },
+  {
+   "id": "s23",
+   "vis": "b3d:challenge",
+   "text": "Your turn: make the screen also show how long the drawer was open last time. Hint: the parking ticket again.",
+   "tr": "Sıra sizde: ekran çekmecenin son seferde ne kadar açık kaldığını da göstersin. İpucu: yine otopark bileti.",
+   "dub": "Sıra sizde: ekran çekmecenin son seferde ne kadar açık kaldığını da göstersin. İpucu: yine otopark bileti."
+  },
+  {
+   "id": "s24",
+   "vis": "mc:code_full",
+   "text": "The full code and the solution are in the lesson folder, linked below. What would you guard with a light sensor? Tell me in the comments.",
+   "tr": "Tam kod ve çözüm aşağıdaki bağlantıdaki ders klasöründe. Siz ışık sensörüyle neyi korurdunuz? Yorumlarda yazın.",
+   "dub": "Tam kod ve çözüm aşağıdaki bağlantıdaki ders klasöründe. Siz ışık sensörüyle neyi korurdunuz? Yorumlarda yazın.",
+   "pad": 20.0
+  },
+  {
+   "id": "s25",
+   "vis": "b3d:outro",
+   "text": "Next time, a basketball scoreboard for a paper ball. See you there.",
+   "tr": "Bir dahaki sefere, kâğıt top için bir basketbol skorbordu. Orada görüşürüz.",
+   "dub": "Bir dahaki sefere, kâğıt top için bir basketbol skorbordu. Orada görüşürüz.",
+   "pad": 0.8
+  }
+ ]
+}
