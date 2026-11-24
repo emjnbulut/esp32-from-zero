@@ -1,0 +1,229 @@
+{
+ "episode": "ep12",
+ "title": "Control Your ESP32 from Your Phone - No App, No Router",
+ "version": 2,
+ "draft": true,
+ "lead_in": 0.8,
+ "sting_after": "s03",
+ "scene_gap": 0.7,
+ "segments": [
+  {
+   "id": "s01",
+   "vis": "b3d:open_tap",
+   "text": "I tap red on my phone... and the light on my desk turns red.",
+   "tr": "Telefonda kırmızıya dokunuyorum... ve masamdaki ışık kırmızı oluyor.",
+   "dub": "Telefonda kırmızıya dokunuyorum... ve masamdaki ışık kırmızı oluyor."
+  },
+  {
+   "id": "s02",
+   "vis": "b3d:open_ring",
+   "text": "I tap ring, and it plays a doorbell. No app, no cable, no home Wi-Fi.",
+   "tr": "Zile dokunuyorum, kapı zili çalıyor. Uygulama yok, kablo yok, ev interneti yok.",
+   "dub": "Zile dokunuyorum, kapı zili çalıyor. Uygulama yok, kablo yok, ev interneti yok."
+  },
+  {
+   "id": "s03",
+   "vis": "b3d:open_count",
+   "text": "And the little screen counts every command my phone sends.",
+   "tr": "Küçük ekran da telefonun gönderdiği her komutu sayıyor.",
+   "dub": "Küçük ekran da telefonun gönderdiği her komutu sayıyor."
+  },
+  {
+   "id": "s04",
+   "vis": "b3d:open_orbit",
+   "text": "Today the board gets a remote control: your phone. And you don't add a single new part.",
+   "tr": "Bugün kartın bir uzaktan kumandası oluyor: telefonunuz. Üstelik tek bir yeni parça bile eklemiyorsunuz.",
+   "dub": "Bugün kartın bir uzaktan kumandası oluyor: telefonunuz. Üstelik tek bir yeni parça bile eklemiyorsunuz."
+  },
+  {
+   "id": "s05",
+   "vis": "b3d:wifi_rings",
+   "text": "The ESP32 has Wi-Fi built in. Here's the antenna, this zig-zag line on the board.",
+   "tr": "ESP otuz ikinin içinde Wi-Fi var. Anteni de burada, karttaki şu zikzak çizgi.",
+   "dub": "ESP otuz ikinin içinde Wi-Fi var. Anteni de burada, karttaki şu zikzak çizgi."
+  },
+  {
+   "id": "s06",
+   "vis": "b3d:wifi_hotspot",
+   "text": "Usually a device joins your home router. Today it's the other way round: the board opens its own little network, like the hotspot on your phone.",
+   "tr": "Normalde cihazlar evdeki modeme bağlanır. Bugün tam tersi: kart kendi küçük ağını açıyor, telefonunuzdaki kişisel erişim noktası gibi.",
+   "dub": "Normalde cihazlar evdeki modeme bağlanır. Bugün tam tersi: kart kendi küçük ağını açıyor, telefonunuzdaki kişisel erişim noktası gibi."
+  },
+  {
+   "id": "s07",
+   "vis": "b3d:wifi_join",
+   "text": "Your phone joins that network, like any Wi-Fi. Inside it, the board always has the same address: one nine two, one six eight, four, one.",
+   "tr": "Telefonunuz bu ağa herhangi bir Wi-Fi gibi bağlanıyor. İçeride kartın adresi hep aynı: yüz doksan iki, yüz altmış sekiz, dört, bir.",
+   "dub": "Telefonunuz bu ağa herhangi bir Wi-Fi gibi bağlanıyor. İçeride kartın adresi hep aynı: yüz doksan iki, yüz altmış sekiz, dört, bir."
+  },
+  {
+   "id": "s08",
+   "vis": "mc:code_softap",
+   "text": "In code, opening the network is one line: soft A P, with a name and a password.",
+   "tr": "Kodda ağı açmak tek satır: softAP, bir isim ve bir şifreyle.",
+   "dub": "Kodda ağı açmak tek satır: soft Ey Pi, bir isim ve bir şifreyle."
+  },
+  {
+   "id": "s09",
+   "vis": "mc:page_menu",
+   "text": "Then the board serves a tiny web page. Think of a restaurant menu where every dish has a number: tap a button, and the phone calls out that number.",
+   "tr": "Sonra kart küçük bir web sayfası sunuyor. Her yemeğin bir numarası olan bir restoran menüsü düşünün: bir düğmeye dokunursunuz, telefon o numarayı söyler.",
+   "dub": "Sonra kart küçük bir web sayfası sunuyor. Her yemeğin bir numarası olan bir restoran menüsü düşünün: bir düğmeye dokunursunuz, telefon o numarayı söyler."
+  },
+  {
+   "id": "s10",
+   "vis": "mc:page_links",
+   "text": "Here, the numbers are short links: slash color for the light, slash ring for the buzzer.",
+   "tr": "Burada numaralar kısa bağlantılar: ışık için eğik çizgi color, buzzer için eğik çizgi ring.",
+   "dub": "Burada numaralar kısa bağlantılar: ışık için eğik çizgi kalır, bazır için eğik çizgi ring."
+  },
+  {
+   "id": "s11",
+   "vis": "mc:code_on",
+   "text": "And one line per link tells the board which helper answers it. Server on: this link, this helper.",
+   "tr": "Her bağlantı için tek satır, karta hangi yardımcının cevap vereceğini söylüyor. server.on: bu bağlantı, bu yardımcı.",
+   "dub": "Her bağlantı için tek satır, karta hangi yardımcının cevap vereceğini söylüyor. Server on: bu bağlantı, bu yardımcı."
+  },
+  {
+   "id": "s12",
+   "vis": "mc:code_loop",
+   "text": "The loop has one job now: like our night guard doing rounds, it checks again and again whether a phone is knocking.",
+   "tr": "Döngünün artık tek işi var: tur atan bekçimiz gibi, bir telefonun kapıyı çalıp çalmadığına tekrar tekrar bakıyor.",
+   "dub": "Döngünün artık tek işi var: tur atan bekçimiz gibi, bir telefonun kapıyı çalıp çalmadığına tekrar tekrar bakıyor."
+  },
+  {
+   "id": "s12b",
+   "vis": "mc:order_slip",
+   "text": "Some links carry a detail, like a note on an order slip. In slash color question mark c equals red, the note says which color.",
+   "tr": "Bazı bağlantılar bir ayrıntı taşır, sipariş fişindeki bir not gibi. color soru işareti c eşittir red bağlantısında not, hangi renk olduğunu söylüyor.",
+   "dub": "Bazı bağlantılar bir ayrıntı taşır, sipariş fişindeki bir not gibi. Kalır soru işareti si eşittir red bağlantısında not, hangi renk olduğunu söylüyor."
+  },
+  {
+   "id": "s12c",
+   "vis": "mc:code_arg",
+   "text": "The helper reads that note with one line, server arg c, and picks the color with a few ifs, just like episode six.",
+   "tr": "Yardımcı bu notu tek satırla okuyor, server.arg c, ve altıncı bölümdeki gibi birkaç if ile rengi seçiyor.",
+   "dub": "Yardımcı bu notu tek satırla okuyor, server arg si, ve altıncı bölümdeki gibi birkaç if ile rengi seçiyor."
+  },
+  {
+   "id": "s12d",
+   "vis": "mc:code_answer",
+   "text": "Then it answers the phone with the same page again, so your remote stays on the screen.",
+   "tr": "Sonra telefona aynı sayfayla cevap veriyor, böylece kumandanız ekranda kalıyor.",
+   "dub": "Sonra telefona aynı sayfayla cevap veriyor, böylece kumandanız ekranda kalıyor."
+  },
+  {
+   "id": "s13",
+   "vis": "mc:page_template",
+   "text": "The page itself is a ready template in the sketch. You only change the labels and the colors.",
+   "tr": "Sayfanın kendisi koddaki hazır bir şablon. Sadece yazıları ve renkleri değiştiriyorsunuz.",
+   "dub": "Sayfanın kendisi koddaki hazır bir şablon. Sadece yazıları ve renkleri değiştiriyorsunuz."
+  },
+  {
+   "id": "s14",
+   "vis": "b3d:wire_same",
+   "text": "The circuit? It's already on your desk: the color LED from episode six, the screen and the buzzer from episode ten.",
+   "tr": "Devre mi? Zaten masanızda: altıncı bölümün renkli LED'i, onuncu bölümün ekranı ve buzzer'ı.",
+   "dub": "Devre mi? Zaten masanızda: altıncı bölümün renkli LED'i, onuncu bölümün ekranı ve bazırı."
+  },
+  {
+   "id": "s15",
+   "vis": "b3d:wire_rgb",
+   "text": "Red, green and blue legs on pins twenty-five, twenty-six and twenty-seven, each through its resistor.",
+   "tr": "Kırmızı, yeşil ve mavi bacaklar yirmi beş, yirmi altı ve yirmi yedi numaralı pinlerde, her biri kendi direncinden geçerek.",
+   "dub": "Kırmızı, yeşil ve mavi bacaklar yirmi beş, yirmi altı ve yirmi yedi numaralı pinlerde, her biri kendi direncinden geçerek."
+  },
+  {
+   "id": "s16",
+   "vis": "b3d:try_upload",
+   "text": "Upload, and the screen shows the address to open.",
+   "tr": "Yükleyin, ekran açmanız gereken adresi gösteriyor.",
+   "dub": "Yükleyin, ekran açmanız gereken adresi gösteriyor."
+  },
+  {
+   "id": "s17",
+   "vis": "b3d:try_join",
+   "text": "On the phone, open Wi-Fi settings and join the board's network with its password.",
+   "tr": "Telefonda Wi-Fi ayarlarını açın ve şifresiyle kartın ağına bağlanın.",
+   "dub": "Telefonda Wi-Fi ayarlarını açın ve şifresiyle kartın ağına bağlanın."
+  },
+  {
+   "id": "s18",
+   "vis": "b3d:try_page",
+   "text": "Type the address in the browser, and there's your remote: four colors and a ring button.",
+   "tr": "Adresi tarayıcıya yazın, işte kumandanız: dört renk ve bir zil düğmesi.",
+   "dub": "Adresi tarayıcıya yazın, işte kumandanız: dört renk ve bir zil düğmesi."
+  },
+  {
+   "id": "s19",
+   "vis": "b3d:try_red",
+   "text": "Tap red: the link travels through the air, the helper sets the color, and the screen counts command number one.",
+   "tr": "Kırmızıya dokunun: bağlantı havadan gidiyor, yardımcı rengi ayarlıyor, ekran bir numaralı komutu sayıyor.",
+   "dub": "Kırmızıya dokunun: bağlantı havadan gidiyor, yardımcı rengi ayarlıyor, ekran bir numaralı komutu sayıyor."
+  },
+  {
+   "id": "s19b",
+   "vis": "b3d:try_packet",
+   "text": "What really happens: the phone sends a tiny message through the air, the board reads it, changes the light, and sends the page back. All in a blink.",
+   "tr": "Aslında olan şu: telefon havadan küçük bir mesaj gönderiyor, kart okuyor, ışığı değiştiriyor ve sayfayı geri gönderiyor. Hepsi bir göz kırpmasında.",
+   "dub": "Aslında olan şu: telefon havadan küçük bir mesaj gönderiyor, kart okuyor, ışığı değiştiriyor ve sayfayı geri gönderiyor. Hepsi bir göz kırpmasında."
+  },
+  {
+   "id": "s19c",
+   "vis": "b3d:try_colors",
+   "text": "Green, blue, off. Every tap is a new command, and the counter on the screen keeps going up.",
+   "tr": "Yeşil, mavi, kapalı. Her dokunuş yeni bir komut ve ekrandaki sayaç artmaya devam ediyor.",
+   "dub": "Yeşil, mavi, kapalı. Her dokunuş yeni bir komut ve ekrandaki sayaç artmaya devam ediyor."
+  },
+  {
+   "id": "s20",
+   "vis": "b3d:try_ring",
+   "text": "Tap ring, and the buzzer plays two notes, like a doorbell.",
+   "tr": "Zile dokunun, buzzer kapı zili gibi iki nota çalıyor.",
+   "dub": "Zile dokunun, bazır kapı zili gibi iki nota çalıyor."
+  },
+  {
+   "id": "s21",
+   "vis": "b3d:trouble_nointernet",
+   "text": "A common problem: the phone says this network has no internet and quietly switches back to mobile data. Tell it to stay connected.",
+   "tr": "Sık bir sorun: telefon bu ağda internet yok deyip sessizce mobil veriye dönüyor. Bağlı kalmasını söyleyin.",
+   "dub": "Sık bir sorun: telefon bu ağda internet yok deyip sessizce mobil veriye dönüyor. Bağlı kalmasını söyleyin."
+  },
+  {
+   "id": "s22",
+   "vis": "b3d:trouble_password",
+   "text": "And the password needs at least eight characters, or the network never appears.",
+   "tr": "Bir de şifre en az sekiz karakter olmalı, yoksa ağ hiç görünmüyor.",
+   "dub": "Bir de şifre en az sekiz karakter olmalı, yoksa ağ hiç görünmüyor."
+  },
+  {
+   "id": "s22b",
+   "vis": "b3d:trouble_address",
+   "text": "And type the address exactly: just the numbers, no www and no https in front.",
+   "tr": "Bir de adresi tam yazın: sadece sayılar, başında www ya da https yok.",
+   "dub": "Bir de adresi tam yazın: sadece sayılar, başında www ya da https yok."
+  },
+  {
+   "id": "s23",
+   "vis": "b3d:challenge",
+   "text": "Your turn: add a party button that flashes red, green and blue three times. One new link, one new helper.",
+   "tr": "Sıra sizde: kırmızı, yeşil ve maviyi üç kez yakıp söndüren bir parti düğmesi ekleyin. Bir yeni bağlantı, bir yeni yardımcı.",
+   "dub": "Sıra sizde: kırmızı, yeşil ve maviyi üç kez yakıp söndüren bir parti düğmesi ekleyin. Bir yeni bağlantı, bir yeni yardımcı."
+  },
+  {
+   "id": "s24",
+   "vis": "mc:code_full",
+   "text": "The full code and the solution are in the lesson folder, linked below. What would you control with your phone? Tell me in the comments.",
+   "tr": "Tam kod ve çözüm aşağıdaki bağlantıdaki ders klasöründe. Siz telefonunuzla neyi kontrol ederdiniz? Yorumlarda yazın.",
+   "dub": "Tam kod ve çözüm aşağıdaki bağlantıdaki ders klasöründe. Siz telefonunuzla neyi kontrol ederdiniz? Yorumlarda yazın."
+  },
+  {
+   "id": "s25",
+   "vis": "b3d:outro",
+   "text": "Next time, a weather station: temperature and humidity on the screen and on this very phone page. See you there.",
+   "tr": "Bir dahaki sefere hava istasyonu: sıcaklık ve nem hem ekranda hem bu telefon sayfasında. Orada görüşürüz.",
+   "dub": "Bir dahaki sefere hava istasyonu: sıcaklık ve nem hem ekranda hem bu telefon sayfasında. Orada görüşürüz.",
+   "pad": 0.8
+  }
+ ]
+}
