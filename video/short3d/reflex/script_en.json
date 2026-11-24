@@ -1,7 +1,7 @@
 {
  "project": "lessons/10-reflex-oled",
  "engine": "chatterbox",
- "draft": "2026-11-24, not rendered yet: needs the vertical Blender Short pipeline (video/short3d/treasure_tr) + Ep10 scene parts",
+ "draft": "2026-11-24; built by make.py --lang <en/tr> (see README.md)",
  "before": {"l03": 0.4, "l05": 0.3, "l07": 0.5, "l09": 0.4},
  "lead": 0.3,
  "tail": 1.6,
@@ -9,7 +9,7 @@
  "lang": "en",
  "lines": [
   {"id": "l01", "text": "Can you beat two hundred and fourteen milliseconds?", "show": "Can you beat 214 ms?"},
-  {"id": "l02", "text": "Wait for the beep... GO!"},
+  {"id": "l02", "text": "Wait for the beep... Go!", "show": "Wait for the beep... GO!"},
   {"id": "l03", "text": "Two hundred and fourteen. A new record.", "show": "214 ms - NEW RECORD!"},
   {"id": "l04", "text": "Now I pull the plug. Everything goes dark."},
   {"id": "l05", "text": "Plug it back in... and the record is still there."},

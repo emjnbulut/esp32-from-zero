@@ -1,7 +1,7 @@
 {
  "project": "lessons/10-reflex-oled",
  "engine": "chatterbox",
- "draft": "2026-11-24, not rendered yet: needs the vertical Blender Short pipeline (video/short3d/treasure_tr) + Ep10 scene parts",
+ "draft": "2026-11-24; built by make.py --lang <en/tr> (see README.md)",
  "before": {"l03": 0.4, "l05": 0.3, "l07": 0.5, "l09": 0.4},
  "lead": 0.3,
  "tail": 1.6,
@@ -9,7 +9,7 @@
  "lang": "tr",
  "lines": [
   {"id": "l01", "text": "İki yüz on dört milisaniyeyi geçebilir misin?", "show": "214 ms'yi geçebilir misin?"},
-  {"id": "l02", "text": "Bipi bekle... BAŞLA!", "show": "Bipi bekle... BAŞLA!"},
+  {"id": "l02", "text": "Bip sesini bekle... Başla!", "show": "Bip sesini bekle... BAŞLA!"},
   {"id": "l03", "text": "İki yüz on dört. Yeni rekor.", "show": "214 ms - YENİ REKOR!"},
   {"id": "l04", "text": "Şimdi fişi çekiyorum. Her şey kararıyor."},
   {"id": "l05", "text": "Tekrar takıyorum... ve rekor hâlâ orada."},
