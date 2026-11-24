@@ -12,5 +12,5 @@ import sketch from '../timing/ep12_sketch.json';
 const T = makeTiming(data, 'ep12')('code_full');
 
 export default makeScene2D(
-  exact(T.total, view => codeFullBody(view, T, sketch as Sketch, ['What would you control?', '→ comments'])),
+  exact(T.total, view => codeFullBody(view, T, sketch as Sketch, ['What would you control?', '→ comments'], {pages: true})),
 );

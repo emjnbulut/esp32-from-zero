@@ -35,7 +35,17 @@ interface Timing {
   word: (w: string, fallback: number, segId?: string, nth?: number) => number;
 }
 
-export function* codeFullBody(view: View2D, T: Timing, sk: Sketch, ask: [string, string]): ThreadGenerator {
+export function* codeFullBody(
+  view: View2D,
+  T: Timing & {segments?: {start: number; words: {w: string; t: number}[]}[]},
+  sk: Sketch,
+  ask: [string, string],
+  opts: {pages?: boolean} = {},
+): ThreadGenerator {
+  // with pages: the narrated part ends after the last spoken word, the silent pad pages through the sketch
+  const lastSeg = T.segments?.[T.segments.length - 1];
+  const lastWord = lastSeg?.words[lastSeg.words.length - 1];
+  const narrEnd = opts.pages && lastSeg && lastWord ? Math.min(T.total - 4, lastSeg.start + lastWord.t + 1.0) : T.total;
   const SKETCH_LINES = sk.lines;
   const SKETCH_FILE = sk.file;
   const grid = addBackdrop(view);
@@ -180,7 +190,7 @@ export function* codeFullBody(view: View2D, T: Timing, sk: Sketch, ask: [string,
   card().scale(0.9).opacity(0);
   yield* all(card().scale(1, 0.4, easeOutBack), card().opacity(1, 0.25), delay(0.1, h1.in()));
   // the whole sketch scrolls by, top to bottom
-  const scrollEnd = T.total - 0.6;
+  const scrollEnd = narrEnd - 0.6;
   yield scroller().y(scroller().y() - scrollMax, scrollEnd - useTime(), easeInOutSine);
 
   yield* until(Math.max(useTime(), T.word('solution', 1.0) - 0.2));
@@ -191,8 +201,146 @@ export function* codeFullBody(view: View2D, T: Timing, sk: Sketch, ask: [string,
   yield* arrow().opacity(1, 0.25);
   yield loop(Infinity, () => arrow().position.y(80, 0.35, easeInOutCubic).to(60, 0.35, easeInOutCubic));
 
-  yield* until(Math.max(useTime(), T.word('comments', T.total - 1.4) - 0.2));
+  yield* until(Math.max(useTime(), T.word('comments', narrEnd - 1.4) - 0.2));
   yield* all(popIn(comments(), 0.35), h1.pulse());
   yield all(comments().rotation(-3, 0.25).to(3, 0.25).to(0, 0.2), grid().opacity(0.6, 1.2, linear));
+  if (opts.pages && narrEnd < T.total) {
+    yield* until(narrEnd);
+    yield* all(
+      card().opacity(0, 0.3),
+      solution().opacity(0, 0.3),
+      arrow().opacity(0, 0.3),
+      comments().opacity(0, 0.3),
+      folder().opacity(0, 0.3),
+      h1.out(),
+    );
+    yield* pageThrough(view, sk, T.total);
+  }
   yield* until(T.total);
+}
+
+/**
+ * Split the sketch into the fewest pages of at most max lines, balanced in
+ * size, preferring to break after a blank line (so a function's first line
+ * stays with its body).
+ */
+export function splitPages(lines: string[], max = 24): [number, number][] {
+  const n = lines.length;
+  const count = Math.ceil(n / max);
+  const pages: [number, number][] = [];
+  let start = 0;
+  for (let p = 0; p < count; p++) {
+    const left = count - p - 1; // pages after this one
+    if (left === 0) {
+      pages.push([start, n]);
+      break;
+    }
+    const target = Math.ceil((n - start) / (left + 1));
+    let end = Math.min(n, start + max);
+    for (let i = Math.min(n, start + max) - 1; i >= start + target - 6; i--) {
+      if (lines[i].trim() === '' && n - (i + 1) <= left * max) {
+        end = i + 1;
+        break;
+      }
+    }
+    if (n - end > left * max) end = n - left * max;
+    pages.push([start, end]);
+    start = end;
+  }
+  return pages;
+}
+
+/**
+ * Readable paging through the whole sketch until scene time `t1`: ~24 lines
+ * per page, 30 px monospace, line numbers, file tab, "n/N" page indicator and
+ * a thin progress bar per page, 0.3 s slide between pages, equal hold times.
+ * Fits between y = -500 and y = 378 (subtitle zone stays free).
+ */
+export function* pageThrough(view: View2D, sk: Sketch, t1: number): ThreadGenerator {
+  const pages = splitPages(sk.lines, 24);
+  const FS = 30;
+  const LH = 33;
+  const per = Math.max(...pages.map(([a, b]) => b - a));
+  const W = 1840;
+  const TAB = 54;
+  const H = per * LH + TAB + 30;
+  const TOP = 378 - H; // card bottom sits on the subtitle line
+  const card = createRef<Rect>();
+  const host = createRef<Node>();
+  const pageTxt = createRef<Txt>();
+  const prog = createRef<Rect>();
+  const codeTop = TOP + TAB + 16;
+
+  view.add(
+    <Rect ref={card} y={TOP + H / 2} width={W} height={H} radius={18} fill={'#0e1728'} stroke={'#2a3a5c'} lineWidth={3} opacity={0} clip>
+      <Node ref={host} />
+      <Rect y={-H / 2 + TAB / 2} width={W} height={TAB} fill={'#15223a'} />
+      {[0, 1, 2].map(i => (
+        <Circle x={-W / 2 + 28 + i * 26} y={-H / 2 + TAB / 2} size={14} fill={['#ff5f57', '#febc2e', '#28c840'][i]} />
+      ))}
+      <Rect x={-W / 2 + 112} y={-H / 2 + TAB / 2 + 4} offsetX={-1} height={TAB - 8} layout alignItems="center" gap={18} padding={[0, 22]} radius={[10, 10, 0, 0]} fill={'#0e1728'}>
+        <Txt text={sk.file} fontFamily={FONT.code} fontWeight={700} fontSize={26} fill={C.amber} />
+        <Txt text={sk.folder} fontFamily={FONT.code} fontSize={20} fill={C.dim} />
+      </Rect>
+      <Txt ref={pageTxt} x={W / 2 - 30} y={-H / 2 + TAB / 2} offsetX={1} text={''} fontFamily={FONT.code} fontWeight={800} fontSize={28} fill={C.text} />
+      <Rect x={-W / 2} y={-H / 2 + TAB} offsetX={-1} width={W} height={4} fill={'#1e2a40'} />
+      <Rect ref={prog} x={-W / 2} y={-H / 2 + TAB} offsetX={-1} width={0} height={4} fill={C.teal} />
+    </Rect>,
+  );
+
+  const makePage = (i: number) => {
+    const [a, b] = pages[i];
+    const ref = createRef<Node>();
+    host().add(
+      <Node ref={ref} y={codeTop - (TOP + H / 2)}>
+        <Txt
+          x={-W / 2 + 84}
+          offset={[1, -1]}
+          text={Array.from({length: b - a}, (_, k) => String(a + k + 1)).join('\n')}
+          fontFamily={FONT.code}
+          fontSize={FS}
+          lineHeight={LH}
+          textAlign={'right'}
+          fill={'#4a5878'}
+        />
+        <Code
+          x={-W / 2 + 112}
+          offset={[-1, -1]}
+          highlighter={arduino}
+          fontFamily={FONT.code}
+          fontSize={FS}
+          lineHeight={LH}
+          code={sk.lines.slice(a, b).join('\n')}
+        />
+      </Node>,
+    );
+    return ref;
+  };
+
+  const t0 = useTime();
+  const turn = 0.3;
+  const hold = (t1 - t0 - 0.3) / pages.length; // includes the turn
+  let cur = makePage(0);
+  pageTxt().text(`1/${pages.length}`);
+  yield* card().opacity(1, 0.3);
+  for (let i = 0; i < pages.length; i++) {
+    const pageStart = t0 + 0.3 + i * hold;
+    if (i > 0) {
+      const old = cur;
+      cur = makePage(i);
+      cur().x(W * 0.35).opacity(0);
+      pageTxt().text(`${i + 1}/${pages.length}`);
+      prog().width(0);
+      yield* all(
+        old().x(-W * 0.35, turn, easeInOutCubic),
+        old().opacity(0, turn),
+        cur().x(0, turn, easeInOutCubic),
+        cur().opacity(1, turn),
+        pageTxt().scale(1.25, 0.1).to(1, 0.2),
+      );
+      old().remove();
+    }
+    const end = pageStart + hold;
+    yield* prog().width(W, Math.max(0.1, end - useTime()), linear);
+  }
 }
