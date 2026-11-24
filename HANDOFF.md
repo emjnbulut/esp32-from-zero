@@ -21,6 +21,14 @@ Episode 10 v2 "I Built a Reflex Game That Remembers Your Record (ESP32 + OLED)":
 Treasure Detector 2.0 TR Short (creator asked 24 Nov, wants it shared in Turkish, more kit parts, follow-CTA):
 agent build in video/short3d/treasure_tr + projects/08-treasure-detector-2. Upload as TR Short, scheduled, after a check.
 
+More DRAFT lessons (sketch compile-checked, README; not tested on hardware, not reviewed): 12 phone remote (softAP +
+WebServer) + PARTY challenge, 14 fruit piano (touch 14/2/15), 15 drawer spy (LDR 35, hysteresis), 16 basketball
+scoreboard (IR 13, interrupt), 17 phone fan (relay 16 active-LOW, 5 V loads only). 13 and 18 need the DHT library
+(download, ask first). Ep10 project Short scripts EN/TR in video/short3d/reflex (render after the vertical pipeline).
+Ep11 Blender PIR part: video/b3d/parts_pir.py (+ video/ep11/b3d/pir_test.py). Learning site: closed sensor missions on the
+v7 pins (e858c39). Analogy registry has the new pictures (doorbell = interrupt, music box = active buzzer, thermostat =
+hysteresis, thumbs up/down = PIR, parking ticket reused for time-since).
+
 Episode 11 DRAFT (motion alarm, PIR on GPIO 33): lessons/11-motion-alarm (sketch + challenge compile, README),
 video/ep11/make_script.py (36 segments, lint clean). Not reviewed by the creator; CURRICULUM_v7_DRAFT still unapproved.
 
