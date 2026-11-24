@@ -215,7 +215,14 @@ PT_FIT = {
     "s04": "Hoje o celular vira controle, sem peça nova.",
     "s06": "Normalmente ela entra no roteador. Hoje a placa abre sua rede, como um hotspot.",
 }
-ES_FIT = {}
+ES_FIT = {
+    "s01": "Toco rojo, y la luz se pone roja.",
+    "s03": "La pantalla cuenta los comandos.",
+    "s12b": "Un enlace lleva una nota, como un pedido: color, interrogación, c igual red.",
+    "s12d": "Luego devuelve la página, y el control sigue ahí.",
+    "s17": "Entra al Wi-Fi de la placa con la clave.",
+    "s18": "Escribe la dirección y sale el control, con cuatro colores y ring.",
+}
 HI_FIT = {}
 FIT = {"hi": HI_FIT, "pt": PT_FIT, "es": ES_FIT}
 
