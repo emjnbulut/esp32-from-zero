@@ -19,8 +19,8 @@
    "id": "s02",
    "vis": "b3d:open_tune",
    "text": "Hold the button, play a little tune on the fruit, and the board plays it back.",
-   "tr": "Düğmeyi basılı tutun, meyvelerde küçük bir melodi çalın, kart onu geri çalıyor.",
-   "dub": "Düğmeyi basılı tutun, meyvelerde küçük bir melodi çalın, kart onu geri çalıyor."
+   "tr": "Düğmeyi tutup bir melodi çalın, kart onu geri çalıyor.",
+   "dub": "Düğmeyi tutup bir melodi çalın, kart onu geri çalıyor."
   },
   {
    "id": "s03",
@@ -40,8 +40,8 @@
    "id": "s05",
    "vis": "b3d:touch_pins",
    "text": "Some ESP32 pins can feel a touch. We'll use three of them: fourteen, two and fifteen.",
-   "tr": "ESP otuz ikinin bazı pinleri dokunuşu hissedebilir. Üçünü kullanacağız: on dört, iki ve on beş.",
-   "dub": "ESP otuz ikinin bazı pinleri dokunuşu hissedebilir. Üçünü kullanacağız: on dört, iki ve on beş."
+   "tr": "Bazı pinler dokunuşu hisseder. Üçünü kullanıyoruz: on dört, iki, on beş.",
+   "dub": "Bazı pinler dokunuşu hisseder. Üçünü kullanıyoruz: on dört, iki, on beş."
   },
   {
    "id": "s06",
@@ -61,8 +61,8 @@
    "id": "s08",
    "vis": "b3d:touch_banana",
    "text": "A banana is full of water, so it passes that touch along. That's why fruit works as a key.",
-   "tr": "Muzun içi su dolu, o yüzden dokunuşu iletiyor. Meyvenin tuş gibi çalışmasının sebebi bu.",
-   "dub": "Muzun içi su dolu, o yüzden dokunuşu iletiyor. Meyvenin tuş gibi çalışmasının sebebi bu."
+   "tr": "Muz su dolu, dokunuşu iletiyor. Bu yüzden meyve tuş oluyor.",
+   "dub": "Muz su dolu, dokunuşu iletiyor. Bu yüzden meyve tuş oluyor."
   },
   {
    "id": "s09",
@@ -89,15 +89,15 @@
    "id": "s12",
    "vis": "b3d:wire_fruit",
    "text": "Three wires: pin fourteen to the banana, pin two to the apple, pin fifteen to the orange. Just push the wire into the fruit.",
-   "tr": "Üç kablo: on dört numaralı pin muza, iki numaralı pin elmaya, on beş numaralı pin portakala. Kabloyu meyveye batırmanız yeterli.",
-   "dub": "Üç kablo: on dört numaralı pin muza, iki numaralı pin elmaya, on beş numaralı pin portakala. Kabloyu meyveye batırmanız yeterli."
+   "tr": "Üç kablo: on dört muza, iki elmaya, on beş portakala. Kabloyu meyveye batırın.",
+   "dub": "Üç kablo: on dört muza, iki elmaya, on beş portakala. Kabloyu meyveye batırın."
   },
   {
    "id": "s13",
    "vis": "b3d:wire_led",
    "text": "Pin two also lights the little blue LED on many boards, so don't worry if it glows a bit.",
-   "tr": "İki numaralı pin birçok kartta küçük mavi LED'i de yakıyor, biraz parlarsa endişelenmeyin.",
-   "dub": "İki numaralı pin birçok kartta küçük mavi LED'i de yakıyor, biraz parlarsa endişelenmeyin."
+   "tr": "İki numaralı pin mavi LED'i de yakabilir, parlarsa sorun değil.",
+   "dub": "İki numaralı pin mavi LED'i de yakabilir, parlarsa sorun değil."
   },
   {
    "id": "s14",
@@ -124,8 +124,8 @@
    "id": "s17",
    "vis": "b3d:rec_hold",
    "text": "To record, hold the button for one second. The screen says REC.",
-   "tr": "Kaydetmek için düğmeyi bir saniye basılı tutun. Ekranda REC yazıyor.",
-   "dub": "Kaydetmek için düğmeyi bir saniye basılı tutun. Ekranda REC yazıyor."
+   "tr": "Kayıt için düğmeyi bir saniye tutun. Ekranda REC yazıyor.",
+   "dub": "Kayıt için düğmeyi bir saniye tutun. Ekranda REC yazıyor."
   },
   {
    "id": "s18",
@@ -152,15 +152,15 @@
    "id": "s21",
    "vis": "b3d:trouble_calm",
    "text": "A common problem: a key plays by itself. Usually someone touched a fruit while the board was measuring, so restart it with your hands off.",
-   "tr": "Sık bir sorun: bir tuş kendi kendine çalıyor. Genelde kart ölçerken biri meyveye dokunmuştur, ellerinizi çekip kartı yeniden başlatın.",
-   "dub": "Sık bir sorun: bir tuş kendi kendine çalıyor. Genelde kart ölçerken biri meyveye dokunmuştur, ellerinizi çekip kartı yeniden başlatın."
+   "tr": "Sık sorun: bir tuş kendiliğinden çalıyor. Ölçüm sırasında dokunulmuştur, elinizi çekip kartı yeniden başlatın.",
+   "dub": "Sık sorun: bir tuş kendiliğinden çalıyor. Ölçüm sırasında dokunulmuştur, elinizi çekip kartı yeniden başlatın."
   },
   {
    "id": "s22",
    "vis": "b3d:trouble_drop",
    "text": "If a key never plays, change the drop value in the code a little, so a smaller change counts as a touch.",
-   "tr": "Bir tuş hiç çalmıyorsa koddaki düşüş değerini biraz değiştirin, böylece daha küçük bir değişim de dokunuş sayılsın.",
-   "dub": "Bir tuş hiç çalmıyorsa koddaki düşüş değerini biraz değiştirin, böylece daha küçük bir değişim de dokunuş sayılsın."
+   "tr": "Bir tuş hiç çalmıyorsa koddaki düşüş değerini biraz küçültün.",
+   "dub": "Bir tuş hiç çalmıyorsa koddaki düşüş değerini biraz küçültün."
   },
   {
    "id": "s23",

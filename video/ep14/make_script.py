@@ -116,6 +116,22 @@ for _d in S:
     if _d["id"] == "s24":
         _d["pad"] = 20.0
 
+# TR lines shortened to fit the EN slots (dub.py --report, 25 Nov): same meaning, fewer syllables
+TR_FIT = {
+    "s02": "Düğmeyi tutup bir melodi çalın, kart onu geri çalıyor.",
+    "s05": "Bazı pinler dokunuşu hisseder. Üçünü kullanıyoruz: on dört, iki, on beş.",
+    "s08": "Muz su dolu, dokunuşu iletiyor. Bu yüzden meyve tuş oluyor.",
+    "s12": "Üç kablo: on dört muza, iki elmaya, on beş portakala. Kabloyu meyveye batırın.",
+    "s13": "İki numaralı pin mavi LED'i de yakabilir, parlarsa sorun değil.",
+    "s17": "Kayıt için düğmeyi bir saniye tutun. Ekranda REC yazıyor.",
+    "s21": "Sık sorun: bir tuş kendiliğinden çalıyor. Ölçüm sırasında dokunulmuştur, elinizi çekip kartı yeniden "
+           "başlatın.",
+    "s22": "Bir tuş hiç çalmıyorsa koddaki düşüş değerini biraz küçültün.",
+}
+for _d in S:
+    if _d["id"] in TR_FIT:
+        _d["tr"] = _d["dub"] = TR_FIT[_d["id"]]
+
 SCRIPT = {
     "episode": "ep14",
     "title": "I Turned Bananas into a Piano (ESP32 Touch Pins)",
