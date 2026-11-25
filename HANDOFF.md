@@ -18,7 +18,8 @@ After Ep11 gets an ID: re-run video/ep12/make_localize.py (PREVURL/EP11_URL) and
 Script DRAFTS (25 Nov, not reviewed, no narration/render yet): video/ep14 (fruit piano, + SHOTS.md), ep15 (drawer
 spy), ep16 (basket scoreboard), ep17 (phone fan, relay) - 25 segments each, ~3-3.3 min narration + 20 s readable code
 pages; new analogies in video/ANALOGIES.md (touch bucket, array boxes, relay magnet switch) need the creator's OK.
-Ep13 (DHT11 weather station) still needs its sketch + script; Ep17's sketch has a TODO "auto above 28 C" using Ep13.
+Ep14 3D fruit props done: video/b3d/parts_ep14.py (banana/apple/orange + touch_glow), look test
+video/ep14/b3d/fruit_test.py (kit lights key=2.2). Ep15-17 SHOTS.md written too. Ep13 (DHT11 weather station) still needs its sketch + script; Ep17's sketch has a TODO "auto above 28 C" using Ep13.
 Next: creator reviews Ep11/Ep12 -> upload + schedule (same Studio recipe as Ep10, memory youtube-upload-progress.md).
 
 # Update - 24 November 2026 afternoon (read first)
