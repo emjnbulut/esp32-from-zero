@@ -159,6 +159,53 @@ def piezo(f, d, vol):
     return (w / (np.max(np.abs(w)) or 1) * vol).astype(np.float32)
 
 
+def piezo_sweep(f0, f1, d, vol):
+    """passive buzzer whose tone() frequency glides f0 -> f1 over d (Episode 15's whoop: 1500 + (now % 400) * 3);
+    same disc resonance + low-passes as piezo(), only the square wave's frequency moves"""
+    t = np.arange(int(d * SR)) / SR
+    fr = np.linspace(f0, f1, len(t))
+    sq = np.sign(np.sin(2 * np.pi * np.cumsum(fr) / SR)).astype(np.float32)
+    w = 0.75 * resonate(sq) + 0.25 * sq
+    a = np.exp(-2 * np.pi * 6500 / SR)
+    for _ in range(2):
+        y, prev = np.empty_like(w), 0.0
+        for i, v in enumerate(w):
+            prev = (1 - a) * v + a * prev
+            y[i] = prev
+        w = y
+    env = np.minimum(1, np.minimum(t / 0.002, (d - t) / 0.004).clip(0))
+    w = w * env
+    return (w / (np.max(np.abs(w)) or 1) * vol).astype(np.float32)
+
+
+def slide(d, vol, seed=7):
+    """wooden drawer sliding: dull rumbling friction noise with a soft knock at the end"""
+    rng = np.random.default_rng(seed)
+    n = int(d * SR)
+    x = rng.standard_normal(n).astype(np.float32)
+    x = np.convolve(x, np.ones(48, np.float32) / 48, mode="same")  # dull, woody
+    t = np.arange(n) / SR
+    grain = 0.6 + 0.4 * np.abs(np.sin(2 * np.pi * 23 * t + rng.uniform(0, 6)))  # stick-slip judder
+    env = np.sin(np.pi * np.minimum(1, t / d)) ** 0.7
+    x = x / (np.max(np.abs(x)) or 1) * grain * env * vol
+    knock = noise(0.04, vol * 1.6, hp=False, seed=seed + 1)
+    knock = np.convolve(knock, np.ones(12, np.float32) / 12, mode="same")
+    return seq((0, x.astype(np.float32)), (max(0.0, d - 0.05), knock.astype(np.float32)))
+
+
+def tape_tear(d, vol, seed=9):
+    """sticky tape pulled off the roll and pressed down: crackly high noise in bursts"""
+    rng = np.random.default_rng(seed)
+    n = int(d * SR)
+    x = np.diff(rng.standard_normal(n + 1)).astype(np.float32)
+    t = np.arange(n) / SR
+    crack = (rng.random(n) < 0.004).astype(np.float32)
+    crack = np.convolve(crack, np.exp(-np.arange(240) / 40).astype(np.float32), mode="same")
+    env = np.minimum(1, t / 0.02) * np.exp(-t / (d * 0.6))
+    x = (0.5 * x / (np.max(np.abs(x)) or 1) + crack / (np.max(crack) or 1)) * env * vol
+    return x.astype(np.float32)
+
+
 def noise(d, vol, hp=True, seed=0):
     rng = np.random.default_rng(seed)
     x = rng.standard_normal(int(d * SR)).astype(np.float32)
@@ -230,6 +277,12 @@ SFX = {
     "fp_do_pb": lambda: piezo(523, 0.25, 0.5),
     "fp_mi_pb": lambda: piezo(659, 0.25, 0.5),
     "fp_sol_pb": lambda: piezo(784, 0.25, 0.5),
+    # Episode 15 (lessons/15-drawer-spy): the alarm is tone(1500 + (now % 400) * 3) for 5 s = 0.4 s sweeps
+    # 1500 -> 2700 Hz, one "whoop" event per sweep; a sweep cut short when the alarm stops -> "chirp" (first half)
+    "whoop": lambda: piezo_sweep(1500, 2700, 0.40, 0.45),
+    "chirp": lambda: piezo_sweep(1500, 2100, 0.20, 0.45),
+    "drawer": lambda: slide(0.55, 0.16),
+    "tape": lambda: tape_tear(0.45, 0.14),
 }
 
 
