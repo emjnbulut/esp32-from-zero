@@ -221,6 +221,15 @@ SFX = {
     "ring_2": lambda: piezo(1047, 0.30, 0.5),
     "tap": lambda: noise(0.018, 0.16, hp=False, seed=5),
     "whoosh": lambda: whoosh(0.32, 0.10),
+    # Episode 14 (lessons/14-fruit-piano): touch = tone(NOTE, 200), playBack() = tone(NOTE, 250); NOTE 523/659/784,
+    # challenge high DO 1047 (README)
+    "fp_do": lambda: piezo(523, 0.20, 0.5),
+    "fp_mi": lambda: piezo(659, 0.20, 0.5),
+    "fp_sol": lambda: piezo(784, 0.20, 0.5),
+    "fp_hido": lambda: piezo(1047, 0.20, 0.5),
+    "fp_do_pb": lambda: piezo(523, 0.25, 0.5),
+    "fp_mi_pb": lambda: piezo(659, 0.25, 0.5),
+    "fp_sol_pb": lambda: piezo(784, 0.25, 0.5),
 }
 
 
