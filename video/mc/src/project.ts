@@ -33,6 +33,16 @@ import ep12_code_arg from './scenes/ep12_code_arg?scene';
 import ep12_code_answer from './scenes/ep12_code_answer?scene';
 import ep12_page_template from './scenes/ep12_page_template?scene';
 import ep12_code_full from './scenes/ep12_code_full?scene';
+// Ep14 "Fruit piano" DRAFT (timing: src/timing/ep14.json <- node video/mc/tools/timing.mjs ep14)
+import ep14_bucket from './scenes/ep14_bucket?scene';
+import ep14_bucket_finger from './scenes/ep14_bucket_finger?scene';
+import ep14_code_touch from './scenes/ep14_code_touch?scene';
+import ep14_calibrate from './scenes/ep14_calibrate?scene';
+import ep14_array_boxes from './scenes/ep14_array_boxes?scene';
+import ep14_code_array from './scenes/ep14_code_array?scene';
+import ep14_code_loop_keys from './scenes/ep14_code_loop_keys?scene';
+import ep14_song_boxes from './scenes/ep14_song_boxes?scene';
+import ep14_code_full from './scenes/ep14_code_full?scene';
 
 /**
  * All scenes of the course live in this one project so the editor
@@ -71,5 +81,14 @@ export default makeProject({
     ep12_code_answer,
     ep12_page_template,
     ep12_code_full,
+    ep14_bucket,
+    ep14_bucket_finger,
+    ep14_code_touch,
+    ep14_calibrate,
+    ep14_array_boxes,
+    ep14_code_array,
+    ep14_code_loop_keys,
+    ep14_song_boxes,
+    ep14_code_full,
   ],
 });

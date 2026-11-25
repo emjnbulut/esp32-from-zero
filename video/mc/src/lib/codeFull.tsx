@@ -40,7 +40,7 @@ export function* codeFullBody(
   T: Timing & {segments?: {start: number; words: {w: string; t: number}[]}[]},
   sk: Sketch,
   ask: [string, string],
-  opts: {pages?: boolean} = {},
+  opts: {pages?: boolean; fit?: boolean} = {},
 ): ThreadGenerator {
   // with pages: the narrated part ends after the last spoken word, the silent pad pages through the sketch
   const lastSeg = T.segments?.[T.segments.length - 1];
@@ -214,7 +214,7 @@ export function* codeFullBody(
       folder().opacity(0, 0.3),
       h1.out(),
     );
-    yield* pageThrough(view, sk, T.total);
+    yield* pageThrough(view, sk, T.total, opts.fit);
   }
   yield* until(T.total);
 }
@@ -254,14 +254,17 @@ export function splitPages(lines: string[], max = 24): [number, number][] {
  * Readable paging through the whole sketch until scene time `t1`: ~24 lines
  * per page, 30 px monospace, line numbers, file tab, "n/N" page indicator and
  * a thin progress bar per page, 0.3 s slide between pages, equal hold times.
+ * fit = true shrinks the font when the longest sketch line would be cut off.
  * Fits between y = -500 and y = 378 (subtitle zone stays free).
  */
-export function* pageThrough(view: View2D, sk: Sketch, t1: number): ThreadGenerator {
+export function* pageThrough(view: View2D, sk: Sketch, t1: number, fit = false): ThreadGenerator {
   const pages = splitPages(sk.lines, 24);
-  const FS = 30;
-  const LH = 33;
-  const per = Math.max(...pages.map(([a, b]) => b - a));
   const W = 1840;
+  // fit: shrink the font so the longest line fits the card (Consolas advance = 0.55 em)
+  const maxLen = Math.max(...sk.lines.map(l => l.replace(/	/g, '  ').length));
+  const FS = fit ? Math.min(30, Math.floor((W - 112 - 24) / (maxLen * 0.55))) : 30;
+  const LH = fit ? Math.round(FS * 1.1) : 33;
+  const per = Math.max(...pages.map(([a, b]) => b - a));
   const TAB = 54;
   const H = per * LH + TAB + 30;
   const TOP = 378 - H; // card bottom sits on the subtitle line
