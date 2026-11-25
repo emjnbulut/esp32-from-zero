@@ -1147,6 +1147,13 @@ def shot_spec(sh):
             return 240 + 2410 * smooth(of(t) / 40.0) + jitter(t, 9)
         spy = Spy(openings=0).run(L, 0.0, dur)
         spy.export(sfx, beeps, dur)
+        # the full 5 s alarm would sit on the narration: keep only its first 0.8 s (two whoops) in this shot
+        _w = [i for i, e in enumerate(sfx) if e[1] == "whoop"][2:]
+        for i in reversed(_w):
+            del sfx[i]
+        _b = [i for i, e in enumerate(beeps) if e[3] == "whoop"][2:]
+        for i in reversed(_b):
+            del beeps[i]
         sfx.append((to, "drawer"))
         tprints = [-4.0 + 0.5 * i for i in range(int((dur + 4.0) / 0.5) + 1)]  # it has been printing all along
         sc_c = lid_pt(0, 48)
