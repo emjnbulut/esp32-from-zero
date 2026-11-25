@@ -43,6 +43,15 @@ import ep14_code_array from './scenes/ep14_code_array?scene';
 import ep14_code_loop_keys from './scenes/ep14_code_loop_keys?scene';
 import ep14_song_boxes from './scenes/ep14_song_boxes?scene';
 import ep14_code_full from './scenes/ep14_code_full?scene';
+// Ep15 "Drawer spy" DRAFT (timing: src/timing/ep15.json <- node video/mc/tools/timing.mjs ep15)
+import ep15_light_number from './scenes/ep15_light_number?scene';
+import ep15_code_read from './scenes/ep15_code_read?scene';
+import ep15_one_line from './scenes/ep15_one_line?scene';
+import ep15_thermostat from './scenes/ep15_thermostat?scene';
+import ep15_two_lines from './scenes/ep15_two_lines?scene';
+import ep15_code_hyst from './scenes/ep15_code_hyst?scene';
+import ep15_code_counter from './scenes/ep15_code_counter?scene';
+import ep15_code_full from './scenes/ep15_code_full?scene';
 
 /**
  * All scenes of the course live in this one project so the editor
@@ -90,5 +99,13 @@ export default makeProject({
     ep14_code_loop_keys,
     ep14_song_boxes,
     ep14_code_full,
+    ep15_light_number,
+    ep15_code_read,
+    ep15_one_line,
+    ep15_thermostat,
+    ep15_two_lines,
+    ep15_code_hyst,
+    ep15_code_counter,
+    ep15_code_full,
   ],
 });
