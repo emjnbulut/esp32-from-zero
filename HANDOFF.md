@@ -21,7 +21,10 @@ pages; new analogies in video/ANALOGIES.md (touch bucket, array boxes, relay mag
 Ep14 3D fruit props done: video/b3d/parts_ep14.py (banana/apple/orange + touch_glow), look test
 video/ep14/b3d/fruit_test.py (kit lights key=2.2). Ep15-17 SHOTS.md written too. Ep15-17 3D props: video/b3d/parts_ep15.py (LDR module, drawer, light
 cone), parts_ep16.py (IR module, cup hoop on books, paper ball, beam), parts_ep17.py (relay board, USB fan, relay
-cutaway) + video/ep1x/b3d/props_test.py look tests (known: tiny labels, blobby wood grain - tune in the real shots). Ep13 (DHT11 weather station) still needs its sketch + script; Ep17's sketch has a TODO "auto above 28 C" using Ep13.
+cutaway) + video/ep1x/b3d/props_test.py look tests (known: tiny labels, blobby wood grain - tune in the real shots). Ep14 FIRST DRAFT VIDEO built 25 Nov 08:30: video/ep14/build/TASLAK/ep14_taslak_v1.mp4 (248.3 s, EN narration, 16 b3d shots + 9 MC
+scenes, ending Whisper-checked). Not reviewed by the creator; dubs/subs-in-12-languages/thumbnails not done yet. Small
+known: trouble_drop glow stays a moment after the finger leaves; outro shot is held (199 of 298 frames).
+Ep13 (DHT11 weather station) still needs its sketch + script; Ep17's sketch has a TODO "auto above 28 C" using Ep13.
 Next: creator reviews Ep11/Ep12 -> upload + schedule (same Studio recipe as Ep10, memory youtube-upload-progress.md).
 
 # Update - 24 November 2026 afternoon (read first)
